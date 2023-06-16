@@ -15,7 +15,7 @@ esphome:
   # configuration and updates.
   project:
     name: TheRealFalseReality.AquaPiesp32
-    version: "1.01"
+    version: "1.0"
 
 esp32:
   board: esp32dev
@@ -24,7 +24,6 @@ esp32:
 
 # Enable logging
 logger:
-  level: verbose
 
 # Enable Home Assistant API
 api:
