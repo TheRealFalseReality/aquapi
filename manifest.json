@@ -1,0 +1,26 @@
+{
+  "name": "Template Project",
+  "version": "",
+  "home_assistant_domain": "esphome",
+  "new_install_skip_erase": false,
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        {
+          "path": "project-template-esp32/project-template-esp32.bin",
+          "offset": 0
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP8266",
+      "parts": [
+        {
+          "path": "project-template-esp8266/project-template-esp8266.bin",
+          "offset": 0
+        }
+      ]
+    }
+  ]
+}

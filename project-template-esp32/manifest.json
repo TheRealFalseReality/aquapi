@@ -1,0 +1,9 @@
+{
+  "chipFamily": "ESP32",
+  "parts": [
+    {
+      "path": "project-template-esp32/project-template-esp32.bin",
+      "offset": 0
+    }
+  ]
+}
