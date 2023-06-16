@@ -15,7 +15,7 @@ esphome:
   # configuration and updates.
   project:
     name: TheRealFalseReality.aquapi
-    version: "1.01"
+    version: "1.02"
 
 esp32:
   board: esp32dev
@@ -239,4 +239,4 @@ button:
             id(ec_ezo).send_custom("O,EC,0");
             id(ec_ezo).send_custom("O,TDS,0");
             id(ec_ezo).send_custom("O,S,0");
-            id(ec_ezo).send_custom("O,SG,0");
+            id(ec_ezo).send_custom("O,SG,1");
