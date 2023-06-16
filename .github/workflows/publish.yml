@@ -10,6 +10,6 @@ jobs:
     uses: esphome/workflows/.github/workflows/publish.yml@main
     with:
       # CHANGEME: Set the filenames of your config files here:
-      files: aquapi_config.yam
+      files: aquapi_config.yaml
       # CHANGEME: Set the name of your project here:
       name: AquaPi
