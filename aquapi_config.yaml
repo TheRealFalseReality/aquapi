@@ -33,7 +33,6 @@ ota:
 # This should point to the public location of this yaml file.
 dashboard_import:
   package_import_url: github://TheRealFalseReality/aquapi/aquapi_esphome.yaml@main
-  import_full_config: false
 
 wifi:
   ap:
