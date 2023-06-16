@@ -46,8 +46,8 @@ button:
 
   # Perform Calibration 0.00
   - platform: template
-    name: "EC - Calibration - Dry"
-    id: ec_cal_dry
+    name: "EC - Calibration - 0"
+    id: ec_cal_0
     on_press:
       then:
         - lambda: |-
