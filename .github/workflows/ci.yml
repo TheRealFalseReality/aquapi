@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  pull_request:
+
+jobs:
+  ci:
+    name: Building ${{ matrix.file }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        file:
+          - project-template-esp32.yaml
+          - project-template-esp8266.yaml
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+      - name: Build ESPHome firmware to verify configuration
+        uses: esphome/build-action@v1.5.0
+        with:
+          yaml_file: ${{ matrix.file }}
