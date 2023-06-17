@@ -240,3 +240,69 @@ button:
             id(ec_ezo).send_custom("O,TDS,0");
             id(ec_ezo).send_custom("O,S,0");
             id(ec_ezo).send_custom("O,SG,1");
+
+  # Output Conductivity
+  - platform: template
+    name: "EC - Output - Conductivity"
+    id: ec_cond
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).send_custom("O,EC,1");
+            id(ec_ezo).send_custom("O,TDS,0");
+            id(ec_ezo).send_custom("O,S,0");
+            id(ec_ezo).send_custom("O,SG,0");
+
+  # Manual Read
+  - platform: template
+    name: "EC - Manual Read"
+    id: ec_read
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).get_state();
+
+  # Perform Calibration 0.00
+  - platform: template
+    name: "EC - Calibration - 0"
+    id: ec_cal_0
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).set_calibration_generic(0.00);
+
+  # Perform Calibration low 12880
+  - platform: template
+    name: "EC - Calibration - low 12880"
+    id: ec_cal_low
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).set_calibration_point_low(12880.00);
+
+  # Perform Calibration high 80000
+  - platform: template
+    name: "EC - Calibration - high 80000"
+    id: ec_cal_high
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).set_calibration_point_high(80000.00);
+
+  # Perform Calibration CLEAR
+  - platform: template
+    name: "EC - Calibration Clear"
+    id: ec_cal_clear
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).clear_calibration();
+
+  # Perform Calibration Check
+  - platform: template
+    name: "EC - Calibration - check"
+    id: ec_cal_check
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).get_calibration();
