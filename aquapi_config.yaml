@@ -2,6 +2,11 @@
 substitutions:
   name: "aquapi"
   friendly_name: "AquaPi"
+  dallasPin: "16"
+  opticalHigh: "33"
+  opticalLow: "32"
+
+version: "1.14"
 
 esphome:
   name: "${name}"
@@ -13,7 +18,7 @@ esphome:
   # configuration and updates.
   project:
     name: TheRealFalseReality.aquapi
-    version: "1.13"
+    version: "${version}"
 
 esp32:
   board: esp32dev
@@ -62,7 +67,7 @@ light:
 
 # 18B20 sensor Pin
 dallas:
-  - pin: 16
+  - pin: ${dallasPin}
     
 sensor:
   # Internal Magnetic Sensor
@@ -161,7 +166,7 @@ binary_sensor:
   - platform: gpio
     id: os_low
     pin: 
-      number: 32
+      number: ${opticalLow}
       inverted: true
       mode:
         input: true
@@ -174,7 +179,7 @@ binary_sensor:
   - platform: gpio
     id: os_high
     pin: 
-      number: 33
+      number: ${opticalHigh}
       inverted: true
       mode:
         input: true
@@ -184,6 +189,15 @@ binary_sensor:
       - delayed_on: 30ms
 
 text_sensor:
+  # AquaPi Version
+  - platform: template
+    name: "AquaPi Version"
+    id: aquapi_version
+    lambda: |-
+      version = "${version}"
+      
+      return version
+
   # Water Level
   - platform: template
     name: "Water Level"
