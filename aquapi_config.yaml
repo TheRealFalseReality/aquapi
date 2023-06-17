@@ -15,7 +15,7 @@ esphome:
   # configuration and updates.
   project:
     name: TheRealFalseReality.aquapi
-    version: "1.03"
+    version: "1.031"
 
 esp32:
   board: esp32dev
@@ -184,26 +184,26 @@ binary_sensor:
     filters:
       - delayed_on: 30ms
 
-text_sensor:
-  # Water Level
-  - platform: template
-    name: "Water Level"
-    id: water_level
-    lambda: |-
-      if(id(os_high).state == true && id(os_low).state == true) {
-        // Water Level is High
-        return {"High"};
-      }
-      if(id(os_high).state == false && id(os_low).state == false) {
-        // Water Level is Low
-        return {"Low"};
-      }
-      if(id(os_high).state == false && id(os_low).state == true) {
-        // Water Level is Normal
-        return {"Normal"};
-      } else {
-        return {"Uknown or Error"};
-      }
+# text_sensor:
+#   # Water Level
+#   - platform: template
+#     name: "Water Level"
+#     id: water_level
+#     lambda: |-
+#       if(id(os_high).state == true && id(os_low).state == true) {
+#         // Water Level is High
+#         return {"High"};
+#       }
+#       if(id(os_high).state == false && id(os_low).state == false) {
+#         // Water Level is Low
+#         return {"Low"};
+#       }
+#       if(id(os_high).state == false && id(os_low).state == true) {
+#         // Water Level is Normal
+#         return {"Normal"};
+#       } else {
+#         return {"Uknown or Error"};
+#       }
 
 button:
   # Soft Restart
