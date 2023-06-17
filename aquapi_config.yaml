@@ -1,7 +1,7 @@
 # These substitutions allow the end user to override certain values
 substitutions:
-  name: "aquapi"
-  friendly_name: "AquaPi"
+  name: "aquapi-0.3"
+  friendly_name: "AquaPi-.3"
 
 esphome:
   name: "${name}"
@@ -13,7 +13,7 @@ esphome:
   # configuration and updates.
   project:
     name: therealfalsereality.aquapi
-    version: "0.2"
+    version: "0.3"
 
 esp32:
   board: esp32dev
@@ -228,17 +228,17 @@ button:
   #           id(ec_ezo).send_custom("O,S,1");
   #           id(ec_ezo).send_custom("O,SG,0");
             
-  # # Output Specific Gravity
-  # - platform: template
-  #   name: "EC - Output - Specific Gravity"
-  #   id: ec_sg
-  #   on_press:
-  #     then:
-  #       - lambda: |-
-  #           id(ec_ezo).send_custom("O,EC,0");
-  #           id(ec_ezo).send_custom("O,TDS,0");
-  #           id(ec_ezo).send_custom("O,S,0");
-  #           id(ec_ezo).send_custom("O,SG,1");
+  # Output Specific Gravity
+  - platform: template
+    name: "EC - Output - Specific Gravity"
+    id: ec_sg
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).send_custom("O,EC,0");
+            id(ec_ezo).send_custom("O,TDS,0");
+            id(ec_ezo).send_custom("O,S,0");
+            id(ec_ezo).send_custom("O,SG,1");
 
   # # Output Conductivity
   # - platform: template
