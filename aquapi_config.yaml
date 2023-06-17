@@ -1,11 +1,11 @@
 # These substitutions allow the end user to override certain values
 substitutions:
-  name: "project-template"
-  # friendly_name: "AquaPi"
+  name: "aquapi"
+  friendly_name: "AquaPi"
 
 esphome:
   name: "${name}"
-  # friendly_name: "${friendly_name}"
+  friendly_name: "${friendly_name}"
   # Automatically add the mac address to the name
   # so you can use a single firmware for all devices
   name_add_mac_suffix: true
