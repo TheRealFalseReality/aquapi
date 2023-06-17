@@ -6,8 +6,6 @@ substitutions:
   opticalHigh: "33"
   opticalLow: "32"
 
-version: "1.14"
-
 esphome:
   name: "${name}"
   friendly_name: "${friendly_name}"
@@ -18,7 +16,7 @@ esphome:
   # configuration and updates.
   project:
     name: TheRealFalseReality.aquapi
-    version: "${version}"
+    version: "1.14"
 
 esp32:
   board: esp32dev
@@ -189,14 +187,14 @@ binary_sensor:
       - delayed_on: 30ms
 
 text_sensor:
-  # AquaPi Version
-  - platform: template
-    name: "AquaPi Version"
-    id: aquapi_version
-    lambda: |-
-      version = "${version}"
+  # # AquaPi Version
+  # - platform: template
+  #   name: "AquaPi Version"
+  #   id: aquapi_version
+  #   lambda: |-
+  #     version = "${version}"
       
-      return version
+  #     return version
 
   # Water Level
   - platform: template
