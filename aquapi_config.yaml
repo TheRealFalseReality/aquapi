@@ -12,8 +12,8 @@ esphome:
   # This will allow for (future) project identification,
   # configuration and updates.
   project:
-    name: esphome.project-template
-    version: "0.1"
+    name: therealfalsereality.aquapi
+    version: "0.2"
 
 esp32:
   board: esp32dev
