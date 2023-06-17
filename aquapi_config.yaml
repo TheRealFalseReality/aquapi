@@ -216,6 +216,7 @@ button:
   # - platform: safe_mode
   #   name: "Safe Mode"
 
+  # EC
   # Output Parameters
   # Output Salinity
   - platform: template
@@ -306,3 +307,58 @@ button:
       then:
         - lambda: |-
             id(ec_ezo).get_calibration();
+
+  # pH
+  # Manual Read
+  - platform: template
+    name: "pH - Manual Read"
+    id: ph_read
+    on_press:
+      then:
+        - lambda: |-
+            id(ph_ezo).send_custom("R");
+
+  # Perform Calibration - mid 7
+  - platform: template
+    name: "pH - Calibration - mid 7"
+    id: ph_cal_mid
+    on_press:
+      then:
+        - lambda: |-
+            id(ph_ezo).send_custom("Cal,mid,7.00");
+
+  # Perform Calibration low 4
+  - platform: template
+    name: "pH - Calibration - low 4"
+    id: ph_cal_low
+    on_press:
+      then:
+        - lambda: |-
+            id(ph_ezo).send_custom("Cal,low,4.00");
+
+  # Perform Calibration high 10
+  - platform: template
+    name: "pH - Calibration - high 10"
+    id: ph_cal_high
+    on_press:
+      then:
+        - lambda: |-
+            id(ph_ezo).send_custom("Cal,low,10.00");
+
+  # Perform Calibration CLEAR
+  - platform: template
+    name: "pH - Calibration Clear"
+    id: ph_cal_clear
+    on_press:
+      then:
+        - lambda: |-
+            id(ph_ezo).send_custom("Cal,clear");
+
+  # Perform Calibration Check
+  - platform: template
+    name: "pH - Calibration - check"
+    id: ph_cal_check
+    on_press:
+      then:
+        - lambda: |-
+            id(ph_ezo).send_custom("Cal,?");
