@@ -13,7 +13,7 @@ esphome:
   # configuration and updates.
   project:
     name: TheRealFalseReality.aquapi
-    version: "1.11"
+    version: "1.12"
 
 esp32:
   board: esp32dev
@@ -353,11 +353,11 @@ button:
   #       - lambda: |-
   #           id(ph_ezo).send_custom("Cal,clear");
 
-  # # Perform Calibration Check
-  # - platform: template
-  #   name: "pH - Calibration - check"
-  #   id: ph_cal_check
-  #   on_press:
-  #     then:
-  #       - lambda: |-
-  #           id(ph_ezo).send_custom("Cal,?");
+  # Perform Calibration Check
+  - platform: template
+    name: "pH - Calibration - check"
+    id: ph_cal_check
+    on_press:
+      then:
+        - lambda: |-
+            id(ph_ezo).send_custom("Cal,?");
