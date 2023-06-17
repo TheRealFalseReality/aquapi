@@ -2,6 +2,7 @@
 substitutions:
   name: "aquapi-03"
   friendly_name: "AquaPi-03"
+  dallasPin: 16
 
 esphome:
   name: "${name}"
@@ -54,6 +55,8 @@ i2c:
   scan: true
   id: bus_a
 
+dallasPin: ${dallasPin}
+
 # Internal Blue LED
 light:
   - platform: status_led
@@ -62,7 +65,7 @@ light:
 
 # 18B20 sensor Pin
 dallas:
-  - pin: 16
+  - pin: dallasPin
     
 sensor:
   # Internal Magnetic Sensor
