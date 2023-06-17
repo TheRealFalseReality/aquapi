@@ -12,7 +12,7 @@ esphome:
   # This will allow for (future) project identification,
   # configuration and updates.
   project:
-    name: therealfalsereality.aquapi
+    name: TheRealFalseReality.aquapi
     version: "0.3"
 
 esp32:
