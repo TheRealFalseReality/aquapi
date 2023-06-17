@@ -216,149 +216,149 @@ button:
   # - platform: safe_mode
   #   name: "Safe Mode"
 
-  # EC
-  # Output Parameters
-  # Output Salinity
-  - platform: template
-    name: "EC - Output - Salinity"
-    id: ec_sal
-    on_press:
-      then:
-        - lambda: |-
-            id(ec_ezo).send_custom("O,EC,0");
-            id(ec_ezo).send_custom("O,TDS,0");
-            id(ec_ezo).send_custom("O,S,1");
-            id(ec_ezo).send_custom("O,SG,0");
+  # # EC
+  # # Output Parameters
+  # # Output Salinity
+  # - platform: template
+  #   name: "EC - Output - Salinity"
+  #   id: ec_sal
+  #   on_press:
+  #     then:
+  #       - lambda: |-
+  #           id(ec_ezo).send_custom("O,EC,0");
+  #           id(ec_ezo).send_custom("O,TDS,0");
+  #           id(ec_ezo).send_custom("O,S,1");
+  #           id(ec_ezo).send_custom("O,SG,0");
             
-  # Output Specific Gravity
-  - platform: template
-    name: "EC - Output - Specific Gravity"
-    id: ec_sg
-    on_press:
-      then:
-        - lambda: |-
-            id(ec_ezo).send_custom("O,EC,0");
-            id(ec_ezo).send_custom("O,TDS,0");
-            id(ec_ezo).send_custom("O,S,0");
-            id(ec_ezo).send_custom("O,SG,1");
+  # # Output Specific Gravity
+  # - platform: template
+  #   name: "EC - Output - Specific Gravity"
+  #   id: ec_sg
+  #   on_press:
+  #     then:
+  #       - lambda: |-
+  #           id(ec_ezo).send_custom("O,EC,0");
+  #           id(ec_ezo).send_custom("O,TDS,0");
+  #           id(ec_ezo).send_custom("O,S,0");
+  #           id(ec_ezo).send_custom("O,SG,1");
 
-  # Output Conductivity
-  - platform: template
-    name: "EC - Output - Conductivity"
-    id: ec_cond
-    on_press:
-      then:
-        - lambda: |-
-            id(ec_ezo).send_custom("O,EC,1");
-            id(ec_ezo).send_custom("O,TDS,0");
-            id(ec_ezo).send_custom("O,S,0");
-            id(ec_ezo).send_custom("O,SG,0");
+  # # Output Conductivity
+  # - platform: template
+  #   name: "EC - Output - Conductivity"
+  #   id: ec_cond
+  #   on_press:
+  #     then:
+  #       - lambda: |-
+  #           id(ec_ezo).send_custom("O,EC,1");
+  #           id(ec_ezo).send_custom("O,TDS,0");
+  #           id(ec_ezo).send_custom("O,S,0");
+  #           id(ec_ezo).send_custom("O,SG,0");
 
-  # Manual Read
-  - platform: template
-    name: "EC - Manual Read"
-    id: ec_read
-    on_press:
-      then:
-        - lambda: |-
-            id(ec_ezo).get_state();
+  # # Manual Read
+  # - platform: template
+  #   name: "EC - Manual Read"
+  #   id: ec_read
+  #   on_press:
+  #     then:
+  #       - lambda: |-
+  #           id(ec_ezo).get_state();
 
-  # Perform Calibration 0.00
-  - platform: template
-    name: "EC - Calibration - 0"
-    id: ec_cal_0
-    on_press:
-      then:
-        - lambda: |-
-            id(ec_ezo).set_calibration_generic(0.00);
+  # # Perform Calibration 0.00
+  # - platform: template
+  #   name: "EC - Calibration - 0"
+  #   id: ec_cal_0
+  #   on_press:
+  #     then:
+  #       - lambda: |-
+  #           id(ec_ezo).set_calibration_generic(0.00);
 
-  # Perform Calibration low 12880
-  - platform: template
-    name: "EC - Calibration - low 12880"
-    id: ec_cal_low
-    on_press:
-      then:
-        - lambda: |-
-            id(ec_ezo).set_calibration_point_low(12880.00);
+  # # Perform Calibration low 12880
+  # - platform: template
+  #   name: "EC - Calibration - low 12880"
+  #   id: ec_cal_low
+  #   on_press:
+  #     then:
+  #       - lambda: |-
+  #           id(ec_ezo).set_calibration_point_low(12880.00);
 
-  # Perform Calibration high 80000
-  - platform: template
-    name: "EC - Calibration - high 80000"
-    id: ec_cal_high
-    on_press:
-      then:
-        - lambda: |-
-            id(ec_ezo).set_calibration_point_high(80000.00);
+  # # Perform Calibration high 80000
+  # - platform: template
+  #   name: "EC - Calibration - high 80000"
+  #   id: ec_cal_high
+  #   on_press:
+  #     then:
+  #       - lambda: |-
+  #           id(ec_ezo).set_calibration_point_high(80000.00);
 
-  # Perform Calibration CLEAR
-  - platform: template
-    name: "EC - Calibration Clear"
-    id: ec_cal_clear
-    on_press:
-      then:
-        - lambda: |-
-            id(ec_ezo).clear_calibration();
+  # # Perform Calibration CLEAR
+  # - platform: template
+  #   name: "EC - Calibration Clear"
+  #   id: ec_cal_clear
+  #   on_press:
+  #     then:
+  #       - lambda: |-
+  #           id(ec_ezo).clear_calibration();
 
-  # Perform Calibration Check
-  - platform: template
-    name: "EC - Calibration - check"
-    id: ec_cal_check
-    on_press:
-      then:
-        - lambda: |-
-            id(ec_ezo).get_calibration();
+  # # Perform Calibration Check
+  # - platform: template
+  #   name: "EC - Calibration - check"
+  #   id: ec_cal_check
+  #   on_press:
+  #     then:
+  #       - lambda: |-
+  #           id(ec_ezo).get_calibration();
 
-  # pH
-  # Manual Read
-  - platform: template
-    name: "pH - Manual Read"
-    id: ph_read
-    on_press:
-      then:
-        - lambda: |-
-            id(ph_ezo).send_custom("R");
+  # # pH
+  # # Manual Read
+  # - platform: template
+  #   name: "pH - Manual Read"
+  #   id: ph_read
+  #   on_press:
+  #     then:
+  #       - lambda: |-
+  #           id(ph_ezo).send_custom("R");
 
-  # Perform Calibration - mid 7
-  - platform: template
-    name: "pH - Calibration - mid 7"
-    id: ph_cal_mid
-    on_press:
-      then:
-        - lambda: |-
-            id(ph_ezo).send_custom("Cal,mid,7.00");
+  # # Perform Calibration - mid 7
+  # - platform: template
+  #   name: "pH - Calibration - mid 7"
+  #   id: ph_cal_mid
+  #   on_press:
+  #     then:
+  #       - lambda: |-
+  #           id(ph_ezo).send_custom("Cal,mid,7.00");
 
-  # Perform Calibration low 4
-  - platform: template
-    name: "pH - Calibration - low 4"
-    id: ph_cal_low
-    on_press:
-      then:
-        - lambda: |-
-            id(ph_ezo).send_custom("Cal,low,4.00");
+  # # Perform Calibration low 4
+  # - platform: template
+  #   name: "pH - Calibration - low 4"
+  #   id: ph_cal_low
+  #   on_press:
+  #     then:
+  #       - lambda: |-
+  #           id(ph_ezo).send_custom("Cal,low,4.00");
 
-  # Perform Calibration high 10
-  - platform: template
-    name: "pH - Calibration - high 10"
-    id: ph_cal_high
-    on_press:
-      then:
-        - lambda: |-
-            id(ph_ezo).send_custom("Cal,low,10.00");
+  # # Perform Calibration high 10
+  # - platform: template
+  #   name: "pH - Calibration - high 10"
+  #   id: ph_cal_high
+  #   on_press:
+  #     then:
+  #       - lambda: |-
+  #           id(ph_ezo).send_custom("Cal,low,10.00");
 
-  # Perform Calibration CLEAR
-  - platform: template
-    name: "pH - Calibration Clear"
-    id: ph_cal_clear
-    on_press:
-      then:
-        - lambda: |-
-            id(ph_ezo).send_custom("Cal,clear");
+  # # Perform Calibration CLEAR
+  # - platform: template
+  #   name: "pH - Calibration Clear"
+  #   id: ph_cal_clear
+  #   on_press:
+  #     then:
+  #       - lambda: |-
+  #           id(ph_ezo).send_custom("Cal,clear");
 
-  # Perform Calibration Check
-  - platform: template
-    name: "pH - Calibration - check"
-    id: ph_cal_check
-    on_press:
-      then:
-        - lambda: |-
-            id(ph_ezo).send_custom("Cal,?");
+  # # Perform Calibration Check
+  # - platform: template
+  #   name: "pH - Calibration - check"
+  #   id: ph_cal_check
+  #   on_press:
+  #     then:
+  #       - lambda: |-
+  #           id(ph_ezo).send_custom("Cal,?");
