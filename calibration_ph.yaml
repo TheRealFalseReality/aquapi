@@ -1,4 +1,5 @@
 button:
+  # pH
   # Get Device Firmware Version
   - platform: template
     name: "pH - Get Information"
