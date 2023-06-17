@@ -1,7 +1,7 @@
 # These substitutions allow the end user to override certain values
 substitutions:
-  name: "aquapi-0.3"
-  friendly_name: "AquaPi-.3"
+  name: "aquapi-03"
+  friendly_name: "AquaPi-03"
 
 esphome:
   name: "${name}"
