@@ -2,7 +2,7 @@
   "chipFamily": "ESP32",
   "parts": [
     {
-      "path": "aquapi-esp32/aquapi-esp32.bin",
+      "path": "project-template-esp32/project-template-esp32.bin",
       "offset": 0
     }
   ]
