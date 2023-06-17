@@ -59,15 +59,6 @@ button:
         - lambda: |-
             id(ec_ezo).get_state();
 
-  # # Perform Calibration Dry
-  # - platform: template
-  #   name: "EC - Calibration - Dry"
-  #   id: ec_cal_dry
-  #   on_press:
-  #     then:
-  #       - lambda: |-
-  #           id(ec_ezo).set_calibration_generic(dry);
-
   # Perform Calibration 0.00
   - platform: template
     name: "EC - Calibration - 0"
