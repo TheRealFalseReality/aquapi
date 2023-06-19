@@ -12,6 +12,23 @@ substitutions:
   opticalLowPin: "32"
   sdaPin: "21"
   sclPin: "22"
+  
+  # EZO Circuit Addresses
+  # pH circuit, who's address is 99
+  addPH: "99"
+  # EC circuit, who's address is 100
+  addEC: "100"
+  # DO circuit, who's address is 97
+  addDO: "97"
+  # RTD circuit, who's address is 102
+  addRTD: "102"
+  # PMP circuit, who's address is 103
+  addPMP: "103"
+  # HUM circuit, who's address is 111
+  addHUM: "111"
+  # PMP circuit, who's address is 103
+  addCO2: "105"
+
 
 esphome:
   name: "${name}"
@@ -100,7 +117,7 @@ sensor:
 
   # Uptime sensor
   - platform: uptime
-    name: Uptime Sensor    
+    name: Uptime
 
   # EZO Circuits (yellow - SCL/RX, blue - SDA/TX)
   # EZO Circuit - pH
@@ -108,7 +125,7 @@ sensor:
     icon: mdi:ph
     name: "pH"
     id: ph_ezo
-    address: 99
+    address: ${addPH}
     unit_of_measurement: ""
     accuracy_decimals: 2
     update_interval: 60s
@@ -120,7 +137,7 @@ sensor:
     icon: mdi:shaker-outline
     name: "Salinity"
     id: ec_ezo
-    address: 100
+    address: ${addEC}
     unit_of_measurement: "ppt"
     accuracy_decimals: 2
     update_interval: 60s
@@ -135,6 +152,64 @@ sensor:
     unit_of_measurement: ""
     accuracy_decimals: 3
     state_class: "measurement"
+
+  # # EZO Circuit - RTD
+  # # Temperature
+  # - platform: ezo
+  #   icon: mdi:thermometer-lines
+  #   name: "Temperature"
+  #   id: temp_ezo
+  #   address: ${addRTD}
+  #   # unit_of_measurement: ""
+  #   accuracy_decimals: 2
+  #   update_interval: 60s
+  #   state_class: "measurement"
+
+  # # EZO Circuit - HUM
+  # # Humidity
+  # - platform: ezo
+  #   icon: mdi:water-percent
+  #   name: "Humidity"
+  #   id: hum_ezo
+  #   address: ${addHUM}
+  #   # unit_of_measurement: ""
+  #   accuracy_decimals: 2
+  #   update_interval: 60s
+  #   state_class: "measurement"
+
+  # # EZO Circuit - CO2
+  # # Cardbon Dioxide
+  # - platform: ezo
+  #   icon: mdi:molecule-co2
+  #   name: "Cardbon Dioxide"
+  #   id: co2_ezo
+  #   address: ${addCO2}
+  #   # unit_of_measurement: ""
+  #   accuracy_decimals: 2
+  #   update_interval: 60s
+  #   state_class: "measurement"
+
+  # # EZO Circuit - Dissolved Oxygen
+  # - platform: ezo
+  #   icon: mdi:molecule
+  #   name: "Dissolved Oxygen"
+  #   id: do_ezo
+  #   address: ${addDO}
+  #   unit_of_measurement: ""
+  #   accuracy_decimals: 2
+  #   update_interval: 60s
+  #   state_class: "measurement"
+
+  # # EZO Circuit - Pump
+  # - platform: ezo
+  #   icon: mdi:pump
+  #   name: "Pump"
+  #   id: pmp_ezo
+  #   address: ${addPMP}
+  #   unit_of_measurement: ""
+  #   accuracy_decimals: 2
+  #   update_interval: 60s
+  #   state_class: "measurement"
 
   # # DHT
   # - platform: absolute_humidity

@@ -1,0 +1,76 @@
+sensor:
+  # EZO Circuit - EC
+  # Conductivity
+  - platform: ezo
+    icon: mdi:shaker-outline
+    name: "Conductivity"
+    id: do_ezo
+    address: 97
+    unit_of_measurement: ""
+    accuracy_decimals: 2
+    update_interval: 2s
+    state_class: "measurement"
+
+button:
+  # Calibrate the DO probe to Air
+  - platform: template
+    name: "DO - Calibration - Air"
+    id: do_cal_air
+    on_press:
+      then:
+        - lambda: |-
+            id(do_ezo).send_custom("cal");
+
+  # Calibrate the DO probe to 0
+  - platform: template
+    name: "DO - Calibration - 0"
+    id: do_cal_0
+    on_press:
+      then:
+        - lambda: |-
+            id(do_ezo).send_custom("cal,0");
+
+  # Perform Calibration CLEAR
+  - platform: template
+    name: "DO - Calibration Clear"
+    id: do_cal_clear
+    on_press:
+      then:
+        - lambda: |-
+            id(do_ezo).clear_calibration();
+
+  # Perform Calibration Check
+  - platform: template
+    name: "DO - Calibration - check"
+    id: do_cal_check
+    on_press:
+      then:
+        - lambda: |-
+            id(do_ezo).get_calibration();
+
+  # Perform Status Check
+  - platform: template
+    name: "DO - Staus Check"
+    id: do_status
+    on_press:
+      then:
+        - lambda: |-
+            id(do_ezo).send_custom("Status");
+
+  # Get Device Firmware Version
+  - platform: template
+    name: "DO - Get Information"
+    id: do_info
+    on_press:
+      then:
+        - lambda: |-
+            id(do_ezo).get_device_information();
+
+  # Manual Read
+  - platform: template
+    name: "DO - Manual Read"
+    id: do_read
+    on_press:
+      then:
+        - lambda: |-
+            id(do_ezo).get_state();

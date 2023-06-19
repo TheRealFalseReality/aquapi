@@ -1,0 +1,95 @@
+sensor:
+  # EZO Circuits (yellow - SCL/RX, blue - SDA/TX)
+  # EZO Circuit - pH
+  - platform: ezo
+    icon: mdi:ph
+    name: "pH"
+    id: ph_ezo
+    address: 99
+    unit_of_measurement: ""
+    accuracy_decimals: 2
+    update_interval: 2s
+    state_class: "measurement"
+
+button:
+  # pH
+  # Get Device Firmware Version
+  - platform: template
+    name: "pH - Get Information"
+    id: ph_info
+    on_press:
+      then:
+        - lambda: |-
+            id(ph_ezo).get_device_information();
+
+  # Get Slope
+  - platform: template
+    name: "pH - Get Slope"
+    id: ph_slope
+    on_press:
+      then:
+        - lambda: |-
+            id(ph_ezo).get_slope();
+
+  # Manual Read
+  - platform: template
+    name: "pH - Manual Read"
+    id: ph_read
+    on_press:
+      then:
+        - lambda: |-
+            id(ph_ezo).get_state();
+
+  # Perform Calibration - mid 7
+  - platform: template
+    name: "pH - Calibration - mid 7"
+    id: ph_cal_mid
+    on_press:
+      then:
+        - lambda: |-
+            id(ph_ezo).set_calibration_point_mid(7.00);
+
+  # Perform Calibration low 4
+  - platform: template
+    name: "pH - Calibration - low 4"
+    id: ph_cal_low
+    on_press:
+      then:
+        - lambda: |-
+            id(ph_ezo).set_calibration_point_low(4.00);
+
+  # Perform Calibration high 10
+  - platform: template
+    name: "pH - Calibration - high 10"
+    id: ph_cal_high
+    on_press:
+      then:
+        - lambda: |-
+            id(ph_ezo).set_calibration_point_high(10.00);
+
+  # Perform Calibration CLEAR
+  - platform: template
+    name: "pH - Calibration Clear"
+    id: ph_cal_clear
+    on_press:
+      then:
+        - lambda: |-
+            id(ph_ezo).clear_calibration();
+
+  # Perform Calibration Check
+  - platform: template
+    name: "pH - Calibration - check"
+    id: ph_cal_check
+    on_press:
+      then:
+        - lambda: |-
+            id(ph_ezo).get_calibration();
+
+  # Perform Status Check
+  - platform: template
+    name: "pH - Staus Check"
+    id: ph_status
+    on_press:
+      then:
+        - lambda: |-
+            id(ph_ezo).send_custom("Status");

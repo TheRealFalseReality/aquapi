@@ -1,0 +1,146 @@
+sensor:
+  # EZO Circuit - EC
+  # Conductivity
+  - platform: ezo
+    icon: mdi:shaker-outline
+    name: "Conductivity"
+    id: ec_ezo
+    address: 100
+    unit_of_measurement: ""
+    accuracy_decimals: 2
+    update_interval: 2s
+    state_class: "measurement"
+
+button:
+  # Output Conductivity
+  - platform: template
+    name: "EC - Output - Conductivity"
+    id: ec_cond
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).send_custom("O,EC,1");
+            id(ec_ezo).send_custom("O,TDS,0");
+            id(ec_ezo).send_custom("O,S,0");
+            id(ec_ezo).send_custom("O,SG,0");
+            
+  # Output TDS
+  - platform: template
+    name: "EC - Output - TDS"
+    id: ec_tds
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).send_custom("O,EC,0");
+            id(ec_ezo).send_custom("O,TDS,1");
+            id(ec_ezo).send_custom("O,S,0");
+            id(ec_ezo).send_custom("O,SG,0");
+
+  # Get Device Firmware Version
+  - platform: template
+    name: "EC - Get Information"
+    id: ec_info
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).get_device_information();
+
+  # Set Probe Type K1
+  - platform: template
+    name: "EC - Set Probe Type K1"
+    id: ec_probe_type
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).send_custom("K,1");
+
+  # Get Probe Value
+  - platform: template
+    name: "EC - Get Probe Value"
+    id: ec_probe_value
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).send_custom("K,?");
+
+  # Manual Read
+  - platform: template
+    name: "EC - Manual Read"
+    id: ec_read
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).get_state();
+
+  # Perform Calibration 0.00
+  - platform: template
+    name: "EC - Calibration - 0"
+    id: ec_cal_0
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).set_calibration_generic(0.00);
+
+  # Perform Calibration low 12880
+  - platform: template
+    name: "EC - Calibration - low 12880"
+    id: ec_cal_low
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).set_calibration_point_low(12880.00);
+
+  # Perform Calibration high 80000
+  - platform: template
+    name: "EC - Calibration - high 80000"
+    id: ec_cal_high
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).set_calibration_point_high(80000.00);
+
+  # Perform Calibration CLEAR
+  - platform: template
+    name: "EC - Calibration Clear"
+    id: ec_cal_clear
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).clear_calibration();
+
+  # Perform Calibration Check
+  - platform: template
+    name: "EC - Calibration - check"
+    id: ec_cal_check
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).get_calibration();
+
+  # Perform Status Check
+  - platform: template
+    name: "EC - Staus Check"
+    id: ec_status
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).send_custom("Status");
+
+  # Get TDS Value
+  - platform: template
+    name: "EC - TDS Value"
+    id: ec_tds_value
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).send_custom("TDS,?");
+
+  # Output Values
+  # Get Enabled Parameter(s)
+  - platform: template
+    name: "EC - Get Enabled Parameter(s)"
+    id: ec_param
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).send_custom("O,?");

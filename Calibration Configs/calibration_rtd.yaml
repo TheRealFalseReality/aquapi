@@ -1,0 +1,67 @@
+sensor:
+  # EZO Circuit - EC
+  # Conductivity
+  - platform: ezo
+    icon: mdi:shaker-outline
+    name: "Conductivity"
+    id: rtd_ezo
+    address: 102
+    unit_of_measurement: ""
+    accuracy_decimals: 2
+    update_interval: 2s
+    state_class: "measurement"
+
+button:
+  # Calibrate the temp probe to 100C or Boiling
+  - platform: template
+    name: "RTD - Calibration - 100C (Boiling)"
+    id: rtd_cal_100
+    on_press:
+      then:
+        - lambda: |-
+            id(rtd_ezo).send_custom("cal,100");
+
+  # Perform Calibration CLEAR
+  - platform: template
+    name: "RTD - Calibration Clear"
+    id: rtd_cal_clear
+    on_press:
+      then:
+        - lambda: |-
+            id(rtd_ezo).clear_calibration();
+
+  # Perform Calibration Check
+  - platform: template
+    name: "RTD - Calibration - check"
+    id: rtd_cal_check
+    on_press:
+      then:
+        - lambda: |-
+            id(rtd_ezo).get_calibration();
+
+  # Perform Status Check
+  - platform: template
+    name: "RTD - Staus Check"
+    id: rtd_status
+    on_press:
+      then:
+        - lambda: |-
+            id(rtd_ezo).send_custom("Status");
+
+  # Get Device Firmware Version
+  - platform: template
+    name: "RTD - Get Information"
+    id: rtd_info
+    on_press:
+      then:
+        - lambda: |-
+            id(rtd_ezo).get_device_information();
+
+  # Manual Read
+  - platform: template
+    name: "RTD - Manual Read"
+    id: rtd_read
+    on_press:
+      then:
+        - lambda: |-
+            id(rtd_ezo).get_state();
