@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 6/2023
-  appVersion: "1.15"
+  appVersion: "1.15.1"
 
   # pins
   dallasPin: "16"
@@ -153,6 +153,17 @@ sensor:
     accuracy_decimals: 3
     state_class: "measurement"
 
+  # # Conductivity
+  # - platform: copy 
+  #   source_id: ec_ezo
+  #   name: "Specific Gravity"
+  #   icon: mdi:flash
+  #   filters:
+  #     - lambda: return x;
+  #   unit_of_measurement: "μS/cm"
+  #   accuracy_decimals: 3
+  #   state_class: "measurement"
+
   # # EZO Circuit - RTD
   # # Temperature
   # - platform: ezo
@@ -160,10 +171,11 @@ sensor:
   #   name: "Temperature"
   #   id: temp_ezo
   #   address: ${addRTD}
-  #   # unit_of_measurement: ""
+  #   # unit_of_measurement: "°C"
   #   accuracy_decimals: 2
   #   update_interval: 60s
   #   state_class: "measurement"
+  #   device_class: "temperature"
 
   # # EZO Circuit - HUM
   # # Humidity
@@ -172,10 +184,11 @@ sensor:
   #   name: "Humidity"
   #   id: hum_ezo
   #   address: ${addHUM}
-  #   # unit_of_measurement: ""
+  #   # unit_of_measurement: "%"
   #   accuracy_decimals: 2
   #   update_interval: 60s
   #   state_class: "measurement"
+  #   device_class: "humidity"
 
   # # EZO Circuit - CO2
   # # Cardbon Dioxide
@@ -184,10 +197,11 @@ sensor:
   #   name: "Cardbon Dioxide"
   #   id: co2_ezo
   #   address: ${addCO2}
-  #   # unit_of_measurement: ""
+  #   # unit_of_measurement: "ppm"
   #   accuracy_decimals: 2
   #   update_interval: 60s
   #   state_class: "measurement"
+  #   device_class: "carbon_dioxide"
 
   # # EZO Circuit - Dissolved Oxygen
   # - platform: ezo
@@ -195,7 +209,7 @@ sensor:
   #   name: "Dissolved Oxygen"
   #   id: do_ezo
   #   address: ${addDO}
-  #   unit_of_measurement: ""
+  #   unit_of_measurement: "mg/L"
   #   accuracy_decimals: 2
   #   update_interval: 60s
   #   state_class: "measurement"
@@ -229,11 +243,13 @@ sensor:
 
   # Temperature Probes
   - platform: dallas
+    icon: mdi:thermometer-lines
     # address: 0xe58000003203d628
     index: 0
     name: "Temperature"
 
   - platform: dallas
+    icon: mdi:thermometer-lines
     # address: 0xe58000003203d628
     index: 1
     name: "Temperature 2"
