@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 6/2023
-  appVersion: "1.15.1"
+  appVersion: "1.15.2"
 
   # pins
   dallasPin: "16"
@@ -312,6 +312,20 @@ text_sensor:
       } else {
         return {"Uknown or Error"};
       }
+
+  - platform: wifi_info
+    ip_address:
+      name: IP Address
+      icon: mdi:ip-network
+    ssid:
+      name: Connected SSID
+      icon: mdi:wifi-star
+    bssid:
+      name: Connected BSSID
+      icon: mdi:wifi-star
+    mac_address:
+      name: Mac Address
+      icon: mdi:chip
 
 button:
   # Soft Restart
