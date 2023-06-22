@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 6/2023
-  appVersion: "1.15.3"
+  appVersion: "1.15.31"
 
   # pins
   dallasPin: "4"
@@ -112,7 +112,7 @@ sensor:
     name: "WiFi Signal Percent"
     filters:
       - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
-    unit_of_measurement: "Signal %"
+    unit_of_measurement: "%"
     entity_category: "diagnostic"
 
   # Uptime sensor
