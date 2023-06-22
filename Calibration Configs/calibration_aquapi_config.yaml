@@ -153,77 +153,77 @@ sensor:
     accuracy_decimals: 3
     state_class: "measurement"
 
-  # # Conductivity
-  # - platform: copy 
-  #   source_id: ec_ezo
-  #   name: "Specific Gravity"
-  #   icon: mdi:flash
-  #   filters:
-  #     - lambda: return x;
-  #   unit_of_measurement: "μS/cm"
-  #   accuracy_decimals: 3
-  #   state_class: "measurement"
+  # Conductivity
+  - platform: copy 
+    source_id: ec_ezo
+    name: "Specific Gravity"
+    icon: mdi:flash
+    filters:
+      - lambda: return x;
+    unit_of_measurement: "μS/cm"
+    accuracy_decimals: 3
+    state_class: "measurement"
 
-  # # EZO Circuit - RTD
-  # # Temperature
-  # - platform: ezo
-  #   icon: mdi:thermometer-lines
-  #   name: "Temperature"
-  #   id: temp_ezo
-  #   address: ${addRTD}
-  #   # unit_of_measurement: "°C"
-  #   accuracy_decimals: 2
-  #   update_interval: 60s
-  #   state_class: "measurement"
-  #   device_class: "temperature"
+  # EZO Circuit - RTD
+  # Temperature
+  - platform: ezo
+    icon: mdi:thermometer-lines
+    name: "Temperature"
+    id: rtd_ezo
+    address: ${addRTD}
+    # unit_of_measurement: "°C"
+    accuracy_decimals: 2
+    update_interval: 60s
+    state_class: "measurement"
+    device_class: "temperature"
 
-  # # EZO Circuit - HUM
-  # # Humidity
-  # - platform: ezo
-  #   icon: mdi:water-percent
-  #   name: "Humidity"
-  #   id: hum_ezo
-  #   address: ${addHUM}
-  #   # unit_of_measurement: "%"
-  #   accuracy_decimals: 2
-  #   update_interval: 60s
-  #   state_class: "measurement"
-  #   device_class: "humidity"
+  # EZO Circuit - HUM
+  # Humidity
+  - platform: ezo
+    icon: mdi:water-percent
+    name: "Humidity"
+    id: hum_ezo
+    address: ${addHUM}
+    # unit_of_measurement: "%"
+    accuracy_decimals: 2
+    update_interval: 60s
+    state_class: "measurement"
+    device_class: "humidity"
 
-  # # EZO Circuit - CO2
-  # # Cardbon Dioxide
-  # - platform: ezo
-  #   icon: mdi:molecule-co2
-  #   name: "Cardbon Dioxide"
-  #   id: co2_ezo
-  #   address: ${addCO2}
-  #   # unit_of_measurement: "ppm"
-  #   accuracy_decimals: 2
-  #   update_interval: 60s
-  #   state_class: "measurement"
-  #   device_class: "carbon_dioxide"
+  # EZO Circuit - CO2
+  # Cardbon Dioxide
+  - platform: ezo
+    icon: mdi:molecule-co2
+    name: "Cardbon Dioxide"
+    id: co2_ezo
+    address: ${addCO2}
+    # unit_of_measurement: "ppm"
+    accuracy_decimals: 2
+    update_interval: 60s
+    state_class: "measurement"
+    device_class: "carbon_dioxide"
 
-  # # EZO Circuit - Dissolved Oxygen
-  # - platform: ezo
-  #   icon: mdi:molecule
-  #   name: "Dissolved Oxygen"
-  #   id: do_ezo
-  #   address: ${addDO}
-  #   unit_of_measurement: "mg/L"
-  #   accuracy_decimals: 2
-  #   update_interval: 60s
-  #   state_class: "measurement"
+  # EZO Circuit - Dissolved Oxygen
+  - platform: ezo
+    icon: mdi:molecule
+    name: "Dissolved Oxygen"
+    id: do_ezo
+    address: ${addDO}
+    unit_of_measurement: "mg/L"
+    accuracy_decimals: 2
+    update_interval: 60s
+    state_class: "measurement"
 
-  # # EZO Circuit - Pump
-  # - platform: ezo
-  #   icon: mdi:pump
-  #   name: "Pump"
-  #   id: pmp_ezo
-  #   address: ${addPMP}
-  #   unit_of_measurement: ""
-  #   accuracy_decimals: 2
-  #   update_interval: 60s
-  #   state_class: "measurement"
+  # EZO Circuit - Pump
+  - platform: ezo
+    icon: mdi:pump
+    name: "Pump"
+    id: pmp_ezo
+    address: ${addPMP}
+    unit_of_measurement: ""
+    accuracy_decimals: 2
+    update_interval: 60s
+    state_class: "measurement"
 
   # # DHT
   # - platform: absolute_humidity
@@ -379,19 +379,6 @@ button:
             id(ec_ezo).send_custom("O,SG,0");
     entity_category: "Config"
 
-  # EZO Circuit - EC
-  # Conductivity
-  - platform: ezo
-    icon: mdi:shaker-outline
-    name: "Conductivity"
-    id: do_ezo
-    address: 97
-    unit_of_measurement: ""
-    accuracy_decimals: 2
-    update_interval: 2s
-    state_class: "measurement"
-
-button:
   # Calibrate the DO probe to Air
   - platform: template
     name: "DO - Calibration - Air"
@@ -454,31 +441,6 @@ button:
       then:
         - lambda: |-
             id(do_ezo).get_state();
-
-  # EZO Circuit - EC
-  # Conductivity
-  - platform: ezo
-    icon: mdi:shaker-outline
-    name: "Conductivity"
-    id: ec_ezo
-    address: 100
-    unit_of_measurement: ""
-    accuracy_decimals: 2
-    update_interval: 2s
-    state_class: "measurement"
-
-button:
-  # Output Conductivity
-  - platform: template
-    name: "EC - Output - Conductivity"
-    id: ec_cond
-    on_press:
-      then:
-        - lambda: |-
-            id(ec_ezo).send_custom("O,EC,1");
-            id(ec_ezo).send_custom("O,TDS,0");
-            id(ec_ezo).send_custom("O,S,0");
-            id(ec_ezo).send_custom("O,SG,0");
             
   # Output TDS
   - platform: template
@@ -601,19 +563,6 @@ button:
         - lambda: |-
             id(ec_ezo).send_custom("O,?");
 
-  # EZO Circuits (yellow - SCL/RX, blue - SDA/TX)
-  # EZO Circuit - pH
-  - platform: ezo
-    icon: mdi:ph
-    name: "pH"
-    id: ph_ezo
-    address: 99
-    unit_of_measurement: ""
-    accuracy_decimals: 2
-    update_interval: 2s
-    state_class: "measurement"
-
-button:
   # pH
   # Get Device Firmware Version
   - platform: template
@@ -696,19 +645,6 @@ button:
         - lambda: |-
             id(ph_ezo).send_custom("Status");
 
-  # EZO Circuit - EC
-  # Conductivity
-  - platform: ezo
-    icon: mdi:shaker-outline
-    name: "Conductivity"
-    id: rtd_ezo
-    address: 102
-    unit_of_measurement: ""
-    accuracy_decimals: 2
-    update_interval: 2s
-    state_class: "measurement"
-
-button:
   # Calibrate the temp probe to 100C or Boiling
   - platform: template
     name: "RTD - Calibration - 100C (Boiling)"
