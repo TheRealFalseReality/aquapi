@@ -4,10 +4,10 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 6/2023
-  appVersion: "1.15.2"
+  appVersion: "1.15.3"
 
   # pins
-  dallasPin: "16"
+  dallasPin: "4"
   opticalHighPin: "33"
   opticalLowPin: "32"
   sdaPin: "21"
