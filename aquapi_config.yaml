@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 6/2023
-  appVersion: "1.15.31"
+  appVersion: "1.15.32"
 
   # pins
   dallasPin: "4"
@@ -282,6 +282,16 @@ binary_sensor:
       - delayed_on: 30ms
 
 text_sensor: 
+  # Hostname
+  - platform: template
+    name: "hostname"
+    id: hostname
+    icon: mdi:cellphone-arrow-down
+    update_interval: 600s
+    lambda: |-
+      return {"${name}"};
+    entity_category: "diagnostic"
+
   # AquaPi Version
   - platform: template
     name: "AquaPi Version"
