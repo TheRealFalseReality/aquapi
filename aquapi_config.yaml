@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 6/2023
-  appVersion: "1.15.33"
+  appVersion: "1.15.34"
 
   # pins
   dallasPin: "4"
@@ -109,7 +109,7 @@ sensor:
   # Wifi %
   - platform: copy # Reports the WiFi signal strength in %
     source_id: wifi_signal_db
-    name: "WiFi Signal Percent"
+    name: "WiFi Signal"
     filters:
       - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
     unit_of_measurement: "%"
@@ -156,7 +156,7 @@ sensor:
   # # Conductivity
   # - platform: copy 
   #   source_id: ec_ezo
-  #   name: "Specific Gravity"
+  #   name: "Conductivity"
   #   icon: mdi:flash
   #   filters:
   #     - lambda: return x;
