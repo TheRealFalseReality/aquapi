@@ -153,16 +153,17 @@ sensor:
     accuracy_decimals: 3
     state_class: "measurement"
 
-  # # Conductivity
-  # - platform: copy 
-  #   source_id: ec_ezo
-  #   name: "Conductivity"
-  #   icon: mdi:flash
-  #   filters:
-  #     - lambda: return x;
-  #   unit_of_measurement: "μS/cm"
-  #   accuracy_decimals: 3
-  #   state_class: "measurement"
+  # Conductivity
+  - platform: copy 
+    source_id: ec_ezo
+    name: "Conductivity"
+    icon: mdi:flash
+    filters:
+      - lambda: return x;
+    unit_of_measurement: "μS/cm"
+    accuracy_decimals: 3
+    state_class: "measurement"
+    disabled_by_default: true
 
   # # EZO Circuit - RTD
   # # Temperature
@@ -203,27 +204,29 @@ sensor:
   #   state_class: "measurement"
   #   device_class: "carbon_dioxide"
 
-  # # EZO Circuit - Dissolved Oxygen
-  # - platform: ezo
-  #   icon: mdi:molecule
-  #   name: "Dissolved Oxygen"
-  #   id: do_ezo
-  #   address: ${addDO}
-  #   unit_of_measurement: "mg/L"
-  #   accuracy_decimals: 2
-  #   update_interval: 60s
-  #   state_class: "measurement"
+  # EZO Circuit - Dissolved Oxygen
+  - platform: ezo
+    icon: mdi:molecule
+    name: "Dissolved Oxygen"
+    id: do_ezo
+    address: ${addDO}
+    unit_of_measurement: "mg/L"
+    accuracy_decimals: 2
+    update_interval: 60s
+    state_class: "measurement"
+    disabled_by_default: true
 
-  # # EZO Circuit - Pump
-  # - platform: ezo
-  #   icon: mdi:pump
-  #   name: "Pump"
-  #   id: pmp_ezo
-  #   address: ${addPMP}
-  #   unit_of_measurement: ""
-  #   accuracy_decimals: 2
-  #   update_interval: 60s
-  #   state_class: "measurement"
+  # EZO Circuit - Pump
+  - platform: ezo
+    icon: mdi:pump
+    name: "Pump"
+    id: pmp_ezo
+    address: ${addPMP}
+    unit_of_measurement: ""
+    accuracy_decimals: 2
+    update_interval: 60s
+    state_class: "measurement"
+    disabled_by_default: true
 
   # # DHT
   # - platform: absolute_humidity
@@ -341,12 +344,6 @@ button:
   # Soft Restart
   - platform: restart
     name: "Restart"
-  # # Soft Shutdown
-  # - platform: shutdown
-  #   name: "Shutdown"
-  # # Safe Mode
-  # - platform: safe_mode
-  #   name: "Safe Mode"
 
   # EC
   # Output Parameters
