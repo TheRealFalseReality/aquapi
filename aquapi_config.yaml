@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 6/2023
-  appVersion: "1.16"
+  appVersion: "1.16.1"
 
   # pins
   dallasPin: "4"
@@ -26,7 +26,7 @@ substitutions:
   addPMP: "103"
   # HUM circuit, who's address is 111
   addHUM: "111"
-  # PMP circuit, who's address is 103
+  # CO2 circuit, who's address is 105
   addCO2: "105"
 
 
@@ -109,7 +109,7 @@ sensor:
   # Wifi %
   - platform: copy # Reports the WiFi signal strength in %
     source_id: wifi_signal_db
-    name: "WiFi Signal"
+    name: "WiFi Signal Strength"
     filters:
       - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
     unit_of_measurement: "%"
@@ -256,6 +256,7 @@ sensor:
     # address: 0xe58000003203d628
     index: 1
     name: "Temperature 2"
+    disabled_by_default: true
 
 binary_sensor:
   # Optical Sensor - LOW (yellow)
