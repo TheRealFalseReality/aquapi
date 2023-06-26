@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 6/2023
-  appVersion: "1.15.34"
+  appVersion: "1.15.35"
 
   # pins
   dallasPin: "4"
@@ -296,7 +296,7 @@ text_sensor:
   - platform: template
     name: "AquaPi Version"
     id: aquapi_version
-    icon: mdi:cellphone-arrow-down
+    icon: mdi:update
     update_interval: 600s
     lambda: |-
       return {"${appVersion}"};
