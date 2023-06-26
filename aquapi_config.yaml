@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 6/2023
-  appVersion: "1.15.35"
+  appVersion: "1.16"
 
   # pins
   dallasPin: "4"
