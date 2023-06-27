@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 6/2023
-  appVersion: "0.16.2"
+  appVersion: "0.16.3"
 
   # pins
   dallasPin: "4"
@@ -166,44 +166,47 @@ sensor:
     state_class: "measurement"
     disabled_by_default: true
 
-  # # EZO Circuit - RTD
-  # # Temperature
-  # - platform: ezo
-  #   icon: mdi:thermometer-lines
-  #   name: "Temperature"
-  #   id: temp_ezo
-  #   address: ${addRTD}
-  #   # unit_of_measurement: "°C"
-  #   accuracy_decimals: 2
-  #   update_interval: 60s
-  #   state_class: "measurement"
-  #   device_class: "temperature"
+  # EZO Circuit - RTD
+  # Temperature
+  - platform: ezo
+    icon: mdi:thermometer-lines
+    name: "Temperature EZO"
+    id: temp_ezo
+    address: ${addRTD}
+    # unit_of_measurement: "°C"
+    accuracy_decimals: 2
+    update_interval: 60s
+    state_class: "measurement"
+    device_class: "temperature"
+    disabled_by_default: true
 
-  # # EZO Circuit - HUM
-  # # Humidity
-  # - platform: ezo
-  #   icon: mdi:water-percent
-  #   name: "Humidity"
-  #   id: hum_ezo
-  #   address: ${addHUM}
-  #   # unit_of_measurement: "%"
-  #   accuracy_decimals: 2
-  #   update_interval: 60s
-  #   state_class: "measurement"
-  #   device_class: "humidity"
+  # EZO Circuit - HUM
+  # Humidity
+  - platform: ezo
+    icon: mdi:water-percent
+    name: "Humidity"
+    id: hum_ezo
+    address: ${addHUM}
+    # unit_of_measurement: "%"
+    accuracy_decimals: 2
+    update_interval: 60s
+    state_class: "measurement"
+    device_class: "humidity"
+    disabled_by_default: true
 
-  # # EZO Circuit - CO2
-  # # Cardbon Dioxide
-  # - platform: ezo
-  #   icon: mdi:molecule-co2
-  #   name: "Cardbon Dioxide"
-  #   id: co2_ezo
-  #   address: ${addCO2}
-  #   # unit_of_measurement: "ppm"
-  #   accuracy_decimals: 2
-  #   update_interval: 60s
-  #   state_class: "measurement"
-  #   device_class: "carbon_dioxide"
+  # EZO Circuit - CO2
+  # Cardbon Dioxide
+  - platform: ezo
+    icon: mdi:molecule-co2
+    name: "Cardbon Dioxide"
+    id: co2_ezo
+    address: ${addCO2}
+    # unit_of_measurement: "ppm"
+    accuracy_decimals: 2
+    update_interval: 60s
+    state_class: "measurement"
+    device_class: "carbon_dioxide"
+    disabled_by_default: true
 
   # EZO Circuit - Dissolved Oxygen
   - platform: ezo
@@ -361,6 +364,7 @@ button:
             id(ec_ezo).send_custom("O,S,1");
             id(ec_ezo).send_custom("O,SG,0");
     entity_category: "Config"
+    disabled_by_default: true
             
   # Output Specific Gravity
   - platform: template
@@ -374,6 +378,7 @@ button:
             id(ec_ezo).send_custom("O,S,0");
             id(ec_ezo).send_custom("O,SG,1");
     entity_category: "Config"
+    disabled_by_default: true
 
   # Output Conductivity
   - platform: template
@@ -387,3 +392,4 @@ button:
             id(ec_ezo).send_custom("O,S,0");
             id(ec_ezo).send_custom("O,SG,0");
     entity_category: "Config"
+    disabled_by_default: true
