@@ -15,7 +15,7 @@ Basic UI
 </details>  
 
 yaml examples located in: [`homeassistant/UI_Config_Examples`](https://github.com/TheRealFalseReality/AquaPi/tree/main/homeassistant/UI_Config_Examples)  
-[Download HomeAssistant Backup](https://github.com/TheRealFalseReality/AquaPi/blob/68f6d65aedcf5aa9f6776524bb6e7cb93cf6ddd0/homeassistant/core_2023_4_6.tar)
+[Download HomeAssistant Backup](https://github.com/TheRealFalseReality/AquaPi/blob/68f6d65aedcf5aa9f6776524bb6e7cb93cf6ddd0/homeassistant/core_2023_4_6.tar) if you want to start with a pre-configured HomeAssistant Instance.
 
 ## Hardware
 **Control Board:**  
