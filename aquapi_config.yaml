@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 6/2023
-  appVersion: "0.16.1"
+  appVersion: "0.16.2"
 
   # pins
   dallasPin: "4"
@@ -152,6 +152,7 @@ sensor:
     unit_of_measurement: ""
     accuracy_decimals: 3
     state_class: "measurement"
+    disabled_by_default: true
 
   # Conductivity
   - platform: copy 
