@@ -1,5 +1,8 @@
 # About
 
+Buy Now!  
+[Store Page](https://www.capitalcityaquatics.com/store/p/aquapi)  
+
 0.3  
 TODO  
 Add some information about your project here.
