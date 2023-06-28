@@ -3,8 +3,7 @@
 The Aquarium meets the Smart Home! Monitor your Aquarium's Temperature and Water Level. With EZO Circuit Boards and Probe upgrades, you can also monitor your pH, salinity, disscolved oxygen and more while being compatible with all other EZO boards and probes.
 Powered by an esp32 and Controlled by HomeAssistant..
 
-Buy Now!
-[Store Page](https://www.capitalcityaquatics.com/store/p/aquapi)
+[Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi)
 
 Basic UI
 ![Basic UI](https://user-images.githubusercontent.com/106857076/236688799-8565d281-13e9-4a98-83ca-60933a509a5e.png)
