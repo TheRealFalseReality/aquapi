@@ -22,6 +22,7 @@ yaml examples located in: [`homeassistant/UI_Config_Examples`](https://github.co
 **ESP32 devkit**  
 **HomeAssistant** using a Raspberry Pi 3 or above. The more RAM, the better.  
 
+### Probes:
 **Temperature** 
   - DS18B20 Waterproof Thermistor  
   
@@ -45,8 +46,27 @@ Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 [**Home Assistant**](https://www.home-assistant.io/): Open source home automation that puts local control and privacy first.   
 [**ESPHome**](https://esphome.io/): A system to control your ESP8266/ESP32 and RP2040 by simple yet powerful configuration files and control them remotely through Home Automation systems.
 
+## Install
+### From Install Page
+Use the [GitHub](https://therealfalsereality.github.io/aquapi/) pages to install software onto your AquaPi device via USB.  
+### From Releases
+Use [Releases](https://github.com/TheRealFalseReality/aquapi/releases) for a .bin and install via [ESPHome Web](https://web.esphome.io/).  
+### From Source
+1. Copy the contents of `aquapi_config.yaml` into ESPHome instance after adding an esp32 device named `AquaPi` (recommended). 
+2. Remove the following lines:
+
+If you do not want the last 5 digits of the MAC Address to be appended:
+```
+name_add_mac_suffix: true
+```
+To prevent it from importing the default config:
+```
+dashboard_import:
+  package_import_url: github://TheRealFalseReality/Aquaponics-Kit/aquaponics-kit.yaml@main
+```
+Using source code, you can also customize anything and add your own sensors! Make it your own!
+
 ## Useful Links:
-  
 <details>
 <summary>See Links</summary>
 
