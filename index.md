@@ -1,7 +1,6 @@
 # About
 
-Buy Now! 
-[Store Page](https://www.capitalcityaquatics.com/store/p/aquapi)  
+[Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi)  
 
 0.3  
 TODO  
