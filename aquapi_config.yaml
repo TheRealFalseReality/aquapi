@@ -80,10 +80,10 @@ i2c:
 # Internal Blue LED
 light:
   - platform: status_led
-#    name: "Internal LED"
+    name: "Internal LED"
     pin: GPIO2
     id: internal_led
-#    entity_category: "Config"
+    entity_category: "Config"
 
 # 18B20 sensor Pin
 dallas:
