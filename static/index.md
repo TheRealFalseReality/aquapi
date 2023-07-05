@@ -8,14 +8,6 @@ Powered by an esp32 and Controlled by HomeAssistant..
 Basic UI
 ![Basic UI](https://user-images.githubusercontent.com/106857076/236688799-8565d281-13e9-4a98-83ca-60933a509a5e.png)
 
-<details>
-<summary>Advanced UI</summary>
-
-| ![Example UI1](https://user-images.githubusercontent.com/106857076/236688777-846e7a3d-2fd2-4e98-8f9c-48cfeec7d34c.png)  | ![Example UI2](https://user-images.githubusercontent.com/106857076/236688759-711f32b8-b182-4808-9adf-8385ac39ba29.png) |
-| ------------- | ------------- |
-
-</details>  
-
 yaml examples located in: [`homeassistant/UI_Config_Examples`](https://github.com/TheRealFalseReality/AquaPi/tree/main/homeassistant/UI_Config_Examples)  
 [Download HomeAssistant Backup](https://github.com/TheRealFalseReality/AquaPi/blob/68f6d65aedcf5aa9f6776524bb6e7cb93cf6ddd0/homeassistant/core_2023_4_6.tar) if you want to start with a pre-configured HomeAssistant Instance.
 
@@ -57,8 +49,6 @@ Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 [**ESPHome**](https://esphome.io/): A system to control your ESP8266/ESP32 and RP2040 by simple yet powerful configuration files and control them remotely through Home Automation systems.
 
 ## Useful Links:
-<details>
-<summary>See Links</summary>
 
 [**HomeAssistant**](https://www.home-assistant.io/installation/)  
 [**ESPHome**](https://esphome.io/)  
@@ -66,8 +56,6 @@ Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 [**EZO Raspberry Pi Sample Code**](https://files.atlas-scientific.com/pi_sample_code.pdf)   
 [**EZO pH Circuit Datasheet**](https://files.atlas-scientific.com/pH_EZO_Datasheet.pdf)  
 [**EZO EC Circuit Datasheet**](https://files.atlas-scientific.com/EC_EZO_Datasheet.pdf)  
-
-</details>
 
 # Improv Bluetooth LE
 
