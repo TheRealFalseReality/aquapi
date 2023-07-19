@@ -1,0 +1,355 @@
+sensor:
+  - name: "Car Wash State"
+    unique_id: 'sadasdjopij'
+    icon: mdi:car-wash
+    state: >
+      {% set washState = states('binary_sensor.car_wash') %}
+      {% if washState == 'on' %}
+        Can Wash
+      {% else %}
+        Should Not Wash
+      {%- endif %}
+
+  - name: "Marine Water Hardness"
+    unique_id: '0a7476cc-sdfsdf-40ba-8ae1-606518c3497f'
+    icon: mdi:water-opacity
+    state: >
+      {% set hardness = states('input_number.carbonate_hardness_marine') %}
+      {% if hardness | float<=70 %}Very Soft
+      {% elif hardness | float<=140 | float>70 %}Soft
+      {% elif hardness | float<=210 | float>140 %}Moderately Hard
+      {% elif hardness | float<=320 | float>210 %}Hard
+      {% elif hardness | float>320 %}Very Hard
+      {%- endif %}   
+
+  - name: "Mixed Reef Water Hardness"
+    unique_id: 'sdfdsfdsf-d6c1-40ba-8ae1-606518c3497f'
+    icon: mdi:water-opacity
+    state: >
+      {% set hardness = states('input_number.carbonate_hardness') %}
+      {% if hardness | float<=70 %}Very Soft
+      {% elif hardness | float<=140 | float>70 %}Soft
+      {% elif hardness | float<=210 | float>140 %}Moderately Hard
+      {% elif hardness | float<=320 | float>210 %}Hard
+      {% elif hardness | float>320 %}Very Hard
+      {%- endif %}
+
+  - name: "Marine Heater State"
+    icon: mdi:thermometer-water
+    unique_id: '0a7476cc-d6c1-40ba-erwr-606518c3497f'
+    state: >
+      {% set heaterState =
+        states('sensor.heater_current_consumption') | float %}
+      {% if heaterState > 1 %}
+        Heating
+      {% else %}
+        Standby
+      {%- endif %}
+
+  - name: "Cichlid Heater State"
+    icon: mdi:thermometer-water
+    unique_id: '0a7476cc-sdfdsf-606518c3497f'
+    state: >
+      {% set heaterState =
+        states('sensor.cichlids_heater_current_consumption') | float %}
+      {% if heaterState > 1 %}
+        Heating
+      {% else %}
+        Standby
+      {%- endif %}
+
+  - name: "AquaLifter State"
+    unique_id: '0a7476cc-d6c1-40ba-8ae1-erwrewrwer'
+    state: >
+      {% set lifterState =
+        states('switch.aqualifter') %}
+      {% if lifterState == 'on' %}
+        Pumping
+      {% else %}
+        Standby
+      {%- endif %}
+
+  - name: "Doser4020 State"
+    unique_id: 'asdsafggfh-d6c1-40ba-8ae1-erwrewrwer'
+    icon: mdi:pump
+    state: >
+      {% set doserState =
+        states('switch.1052e9f') %}
+      {% if doserState == 'on' %}
+        Dosing
+      {% else %}
+        Standby
+      {%- endif %}
+
+  # - name: "Marine Water Level"
+  #   unique_id: 'asdasd-d6c1-40ba-8ae1-606518c3497f'
+  #   icon: mdi:waves
+  #   state: >
+  #     {% set levelHigh =
+  #         is_state('binary_sensor.marine_high_optical_sensor', 'on')%}
+  #     {% set levelLow =
+  #       is_state('binary_sensor.marine_low_optical_sensor', 'off')%}
+  #     {% if levelHigh == true %}
+  #       High
+  #     {% elif levelLow == true %}
+  #       Low
+  #     {% else %}
+  #       Normal
+  #     {%- endif %}
+
+  # - name: "Mixed Reef Water Level"
+  #   unique_id: '0a7476fghfghcc-d6c1-40ba-8ae1-606518c3497f'
+  #   icon: mdi:waves
+  #   state: >
+  #     {% set levelLow =
+  #         is_state('binary_sensor.mixed_reef_low_optical_sensor', 'on')%}
+  #     {% if levelLow == true %}
+  #       Low
+  #     {% else %}
+  #       Normal
+  #     {%- endif %}
+
+  # - name: "Marine Temperature Round"
+  #   unique_id: '0a7476cc-d6c1-40ba-8ae1-sdfsdfdsh'
+  #   icon: mdi:thermometer-water
+  #   unit_of_measurement: "°F"
+  #   state: >
+  #     {% set temp = states('sensor.aquapi_marine_temperature') | float %}
+  #     {% if temp | float<37 %}Unavailable
+  #     {% elif temp | float>=37 %}
+  #       {{ ( temp | round(1, default=0) ) }}
+  #     {%- endif %}
+
+  # - name: "Mixed Reef Temperature Round"
+  #   unique_id: '435435-d6c1-40ba-8ae1-606518c3497f'
+  #   icon: mdi:thermometer-water
+  #   unit_of_measurement: "°F"
+  #   state: >
+  #     {% set temp = states('sensor.mixed_reef_temperature') | float %}
+  #     {% if temp | float<37 %}Unavailable
+  #     {% elif temp | float>=37 %}
+  #       {{ ( temp | round(1, default=0) ) }}
+  #     {%- endif %}
+
+  - name: "Hassio CPU Temperature"
+    unique_id: '0a7476cc-234234-40ba-8ae1-606518c3497f'
+    unit_of_measurement: "°C"
+    state: >
+      {% set cpuTempF = states('sensor.cpu_temp') | float %}
+
+      {{ ( (cpuTempF - 32) * (5/9) ) | round(1, default=0)  }}
+
+  - name: "UPC850 Power Usage"
+    unique_id: '0a7476cc-d6c1-40ba-8ae1-12312'
+    unit_of_measurement: "W"
+    state: >
+      {% set powerUsage = states('sensor.myups_load') | float %}
+
+      {{ ( powerUsage/100 * 850 ) }}
+
+  - name: "Total Power Round"
+    unique_id: '0a7476cc-d6c1-40ba-8ae1-234324ygh'
+    unit_of_measurement: "W"
+    state: >
+      {% set power = states('sensor.total_power') | float %}
+
+      {{ ( power | round(1, default=0) ) }}
+
+  - name: "Total Power Round Whole"
+    unique_id: '234234fg-d6c1-40ba-8ae1-606518c3497f'
+    unit_of_measurement: "W"
+    state: >
+      {% set power = states('sensor.total_power') | float %}
+
+      {{ ( power | round(0, default=0) ) }}
+
+  - name: "Download Speed Round"
+    unique_id: '0a7476cc-d6c1-40ba-8ae1-6065123423458c3497f'
+    unit_of_measurement: "Mbit/s"
+    state: >
+      {% set speed = states('sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c_download_speed') | float %}
+
+      {{ ( speed | round(0, default=0) ) }}
+
+  - name: "Download Traffic Round"
+    unique_id: 'asdasdsad-d6c1-40ba-8ae1-6065123423458c3497f'
+    unit_of_measurement: "Mbit/s"
+    state: >
+      {% set speed = states('sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c_download_traffic') | float %}
+
+      {{ ( speed | round(0, default=0) ) }}
+
+  - name: "Upload Speed Round"
+    unique_id: '0a7476cc-d6c1-40ba-8ae1-123213rtf'
+    unit_of_measurement: "Mbit/s"
+    state: >
+      {% set speed = states('sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c_upload_speed') | float %}
+
+      {{ ( speed | round(0, default=0))}}
+
+  - name: "Total Energy Round"
+    unique_id: 'wqeqwe-d6c1-40ba-8ae1-606518c3497f'
+    unit_of_measurement: "kWh"
+    state: >
+      {% set energy = states('sensor.total_energy') | float %}
+      {{ ( energy | round(1, default=0))}}
+
+  - name: "Marine Power Round"
+    unique_id: '0a7476cc-d6c1-40ba-8ae1-234324f'
+    unit_of_measurement: "W"
+    state: >
+      {% set power = states('sensor.marine_aquarium_power') | float %}
+      {{ ( power | round(1, default=0))}}
+
+  - name: "Marine Energy Round"
+    unique_id: '0a7476cc-d6c1-40ba-8ae1-vcbxb'
+    unit_of_measurement: "kWh"
+    state: >
+      {% set energy = states('sensor.marine_aquarium_energy') | float %}
+
+      {{ ( energy | round(1, default=0))}}
+
+  - name: "Heartrate Off-Body"
+    unique_id: '0a7476cc-d6c1-40ba-8ae1-asdaw'
+    unit_of_measurement: bpm
+    state: >
+      {% if is_state('sensor.resting_heart_rate', 'unknown') %}
+        Off Body
+      {% else %}
+        {{ states('sensor.resting_heart_rate') }}
+      {% endif %}
+
+  - name: Marine Temperature Range
+    unique_id: '0a7476cc-d6c1-40ba-asda-606518c3497f'
+    icon: mdi:thermometer-water
+    state: >
+      {% set temp_1 = states('sensor.aquapi_marine_temperature') | float %}
+      {% if temp_1 | float<=72 %}Cool
+      {% elif temp_1 | float<=82 | float>72 %}Ok
+      {% elif temp_1 | float>82 %}Warm
+      {%- endif %}
+
+  # - name: Marine Freshwater Community Temperature Range
+  #   unique_id: 'asdsad-d6cl1-40lkba-8aek1-606518c3497f'
+  #   icon: mdi:thermometer-water
+  #   state: >
+  #     {% set temp_1 = states('sensor.marine_freshwater_community_temperature_round') | float %}
+  #     {% if temp_1 | float<=76 %}Cool
+  #     {% elif temp_1 | float<=84 | float>76 %}Ok
+  #     {% elif temp_1 | float>84 %}Warm
+  #     {%- endif %}
+
+  - name: Cichlids Temperature Range
+    icon: mdi:thermometer-water
+    state: >
+      {% set temp_1 = states('sensor.aquapi_cichlids_temperature') | float %}
+      {% if temp_1 | float<=72 %}Cool
+      {% elif temp_1 | float<=82 | float>72 %}Ok
+      {% elif temp_1 | float>82 %}Warm
+      {%- endif %}
+
+  - name: Mixed Reef Temperature Range
+    icon: mdi:thermometer-water
+    state: >
+      {% set temp_1 = states('sensor.mixed_reef_temperature') | float %}
+      {% if temp_1 | float<=72 %}Cool
+      {% elif temp_1 | float<=82 | float>72 %}Ok
+      {% elif temp_1 | float>82 %}Warm
+      {%- endif %}
+
+  - name: Wind Direction
+    unique_id: 'asdasdgf-d6c1-40ba-8ae1-606518c3497f'
+    state: >
+      {% set wind_bearing = state_attr('weather.tomorrow_io_nick_starla_s_home_hourly', 'wind_bearing') %}
+      {% if wind_bearing | float<=11 %}N
+      {% elif wind_bearing | float>348 %}N
+      {% elif wind_bearing | float<=34 | float>11 %}NNE
+      {% elif wind_bearing | float<=56 | float>34 %}NE
+      {% elif wind_bearing | float<=79 | float>56 %}ENE
+      {% elif wind_bearing | float<=101 | float>79 %}E
+      {% elif wind_bearing | float<=124 | float>101 %}ESE
+      {% elif wind_bearing | float<=146 | float>124 %}SE
+      {% elif wind_bearing | float<=169 | float>146 %}SSE
+      {% elif wind_bearing | float<=191 | float>169 %}S
+      {% elif wind_bearing | float<=214 | float>191 %}SSW
+      {% elif wind_bearing | float<=236 | float>214 %}SW
+      {% elif wind_bearing | float<=259 | float>236 %}WSW
+      {% elif wind_bearing | float<=281 | float>259 %}W
+      {% elif wind_bearing | float<=304 | float>281 %}WNW
+      {% elif wind_bearing | float<=326 | float>304 %}NW
+      {% elif wind_bearing | float<=348 | float>326 %}NNW
+      {%- endif %}
+  - name: Wind Bearing
+    unique_id: '0a7476cc-d6c1-40ba-8ae1-60651qweqwr8c3497f'
+    state: >
+      {% set wind_bearing = state_attr('weather.tomorrow_io_nick_starla_s_home_hourly', 'wind_bearing') %}
+      {% if wind_bearing | float<=11 %}180
+      {% elif wind_bearing | float>348 %}180
+      {% elif wind_bearing | float<=34 | float>11 %}210
+      {% elif wind_bearing | float<=56 | float>34 %}225
+      {% elif wind_bearing | float<=79 | float>56 %}240
+      {% elif wind_bearing | float<=101 | float>79 %}270
+      {% elif wind_bearing | float<=124 | float>101 %}300
+      {% elif wind_bearing | float<=146 | float>124 %}315
+      {% elif wind_bearing | float<=169 | float>146 %}370
+      {% elif wind_bearing | float<=191 | float>169 %}0
+      {% elif wind_bearing | float<=214 | float>191 %}30
+      {% elif wind_bearing | float<=236 | float>214 %}45
+      {% elif wind_bearing | float<=259 | float>236 %}60
+      {% elif wind_bearing | float<=281 | float>259 %}90
+      {% elif wind_bearing | float<=304 | float>281 %}105
+      {% elif wind_bearing | float<=326 | float>304 %}135
+      {% elif wind_bearing | float<=348 | float>326 %}150
+      {%- endif %}
+  - name: Wind Strength
+    unique_id: '0a7476cc-d6c1-40ba-8ae1-60wqe6518c3497f'
+    state: >
+      {% set wind_speed_mph = states('sensor.tomorrow_io_nick_starla_s_home_wind_gust') | float * 0.6213712 %}
+      {% if wind_speed_mph | float<=1 %}No wind
+      {% elif wind_speed_mph | float<=3 | float>1 %}Light air
+      {% elif wind_speed_mph | float<=7 | float>3 %}Light breeze
+      {% elif wind_speed_mph | float<=12 | float>7 %}Gentle breeze
+      {% elif wind_speed_mph | float<=17 | float>12 %}Moderate breeze
+      {% elif wind_speed_mph | float<=24 | float>17 %}Fresh breeze
+      {% elif wind_speed_mph | float<=30 | float>24 %}Strong breeze
+      {% elif wind_speed_mph | float<=38 | float>30 %}High wind
+      {% elif wind_speed_mph | float<=46 | float>38 %}Fresh gale
+      {% elif wind_speed_mph | float<=54 | float>46 %}Strong gale
+      {% elif wind_speed_mph | float<=63 | float>54 %}Storm
+      {% elif wind_speed_mph | float<=72 | float>63 %}Violent storm
+      {% elif wind_speed_mph | float>72 %}Hurricane
+      {%- endif %}
+
+  - name: Temperature Differance
+    unique_id: '0a7476cc-d6c1-40ba-8qweae1-606518c3497f'
+    state: >
+      {% set inside = states('sensor.kitchen_temperature') | float %}
+      {% set outside = states('sensor.front_porch_sensor_temperature') | float %}
+
+      {{ (inside - outside) | round(1, default=0) }}
+
+  - name: Temperature Differance Label
+    unique_id: '0a7476cc-d6cqwe1-40ba-8ae1-606518c3497f'
+    state: >
+      {% set inside = states('sensor.kitchen_temperature') | float %}
+      {% set outside = states('sensor.front_porch_sensor_temperature') | float %}
+      {% set temp_Diff = (inside - outside) | round(1, default=0) %}
+
+      {% if temp_Diff | float<0 %}Warmer
+      {% elif temp_Diff | float>=0 %}Cooler
+      {%- endif %}
+
+  - name: Hourly Forecast Temperature Rising
+    unique_id: '0a7476cc-dqwe6c1-40ba-8ae1-606518c3497f'
+    state: >
+      {{ iif (state_attr('weather.tomorrow_io_nick_starla_s_home_hourly', 'temperature') < ((state_attr('weather.tomorrow_io_nick_starla_s_home_hourly', 'forecast') | map(attribute='temperature') | slice(6) | first() | sum / 4)), 'Rising', 'Falling') }}
+
+  - name: Hourly Forecast Wind Speed Increasing
+    state: >
+      {{ iif (state_attr('weather.tomorrow_io_nick_starla_s_home_hourly', 'wind_speed') < ((state_attr('weather.tomorrow_io_nick_starla_s_home_hourly', 'forecast') | map(attribute='wind_speed') | slice(6) | first() | sum / 4)), 'Increasing', 'Decreasing') }}
+
+  - name: Zero
+    state: "0"
+
+  - name: OpenSky Flight in Vicinity
+    state: ""

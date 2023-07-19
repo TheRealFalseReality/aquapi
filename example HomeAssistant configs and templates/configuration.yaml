@@ -1,0 +1,184 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+template: !include template.yaml
+frontend:
+  themes: !include_dir_merge_named themes
+
+mqtt:
+  sensor:
+    - state_topic: "SleepAsAndroid"
+      unique_id: SleepAsAndroid
+      name: SleepAsAndroid
+      value_template: "{{ value_json.event }}"
+      icon: mdi:bed-clock
+
+wake_on_lan:
+
+sensor:
+  - platform: opensky
+    radius: 25
+
+  - platform: google_keep
+    username: !secret google_name
+    password: !secret google_pswd
+    labels:
+      - 'Home Assistant'
+    pinned: true
+
+  - platform: time_date
+    display_options:
+      - "time"
+      - "date"
+      - "date_time"
+      - "date_time_utc"
+      - "date_time_iso"
+      - "time_date"
+      - "time_utc"
+      - "beat"
+
+  - platform: fitbit
+    clock_format: 12H
+    monitored_resources:
+      - "devices/battery"
+      - "sleep/awakeningsCount"
+      - "activities/steps"
+      - "activities/floors"
+      - "activities/heart"
+      - "activities/distance"
+      - "activities/elevation"
+      - "activities/tracker/distance"
+      - "activities/tracker/elevation"
+      - "activities/tracker/floors"
+      - "activities/tracker/steps"
+      - "body/weight"
+      - "sleep/efficiency"
+      - "sleep/minutesAfterWakeup"
+      - "sleep/minutesAsleep"
+      - "sleep/minutesAwake"
+      - "sleep/minutesToFallAsleep"
+      - "sleep/startTime"
+      - "sleep/timeInBed"
+
+  - platform: systemmonitor
+    resources:
+      - type: processor_use
+      - type: disk_use_percent
+        arg: "/"
+      - type: disk_free
+        arg: "/"
+      - type: memory_use_percent
+      - type: network_in
+        arg: eth0
+      - type: throughput_network_in
+        arg: eth0
+      - type: network_out
+        arg: eth0
+      - type: throughput_network_out
+        arg: eth0
+      - type: processor_temperature
+      - type: last_boot
+
+  - platform: rest
+    name: NOAA Space Weather - Noon 10.7cm Radio Flux
+    resource: https://services.swpc.noaa.gov/products/summary/10cm-flux.json
+    value_template: "{{ value_json.Flux | int }}"
+    unit_of_measurement: "sfu"
+    json_attributes_path: "$"
+    json_attributes:
+      - Timestamp
+
+  - platform: rest
+    name: NOAA Space Weather - Solar Wind Magnetic Fields - Bt
+    resource: https://services.swpc.noaa.gov/products/summary/solar-wind-mag-field.json
+    value_template: "{{ value_json.Bt | int }}"
+    unit_of_measurement: "nT"
+    json_attributes_path: "$"
+    json_attributes:
+      - Timestamp
+
+  - platform: rest
+    name: NOAA Space Weather - Solar Wind Magnetic Fields - Bz
+    resource: https://services.swpc.noaa.gov/products/summary/solar-wind-mag-field.json
+    value_template: "{{ value_json.Bz | int }}"
+    unit_of_measurement: "nT"
+    json_attributes_path: "$"
+    json_attributes:
+      - Timestamp
+
+  - platform: rest
+    name: NOAA Space Weather - Solar Wind Speed
+    resource: https://services.swpc.noaa.gov/products/summary/solar-wind-speed.json
+    value_template: "{{ value_json.WindSpeed | int }}"
+    unit_of_measurement: "km/sec"
+    json_attributes_path: "$"
+    json_attributes:
+      - Timestamp
+
+media_player:
+  name: "TheBeast"
+  platform: hass_agent_mediaplayer
+  host: 192.168.86.25
+  port: 5115
+
+spotcast:
+  sp_dc: !secret sp_dc
+  sp_key: !secret sp_key
+
+readme:
+    convert_lovelace: true
+
+ecovacs:
+  username: !secret eco_name
+  password: !secret eco_pswd
+  country: US
+  continent: NA
+
+binary_sensor:
+  - platform: ping
+    host: 192.168.86.25
+    name: "TheBeast"
+  - platform: ping
+    host: 192.168.86.45
+    name: "StarlaPC"
+  - platform: ping
+    host: 192.168.86.27
+    name: "OctoPi"
+  - platform: ping
+    host: 192.168.86.185
+    name: "OMV"
+  - platform: ping
+    host: 192.168.86.32
+    name: "RPi3A+"
+  - platform: ping
+    host: 192.168.86.135
+    name: "Front Porch Camera"
+  - platform: ping
+    host: 192.168.86.110
+    name: "Indoor Camera"
+  - platform: ping
+    host: 192.168.86.142
+    name: "Front Camera"
+  - platform: ping
+    host: 192.168.86.107
+    name: "Home Assistant"
+  - platform: ping
+    host: 192.168.86.167
+    name: "Chromebook"
+  - platform: ping
+    host: 192.168.86.189
+    name: "Vacuum"
+  - platform: ping
+    host: 192.168.86.155
+    name: "Printer"
+
+  - platform: car_wash
+    weather: weather.tomorrow_io_nick_starla_s_home_daily
+    unique_id: 'car-wash'

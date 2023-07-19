@@ -1,0 +1,5702 @@
+title: Home
+views:
+- badges: []
+  cards:
+  - cards:
+    - entities:
+      - entity: sensor.average_indoor_temperature
+        name: Inside Temperature
+      - entity: sensor.front_porch_sensor_temperature
+        name: Outside Temperature
+      - entity: sensor.total_power_round
+        name: Current Power Usage
+      - entity: sensor.adguard_home_dns_queries_blocked_ratio
+        name: AdGuard Blocked Ratio
+      - entity: sensor.download_traffic_round
+        name: Download Traffic
+      - entity: sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c_connected_devices
+        name: Connected Devices
+      heading: Our Home
+      type: custom:banner-card
+    layout: {}
+    layout_type: custom:grid-layout
+    type: custom:layout-card
+  - cards:
+    - cards:
+      - animated_icon: true
+        entity: weather.forecast_home
+        sun_entity: sun.sun
+        time_format: 12
+        type: custom:clock-weather-card
+      - entity: sensor.moon_phase
+        type: entity
+      - camera_view: auto
+        entity: camera.s_w_x_co
+        image: https://demo.home-assistant.io/stub_config/bedroom.png
+        show_name: false
+        show_state: false
+        type: picture-entity
+      type: vertical-stack
+    - cards:
+      - control: false
+        entity: climate.kitchen
+        header: false
+        layout:
+          mode:
+            headings: false
+        sensors:
+        - entity: sensor.kitchen_humidity
+        - entity: sensor.temperature_differance_label
+          name: Outside
+        - entity: sensor.thermal_comfort_perception
+          name: Comfort
+        step_size: 1
+        type: custom:simple-thermostat
+      - entity: alarm_control_panel.home
+        keep_keypad_visible: false
+        states:
+          armed_away:
+            button_label: Away
+          armed_home:
+            button_label: Home
+          armed_night:
+            button_label: Night
+          armed_vacation:
+            button_label: Vacation
+        type: custom:alarmo-card
+      - cards:
+        - entity: scene.computer_room_bright_white
+          name: Bright White
+          show_icon: false
+          show_name: true
+          tap_action:
+            action: toggle
+          type: button
+        - entity: scene.computer_room_bright
+          name: Bright
+          show_icon: false
+          show_name: true
+          tap_action:
+            action: toggle
+          type: button
+        - entity: scene.computer_room_read
+          name: Read
+          show_icon: false
+          show_name: true
+          tap_action:
+            action: toggle
+          type: button
+        - entity: scene.computer_room_relax
+          name: Relax
+          show_icon: false
+          show_name: true
+          tap_action:
+            action: toggle
+          type: button
+        - entity: scene.computer_room_spring_blossom
+          name: Spring Blossom
+          show_icon: false
+          show_name: true
+          tap_action:
+            action: toggle
+          type: button
+        - entity: scene.computer_room_winter_mountain
+          name: Winter Mountain
+          show_icon: false
+          show_name: true
+          tap_action:
+            action: toggle
+          type: button
+        - entity: scene.computer_room_arctic_aurora
+          name: Arctic Aurora
+          show_icon: false
+          show_name: true
+          tap_action:
+            action: toggle
+          type: button
+        - entity: scene.computer_room_tropical_twilight
+          name: Twilight
+          show_icon: false
+          show_name: true
+          tap_action:
+            action: toggle
+          type: button
+        - entity: scene.computer_room_moonlight
+          name: Moonlight
+          show_icon: false
+          show_name: true
+          tap_action:
+            action: toggle
+          type: button
+        - entity: scene.computer_room_starlight
+          name: Starlight
+          show_icon: false
+          show_name: true
+          tap_action:
+            action: toggle
+          type: button
+        columns: 5
+        square: false
+        type: grid
+      - cardName: historycard-97723151
+        combineSameUnits: true
+        defaultTimeRange: 3d
+        graphs:
+        - entities:
+          - entity: sensor.front_porch_sensor_temperature
+          - entity: sensor.kitchen_temperature
+            name: Kitchen
+          - entity: sensor.sensorbot_temperature
+            name: Bedroom
+          - entity: sensor.mixed_reef_temperature_2
+            name: Computer Room
+          type: line
+        header: Temperature
+        hours_to_show: 72
+        showCurrentValues: true
+        show_names: true
+        stateTextMode: auto
+        statistics:
+          enabled: true
+          mode: mean
+          period: hour
+        type: custom:history-explorer-card
+        uiLayout:
+          selector: hide
+      type: vertical-stack
+    - cards:
+      - cards:
+        - entity: sensor.pixel_6_battery_level
+          needle: false
+          severity:
+            green: 66
+            red: 0
+            yellow: 33
+          type: gauge
+        - entity: sensor.pixel_watch_battery_level
+          severity:
+            green: 66
+            red: 0
+            yellow: 33
+          type: gauge
+        - entity: sensor.chromebook_battery_level
+          severity:
+            green: 66
+            red: 0
+            yellow: 33
+          type: gauge
+        - detail: 2
+          entity: sensor.adguard_home_dns_queries_blocked_ratio
+          graph: line
+          hours_to_show: 72
+          name: Blocked Ratio
+          type: sensor
+        - detail: 2
+          entity: sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c_download_speed
+          graph: line
+          hours_to_show: 72
+          name: Download
+          type: sensor
+        - detail: 1
+          entity: sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c_upload_speed
+          graph: line
+          hours_to_show: 24
+          type: sensor
+        - detail: 2
+          entity: sensor.speedtest_ping
+          graph: line
+          hours_to_show: 72
+          name: Ping
+          type: sensor
+        - detail: 2
+          entity: sensor.opensky
+          graph: line
+          hours_to_show: 24
+          type: sensor
+        columns: 2
+        square: false
+        type: grid
+      - entities:
+        - entity: sensor.thebeast_cpuload
+          name: TheBeat CPU
+        - entity: sensor.thebeast_memoryusage
+          name: TheBeat RAM
+        - entity: sensor.thebeast_gpuload
+          name: TheBeat GPU
+        - entity: sensor.processor_use
+        - entity: sensor.memory_use_percent
+        - entity: sensor.aquapi_marine_cpu_usage
+          name: MarinePi CPU
+        - entity: sensor.aquapi_marine_memory_use
+          name: MarinePi RAM
+        - entity: sensor.aquapi_mixed_reef_cpu_usage
+          name: ReefPi CPU
+        - entity: sensor.aquapi_mixed_reef_memory_use
+          name: ReefPi RAM
+        hours_to_show: 12
+        show_names: true
+        type: history-graph
+      type: vertical-stack
+    - cards:
+      - cards:
+        - entity: switch.3d_printer_light
+          icon: mdi:led-strip-variant
+          name: Ender-3 Pro Light
+          show_icon: true
+          show_name: true
+          show_state: true
+          tap_action:
+            action: toggle
+          type: button
+        - entities:
+          - entity: sensor.octoprint_print_status
+            name: Ender3 Pro
+          type: glance
+        columns: 2
+        square: false
+        type: grid
+      - card:
+          cards:
+          - entities:
+            - entity: sensor.octoprint_approximate_completion_time
+              name: ETA to Completion
+            - entity: sensor.octoprint_tool_0_temperature
+              name: Tool Temperature
+            - entity: sensor.octoprint_bed_temperature
+              name: Bed Temperature
+            show_header_toggle: false
+            type: entities
+          - entities:
+            - entity: sensor.octoprint_print_progress
+            type: custom:bar-card
+          type: vertical-stack
+        conditions:
+        - entity: sensor.octoprint_print_status
+          state: Printing
+        type: conditional
+      - all_series_config:
+          show:
+            legend_value: false
+        header:
+          colorize_states: true
+          show: true
+          show_states: true
+          title: Aquarium Temperatures
+        series:
+        - entity: sensor.average_indoor_temperature
+          name: Ambient
+        - entity: sensor.aquapi_marine_temperature
+          name: Marine
+        - entity: sensor.mixed_reef_temperature
+          name: Mixed Reef
+        - entity: sensor.aquapi_cichlids_temperature
+          name: Cichlids
+        type: custom:apexcharts-card
+      - apex_config:
+          chart:
+            fontFamily: Segoe UI, SegoeUI, sans-serif
+            height: 500px
+            offsetY: -20
+            pie:
+              donut:
+                label:
+                  show: true
+          legend:
+            dataLabels:
+              dropShadow:
+                enabled: false
+              formatter: "EVAL:function(value, { seriesIndex, dataPointIndex, w })\
+                \ {\n  return Math.round(value * 10) / 10 + '%'\n}\n"
+              style:
+                fontFamily: Segoe UI, SegoeUI, sans-serif
+                fontSize: 10
+                fontWeight: 500
+            fontFamily: Segoe UI, SegoeUI, sans-serif
+            fontSize: 12
+            fontWeight: normal
+            formatter: "EVAL:function(seriesName, opts) {\n  return seriesName\n}\n"
+            itemMargin:
+              horizontal: 0
+            markers:
+              height: 8
+              width: 8
+            position: right
+            style: "#header__title {\n  font-size: var(--body-font-size) !important;\n\
+              \  font-weight: normal !important;\n  color: var(--primary-text-color)\
+              \ !important;\n  margin-top: 8px;\n}\n#graph-wrapper {\n  padding-top:\
+              \ 32px;\n}\n"
+            tooltip:
+              style:
+                fontFamily: Segoe UI, SegoeUI, sans-serif
+                fontSize: 12px
+          title:
+            style:
+              color: var(--primary-text-color)
+              fontSize: 12px
+        chart_type: donut
+        header:
+          show: true
+          title: Current Power Usage
+        layout: minimal
+        series:
+        - entity: sensor.pcs_power
+          name: PCs
+        - entity: sensor.3d_printers_power
+          name: 3D Printers
+        - entity: sensor.marine_aquarium_power
+          name: Marine Aquarium
+        - entity: sensor.cichlid_aquarium_power
+          name: Cichlid Aquarium
+        - entity: sensor.lights_tvs_power
+          name: Lights & TV
+        type: custom:apexcharts-card
+        update_interval: 10sec
+      - cards:
+        - entity: light.cichlid_aquariums
+          icon: mdi:gesture-tap-button
+          name: Hub
+          show_icon: false
+          show_name: true
+          tap_action:
+            action: navigate
+            navigation_path: /touch-screens/hub
+          type: button
+        - entity: light.cichlid_aquariums
+          icon: mdi:gesture-tap-hold
+          name: Kiosk
+          show_icon: false
+          show_name: true
+          tap_action:
+            action: navigate
+            navigation_path: /lovelace?kiosk
+          type: button
+        columns: 2
+        square: false
+        type: grid
+      - type: custom:fullscreen-card
+      - card: null
+        style:
+          hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+            \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n \
+            \ flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+            \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+            \ unset !important; \n}\n"
+        type: custom:mod-card
+      type: vertical-stack
+    layout:
+      max_cols: 4
+    layout_type: custom:masonry-layout
+    type: custom:layout-card
+  - cards:
+    - area: front_of_house
+      show_camera: true
+      theme: material_dark_green
+      type: area
+    - area: living_room
+      show_camera: true
+      theme: material_dark_green
+      type: area
+    - area: front_porch
+      show_camera: true
+      theme: material_dark_green
+      type: area
+    - area: computer_room
+      show_camera: true
+      theme: material_dark_green
+      type: area
+    - area: fish_room
+      show_camera: true
+      type: area
+    - area: bedroom
+      show_camera: true
+      type: area
+    - area: kitchen
+      show_camera: true
+      type: area
+    layout:
+      max_cols: 2
+      max_width: 800
+    layout_type: custom:masonry-layout
+    type: custom:layout-card
+  icon: mdi:home
+  layout: {}
+  path: home
+  theme: Caule Black Purple Glass
+  title: Home
+  type: custom:grid-layout
+- badges: []
+  cards:
+  - cards:
+    - subtitle: Marine Aquarium
+      title: Current Status
+      type: custom:mushroom-title-card
+    - cards:
+      - camera_view: auto
+        entity: sensor.aquapi_marine_temperature
+        image: /local/custom/PXL_20230606_162534564.jpg
+        name: Marine
+        show_name: true
+        show_state: true
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/marine
+        type: picture-entity
+      - alignment: center
+        chips:
+        - entity: sensor.aquapi_marine_temperature_2
+          type: entity
+        - entity: sensor.aquapi_marine_ph
+          type: entity
+        - entity: sensor.aquapi_marine_salinity
+          type: entity
+        - entity: input_number.ammonia_marine
+          type: entity
+        - entity: input_number.nitrite_2
+          type: entity
+        - entity: input_number.nitrate_marine
+          type: entity
+        - entity: input_number.phosphate_marine
+          type: entity
+        - entity: input_number.calcium_marine
+          type: entity
+        - entity: input_number.carbonate_hardness_marine
+          type: entity
+        type: custom:mushroom-chips-card
+      - entities:
+        - entity: sensor.marine_temperature_range
+          icon: mdi:thermometer-water
+          name: Temperature
+          secondary_info: last-changed
+        - entity: sensor.heater_state
+          icon: mdi:radiator
+          name: Heater
+          secondary_info: last-changed
+        - entity: sensor.aquapi_marine_water_level
+          icon: ''
+          name: Water Level
+          secondary_info: last-changed
+        - entity: sensor.marine_water_hardness
+          name: Water Hardness
+          secondary_info: last-changed
+        - entity: sensor.doser4020_state
+          icon: mdi:pump
+          secondary_info: last-changed
+        type: entities
+      type: vertical-stack
+    - cards:
+      - subtitle: Mixed Reef
+        title: ''
+        type: custom:mushroom-title-card
+      - cards:
+        - camera_view: auto
+          entity: sensor.mixed_reef_temperature
+          image: /local/custom/PXL_20230609_204824313.MP.jpg
+          name: 'Mixed Reef '
+          show_name: true
+          show_state: true
+          tap_action:
+            action: navigate
+            navigation_path: /lovelace/mixed-reef
+          type: picture-entity
+        - alignment: center
+          chips:
+          - entity: input_number.ph
+            type: entity
+          - entity: input_number.mixed_reef_salinity
+            type: entity
+          - entity: input_number.ammonia
+            type: entity
+          - entity: input_number.nitrite
+            type: entity
+          - entity: input_number.nitrate_coral
+            type: entity
+          - entity: input_number.phosphate_coral
+            type: entity
+          - entity: input_number.calcium_coral
+            type: entity
+          - entity: input_number.carbonate_hardness
+            type: entity
+          type: custom:mushroom-chips-card
+        - entities:
+          - entity: sensor.mixed_reef_temperature_range
+            icon: mdi:thermometer-water
+            name: Temperature
+            secondary_info: last-changed
+          - entity: sensor.aqualifter_state
+            icon: mdi:heat-pump
+            name: AquaLifter
+            secondary_info: last-changed
+          - entity: sensor.mixed_reef_water_level
+            name: Water Level
+            secondary_info: last-changed
+          - entity: sensor.mixed_reef_water_hardness
+            name: Water Hardness
+            secondary_info: last-changed
+          type: entities
+        type: vertical-stack
+      type: vertical-stack
+    - cards:
+      - subtitle: American Cichlids
+        title: ''
+        type: custom:mushroom-title-card
+      - cards:
+        - camera_view: auto
+          entity: sensor.aquapi_cichlids_temperature
+          image: /local/custom/PXL_20230606_162540719.jpg
+          name: American Cichlids
+          show_name: true
+          show_state: true
+          tap_action:
+            action: navigate
+            navigation_path: /lovelace/american-cichlid-aquarium
+          type: picture-entity
+        - alignment: center
+          chips:
+          - entity: input_number.cichlids_ph
+            type: entity
+          - entity: input_number.cichlids_ammonia
+            type: entity
+          - entity: input_number.cichlids_nitrite
+            type: entity
+          - entity: input_number.cichlids_nitrate
+            type: entity
+          - entity: input_number.cichlids_phosphate
+            type: entity
+          type: custom:mushroom-chips-card
+        - entities:
+          - entity: sensor.cichlids_temperature_range
+            icon: mdi:thermometer-water
+            name: Temperature
+            secondary_info: last-changed
+          - entity: sensor.cichlid_heater_state
+            secondary_info: last-changed
+          - entity: sensor.aquapi_cichlids_water_level
+            name: Water Level
+            secondary_info: last-changed
+          type: entities
+        type: vertical-stack
+      type: vertical-stack
+    type: vertical-stack
+  - cards:
+    - subtitle: Sensors
+      title: Parameters
+      type: custom:mushroom-title-card
+    - align_state: center
+      animate: true
+      cache: true
+      color_thresholds:
+      - color: '#0a748c'
+        value: 70
+      - color: '#497eb0'
+        value: 72
+      - color: '#58c02b'
+        value: 78
+      - color: '#babf22'
+        value: 82
+      - color: '#c0392b'
+        value: 84
+      entities:
+      - entity: sensor.aquapi_marine_temperature
+        icon: mdi:thermometer-water
+        name: Marine
+      - entity: sensor.mixed_reef_temperature
+        name: Mixed Reef
+      - entity: sensor.aquapi_cichlids_temperature
+        name: American Cichlids
+      - entity: sensor.average_indoor_temperature
+        name: Ambient
+      hours_to_show: 72
+      name: Temperature
+      show:
+        labels: true
+        legend: false
+      type: custom:mini-graph-card
+    - align_state: center
+      animate: true
+      cache: true
+      color_thresholds:
+      - color: '#0a748c'
+        value: 30
+      - color: '#497eb0'
+        value: 32
+      - color: '#16149c'
+        value: 35
+      - color: '#babf22'
+        value: 37
+      - color: '#c0392b'
+        value: 39
+      entities:
+      - entity: sensor.aquapi_marine_salinity
+        name: Marine
+      - entity: input_number.mixed_reef_salinity
+        name: Mixed Reef
+      hours_to_show: 72
+      name: Salinity
+      show:
+        labels: true
+        legend: false
+      type: custom:mini-graph-card
+    - align_state: center
+      animate: true
+      cache: true
+      color_thresholds:
+      - color: '#0a748c'
+        value: 7.9
+      - color: '#497eb0'
+        value: 8.1
+      - color: '#670e80'
+        value: 8.3
+      - color: '#babf22'
+        value: 8.5
+      - color: '#c0392b'
+        value: 8.7
+      entities:
+      - entity: sensor.aquapi_marine_ph
+        name: Marine
+      - entity: input_number.ph
+        name: Mixed Reef
+      hours_to_show: 72
+      name: Saltwater pH
+      show:
+        labels: true
+        legend: false
+      type: custom:mini-graph-card
+    - align_state: center
+      animate: true
+      cache: true
+      color_thresholds:
+      - color: '#0a748c'
+        value: 6.5
+      - color: '#497eb0'
+        value: 7
+      - color: '#670e80'
+        value: 7.5
+      - color: '#babf22'
+        value: 8
+      - color: '#c0392b'
+        value: 8.5
+      entities:
+      - entity: input_number.cichlids_ph
+        name: Cichlids
+      hours_to_show: 72
+      name: Freshwater pH
+      show:
+        labels: true
+        legend: false
+      type: custom:mini-graph-card
+    - subtitle: Toxins & Elements
+      title: ''
+      type: custom:mushroom-title-card
+    - cards:
+      - align_state: center
+        animate: true
+        cache: true
+        color_thresholds:
+        - color: '#d96c14'
+          value: 0
+        - color: '#babf22'
+          value: 1
+        - color: '#c0392b'
+          value: 4
+        entities:
+        - entity: input_number.ammonia_marine
+          name: Marine
+        - entity: input_number.ammonia
+          name: Mixed Reef
+        - entity: input_number.cichlids_ammonia
+          name: Cichlids
+        height: 150
+        hours_to_show: 72
+        name: Ammonia
+        show:
+          labels: true
+          legend: false
+        type: custom:mini-graph-card
+      - align_state: center
+        animate: true
+        cache: true
+        color_thresholds:
+        - color: '#d914d2'
+          value: 0
+        - color: '#babf22'
+          value: 1
+        - color: '#c0392b'
+          value: 3
+        entities:
+        - entity: input_number.nitrite_2
+          name: Marine
+        - entity: input_number.nitrite
+          name: Mixed Reef
+        - entity: input_number.cichlids_nitrite
+          name: Cichlids
+        height: 150
+        hours_to_show: 72
+        name: Nitrite
+        show:
+          labels: true
+          legend: false
+        type: custom:mini-graph-card
+      - align_state: center
+        animate: true
+        cache: true
+        color_thresholds:
+        - color: '#148ad9'
+          value: 0
+        - color: '#babf22'
+          value: 20
+        - color: '#c0392b'
+          value: 80
+        entities:
+        - entity: input_number.nitrate_marine
+          name: Marine
+        - entity: input_number.nitrate_coral
+          name: Mixed Reef
+        - entity: input_number.cichlids_nitrite
+          name: Cichlids
+        height: 150
+        hours_to_show: 72
+        name: Nitrate
+        show:
+          labels: true
+          legend: false
+        type: custom:mini-graph-card
+      - align_state: center
+        animate: true
+        cache: true
+        color_thresholds:
+        - color: '#0b8015'
+          value: 0
+        - color: '#babf22'
+          value: 2
+        - color: '#c0392b'
+          value: 8
+        entities:
+        - entity: input_number.phosphate_marine
+          name: Marine
+        - entity: input_number.phosphate_coral
+          name: Mixed Reef
+        - entity: input_number.cichlids_phosphate
+          name: Cichlids
+        height: 150
+        hours_to_show: 72
+        name: Phospahte
+        show:
+          labels: true
+          legend: false
+        type: custom:mini-graph-card
+      - align_state: center
+        animate: true
+        cache: true
+        color_thresholds:
+        - color: '#0a748c'
+          value: 250
+        - color: '#497eb0'
+          value: 320
+        - color: '#0f0b80'
+          value: 420
+        - color: '#babf22'
+          value: 500
+        - color: '#c0392b'
+          value: 540
+        entities:
+        - entity: input_number.calcium_marine
+        - entity: input_number.calcium_coral
+        height: 150
+        hours_to_show: 72
+        name: Calcium
+        show:
+          labels: true
+          legend: false
+        type: custom:mini-graph-card
+      - align_state: center
+        animate: true
+        cache: true
+        color_thresholds:
+        - color: '#0a748c'
+          value: 50
+        - color: '#497eb0'
+          value: 100
+        - color: '#6918b5'
+          value: 200
+        - color: '#babf22'
+          value: 260
+        - color: '#c0392b'
+          value: 300
+        entities:
+        - entity: input_number.carbonate_hardness_marine
+        - entity: input_number.carbonate_hardness
+        height: 150
+        hours_to_show: 72
+        name: Hardness
+        show:
+          labels: true
+          legend: false
+        type: custom:mini-graph-card
+      columns: 2
+      square: false
+      type: grid
+    type: vertical-stack
+  - cards:
+    - subtitle: Marine Aquarium
+      title: Power & Controls
+      type: custom:mushroom-title-card
+    - cards:
+      - card:
+          cards:
+          - entity: switch.plug6
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            type: button
+          - align_state: center
+            animate: true
+            cache: true
+            entities:
+            - entity: sensor.refugium_white_current_consumption
+            height: 150
+            hours_to_show: 72
+            line_color: '#c4a60c'
+            show:
+              icon: false
+              labels: true
+              legend: false
+              name: false
+            type: custom:mini-graph-card
+          type: horizontal-stack
+        style:
+          hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+            \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n \
+            \ flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+            \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+            \ unset !important; \n}\n"
+        type: custom:mod-card
+      - card:
+          cards:
+          - entity: switch.plug3
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            type: button
+          - align_state: center
+            animate: true
+            cache: true
+            entities:
+            - entity: sensor.main_system_pump_current_consumption
+            height: 150
+            hours_to_show: 72
+            line_color: '#0f0b80'
+            name: Main Pump
+            show:
+              icon: false
+              labels: true
+              legend: false
+              name: false
+            type: custom:mini-graph-card
+          type: horizontal-stack
+        style:
+          hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+            \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n \
+            \ flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+            \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+            \ unset !important; \n}\n"
+        type: custom:mod-card
+      - card:
+          cards:
+          - entity: switch.plug1
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            type: button
+          - align_state: center
+            animate: true
+            cache: true
+            entities:
+            - entity: sensor.fluval_306_current_consumption
+            height: 150
+            hours_to_show: 72
+            line_color: '#0b6b80'
+            show:
+              icon: false
+              labels: true
+              legend: false
+              name: false
+            type: custom:mini-graph-card
+          type: horizontal-stack
+        style:
+          hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+            \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n \
+            \ flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+            \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+            \ unset !important; \n}\n"
+        type: custom:mod-card
+      - card:
+          cards:
+          - entity: switch.plug2
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            type: button
+          - align_state: center
+            animate: true
+            cache: true
+            entities:
+            - entity: sensor.skimmer_current_consumption
+            height: 150
+            hours_to_show: 72
+            line_color: '#690b80'
+            show:
+              icon: false
+              labels: true
+              legend: false
+              name: false
+            type: custom:mini-graph-card
+          type: horizontal-stack
+        style:
+          hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+            \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n \
+            \ flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+            \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+            \ unset !important; \n}\n"
+        type: custom:mod-card
+      - card:
+          cards:
+          - entity: switch.plug5
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            type: button
+          - align_state: center
+            animate: true
+            cache: true
+            entities:
+            - entity: sensor.heater_current_consumption
+            height: 150
+            hours_to_show: 72
+            line_color: '#800b15'
+            show:
+              icon: false
+              labels: true
+              legend: false
+              name: false
+            type: custom:mini-graph-card
+          type: horizontal-stack
+        style:
+          hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+            \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n \
+            \ flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+            \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+            \ unset !important; \n}\n"
+        type: custom:mod-card
+      - card:
+          cards:
+          - entity: switch.plug4
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            type: button
+          - align_state: center
+            animate: true
+            cache: true
+            entities:
+            - entity: sensor.wave_maker_current_consumption
+            height: 150
+            hours_to_show: 72
+            line_color: '#0cc42b'
+            show:
+              icon: false
+              labels: true
+              legend: false
+              name: false
+            type: custom:mini-graph-card
+          type: horizontal-stack
+        style:
+          hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+            \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n \
+            \ flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+            \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+            \ unset !important; \n}\n"
+        type: custom:mod-card
+      columns: 1
+      square: false
+      type: grid
+    - cards:
+      - subtitle: Cichlids Aquarium
+        title: ''
+        type: custom:mushroom-title-card
+      - cards:
+        - card:
+            cards:
+            - entity: switch.ffd2_plug_2
+              name: Fluval LED
+              show_icon: true
+              show_name: true
+              tap_action:
+                action: toggle
+              type: button
+            - align_state: center
+              animate: true
+              cache: true
+              entities:
+              - entity: sensor.cichlids_fluval_led_current_consumption
+              height: 150
+              hours_to_show: 72
+              line_color: '#c4a60c'
+              show:
+                icon: false
+                labels: true
+                legend: false
+                name: false
+              type: custom:mini-graph-card
+            type: horizontal-stack
+          style:
+            hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+              \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n\
+              \  flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+              \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+              \ unset !important; \n}\n"
+          type: custom:mod-card
+        - card:
+            cards:
+            - entity: switch.ffd2_plug_5
+              name: Return Pump
+              show_icon: true
+              show_name: true
+              tap_action:
+                action: toggle
+              type: button
+            - align_state: center
+              animate: true
+              cache: true
+              entities:
+              - entity: sensor.cichlids_return_pump_current_consumption
+              height: 150
+              hours_to_show: 72
+              line_color: '#0f0b80'
+              name: Main Pump
+              show:
+                icon: false
+                labels: true
+                legend: false
+                name: false
+              type: custom:mini-graph-card
+            type: horizontal-stack
+          style:
+            hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+              \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n\
+              \  flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+              \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+              \ unset !important; \n}\n"
+          type: custom:mod-card
+        - card:
+            cards:
+            - entity: switch.ffd2_plug_4
+              name: Heater
+              show_icon: true
+              show_name: true
+              tap_action:
+                action: toggle
+              type: button
+            - align_state: center
+              animate: true
+              cache: true
+              entities:
+              - entity: sensor.cichlids_heater_current_consumption
+              height: 150
+              hours_to_show: 72
+              line_color: '#0b6b80'
+              show:
+                icon: false
+                labels: true
+                legend: false
+                name: false
+              type: custom:mini-graph-card
+            type: horizontal-stack
+          style:
+            hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+              \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n\
+              \  flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+              \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+              \ unset !important; \n}\n"
+          type: custom:mod-card
+        - card:
+            cards:
+            - entity: switch.ffd2_plug_1
+              name: Marineland Emperor
+              show_icon: true
+              show_name: true
+              tap_action:
+                action: toggle
+              type: button
+            - align_state: center
+              animate: true
+              cache: true
+              entities:
+              - entity: sensor.cichlids_marineland_emperor_current_consumption
+              height: 150
+              hours_to_show: 72
+              line_color: '#800b15'
+              show:
+                icon: false
+                labels: true
+                legend: false
+                name: false
+              type: custom:mini-graph-card
+            type: horizontal-stack
+          style:
+            hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+              \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n\
+              \  flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+              \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+              \ unset !important; \n}\n"
+          type: custom:mod-card
+        - card:
+            cards:
+            - entity: switch.ffd2_plug_3
+              name: Power Head
+              show_icon: true
+              show_name: true
+              tap_action:
+                action: toggle
+              type: button
+            - align_state: center
+              animate: true
+              cache: true
+              entities:
+              - entity: sensor.cichlids_power_head_current_consumption
+              height: 150
+              hours_to_show: 72
+              line_color: '#690b80'
+              show:
+                icon: false
+                labels: true
+                legend: false
+                name: false
+              type: custom:mini-graph-card
+            type: horizontal-stack
+          style:
+            hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+              \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n\
+              \  flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+              \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+              \ unset !important; \n}\n"
+          type: custom:mod-card
+        - card:
+            cards:
+            - entity: switch.ffd2_plug_6
+              name: ATO & Air Pump
+              show_icon: true
+              show_name: true
+              tap_action:
+                action: toggle
+              type: button
+            - align_state: center
+              animate: true
+              cache: true
+              entities:
+              - entity: sensor.cichlids_ato_air_pump_current_consumption
+              height: 150
+              hours_to_show: 72
+              line_color: '#0cc42b'
+              show:
+                icon: false
+                labels: true
+                legend: false
+                name: false
+              type: custom:mini-graph-card
+            type: horizontal-stack
+          style:
+            hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+              \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n\
+              \  flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+              \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+              \ unset !important; \n}\n"
+          type: custom:mod-card
+        columns: 1
+        square: false
+        type: grid
+      type: vertical-stack
+    type: vertical-stack
+  - cards:
+    - subtitle: Other Equipment
+      title: Automations
+      type: custom:mushroom-title-card
+    - cards:
+      - entity: switch.aqualifter
+        show_icon: true
+        show_name: true
+        tap_action:
+          action: toggle
+        type: button
+      - entity: switch.ro_pump
+        show_icon: true
+        show_name: true
+        tap_action:
+          action: toggle
+        type: button
+      - entity: script.aquarium_lights
+        show_icon: true
+        show_name: true
+        tap_action:
+          action: toggle
+        type: button
+      - entity: script.aquarium_marine_trace
+        name: Dose Marine Trace
+        show_icon: true
+        show_name: true
+        show_state: false
+        tap_action:
+          action: toggle
+          confirmation:
+            text: Are you sure?
+        type: button
+      - entity: light.cichlid_aquariums
+        icon: mdi:gesture-tap-hold
+        name: Kiosk
+        show_icon: false
+        show_name: true
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/Aquariums?kiosk
+        type: button
+      - type: custom:fullscreen-card
+      columns: 2
+      square: false
+      type: grid
+    type: vertical-stack
+  - cards:
+    - apex_config:
+        chart:
+          fontFamily: Segoe UI, SegoeUI, sans-serif
+          height: 500px
+          offsetY: -20
+          pie:
+            donut:
+              label:
+                show: true
+        legend:
+          dataLabels:
+            dropShadow:
+              enabled: false
+            formatter: "EVAL:function(value, { seriesIndex, dataPointIndex, w }) {\n\
+              \  return Math.round(value * 10) / 10 + '%'\n}\n"
+            style:
+              fontFamily: Segoe UI, SegoeUI, sans-serif
+              fontSize: 10
+              fontWeight: 500
+          fontFamily: Segoe UI, SegoeUI, sans-serif
+          fontSize: 12
+          fontWeight: normal
+          formatter: "EVAL:function(seriesName, opts) {\n  return seriesName\n}\n"
+          itemMargin:
+            horizontal: 0
+          markers:
+            height: 8
+            width: 8
+          position: right
+          style: "#header__title {\n  font-size: var(--body-font-size) !important;\n\
+            \  font-weight: normal !important;\n  color: var(--primary-text-color)\
+            \ !important;\n  margin-top: 8px;\n}\n#graph-wrapper {\n  padding-top:\
+            \ 32px;\n}\n"
+          tooltip:
+            style:
+              fontFamily: Segoe UI, SegoeUI, sans-serif
+              fontSize: 12px
+        title:
+          style:
+            color: var(--primary-text-color)
+            fontSize: 12px
+      chart_type: donut
+      header:
+        show: true
+        title: Current Power
+      layout: minimal
+      series:
+      - entity: sensor.marine_aquarium_power
+        name: Marine
+      - entity: sensor.cichlid_aquarium_power
+        name: Cichlid
+      type: custom:apexcharts-card
+      update_interval: 10sec
+    - apex_config:
+        chart:
+          fontFamily: Segoe UI, SegoeUI, sans-serif
+          height: 500px
+          offsetY: -20
+          pie:
+            donut:
+              label:
+                show: true
+        legend:
+          dataLabels:
+            dropShadow:
+              enabled: false
+            formatter: "EVAL:function(value, { seriesIndex, dataPointIndex, w }) {\n\
+              \  return Math.round(value * 10) / 10 + '%'\n}\n"
+            style:
+              fontFamily: Segoe UI, SegoeUI, sans-serif
+              fontSize: 10
+              fontWeight: 500
+          fontFamily: Segoe UI, SegoeUI, sans-serif
+          fontSize: 12
+          fontWeight: normal
+          formatter: "EVAL:function(seriesName, opts) {\n  return seriesName\n}\n"
+          itemMargin:
+            horizontal: 0
+          markers:
+            height: 8
+            width: 8
+          position: right
+          style: "#header__title {\n  font-size: var(--body-font-size) !important;\n\
+            \  font-weight: normal !important;\n  color: var(--primary-text-color)\
+            \ !important;\n  margin-top: 8px;\n}\n#graph-wrapper {\n  padding-top:\
+            \ 32px;\n}\n"
+          tooltip:
+            style:
+              fontFamily: Segoe UI, SegoeUI, sans-serif
+              fontSize: 12px
+        title:
+          style:
+            color: var(--primary-text-color)
+            fontSize: 12px
+      chart_type: donut
+      header:
+        show: true
+        title: Daily Energy
+      layout: minimal
+      series:
+      - entity: sensor.marine_aquarium_energy_daily
+        name: Marine
+      - entity: sensor.cichlid_aquarium_energy_daily
+        name: Cichlid
+      type: custom:apexcharts-card
+    layout_type: custom:vertical-layout
+    type: custom:layout-card
+  icon: mdi:fishbowl-outline
+  layout:
+    max_cols: 4
+  path: Aquariums
+  theme: Caule Black Aqua Glass
+  title: Aquariums
+  type: custom:masonry-layout
+- badges: []
+  cards:
+  - entities:
+    - entity: sensor.octoprint_print_status
+      name: Status
+    - entity: sensor.octoprint_tool_0_temperature
+      name: Tool Temp.
+    - entity: sensor.octoprint_bed_temperature
+      name: Bed Temp.
+    heading: OctoPrint
+    type: custom:banner-card
+  - cards:
+    - cards:
+      - camera_image: camera.octoprint_camera
+        camera_view: auto
+        entity: camera.octoprint_camera
+        image: https://demo.home-assistant.io/stub_config/bedroom.png
+        show_name: true
+        show_state: false
+        type: picture-entity
+      type: vertical-stack
+    - cards:
+      - cards:
+        - detail: 2
+          entity: sensor.octoprint_soc_temperature
+          graph: line
+          hours_to_show: 24
+          name: SoC - 1.5 GHz
+          type: sensor
+        - detail: 2
+          entity: sensor.octoprint_tool_0_temperature
+          graph: line
+          hours_to_show: 24
+          type: sensor
+        - detail: 2
+          entity: sensor.octoprint_bed_temperature
+          graph: line
+          hours_to_show: 24
+          type: sensor
+        - detail: 2
+          entity: sensor.octoprint_current_z
+          graph: line
+          hours_to_show: 24
+          name: Current Z
+          type: sensor
+        columns: 2
+        square: false
+        type: grid
+      - cardName: historycard-31287801
+        combineSameUnits: true
+        defaultTimeRange: 3d
+        graphs:
+        - entities:
+          - entity: sensor.octoprint_soc_temperature
+            name: SoC
+          - entity: sensor.octoprint_tool_0_temperature
+            name: Tool
+          - entity: sensor.octoprint_bed_temperature
+            name: Bed
+          type: line
+        header: Temperature
+        showCurrentValues: true
+        stateTextMode: auto
+        statistics:
+          enabled: true
+          mode: mean
+          period: hour
+        type: custom:history-explorer-card
+        uiLayout:
+          selector: hide
+      type: vertical-stack
+    - cards:
+      - entities:
+        - entity: binary_sensor.octoprint_connected
+        - entity: sensor.octoprint_print_status
+        - entity: sensor.octoprint_last_event
+        - entity: sensor.octoprint_print_file
+        - entity: sensor.octoprint_print_progress
+        - entity: sensor.octoprint_approximate_total_print_time
+        - entity: sensor.octoprint_approximate_completion_time
+        - entity: sensor.octoprint_print_time_left
+        - entity: sensor.octoprint_print_time
+        - entity: binary_sensor.octoprint_printing_2
+        - entity: sensor.octoprint_status_power
+        - entity: sensor.octoprint_status_energy
+        type: entities
+      - cardName: historycard-31287801
+        combineSameUnits: true
+        graphs:
+        - entities:
+          - entity: sensor.octoprint_print_file
+            name: File
+          - entity: sensor.octoprint_approximate_total_print_time
+            name: Time
+          - entity: sensor.octoprint_print_status
+            name: Status
+          - entity: binary_sensor.octoprint_connected
+            name: Ender-3
+          type: timeline
+        header: OctoPrint History
+        stateTextMode: auto
+        statistics:
+          enabled: true
+          mode: mean
+          period: hour
+        type: custom:history-explorer-card
+        uiLayout:
+          selector: hide
+      - entity: binary_sensor.octopi
+        hours_to_show: 72
+        icon: mdi:printer-3d
+        type: custom:uptime-card
+      type: vertical-stack
+    - cards:
+      - cards:
+        - icon: mdi:printer-3d
+          name: OctoPrint
+          tap_action:
+            action: url
+            url_path: http://octopi.local/?#tab_plugin_dashboard
+          type: custom:button-card
+        - entity: switch.octoprint_pause_print
+          show_icon: true
+          show_name: true
+          tap_action:
+            action: toggle
+            confirmation:
+              text: Are you sure?
+          type: button
+        - entity: button.octoprint_cancel_print
+          show_icon: true
+          show_name: true
+          tap_action:
+            action: toggle
+            confirmation:
+              text: Are you sure?
+          type: button
+        - entity: button.octoprint_emergency_stop
+          show_icon: true
+          show_name: true
+          tap_action:
+            action: toggle
+            confirmation:
+              text: Are you sure?
+          type: button
+        - entity: switch.octoprint_psu
+          show_icon: true
+          show_name: true
+          tap_action:
+            action: toggle
+            confirmation:
+              text: Are you sure?
+          type: button
+        - entity: light.3d_printer_light
+          show_icon: true
+          show_name: true
+          tap_action:
+            action: toggle
+          type: button
+        - entity: button.octoprint_reboot_system
+          show_icon: true
+          show_name: true
+          tap_action:
+            action: toggle
+            confirmation:
+              text: Are you sure?
+          type: button
+        - entity: button.octoprint_resume_job
+          show_icon: true
+          show_name: true
+          tap_action:
+            action: toggle
+            confirmation:
+              text: Are you sure?
+          type: button
+        columns: 2
+        square: false
+        type: grid
+      type: vertical-stack
+    layout:
+      max_cols: 4
+      max_width: 1000
+    layout_type: custom:masonry-layout
+    type: custom:layout-card
+  icon: mdi:printer-3d
+  path: 3d-printer
+  theme: Caule Black Orange Glass
+  title: 3D Printer
+  type: custom:grid-layout
+- badges: []
+  cards:
+  - entities:
+    - entity: sensor.download_speed_round
+      name: Download Speed
+    - entity: sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c_connected_devices
+      name: Devices
+    - entity: binary_sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c
+      name: Network Status
+    heading: Network
+    type: custom:banner-card
+  - cards:
+    - cards:
+      - entity: binary_sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c
+        hours_to_show: 168
+        type: custom:uptime-card
+      - entity: binary_sensor.computer_room_access_point
+        hours_to_show: 168
+        type: custom:uptime-card
+      - entity: binary_sensor.living_room_access_point
+        hours_to_show: 168
+        type: custom:uptime-card
+      - entity: binary_sensor.bedroom_access_point
+        hours_to_show: 168
+        type: custom:uptime-card
+      type: vertical-stack
+    - cards:
+      - detail: 2
+        entity: sensor.speedtest_ping
+        graph: line
+        hours_to_show: 72
+        type: sensor
+      type: vertical-stack
+    - entities:
+      - entity: device_tracker.thebeast_asus
+        icon: mdi:desktop-tower-monitor
+        name: TheBeast (PC)
+      - entity: device_tracker.starla_asus
+        name: StarlaPC (PC)
+      - entity: device_tracker.chromeos_device
+        icon: mdi:laptop
+        name: Chromebook (ChromeOS)
+      - entity: device_tracker.octopi_raspberry_pi
+        icon: mdi:home-assistant
+        name: Home Assistant (Container)
+      - entity: device_tracker.octopi_raspberry_pi
+        icon: mdi:printer-3d
+      - entity: device_tracker.reefpi_raspberry_pi
+        icon: mdi:zodiac-aquarius
+      - entity: device_tracker.raspberrypi_raspberry_pi
+        icon: mdi:printer-3d
+      - entity: device_tracker.kc420ws_front_camera
+        icon: mdi:cctv
+      - entity: device_tracker.kc200_front_porch_camera_tp_link
+        icon: mdi:cctv
+      - entity: device_tracker.kc120_indoor_camera_tp_link
+        icon: mdi:cctv
+      - entity: device_tracker.bedroom_speaker_google_home_mini
+      - entity: device_tracker.kitchen_speaker_google_nest_mini
+      - entity: device_tracker.living_room_speaker_google_home_mini
+      - entity: device_tracker.computer_room_speaker_google_nest_mini
+      - entity: device_tracker.bedroom_tv_chromecast
+      - entity: device_tracker.bedroom_tv_chromecast
+      - entity: device_tracker.living_room_tv_chromecast
+      - entity: device_tracker.computer_room_display_google_nest_hub
+      - entity: device_tracker.esp_2e6797_vacuum
+      - entity: device_tracker.nest_thermostat_nest
+      - entity: device_tracker.philips_hue_philips_hue_bridge_2015
+      - entity: device_tracker.ts6400_series_printer_ts6400_series
+      state_color: true
+      type: entities
+    - cards:
+      - detail: 1
+        entity: sensor.download_speed_round
+        graph: line
+        icon: mdi:car-speed-limiter
+        name: Download Speed
+        type: sensor
+      - detail: 1
+        entity: sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c_download_traffic
+        graph: line
+        type: sensor
+      - entities:
+        - entity: sensor.local_ip
+          name: HomeAssistant IP
+        - entity: sensor.aquapi_marine_host_ip
+        - entity: sensor.aquapi_mixed_reef_host_ip
+        - entity: sensor.pixel_6_wifi_ip_address
+        - entity: sensor.chromebook_wifi_ip_address
+        title: IP Address
+        type: entities
+      type: vertical-stack
+    - cards:
+      - name: AdGuard Home
+        tap_action:
+          action: url
+          url_path: http://homeassistant.local:8123/a0d7b954_adguard/dashboard
+        type: custom:button-card
+      - detail: 1
+        entity: sensor.adguard_home_dns_queries_blocked_ratio
+        graph: line
+        hours_to_show: 72
+        name: AdGuard Home DNS Queries Blocked Ratio
+        type: sensor
+      - detail: 1
+        entity: sensor.adguard_home_dns_queries
+        graph: line
+        hours_to_show: 72
+        name: AdGuard Home DNS Queries
+        type: sensor
+      - detail: 1
+        entity: sensor.adguard_home_average_processing_speed
+        graph: line
+        hours_to_show: 72
+        name: AdGuard Home Average Processing Speed
+        type: sensor
+      - entities:
+        - entity: switch.adguard_home_filtering
+        - entity: switch.adguard_home_protection
+        show_header_toggle: false
+        state_color: true
+        type: entities
+      type: vertical-stack
+    layout:
+      max_cols: 4
+      max_width: 1200
+    layout_type: custom:masonry-layout
+    type: custom:layout-card
+  - cardName: history-326516
+    combineSameUnits: true
+    defaultTimeRange: 3d
+    graphs:
+    - entities:
+      - entity: sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c_download_speed
+      - entity: sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c_upload_speed
+      - entity: sensor.speedtest_download
+      - entity: sensor.speedtest_upload
+      - entity: sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c_download_traffic
+      - entity: sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c_upload_traffic
+      options:
+        ymin: 0
+      title: Speed
+      type: line
+    - entities:
+      - entity: sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c_connected_devices
+      - entity: sensor.google_wifi_system_total_devices
+      title: Devices
+      type: line
+    header: Network
+    showCurrentValues: true
+    statistics:
+      enabled: true
+      mode: mean
+      period: hour
+    type: custom:history-explorer-card
+    uiLayout:
+      selector: hide
+  - cards:
+    - apex_config:
+        chart:
+          fontFamily: Segoe UI, SegoeUI, sans-serif
+          height: 500px
+          offsetY: -20
+          pie:
+            donut:
+              label:
+                show: true
+        legend:
+          dataLabels:
+            dropShadow:
+              enabled: false
+            formatter: "EVAL:function(value, { seriesIndex, dataPointIndex, w }) {\n\
+              \  return Math.round(value * 10) / 10 + '%'\n}\n"
+            style:
+              fontFamily: Segoe UI, SegoeUI, sans-serif
+              fontSize: 10
+              fontWeight: 500
+          fontFamily: Segoe UI, SegoeUI, sans-serif
+          fontSize: 12
+          fontWeight: normal
+          formatter: "EVAL:function(seriesName, opts) {\n  return seriesName\n}\n"
+          itemMargin:
+            horizontal: 0
+          markers:
+            height: 8
+            width: 8
+          position: right
+          style: "#header__title {\n  font-size: var(--body-font-size) !important;\n\
+            \  font-weight: normal !important;\n  color: var(--primary-text-color)\
+            \ !important;\n  margin-top: 8px;\n}\n#graph-wrapper {\n  padding-top:\
+            \ 32px;\n}\n"
+          tooltip:
+            style:
+              fontFamily: Segoe UI, SegoeUI, sans-serif
+              fontSize: 12px
+        title:
+          style:
+            color: var(--primary-text-color)
+            fontSize: 12px
+      chart_type: donut
+      header:
+        show: true
+        title: Speed
+      layout: minimal
+      series:
+      - entity: sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c_download_speed
+        name: Download
+      - entity: sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c_upload_speed
+        name: Upload
+      type: custom:apexcharts-card
+    - apex_config:
+        chart:
+          fontFamily: Segoe UI, SegoeUI, sans-serif
+          height: 500px
+          offsetY: -20
+          pie:
+            donut:
+              label:
+                show: true
+        legend:
+          dataLabels:
+            dropShadow:
+              enabled: false
+            formatter: "EVAL:function(value, { seriesIndex, dataPointIndex, w }) {\n\
+              \  return Math.round(value * 10) / 10 + '%'\n}\n"
+            style:
+              fontFamily: Segoe UI, SegoeUI, sans-serif
+              fontSize: 10
+              fontWeight: 500
+          fontFamily: Segoe UI, SegoeUI, sans-serif
+          fontSize: 12
+          fontWeight: normal
+          formatter: "EVAL:function(seriesName, opts) {\n  return seriesName\n}\n"
+          itemMargin:
+            horizontal: 0
+          markers:
+            height: 8
+            width: 8
+          position: right
+          style: "#header__title {\n  font-size: var(--body-font-size) !important;\n\
+            \  font-weight: normal !important;\n  color: var(--primary-text-color)\
+            \ !important;\n  margin-top: 8px;\n}\n#graph-wrapper {\n  padding-top:\
+            \ 32px;\n}\n"
+          tooltip:
+            style:
+              fontFamily: Segoe UI, SegoeUI, sans-serif
+              fontSize: 12px
+        title:
+          style:
+            color: var(--primary-text-color)
+            fontSize: 12px
+      chart_type: donut
+      header:
+        show: true
+        title: Traffic
+      layout: minimal
+      series:
+      - entity: sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c_download_traffic
+        name: Download
+      - entity: sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c_upload_traffic
+        name: Upload
+      type: custom:apexcharts-card
+    layout:
+      max_cols: 2
+      max_width: 2000
+    layout_type: custom:horizontal-layout
+    type: custom:layout-card
+  icon: mdi:wan
+  layout: {}
+  path: network
+  theme: Caule Black Yellow Glass
+  title: Network
+  type: custom:grid-layout
+- badges: []
+  cards:
+  - entities:
+    - entity: update.home_assistant_operating_system_update
+      name: HA Update
+    - entity: sensor.hacs
+    - entity: sensor.car_wash_state
+      name: Car Wash
+    heading: Maintenance
+    type: custom:banner-card
+  - cards:
+    - entities:
+      - entity: update.home_assistant_operating_system_update
+      - entity: update.home_assistant_supervisor_update
+      - entity: update.home_assistant_core_update
+      - entity: sensor.hacs
+      - entity: sensor.rpi3a_updates
+      - entity: binary_sensor.omv_system_update_available
+      - entity: sensor.thebeast_windowsupdates_available_driver_updates
+        name: TheBeast Driver Updates
+      - entity: sensor.thebeast_windowsupdates_available_software_updates
+        name: TheBeast Software Updates
+      - entity: update.kasa_camera_update
+      - entity: update.adguard_home_update
+      - entity: update.file_editor_update
+      - entity: update.home_assistant_google_drive_backup_update
+      - entity: update.log_viewer_update
+      - entity: update.mosquitto_broker_update
+      - entity: update.samba_share_update
+      - entity: update.spotify_connect_update
+      - entity: update.terminal_ssh_update
+      title: Updates
+      type: entities
+    - entity: vacuum.e000p8u2318605340403
+      image: default
+      type: custom:vacuum-card
+    - entity: climate.kitchen
+      type: thermostat
+    - cards:
+      - entities:
+        - entity: sensor.computer_area_switch_battery
+          icon: mdi:battery
+        - entity: sensor.front_porch_sensor_battery
+          icon: mdi:battery
+        type: custom:bar-card
+      type: vertical-stack
+    - cards:
+      - entity: script.reefpi_update_and_upgrade
+        show_icon: true
+        show_name: true
+        tap_action:
+          action: toggle
+        type: button
+      columns: 1
+      square: false
+      type: grid
+    - entities:
+      - entity: sensor.canon_ts6400_series
+      - entity: sensor.canon_ts6400_series_black
+        name: Black
+      - entity: sensor.canon_ts6400_series_color
+        name: Color
+      title: Canon TS6400 series
+      type: entities
+    - entity: sensor.car_wash_state
+      icon: mdi:car-wash
+      name: Car Wash
+      type: entity
+    - dark_mode: true
+      entities:
+      - entity: person.nick_starla_s_house
+      hours_to_show: 72
+      type: map
+    layout:
+      grid-column-gap: 32px
+      grid-template-columns: repeat(auto-fill, [col-start] minmax(320px, 1fr) [col-end])
+      grid-template-rows: auto
+      margin: -1px
+      mediaquery:
+        '(max-width: 800px)':
+          grid-template-columns: repeat(auto-fill, [col-start] minmax(256px, 1fr)
+            [col-end])
+    layout_type: custom:masonry-layout
+    type: custom:layout-card
+  - cardName: history-6518951
+    combineSameUnits: true
+    defaultTimeRange: 3d
+    graphs:
+    - entities:
+      - entity: sun.sun
+      - entity: sensor.moon_phase
+        name: Moon
+      - entity: climate.kitchen
+        name: Thermostat
+      - entity: sensor.temperature_differance_label
+        name: Difference
+      - entity: weather.tomorrow_io_nick_starla_s_home_daily
+        name: Weather
+      - entity: sensor.hourly_forecast_temperature_rising
+        name: Temp.
+      - entity: binary_sensor.front_porch_sensor_motion
+        name: Motion
+      - entity: vacuum.e000p8u2318605340403
+      - entity: sensor.canon_ts6400_series
+        name: Printer
+      - entity: device_tracker.pixel_6
+        name: Nick
+      - entity: device_tracker.pixel_5a_google
+        name: Starla
+      - entity: binary_sensor.car_wash
+        name: Car Wash
+      type: timeline
+    header: Device History
+    stateColors:
+      'off': red
+      'on': green
+    stateTextMode: auto
+    statistics:
+      enabled: true
+      mode: mean
+      period: hour
+    type: custom:history-explorer-card
+    uiLayout:
+      selector: hide
+  icon: mdi:wrench-clock
+  layout: {}
+  path: maintenance
+  theme: Caule Black Gray Glass
+  title: Maintenance
+  type: custom:grid-layout
+- badges: []
+  cards:
+  - entities:
+    - entity: sensor.total_power
+      name: Power
+    - entity: sensor.total_energy_daily
+      name: Daily Energy
+    - entity: sensor.total_energy_monthly
+      name: Monthly Energy
+    heading: Power Usage
+    type: custom:banner-card
+  - cards:
+    - height: 300
+      min_box_height: 15
+      round: 1
+      sections:
+      - entities:
+        - children:
+          - sensor.aquariums_power
+          - sensor.lights_tvs_power
+          - sensor.misc_power
+          color: var(--success-color)
+          entity_id: sensor.total_power
+          name: Current Power
+      - entities:
+        - children:
+          - sensor.marine_aquarium_power
+          - sensor.cichlid_aquarium_power
+          color: '#497eb0'
+          entity_id: sensor.aquariums_power
+          name: Aquariums
+        - children:
+          - sensor.bedroom_lights_tv_power
+          - sensor.computer_room_lights_tv_power
+          - sensor.living_room_power
+          color: var(--warning-color)
+          entity_id: sensor.lights_tvs_power
+          name: Bedrooms & Misc.
+        - children:
+          - sensor.pcs_power
+          - sensor.3d_printers_power
+          color: '#75344E'
+          entity_id: sensor.misc_power
+          name: Equipment
+      - entities:
+        - entity_id: sensor.marine_aquarium_power
+          name: Marine Aquarium
+        - entity_id: sensor.cichlid_aquarium_power
+          name: Cichlid Aquarium
+        - entity_id: sensor.bedroom_lights_tv_power
+          name: Bedroom
+        - entity_id: sensor.computer_room_lights_tv_power
+          name: Computer Room
+        - entity_id: sensor.living_room_power
+          name: Living Room
+        - entity_id: sensor.pcs_power
+          name: PCs
+        - entity_id: sensor.3d_printers_power
+          name: 3D Printers
+      show_names: true
+      title: Current Power Consumption
+      type: custom:sankey-chart
+      wide: true
+    - cards:
+      - apex_config:
+          chart:
+            fontFamily: Segoe UI, SegoeUI, sans-serif
+            height: 500px
+            offsetY: -20
+            pie:
+              donut:
+                label:
+                  show: true
+          legend:
+            dataLabels:
+              dropShadow:
+                enabled: false
+              formatter: "EVAL:function(value, { seriesIndex, dataPointIndex, w })\
+                \ {\n  return Math.round(value * 10) / 10 + '%'\n}\n"
+              style:
+                fontFamily: Segoe UI, SegoeUI, sans-serif
+                fontSize: 10
+                fontWeight: 500
+            fontFamily: Segoe UI, SegoeUI, sans-serif
+            fontSize: 12
+            fontWeight: normal
+            formatter: "EVAL:function(seriesName, opts) {\n  return seriesName\n}\n"
+            itemMargin:
+              horizontal: 0
+            markers:
+              height: 8
+              width: 8
+            position: right
+            style: "#header__title {\n  font-size: var(--body-font-size) !important;\n\
+              \  font-weight: normal !important;\n  color: var(--primary-text-color)\
+              \ !important;\n  margin-top: 8px;\n}\n#graph-wrapper {\n  padding-top:\
+              \ 32px;\n}\n"
+            tooltip:
+              style:
+                fontFamily: Segoe UI, SegoeUI, sans-serif
+                fontSize: 12px
+          title:
+            style:
+              color: var(--primary-text-color)
+              fontSize: 12px
+        chart_type: donut
+        header:
+          show: true
+          title: Current Power
+        layout: minimal
+        series:
+        - entity: sensor.pcs_power
+          name: PCs
+        - entity: sensor.3d_printers_power
+          name: 3D Printers
+        - entity: sensor.marine_aquarium_power
+          name: Marine Aquarium
+        - entity: sensor.cichlid_aquarium_power
+          name: Cichlid Aquarium
+        - entity: sensor.lights_tvs_power
+          name: Lights & TV
+        type: custom:apexcharts-card
+        update_interval: 10sec
+      - apex_config:
+          chart:
+            fontFamily: Segoe UI, SegoeUI, sans-serif
+            height: 500px
+            offsetY: -20
+            pie:
+              donut:
+                label:
+                  show: true
+          legend:
+            dataLabels:
+              dropShadow:
+                enabled: false
+              formatter: "EVAL:function(value, { seriesIndex, dataPointIndex, w })\
+                \ {\n  return Math.round(value * 10) / 10 + '%'\n}\n"
+              style:
+                fontFamily: Segoe UI, SegoeUI, sans-serif
+                fontSize: 10
+                fontWeight: 500
+            fontFamily: Segoe UI, SegoeUI, sans-serif
+            fontSize: 12
+            fontWeight: normal
+            formatter: "EVAL:function(seriesName, opts) {\n  return seriesName\n}\n"
+            itemMargin:
+              horizontal: 0
+            markers:
+              height: 8
+              width: 8
+            position: right
+            style: "#header__title {\n  font-size: var(--body-font-size) !important;\n\
+              \  font-weight: normal !important;\n  color: var(--primary-text-color)\
+              \ !important;\n  margin-top: 8px;\n}\n#graph-wrapper {\n  padding-top:\
+              \ 32px;\n}\n"
+            tooltip:
+              style:
+                fontFamily: Segoe UI, SegoeUI, sans-serif
+                fontSize: 12px
+          title:
+            style:
+              color: var(--primary-text-color)
+              fontSize: 12px
+        chart_type: donut
+        header:
+          show: true
+          title: Daily Energy
+        layout: minimal
+        series:
+        - entity: sensor.pcs_daily_energy
+          name: PCs
+        - entity: sensor.3d_printers_energy_daily
+          name: 3D Printers
+        - entity: sensor.marine_aquarium_energy_daily
+          name: Marine Aquarium
+        - entity: sensor.cichlid_aquarium_energy_daily
+          name: Cichlid Aquarium
+        - entity: sensor.lights_tvs_energy_daily
+          name: Lights & TV
+        type: custom:apexcharts-card
+      - apex_config:
+          chart:
+            fontFamily: Segoe UI, SegoeUI, sans-serif
+            height: 500px
+            offsetY: -20
+            pie:
+              donut:
+                label:
+                  show: true
+          legend:
+            dataLabels:
+              dropShadow:
+                enabled: false
+              formatter: "EVAL:function(value, { seriesIndex, dataPointIndex, w })\
+                \ {\n  return Math.round(value * 10) / 10 + '%'\n}\n"
+              style:
+                fontFamily: Segoe UI, SegoeUI, sans-serif
+                fontSize: 10
+                fontWeight: 500
+            fontFamily: Segoe UI, SegoeUI, sans-serif
+            fontSize: 12
+            fontWeight: normal
+            formatter: "EVAL:function(seriesName, opts) {\n  return seriesName\n}\n"
+            itemMargin:
+              horizontal: 0
+            markers:
+              height: 8
+              width: 8
+            position: right
+            style: "#header__title {\n  font-size: var(--body-font-size) !important;\n\
+              \  font-weight: normal !important;\n  color: var(--primary-text-color)\
+              \ !important;\n  margin-top: 8px;\n}\n#graph-wrapper {\n  padding-top:\
+              \ 32px;\n}\n"
+            tooltip:
+              style:
+                fontFamily: Segoe UI, SegoeUI, sans-serif
+                fontSize: 12px
+          title:
+            style:
+              color: var(--primary-text-color)
+              fontSize: 12px
+        chart_type: donut
+        header:
+          show: true
+          title: Monthly Energy
+        layout: minimal
+        series:
+        - entity: sensor.pcs_energy_montly
+          name: PCs
+        - entity: sensor.3d_printers_energy_monthly
+          name: 3D Printers
+        - entity: sensor.marine_aquarium_energy_monthly
+          name: Marine Aquarium
+        - entity: sensor.cichlid_aquarium_energy_monthly
+          name: Cichlid Aquarium
+        - entity: sensor.lights_tvs_energy_monthly
+          name: Lights & TV
+        type: custom:apexcharts-card
+      layout:
+        max_cols: 3
+        max_width: 2000
+      layout_type: custom:horizontal-layout
+      type: custom:layout-card
+    - cardName: historycard-97723197
+      combineSameUnits: true
+      defaultTimeRange: 3d
+      graphs:
+      - entities:
+        - entity: sensor.aquariums_power
+          name: Aquariums
+        - entity: sensor.lights_tvs_power
+          name: Lights & TVs
+        - entity: sensor.misc_power
+          name: Equipment
+        type: line
+      header: General Power Usage
+      showCurrentValues: true
+      statistics:
+        enabled: true
+        mode: mean
+        period: hour
+      type: custom:history-explorer-card
+      uiLayout:
+        selector: hide
+    - cards:
+      - detail: 2
+        entity: sensor.marine_aquarium_power
+        graph: line
+        hours_to_show: 72
+        name: Marine Aquarium
+        type: sensor
+      - detail: 2
+        entity: sensor.cichlid_aquarium_power
+        graph: line
+        hours_to_show: 72
+        name: Cichlids Aquarium
+        type: sensor
+      - detail: 2
+        entity: sensor.pcs_power
+        graph: line
+        hours_to_show: 72
+        name: PCs
+        type: sensor
+      - detail: 2
+        entity: sensor.3d_printers_power
+        graph: line
+        hours_to_show: 72
+        name: 3D Printers
+        type: sensor
+      - detail: 2
+        entity: sensor.lights_tvs_power
+        graph: line
+        hours_to_show: 72
+        name: Lights & TVs
+        type: sensor
+      layout:
+        max_cols: 5
+        max_width: 2000
+      layout_type: custom:horizontal-layout
+      type: custom:layout-card
+    - cards:
+      - cardName: historycard-9772317656
+        combineSameUnits: true
+        defaultTimeRange: 3d
+        graphs:
+        - entities:
+          - entity: sensor.co2_signal_grid_fossil_fuel_percentage
+          type: line
+        header: CO2 Usage
+        showCurrentValues: true
+        statistics:
+          enabled: true
+          mode: mean
+          period: hour
+        type: custom:history-explorer-card
+        uiLayout:
+          selector: hide
+      layout:
+        max_cols: 2
+        max_width: 2000
+      layout_type: custom:horizontal-layout
+      type: custom:layout-card
+    layout:
+      max_cols: 1
+      max_width: 2000
+    layout_type: custom:horizontal-layout
+    type: custom:layout-card
+  icon: mdi:home-lightning-bolt
+  layout: {}
+  path: energy
+  theme: Metro Purple
+  title: Energy
+  type: custom:grid-layout
+- badges: []
+  cards:
+  - entities:
+    - entity: sensor.thebeast_cpuload
+      name: TheBeast CPU
+    - entity: sensor.thebeast_memoryusage
+      name: TheBeast GPU
+    - entity: sensor.thebeast_temperature_cpu
+      name: TheBeast Temp.
+    - entity: sensor.processor_use
+      name: HA CPU
+    - entity: sensor.rpi_3a_cpu_usage
+      name: ReefPi CPU
+    - entity: sensor.resting_heart_rate
+      name: Heart Rate
+    - entity: sensor.pixel_6_battery_temperature
+      name: Pixel 6 Temp.
+    heading: Monitoring
+    style:
+      width: 100%
+    type: custom:banner-card
+  - cards:
+    - cards:
+      - entities:
+        - entity: sensor.thebeast_cpuload
+          name: CPU
+        - entity: sensor.thebeast_gpuload
+          name: GPU
+        - entity: sensor.thebeast_memoryusage
+          name: RAM
+        heading: TheBeast
+        type: custom:banner-card
+      - align_state: center
+        animate: true
+        entities:
+        - entity: sensor.thebeast_temperature_cpu
+          name: CPU
+        - entity: sensor.thebeast_temperature_chipset
+          name: Chipset
+        - entity: sensor.thebeast_temperature_motherboard
+          name: MOBO
+        - entity: sensor.thebeast_temperature_gpu
+          name: GPU
+        - entity: sensor.thebeast_temperature_ssd
+          name: SSD
+        hours_to_show: 72
+        type: custom:mini-graph-card
+      - entities:
+        - entity: sensor.thebeast_cpuload
+        - entity: sensor.thebeast_memoryusage
+        - entity: sensor.thebeast_gpuload
+        hours_to_show: 12
+        type: history-graph
+      - entities:
+        - attribute: UsedSpacePercentage
+          entity: sensor.thebeast_storage_c
+          name: Win11 (C:)
+          type: attribute
+          unit_of_measurement: '%'
+        - attribute: UsedSpacePercentage
+          entity: sensor.thebeast_storage_d
+          name: Games & Documents (D:)
+          unit_of_measurement: '%'
+        - attribute: UsedSpacePercentage
+          entity: sensor.thebeast_storage_e
+          name: Downloads, Media & Backups (E:)
+          unit_of_measurement: '%'
+        type: custom:bar-card
+      - entity: binary_sensor.thebeast
+        hours_to_show: 72
+        icon: hue:room-computer
+        type: custom:uptime-card
+      type: vertical-stack
+    - cards:
+      - entities:
+        - entity: sensor.starlapc_cpuload
+          name: CPU
+        - entity: sensor.starlapc_gpuload
+          name: GPU
+        - entity: sensor.starlapc_memoryusage
+          name: RAM
+        heading: StarlaPC
+        type: custom:banner-card
+      - align_state: center
+        animate: true
+        entities:
+        - entity: sensor.starlapc_gputemperature
+          name: GPU
+        type: custom:mini-graph-card
+      - entities:
+        - entity: sensor.starlapc_cpuload
+        - entity: sensor.starlapc_gpuload
+        - entity: sensor.starlapc_memoryusage
+        hours_to_show: 12
+        type: history-graph
+      - entities:
+        - attribute: UsedSpacePercentage
+          entity: sensor.starlapc_storage_c
+          name: Win10 (C:)
+          unit_of_measurement: '%'
+        - attribute: UsedSpacePercentage
+          entity: sensor.starlapc_storage_d
+          name: Backup (D:)
+          unit_of_measurement: '%'
+        type: custom:bar-card
+      - entity: binary_sensor.starlapc
+        hours_to_show: 72
+        icon: mdi:desktop-classic
+        type: custom:uptime-card
+      type: vertical-stack
+    - cards:
+      - entities:
+        - entity: sensor.processor_use
+          name: CPU
+        - entity: sensor.disk_use_percent
+          name: Storage
+        - entity: sensor.memory_use_percent
+          name: RAM
+        heading: HomePi
+        type: custom:banner-card
+      - align_state: center
+        animate: true
+        entities:
+        - entity: sensor.hassio_cpu_temperature
+          name: SoC Temp.
+        type: custom:mini-graph-card
+      - entities:
+        - entity: sensor.processor_use
+        - entity: sensor.memory_use_percent
+        hours_to_show: 12
+        type: history-graph
+      - entities:
+        - entity: sensor.disk_use_percent
+          name: Disk Used
+        type: custom:bar-card
+      - entity: binary_sensor.home_assistant
+        hours_to_show: 72
+        icon: mdi:home-analytics
+        type: custom:uptime-card
+      type: vertical-stack
+    layout:
+      max_cols: 3
+      max_width: 1000
+    layout_type: custom:masonry-layout
+    type: custom:layout-card
+  - cards:
+    - cards:
+      - entities:
+        - entity: sensor.octoprint_print_status
+        - entity: sensor.octoprint_tool_0_temperature
+          name: Tool Temp.
+        - entity: sensor.octoprint_bed_temperature
+          name: Bed Temp.
+        heading: OctoPi Ender-3P
+        type: custom:banner-card
+      - align_state: center
+        animate: true
+        entities:
+        - entity: sensor.octoprint_soc_temperature
+          name: SoC
+        - entity: sensor.octoprint_tool_0_temperature
+          name: Tool
+        - entity: sensor.octoprint_bed_temperature
+          name: Bed
+        show_state: false
+        type: custom:mini-graph-card
+      - align_state: center
+        animate: true
+        entities:
+        - entity: sensor.octoprint_current_z
+          name: Current Z
+        show_state: false
+        type: custom:mini-graph-card
+      - cardName: historycard-64007978
+        combineSameUnits: true
+        graphs:
+        - entities:
+          - entity: sensor.octoprint_print_status
+            name: Status
+          - entity: binary_sensor.octoprint_connected
+            name: OctoPrint
+          type: timeline
+        header: Device History
+        stateTextMode: auto
+        type: custom:history-explorer-card
+        uiLayout:
+          selector: hide
+      - entity: binary_sensor.octopi
+        hours_to_show: 72
+        icon: mdi:printer-3d
+        type: custom:uptime-card
+      type: vertical-stack
+    - cards:
+      - entities:
+        - entity: sensor.omv_system_cpu_load
+          name: CPU
+        - entity: sensor.omv_system_memory
+          name: RAM
+        - entity: sensor.omv_disk_2
+          name: Disk Temp.
+        heading: OpenMediaVault
+        type: custom:banner-card
+      - cards:
+        - detail: 1
+          entity: sensor.omv_disk_2
+          graph: line
+          hours_to_show: 24
+          name: Temperature
+          type: sensor
+        columns: 1
+        square: false
+        type: grid
+      - entities:
+        - entity: sensor.omv_system_cpu_load
+        - entity: sensor.omv_system_memory
+        hours_to_show: 12
+        type: history-graph
+      - entities:
+        - entity: sensor.omv_filesystem
+          name: Disk Use
+        type: custom:bar-card
+      - cardName: historycard-64007978
+        combineSameUnits: true
+        graphs:
+        - entities:
+          - entity: binary_sensor.omv_system_update_available
+            name: Updates
+          type: timeline
+        header: Device History
+        stateTextMode: auto
+        type: custom:history-explorer-card
+        uiLayout:
+          selector: hide
+      - entity: binary_sensor.omv
+        hours_to_show: 72
+        icon: mdi:fishbowl
+        type: custom:uptime-card
+      type: vertical-stack
+    - cards:
+      - entities:
+        - entity: sensor.rpi3a_cpu_usage
+          name: SoC
+        - entity: sensor.rpi3a_memory_use
+          name: RAM
+        - entity: sensor.rpi3a_temperature
+          name: SoC Temp.
+        heading: RPi3A+
+        type: custom:banner-card
+      - cards:
+        - detail: 1
+          entity: sensor.rpi3a_temperature
+          graph: line
+          hours_to_show: 24
+          name: Temperature
+          type: sensor
+        columns: 1
+        square: false
+        type: grid
+      - entities:
+        - entity: sensor.rpi3a_cpu_usage
+        - entity: sensor.rpi3a_memory_use
+        hours_to_show: 12
+        type: history-graph
+      - entities:
+        - entity: sensor.rpi3a_disk_use
+          name: Disk Use
+        type: custom:bar-card
+      - cardName: historycard-64007978
+        combineSameUnits: true
+        graphs:
+        - entities:
+          - entity: sensor.rpi3a_updates
+            name: Updates
+          type: timeline
+        header: Device History
+        stateTextMode: auto
+        type: custom:history-explorer-card
+        uiLayout:
+          selector: hide
+      - entity: binary_sensor.rpi3a
+        hours_to_show: 72
+        icon: mdi:fishbowl
+        type: custom:uptime-card
+      type: vertical-stack
+    layout:
+      max_cols: 3
+      max_width: 1000
+    layout_type: custom:masonry-layout
+    type: custom:layout-card
+  - cards:
+    - cards:
+      - entities:
+        - entity: sensor.pixel_6_battery_level
+          name: Battery Level
+        - entity: sensor.pixel_6_battery_temperature
+          name: Battery Temp.
+        - entity: sensor.pixel_6_internal_storage
+          name: Storage Used
+        heading: Pixel 6
+        type: custom:banner-card
+      - cards:
+        - entity: sensor.pixel_6_battery_level
+          name: Battery Level
+          severity:
+            green: 66
+            red: 0
+            yellow: 33
+          type: gauge
+        - detail: 1
+          entity: sensor.pixel_6_battery_temperature
+          graph: line
+          hours_to_show: 72
+          name: Temp.
+          type: sensor
+        - detail: 1
+          entity: sensor.pixel_6_pressure_sensor
+          graph: line
+          hours_to_show: 72
+          name: Pressure
+          type: sensor
+        - detail: 1
+          entity: sensor.pixel_6_light_sensor
+          graph: line
+          hours_to_show: 72
+          name: Light
+          type: sensor
+        columns: 4
+        square: false
+        type: grid
+      - entities:
+        - entity: sensor.pixel_6_internal_storage
+          name: Disk Use
+        type: custom:bar-card
+      - entities:
+        - entity: sensor.pixel_6_geocoded_location
+        - entity: sensor.pixel_6_network_type
+        - entity: sensor.pixel_6_wifi_connection
+        - entity: sensor.pixel_6_battery_state
+        - entity: sensor.pixel_6_battery_health
+        - entity: binary_sensor.pixel_6_is_charging
+        - entity: sensor.pixel_6_charger_type
+        - entity: sensor.pixel_6_last_reboot
+        - entity: binary_sensor.pixel_6_power_save
+        type: entities
+      - cardName: historycard-64007978
+        combineSameUnits: true
+        graphs:
+        - entities:
+          - entity: sensor.pixel_6_network_type
+            name: Network
+          - entity: sensor.pixel_6_battery_state
+            name: Battery
+          - entity: binary_sensor.pixel_6_is_charging
+            name: Charging
+          - entity: sensor.pixel_6_battery_health
+            name: Health
+          - entity: binary_sensor.pixel_6_power_save
+            name: Pwr. Save
+          - entity: sensor.pixel_6_do_not_disturb_sensor
+            name: DnD
+          - entity: sensor.pixel_6_proximity_sensor
+            name: Proximity
+          type: timeline
+        header: Device History
+        stateColors:
+          'off': red
+          'on': green
+        stateTextMode: auto
+        type: custom:history-explorer-card
+        uiLayout:
+          selector: hide
+      type: vertical-stack
+    - cards:
+      - entities:
+        - entity: sensor.pixel_watch_battery_level
+          name: Battery Level
+        - entity: sensor.pixel_watch_battery_temperature
+          name: Battery Temp.
+        - entity: sensor.pixel_watch_battery_state
+          name: Battery State
+        heading: Pixel Watch
+        type: custom:banner-card
+      - cards:
+        - entity: sensor.pixel_watch_battery_level
+          name: Battery Level
+          severity:
+            green: 66
+            red: 0
+            yellow: 33
+          type: gauge
+        - detail: 1
+          entity: sensor.pixel_watch_battery_temperature
+          graph: line
+          hours_to_show: 72
+          name: Temp.
+          type: sensor
+        columns: 2
+        square: false
+        type: grid
+      - entities:
+        - entity: sensor.pixel_watch_battery_state
+        - entity: sensor.pixel_watch_battery_health
+        - entity: binary_sensor.pixel_watch_is_charging
+        - entity: sensor.pixel_watch_charger_type
+        type: entities
+      - cardName: historycard-64007978
+        combineSameUnits: true
+        graphs:
+        - entities:
+          - entity: sensor.pixel_watch_battery_state
+            name: Battery
+          - entity: binary_sensor.pixel_watch_is_charging
+            name: Charging
+          - entity: sensor.pixel_watch_battery_health
+            name: Health
+          type: timeline
+        header: Device History
+        stateColors:
+          'off': red
+          'on': green
+        stateTextMode: auto
+        type: custom:history-explorer-card
+        uiLayout:
+          selector: hide
+      type: vertical-stack
+    - cards:
+      - entities:
+        - entity: sensor.chromebook_battery_level
+          name: Battery Level
+        - entity: sensor.chromebook_battery_state
+          name: Battery State
+        - entity: sensor.chromebook_internal_storage
+          name: Storage
+        heading: Chromebook
+        type: custom:banner-card
+      - cards:
+        - detail: 1
+          entity: sensor.chromebook_battery_level
+          graph: line
+          hours_to_show: 72
+          type: sensor
+        columns: 1
+        square: false
+        type: grid
+      - entities:
+        - entity: sensor.chromebook_internal_storage
+          name: Disk Use
+        type: custom:bar-card
+      - entities:
+        - entity: sensor.chromebook_geocoded_location
+        - entity: sensor.chromebook_network_type
+        - entity: sensor.chromebook_wifi_connection
+        - entity: sensor.chromebook_wifi_ip_address
+        - entity: sensor.chromebook_battery_state
+        - entity: sensor.chromebook_battery_health
+        - entity: binary_sensor.chromebook_is_charging
+        - entity: sensor.chromebook_charger_type
+        - entity: sensor.chromebook_last_reboot
+        - entity: sensor.chromebook_do_not_disturb_sensor
+        type: entities
+      - entity: binary_sensor.chromebook
+        hours_to_show: 72
+        icon: mdi:laptop
+        type: custom:uptime-card
+      type: vertical-stack
+    layout:
+      max_cols: 3
+      max_width: 1000
+    layout_type: custom:masonry-layout
+    type: custom:layout-card
+  - cards:
+    - cards:
+      - entities:
+        - entity: sensor.resting_heart_rate
+        - entity: sensor.weight
+        - entity: sensor.steps
+        heading: Health
+        type: custom:banner-card
+      - cards:
+        - detail: 2
+          entity: sensor.resting_heart_rate
+          graph: line
+          hours_to_show: 72
+          type: sensor
+        - detail: 1
+          entity: sensor.steps
+          graph: line
+          hours_to_show: 72
+          type: sensor
+        - detail: 1
+          entity: sensor.weight
+          graph: line
+          hours_to_show: 168
+          type: sensor
+        - detail: 1
+          entity: sensor.elevation
+          graph: line
+          hours_to_show: 72
+          type: sensor
+        - detail: 2
+          entity: sensor.tracker_distance
+          graph: line
+          hours_to_show: 72
+          name: Distance
+          type: sensor
+        - detail: 2
+          entity: sensor.floors
+          graph: line
+          hours_to_show: 72
+          type: sensor
+        - entity: sensor.sleep_efficiency
+          graph: line
+          hours_to_show: 72
+          type: sensor
+        - detail: 1
+          entity: sensor.awakenings_count
+          graph: line
+          hours_to_show: 72
+          type: sensor
+        - detail: 1
+          entity: sensor.sleep_minutes_awake
+          graph: line
+          hours_to_show: 72
+          type: sensor
+        - detail: 1
+          entity: sensor.sleep_minutes_asleep
+          graph: line
+          hours_to_show: 24
+          type: sensor
+        columns: 2
+        square: false
+        type: grid
+      type: vertical-stack
+    - cards:
+      - entities: null
+        heading: ESP Devices
+        type: custom:banner-card
+      - align_state: center
+        animate: true
+        entities:
+        - entity: sensor.sensorbot_internal_temperature
+          name: sensorBot
+        - entity: sensor.mixed_reef_internal_temperature
+          name: AquaPi Reef
+        - entity: sensor.aquapi_marine_internal_temperature
+          name: AquaPi Marine
+        - entity: sensor.aquapi_cichlids_internal_temperature
+          name: AquaPi Cichlids
+        show_state: false
+        type: custom:mini-graph-card
+      - align_state: center
+        animate: true
+        entities:
+        - entity: sensor.sensorbot_esp32_hall_sensor
+          name: sensorBot
+        - entity: sensor.mixed_reef_esp32_hall_sensor
+          name: AquaPi Reef
+        - entity: sensor.aquapi_marine_esp32_hall_sensor
+          name: AquaPi Marine
+        - entity: sensor.aquapi_cichlids_esp32_hall_sensor
+          name: AquaPi Cichlids
+        show_state: false
+        type: custom:mini-graph-card
+      - entities:
+        - entity: sensor.sensorbot_ip_address
+        - entity: sensor.mixed_reef_ip_address
+        - entity: sensor.aquapi_marine_ip_address
+        - entity: sensor.aquapi_cichlids_ip_address
+        type: entities
+      type: vertical-stack
+    layout:
+      max_cols: 3
+      max_width: 1000
+    layout_type: custom:masonry-layout
+    type: custom:layout-card
+  icon: mdi:tablet-dashboard
+  path: system-dashboard
+  theme: Caule Black Rose Glass
+  title: System Dashboard
+  type: custom:grid-layout
+- badges: []
+  cards:
+  - entities:
+    - entity: sensor.sonarr_queue
+    - entity: sensor.thebeast_library_movies
+      name: Movies
+    - entity: sensor.thebeast_library_tv_shows_2
+      name: TV Shows
+    heading: Media
+    type: custom:banner-card
+  - cards:
+    - cards:
+      - icon: mdi:plex
+        name: Plex
+        tap_action:
+          action: url
+          url_path: https://app.plex.tv/desktop/#!/
+        type: custom:button-card
+      - name: Tautulli
+        tap_action:
+          action: url
+          url_path: http://homeassistant.local:8181/home
+        type: custom:button-card
+      - entities:
+        - entity: sensor.thebeast_library_movies
+          name: Library - Movies
+        - entity: sensor.thebeast_library_tv_shows_2
+          name: Library - TV Shows
+        - sensor.plex_thebeast
+        title: Plex
+        type: entities
+      - card:
+          entity: media_player.plex_plex_for_windows_thebeast
+          type: media-control
+        conditions:
+        - entity: media_player.plex_plex_for_windows_thebeast
+          state_not: unavailable
+        type: conditional
+      type: vertical-stack
+    - cards:
+      - icon: mdi:youtube-tv
+        name: Sonarr
+        tap_action:
+          action: url
+          url_path: http://192.168.86.25:8989/
+        type: custom:button-card
+      - entities:
+        - entity: sensor.sonarr_commands
+          name: Commands
+        - entity: sensor.sonarr_disk_space
+          name: Disk space
+        - entity: sensor.sonarr_queue
+          name: Queue
+        - entity: sensor.sonarr_shows
+          name: Shows
+        - entity: sensor.sonarr_upcoming
+          name: Upcoming
+        - entity: sensor.sonarr_wanted
+          name: Wanted
+        title: Sonarr
+        type: entities
+      type: vertical-stack
+    - cards:
+      - icon: mdi:movie
+        name: Radarr
+        tap_action:
+          action: url
+          url_path: http://192.168.86.25:7878/
+        type: custom:button-card
+      - entities:
+        - entity: sensor.radarr_disk_space_movies
+          name: Disk space movies
+        - entity: sensor.radarr_movies
+          name: Movies
+        title: Radarr
+        type: entities
+      - card:
+          entity: media_player.thebeast_2
+          type: media-control
+        conditions:
+        - entity: media_player.thebeast_2
+          state_not: idle
+        type: conditional
+      type: vertical-stack
+    layout:
+      max_cols: 4
+      max_width: 1200
+    layout_type: custom:masonry-layout
+    type: custom:layout-card
+  - cards:
+    - device: THEBEAST
+      display_style: grid
+      limit: 9
+      type: custom:spotify-card
+    - card:
+        entity: media_player.spotify_nicholas_white
+        type: media-control
+      conditions:
+      - entity: media_player.spotify_nicholas_white
+        state: playing
+      type: conditional
+    - entity: media_player.computer_room_display
+      type: media-control
+    - entity: media_player.samsung_tu7000_43_tv_2
+      type: media-control
+    - entity: media_player.bedroom_tv
+      type: media-control
+    - entity: media_player.living_room_tv
+      type: media-control
+    - entity: media_player.vlc_telnet
+      type: media-control
+    layout:
+      max_width: 5000
+    layout_type: custom:horizontal-layout
+    type: custom:layout-card
+  icon: mdi:youtube
+  layout: {}
+  path: media
+  theme: Caule Black Pink Glass
+  title: Media
+  type: custom:grid-layout
+- badges: []
+  cards:
+  - cards:
+    - entity: script.wake_thebeast
+      icon: mdi:alarm
+      name: Wake TheBeast
+      show_icon: true
+      show_name: true
+      tap_action:
+        action: toggle
+      type: button
+    - entity: button.thebeast_sleep
+      icon: mdi:power-sleep
+      name: Sleep TheBeast
+      show_icon: true
+      show_name: true
+      tap_action:
+        action: toggle
+      type: button
+    - entity: button.thebeast_mediamute
+      icon: mdi:volume-mute
+      name: Mute
+      show_icon: true
+      show_name: true
+      show_state: false
+      tap_action:
+        action: toggle
+      type: button
+    - entity: button.thebeast_shutdown
+      icon: mdi:power
+      name: Shutdown
+      show_icon: true
+      show_name: true
+      show_state: false
+      tap_action:
+        action: toggle
+      type: button
+    - entity: button.thebeast_lock
+      icon: mdi:lock
+      name: Lock
+      show_icon: true
+      show_name: true
+      tap_action:
+        action: toggle
+      type: button
+    - entity: script.wol_starlapc
+      show_icon: true
+      show_name: true
+      tap_action:
+        action: toggle
+      type: button
+    columns: 2
+    square: false
+    type: grid
+  - entities:
+    - button.thebeast_blackdisplays
+    - button.thebeast_lock
+    - button.thebeast_mediamute
+    - button.thebeast_restart
+    - button.thebeast_shutdown
+    - button.thebeast_sleep
+    - button.thebeast_webview
+    title: THEBEAST
+    type: entities
+  - entities:
+    - entity: switch.octoprint_camera_snapshot
+      name: Camera snapshot
+    - entity: button.octoprint_cancel_print
+      name: Cancel Print
+    - entity: switch.octoprint_connect_to_printer
+      name: Connect to printer
+    - entity: button.octoprint_emergency_stop
+      name: Emergency Stop
+    - entity: switch.octoprint_pause_print
+      name: Pause Print
+    - entity: switch.octoprint_psu
+      name: PSU
+    - entity: button.octoprint_reboot_system
+      name: Reboot System
+    - entity: button.octoprint_restart_server
+      name: Restart Server
+    - entity: button.octoprint_shutdown_system
+      name: Shutdown System
+    title: OctoPrint
+    type: entities
+  icon: mdi:camera-control
+  path: controls
+  theme: Caule Black Blue Glass
+  title: Controls
+  type: custom:masonry-layout
+- badges: []
+  cards:
+  - heading: Uptime
+    type: custom:banner-card
+  - cards:
+    - cards:
+      - name: Google Wifi
+        tap_action:
+          action: url
+          url_path: http://homeassistant.local:8123/lovelace/network
+        type: custom:button-card
+      - entity: binary_sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c
+        hours_to_show: 168
+        type: custom:uptime-card
+      - entity: binary_sensor.computer_room_access_point
+        hours_to_show: 168
+        type: custom:uptime-card
+      - entity: binary_sensor.living_room_access_point
+        hours_to_show: 168
+        type: custom:uptime-card
+      - entity: binary_sensor.bedroom_access_point
+        hours_to_show: 168
+        type: custom:uptime-card
+      type: vertical-stack
+    - cards:
+      - name: Cameras
+        tap_action:
+          action: url
+          url_path: http://homeassistant.local:8123/lovelace/camera
+        type: custom:button-card
+      - entity: binary_sensor.front_camera
+        hours_to_show: 168
+        icon: mdi:cctv
+        type: custom:uptime-card
+      - entity: binary_sensor.front_porch_camera
+        hours_to_show: 168
+        icon: mdi:cctv
+        type: custom:uptime-card
+      - entity: binary_sensor.indoor_camera
+        hours_to_show: 168
+        icon: mdi:cctv
+        type: custom:uptime-card
+      type: vertical-stack
+    - cards:
+      - name: Computers
+        tap_action:
+          action: url
+          url_path: http://homeassistant.local:8123/lovelace/system-dashboard
+        type: custom:button-card
+      - entity: binary_sensor.thebeast
+        hours_to_show: 168
+        icon: mdi:desktop-tower-monitor
+        type: custom:uptime-card
+      - entity: binary_sensor.starlapc
+        hours_to_show: 168
+        icon: mdi:desktop-classic
+        type: custom:uptime-card
+      - entity: binary_sensor.chromebook
+        hours_to_show: 168
+        icon: mdi:laptop
+        type: custom:uptime-card
+      type: vertical-stack
+    - cards:
+      - name: Devices
+        tap_action:
+          action: url
+          url_path: http://homeassistant.local:8123/lovelace/system-dashboard
+        type: custom:button-card
+      - entity: binary_sensor.home_assistant
+        hours_to_show: 168
+        icon: mdi:home-assistant
+        type: custom:uptime-card
+      - entity: binary_sensor.octopi
+        hours_to_show: 168
+        icon: mdi:printer-3d
+        type: custom:uptime-card
+      - entity: binary_sensor.aquapi_marine
+        hours_to_show: 168
+        icon: mdi:zodiac-aquarius
+        type: custom:uptime-card
+      - entity: binary_sensor.aquapi_mixed_reef
+        hours_to_show: 168
+        icon: mdi:zodiac-aquarius
+        type: custom:uptime-card
+      - entity: binary_sensor.vacuum
+        hours_to_show: 168
+        icon: mdi:vacuum
+        type: custom:uptime-card
+      - entity: binary_sensor.printer
+        hours_to_show: 168
+        icon: mdi:printer
+        type: custom:uptime-card
+      type: vertical-stack
+    - cards:
+      - name: Plugs
+        tap_action:
+          action: url
+          url_path: http://homeassistant.local:8123/lovelace/controls
+        type: custom:button-card
+      - entity: switch.103l74da
+        hours_to_show: 168
+        type: custom:uptime-card
+      - entity: switch.3d_printer_light
+        hours_to_show: 168
+        type: custom:uptime-card
+      - entity: switch.bedroom_lamp
+        hours_to_show: 168
+        type: custom:uptime-card
+      - entity: switch.1052e9f
+        hours_to_show: 168
+        type: custom:uptime-card
+      - entity: switch.quarantine_tanks
+        hours_to_show: 168
+        type: custom:uptime-card
+      type: vertical-stack
+    - cards:
+      - name: Aquariums
+        tap_action:
+          action: url
+          url_path: http://homeassistant.local:8123/lovelace/Aquariums
+        type: custom:button-card
+      - entity: switch.frog_aquarium
+        hours_to_show: 168
+        type: custom:uptime-card
+      - entity: switch.cichlid_aquariums
+        hours_to_show: 168
+        type: custom:uptime-card
+      - entity: switch.aqualifter
+        hours_to_show: 168
+        type: custom:uptime-card
+      - entity: switch.ro_pump
+        hours_to_show: 168
+        type: custom:uptime-card
+      type: vertical-stack
+    - cards:
+      - name: Marine
+        tap_action:
+          action: url
+          url_path: http://homeassistant.local:8123/lovelace/Aquariums
+        type: custom:button-card
+      - entity: switch.plug1
+        hours_to_show: 72
+        type: custom:uptime-card
+      - entity: switch.plug2
+        hours_to_show: 72
+        type: custom:uptime-card
+      - entity: switch.plug3
+        hours_to_show: 72
+        type: custom:uptime-card
+      - entity: switch.plug4
+        hours_to_show: 72
+        type: custom:uptime-card
+      - entity: switch.plug5
+        hours_to_show: 72
+        type: custom:uptime-card
+      - entity: switch.plug6
+        hours_to_show: 72
+        type: custom:uptime-card
+      type: vertical-stack
+    layout:
+      max_cols: 4
+    layout_type: custom:masonry-layout
+    type: custom:layout-card
+  icon: mdi:av-timer
+  path: uptime
+  theme: nord
+  title: Uptime
+  type: custom:grid-layout
+- badges: []
+  cards:
+  - heading: Raw Data
+    type: custom:banner-card
+  - entities:
+    - entity: sensor.thebeast_cpuload
+      name: CPU
+    - entity: sensor.thebeast_gpuload
+      name: GPU
+    - entity: sensor.thebeast_memoryusage
+      name: RAM
+    - sensor.thebeast_activewindow
+    - sensor.thebeast_audio_audio_sessions
+    - sensor.thebeast_audio_default_device
+    - sensor.thebeast_audio_default_device_muted
+    - sensor.thebeast_audio_default_device_state
+    - sensor.thebeast_audio_default_device_volume
+    - sensor.thebeast_audio_default_input_device
+    - sensor.thebeast_audio_default_input_device_muted
+    - sensor.thebeast_audio_default_input_device_state
+    - sensor.thebeast_audio_default_input_device_volume
+    - sensor.thebeast_audio_peak_volume
+    - sensor.thebeast_currentclockspeed
+    - sensor.thebeast_currentvolume
+    - sensor.thebeast_gputemperature
+    - sensor.thebeast_lastactive
+    - sensor.thebeast_lastsystemstatechange
+    - sensor.thebeast_windowsupdates_available_driver_updates
+    - sensor.thebeast_windowsupdates_available_software_updates
+    - sensor.thebeast_windowsupdates_driver_updates_pending
+    - sensor.thebeast_windowsupdates_software_updates_pending
+    title: THEBEAST
+    type: entities
+  - entities:
+    - entity: sensor.octoprint_approximate_completion_time
+      name: Approximate Completion Time
+    - entity: sensor.octoprint_approximate_total_print_time
+      name: Approximate Total Print Time
+    - entity: sensor.octoprint_bed_target
+      name: Bed Target
+    - entity: sensor.octoprint_bed_temperature
+      name: Bed Temperature
+    - entity: binary_sensor.octoprint_connected
+      name: Connected
+    - entity: sensor.octoprint_current_z
+      name: Current Z
+    - entity: sensor.octoprint_last_event
+      name: Last Event
+    - entity: sensor.octoprint_print_file
+      name: Print File
+    - entity: sensor.octoprint_print_progress
+      name: Print Progress
+    - entity: sensor.octoprint_print_status
+      name: Print Status
+    - entity: sensor.octoprint_print_time
+      name: Print Time
+    - entity: sensor.octoprint_print_time_left
+      name: Print Time Left
+    - entity: binary_sensor.octoprint_printing_2
+      name: Printing
+    - entity: sensor.octoprint_slicing_file
+      name: Slicing File
+    - entity: sensor.octoprint_slicing_progress
+      name: Slicing Progress
+    - sensor.octoprint_soc_temperature
+    - entity: sensor.octoprint_status_energy
+      name: Status energy
+    - entity: sensor.octoprint_status_power
+      name: Status power
+    - entity: sensor.octoprint_tool_0_target
+      name: Tool 0 Target
+    - entity: sensor.octoprint_tool_0_temperature
+      name: Tool 0 Temperature
+    title: OctoPrint
+    type: entities
+  - entities:
+    - entity: sensor.adguard_home_average_processing_speed
+      name: Average processing speed
+    - entity: sensor.adguard_home_dns_queries
+      name: DNS queries
+    - entity: sensor.adguard_home_dns_queries_blocked
+      name: DNS queries blocked
+    - entity: sensor.adguard_home_dns_queries_blocked_ratio
+      name: DNS queries blocked ratio
+    - entity: sensor.adguard_home_parental_control_blocked
+      name: Parental control blocked
+    - entity: sensor.adguard_home_safe_browsing_blocked
+      name: Safe browsing blocked
+    - entity: sensor.adguard_home_safe_searches_enforced
+      name: Safe searches enforced
+    title: AdGuard Home
+    type: entities
+  - entities:
+    - entity: sensor.192_168_86_45_c_free
+      name: C:\ free
+    - entity: sensor.192_168_86_45_c_used
+      name: C:\ used
+    - entity: sensor.192_168_86_45_c_used_percent
+      name: C:\ used percent
+    - entity: sensor.192_168_86_45_cpu_load
+      name: CPU load
+    - entity: sensor.192_168_86_45_cpu_used
+      name: CPU used
+    - entity: sensor.192_168_86_45_d_free
+      name: D:\ free
+    - entity: sensor.192_168_86_45_d_used
+      name: D:\ used
+    - entity: sensor.192_168_86_45_d_used_percent
+      name: D:\ used percent
+    - entity: sensor.192_168_86_45_ram_free
+      name: RAM free
+    - entity: sensor.192_168_86_45_ram_used
+      name: RAM used
+    - entity: sensor.192_168_86_45_ram_used_percent
+      name: RAM used percent
+    - entity: sensor.192_168_86_45_running
+      name: Running
+    - entity: sensor.192_168_86_45_sleeping
+      name: Sleeping
+    - entity: sensor.192_168_86_45_swap_free
+      name: Swap free
+    - entity: sensor.192_168_86_45_swap_used
+      name: Swap used
+    - entity: sensor.192_168_86_45_swap_used_percent
+      name: Swap used percent
+    - entity: sensor.192_168_86_45_thread
+      name: Thread
+    - entity: sensor.192_168_86_45_total
+      name: Total
+    title: StarlaPC
+    type: entities
+  - entities:
+    - entity: sensor.192_168_86_25_c_free
+      name: C:\ free
+    - entity: sensor.192_168_86_25_c_used
+      name: C:\ used
+    - entity: sensor.192_168_86_25_c_used_percent
+      name: C:\ used percent
+    - entity: sensor.192_168_86_25_cpu_load
+      name: CPU load
+    - entity: sensor.192_168_86_25_cpu_used
+      name: CPU used
+    - entity: sensor.192_168_86_25_d_free
+      name: D:\ free
+    - entity: sensor.192_168_86_25_d_used
+      name: D:\ used
+    - entity: sensor.192_168_86_25_d_used_percent
+      name: D:\ used percent
+    - entity: sensor.192_168_86_25_e_free
+      name: E:\ free
+    - entity: sensor.192_168_86_25_e_used
+      name: E:\ used
+    - entity: sensor.192_168_86_25_e_used_percent
+      name: E:\ used percent
+    - entity: sensor.192_168_86_25_f_free
+      name: F:\ free
+    - entity: sensor.192_168_86_25_f_used
+      name: F:\ used
+    - entity: sensor.192_168_86_25_f_used_percent
+      name: F:\ used percent
+    - sensor.192_168_86_25_g_free
+    - sensor.192_168_86_25_g_used
+    - sensor.192_168_86_25_g_used_percent
+    - sensor.192_168_86_25_i_free
+    - sensor.192_168_86_25_i_used
+    - sensor.192_168_86_25_i_used_percent
+    - sensor.192_168_86_25_j_free
+    - sensor.192_168_86_25_j_used
+    - sensor.192_168_86_25_j_used_percent
+    - sensor.192_168_86_25_k_free
+    - sensor.192_168_86_25_k_used
+    - sensor.192_168_86_25_k_used_percent
+    - entity: sensor.192_168_86_25_ram_free
+      name: RAM free
+    - entity: sensor.192_168_86_25_ram_used
+      name: RAM used
+    - entity: sensor.192_168_86_25_ram_used_percent
+      name: RAM used percent
+    - entity: sensor.192_168_86_25_running
+      name: Running
+    - entity: sensor.192_168_86_25_sleeping
+      name: Sleeping
+    - entity: sensor.192_168_86_25_swap_free
+      name: Swap free
+    - entity: sensor.192_168_86_25_swap_used
+      name: Swap used
+    - entity: sensor.192_168_86_25_swap_used_percent
+      name: Swap used percent
+    - entity: sensor.192_168_86_25_thread
+      name: Thread
+    - entity: sensor.192_168_86_25_total
+      name: Total
+    title: TheBeast
+    type: entities
+  - entities:
+    - sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c_connected_devices
+    - sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c_download_speed
+    - sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c_download_traffic
+    - binary_sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c
+    - sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c_guest_devices
+    - sensor.google_wifi_system_total_devices
+    - sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c_upload_speed
+    - sensor.google_wifi_system_total_devices_fa2fba54_748f_4ce4_9318_1d18d350af6c_upload_traffic
+    title: Google Wifi System Total Devices
+    type: entities
+  - entities:
+    - entity: sensor.pixel_6_accent_color
+      name: Accent Color
+    - entity: sensor.pixel_6_battery_health
+      name: Battery Health
+    - entity: sensor.pixel_6_battery_power
+      name: Battery Power
+    - entity: sensor.pixel_6_battery_state
+      name: Battery State
+    - entity: sensor.pixel_6_battery_temperature
+      name: Battery Temperature
+    - entity: binary_sensor.pixel_6_bluetooth_state
+      name: Bluetooth State
+    - entity: sensor.pixel_6_charger_type
+      name: Charger Type
+    - entity: sensor.pixel_6_current_time_zone
+      name: Current Time Zone
+    - entity: binary_sensor.pixel_6_device_locked
+      name: Device Locked
+    - entity: sensor.pixel_6_do_not_disturb_sensor
+      name: Do Not Disturb Sensor
+    - entity: sensor.pixel_6_internal_storage
+      name: Internal Storage
+    - entity: binary_sensor.pixel_6_is_charging
+      name: Is Charging
+    - entity: sensor.pixel_6_last_reboot
+      name: Last Reboot
+    - entity: sensor.pixel_6_last_update_trigger
+      name: Last Update Trigger
+    - entity: binary_sensor.pixel_6_mobile_data
+      name: Mobile Data
+    - entity: sensor.pixel_6_network_type
+      name: Network Type
+    - device_tracker.pixel_6
+    - entity: binary_sensor.pixel_6_power_save
+      name: Power Save
+    - entity: sensor.pixel_6_proximity_sensor
+      name: Proximity Sensor
+    - entity: sensor.pixel_6_wifi_connection
+      name: WiFi Connection
+    - entity: sensor.pixel_6_wifi_ip_address
+      name: WiFi IP Address
+    - entity: binary_sensor.pixel_6_wifi_state
+      name: WiFi State
+    title: Pixel 6
+    type: entities
+  - entities:
+    - sensor.aquapi_marine_clock_speed
+    - sensor.aquapi_marine_cpu_usage
+    - sensor.aquapi_marine_disk_use
+    - sensor.aquapi_marine_host_architecture
+    - sensor.aquapi_marine_host_ip
+    - sensor.aquapi_marine_host_os
+    - sensor.aquapi_marine_hostname
+    - sensor.aquapi_marine_last_boot
+    - sensor.aquapi_marine_last_message
+    - sensor.aquapi_marine_load_15m
+    - sensor.aquapi_marine_load_1m
+    - sensor.aquapi_marine_load_5m
+    - sensor.aquapi_marine_memory_use
+    - sensor.aquapi_marine_network_download
+    - sensor.aquapi_marine_network_upload
+    - sensor.aquapi_marine_swap_usage
+    - sensor.aquapi_marine_temperature
+    - binary_sensor.aquapi_marine_under_voltage
+    - sensor.aquapi_marine_updates
+    - sensor.aquapi_marine_wifi_ssid
+    - sensor.aquapi_marine_wifi_strength
+    title: AquaPi Marine Sensors
+    type: entities
+  - entities:
+    - entity: sensor.marine
+      name: (RPi3A+)
+    - entity: sensor.marine_ambient_temperature
+      name: Ambient Temperature
+    - entity: sensor.marine_freshwater_community_temperature
+      name: Freshwater Community Temperature
+    - entity: binary_sensor.marine_high_optical_sensor
+      name: High Optical Sensor
+    - entity: binary_sensor.marine_low_optical_sensor
+      name: Low Optical Sensor
+    - entity: sensor.marine_ph
+      name: PH
+    - entity: sensor.marine_temperature
+      name: Temperature
+    - entity: sensor.marine_water_level_high_duration
+      name: 'Water Level: High Duration'
+    - entity: sensor.marine_water_level_high_last_run
+      name: 'Water Level: High Last Run'
+    - entity: sensor.marine_water_level_low_duration
+      name: 'Water Level: Low Duration'
+    - entity: sensor.marine_water_level_low_last_run
+      name: 'Water Level: Low Last Run'
+    title: Marine
+    type: entities
+  - entities:
+    - sensor.aquapi_mixed_reef_clock_speed
+    - sensor.aquapi_mixed_reef_cpu_usage
+    - sensor.aquapi_mixed_reef_disk_use
+    - sensor.aquapi_mixed_reef_host_architecture
+    - sensor.aquapi_mixed_reef_host_ip
+    - sensor.aquapi_mixed_reef_host_os
+    - sensor.aquapi_mixed_reef_hostname
+    - sensor.aquapi_mixed_reef_last_boot
+    - sensor.aquapi_mixed_reef_last_message
+    - sensor.aquapi_mixed_reef_load_15m
+    - sensor.aquapi_mixed_reef_load_1m
+    - sensor.aquapi_mixed_reef_load_5m
+    - sensor.aquapi_mixed_reef_memory_use
+    - sensor.aquapi_mixed_reef_network_download
+    - sensor.aquapi_mixed_reef_network_upload
+    - sensor.aquapi_mixed_reef_swap_usage
+    - sensor.aquapi_mixed_reef_temperature
+    - binary_sensor.aquapi_mixed_reef_under_voltage
+    - sensor.aquapi_mixed_reef_updates
+    - sensor.aquapi_mixed_reef_wifi_ssid
+    - sensor.aquapi_mixed_reef_wifi_strength
+    title: AquaPi Mixed Reef Sensors
+    type: entities
+  - entities:
+    - entity: sensor.mixed_reef
+      name: (RPi3A+)
+    - entity: binary_sensor.mixed_reef_high_optical_sensor
+      name: High Optical Sensor
+    - entity: binary_sensor.mixed_reef_low_optical_sensor
+      name: Low Optical Sensor
+    - entity: sensor.mixed_reef_ph
+      name: PH
+    - entity: sensor.mixed_reef_salinity
+      name: Salinity
+    - entity: sensor.mixed_reef_temperature
+      name: Temperature
+    - entity: sensor.mixed_reef_water_level_high_duration
+      name: 'Water Level: High Duration'
+    - entity: sensor.mixed_reef_water_level_high_last_run
+      name: 'Water Level: High Last Run'
+    - entity: sensor.mixed_reef_water_level_low_duration
+      name: 'Water Level: Low Duration'
+    - entity: sensor.mixed_reef_water_level_low_last_run
+      name: 'Water Level: Low Last Run'
+    title: Mixed Reef
+    type: entities
+  - entities:
+    - entity: sensor.octoprint_approximate_completion_time
+      name: Approximate Completion Time
+    - entity: sensor.octoprint_approximate_total_print_time
+      name: Approximate Total Print Time
+    - entity: sensor.octoprint_bed_target
+      name: Bed Target
+    - entity: sensor.octoprint_bed_temperature
+      name: Bed Temperature
+    - entity: binary_sensor.octoprint_connected
+      name: Connected
+    - entity: sensor.octoprint_current_z
+      name: Current Z
+    - sensor.octoprint_print_progress
+    - entity: sensor.octoprint_last_event
+      name: Last Event
+    - entity: sensor.octoprint_print_file
+      name: Print File
+    - entity: sensor.octoprint_print_status
+      name: Print Status
+    - entity: sensor.octoprint_print_time
+      name: Print Time
+    - entity: sensor.octoprint_print_time_left
+      name: Print Time Left
+    - entity: binary_sensor.octoprint_printing_2
+      name: Printing
+    - entity: sensor.octoprint_slicing_file
+      name: Slicing File
+    - entity: sensor.octoprint_slicing_progress
+      name: Slicing Progress
+    - entity: sensor.octoprint_soc_temperature
+      name: SoC Temperature
+    - entity: sensor.octoprint_status_energy
+      name: Status energy
+    - entity: sensor.octoprint_status_power
+      name: Status power
+    - entity: sensor.octoprint_tool_0_target
+      name: Tool 0 Target
+    - entity: sensor.octoprint_tool_0_temperature
+      name: Tool 0 Temperature
+    title: OctoPrint
+    type: entities
+  - entities:
+    - sensor.thebeast_activewindow
+    - sensor.thebeast_audio_audio_sessions
+    - sensor.thebeast_audio_default_device
+    - sensor.thebeast_audio_default_device_muted
+    - sensor.thebeast_audio_default_device_state
+    - sensor.thebeast_audio_default_device_volume
+    - sensor.thebeast_audio_default_input_device
+    - sensor.thebeast_audio_default_input_device_muted
+    - sensor.thebeast_audio_default_input_device_state
+    - sensor.thebeast_audio_default_input_device_volume
+    - sensor.thebeast_audio_peak_volume
+    - sensor.thebeast_cpuload
+    - sensor.thebeast_currentclockspeed
+    - sensor.thebeast_currentvolume
+    - sensor.thebeast_gpuload
+    - sensor.thebeast_gputemperature
+    - sensor.thebeast_lastactive
+    - sensor.thebeast_lastsystemstatechange
+    - sensor.thebeast_memoryusage
+    - sensor.thebeast_network_bluetooth_network_connection
+    - sensor.thebeast_network_ethernet
+    - sensor.thebeast_network_loopback_pseudo_interface_1
+    - sensor.thebeast_network_network_card_count
+    - sensor.thebeast_network_vethernet_default_switch
+    - sensor.thebeast_network_vethernet_default_switch_2
+    - sensor.thebeast_network_vethernet_default_switch_3
+    - sensor.thebeast_storage_c
+    - sensor.thebeast_storage_d
+    - sensor.thebeast_storage_e
+    - sensor.thebeast_storage_f
+    - sensor.thebeast_storage_g
+    - sensor.thebeast_storage_i
+    - sensor.thebeast_storage_j
+    - sensor.thebeast_storage_total_disk_count
+    - sensor.thebeast_windowsupdates_available_driver_updates
+    - sensor.thebeast_windowsupdates_available_software_updates
+    - sensor.thebeast_windowsupdates_driver_updates_pending
+    - sensor.thebeast_windowsupdates_software_updates_pending
+    title: THEBEAST
+    type: entities
+  icon: mdi:database
+  layout:
+    max_cols: 10
+    width: 300
+  path: raw-data
+  theme: Backend-selected
+  title: Raw Data
+  type: custom:masonry-layout
+- badges: []
+  cards:
+  - hold_action:
+      action: none
+    image: https://michaelshappyfish.com/wp-content/uploads/2021/11/API-Water-Test-Cheat-Sheet.jpg
+    tap_action:
+      action: url
+      url_path: https://michaelshappyfish.com/api-test-kit-color-chart-results/?v=f24485ae434a
+    type: picture
+  - hold_action:
+      action: none
+    image: https://michaelshappyfish.com/wp-content/uploads/2021/03/API-FreshWater-Saltwater-Test-Kit-Chart-GH-KH-Calcium-Phosphate-scaled.jpg
+    tap_action:
+      action: url
+      url_path: https://michaelshappyfish.com/api-test-kit-color-chart-results/?v=f24485ae434a
+    type: picture
+  - hold_action:
+      action: none
+    image: https://www.plantedtank.net/attachments/scr-shots-api-kit-2-png.588426/
+    tap_action:
+      action: none
+    type: picture
+  - hold_action:
+      action: none
+    image: https://www.reef2reef.com/attachments/imageuploadedbyreef2reef1454725897-954216-jpg.311655/
+    tap_action:
+      action: none
+    type: picture
+  icon: ''
+  path: api
+  subview: true
+  title: API
+- badges: []
+  cards:
+  - cards:
+    - subtitle: Marine Aquarium
+      title: Current Status
+      type: custom:mushroom-title-card
+    - cards:
+      - camera_view: auto
+        entity: sensor.aquapi_marine_temperature
+        image: /local/custom/PXL_20230606_162534564.jpg
+        name: Marine
+        show_name: true
+        show_state: true
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/marine
+        type: picture-entity
+      - alignment: center
+        chips:
+        - entity: sensor.aquapi_marine_temperature_2
+          type: entity
+        - entity: sensor.aquapi_marine_ph
+          type: entity
+        - entity: sensor.marine_salinity
+          type: entity
+        - entity: input_number.ammonia_marine
+          type: entity
+        - entity: input_number.nitrite_2
+          type: entity
+        - entity: input_number.nitrate_marine
+          type: entity
+        - entity: input_number.phosphate_marine
+          type: entity
+        - entity: input_number.calcium_marine
+          type: entity
+        - entity: input_number.carbonate_hardness_marine
+          type: entity
+        type: custom:mushroom-chips-card
+      - entities:
+        - entity: sensor.marine_temperature_range
+          icon: mdi:thermometer-water
+          name: Temperature
+          secondary_info: last-changed
+        - entity: sensor.heater_state
+          icon: mdi:radiator
+          name: Heater
+          secondary_info: last-changed
+        - entity: sensor.aquapi_marine_water_level
+          icon: mdi:waves
+          name: Water Level
+          secondary_info: last-changed
+        - entity: sensor.marine_water_hardness
+          name: Water Hardness
+          secondary_info: last-changed
+        - entity: sensor.doser4020_state
+          secondary_info: last-changed
+        header:
+          entities:
+          - entity: switch.plug6
+            name: Light
+          - entity: switch.plug2
+            name: Skimmer
+          - entity: script.aquarium_marine_trace
+            name: Marine Trace
+          type: buttons
+        type: entities
+      - cardName: historycard-97723151
+        combineSameUnits: true
+        defaultTimeRange: 3d
+        graphs:
+        - entities:
+          - entity: sensor.marine_temperature_range
+            name: Temp.
+          - entity: sensor.heater_state
+            name: Heater
+          - entity: sensor.aquapi_marine_water_level
+            name: Water Lvl.
+          - entity: sensor.doser4020_state
+            name: Trace
+          type: timeline
+        header: Timeline
+        showCurrentValues: true
+        stateColors:
+          sensor.heater_state.Heating: red
+          sensor.heater_state.Standby: royalblue
+          sensor.marine_temperature_range.Cool: cyan
+          sensor.marine_temperature_range.Ok: forestgreen
+          sensor.marine_temperature_range.Warm: orangered
+          sensor.marine_water_level.High: gold
+          sensor.marine_water_level.Low: firebrick
+          sensor.marine_water_level.Normal: slateblue
+        stateTextMode: auto
+        statistics:
+          enabled: true
+          mode: mean
+          period: hour
+        type: custom:history-explorer-card
+        uiLayout:
+          selector: hide
+        view_layout:
+          position: main
+      type: vertical-stack
+    type: vertical-stack
+  - cards:
+    - subtitle: Sensors
+      title: Parameters
+      type: custom:mushroom-title-card
+    - align_state: center
+      animate: true
+      cache: true
+      color_thresholds:
+      - color: '#0a748c'
+        value: 70
+      - color: '#497eb0'
+        value: 72
+      - color: '#58c02b'
+        value: 78
+      - color: '#babf22'
+        value: 82
+      - color: '#c0392b'
+        value: 84
+      entities:
+      - entity: sensor.aquapi_marine_temperature
+        icon: mdi:thermometer-water
+        name: Marine
+      - entity: sensor.average_indoor_temperature
+        name: Ambient
+      hours_to_show: 72
+      name: Temperature
+      show:
+        labels: true
+        legend: false
+      type: custom:mini-graph-card
+    - align_state: center
+      animate: true
+      cache: true
+      color_thresholds:
+      - color: '#0a748c'
+        value: 8.1
+      - color: '#497eb0'
+        value: 8.2
+      - color: '#670e80'
+        value: 8.3
+      - color: '#babf22'
+        value: 8.4
+      - color: '#c0392b'
+        value: 8.5
+      entities:
+      - entity: sensor.aquapi_marine_ph
+        name: Marine
+      hours_to_show: 72
+      name: pH
+      show:
+        labels: true
+        legend: false
+      type: custom:mini-graph-card
+    - align_state: center
+      animate: true
+      cache: true
+      color_thresholds:
+      - color: '#0a748c'
+        value: 31
+      - color: '#497eb0'
+        value: 33
+      - color: '#16149c'
+        value: 35
+      - color: '#babf22'
+        value: 37
+      - color: '#c0392b'
+        value: 39
+      entities:
+      - entity: sensor.aquapi_marine_salinity
+        name: Marine
+      hours_to_show: 72
+      name: Salinity
+      show:
+        labels: true
+        legend: false
+      type: custom:mini-graph-card
+    - subtitle: Toxins & Elements
+      title: ''
+      type: custom:mushroom-title-card
+    - cards:
+      - align_state: center
+        animate: true
+        cache: true
+        color_thresholds:
+        - color: '#d96c14'
+          value: 0
+        - color: '#babf22'
+          value: 1
+        - color: '#c0392b'
+          value: 4
+        entities:
+        - entity: input_number.ammonia_marine
+        height: 150
+        hours_to_show: 72
+        name: Ammonia
+        show:
+          labels: true
+          legend: false
+        type: custom:mini-graph-card
+      - align_state: center
+        animate: true
+        cache: true
+        color_thresholds:
+        - color: '#d914d2'
+          value: 0
+        - color: '#babf22'
+          value: 1
+        - color: '#c0392b'
+          value: 3
+        entities:
+        - entity: input_number.nitrite_2
+        height: 150
+        hours_to_show: 72
+        name: Nitrite
+        show:
+          labels: true
+          legend: false
+        type: custom:mini-graph-card
+      - align_state: center
+        animate: true
+        cache: true
+        color_thresholds:
+        - color: '#148ad9'
+          value: 0
+        - color: '#babf22'
+          value: 20
+        - color: '#c0392b'
+          value: 50
+        entities:
+        - entity: input_number.nitrate_marine
+        height: 150
+        hours_to_show: 72
+        name: Nitrate
+        show:
+          labels: true
+          legend: false
+        type: custom:mini-graph-card
+      - align_state: center
+        animate: true
+        cache: true
+        color_thresholds:
+        - color: '#0b8015'
+          value: 0
+        - color: '#babf22'
+          value: 2
+        - color: '#c0392b'
+          value: 8
+        entities:
+        - entity: input_number.phosphate_marine
+        height: 150
+        hours_to_show: 72
+        name: Phospahte
+        show:
+          labels: true
+          legend: false
+        type: custom:mini-graph-card
+      - align_state: center
+        animate: true
+        cache: true
+        color_thresholds:
+        - color: '#0a748c'
+          value: 250
+        - color: '#497eb0'
+          value: 320
+        - color: '#0f0b80'
+          value: 420
+        - color: '#babf22'
+          value: 500
+        - color: '#c0392b'
+          value: 540
+        entities:
+        - entity: input_number.calcium_marine
+        height: 150
+        hours_to_show: 72
+        name: Calcium
+        show:
+          labels: true
+          legend: false
+        type: custom:mini-graph-card
+      - align_state: center
+        animate: true
+        cache: true
+        color_thresholds:
+        - color: '#0a748c'
+          value: 50
+        - color: '#497eb0'
+          value: 100
+        - color: '#6918b5'
+          value: 200
+        - color: '#babf22'
+          value: 260
+        - color: '#c0392b'
+          value: 300
+        entities:
+        - entity: input_number.carbonate_hardness_marine
+        height: 150
+        hours_to_show: 72
+        name: Hardness
+        show:
+          labels: true
+          legend: false
+        type: custom:mini-graph-card
+      columns: 2
+      square: false
+      type: grid
+    type: vertical-stack
+  - cards:
+    - subtitle: Marine Aquarium
+      title: Power & Controls
+      type: custom:mushroom-title-card
+    - cards:
+      - card:
+          cards:
+          - entity: switch.plug6
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            type: button
+          - align_state: center
+            animate: true
+            cache: true
+            entities:
+            - entity: sensor.refugium_white_current_consumption
+            height: 150
+            hours_to_show: 72
+            line_color: '#c4a60c'
+            show:
+              icon: false
+              labels: true
+              legend: false
+              name: false
+            type: custom:mini-graph-card
+          type: horizontal-stack
+        style:
+          hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+            \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n \
+            \ flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+            \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+            \ unset !important; \n}\n"
+        type: custom:mod-card
+      - card:
+          cards:
+          - entity: switch.plug3
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            type: button
+          - align_state: center
+            animate: true
+            cache: true
+            entities:
+            - entity: sensor.main_system_pump_current_consumption
+            height: 150
+            hours_to_show: 72
+            line_color: '#0f0b80'
+            name: Main Pump
+            show:
+              icon: false
+              labels: true
+              legend: false
+              name: false
+            type: custom:mini-graph-card
+          type: horizontal-stack
+        style:
+          hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+            \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n \
+            \ flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+            \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+            \ unset !important; \n}\n"
+        type: custom:mod-card
+      - card:
+          cards:
+          - entity: switch.plug1
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            type: button
+          - align_state: center
+            animate: true
+            cache: true
+            entities:
+            - entity: sensor.fluval_306_current_consumption
+            height: 150
+            hours_to_show: 72
+            line_color: '#0b6b80'
+            show:
+              icon: false
+              labels: true
+              legend: false
+              name: false
+            type: custom:mini-graph-card
+          type: horizontal-stack
+        style:
+          hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+            \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n \
+            \ flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+            \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+            \ unset !important; \n}\n"
+        type: custom:mod-card
+      - card:
+          cards:
+          - entity: switch.plug2
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            type: button
+          - align_state: center
+            animate: true
+            cache: true
+            entities:
+            - entity: sensor.skimmer_current_consumption
+            height: 150
+            hours_to_show: 72
+            line_color: '#690b80'
+            show:
+              icon: false
+              labels: true
+              legend: false
+              name: false
+            type: custom:mini-graph-card
+          type: horizontal-stack
+        style:
+          hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+            \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n \
+            \ flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+            \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+            \ unset !important; \n}\n"
+        type: custom:mod-card
+      - card:
+          cards:
+          - entity: switch.plug5
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            type: button
+          - align_state: center
+            animate: true
+            cache: true
+            entities:
+            - entity: sensor.heater_current_consumption
+            height: 150
+            hours_to_show: 72
+            line_color: '#800b15'
+            show:
+              icon: false
+              labels: true
+              legend: false
+              name: false
+            type: custom:mini-graph-card
+          type: horizontal-stack
+        style:
+          hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+            \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n \
+            \ flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+            \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+            \ unset !important; \n}\n"
+        type: custom:mod-card
+      - card:
+          cards:
+          - entity: switch.plug4
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            type: button
+          - align_state: center
+            animate: true
+            cache: true
+            entities:
+            - entity: sensor.wave_maker_current_consumption
+            height: 150
+            hours_to_show: 72
+            line_color: '#0cc42b'
+            show:
+              icon: false
+              labels: true
+              legend: false
+              name: false
+            type: custom:mini-graph-card
+          type: horizontal-stack
+        style:
+          hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+            \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n \
+            \ flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+            \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+            \ unset !important; \n}\n"
+        type: custom:mod-card
+      columns: 1
+      square: false
+      type: grid
+    type: vertical-stack
+  - cards:
+    - subtitle: Other Equipment
+      title: ''
+      type: custom:mushroom-title-card
+    - cards:
+      - entity: script.aquarium_marine_trace
+        name: Dose Marine Trace
+        show_icon: true
+        show_name: true
+        tap_action:
+          action: toggle
+          confirmation:
+            text: Are you sure?
+        type: button
+      - icon: mdi:test-tube
+        name: API Charts
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/api/
+        type: custom:button-card
+      - entity: automation.skimmer_shut_off
+        show_icon: true
+        show_name: true
+        tap_action:
+          action: toggle
+        type: button
+      - entity: automation.aquarium_return_pump_auto_off_marine
+        show_icon: true
+        show_name: true
+        tap_action:
+          action: toggle
+        type: button
+      - entity: light.cichlid_aquariums
+        icon: mdi:gesture-tap-hold
+        name: Kiosk
+        show_icon: false
+        show_name: true
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/Aquariums?kiosk
+        type: button
+      - type: custom:fullscreen-card
+      columns: 2
+      square: false
+      type: grid
+    type: vertical-stack
+  - entities:
+    - entity: sensor.aquapi_marine_internal_temperature
+      name: Internal Temperature
+    - entity: sensor.aquapi_fd3de0_hostname
+      name: Hostname
+    - entity: sensor.aquapi_marine_aquapi_version
+      name: Firmware Version
+    - entity: sensor.aquapi_marine_ip_address
+    - entity: sensor.aquapi_marine_wifi_signal_strength
+      name: WiFi Signal
+    - entity: sensor.aquapi_marine_esp32_hall_sensor
+    - entity: sensor.aquapi_marine_uptime
+    - entity: button.aquapi_marine_restart
+    title: Device Information
+    type: entities
+  - cards:
+    - apex_config:
+        chart:
+          fontFamily: Segoe UI, SegoeUI, sans-serif
+          height: 500px
+          offsetY: -20
+          pie:
+            donut:
+              label:
+                show: true
+        legend:
+          dataLabels:
+            dropShadow:
+              enabled: false
+            formatter: "EVAL:function(value, { seriesIndex, dataPointIndex, w }) {\n\
+              \  return Math.round(value * 10) / 10 + '%'\n}\n"
+            style:
+              fontFamily: Segoe UI, SegoeUI, sans-serif
+              fontSize: 10
+              fontWeight: 500
+          fontFamily: Segoe UI, SegoeUI, sans-serif
+          fontSize: 12
+          fontWeight: normal
+          formatter: "EVAL:function(seriesName, opts) {\n  return seriesName\n}\n"
+          itemMargin:
+            horizontal: 0
+          markers:
+            height: 8
+            width: 8
+          position: right
+          style: "#header__title {\n  font-size: var(--body-font-size) !important;\n\
+            \  font-weight: normal !important;\n  color: var(--primary-text-color)\
+            \ !important;\n  margin-top: 8px;\n}\n#graph-wrapper {\n  padding-top:\
+            \ 32px;\n}\n"
+          tooltip:
+            style:
+              fontFamily: Segoe UI, SegoeUI, sans-serif
+              fontSize: 12px
+        title:
+          style:
+            color: var(--primary-text-color)
+            fontSize: 12px
+      chart_type: donut
+      header:
+        show: true
+        title: Current Power
+      layout: minimal
+      series:
+      - entity: sensor.refugium_white_current_consumption
+        name: Refugium LED
+      - entity: sensor.main_system_pump_current_consumption
+        name: Return Pump
+      - entity: sensor.fluval_306_current_consumption
+        name: Fluval 306
+      - entity: sensor.skimmer_current_consumption
+        name: Skimmer
+      - entity: sensor.heater_current_consumption
+        name: Heater
+      - entity: sensor.wave_maker_current_consumption
+        name: Wave Maker
+      type: custom:apexcharts-card
+      update_interval: 10sec
+    - apex_config:
+        chart:
+          fontFamily: Segoe UI, SegoeUI, sans-serif
+          height: 500px
+          offsetY: -20
+          pie:
+            donut:
+              label:
+                show: true
+        legend:
+          dataLabels:
+            dropShadow:
+              enabled: false
+            formatter: "EVAL:function(value, { seriesIndex, dataPointIndex, w }) {\n\
+              \  return Math.round(value * 10) / 10 + '%'\n}\n"
+            style:
+              fontFamily: Segoe UI, SegoeUI, sans-serif
+              fontSize: 10
+              fontWeight: 500
+          fontFamily: Segoe UI, SegoeUI, sans-serif
+          fontSize: 12
+          fontWeight: normal
+          formatter: "EVAL:function(seriesName, opts) {\n  return seriesName\n}\n"
+          itemMargin:
+            horizontal: 0
+          markers:
+            height: 8
+            width: 8
+          position: right
+          style: "#header__title {\n  font-size: var(--body-font-size) !important;\n\
+            \  font-weight: normal !important;\n  color: var(--primary-text-color)\
+            \ !important;\n  margin-top: 8px;\n}\n#graph-wrapper {\n  padding-top:\
+            \ 32px;\n}\n"
+          tooltip:
+            style:
+              fontFamily: Segoe UI, SegoeUI, sans-serif
+              fontSize: 12px
+        title:
+          style:
+            color: var(--primary-text-color)
+            fontSize: 12px
+      chart_type: donut
+      header:
+        show: true
+        title: Daily Energy
+      layout: minimal
+      series:
+      - entity: sensor.refugium_white_today_s_consumption
+        name: Refugium LED
+      - entity: sensor.main_system_pump_today_s_consumption
+        name: Return Pump
+      - entity: sensor.fluval_306_today_s_consumption
+        name: Fluval 306
+      - entity: sensor.skimmer_today_s_consumption
+        name: Skimmer
+      - entity: sensor.doser_pump_plus_today_s_consumption
+        name: Heater
+      - entity: sensor.doser_pump_trace_today_s_consumption
+        name: Wave Maker
+      type: custom:apexcharts-card
+    layout_type: custom:vertical-layout
+    type: custom:layout-card
+  icon: mdi:submarine
+  layout:
+    max_cols: 3
+  path: marine
+  subview: true
+  theme: Caule Black Blue Glass
+  title: Marine Aquarium
+  type: custom:masonry-layout
+- badges: []
+  cards:
+  - cards:
+    - subtitle: Mixed Reef
+      title: Current Status
+      type: custom:mushroom-title-card
+    - cards:
+      - camera_view: auto
+        entity: sensor.mixed_reef_temperature
+        image: /local/custom/PXL_20230609_204824313.MP.jpg
+        name: 'Mixed Reef '
+        show_name: true
+        show_state: true
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/mixed-reef
+        type: picture-entity
+      - alignment: center
+        chips:
+        - entity: input_number.ph
+          type: entity
+        - entity: input_number.mixed_reef_salinity
+          type: entity
+        - entity: input_number.ammonia
+          type: entity
+        - entity: input_number.nitrite
+          type: entity
+        - entity: input_number.nitrate_coral
+          type: entity
+        - entity: input_number.phosphate_coral
+          type: entity
+        - entity: input_number.calcium_coral
+          type: entity
+        - entity: input_number.carbonate_hardness
+          type: entity
+        type: custom:mushroom-chips-card
+      - entities:
+        - entity: sensor.mixed_reef_temperature_range
+          icon: mdi:thermometer-water
+          name: Temperature
+          secondary_info: last-changed
+        - entity: sensor.aqualifter_state
+          icon: mdi:heat-pump
+          name: AquaLifter
+          secondary_info: last-changed
+        - entity: sensor.mixed_reef_water_level
+          name: Water Level
+          secondary_info: last-changed
+        - entity: sensor.mixed_reef_water_hardness
+          name: Water Hardness
+          secondary_info: last-changed
+        header:
+          entities:
+          - entity: switch.aqualifter
+            name: AquaLifter
+          type: buttons
+        type: entities
+      - cardName: historycard-97723151
+        combineSameUnits: true
+        defaultTimeRange: 3d
+        graphs:
+        - entities:
+          - entity: sensor.mixed_reef_temperature_range
+            name: Temp.
+          - entity: sensor.aqualifter_state
+            name: AquaLifter
+          - entity: sensor.mixed_reef_water_level
+            name: Water Lvl.
+          type: timeline
+        header: Timeline
+        showCurrentValues: true
+        stateColors:
+          sensor.aqualifter_state.Pumping: limegreen
+          sensor.aqualifter_state.Standy: blue
+          sensor.mixed_reef_temperature_range.Cool: cyan
+          sensor.mixed_reef_temperature_range.Ok: forestgreen
+          sensor.mixed_reef_temperature_range.Warm: orangered
+        stateTextMode: auto
+        statistics:
+          enabled: true
+          mode: mean
+          period: hour
+        type: custom:history-explorer-card
+        uiLayout:
+          selector: hide
+        view_layout:
+          position: main
+      type: vertical-stack
+    type: vertical-stack
+  - cards:
+    - subtitle: Sensors
+      title: Parameters
+      type: custom:mushroom-title-card
+    - align_state: center
+      animate: true
+      cache: true
+      color_thresholds:
+      - color: '#0a748c'
+        value: 70
+      - color: '#497eb0'
+        value: 72
+      - color: '#58c02b'
+        value: 78
+      - color: '#babf22'
+        value: 82
+      - color: '#c0392b'
+        value: 84
+      entities:
+      - entity: sensor.mixed_reef_temperature
+        icon: mdi:thermometer-water
+        name: Mixed Reef
+      - entity: sensor.average_indoor_temperature
+        name: Ambient
+      hours_to_show: 72
+      name: Temperature
+      show:
+        labels: true
+        legend: false
+      type: custom:mini-graph-card
+    - align_state: center
+      animate: true
+      cache: true
+      color_thresholds:
+      - color: '#0a748c'
+        value: 7.9
+      - color: '#497eb0'
+        value: 8.1
+      - color: '#670e80'
+        value: 8.3
+      - color: '#babf22'
+        value: 8.5
+      - color: '#c0392b'
+        value: 8.7
+      entities:
+      - entity: input_number.ph
+      hours_to_show: 72
+      name: pH
+      show:
+        labels: true
+        legend: false
+      type: custom:mini-graph-card
+    - align_state: center
+      animate: true
+      cache: true
+      color_thresholds:
+      - color: '#0a748c'
+        value: 31
+      - color: '#497eb0'
+        value: 33
+      - color: '#16149c'
+        value: 35
+      - color: '#babf22'
+        value: 37
+      - color: '#c0392b'
+        value: 39
+      entities:
+      - entity: input_number.mixed_reef_salinity
+      hours_to_show: 72
+      name: Salinity
+      show:
+        labels: true
+        legend: false
+      type: custom:mini-graph-card
+    - subtitle: Toxins & Elements
+      title: ''
+      type: custom:mushroom-title-card
+    - cards:
+      - align_state: center
+        animate: true
+        cache: true
+        color_thresholds:
+        - color: '#d96c14'
+          value: 0
+        - color: '#babf22'
+          value: 1
+        - color: '#c0392b'
+          value: 4
+        entities:
+        - entity: input_number.ammonia
+        height: 150
+        hours_to_show: 72
+        name: Ammonia
+        show:
+          labels: true
+          legend: false
+        type: custom:mini-graph-card
+      - align_state: center
+        animate: true
+        cache: true
+        color_thresholds:
+        - color: '#d914d2'
+          value: 0
+        - color: '#babf22'
+          value: 1
+        - color: '#c0392b'
+          value: 3
+        entities:
+        - entity: input_number.nitrite
+        height: 150
+        hours_to_show: 72
+        name: Nitrite
+        show:
+          labels: true
+          legend: false
+        type: custom:mini-graph-card
+      - align_state: center
+        animate: true
+        cache: true
+        color_thresholds:
+        - color: '#148ad9'
+          value: 0
+        - color: '#babf22'
+          value: 20
+        - color: '#c0392b'
+          value: 80
+        entities:
+        - entity: input_number.nitrate_coral
+        height: 150
+        hours_to_show: 72
+        name: Nitrate
+        show:
+          labels: true
+          legend: false
+        type: custom:mini-graph-card
+      - align_state: center
+        animate: true
+        cache: true
+        color_thresholds:
+        - color: '#0b8015'
+          value: 0
+        - color: '#babf22'
+          value: 2
+        - color: '#c0392b'
+          value: 8
+        entities:
+        - entity: input_number.phosphate_coral
+        height: 150
+        hours_to_show: 72
+        name: Phospahte
+        show:
+          labels: true
+          legend: false
+        type: custom:mini-graph-card
+      - align_state: center
+        animate: true
+        cache: true
+        color_thresholds:
+        - color: '#0a748c'
+          value: 250
+        - color: '#497eb0'
+          value: 320
+        - color: '#0f0b80'
+          value: 420
+        - color: '#babf22'
+          value: 500
+        - color: '#c0392b'
+          value: 540
+        entities:
+        - entity: input_number.calcium_coral
+        height: 150
+        hours_to_show: 72
+        name: Calcium
+        show:
+          labels: true
+          legend: false
+        type: custom:mini-graph-card
+      - align_state: center
+        animate: true
+        cache: true
+        color_thresholds:
+        - color: '#0a748c'
+          value: 50
+        - color: '#497eb0'
+          value: 100
+        - color: '#6918b5'
+          value: 200
+        - color: '#babf22'
+          value: 260
+        - color: '#c0392b'
+          value: 300
+        entities:
+        - entity: input_number.carbonate_hardness
+        height: 150
+        hours_to_show: 72
+        name: Hardness
+        show:
+          labels: true
+          legend: false
+        type: custom:mini-graph-card
+      columns: 2
+      square: false
+      type: grid
+    type: vertical-stack
+  - cards:
+    - subtitle: Other Equipment
+      title: Power & Controls
+      type: custom:mushroom-title-card
+    - cards:
+      - entity: script.aquarium_lights
+        show_icon: true
+        show_name: true
+        tap_action:
+          action: toggle
+        type: button
+      - icon: mdi:test-tube
+        name: API Charts
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/api/
+        type: custom:button-card
+      - entity: automation.ato_timer
+        show_icon: true
+        show_name: true
+        tap_action:
+          action: toggle
+        type: button
+      - entity: automation.mixed_reef_fan
+        show_icon: true
+        show_name: true
+        tap_action:
+          action: toggle
+        type: button
+      - entity: light.cichlid_aquariums
+        icon: mdi:gesture-tap-hold
+        name: Kiosk
+        show_icon: false
+        show_name: true
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/Aquariums?kiosk
+        type: button
+      - type: custom:fullscreen-card
+      columns: 2
+      square: false
+      type: grid
+    type: vertical-stack
+  - entities:
+    - entity: sensor.mixed_reef_internal_temperature
+      name: Internal Temperature
+    - entity: sensor.aquapi_fd3de0_hostname
+      name: Hostname
+    - entity: sensor.mixed_reef_aquapi_version
+      name: Firmware Version
+    - entity: sensor.mixed_reef_ip_address
+    - entity: sensor.mixed_reef_wifi_signal_strength
+      name: WiFi Signal
+    - entity: sensor.mixed_reef_esp32_hall_sensor
+    - entity: sensor.mixed_reef_uptime
+    - entity: button.mixed_reef_restart
+    title: Device Information
+    type: entities
+  icon: mdi:jellyfish
+  layout:
+    max_cols: 3
+  path: mixed-reef
+  subview: true
+  theme: Caule Black Coral Glass
+  title: Mixed Reef Aquarium
+  type: custom:masonry-layout
+- badges: []
+  cards:
+  - cards:
+    - subtitle: American Cichlids
+      title: Current Status
+      type: custom:mushroom-title-card
+    - cards:
+      - camera_view: auto
+        entity: sensor.aquapi_cichlids_temperature
+        image: /local/custom/PXL_20230606_162540719.jpg
+        name: American Cichlids
+        show_name: true
+        show_state: true
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/cichlids
+        type: picture-entity
+      - alignment: center
+        chips:
+        - entity: input_number.cichlids_ph
+          type: entity
+        - entity: input_number.cichlids_ammonia
+          type: entity
+        - entity: input_number.cichlids_nitrite
+          type: entity
+        - entity: input_number.cichlids_nitrate
+          type: entity
+        - entity: input_number.cichlids_phosphate
+          type: entity
+        type: custom:mushroom-chips-card
+      - entities:
+        - entity: sensor.cichlids_temperature_range
+          icon: mdi:thermometer-water
+          name: Temperature
+          secondary_info: last-changed
+        - entity: sensor.cichlid_heater_state
+          secondary_info: last-changed
+        - entity: sensor.aquapi_cichlids_water_level
+          name: Water Level
+          secondary_info: last-changed
+        type: entities
+      - cardName: historycard-97723151
+        combineSameUnits: true
+        defaultTimeRange: 3d
+        graphs:
+        - entities:
+          - entity: sensor.cichlids_temperature_range
+            name: Temp.
+          - entity: sensor.cichlid_heater_state
+            name: Heater
+          type: timeline
+        header: Timeline
+        showCurrentValues: true
+        stateColors:
+          sensor.heater_state.Heating: red
+          sensor.heater_state.Standby: royalblue
+          sensor.marine_temperature_range.Cool: cyan
+          sensor.marine_temperature_range.Ok: forestgreen
+          sensor.marine_temperature_range.Warm: orangered
+          sensor.marine_water_level.High: gold
+          sensor.marine_water_level.Low: firebrick
+          sensor.marine_water_level.Normal: slateblue
+        stateTextMode: auto
+        statistics:
+          enabled: true
+          mode: mean
+          period: hour
+        type: custom:history-explorer-card
+        uiLayout:
+          selector: hide
+        view_layout:
+          position: main
+      type: vertical-stack
+    type: vertical-stack
+  - cards:
+    - subtitle: Sensors
+      title: Parameters
+      type: custom:mushroom-title-card
+    - align_state: center
+      animate: true
+      cache: true
+      color_thresholds:
+      - color: '#0a748c'
+        value: 70
+      - color: '#497eb0'
+        value: 72
+      - color: '#58c02b'
+        value: 78
+      - color: '#babf22'
+        value: 82
+      - color: '#c0392b'
+        value: 84
+      entities:
+      - entity: sensor.aquapi_cichlids_temperature
+        name: American Cichlids
+      - entity: sensor.average_indoor_temperature
+        name: Ambient
+      hours_to_show: 72
+      name: Temperature
+      show:
+        labels: true
+        legend: false
+      type: custom:mini-graph-card
+    - align_state: center
+      animate: true
+      cache: true
+      color_thresholds:
+      - color: '#0a748c'
+        value: 6.5
+      - color: '#497eb0'
+        value: 7
+      - color: '#670e80'
+        value: 7.5
+      - color: '#babf22'
+        value: 8
+      - color: '#c0392b'
+        value: 8.5
+      entities:
+      - entity: input_number.cichlids_ph
+        name: Cichlids
+      hours_to_show: 72
+      name: pH
+      show:
+        labels: true
+        legend: false
+      type: custom:mini-graph-card
+    - subtitle: Toxins & Elements
+      title: ''
+      type: custom:mushroom-title-card
+    - cards:
+      - align_state: center
+        animate: true
+        cache: true
+        color_thresholds:
+        - color: '#d96c14'
+          value: 0
+        - color: '#babf22'
+          value: 1
+        - color: '#c0392b'
+          value: 4
+        entities:
+        - entity: input_number.cichlids_ammonia
+          name: Cichlids
+        height: 150
+        hours_to_show: 72
+        name: Ammonia
+        show:
+          labels: true
+          legend: false
+        type: custom:mini-graph-card
+      - align_state: center
+        animate: true
+        cache: true
+        color_thresholds:
+        - color: '#d914d2'
+          value: 0
+        - color: '#babf22'
+          value: 1
+        - color: '#c0392b'
+          value: 3
+        entities:
+        - entity: input_number.cichlids_nitrite
+          name: Cichlids
+        height: 150
+        hours_to_show: 72
+        name: Nitrite
+        show:
+          labels: true
+          legend: false
+        type: custom:mini-graph-card
+      - align_state: center
+        animate: true
+        cache: true
+        color_thresholds:
+        - color: '#148ad9'
+          value: 0
+        - color: '#babf22'
+          value: 20
+        - color: '#c0392b'
+          value: 80
+        entities:
+        - entity: input_number.cichlids_nitrite
+          name: Cichlids
+        height: 150
+        hours_to_show: 72
+        name: Nitrate
+        show:
+          labels: true
+          legend: false
+        type: custom:mini-graph-card
+      - align_state: center
+        animate: true
+        cache: true
+        color_thresholds:
+        - color: '#0b8015'
+          value: 0
+        - color: '#babf22'
+          value: 2
+        - color: '#c0392b'
+          value: 8
+        entities:
+        - entity: input_number.cichlids_phosphate
+          name: Cichlids
+        height: 150
+        hours_to_show: 72
+        name: Phospahte
+        show:
+          labels: true
+          legend: false
+        type: custom:mini-graph-card
+      columns: 2
+      square: false
+      type: grid
+    type: vertical-stack
+  - cards:
+    - subtitle: Cichlids Aquarium
+      title: Power & Controls
+      type: custom:mushroom-title-card
+    - cards:
+      - card:
+          cards:
+          - entity: switch.ffd2_plug_2
+            name: Fluval LED
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            type: button
+          - align_state: center
+            animate: true
+            cache: true
+            entities:
+            - entity: sensor.cichlids_fluval_led_current_consumption
+            height: 150
+            hours_to_show: 72
+            line_color: '#c4a60c'
+            show:
+              icon: false
+              labels: true
+              legend: false
+              name: false
+            type: custom:mini-graph-card
+          type: horizontal-stack
+        style:
+          hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+            \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n \
+            \ flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+            \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+            \ unset !important; \n}\n"
+        type: custom:mod-card
+      - card:
+          cards:
+          - entity: switch.ffd2_plug_5
+            name: Return Pump
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            type: button
+          - align_state: center
+            animate: true
+            cache: true
+            entities:
+            - entity: sensor.cichlids_return_pump_current_consumption
+            height: 150
+            hours_to_show: 72
+            line_color: '#0f0b80'
+            name: Main Pump
+            show:
+              icon: false
+              labels: true
+              legend: false
+              name: false
+            type: custom:mini-graph-card
+          type: horizontal-stack
+        style:
+          hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+            \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n \
+            \ flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+            \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+            \ unset !important; \n}\n"
+        type: custom:mod-card
+      - card:
+          cards:
+          - entity: switch.ffd2_plug_4
+            name: Heater
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            type: button
+          - align_state: center
+            animate: true
+            cache: true
+            entities:
+            - entity: sensor.cichlids_heater_current_consumption
+            height: 150
+            hours_to_show: 72
+            line_color: '#0b6b80'
+            show:
+              icon: false
+              labels: true
+              legend: false
+              name: false
+            type: custom:mini-graph-card
+          type: horizontal-stack
+        style:
+          hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+            \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n \
+            \ flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+            \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+            \ unset !important; \n}\n"
+        type: custom:mod-card
+      - card:
+          cards:
+          - entity: switch.ffd2_plug_1
+            name: Marineland Emperor
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            type: button
+          - align_state: center
+            animate: true
+            cache: true
+            entities:
+            - entity: sensor.cichlids_marineland_emperor_current_consumption
+            height: 150
+            hours_to_show: 72
+            line_color: '#800b15'
+            show:
+              icon: false
+              labels: true
+              legend: false
+              name: false
+            type: custom:mini-graph-card
+          type: horizontal-stack
+        style:
+          hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+            \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n \
+            \ flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+            \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+            \ unset !important; \n}\n"
+        type: custom:mod-card
+      - card:
+          cards:
+          - entity: switch.ffd2_plug_3
+            name: Power Head
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            type: button
+          - align_state: center
+            animate: true
+            cache: true
+            entities:
+            - entity: sensor.cichlids_power_head_current_consumption
+            height: 150
+            hours_to_show: 72
+            line_color: '#690b80'
+            show:
+              icon: false
+              labels: true
+              legend: false
+              name: false
+            type: custom:mini-graph-card
+          type: horizontal-stack
+        style:
+          hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+            \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n \
+            \ flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+            \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+            \ unset !important; \n}\n"
+        type: custom:mod-card
+      - card:
+          cards:
+          - entity: switch.ffd2_plug_6
+            name: ATO & Air Pump
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            type: button
+          - align_state: center
+            animate: true
+            cache: true
+            entities:
+            - entity: sensor.cichlids_ato_air_pump_current_consumption
+            height: 150
+            hours_to_show: 72
+            line_color: '#0cc42b'
+            show:
+              icon: false
+              labels: true
+              legend: false
+              name: false
+            type: custom:mini-graph-card
+          type: horizontal-stack
+        style:
+          hui-horizontal-stack-card$: "buttons-card {\n  margin-left: 0px !important;\n\
+            \  margin-right: 0px !important;\n  margin-bottom: 0px !important;\n \
+            \ flex: unset !important; \n}\nmini-graph-card {\n  margin-right: 0px\
+            \ !important;\n  width: 60%;\n  margin-bottom: 0px !important;\n  flex:\
+            \ unset !important; \n}\n"
+        type: custom:mod-card
+      columns: 1
+      square: false
+      type: grid
+    type: vertical-stack
+  - cards:
+    - subtitle: Other Equipment
+      title: Automations
+      type: custom:mushroom-title-card
+    - cards:
+      - entity: script.aquarium_lights
+        show_icon: true
+        show_name: true
+        tap_action:
+          action: toggle
+        type: button
+      - type: custom:gap-card
+      - entity: light.cichlid_aquariums
+        icon: mdi:gesture-tap-hold
+        name: Kiosk
+        show_icon: false
+        show_name: true
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace/Aquariums?kiosk
+        type: button
+      - type: custom:fullscreen-card
+      columns: 2
+      square: false
+      type: grid
+    type: vertical-stack
+  - entities:
+    - entity: sensor.aquapi_cichlids_internal_temperature
+      name: Internal Temperature
+    - entity: sensor.aquapi_cichlids_hostname
+      name: Hostname
+    - entity: sensor.aquapi_cichlids_aquapi_version
+      name: Firmware Version
+    - entity: sensor.aquapi_cichlids_ip_address
+    - entity: sensor.aquapi_cichlids_wifi_signal_strength
+      name: WiFi Signal
+    - entity: sensor.aquapi_cichlids_esp32_hall_sensor
+    - entity: sensor.aquapi_cichlids_uptime
+    - entity: button.aquapi_cichlids_restart
+    title: Device Information
+    type: entities
+  - cards:
+    - apex_config:
+        chart:
+          fontFamily: Segoe UI, SegoeUI, sans-serif
+          height: 500px
+          offsetY: -20
+          pie:
+            donut:
+              label:
+                show: true
+        legend:
+          dataLabels:
+            dropShadow:
+              enabled: false
+            formatter: "EVAL:function(value, { seriesIndex, dataPointIndex, w }) {\n\
+              \  return Math.round(value * 10) / 10 + '%'\n}\n"
+            style:
+              fontFamily: Segoe UI, SegoeUI, sans-serif
+              fontSize: 10
+              fontWeight: 500
+          fontFamily: Segoe UI, SegoeUI, sans-serif
+          fontSize: 12
+          fontWeight: normal
+          formatter: "EVAL:function(seriesName, opts) {\n  return seriesName\n}\n"
+          itemMargin:
+            horizontal: 0
+          markers:
+            height: 8
+            width: 8
+          position: right
+          style: "#header__title {\n  font-size: var(--body-font-size) !important;\n\
+            \  font-weight: normal !important;\n  color: var(--primary-text-color)\
+            \ !important;\n  margin-top: 8px;\n}\n#graph-wrapper {\n  padding-top:\
+            \ 32px;\n}\n"
+          tooltip:
+            style:
+              fontFamily: Segoe UI, SegoeUI, sans-serif
+              fontSize: 12px
+        title:
+          style:
+            color: var(--primary-text-color)
+            fontSize: 12px
+      chart_type: donut
+      header:
+        show: true
+        title: Current Power
+      layout: minimal
+      series:
+      - entity: sensor.cichlids_fluval_led_current_consumption
+        name: Fluval LED
+      - entity: sensor.cichlids_return_pump_current_consumption
+        name: Return Pump
+      - entity: sensor.cichlids_ato_air_pump_current_consumption
+        name: ATO Pump
+      - entity: sensor.cichlids_marineland_emperor_current_consumption
+        name: Emperor Filter
+      - entity: sensor.cichlids_heater_current_consumption
+        name: Heater
+      - entity: sensor.cichlids_power_head_current_consumption
+        name: Power Head
+      type: custom:apexcharts-card
+      update_interval: 10sec
+    - apex_config:
+        chart:
+          fontFamily: Segoe UI, SegoeUI, sans-serif
+          height: 500px
+          offsetY: -20
+          pie:
+            donut:
+              label:
+                show: true
+        legend:
+          dataLabels:
+            dropShadow:
+              enabled: false
+            formatter: "EVAL:function(value, { seriesIndex, dataPointIndex, w }) {\n\
+              \  return Math.round(value * 10) / 10 + '%'\n}\n"
+            style:
+              fontFamily: Segoe UI, SegoeUI, sans-serif
+              fontSize: 10
+              fontWeight: 500
+          fontFamily: Segoe UI, SegoeUI, sans-serif
+          fontSize: 12
+          fontWeight: normal
+          formatter: "EVAL:function(seriesName, opts) {\n  return seriesName\n}\n"
+          itemMargin:
+            horizontal: 0
+          markers:
+            height: 8
+            width: 8
+          position: right
+          style: "#header__title {\n  font-size: var(--body-font-size) !important;\n\
+            \  font-weight: normal !important;\n  color: var(--primary-text-color)\
+            \ !important;\n  margin-top: 8px;\n}\n#graph-wrapper {\n  padding-top:\
+            \ 32px;\n}\n"
+          tooltip:
+            style:
+              fontFamily: Segoe UI, SegoeUI, sans-serif
+              fontSize: 12px
+        title:
+          style:
+            color: var(--primary-text-color)
+            fontSize: 12px
+      chart_type: donut
+      header:
+        show: true
+        title: Daily Energy
+      layout: minimal
+      series:
+      - entity: sensor.cichlids_fluval_led_today_s_consumption
+        name: Fluval LED
+      - entity: sensor.cichlids_return_pump_today_s_consumption
+        name: Return Pump
+      - entity: sensor.cichlids_ato_air_pump_today_s_consumption
+        name: ATO Pump
+      - entity: sensor.cichlids_marineland_emperor_today_s_consumption
+        name: Emperor Filter
+      - entity: sensor.cichlids_heater_today_s_consumption
+        name: Heater
+      - entity: sensor.cichlids_power_head_today_s_consumption
+        name: Power Head
+      type: custom:apexcharts-card
+    layout_type: custom:vertical-layout
+    type: custom:layout-card
+  icon: fas:fish
+  layout:
+    max_cols: 3
+  path: american-cichlid-aquarium
+  subview: true
+  theme: Caule Black Yellow Glass
+  title: American Cichlid Aquarium
+  type: custom:masonry-layout
+- badges: []
+  cards:
+  - content: Doser 1.2mL/min
+    title: Notes
+    type: markdown
+    view_layout:
+      position: sidebar
+  - display_options:
+      icon: action
+      primary_info: default
+      secondary_info:
+      - relative-time
+      - time
+      - additional-tasks
+    exclude:
+    - light.3d_printer_light
+    - light.bedroom_access_point
+    - light.bedroom_lamp
+    - light.computer_room
+    - light.computer_room_access_point
+    - light.front_door_light
+    - light.front_porch
+    - light.living_room_access_point
+    - script.aquapi_mixed_reef_update_and_upgrade
+    - script.cast_to_hub
+    - script.hub_cast_shuttle
+    - script.pc_lock
+    - script.pc_sleep
+    - script.reboot_octopi
+    - script.reefpi_update_and_upgrade
+    - script.sensorslcd
+    - script.set_ac
+    - script.set_ac_bedtime
+    - script.set_dynamic
+    - script.set_heat
+    - script.toggle_ro_pump
+    - script.wake_thebeast
+    - script.wol_starlapc
+    - switch.103l74da_led
+    - switch.3d_printer_light
+    - switch.adaptive_lighting_adapt_brightness_adaptive_lighting_pc_room
+    - switch.adaptive_lighting_adapt_color_adaptive_lighting_pc_room
+    - switch.adaptive_lighting_adaptive_lighting_pc_room
+    - switch.adaptive_lighting_sleep_mode_adaptive_lighting_pc_room
+    - switch.adguard_home_filtering
+    - switch.adguard_home_parental_control
+    - switch.adguard_home_protection
+    - switch.adguard_home_query_log
+    - switch.adguard_home_safe_browsing
+    - switch.adguard_home_safe_search
+    - switch.aquapi_raspberry_pi
+    - switch.bedroom_lamp
+    - switch.bedroom_speaker_do_not_disturb
+    - switch.computer_room_display_do_not_disturb
+    - switch.computer_room_speaker_do_not_disturb
+    - switch.front_porch_sensor_illuminance
+    - switch.front_porch_sensor_motion
+    - switch.kitchen_speaker_do_not_disturb
+    - switch.marine_aquapi_ready_led
+    - switch.marine_blue_led
+    - switch.marine_temperature_2_led
+    - switch.marine_temperature_led
+    - switch.marine_water_level_high_enabled
+    - switch.marine_water_level_low_enabled
+    - switch.mixed_reef_aquapi_ready_led
+    - switch.mixed_reef_water_level_high_enabled
+    - switch.mixed_reef_water_level_low_enabled_2
+    - switch.nzbget_download
+    - switch.octoprint_camera_snapshot
+    - switch.octoprint_connect_to_printer
+    - switch.octoprint_pause_print
+    - switch.octoprint_psu
+    - switch.pixel_6_2
+    - switch.pixel_nick
+    - switch.raspberrypi_raspberry_pi
+    - switch.starlapcwol
+    - switch.unnamed_device_100
+    - switch.unnamed_device_101
+    - switch.unnamed_device_102
+    - switch.unnamed_device_105
+    - switch.unnamed_device_106
+    - switch.unnamed_device_107
+    - switch.unnamed_device_108
+    - switch.unnamed_device_109
+    - switch.unnamed_device_110
+    - switch.unnamed_device_111
+    - switch.unnamed_device_112
+    - switch.unnamed_device_113
+    - switch.unnamed_device_82
+    - switch.unnamed_device_83
+    - switch.unnamed_device_84
+    - switch.unnamed_device_85
+    - switch.unnamed_device_86
+    - switch.unnamed_device_87
+    - switch.unnamed_device_88
+    - switch.unnamed_device_89
+    - switch.unnamed_device_90
+    - switch.unnamed_device_91
+    - switch.unnamed_device_92
+    - switch.unnamed_device_93
+    - switch.unnamed_device_94
+    - switch.unnamed_device_95
+    - switch.unnamed_device_96
+    - switch.unnamed_device_97
+    - switch.unnamed_device_98
+    - switch.unnamed_device_99
+    - switch.wake_on_lan
+    include:
+    - alarm_control_panel
+    - climate
+    - climate.kitchen
+    - light
+    - light.bedroom
+    - light.bedroom_lamp_2
+    - light.indoor_lights
+    - script
+    - sun
+    - switch
+    - vacuum
+    show_header_toggle: false
+    tags: []
+    time_step: 6
+    title: Schedules
+    type: custom:scheduler-card
+    view_layout:
+      position: main
+  - card_mod:
+      style:
+        ha-markdown:
+          $: "ha-markdown-element:first-of-type hr{\n  border-color: #303030;\n}\n"
+    content: '<h2> <ha-icon icon=''mdi:shield-half-full''></ha-icon> Watchman report
+      - Entities </h2> <h3>Missing Entities: {{ states.sensor.watchman_missing_entities.state
+      }} </h3> {%- for item in state_attr("sensor.watchman_missing_entities", "entities")
+      %} <hr> <table><tr> <td> <ha-icon icon=''mdi: {%- if item.state=="missing"-%}cloud-alert''
+      {%- elif item.state=="unavail" -%}cloud-off-outline'' {%- else-%}cloud-question''
+      {%- endif -%} ></ha-icon> {{ item.id }} [{{item.state}}] <a title="{{item.occurrences}}">
+      {{item.occurrences.split(''/'')[-1].split('':'')[0]}}</a> </td></tr></table>
+      {%- endfor %}'
+    type: markdown
+  - card_mod:
+      style:
+        ha-markdown:
+          $: "ha-markdown-element:first-of-type hr{\n  border-color: #303030;\n}\n"
+    content: '<h2 class="some"> <ha-icon icon=''mdi:shield-half-full''></ha-icon>
+      Watchman report - Services </h2> <h3> Missing Services: {{ states.sensor.watchman_missing_services.state
+      }} </h3> {%- for item in state_attr("sensor.watchman_missing_services", "entities")
+      %} <hr><table><tr> <td>  <ha-icon icon=''mdi:cloud-alert''></ha-icon> {{ item.id
+      }} <a title="{{item.occurrences}}">{{item.occurrences.split(''/'')[-1].split('':'')[0]}}</a>
+      </td></tr></table> {%- endfor %}'
+    type: markdown
+    view_layout:
+      position: sidebar
+  icon: mdi:text
+  path: notes
+  title: Notes
+  type: sidebar
+- badges: []
+  cards:
+  - content: "# [AquaPi](https://github.com/TheRealFalseReality/AquaPi)\nThe Aquarium\
+      \ meets the Smart Home!  \nPowered by Reef-Pi and Controlled by HomeAssistant.\n\
+      \nBasic UI\n![Basic UI](https://user-images.githubusercontent.com/106857076/236688799-8565d281-13e9-4a98-83ca-60933a509a5e.png)\n\
+      \n<details>\n<summary>Advanced UI</summary>\n\n| ![Example UI1](https://user-images.githubusercontent.com/106857076/236688777-846e7a3d-2fd2-4e98-8f9c-48cfeec7d34c.png)\
+      \  | ![Example UI2](https://user-images.githubusercontent.com/106857076/236688759-711f32b8-b182-4808-9adf-8385ac39ba29.png)\
+      \ |\n| ------------- | ------------- |\n\n</details>  \n\nyaml examples located\
+      \ in: [`homeassistant/UI_Config_Examples`](https://github.com/TheRealFalseReality/AquaPi/tree/main/homeassistant/UI_Config_Examples)\
+      \  \n[Download Backup](https://github.com/TheRealFalseReality/AquaPi/blob/68f6d65aedcf5aa9f6776524bb6e7cb93cf6ddd0/homeassistant/core_2023_4_6.tar)\n\
+      Then use the contents to overwrite the contents in home/pi/docker/homeassistant\
+      \ to restore a preconfigured HA UI and Config, then restart homeassistant: `docker\
+      \ restart homeassistant`. Installing samba and using another PC works well.\n\
+      \n## Information  \n\n### Recommended Hardware\n**Control Board:**  \n**Raspberry\
+      \ Pi 3B(+)** or later, or something similar with at least 1GB of RAM. This was\
+      \ tested with a RPi 3A+ with limited success, but froze due to running out of\
+      \ memeory, 512MB.  \nIf you don't want HomeAssistant or already have an instance\
+      \ on another device, you can use almost anything, for example, a Pi Zero 2.\
+      \  \n\n**Temperature** \n  - DS18B20 Waterproof Thermistor  \n  \n**Water Level**\
+      \ \n  - Food Grade Optical Infrared Water Liquid Level Sensor  \n  \n**pH:**\
+      \ Atlas Scientific pH Kit  \n  - EZO™ pH Circuit  \n  - Double junction silver\
+      \ / silver chloride Lab Grade pH Probe\n  - Electrically Isolated EZO™ Carrier\
+      \ Board\n\n### **Prerequisite!!** A Raspberry Pi (or something similar) running\
+      \ Raspberry Pi OS. (32-bit Lite, tested. 64-bit should work as well, uses more\
+      \ memory, however.)  \nGet [Raspberry Pi Imager](https://www.raspberrypi.com/software/)\n\
+      \n### Software Used  \n[**reef-pi**](https://github.com/reef-pi/reef-pi): An\
+      \ opensource reef tank controller based on Raspberry Pi.  \n[**Home Assistant**](https://www.home-assistant.io/):\
+      \ Open source home automation that puts local control and privacy first.  \n\
+      [**Docker**](https://www.docker.com/): a set of platform as a service products\
+      \ that use OS-level virtualization to deliver software in packages called containers.\
+      \ \n[**Portainer**](https://www.portainer.io/): a way to manage containers.\
+      \  \n[**FileBrowser**](https://hub.docker.com/r/hurlenko/filebrowser/): a file\
+      \ managing interface within a specified directory and it can be used to upload,\
+      \ delete, preview, rename and edit your files.  \n\n## Update Hostname\nRun\
+      \ Script:\n```ruby\nsudo bash ~/AquaPi/set_hostname.sh\n```\nOr use `sudo raspi-config`\
+      \ (`System Options -> Hostname`)\n\n## Change Wireless LAN (Wifi)\n```ruby\n\
+      sudo raspi-config\n```\n`System Options -> Wireless LAN`  \nEnter Wifi Name\
+      \ and password.\n\n## AquaPi Installation Instructions\n\n<details>\n<summary>View\
+      \ Instructions</summary>\n\n**Beging with SSH**  \nssh: default user: `pi` pswd:\
+      \ `raspberry`\n\nSkip step 3 if you do not want HomeAssistant Installed.\n\n\
+      **1) Always Update Enviorment**\nUpdate and Upgrade:\n```ruby\nsudo apt update\
+      \ && sudo apt upgrade -y\n```\n\n**2) Download AquaPi Scripts**\nInstall git:\n\
+      ```ruby\nsudo apt install git -y\n```\nClone this Repo:\n```ruby\ncd ~ && git\
+      \ clone https://github.com/TheRealFalseReality/AquaPi.git\n```\n\n**3) Install\
+      \ Docker & HomeAssistant**  \nYou can skip this step if you already have a HomeAssistant\
+      \ instance or simply do not want or need it.  \n\n**Docker:**\n```ruby\ncurl\
+      \ -sSL https://get.docker.com | sh\n```\nAdd user pi:\n```ruby\nsudo usermod\
+      \ -aG docker pi\n```\n**HomeAssistant:**\n```ruby\nsudo bash ~/AquaPi/homeassistant/install_hassio.sh\n\
+      ```\nTake ownership:\n```ruby\nsudo chown -R pi:pi /home/pi/docker/homeassistant/\n\
+      ```\nLocated:\n```ruby\n<IP-ADDRESS>:8123\n```\n\n**4) Install Reef-Pi**\n```ruby\n\
+      sudo bash ~/AquaPi/reefpi/install_reefpi.sh\n```\n**Web Interface:**\n```ruby\n\
+      <IP-ADDRESS>\n```\n**5) Setup reef-pi w/[Guide](https://www.capitalcityaquatics.com/aquapi-guide)**\n\
+      The reef-pi install scrip installs whats needed for the AquaPi sensors to work\
+      \ properly, making the the EZO and Optical sensors work without any user input.\
+      \ The temperature sensor(s), however, need to be assigned. Each one is given\
+      \ a unique ID and reef-pi does not auto-mount them.  \n\nEssentially, under\
+      \ the `Temperatures` tab in reef-pi, edit the `Temperature` entry (edit icon\
+      \ next to 'Calibrate'), and click the `Sensor` drop down menu. Hopefully a sensor\
+      \ starting with the ID of 28 will be listed, select it.\n\nA guide to reef-pi\
+      \ in reference to AqauPi is on my website: [capitalcityaquatics.com/aquapi-guide](https://www.capitalcityaquatics.com/aquapi-guide)(SOON)\n\
+      \n**6) Remove files**\n```ruby\nsudo rm -r ~/AquaPi/\n```\n\n</details>\n\n\
+      ## Default Weblinks & Logins\n\n<details>\n<summary>See Default Passwords, Hostnames\
+      \ and URLs for AquaPi.</summary>\n\n[**HomeAssistant**](https://www.home-assistant.io/):\
+      \  \n**Hostname**: [aquapi.local:8123](http://aquapi.local:8123/)  \n**User**:\
+      \ aquapi  \n**pswd**: aquapi  \nInstalled as Docker Container:  \n/home/pi/docker/homeassistant/\
+      \  \n\n[**reef-pi**](https://reef-pi.github.io/):  \n**Hostname**: [aquapi.local](http://aquapi.local/)\
+      \  \n**User**: reef-pi  \n**pswd**: reef-pi  \nCheck status: `sudo systemctl\
+      \ status reef-pi.service`   \n\n[**Portainer**](https://www.portainer.io/) \
+      \ \n**Hostname**: [aquapi.local:9000](aquapi.local:9000)  \n**User**: admin\
+      \  \n**pswd**: homeassistant  \n\n[**FileBrowser**](https://hub.docker.com/r/hurlenko/filebrowser/):\
+      \  \n**Hostname**: [aquapi.local:443](aquapi.local:443)  \n**User**: admin \
+      \ \n**pswd**: admin  \n\n**SSH** - Using Command Line Interaface (terminal):\
+      \  \n**Windows Users**: use [**Putty**](https://www.putty.org/) and use `aquapi`\
+      \ to connect.  \nssh user@IP-Address  \nMac & Linux terminal:\n```ruby\nssh\
+      \ pi@aquapi\n```\n**Hostname**: aquapi.local  \n**User**: pi  \n**pswd**: raspberry\
+      \  \n\n</details>\n\n## Optional\n\n\n### **[Samba Share](https://github.com/samba-team/samba)**\
+      \ \n\n<details>\n<summary>Install Samba</summary>\n\nFile sharing  \nIf you\
+      \ want to copy the Preconfigured HomeAssistant config and UI for AquaPi.  \n\
+      [Using this Method](https://pimylifeup.com/raspberry-pi-samba/)\n\nInstall samba\n\
+      ```ruby\nsudo apt-get install samba samba-common-bin\n```\nEdit the samba configuration\
+      \ file to your liking:\n```ruby\nsudo nano /etc/samba/smb.conf\n```\nAdd user,\
+      \ pi, and enter a password:\n```ruby\nsudo smbpasswd -a pi\n```\nRestart samba:\n\
+      ```ruby\nsudo systemctl restart smbd\n```\n\nOr run the following script to\
+      \ share the `homes` directory, promting the user for a password:\n```ruby\n\
+      sudo bash ~/AquaPi/samba/install_samba.sh\n```\n\n</details>\n\n### **[Glances](https://github.com/nicolargo/glances)**\n\
+      Keep an eye on your system  \n\n<details>\n<summary>Install Glances</summary>\n\
+      \nInstall glances (Docker)\n```ruby\ndocker run -d --restart=\"always\" -p 61208-61209:61208-61209\
+      \ -e TZ=\"${TZ}\" -e GLANCES_OPT=\"-w\" -v /var/run/docker.sock:/var/run/docker.sock:ro\
+      \ --pid host nicolargo/glances:latest-full\n```\n\n</details>\n\n### **System\
+      \ Sensors**\nOptional system sensors:  \n[Sennevds/system_sensors](https://github.com/Sennevds/system_sensors)\n\
+      \n## Calibrate Temperature Probe - DS18b20\n[Useful Doc](https://www.cde.state.co.us/nutrition/osnfoodsafetyhowtocalibrateathermometer)\
+      \  \nPut the thermometer stem or probe into the ice water. Make sure the sensing\
+      \ area is under water. Wait 30 seconds or until the reading stays steady. Adjust\
+      \ the thermometer so it reads 32˚F (0˚C) by clicking Calibrate to the right\
+      \ and enter 0.\n\n## EZO Circuit Board & Probe  \n### **Connect EZO**\n<details>\n\
+      <summary>View Instructions</summary>\n\nUseful Docs to follow:  \n[EZO Raspberry\
+      \ Pi Sample Code](https://files.atlas-scientific.com/pi_sample_code.pdf)  \n\
+      \nEZO in I2C mode (from UART)   \n```\nDisconnect ground (power off)\nDisconnect\
+      \ TX and RX\nConnect (or short) TX to PGND\nConfirm RX is disconnected\nConnect\
+      \ ground (power on)\nWait for LED to change from Green to Blue\n```\n\n**Using\
+      \ Atlas sample code (CLI) :**  \n*RECOMMENDED Method*    \nWill not work with\
+      \ AtlasIoT active and using probe. Make sure to stop that service `sudo systemctl\
+      \ stop AtlasIoT.service`  \n\n**Clone Atlas Scientific repo:**\n```ruby\ncd\
+      \ ~ && git clone https://github.com/AtlasScientific/Raspberry-Pi-sample-code.git\n\
+      ```\n\n**Test if Detected:**\n```ruby\nsudo i2cdetect -y 1\n```\n\n**Run sample\
+      \ code:**\n```ruby\ncd ~/Raspberry-Pi-sample-code && sudo python i2c.py\n```\
+      \ \n\nContinuous reading with `Poll`, single reading with `R`.    \nSee if calibrated\
+      \ with `Cal,?`.  \nClear calibration with `Cal,clear` (if wanted, not necessary).\
+      \  \n\n</details>\n\n### **Calibrate pH**   \n<details>\n<summary>See Calibration\
+      \ Instructions for EZO pH Circuit</summary>\n  \nUseful docs to follow:  \n\
+      [EZO pH Circuit Datasheet](https://files.atlas-scientific.com/pH_EZO_Datasheet.pdf)\
+      \  \n\nALWAYS start with **Midpoint** calibration (7.00) then **Low** and end\
+      \ with **High**   \n\n**Take Reading(s):** Repeat until readings stabilize,\
+      \ ~1-2 minutes, for each calibration solution. Then issue Calibration commands.\
+      \ Doing so too early can cause probe to drift.  \n```ruby\nR\n```  \nor\n```ruby\n\
+      Poll\n```  \n**Midpoint**\n```ruby\nCal,mid,7.00\n```ruby\n**Low**\n```\nCal,low,4.00\n\
+      ```ruby\n**High**\n```ruby\nCal,high,10.00\n```\n</details>\n\n### **Calibrate\
+      \ EC - Conductivity (Salinity)**  \n\n<details>\n<summary>See Calibration Instructions\
+      \ for EZO pH Circuit</summary>\n  \nUseful docs to follow:  \n[EZO EC Circuit\
+      \ Datasheet](https://files.atlas-scientific.com/EC_EZO_Datasheet.pdf)  \n  \n\
+      ALWAYS start with **Dry** calibration (7.00) then **Low** and end with **High**\
+      \   \n\n**Take Reading(s):** Repeat until readings stabilize, ~1-2 minutes,\
+      \ for each calibration solution. Then issue Calibration commands. Doing so too\
+      \ early can cause probe to drift.  \n```ruby\nR\n```  \nor\n```ruby\nPoll\n\
+      ```  \n**Dry**\n```ruby\nCal,dry\n```\n**Single Point:**\n```ruby\nCal,84\n\
+      ```\n**Two Point:**  \n**Low**\n```ruby\nCal,low,12880\n```\n**High**\n```ruby\n\
+      Cal,high,80000\n```\n**Set Salinty (ppt) as Output:**  \n\n**Disable Conductivity\
+      \ (mS/cm):**\n```ruby\nO,EC,0\n```\n**Enable Salinity (ppt):**\n```ruby\nO,S,1\n\
+      ```\n\n</details>\n\n### **AtlasIoTCore (32-bit only!)**\n\n<details>\n<summary>See\
+      \ Calibration Instructions using AtlasIoT Software. NOT RECOMMEDED</summary>\n\
+      \n**Using AtlasIoT Sotftware:**  \n*AtlasIoT is NOT RECOMMENDED to use, use\
+      \ CLI calibration meted as described above.*  \nAfter following the above to\
+      \ install AtalasIoT and have access to the web inerface and sensors are working,\
+      \ you can calibrate the sensors from the UI.  Click the area of the sensors,\
+      \ then click the gears on the botton-left. This will bring up the calibration\
+      \ UI. This should be easy to use, following proper clalibarion order and methods.\
+      \ \n\n[Atlas IoT Monitoring Software](https://atlas-scientific.com/downloadable/atlas-iot-software/)\
+      \  \n[Installation Guide](https://files.atlas-scientific.com/How-to-install-Atlas-iot-software.pdf)\
+      \  \nYou can use this software to calibrate your EZO probes, or as an alternative\
+      \ to view your EZO probe data other than HomeAssistant. This does not work well\
+      \ if reef-pi is also using EZO sensors, turn them off in reef-pi, then reboot.\n\
+      \n**Auto-install:**\n```ruby\nsudo bash ~/AquaPi/AtlasIoT/install_atlasiot.sh\n\
+      ```  \nThen take ownership:\n```ruby\nsudo chmod 777 /home/pi/AtlasIoTCore\n\
+      ```\nNow start: \n```ruby\n./AtlasIOTCore –urls \"http://*:8080\"\n```\n**Or\
+      \ Manually:**\n```ruby\nsudo wget https://files.atlas-scientific.com/AtlasIoT.zip\n\
+      sudo mkdir /home/pi/AtlasIoTCore\nsudo unzip -o -d /home/pi/AtlasIoTCore AtlasIoT.zip\n\
+      sudo chmod 777 /home/pi/AtlasIoTCore/AtlasIOTCore\n``` \n```ruby\ncd ~/AtlasIoTCore\
+      \ && ./AtlasIOTCore –urls \"http://*:8080\"\n```  \n\n**Web Interface:**\n```ruby\n\
+      aquapi.local:3200\n```\n\nAtlasIoT sometimes doesn't always recognize the sesnors.\
+      \ Try rebooting the device or running the software in standalone mode for more\
+      \ information.\n\n**Update AtlasIoT**\n```ruby\nsudo bash ~/AquaPi/AtlasIoT/update_atlasiot.sh\n\
+      ```\nThen take ownership:\n```ruby\nsudo chmod 777 /home/pi/AtlasIoTCore/AtlasIOTCore\n\
+      ```ruby\nOr manually:\n```ruby\nsudo wget https://files.atlas-scientific.com/AtlasIoT.zip\
+      \ \nsudo unzip -o -d /home/pi/AtlasIoTCore AtlasIoT.zip\nsudo chmod 777 /home/pi/AtlasIoTCore/AtlasIOTCore\n\
+      ```\n\n</details>\n\n## Useful Links:\n  \n<details>\n<summary>See Links</summary>\n\
+      \n[reef-pi](https://reef-pi.github.io/)  \n[Docker](https://pimylifeup.com/raspberry-pi-docker/)\
+      \  \n[Docker Compose](https://dev.to/elalemanyo/how-to-install-docker-and-docker-compose-on-raspberry-pi-1mo)\
+      \  \n[HomeAssistant](https://www.home-assistant.io/installation/)  \n[HomeAssitant\
+      \ via Docker Compose](https://www.homeautomationguy.io/blog/home-assistant-tips/installing-docker-home-assistant-and-portainer-on-ubuntu-linux)\
+      \  \n[Mosquitto via Docker Compose](https://github.com/vvatelot/mosquitto-docker-compose)\
+      \  \n[samba](https://pimylifeup.com/raspberry-pi-samba/)  \n[AtlasIoT Installation\
+      \ Guide](https://files.atlas-scientific.com/How-to-install-Atlas-iot-software.pdf)\
+      \  \n[EZO Raspberry Pi Sample Code](https://files.atlas-scientific.com/pi_sample_code.pdf)\
+      \   \n[EZO pH Circuit Datasheet](https://files.atlas-scientific.com/pH_EZO_Datasheet.pdf)\
+      \  \n[EZO EC Circuit Datasheet](https://files.atlas-scientific.com/EC_EZO_Datasheet.pdf)\
+      \  \n  \n</details>\n"
+    type: markdown
+  icon: mdi:pi
+  path: aquapi
+  title: AquaPi
+  type: panel
