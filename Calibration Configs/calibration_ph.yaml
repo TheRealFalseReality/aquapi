@@ -1,3 +1,7 @@
+# Enable logging
+logger:
+  level: verbose
+
 sensor:
   # EZO Circuits (yellow - SCL/RX, blue - SDA/TX)
   # EZO Circuit - pH
