@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 6/2023
-  appVersion: "0.17"
+  appVersion: "0.17_1"
 
   # pins
   dallasPin: "4"
@@ -245,6 +245,16 @@ sensor:
     index: 1
     name: "Temperature 2"
     disabled_by_default: true
+    
+  - platform: template
+    id: temp_f
+    lambda: |-
+      return id(temp_1).state * 9 / 5 + 32;
+
+  - platform: template
+    id: temp_f_2
+    lambda: |-
+      return id(temp_1).state * 9 / 5 + 32;
 
 binary_sensor:
   # Optical Sensor - LOW (yellow)
@@ -334,13 +344,13 @@ text_sensor:
     id: temp_range
     icon: mdi:thermometer-water
     lambda: |-
-      if(id(temp_1).state <= id(range_cool).state ) {
+      if(id(temp_f).state <= id(range_cool).state ) {
         return {"Cool"};
       }
-      if(id(temp_1).state <= id(range_warm).state && id(temp_1).state > id(range_cool).state) {
+      if(id(temp_f).state <= id(range_warm).state && id(temp_f).state > id(range_cool).state) {
         return {"OK"};
       }
-      if(id(temp_1).state > id(range_warm).state ) {
+      if(id(temp_f).state > id(range_warm).state ) {
         return {"Warm"};
       }     
       else {
@@ -353,13 +363,13 @@ text_sensor:
     icon: mdi:thermometer-water
     disabled_by_default: true
     lambda: |-
-      if(id(temp_2).state <= id(range_cool).state ) {
+      if(id(temp_f_2).state <= id(range_cool).state ) {
         return {"Cool"};
       }
-      if(id(temp_2).state <= id(range_warm).state && id(temp_2).state > id(range_cool).state) {
+      if(id(temp_f_2).state <= id(range_warm).state && id(temp_f_2).state > id(range_cool).state) {
         return {"OK"};
       }
-      if(id(temp_2).state > id(range_warm).state ) {
+      if(id(temp_f_2).state > id(range_warm).state ) {
         return {"Warm"};
       }     
       else {
@@ -420,8 +430,9 @@ number:
     name: "Temp. Range: Cool"
     id: range_cool
     optimistic: true
-    min_value: 55
-    max_value: 75
+    mode: box
+    min_value: 0
+    max_value: 100
     step: 1
     restore_value: True
     initial_value: 72
@@ -431,8 +442,9 @@ number:
     name: "Temp. Range: Warm"
     id: range_warm
     optimistic: true
-    min_value: 75
-    max_value: 95
+    mode: box
+    min_value: 0
+    max_value: 100
     step: 1
     restore_value: True
     initial_value: 82
