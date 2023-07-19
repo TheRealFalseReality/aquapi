@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 6/2023
-  appVersion: "0.16.3.1"
+  appVersion: "0.17"
 
   # pins
   dallasPin: "4"
@@ -28,7 +28,6 @@ substitutions:
   addHUM: "111"
   # CO2 circuit, who's address is 105
   addCO2: "105"
-
 
 esphome:
   name: "${name}"
@@ -233,32 +232,16 @@ sensor:
     state_class: "measurement"
     disabled_by_default: true
 
-  # # DHT
-  # - platform: absolute_humidity
-  #   name: Absolute Humidity
-  #   temperature: air_temperature
-  #   humidity: relative_humidity
-
-  # # - platform: dht
-  #   pin: 5
-  #   temperature:
-  #     name: "Temperature"
-  #     id: air_temperature
-  #   humidity:
-  #     name: "Humidity"
-  #     id: relative_humidity
-  #   update_interval: 60s
-
   # Temperature Probes
   - platform: dallas
+    id: temp_1
     icon: mdi:thermometer-lines
-    # address: 0xe58000003203d628
     index: 0
     name: "Temperature"
 
   - platform: dallas
+    id: temp_2
     icon: mdi:thermometer-lines
-    # address: 0xe58000003203d628
     index: 1
     name: "Temperature 2"
     disabled_by_default: true
@@ -346,6 +329,43 @@ text_sensor:
       name: Mac Address
       icon: mdi:chip
 
+  - platform: template
+    name: Temperature Range
+    id: temp_range
+    icon: mdi:thermometer-water
+    lambda: |-
+      if(id(temp_1).state <= id(range_cool).state ) {
+        return {"Cool"};
+      }
+      if(id(temp_1).state <= id(range_warm).state && id(temp_1).state > id(range_cool).state) {
+        return {"OK"};
+      }
+      if(id(temp_1).state > id(range_warm).state ) {
+        return {"Warm"};
+      }     
+      else {
+        return {"Unknown"};
+      }  
+
+  - platform: template
+    name: Temperature Range 2
+    id: temp_range_2
+    icon: mdi:thermometer-water
+    disabled_by_default: true
+    lambda: |-
+      if(id(temp_2).state <= id(range_cool).state ) {
+        return {"Cool"};
+      }
+      if(id(temp_2).state <= id(range_warm).state && id(temp_2).state > id(range_cool).state) {
+        return {"OK"};
+      }
+      if(id(temp_2).state > id(range_warm).state ) {
+        return {"Warm"};
+      }     
+      else {
+        return {"Unknown"};
+      }  
+
 button:
   # Soft Restart
   - platform: restart
@@ -394,3 +414,26 @@ button:
             id(ec_ezo).send_custom("O,SG,0");
     entity_category: "Config"
     disabled_by_default: true
+
+number:
+  - platform: template
+    name: "Temp. Range: Cool"
+    id: range_cool
+    optimistic: true
+    min_value: 55
+    max_value: 75
+    step: 1
+    restore_value: True
+    initial_value: 72
+    entity_category: "Config"
+
+  - platform: template
+    name: "Temp. Range: Warm"
+    id: range_warm
+    optimistic: true
+    min_value: 75
+    max_value: 95
+    step: 1
+    restore_value: True
+    initial_value: 82
+    entity_category: "Config"
