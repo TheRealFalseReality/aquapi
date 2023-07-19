@@ -427,7 +427,7 @@ button:
 
 number:
   - platform: template
-    name: "Temp. Range: Cool"
+    name: "Temp. Cool"
     id: range_cool
     optimistic: true
     mode: box
@@ -439,7 +439,7 @@ number:
     entity_category: "Config"
 
   - platform: template
-    name: "Temp. Range: Warm"
+    name: "Temp. Warm"
     id: range_warm
     optimistic: true
     mode: box
