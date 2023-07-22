@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 6/2023
-  appVersion: "0.17_1"
+  appVersion: "0.17.2"
 
   # pins
   dallasPin: "4"
@@ -331,7 +331,7 @@ text_sensor:
       icon: mdi:ip-network
     ssid:
       name: Connected SSID
-      icon: mdi:wifi-star
+      icon: mdi:wifi-arrow-left-right
     bssid:
       name: Connected BSSID
       icon: mdi:wifi-star
@@ -429,6 +429,7 @@ number:
   - platform: template
     name: "Temp. Cool"
     id: range_cool
+    icon: mdi:water-thermometer
     optimistic: true
     mode: box
     min_value: 0
@@ -440,6 +441,7 @@ number:
 
   - platform: template
     name: "Temp. Warm"
+    icon: mdi:water-alert
     id: range_warm
     optimistic: true
     mode: box
