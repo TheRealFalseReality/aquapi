@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 6/2023
-  appVersion: "0.17.2"
+  appVersion: "0.18"
 
   # pins
   dallasPin: "4"
@@ -268,7 +268,7 @@ binary_sensor:
         pullup: true
     name: "Optical Sensor: Low"
     filters:
-      - delayed_on: 30ms
+      - delayed_on_off: 30ms
 
   # Optical Sensor - HIGH (blue)
   - platform: gpio
@@ -281,7 +281,7 @@ binary_sensor:
         pullup: true
     name: "Optical Sensor: High"
     filters:
-      - delayed_on: 30ms
+      - delayed_on_off: 30ms
 
 text_sensor: 
   # Hostname
@@ -309,6 +309,7 @@ text_sensor:
     icon: mdi:waves-arrow-up
     name: "Water Level"
     id: water_level
+    update_interval: 10s
     lambda: |-
       if(id(os_high).state == true && id(os_low).state == true) {
         // Water Level is High
