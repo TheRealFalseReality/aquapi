@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 6/2023
-  appVersion: "0.17.3"
+  appVersion: "0.18"
 
   # pins
   dallasPin: "4"
@@ -61,6 +61,8 @@ wifi:
     password: "password"
 
 captive_portal:
+
+web_server:
 
 # Sets up Bluetooth LE (Only on ESP32) to allow the user
 # to provision wifi credentials to the device.
