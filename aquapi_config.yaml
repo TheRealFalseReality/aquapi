@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 6/2023
-  appVersion: "0.18"
+  appVersion: "0.18.1"
 
   # pins
   dallasPin: "4"
@@ -398,7 +398,7 @@ button:
             id(ec_ezo).send_custom("O,S,1");
             id(ec_ezo).send_custom("O,SG,0");
     entity_category: "Config"
-    disabled_by_default: true
+    disabled_by_default: false
             
   # Output Specific Gravity
   - platform: template
@@ -412,7 +412,7 @@ button:
             id(ec_ezo).send_custom("O,S,0");
             id(ec_ezo).send_custom("O,SG,1");
     entity_category: "Config"
-    disabled_by_default: true
+    disabled_by_default: false
 
   # Output Conductivity
   - platform: template
@@ -426,7 +426,7 @@ button:
             id(ec_ezo).send_custom("O,S,0");
             id(ec_ezo).send_custom("O,SG,0");
     entity_category: "Config"
-    disabled_by_default: true
+    disabled_by_default: false
 
 number:
   - platform: template
