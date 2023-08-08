@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 6/2023
-  appVersion: "0.18.1"
+  appVersion: "0.18.2"
 
   # pins
   dallasPin: "4"
@@ -361,7 +361,7 @@ text_sensor:
       }  
 
   - platform: template
-    name: Temperature Range 2
+    name: Temperature 2 Range
     id: temp_range_2
     icon: mdi:thermometer-water
     disabled_by_default: true
