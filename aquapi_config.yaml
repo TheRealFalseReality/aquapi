@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 6/2023
-  appVersion: "0.18.2"
+  appVersion: "0.18.3"
 
   # pins
   dallasPin: "4"
@@ -291,7 +291,6 @@ text_sensor:
     name: "Hostname"
     id: hostname
     icon: mdi:cellphone-arrow-down
-    update_interval: 600s
     lambda: |-
       return {"${name}"};
     entity_category: "diagnostic"
