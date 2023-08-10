@@ -1,7 +1,16 @@
 # AquaPi for ESPHome
 
 The Aquarium meets the Smart Home! Monitor your Aquarium's Temperature and Water Level. With EZO Circuit Boards and Probe upgrades, you can also monitor your pH, salinity, disscolved oxygen and more while being compatible with all other EZO boards and probes.
-Powered by an esp32 and Controlled by HomeAssistant..
+Powered by an esp32 and Controlled by HomeAssistant.
+Use the 'View on GitHub' link above for more information and make suggestions.
+
+# Installation
+
+You can use the button below to install the pre-built firmware directly to your device via USB from the browser.
+
+<esp-web-install-button manifest="./manifest.json"></esp-web-install-button>
+
+<script type="module" src="https://unpkg.com/esp-web-tools@9.1.0/dist/web/install-button.js?module"></script>
 
 [Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi)
 
@@ -18,14 +27,6 @@ Basic UI
 
 yaml examples located in: [`example HomeAssistant configs and templates`](https://github.com/TheRealFalseReality/aquapi/tree/main/example%20HomeAssistant%20configs%20and%20templates)  
 [Download HomeAssistant Backup](https://github.com/TheRealFalseReality/aquapi/blob/d9ae345013caffa58344b626c5c5f0d49301c17f/example%20HomeAssistant%20configs%20and%20templates/Backup.tar) if you want to start with a pre-configured HomeAssistant Instance.
-
-# Installation
-
-You can use the button below to install the pre-built firmware directly to your device via USB from the browser.
-
-<esp-web-install-button manifest="./manifest.json"></esp-web-install-button>
-
-<script type="module" src="https://unpkg.com/esp-web-tools@9.1.0/dist/web/install-button.js?module"></script>
 
 ## Hardware Used
 **Control Board:**  
