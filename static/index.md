@@ -1,7 +1,7 @@
 # AquaPi for ESPHome
 
 The Aquarium meets the Smart Home! Monitor your Aquarium's Temperature and Water Level. With EZO Circuit Boards and Probe upgrades, you can also monitor your pH, salinity, disscolved oxygen and more while being compatible with all other EZO boards and probes.
-Powered by an esp32 and Controlled by HomeAssistant.
+Powered by an esp32 and Controlled by HomeAssistant.  
 Use the 'View on GitHub' link above for more information and make suggestions.
 
 # Installation
