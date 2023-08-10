@@ -41,6 +41,9 @@ yaml examples located in: [`example HomeAssistant configs and templates`](https:
   - Conductivity Probe: 5 µS/cm to 200,000 µS/cm
   - Electrically Isolated EZO™ Carrier Board
 
+**Other EXO probes that should work but not yet tested:**
+Dissolved Oxygen, Pump, Humidity, Carbon Dioxide, Temperture
+
 **Prerequisite!!** A Raspberry Pi (or something similar) running HomeAssistant to communicate and interact with the ESP32 via `homeassistant.local:8123`.
 Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 
