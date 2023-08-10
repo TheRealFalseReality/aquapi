@@ -295,6 +295,21 @@ text_sensor:
       return {"${name}"};
     entity_category: "diagnostic"
 
+  # Wifi Info
+  - platform: wifi_info
+    ip_address:
+      name: IP Address
+      icon: mdi:ip-network
+    ssid:
+      name: Connected SSID
+      icon: mdi:wifi-arrow-left-right
+    bssid:
+      name: Connected BSSID
+      icon: mdi:wifi-star
+    mac_address:
+      name: Mac Address
+      icon: mdi:chip
+
   # AquaPi Version
   - platform: template
     name: "AquaPi Version"
@@ -327,20 +342,7 @@ text_sensor:
         return {"Uknown or Error"};
       }
 
-  - platform: wifi_info
-    ip_address:
-      name: IP Address
-      icon: mdi:ip-network
-    ssid:
-      name: Connected SSID
-      icon: mdi:wifi-arrow-left-right
-    bssid:
-      name: Connected BSSID
-      icon: mdi:wifi-star
-    mac_address:
-      name: Mac Address
-      icon: mdi:chip
-
+  # Temperature Range
   - platform: template
     name: Temperature Range
     id: temp_range
@@ -377,6 +379,15 @@ text_sensor:
       else {
         return {"Unknown"};
       }  
+
+  # GitHub Project URL
+  - platform: template
+    name: GitHub
+    id: github
+    icon: mdi:github
+    lambda: |-
+      return {"github.com/TheRealFalseReality/aquapi"};
+    entity_category: "diagnostic"
 
 button:
   # Soft Restart
