@@ -3,13 +3,10 @@ substitutions:
   name: "aquapi"
   friendly_name: "AquaPi"
 
-  # App Version - Updated: 6/2023
-  appVersion: "1.15.2"
+  # App Version - Updated: 8/2023
+  appVersion: "0.1c"
 
   # pins
-  dallasPin: "16"
-  opticalHighPin: "33"
-  opticalLowPin: "32"
   sdaPin: "21"
   sclPin: "22"
   
@@ -26,9 +23,8 @@ substitutions:
   addPMP: "103"
   # HUM circuit, who's address is 111
   addHUM: "111"
-  # PMP circuit, who's address is 103
+  # CO2 circuit, who's address is 105
   addCO2: "105"
-
 
 esphome:
   name: "${name}"
@@ -53,15 +49,16 @@ api:
 
 ota:
 
-dashboard_import:
-  package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@main
-  # import_full_config: true
+# dashboard_import:
+#   package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@main
+#   import_full_config: true
 
 wifi:
   ap:
-    password: "password"
 
 captive_portal:
+
+web_server:
 
 # Sets up Bluetooth LE (Only on ESP32) to allow the user
 # to provision wifi credentials to the device.
@@ -80,21 +77,16 @@ i2c:
 # Internal Blue LED
 light:
   - platform: status_led
-    name: "Internal LED"
+    # name: "Internal LED"
     pin: GPIO2
-    entity_category: "Config"
+    id: internal_led
+    # entity_category: "Config"
 
 # 18B20 sensor Pin
 dallas:
   - pin: ${dallasPin}
     
 sensor:
-  # Internal Magnetic Sensor
-  - platform: esp32_hall
-    name: "ESP32 Hall Sensor"
-    update_interval: 60s
-    entity_category: "diagnostic"
-
   # Internal Temp.
   - platform: internal_temperature
     name: "Internal Temperature"
@@ -128,7 +120,7 @@ sensor:
     address: ${addPH}
     unit_of_measurement: ""
     accuracy_decimals: 2
-    update_interval: 60s
+    update_interval: 1s
     state_class: "measurement"
 
   # EZO Circuit - EC
@@ -140,7 +132,7 @@ sensor:
     address: ${addEC}
     unit_of_measurement: "ppt"
     accuracy_decimals: 2
-    update_interval: 60s
+    update_interval: 1s
     state_class: "measurement"
 
   # Specific Gravity
@@ -173,7 +165,7 @@ sensor:
     address: ${addRTD}
     # unit_of_measurement: "°C"
     accuracy_decimals: 2
-    update_interval: 60s
+    update_interval: 1s
     state_class: "measurement"
     device_class: "temperature"
 
@@ -186,7 +178,7 @@ sensor:
     address: ${addHUM}
     # unit_of_measurement: "%"
     accuracy_decimals: 2
-    update_interval: 60s
+    update_interval: 1s
     state_class: "measurement"
     device_class: "humidity"
 
@@ -199,7 +191,7 @@ sensor:
     address: ${addCO2}
     # unit_of_measurement: "ppm"
     accuracy_decimals: 2
-    update_interval: 60s
+    update_interval: 1s
     state_class: "measurement"
     device_class: "carbon_dioxide"
 
@@ -211,7 +203,7 @@ sensor:
     address: ${addDO}
     unit_of_measurement: "mg/L"
     accuracy_decimals: 2
-    update_interval: 60s
+    update_interval: 1s
     state_class: "measurement"
 
   # EZO Circuit - Pump
@@ -222,64 +214,10 @@ sensor:
     address: ${addPMP}
     unit_of_measurement: ""
     accuracy_decimals: 2
-    update_interval: 60s
+    update_interval: 1s
     state_class: "measurement"
 
-  # # DHT
-  # - platform: absolute_humidity
-  #   name: Absolute Humidity
-  #   temperature: air_temperature
-  #   humidity: relative_humidity
-
-  # # - platform: dht
-  #   pin: 5
-  #   temperature:
-  #     name: "Temperature"
-  #     id: air_temperature
-  #   humidity:
-  #     name: "Humidity"
-  #     id: relative_humidity
-  #   update_interval: 60s
-
-  # Temperature Probes
-  - platform: dallas
-    icon: mdi:thermometer-lines
-    # address: 0xe58000003203d628
-    index: 0
-    name: "Temperature"
-
-  - platform: dallas
-    icon: mdi:thermometer-lines
-    # address: 0xe58000003203d628
-    index: 1
-    name: "Temperature 2"
-
 binary_sensor:
-  # Optical Sensor - LOW (yellow)
-  - platform: gpio
-    id: os_low
-    pin: 
-      number: ${opticalLowPin}
-      inverted: true
-      mode:
-        input: true
-        pullup: true
-    name: "Optical Sensor: Low"
-    filters:
-      - delayed_on: 30ms
-
-  # Optical Sensor - HIGH (blue)
-  - platform: gpio
-    id: os_high
-    pin: 
-      number: ${opticalHighPin}
-      inverted: true
-      mode:
-        input: true
-        pullup: true
-    name: "Optical Sensor: High"
-    filters:
-      - delayed_on: 30ms
 
 text_sensor: 
   # AquaPi Version
@@ -291,27 +229,6 @@ text_sensor:
     lambda: |-
       return {"${appVersion}"};
     entity_category: "diagnostic"
-
-  # Water Level
-  - platform: template
-    icon: mdi:waves-arrow-up
-    name: "Water Level"
-    id: water_level
-    lambda: |-
-      if(id(os_high).state == true && id(os_low).state == true) {
-        // Water Level is High
-        return {"High"};
-      }
-      if(id(os_high).state == false && id(os_low).state == false) {
-        // Water Level is Low
-        return {"Low"};
-      }
-      if(id(os_high).state == false && id(os_low).state == true) {
-        // Water Level is Normal
-        return {"Normal"};
-      } else {
-        return {"Uknown or Error"};
-      }
 
   - platform: wifi_info
     ip_address:
@@ -331,12 +248,6 @@ button:
   # Soft Restart
   - platform: restart
     name: "Restart"
-  # # Soft Shutdown
-  # - platform: shutdown
-  #   name: "Shutdown"
-  # # Safe Mode
-  # - platform: safe_mode
-  #   name: "Safe Mode"
 
   # EC
   # Output Parameters

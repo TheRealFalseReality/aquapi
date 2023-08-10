@@ -3,8 +3,8 @@ substitutions:
   name: "aquapi"
   friendly_name: "AquaPi"
 
-  # App Version - Updated: 6/2023
-  appVersion: "0.18.3"
+  # App Version - Updated: 8/2023
+  appVersion: "0.18.4"
 
   # pins
   dallasPin: "4"
@@ -58,7 +58,6 @@ dashboard_import:
 
 wifi:
   ap:
-    password: "password"
 
 captive_portal:
 
