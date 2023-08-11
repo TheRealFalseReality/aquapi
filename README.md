@@ -22,6 +22,8 @@ yaml examples located in: [`Example HomeAssistant configs and templates`](https:
 **Control Board:**  
 **ESP32 devkit**  
 **HomeAssistant** using a Raspberry Pi 3 or above. The more RAM, the better.  
+**Prerequisite!!** A Raspberry Pi (or something similar) running HomeAssistant to communicate and interact with the ESP32 via `homeassistant.local:8123`.
+Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 
 ### Probes:
 **Temperature** 
@@ -42,9 +44,6 @@ yaml examples located in: [`Example HomeAssistant configs and templates`](https:
 
 **Other EZO probes that should work but not yet tested:**   
 Dissolved Oxygen, Pump, Humidity, Carbon Dioxide, Temperture
-
-**Prerequisite!!** A Raspberry Pi (or something similar) running HomeAssistant to communicate and interact with the ESP32 via `homeassistant.local:8123`.
-Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 
 ## Software Used  
 [**Home Assistant**](https://www.home-assistant.io/): Open source home automation that puts local control and privacy first.   
