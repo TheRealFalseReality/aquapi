@@ -3,7 +3,7 @@
 The Aquarium meets the Smart Home!  
 
 Monitor your Aquarium's Temperature and Water Level. With EZO Circuit Boards and Probe upgrades, you can also monitor your pH, salinity, dissolved oxygen and more while being compatible with all other EZO boards and probes.
-Powered by an [esp32](https://esphome.io/) and Controlled by [HomeAssistant](https://www.home-assistant.io/installation/). You can set alerts for anything, make automations for auto-top-off, and make beautiful graphs of your aquariums data (see screenshot).
+Powered by an [esp32](https://esphome.io/) and Controlled by [HomeAssistant](https://www.home-assistant.io/installation/). You can set alerts for anything, make automations for auto-top-off, and make beautiful graphs of your aquarium's data (see screenshot).
 
 [Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi)
 
