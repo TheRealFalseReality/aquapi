@@ -16,8 +16,7 @@ Basic UI
 
 </details>  
 
-yaml examples located in: [`example HomeAssistant configs and templates`](https://github.com/TheRealFalseReality/aquapi/tree/main/example%20HomeAssistant%20configs%20and%20templates)  
-[Download HomeAssistant Backup](https://github.com/TheRealFalseReality/aquapi/blob/d9ae345013caffa58344b626c5c5f0d49301c17f/example%20HomeAssistant%20configs%20and%20templates/Backup.tar) if you want to start with a pre-configured HomeAssistant Instance.
+yaml examples located in: [`Example HomeAssistant configs and templates`](https://github.com/TheRealFalseReality/aquapi/tree/main/example%20HomeAssistant%20configs%20and%20templates)  
 
 ## Hardware Used
 **Control Board:**  
