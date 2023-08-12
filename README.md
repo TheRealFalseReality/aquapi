@@ -77,7 +77,9 @@ Using source code, you can also customize anything and add your own sensors! Mak
 1. Install Home Assistant and go through the Onboarding process (link in step 2). Connect it via an ethernet cable.  
 
 3. Navigate to:  
-[homeassistant.local:8123/](homeassistant.local:8123/)
+```
+homeassistant.local:8123/
+```
 
 2. Then, power on the AquaPi. And Connect to Wifi:  
 On your Phone, connect to the Wifi Network `AquaPi-XXXXX`  
