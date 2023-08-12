@@ -24,7 +24,7 @@ Use the button below to install the pre-built firmware directly to your device v
 [homeassistant.local:8123](homeassistant.local:8123)  
 *NOTE: if link doesn't work, copy & paste it into your browser*
 
-2. Then, power on the AquaPi. And Connect to Wifi:  
+2. Power on the AquaPi and connect to Wifi:  
 On your Phone, connect to the Wifi Network `AquaPi-XXXXX`  
 Then, enter your Wifi credentials  
 *You should see a notification saying a New Device Discovered in Home Assistant. (Settings -> Devices & Services)*   

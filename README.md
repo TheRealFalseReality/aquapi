@@ -80,7 +80,7 @@ Using source code, you can also customize anything and add your own sensors! Mak
 homeassistant.local:8123
 ```
 
-2. Then, power on the AquaPi. And Connect to Wifi:  
+2. Power on the AquaPi and connect to Wifi:   
 On your Phone, connect to the Wifi Network `AquaPi-XXXXX`  
 Then, enter your Wifi credentials  
 *You should see a notification saying a New Device Discovered in Home Assistant. (Settings -> Devices & Services)*   
