@@ -74,12 +74,19 @@ dashboard_import:
 Using source code, you can also customize anything and add your own sensors! Make it your own!
 
 ## Access AqauPi
-Install Home Assistant and go through the Onboarding process.  
-Then, power on the AquaPi.  
-Navigate to [homeassistant.local:8123/](homeassistant.local:8123/)  
+1. Install Home Assistant and go through the Onboarding process. Connect it via an ethernet cable.  
+2. Then, power on the AquaPi. And Connect to Wifi:  
+On your Phone, connect to the Wifi Network `AquaPi-XXXXX`  
+Then, enter your Wifi credentials 
+3. Navigate to: 
+```
+homeassistant.local:8123/
+```  
 You should see a notification saying a New Device Discovered. (Settings -> Devices & Services)  
-Add that device and see the activated sensors.
-Alternatively, you can access the AquaPi web server without Home Assistant by navigating to `<hostname>.local/`. Hostname is found by the attached label.
+
+4. Add that device and see the activated sensors.
+
+*Alternatively, you can access the AquaPi web server without Home Assistant by navigating to `<hostname>.local/`. Hostname is found by the attached label.*
 
 ## Blueprints
 These are scripts and automations I created to control other devices within Home Assistant.
