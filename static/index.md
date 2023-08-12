@@ -56,7 +56,7 @@ Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 ## Access AqauPi
 Install Home Assistant and go through the Onboarding process.  
 Then, power on the AquaPi.  
-Navigate to 
+Navigate to: 
 ```
 homeassistant.local:8123/
 ```  
