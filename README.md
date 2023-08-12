@@ -21,7 +21,6 @@ Basic UI
 yaml examples located in: [`Example HomeAssistant Cards & Templates`](https://github.com/TheRealFalseReality/aquapi/tree/main/Example%20HomeAssistant%20Cards%20%26%20Templates)  
 
 ## Hardware Used
-**Control Board:**  
 **ESP32 devkit**  
 **HomeAssistant** using a Raspberry Pi 3 or above. The more RAM, the better.  
 **Prerequisite!!** A Raspberry Pi (or something similar) running HomeAssistant to communicate and interact with the ESP32 via `homeassistant.local:8123`.
@@ -78,7 +77,7 @@ Using source code, you can also customize anything and add your own sensors! Mak
 
 3. Navigate to:  
 ```
-homeassistant.local:8123/
+homeassistant.local:8123
 ```
 
 2. Then, power on the AquaPi. And Connect to Wifi:  
