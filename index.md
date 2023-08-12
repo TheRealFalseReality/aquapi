@@ -21,7 +21,7 @@ Use the button below to install the pre-built firmware directly to your device v
 1. Install Home Assistant and go through the Onboarding process (link in step 2). Connect it via an ethernet cable.  
 
 3. Navigate to:  
-[homeassistant.local:8123/](homeassistant.local:8123/)  
+[homeassistant.local:8123](homeassistant.local:8123)  
 *NOTE: if link doesn't work, copy & paste it into your browser*
 
 2. Then, power on the AquaPi. And Connect to Wifi:  
@@ -41,8 +41,7 @@ Basic UI
 
 yaml examples located in: [`Example HomeAssistant Cards & Templates`](https://github.com/TheRealFalseReality/aquapi/tree/main/Example%20HomeAssistant%20Cards%20%26%20Templates)  
 ## Hardware Used
-**Control Board:**  
-**ESP32 devkit**  
+**ESP32 devkit**   
 **HomeAssistant** using a Raspberry Pi 3 or above. The more RAM, the better.  
 
 ### Probes:
