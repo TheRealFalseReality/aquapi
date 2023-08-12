@@ -47,10 +47,19 @@ Dissolved Oxygen, Pump, Humidity, Carbon Dioxide, Temperture
 **Prerequisite!!** A Raspberry Pi (or something similar) running HomeAssistant to communicate and interact with the ESP32 via `homeassistant.local:8123`.
 Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 
+## Software Used  
+[**Home Assistant**](https://www.home-assistant.io/): Open source home automation that puts local control and privacy first.   
+[**ESPHome**](https://esphome.io/): A system to control your ESP8266/ESP32 and RP2040 by simple yet powerful configuration files and control them remotely through Home Automation systems.
+
+![made-for-esphome-white-on-black](https://github.com/TheRealFalseReality/aquapi/assets/106857076/c68b7da3-17c9-43bf-b8c7-f44acf63eb28)
+
 ## Access AqauPi
 Install Home Assistant and go through the Onboarding process.  
 Then, power on the AquaPi.  
-Navigate to [homeassistant.local:8123/](homeassistant.local:8123/)  
+Navigate to 
+```
+homeassistant.local:8123/
+```  
 You should see a notification saying a New Device Discovered. (Settings -> Devices & Services)  
 Add that device and see the activated sensors.
 Alternatively, you can access the AquaPi web server without Home Assistant by navigating to `<hostname>.local/`. Hostname is found by the attached label.
@@ -76,12 +85,6 @@ This automation is intended to create an ATO (Automated-Top-Off) automation for 
 *NOTE: The above link for this automation takes you to the Binary Sensor verion of this Blueprint. If you have an AquaPi with 2 Optical sensors, use Import Blueprint below for a better automation.*
 
 [![Open your Home Assistant instance and show the blueprint import dialog with a specific blueprint pre-filled.](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fgist.github.com%2FTheRealFalseReality%2Feab1edda7c678b8763ecdcddb45f2f1a)
-
-## Software Used  
-[**Home Assistant**](https://www.home-assistant.io/): Open source home automation that puts local control and privacy first.   
-[**ESPHome**](https://esphome.io/): A system to control your ESP8266/ESP32 and RP2040 by simple yet powerful configuration files and control them remotely through Home Automation systems.
-
-![made-for-esphome-white-on-black](https://github.com/TheRealFalseReality/aquapi/assets/106857076/c68b7da3-17c9-43bf-b8c7-f44acf63eb28)
 
 ## Useful Links:
 
