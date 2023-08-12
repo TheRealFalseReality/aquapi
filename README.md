@@ -2,8 +2,8 @@
 
 The Aquarium meets the Smart Home!  
 
-Monitor your Aquarium's Temperature and Water Level. With EZO Circuit Boards and Probe upgrades, you can also monitor your pH, salinity, dissolved oxygen and other EZO circuits and probes.
-Powered by an [esp32](https://esphome.io/) and Controlled by [HomeAssistant](https://www.home-assistant.io/installation/). You can set alerts for anything, make automations for auto-top-off, and make beautiful graphs of your aquarium's data (see screenshot).
+Monitor your Aquarium's Temperature and Water Level. With EZO Circuit Boards and Probe upgrades, you can also monitor your pH, Salinity, Dissolved Oxygen and other EZO circuits and probes.  
+Powered by an [esp32](https://esphome.io/) and Controlled by [HomeAssistant](https://www.home-assistant.io/installation/). You can set alerts for anything, make automations for auto-top-off (see Blueprints), and make beautiful graphs of your aquarium's data (see screenshot).  
 
 [Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi)
 
@@ -73,16 +73,16 @@ dashboard_import:
 ```
 Using source code, you can also customize anything and add your own sensors! Make it your own!
 
-## Access AqauPi
-1. Install Home Assistant and go through the Onboarding process. Connect it via an ethernet cable.  
+## Setup AquaPi
+1. Install Home Assistant and go through the Onboarding process (link in step 2). Connect it via an ethernet cable.  
+
+3. Navigate to:  
+[homeassistant.local:8123/](homeassistant.local:8123/)
+
 2. Then, power on the AquaPi. And Connect to Wifi:  
 On your Phone, connect to the Wifi Network `AquaPi-XXXXX`  
-Then, enter your Wifi credentials 
-3. Navigate to: 
-```
-homeassistant.local:8123/
-```  
-You should see a notification saying a New Device Discovered. (Settings -> Devices & Services)  
+Then, enter your Wifi credentials  
+*You should see a notification saying a New Device Discovered in Home Assistant. (Settings -> Devices & Services)*   
 
 4. Add that device and see the activated sensors.
 
