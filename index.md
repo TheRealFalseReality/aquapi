@@ -21,7 +21,8 @@ Use the button below to install the pre-built firmware directly to your device v
 1. Install Home Assistant and go through the Onboarding process (link in step 2). Connect it via an ethernet cable.  
 
 3. Navigate to:  
-[homeassistant.local:8123/](homeassistant.local:8123/)
+[homeassistant.local:8123/](homeassistant.local:8123/)  
+*NOTE: if link doesn't work, copy & paste it into your browser*
 
 2. Then, power on the AquaPi. And Connect to Wifi:  
 On your Phone, connect to the Wifi Network `AquaPi-XXXXX`  
@@ -31,6 +32,8 @@ Then, enter your Wifi credentials
 4. Add that device and see the activated sensors.
 
 *Alternatively, you can access the AquaPi web server without Home Assistant by navigating to `<hostname>.local/`. Hostname is found by the attached label.*
+
+SCREENSHOTS TO BE ADDED
 
 ## More Information
 Basic UI
