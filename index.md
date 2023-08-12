@@ -7,8 +7,8 @@ Use the 'View on GitHub' link above for more information and make suggestions.
 [Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi)
 
 # Installation
-
-You can use the button below to install the pre-built firmware directly to your device via USB from the browser.
+**You can typically skip this as AquaPi comes pre-installed.**  
+Use the button below to install the pre-built firmware directly to your device via USB from the browser.
 
 <esp-web-install-button manifest="./manifest.json"></esp-web-install-button>
 
