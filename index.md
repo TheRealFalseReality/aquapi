@@ -14,7 +14,7 @@ Use the button below to install the pre-built firmware directly to your device v
 
 <script type="module" src="https://unpkg.com/esp-web-tools@9.1.0/dist/web/install-button.js?module"></script>
 
-## Access AqauPi
+# Setup AqauPi
 1. Install Home Assistant and go through the Onboarding process. Connect it via an ethernet cable.  
 2. Then, power on the AquaPi. And Connect to Wifi:  
 On your Phone, connect to the Wifi Network `AquaPi-XXXXX`  
@@ -29,11 +29,11 @@ You should see a notification saying a New Device Discovered. (Settings -> Devic
 
 *Alternatively, you can access the AquaPi web server without Home Assistant by navigating to `<hostname>.local/`. Hostname is found by the attached label.*
 
+## More Information
 Basic UI
 ![Basic UI](https://user-images.githubusercontent.com/106857076/236688799-8565d281-13e9-4a98-83ca-60933a509a5e.png)
 
-yaml examples located in: [`example HomeAssistant configs and templates`](https://github.com/TheRealFalseReality/aquapi/tree/main/example%20HomeAssistant%20configs%20and%20templates)  
-
+yaml examples located in: [`Example HomeAssistant Cards & Templates`](https://github.com/TheRealFalseReality/aquapi/tree/main/Example%20HomeAssistant%20Cards%20%26%20Templates)  
 ## Hardware Used
 **Control Board:**  
 **ESP32 devkit**  
