@@ -18,7 +18,7 @@ Basic UI
 
 </details>  
 
-yaml examples located in: [`Example HomeAssistant configs and templates`](https://github.com/TheRealFalseReality/aquapi/tree/main/Example%20HomeAssistant%20Cards%20%26%20Templates)  
+yaml examples located in: [`Example HomeAssistant Cards & Templates`](https://github.com/TheRealFalseReality/aquapi/tree/main/Example%20HomeAssistant%20Cards%20%26%20Templates)  
 
 ## Hardware Used
 **Control Board:**  

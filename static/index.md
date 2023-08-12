@@ -32,8 +32,7 @@ You should see a notification saying a New Device Discovered. (Settings -> Devic
 Basic UI
 ![Basic UI](https://user-images.githubusercontent.com/106857076/236688799-8565d281-13e9-4a98-83ca-60933a509a5e.png)
 
-yaml examples located in: [`example HomeAssistant configs and templates`](https://github.com/TheRealFalseReality/aquapi/tree/main/example%20HomeAssistant%20configs%20and%20templates)  
-
+yaml examples located in: [`Example HomeAssistant Cards & Templates`](https://github.com/TheRealFalseReality/aquapi/tree/main/Example%20HomeAssistant%20Cards%20%26%20Templates)  
 ## Hardware Used
 **Control Board:**  
 **ESP32 devkit**  
