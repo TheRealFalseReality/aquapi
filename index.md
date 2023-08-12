@@ -2,7 +2,9 @@
 
 The Aquarium meets the Smart Home! Monitor your Aquarium's Temperature and Water Level. With EZO Circuit Boards and Probe upgrades, you can also monitor your pH, salinity, disscolved oxygen and more while being compatible with all other EZO boards and probes.
 Powered by an esp32 and Controlled by HomeAssistant.  
-Use the 'View on GitHub' link above for more information and make suggestions.
+Use the 'View on GitHub' link above for more information and make suggestions.  
+
+[Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi)
 
 # Installation
 
@@ -12,7 +14,20 @@ You can use the button below to install the pre-built firmware directly to your 
 
 <script type="module" src="https://unpkg.com/esp-web-tools@9.1.0/dist/web/install-button.js?module"></script>
 
-[Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi)
+## Access AqauPi
+1. Install Home Assistant and go through the Onboarding process. Connect it via an ethernet cable.  
+2. Then, power on the AquaPi. And Connect to Wifi:  
+On your Phone, connect to the Wifi Network `AquaPi-XXXXX`  
+Then, enter your Wifi credentials 
+3. Navigate to: 
+```
+homeassistant.local:8123/
+```  
+You should see a notification saying a New Device Discovered. (Settings -> Devices & Services)  
+
+4. Add that device and see the activated sensors.
+
+*Alternatively, you can access the AquaPi web server without Home Assistant by navigating to `<hostname>.local/`. Hostname is found by the attached label.*
 
 Basic UI
 ![Basic UI](https://user-images.githubusercontent.com/106857076/236688799-8565d281-13e9-4a98-83ca-60933a509a5e.png)
@@ -52,17 +67,6 @@ Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 [**ESPHome**](https://esphome.io/): A system to control your ESP8266/ESP32 and RP2040 by simple yet powerful configuration files and control them remotely through Home Automation systems.
 
 ![made-for-esphome-white-on-black](https://github.com/TheRealFalseReality/aquapi/assets/106857076/c68b7da3-17c9-43bf-b8c7-f44acf63eb28)
-
-## Access AqauPi
-Install Home Assistant and go through the Onboarding process.  
-Then, power on the AquaPi.  
-Navigate to: 
-```
-homeassistant.local:8123/
-```  
-You should see a notification saying a New Device Discovered. (Settings -> Devices & Services)  
-Add that device and see the activated sensors.
-Alternatively, you can access the AquaPi web server without Home Assistant by navigating to `<hostname>.local/`. Hostname is found by the attached label.
 
 ## Blueprints
 These are scripts and automations I created to control other devices within Home Assistant.
