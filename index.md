@@ -35,7 +35,7 @@ On your Phone, connect to the Wifi Network `aquapi-xxxxxx`
 *Note the name of the wifi, it macthes your devices name*  
 Select your Wifi ID, and enter your Wifi password  
 
- |  ![Screenshot_20230812-234153EDIT](https://github.com/TheRealFalseReality/aquapi/assets/106857076/05102f18-1a1d-4adf-a315-25eeca75935e) | ![Screenshot_20230812-234744EDIT](https://github.com/TheRealFalseReality/aquapi/assets/106857076/4d34a64f-33a5-4af8-8d4a-6eee95dd91c6) |
+ | ![Screenshot_20230812-234153EDIT](https://github.com/TheRealFalseReality/aquapi/assets/106857076/05102f18-1a1d-4adf-a315-25eeca75935e) | ![Screenshot_20230812-234744EDIT](https://github.com/TheRealFalseReality/aquapi/assets/106857076/4d34a64f-33a5-4af8-8d4a-6eee95dd91c6) |
  | ------------- | ------------- |
 
 5. Back in Home Assistant, you should see a notification saying a **New Devices Discovered**. (Settings -> Devices & Services)  
