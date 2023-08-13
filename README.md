@@ -26,7 +26,7 @@ yaml examples located in: [`Example HomeAssistant Cards & Templates`](https://gi
 **Prerequisite!!** A Raspberry Pi (or something similar) running HomeAssistant to communicate and interact with the ESP32 via `homeassistant.local:8123`.
 Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 
-### Probes:
+### Probes
 **Temperature** 
   - DS18B20 Waterproof Thermistor  
   
