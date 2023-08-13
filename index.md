@@ -44,8 +44,9 @@ You can click the buttom below to go there automatically:
 
 ![Screenshot_20230813-141349](https://github.com/TheRealFalseReality/aquapi/assets/106857076/c604c261-1f69-417d-af91-be212a6ead35) 
 
-6. Choose `Configure` under the device named `Aquapi XXXXXX` and follow to promts to add it your Home Assistant frontend.  
-*Notice it matches the Wifi name you connected to earlier*
+6. Choose `Configure` under the device named `AquaPi XXXXXX` and follow to promts to add it your Home Assistant frontend.   
+*Notice the name matches the Wifi name you connected to earlier*  
+The Blue LED on the AquaPi should stop flashing when connected to Home Assistant.
 
 | ![Screenshot_20230813-141640](https://github.com/TheRealFalseReality/aquapi/assets/106857076/338765f1-fed4-41fb-848b-873081df067d) | ![AScreenshot_20230813SD144346](https://github.com/TheRealFalseReality/aquapi/assets/106857076/46bb5ef7-a34f-4778-9715-efb512ed3b04)|
  | ------------- | ------------- |
