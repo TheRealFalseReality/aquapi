@@ -145,8 +145,6 @@ This script is intended to dose your aquarium for a certain amount of time. Choo
 
 This automation is intended to create an ATO (Automated-Top-Off) automation for your aquarium, or anything else that needs to be refilled. You would use the AquaPi Water Level sensor to determine the presence of water and control a water pump via switch when necessary. The automation will turn the selected switch on when the Water Level is Low, and off then when the Water Level is Normal or High. By default, the switch will automatically turn off after 5 mins of being on to prevent overfill.  
 
-*NOTE: The above link for this automation takes you to the Binary Sensor verion of this Blueprint. If you have an AquaPi with 2 Optical sensors, use Import Blueprint below for a better automation.*
-
 [![Open your Home Assistant instance and show the blueprint import dialog with a specific blueprint pre-filled.](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fgist.github.com%2FTheRealFalseReality%2Feab1edda7c678b8763ecdcddb45f2f1a)
 
 ## Useful Links:
