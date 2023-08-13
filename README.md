@@ -46,6 +46,10 @@ Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 **Other EZO probes that should work but not yet tested:**   
 Dissolved Oxygen, Pump, Humidity, Carbon Dioxide, Temperture
 
+### Circuit Diagram
+
+![circuit (1)](https://github.com/TheRealFalseReality/aquapi/assets/106857076/f22f0edb-5a8c-468e-9845-12475a6760d6)
+
 ## Software Used  
 [**Home Assistant**](https://www.home-assistant.io/): Open source home automation that puts local control and privacy first.   
 [**ESPHome**](https://esphome.io/): A system to control your ESP8266/ESP32 and RP2040 by simple yet powerful configuration files and control them remotely through Home Automation systems.
