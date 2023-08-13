@@ -91,7 +91,8 @@ Then, enter your Wifi credentials
 
 4. Add that device and see the activated sensors.
 
-*Alternatively, you can access the AquaPi web server without Home Assistant by navigating to `<hostname>.local/`. Hostname is found by the attached label.*
+*Alternatively, you can access the AquaPi web server without Home Assistant by navigating to `<hostname>.local/`.  
+Hostname is found by the attached label.*
 
 ## Blueprints
 These are scripts and automations I created to control other devices within Home Assistant.
