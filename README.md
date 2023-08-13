@@ -26,7 +26,7 @@ yaml examples located in: [`Example HomeAssistant Cards & Templates`](https://gi
 **Prerequisite!!** A Raspberry Pi (or something similar) running HomeAssistant to communicate and interact with the ESP32 via `homeassistant.local:8123`.
 Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 
-### Probes:
+### Probes
 **Temperature** 
   - DS18B20 Waterproof Thermistor  
   
@@ -45,6 +45,10 @@ Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 
 **Other EZO probes that should work but not yet tested:**   
 Dissolved Oxygen, Pump, Humidity, Carbon Dioxide, Temperture
+
+### Circuit Diagram
+
+![circuit (1)](https://github.com/TheRealFalseReality/aquapi/assets/106857076/f22f0edb-5a8c-468e-9845-12475a6760d6)
 
 ## Software Used  
 [**Home Assistant**](https://www.home-assistant.io/): Open source home automation that puts local control and privacy first.   
@@ -92,7 +96,8 @@ Then, enter your Wifi credentials
 
 5. Add that device and see the activated sensors.
 
-*Alternatively, you can access the AquaPi web server without Home Assistant by navigating to `<hostname>.local/`. Hostname is found by the attached label.*
+*Alternatively, you can access the AquaPi web server without Home Assistant by navigating to `<hostname>.local/`.  
+Hostname is found by the attached label.*
 
 ## Blueprints
 These are scripts and automations I created to control other devices within Home Assistant.
