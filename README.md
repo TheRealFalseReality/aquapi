@@ -102,19 +102,21 @@ Then, select your Wifi ID, and enter your Wifi password
 You can click the buttom below to go there automatically:  
 [![Open your Home Assistant instance and show your integrations.](https://my.home-assistant.io/badges/integrations.svg)](https://my.home-assistant.io/redirect/integrations/)
 
-6. Choose `Configure` under the device named `Aquapi XXXXXX`.  
+6. Choose `Configure` under the device named `Aquapi XXXXXX` and follow to promts to add it your Home Assistant frontend.  
 *Notice it matches the Wifi name you connected to earlier*
 
 *Alternatively, you can access the AquaPi web server without Home Assistant by navigating to `<hostname>.local/`. This is the ESP32's web server.  
 Hostname is the name if the device.*
 
 7. To get updates, install the Home Assistant Add-On named ESPHome:
-Add On Store:
+Add On Store:  
 [![Open your Home Assistant instance and show the Supervisor add-on store.](https://my.home-assistant.io/badges/supervisor_store.svg)](https://my.home-assistant.io/redirect/supervisor_store/)
 
 8. Once installed, launch the add-on and navigate to the User-Interface.  
-You should see the name of you AquaPi with a green button named `Discoverd`.  
-Click on it, eneter your Wifi credentials, and click `Install`.
+You should see the name of you AquaPi with a green button named `Adopt`.  
+Click on it, follow the promts and enter your Wifi credentials, and click `Install` to install the most current AquaPi firmware.
+
+10. Update AquaPi Firmware by Using ESPHome, clicking on the 3-dots under your device, and choosing `Install`. It will pull the latest code from the GitHub respository.
 
 ## Blueprints
 These are scripts and automations I created to control other devices within Home Assistant.
