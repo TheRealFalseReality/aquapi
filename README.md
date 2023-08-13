@@ -114,12 +114,13 @@ You can click the buttom below to go there automatically:
 Add On Store:  
 [![Open your Home Assistant instance and show the Supervisor add-on store.](https://my.home-assistant.io/badges/supervisor_store.svg)](https://my.home-assistant.io/redirect/supervisor_store/)
 
-| ![Screenshot_20230813-144240](https://github.com/TheRealFalseReality/aquapi/assets/106857076/98edbcdc-5f8b-4e2a-bc43-115e3e3e6953) | ![Screenshot_20230813-144513](https://github.com/TheRealFalseReality/aquapi/assets/106857076/134367dd-fded-4151-86c6-0198a02ee1ce) |
+| ![Screenshot_20230813-144240](https://github.com/TheRealFalseReality/aquapi/assets/106857076/98edbcdc-5f8b-4e2a-bc43-115e3e3e6953) | ![Screenshot_20230813-144513](https://github.com/TheRealFalseReality/aquapi/assets/106857076/02758ba1-5b5d-4ca1-975b-d4870c63788f) |
  | ------------- | ------------- |
 
 8. In ESPHome, you should see the name of you AquaPi with a green button named `Adopt`.  
 Click on it, follow the promts and enter your Wifi credentials, and click `Install` to install the most current AquaPi firmware.
-![Screenshot_20230813-144723](https://github.com/TheRealFalseReality/aquapi/assets/106857076/1f349817-4404-49bb-a328-7fc92d95d9dd) 
+
+![Screenshot_20230813-144723](https://github.com/TheRealFalseReality/aquapi/assets/106857076/28256b8a-faba-4a17-b9ff-9a5dd1e0b00d)
 
 9. Update AquaPi Firmware by Using ESPHome, clicking on the 3-dots under your device, and choosing `Install`. It will pull the latest code from the GitHub respository.
 
