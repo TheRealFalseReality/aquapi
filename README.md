@@ -92,33 +92,39 @@ homeassistant.local:8123
 
 4. Power on the AquaPi and connect to Wifi:   
 On your Phone, connect to the Wifi Network `aquapi-xxxxxx`  
-Then, enter your Wifi credentials  
+*Note the name of the wifi, it macthes your devices name*  
+Then, select your Wifi ID, and enter your Wifi password  
 
  |  ![Screenshot_20230812-234153](https://github.com/TheRealFalseReality/aquapi/assets/106857076/6615d64f-6f4a-43fe-a8e6-46d196ae1f1e) | ![Screenshot_20230812-234744](https://github.com/TheRealFalseReality/aquapi/assets/106857076/5a75c7c6-f2f7-4bcb-9ca3-b65d0ef6afc6) |
  | ------------- | ------------- |
 
-5. *You should see a notification saying a New Device Discovered in Home Assistant. (Settings -> Devices & Services)*
-Integrations:
+5. Back in Home Assistant, you should see a notification saying a **New Devices Discovered**. (Settings -> Devices & Services)  
+You can click the buttom below to go there automatically:  
 [![Open your Home Assistant instance and show your integrations.](https://my.home-assistant.io/badges/integrations.svg)](https://my.home-assistant.io/redirect/integrations/)
 
-6. Add that device and see the activated sensors.
+6. Choose `Configure` under the device named `Aquapi XXXXXX`.  
+*Notice it matches the Wifi name you connected to earlier*
 
-*Alternatively, you can access the AquaPi web server without Home Assistant by navigating to `<hostname>.local/`.  
-Hostname is found by the attached label.*
+*Alternatively, you can access the AquaPi web server without Home Assistant by navigating to `<hostname>.local/`. This is the ESP32's web server.  
+Hostname is the name if the device.*
 
+7. To get updates, install the Home Assistant Add-On named ESPHome:
 Add On Store:
-
 [![Open your Home Assistant instance and show the Supervisor add-on store.](https://my.home-assistant.io/badges/supervisor_store.svg)](https://my.home-assistant.io/redirect/supervisor_store/)
+
+8. Once installed, launch the add-on and navigate to the User-Interface.  
+You should see the name of you AquaPi with a green button named `Discoverd`.  
+Click on it, eneter your Wifi credentials, and click `Install`.
 
 ## Blueprints
 These are scripts and automations I created to control other devices within Home Assistant.
 
-### [Feeding Automation](https://community.home-assistant.io/t/turn-off-switches-to-feed-your-fish-for-a-certain-amount-of-time-then-turn-back-on-aquarium-script/600544)
+### [Feeding Script](https://community.home-assistant.io/t/turn-off-switches-to-feed-your-fish-for-a-certain-amount-of-time-then-turn-back-on-aquarium-script/600544)
 This script is intended to act as a feeding routine for your aquarium fish. You can choose multiple switches to turn off, such as return pumps, wave makers, skimmers, etc., and set the amount of time for feeding, typically 10 mins. The script will turn off the switch(es) for the set time, then turn the them back on automatically.
 
 [![Open your Home Assistant instance and show the blueprint import dialog with a specific blueprint pre-filled.](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fgist.github.com%2FTheRealFalseReality%2F06d34488d84e81916768129b0398de25)
 
-### [2 Part Doser Automation](https://community.home-assistant.io/t/turn-on-a-switch-to-activate-doser-equipment-for-a-certain-amount-of-time-aquarium-script/600546)
+### [2 Part Doser Script](https://community.home-assistant.io/t/turn-on-a-switch-to-activate-doser-equipment-for-a-certain-amount-of-time-aquarium-script/600546)
 
 This script is intended to dose your aquarium for a certain amount of time. Choose an entity to turn on, typically a 2 part Doser @ 1.1 mL/min, then set the amount of time to dose for. The script will turn on the target switch for the set time, then the switch will turn off.
 
