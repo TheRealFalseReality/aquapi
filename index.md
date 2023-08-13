@@ -58,11 +58,15 @@ Add On Store:
  | ------------- | ------------- |
 
 8. In ESPHome, you should see the name of you AquaPi with a green button named `Adopt`.  
-Click on it, follow the promts and enter your Wifi credentials, and click `Install` to install the most current AquaPi firmware.
+Click on it, follow the promts and enter your Wifi credentials, and click `Install` and choose `Wirelessly` to install the most current AquaPi firmware.
 
-![Screenshot_20230813-144723](https://github.com/TheRealFalseReality/aquapi/assets/106857076/28256b8a-faba-4a17-b9ff-9a5dd1e0b00d)
-
+| ![Screenshot_20230813-144723](https://github.com/TheRealFalseReality/aquapi/assets/106857076/28256b8a-faba-4a17-b9ff-9a5dd1e0b00d) | ![Screenshot_20230813-153752](https://github.com/TheRealFalseReality/aquapi/assets/106857076/e5e198d8-a33e-4942-9cae-be37ee645611) |
+ | ------------- | ------------- |
+ 
 9. Update AquaPi Firmware by Using ESPHome, clicking on the 3-dots under your device, and choosing `Install`. It will pull the latest code from the GitHub respository.
+
+| ![Screenshot_20230813-153815](https://github.com/TheRealFalseReality/aquapi/assets/106857076/283b61cc-f258-4176-a053-40e5f810265f) | ![Screenshot_20230813-153825](https://github.com/TheRealFalseReality/aquapi/assets/106857076/7bbd24eb-9d98-49c4-bcac-8dca8e74e37e) |
+ | ------------- | ------------- |
 
 *Alternatively, you can access the AquaPi web server without Home Assistant by navigating to `<hostname>.local/`. This is the ESP32's web server.  
 Hostname is the name if the device.*
