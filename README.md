@@ -79,7 +79,7 @@ Using source code, you can also customize anything and add your own sensors! Mak
 ## Setup AquaPi
 1. Install and power on the Home Assistant device. Connect it via an ethernet cable.  
 
-2. Navigate to, via your favorite browser:  
+2. Navigate to the following URL, via your favorite browser:  
 ```
 homeassistant.local:8123
 ```
@@ -87,9 +87,8 @@ homeassistant.local:8123
 3. Go through the [Home Assistant Onboarding](https://www.home-assistant.io/getting-started/onboarding/).  
 *Follow the link above to see more detail on Onboarding Home Assistant*
 
-![username](https://github.com/TheRealFalseReality/aquapi/assets/106857076/c42062c5-d0c5-4e4d-89ad-f71d497d9d68)
-
-</details> 
+| ![username](https://github.com/TheRealFalseReality/aquapi/assets/106857076/c42062c5-d0c5-4e4d-89ad-f71d497d9d68) | ![onboarding_devices](https://github.com/TheRealFalseReality/aquapi/assets/106857076/920ac524-c631-43a3-abe0-94bcece49be9) |
+| ------------- | ------------- |
 
 4. Power on the AquaPi and connect to Wifi:   
 On your Phone, connect to the Wifi Network `aquapi-xxxxxx`  
@@ -99,11 +98,17 @@ Then, enter your Wifi credentials
  | ------------- | ------------- |
 
 5. *You should see a notification saying a New Device Discovered in Home Assistant. (Settings -> Devices & Services)*
+Integrations:
+[![Open your Home Assistant instance and show your integrations.](https://my.home-assistant.io/badges/integrations.svg)](https://my.home-assistant.io/redirect/integrations/)
 
 6. Add that device and see the activated sensors.
 
 *Alternatively, you can access the AquaPi web server without Home Assistant by navigating to `<hostname>.local/`.  
 Hostname is found by the attached label.*
+
+Add On Store:
+
+[![Open your Home Assistant instance and show the Supervisor add-on store.](https://my.home-assistant.io/badges/supervisor_store.svg)](https://my.home-assistant.io/redirect/supervisor_store/)
 
 ## Blueprints
 These are scripts and automations I created to control other devices within Home Assistant.
