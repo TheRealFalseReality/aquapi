@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 8/2023
-  appVersion: "0.18.4"
+  appVersion: "0.18.5"
 
   # pins
   dallasPin: "4"
@@ -350,10 +350,10 @@ text_sensor:
       if(id(temp_f).state <= id(range_cool).state ) {
         return {"Cool"};
       }
-      if(id(temp_f).state <= id(range_warm).state && id(temp_f).state > id(range_cool).state) {
+      if(id(temp_f).state < id(range_warm).state && id(temp_f).state > id(range_cool).state) {
         return {"OK"};
       }
-      if(id(temp_f).state > id(range_warm).state ) {
+      if(id(temp_f).state >= id(range_warm).state ) {
         return {"Warm"};
       }     
       else {
@@ -369,10 +369,10 @@ text_sensor:
       if(id(temp_f_2).state <= id(range_cool).state ) {
         return {"Cool"};
       }
-      if(id(temp_f_2).state <= id(range_warm).state && id(temp_f_2).state > id(range_cool).state) {
+      if(id(temp_f_2).state < id(range_warm).state && id(temp_f_2).state > id(range_cool).state) {
         return {"OK"};
       }
-      if(id(temp_f_2).state > id(range_warm).state ) {
+      if(id(temp_f_2).state >= id(range_warm).state ) {
         return {"Warm"};
       }     
       else {
