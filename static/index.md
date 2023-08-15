@@ -34,18 +34,18 @@ If you want to try some of the Dashboard or Cards I use, follow the link below. 
 **HomeAssistant** using a Raspberry Pi 3 or above. The more RAM, the better.  
 
 **Probes**:  
-**Temperature** 
+***Temperature*** 
   - DS18B20 Waterproof Thermistor  
   
-**Water Level** 
+***Water Level*** 
   - Food Grade Optical Infrared Water Liquid Level Sensor  
   
-**pH:** Atlas Scientific pH Kit  
+***pH:*** Atlas Scientific pH Kit  
   - EZO™ pH Circuit  
   - Double junction silver / silver chloride Lab Grade pH Probe
   - Electrically Isolated EZO™ Carrier Board
 
-**Salinity:** Atlas Scientific Conductivity Kit  
+***Salinity:*** Atlas Scientific Conductivity Kit  
   - EZO™ EC Circuit  
   - Conductivity Probe: 5 µS/cm to 200,000 µS/cm
   - Electrically Isolated EZO™ Carrier Board

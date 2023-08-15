@@ -27,24 +27,24 @@ yaml examples located in: [`Example HomeAssistant Cards & Templates`](https://gi
 Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 
 ### Probes
-**Temperature** 
+***Temperature*** 
   - DS18B20 Waterproof Thermistor  
   
-**Water Level** 
+***Water Level*** 
   - Food Grade Optical Infrared Water Liquid Level Sensor  
   
-**pH:** Atlas Scientific pH Kit  
+***pH:*** Atlas Scientific pH Kit  
   - EZO™ pH Circuit  
   - Double junction silver / silver chloride Lab Grade pH Probe
   - Electrically Isolated EZO™ Carrier Board
 
-**Salinity:** Atlas Scientific Conductivity Kit  
+***Salinity:*** Atlas Scientific Conductivity Kit  
   - EZO™ EC Circuit  
   - Conductivity Probe: 5 µS/cm to 200,000 µS/cm
   - Electrically Isolated EZO™ Carrier Board
 
 **Other EZO probes that should work but not yet tested:**   
-Dissolved Oxygen, Pump, Humidity, Carbon Dioxide, Temperture
+*Dissolved Oxygen, Pump, Humidity, Carbon Dioxide, Temperture*
 
 ### Circuit Diagram
 
