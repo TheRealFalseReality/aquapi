@@ -18,7 +18,9 @@ Basic UI
 
 </details>  
 
-yaml examples located in: [`Example HomeAssistant Cards & Templates`](https://github.com/TheRealFalseReality/aquapi/tree/main/Example%20HomeAssistant%20Cards%20%26%20Templates)  
+### Home Assistand Dashboard & Card Examples
+If you want to try some of the Dashboard or Cards I use, follow the link below. You may need addtional integrations or custom cards for some of them!  
+**[Example HomeAssistant Cards & Templates](https://github.com/TheRealFalseReality/aquapi/tree/main/Example%20HomeAssistant%20Cards%20%26%20Templates)**  
 
 ## Hardware Used
 **ESP32 devkit**  
