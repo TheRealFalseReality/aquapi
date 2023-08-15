@@ -18,7 +18,7 @@ Use the button below to install the pre-built firmware directly to your device v
 <script type="module" src="https://unpkg.com/esp-web-tools@9.1.0/dist/web/install-button.js?module"></script>
 
 # Setup AquaPi
-[Setup Guide](https://github.com/TheRealFalseReality/AquaPi#setup-aquapi)
+**[Setup Guide](https://github.com/TheRealFalseReality/AquaPi#setup-aquapi)**
 
 ## More Information
 Basic UI
