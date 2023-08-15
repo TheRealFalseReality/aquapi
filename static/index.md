@@ -24,7 +24,10 @@ Use the button below to install the pre-built firmware directly to your device v
 Basic UI
 ![Basic UI](https://user-images.githubusercontent.com/106857076/236688799-8565d281-13e9-4a98-83ca-60933a509a5e.png)
 
-yaml examples located in: [`Example HomeAssistant Cards & Templates`](https://github.com/TheRealFalseReality/aquapi/tree/main/Example%20HomeAssistant%20Cards%20%26%20Templates)  
+### Home Assistand Dashboard & Card Examples
+If you want to try some of the Dashboard or Cards I use, follow the link below. You may need addtional integrations or custom cards for some of them!  
+**[Example HomeAssistant Cards & Templates](https://github.com/TheRealFalseReality/aquapi/tree/main/Example%20HomeAssistant%20Cards%20%26%20Templates)**  
+
 ## Hardware Used
 **ESP32 devkit**   
 **HomeAssistant** using a Raspberry Pi 3 or above. The more RAM, the better.  
