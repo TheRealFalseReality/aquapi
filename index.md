@@ -18,59 +18,7 @@ Use the button below to install the pre-built firmware directly to your device v
 <script type="module" src="https://unpkg.com/esp-web-tools@9.1.0/dist/web/install-button.js?module"></script>
 
 # Setup AquaPi
-1. Install and power on the Home Assistant device. Connect it via an ethernet cable.  
-
-2. Navigate to:  
-[homeassistant.local:8123](homeassistant.local:8123)  
-*NOTE: if link doesn't work, copy & paste it into your browser*
-
-3. Go through the [Home Assistant Onboarding](https://www.home-assistant.io/getting-started/onboarding/).  
-*Follow the link above to see more detail on Onboarding Home Assistant*
-
-| ![username](https://github.com/TheRealFalseReality/aquapi/assets/106857076/c42062c5-d0c5-4e4d-89ad-f71d497d9d68) | ![onboarding_devices](https://github.com/TheRealFalseReality/aquapi/assets/106857076/920ac524-c631-43a3-abe0-94bcece49be9) |
-| ------------- | ------------- |
-
-4. Power on the AquaPi and connect to Wifi:   
-On your Phone, connect to the Wifi Network `aquapi-xxxxxx`  
-*Note the name of the wifi, it macthes your devices name*  
-Select your Wifi ID, and enter your Wifi password  
-
- | ![Screenshot_20230812-234153EDIT](https://github.com/TheRealFalseReality/aquapi/assets/106857076/05102f18-1a1d-4adf-a315-25eeca75935e) | ![Screenshot_20230812-234744EDIT](https://github.com/TheRealFalseReality/aquapi/assets/106857076/4d34a64f-33a5-4af8-8d4a-6eee95dd91c6) |
- | ------------- | ------------- |
-
-5. Back in Home Assistant, you should see a notification saying a **New Devices Discovered**. (Settings -> Devices & Services)  
-You can click the buttom below to go there automatically:  
-[![Open your Home Assistant instance and show your integrations.](https://my.home-assistant.io/badges/integrations.svg)](https://my.home-assistant.io/redirect/integrations/)
-
-![Screenshot_20230813-141349](https://github.com/TheRealFalseReality/aquapi/assets/106857076/c604c261-1f69-417d-af91-be212a6ead35) 
-
-6. Choose `Configure` under the device named `AquaPi XXXXXX` and follow to promts to add it your Home Assistant frontend.   
-*Notice the name matches the Wifi name you connected to earlier*  
-The Blue LED on the AquaPi should stop flashing when connected to Home Assistant.
-
-| ![Screenshot_20230813-141640](https://github.com/TheRealFalseReality/aquapi/assets/106857076/338765f1-fed4-41fb-848b-873081df067d) | ![AScreenshot_20230813SD144346](https://github.com/TheRealFalseReality/aquapi/assets/106857076/46bb5ef7-a34f-4778-9715-efb512ed3b04)|
- | ------------- | ------------- |
-
-7. To get updates, install the Home Assistant Add-On named ESPHome. Once installed, launch the add-on and navigate to the User-Interface by using `OPEN WEB UI`.  
-Add On Store:  
-[![Open your Home Assistant instance and show the Supervisor add-on store.](https://my.home-assistant.io/badges/supervisor_store.svg)](https://my.home-assistant.io/redirect/supervisor_store/)
-
-| ![Screenshot_20230813-144240](https://github.com/TheRealFalseReality/aquapi/assets/106857076/98edbcdc-5f8b-4e2a-bc43-115e3e3e6953) | ![Screenshot_20230813-144513](https://github.com/TheRealFalseReality/aquapi/assets/106857076/02758ba1-5b5d-4ca1-975b-d4870c63788f) |
- | ------------- | ------------- |
-
-8. In ESPHome, you should see the name of you AquaPi with a green button named `Adopt`.  
-Click on it, follow the promts and enter your Wifi credentials, and click `Install` and choose `Wirelessly` to install the most current AquaPi firmware.
-
-| ![Screenshot_20230813-144723](https://github.com/TheRealFalseReality/aquapi/assets/106857076/28256b8a-faba-4a17-b9ff-9a5dd1e0b00d) | ![Screenshot_20230813-153752](https://github.com/TheRealFalseReality/aquapi/assets/106857076/e5e198d8-a33e-4942-9cae-be37ee645611) |
- | ------------- | ------------- |
- 
-9. Update AquaPi Firmware by Using ESPHome, clicking on the 3-dots under your device, and choosing `Install`. It will pull the latest code from the GitHub respository.
-
-| ![Screenshot_20230813-153815](https://github.com/TheRealFalseReality/aquapi/assets/106857076/283b61cc-f258-4176-a053-40e5f810265f) | ![Screenshot_20230813-153825](https://github.com/TheRealFalseReality/aquapi/assets/106857076/7bbd24eb-9d98-49c4-bcac-8dca8e74e37e) |
- | ------------- | ------------- |
-
-*Alternatively, you can access the AquaPi web server without Home Assistant by navigating to `<hostname>.local/`. This is the ESP32's web server.  
-Hostname is the name if the device.*
+[Setup Guide](https://github.com/TheRealFalseReality/AquaPi#setup-aquapi)
 
 ## More Information
 Basic UI
