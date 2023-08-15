@@ -7,7 +7,7 @@ Powered by an [esp32](https://esphome.io/) and Controlled by [HomeAssistant](htt
 
 Use the 'View on GitHub' link above for more information and make suggestions.  
 
-[Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi)
+**[Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi)**
 
 # Installation
 **You can typically skip this as AquaPi comes pre-installed.**  
@@ -18,6 +18,7 @@ Use the button below to install the pre-built firmware directly to your device v
 <script type="module" src="https://unpkg.com/esp-web-tools@9.1.0/dist/web/install-button.js?module"></script>
 
 # Setup AquaPi
+Follow link below for guide:  
 **[Setup Guide](https://github.com/TheRealFalseReality/AquaPi#setup-aquapi)**
 
 ## More Information
@@ -28,11 +29,11 @@ Basic UI
 If you want to try some of the Dashboard or Cards I use, follow the link below. You may need addtional integrations or custom cards for some of them!  
 **[Example HomeAssistant Cards & Templates](https://github.com/TheRealFalseReality/aquapi/tree/main/Example%20HomeAssistant%20Cards%20%26%20Templates)**  
 
-## Hardware Used
+### Hardware Used
 **ESP32 devkit**   
 **HomeAssistant** using a Raspberry Pi 3 or above. The more RAM, the better.  
 
-### Probes:
+**Probes**:  
 **Temperature** 
   - DS18B20 Waterproof Thermistor  
   
@@ -55,13 +56,13 @@ Dissolved Oxygen, Pump, Humidity, Carbon Dioxide, Temperture
 **Prerequisite!!** A Raspberry Pi (or something similar) running HomeAssistant to communicate and interact with the ESP32 via `homeassistant.local:8123`.
 Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 
-## Software Used  
+### Software Used  
 [**Home Assistant**](https://www.home-assistant.io/): Open source home automation that puts local control and privacy first.   
 [**ESPHome**](https://esphome.io/): A system to control your ESP8266/ESP32 and RP2040 by simple yet powerful configuration files and control them remotely through Home Automation systems.
 
 ![made-for-esphome-white-on-black](https://github.com/TheRealFalseReality/aquapi/assets/106857076/c68b7da3-17c9-43bf-b8c7-f44acf63eb28)
 
-## Blueprints
+## [Blueprints](https://github.com/TheRealFalseReality/AquaPi#blueprints)
 These are scripts and automations I created to control other devices within Home Assistant.
 
 ### [Feeding Automation](https://community.home-assistant.io/t/turn-off-switches-to-feed-your-fish-for-a-certain-amount-of-time-then-turn-back-on-aquarium-script/600544)
