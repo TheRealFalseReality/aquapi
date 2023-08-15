@@ -1,0 +1,59 @@
+sensor:
+  - name: "Water Hardness"
+    unique_id: '0a7476cc-sdfsdf-40ba-8ae1-606518c3497f'
+    icon: mdi:water-opacity
+    state: >
+      {% set hardness = states('input_number.carbonate_hardness_marine') %}
+      {% if hardness | float<=70 %}Very Soft
+      {% elif hardness | float<=140 | float>70 %}Soft
+      {% elif hardness | float<=210 | float>140 %}Moderately Hard
+      {% elif hardness | float<=320 | float>210 %}Hard
+      {% elif hardness | float>320 %}Very Hard
+      {%- endif %}   
+
+  - name: "Water Hardness"
+    unique_id: 'sdfdsfdsf-d6c1-40ba-8ae1-606518c3497f'
+    icon: mdi:water-opacity
+    state: >
+      {% set hardness = states('input_number.carbonate_hardness') %}
+      {% if hardness | float<=70 %}Very Soft
+      {% elif hardness | float<=140 | float>70 %}Soft
+      {% elif hardness | float<=210 | float>140 %}Moderately Hard
+      {% elif hardness | float<=320 | float>210 %}Hard
+      {% elif hardness | float>320 %}Very Hard
+      {%- endif %}
+
+  - name: "Heater State"
+    icon: mdi:thermometer-water
+    unique_id: '0a7476cc-d6c1-40ba-erwr-606518c3497f'
+    state: >
+      {% set heaterState =
+        states('sensor.heater_current_consumption') | float %}
+      {% if heaterState > 1 %}
+        Heating
+      {% else %}
+        Standby
+      {%- endif %}
+
+  - name: "Pump State"
+    unique_id: '0a7476cc-d6c1-40ba-8ae1-erwrewrwer'
+    state: >
+      {% set lifterState =
+        states('switch.aqualifter') %}
+      {% if lifterState == 'on' %}
+        Pumping
+      {% else %}
+        Standby
+      {%- endif %}
+
+  - name: "Doser State"
+    unique_id: 'asdsafggfh-d6c1-40ba-8ae1-erwrewrwer'
+    icon: mdi:pump
+    state: >
+      {% set doserState =
+        states('switch.1052e9f') %}
+      {% if doserState == 'on' %}
+        Dosing
+      {% else %}
+        Standby
+      {%- endif %}
