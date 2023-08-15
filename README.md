@@ -79,6 +79,7 @@ dashboard_import:
 Using source code, you can also customize anything and add your own sensors! Make it your own!
 
 ## Setup AquaPi
+### Home Assistant
 1. Install and power on the Home Assistant device. Connect it via an ethernet cable.  
 
 2. Navigate to the following URL, via your favorite browser:  
@@ -131,8 +132,13 @@ Click on it, follow the promts and enter your Wifi credentials, and click `Insta
 | ![Screenshot_20230813-153815](https://github.com/TheRealFalseReality/aquapi/assets/106857076/283b61cc-f258-4176-a053-40e5f810265f) | ![Screenshot_20230813-153825](https://github.com/TheRealFalseReality/aquapi/assets/106857076/7bbd24eb-9d98-49c4-bcac-8dca8e74e37e) |
  | ------------- | ------------- |
 
-*Alternatively, you can access the AquaPi web server without Home Assistant by navigating to `<hostname>.local/`. This is the ESP32's web server.  
-Hostname is the name if the device.*
+### Web Server
+Alternatively, you can access the AquaPi web server without Home Assistant by navigating to: 
+```
+<hostname>.local/
+```
+This is the ESP32's web server.  
+*Hostname is the name of the device.* (In this example: `aquapi-6734b0.local/`)
 
 ## Blueprints
 These are scripts and automations I created to control other devices within Home Assistant.
