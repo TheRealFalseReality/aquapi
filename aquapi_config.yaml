@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 8/2023
-  appVersion: "0.18.6"
+  appVersion: "0.18.6.1"
 
   # pins
   dallasPin: "4"
@@ -236,7 +236,6 @@ sensor:
     id: temp_1
     icon: mdi:thermometer-lines
     index: 0
-    update_interval: 60s
     name: "Temperature"
 
   - platform: dallas
@@ -244,7 +243,6 @@ sensor:
     icon: mdi:thermometer-lines
     index: 1
     name: "Temperature 2"
-    update_interval: 60s
     disabled_by_default: true
     
   - platform: template
