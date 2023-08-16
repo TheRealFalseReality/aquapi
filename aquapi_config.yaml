@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 8/2023
-  appVersion: "0.18.5"
+  appVersion: "0.18.6"
 
   # pins
   dallasPin: "4"
@@ -45,7 +45,6 @@ esp32:
 
 # Enable logging
 logger:
-  # level: verbose
 
 # Enable Home Assistant API
 api:
@@ -54,7 +53,6 @@ ota:
 
 dashboard_import:
   package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@main
-  # import_full_config: true
 
 wifi:
   ap:
@@ -238,6 +236,7 @@ sensor:
     id: temp_1
     icon: mdi:thermometer-lines
     index: 0
+    update_interval: 60s
     name: "Temperature"
 
   - platform: dallas
@@ -245,6 +244,7 @@ sensor:
     icon: mdi:thermometer-lines
     index: 1
     name: "Temperature 2"
+    update_interval: 60s
     disabled_by_default: true
     
   - platform: template
@@ -324,7 +324,7 @@ text_sensor:
     icon: mdi:waves-arrow-up
     name: "Water Level"
     id: water_level
-    update_interval: 10s
+    update_interval: 1s
     lambda: |-
       if(id(os_high).state == true && id(os_low).state == true) {
         // Water Level is High
