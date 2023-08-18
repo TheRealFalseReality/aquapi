@@ -133,7 +133,7 @@ Click on it, follow the promts and enter your Wifi credentials, and click `Insta
  | ------------- | ------------- |
 
 ### Web Server
-Alternatively, you can access the AquaPi web server without Home Assistant by navigating to: 
+Alternatively, after connecting to Wifi, you can access the AquaPi web server without Home Assistant by navigating to: 
 ```
 <hostname>.local/
 ```
