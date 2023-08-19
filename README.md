@@ -171,5 +171,4 @@ This automation is intended to create an ATO (Automated-Top-Off) automation for 
 [**EZO pH Circuit Datasheet**](https://files.atlas-scientific.com/pH_EZO_Datasheet.pdf)  
 [**EZO EC Circuit Datasheet**](https://files.atlas-scientific.com/EC_EZO_Datasheet.pdf)  
 
-
 </details>
