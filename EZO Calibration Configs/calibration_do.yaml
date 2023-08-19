@@ -71,10 +71,6 @@ light:
     id: internal_led
     # entity_category: "Config"
 
-# 18B20 sensor Pin
-dallas:
-  - pin: ${dallasPin}
-
 sensor:
   # EZO Circuit - EC
   # Conductivity

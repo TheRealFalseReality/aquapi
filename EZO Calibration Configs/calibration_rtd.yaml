@@ -37,10 +37,6 @@ api:
 
 ota:
 
-# dashboard_import:
-#   package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@main
-#   import_full_config: true
-
 wifi:
   ap:
 
@@ -69,10 +65,6 @@ light:
     pin: GPIO2
     id: internal_led
     # entity_category: "Config"
-
-# 18B20 sensor Pin
-dallas:
-  - pin: ${dallasPin}
 
 sensor:
   # EZO Circuit - EC
