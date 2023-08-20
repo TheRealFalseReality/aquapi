@@ -84,6 +84,7 @@ button:
   - platform: template
     name: "RTD - Calibration - 100C (Boiling)"
     id: rtd_cal_100
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -93,6 +94,7 @@ button:
   - platform: template
     name: "RTD - Calibration Clear"
     id: rtd_cal_clear
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -102,6 +104,7 @@ button:
   - platform: template
     name: "RTD - Calibration - check"
     id: rtd_cal_check
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -111,6 +114,7 @@ button:
   - platform: template
     name: "RTD - Staus Check"
     id: rtd_status
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -120,6 +124,7 @@ button:
   - platform: template
     name: "RTD - Get Information"
     id: rtd_info
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -129,6 +134,7 @@ button:
   - platform: template
     name: "RTD - Manual Read"
     id: rtd_read
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-

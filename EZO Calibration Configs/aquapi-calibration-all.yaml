@@ -247,6 +247,7 @@ button:
   - platform: template
     name: "EC - Output - Salinity"
     id: ec_sal
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -260,6 +261,7 @@ button:
   - platform: template
     name: "EC - Output - Specific Gravity"
     id: ec_sg
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -273,6 +275,7 @@ button:
   - platform: template
     name: "EC - Output - Conductivity"
     id: ec_cond
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -286,6 +289,7 @@ button:
   - platform: template
     name: "DO - Calibration - Air"
     id: do_cal_air
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -295,6 +299,7 @@ button:
   - platform: template
     name: "DO - Calibration - 0"
     id: do_cal_0
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -304,6 +309,7 @@ button:
   - platform: template
     name: "DO - Calibration Clear"
     id: do_cal_clear
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -313,6 +319,7 @@ button:
   - platform: template
     name: "DO - Calibration - check"
     id: do_cal_check
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -322,6 +329,7 @@ button:
   - platform: template
     name: "DO - Staus Check"
     id: do_status
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -331,6 +339,7 @@ button:
   - platform: template
     name: "DO - Get Information"
     id: do_info
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -340,6 +349,7 @@ button:
   - platform: template
     name: "DO - Manual Read"
     id: do_read
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -349,6 +359,7 @@ button:
   - platform: template
     name: "EC - Output - TDS"
     id: ec_tds
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -361,6 +372,7 @@ button:
   - platform: template
     name: "EC - Get Information"
     id: ec_info
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -370,6 +382,7 @@ button:
   - platform: template
     name: "EC - Set Probe Type K1"
     id: ec_probe_type
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -379,6 +392,7 @@ button:
   - platform: template
     name: "EC - Get Probe Value"
     id: ec_probe_value
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -388,6 +402,7 @@ button:
   - platform: template
     name: "EC - Manual Read"
     id: ec_read
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -397,6 +412,7 @@ button:
   - platform: template
     name: "EC - Calibration - 0"
     id: ec_cal_0
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -406,6 +422,7 @@ button:
   - platform: template
     name: "EC - Calibration - low 12880"
     id: ec_cal_low
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -415,6 +432,7 @@ button:
   - platform: template
     name: "EC - Calibration - high 80000"
     id: ec_cal_high
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -424,6 +442,7 @@ button:
   - platform: template
     name: "EC - Calibration Clear"
     id: ec_cal_clear
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -433,6 +452,7 @@ button:
   - platform: template
     name: "EC - Calibration - check"
     id: ec_cal_check
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -442,6 +462,7 @@ button:
   - platform: template
     name: "EC - Staus Check"
     id: ec_status
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -451,6 +472,7 @@ button:
   - platform: template
     name: "EC - TDS Value"
     id: ec_tds_value
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -461,6 +483,7 @@ button:
   - platform: template
     name: "EC - Get Enabled Parameter(s)"
     id: ec_param
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -471,6 +494,7 @@ button:
   - platform: template
     name: "pH - Get Information"
     id: ph_info
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -480,6 +504,7 @@ button:
   - platform: template
     name: "pH - Get Slope"
     id: ph_slope
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -489,6 +514,7 @@ button:
   - platform: template
     name: "pH - Manual Read"
     id: ph_read
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -498,6 +524,7 @@ button:
   - platform: template
     name: "pH - Calibration - mid 7"
     id: ph_cal_mid
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -507,6 +534,7 @@ button:
   - platform: template
     name: "pH - Calibration - low 4"
     id: ph_cal_low
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -516,6 +544,7 @@ button:
   - platform: template
     name: "pH - Calibration - high 10"
     id: ph_cal_high
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -525,6 +554,7 @@ button:
   - platform: template
     name: "pH - Calibration Clear"
     id: ph_cal_clear
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -534,6 +564,7 @@ button:
   - platform: template
     name: "pH - Calibration - check"
     id: ph_cal_check
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -543,6 +574,7 @@ button:
   - platform: template
     name: "pH - Staus Check"
     id: ph_status
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -552,6 +584,7 @@ button:
   - platform: template
     name: "RTD - Calibration - 100C (Boiling)"
     id: rtd_cal_100
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -561,6 +594,7 @@ button:
   - platform: template
     name: "RTD - Calibration Clear"
     id: rtd_cal_clear
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -570,6 +604,7 @@ button:
   - platform: template
     name: "RTD - Calibration - check"
     id: rtd_cal_check
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -579,6 +614,7 @@ button:
   - platform: template
     name: "RTD - Staus Check"
     id: rtd_status
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -588,6 +624,7 @@ button:
   - platform: template
     name: "RTD - Get Information"
     id: rtd_info
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -597,6 +634,7 @@ button:
   - platform: template
     name: "RTD - Manual Read"
     id: rtd_read
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-

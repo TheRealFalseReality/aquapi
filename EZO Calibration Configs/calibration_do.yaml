@@ -89,6 +89,7 @@ button:
   - platform: template
     name: "DO - Calibration - Air"
     id: do_cal_air
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -98,6 +99,7 @@ button:
   - platform: template
     name: "DO - Calibration - 0"
     id: do_cal_0
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -107,6 +109,7 @@ button:
   - platform: template
     name: "DO - Calibration Clear"
     id: do_cal_clear
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -116,6 +119,7 @@ button:
   - platform: template
     name: "DO - Calibration - check"
     id: do_cal_check
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -125,6 +129,7 @@ button:
   - platform: template
     name: "DO - Staus Check"
     id: do_status
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -134,6 +139,7 @@ button:
   - platform: template
     name: "DO - Get Information"
     id: do_info
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
@@ -143,6 +149,7 @@ button:
   - platform: template
     name: "DO - Manual Read"
     id: do_read
+    entity_category: "Config"
     on_press:
       then:
         - lambda: |-
