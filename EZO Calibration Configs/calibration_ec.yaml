@@ -84,7 +84,7 @@ button:
   # Output All
   - platform: template
     name: "EC - Output - All"
-    id: ec_all
+    id: ec_out_all
     entity_category: "Config"
     on_press:
       then:
@@ -97,7 +97,7 @@ button:
   # Output Conductivity
   - platform: template
     name: "EC - Output - Conductivity"
-    id: ec_cond
+    id: ec_out_cond
     entity_category: "Config"
     on_press:
       then:
@@ -110,7 +110,7 @@ button:
   # Output Salinity
   - platform: template
     name: "EC - Output - Salinity"
-    id: ec_sal
+    id: ec_out_sal
     entity_category: "Config"
     on_press:
       then:
@@ -123,7 +123,7 @@ button:
   # Output Specfic Gravity
   - platform: template
     name: "EC - Output - Specfic Gravity"
-    id: ec_sg
+    id: ec_out_sg
     entity_category: "Config"
     on_press:
       then:
@@ -136,7 +136,7 @@ button:
   # Output TDS
   - platform: template
     name: "EC - Output - TDS"
-    id: ec_tds
+    id: ec_out_tds
     entity_category: "Config"
     on_press:
       then:
