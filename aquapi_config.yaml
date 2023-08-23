@@ -1,7 +1,7 @@
 substitutions:
   # names
-  name: "aquapi"
-  friendly_name: "AquaPi"
+  name: "aquapi_test"
+  friendly_name: "AquaPi-TEST"
 
   # App Version - Updated: 8/2023
   appVersion: "0.18.6.2-TEST"
