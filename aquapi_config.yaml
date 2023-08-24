@@ -1,10 +1,10 @@
 substitutions:
   # names
-  name: "aquapi_test"
-  friendly_name: "AquaPi-TEST"
+  name: aquapi-fd047c
+  friendly_name: AquaPi fd047c - Reef
 
   # App Version - Updated: 8/2023
-  appVersion: "0.19.1-TEST"
+  appVersion: "0.19.3-TEST"
 
   # pins
   dallasPin: "4"
@@ -41,7 +41,7 @@ esphome:
   name: "${name}"
   friendly_name: "${friendly_name}"
   # Automatically add the mac address to the name
-  name_add_mac_suffix: true
+  name_add_mac_suffix: false
   project:
     name: TheRealFalseReality.aquapi
     version: "${appVersion}"
@@ -56,13 +56,19 @@ logger:
 
 # Enable Home Assistant API
 api:
+  encryption:
+    key: JupmojNS0EO3owVBGgz4KPlU1FePy7pGkb/WhRSr65s=
 
 ota:
 
 dashboard_import:
   package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@test
+  import_full_config: true
 
 wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  
   ap:
 
 captive_portal:
@@ -236,7 +242,7 @@ sensor:
     state_class: "measurement"
     disabled_by_default: true
 
-  # Temperature Probe 1
+  # Temperature Probes 1
   - platform: dallas
     id: temp_1
     icon: mdi:thermometer-lines
@@ -249,7 +255,7 @@ sensor:
             - 0.0 -> ${cal_0}
             - 100.0 -> ${cal_100}
 
-  # Temperature Probe 2
+  # Temperature Probes 2
   - platform: dallas
     id: temp_2
     icon: mdi:thermometer-lines
@@ -275,7 +281,51 @@ sensor:
     lambda: |-
       return id(temp_1).state * 9 / 5 + 32;
 
+  # Calibration Temp. at 0C
+  - platform: template
+    name: Calibration at 0C - Temp. 1
+    id: cal_0_sen
+    icon: mdi:snowflake-alert
+    disabled_by_default: false
+    entity_category: "diagnostic"
+    lambda: |-
+      return {${cal_0}};
+
+  # Calibration Temp. at 100C
+  - platform: template
+    name: Calibration at 100C - Temp. 1
+    id: cal_100_sen
+    icon: mdi:water-thermometer
+    disabled_by_default: false
+    entity_category: "diagnostic"
+    lambda: |-
+      return {${cal_100}};
+
+  # Calibration Temp. 2 at 0C
+  - platform: template
+    name: Calibration at 0C  - Temp. 2
+    id: cal_0_2_sen
+    icon: mdi:snowflake-alert
+    disabled_by_default: false
+    entity_category: "diagnostic"
+    lambda: |-
+      return {${cal_0_2}};
+
+  # Calibration Temp. 2 at 100C
+  - platform: template
+    name: Calibration at 100C - Temp. 2
+    id: cal_100_2_sen
+    icon: mdi:water-thermometer
+    disabled_by_default: false
+    entity_category: "diagnostic"
+    lambda: |-
+      return {${cal_100_2}};
+
 binary_sensor:
+  # Aquapi API Status
+  - platform: status
+    name: "AquaPi Status"
+    
   # Optical Sensor - LOW (yellow)
   - platform: gpio
     id: os_low
@@ -386,46 +436,6 @@ text_sensor:
       else {
         return {"Unknown"};
       }  
-
-  # Calibration Temp. at 0C
-  - platform: template
-    name: Calibration Temp. at 0C
-    id: cal_0_sen
-    icon: mdi:snowflake-alert
-    disabled_by_default: false
-    entity_category: "diagnostic"
-    lambda: |-
-      return {"${cal_0}"};
-
-  # Calibration Temp. at 100C
-  - platform: template
-    name: Calibration Temp. at 100C
-    id: cal_100_sen
-    icon: mdi:water-thermometer
-    disabled_by_default: false
-    entity_category: "diagnostic"
-    lambda: |-
-      return {"${cal_100}"};
-
-  # Calibration Temp. 2 at 0C
-  - platform: template
-    name: Calibration Temp. 2 at 0C
-    id: cal_0_2_sen
-    icon: mdi:snowflake-alert
-    disabled_by_default: false
-    entity_category: "diagnostic"
-    lambda: |-
-      return {"${cal_0_2}"};
-
-  # Calibration Temp. 2 at 100C
-  - platform: template
-    name: Calibration Temp. 2 at 100C
-    id: cal_100_2_sen
-    icon: mdi:water-thermometer
-    disabled_by_default: false
-    entity_category: "diagnostic"
-    lambda: |-
-      return {"${cal_100_2}"};
 
   # Temperature Range 2
   - platform: template
