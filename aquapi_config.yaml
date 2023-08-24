@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi-TEST"
 
   # App Version - Updated: 8/2023
-  appVersion: "0.19.3-TEST"
+  appVersion: "0.19.4-TEST"
 
   # pins
   dallasPin: "4"
@@ -37,11 +37,15 @@ substitutions:
   cal_100: "100.0"
   cal_100_2: "100.0"
 
+  # Import Config
+  import_config: "true"
+
 esphome:
   name: "${name}"
   friendly_name: "${friendly_name}"
   # Automatically add the mac address to the name
   name_add_mac_suffix: false
+  comment: AquaPi ESP32 Aquarium Controller & Monitor
   project:
     name: TheRealFalseReality.aquapi
     version: "${appVersion}"
@@ -61,7 +65,7 @@ ota:
 
 dashboard_import:
   package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@test
-  import_full_config: true
+  import_full_config: ${import_config}
 
 wifi: 
   ap:
