@@ -60,7 +60,7 @@ api:
 ota:
 
 dashboard_import:
-  package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@main
+  package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@test
 
 wifi:
   ap:
