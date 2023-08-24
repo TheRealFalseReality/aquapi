@@ -236,7 +236,7 @@ sensor:
     state_class: "measurement"
     disabled_by_default: true
 
-  # Temperature Probes 1
+  # Temperature Probe 1
   - platform: dallas
     id: temp_1
     icon: mdi:thermometer-lines
@@ -249,7 +249,7 @@ sensor:
             - 0.0 -> ${cal_0}
             - 100.0 -> ${cal_100}
 
-  # Temperature Probes 2
+  # Temperature Probe 2
   - platform: dallas
     id: temp_2
     icon: mdi:thermometer-lines
