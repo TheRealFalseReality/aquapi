@@ -1,7 +1,7 @@
 substitutions:
   # names
-  name: aquapi-fd047c
-  friendly_name: AquaPi fd047c - Reef
+  name: "aquapi-test"
+  friendly_name: "AquaPi-TEST"
 
   # App Version - Updated: 8/2023
   appVersion: "0.19.3-TEST"
@@ -56,8 +56,6 @@ logger:
 
 # Enable Home Assistant API
 api:
-  encryption:
-    key: JupmojNS0EO3owVBGgz4KPlU1FePy7pGkb/WhRSr65s=
 
 ota:
 
@@ -65,10 +63,7 @@ dashboard_import:
   package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@test
   import_full_config: true
 
-wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
-  
+wifi: 
   ap:
 
 captive_portal:
