@@ -393,6 +393,7 @@ text_sensor:
     id: cal_0_sen
     icon: mdi:snowflake-alert
     disabled_by_default: false
+    entity_category: "diagnostic"
     lambda: |-
       return {"${cal_0}"};
 
@@ -402,6 +403,7 @@ text_sensor:
     id: cal_100_sen
     icon: mdi:water-thermometer
     disabled_by_default: false
+    entity_category: "diagnostic"
     lambda: |-
       return {"${cal_100}"};
 
@@ -411,6 +413,7 @@ text_sensor:
     id: cal_0_2_sen
     icon: mdi:snowflake-alert
     disabled_by_default: false
+    entity_category: "diagnostic"
     lambda: |-
       return {"${cal_0_2}"};
 
@@ -420,6 +423,7 @@ text_sensor:
     id: cal_100_2_sen
     icon: mdi:water-thermometer
     disabled_by_default: false
+    entity_category: "diagnostic"
     lambda: |-
       return {"${cal_100_2}"};
 
