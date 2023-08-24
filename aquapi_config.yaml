@@ -1,10 +1,11 @@
 substitutions:
   # names
-  name: "aquapi"
-  friendly_name: "AquaPi"
+  name: "aquapi-test"
+  friendly_name: "AquaPi-TEST"
 
   # App Version - Updated: 8/2023
-  appVersion: "0.18.6.3"
+
+  appVersion: "0.19.4"
 
   # pins
   dallasPin: "4"
@@ -29,11 +30,23 @@ substitutions:
   # CO2 circuit, who's address is 105
   addCO2: "105"
 
+  # calibration variables
+  # calibration at 0C - Ice Water
+  cal_0: "0.0"
+  cal_0_2: "0.0"
+  # calibration at 100C - Boiling Water
+  cal_100: "100.0"
+  cal_100_2: "100.0"
+
+  # Import Config
+  import_config: "true"
+
 esphome:
   name: "${name}"
   friendly_name: "${friendly_name}"
   # Automatically add the mac address to the name
-  name_add_mac_suffix: true
+  name_add_mac_suffix: false
+  comment: AquaPi ESP32 Aquarium Controller & Monitor
   project:
     name: TheRealFalseReality.aquapi
     version: "${appVersion}"
@@ -52,17 +65,17 @@ api:
 ota:
 
 dashboard_import:
-  package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@main
+  package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@test
+  import_full_config: ${import_config}
 
-wifi:
+wifi: 
   ap:
 
 captive_portal:
 
 web_server:
 
-# Sets up Bluetooth LE (Only on ESP32) to allow the user
-# to provision wifi credentials to the device.
+# Sets up Bluetooth LE (Only on ESP32) to allow the user to provision wifi credentials to the device.
 esp32_improv:
   authorizer: none
   
@@ -78,10 +91,8 @@ i2c:
 # Internal Blue LED
 light:
   - platform: status_led
-    # name: "Internal LED"
     pin: GPIO2
     id: internal_led
-    # entity_category: "Config"
 
 # 18B20 sensor Pin
 dallas:
@@ -231,31 +242,90 @@ sensor:
     state_class: "measurement"
     disabled_by_default: true
 
-  # Temperature Probes
+  # Temperature Probes 1
   - platform: dallas
     id: temp_1
     icon: mdi:thermometer-lines
     index: 0
     name: "Temperature"
+    filters:
+      - calibrate_linear:
+          method: least_squares
+          datapoints:
+            - 0.0 -> ${cal_0}
+            - 100.0 -> ${cal_100}
 
+  # Temperature Probes 2
   - platform: dallas
     id: temp_2
     icon: mdi:thermometer-lines
     index: 1
     name: "Temperature 2"
+    filters:
+      - calibrate_linear:
+          method: least_squares
+          datapoints:
+            - 0.0 -> ${cal_0_2}
+            - 100.0 -> ${cal_100_2}
     disabled_by_default: true
     
+  # Convert to Fahrenheit - Temp. 1
   - platform: template
     id: temp_f
     lambda: |-
       return id(temp_1).state * 9 / 5 + 32;
 
+  # Convert to Fahrenheit - Temp. 2
   - platform: template
     id: temp_f_2
     lambda: |-
       return id(temp_1).state * 9 / 5 + 32;
 
+  # Calibration Temp. at 0C
+  - platform: template
+    name: Calibration at 0C - Temp. 1
+    id: cal_0_sen
+    icon: mdi:snowflake-alert
+    disabled_by_default: false
+    entity_category: "diagnostic"
+    lambda: |-
+      return {${cal_0}};
+
+  # Calibration Temp. at 100C
+  - platform: template
+    name: Calibration at 100C - Temp. 1
+    id: cal_100_sen
+    icon: mdi:water-thermometer
+    disabled_by_default: false
+    entity_category: "diagnostic"
+    lambda: |-
+      return {${cal_100}};
+
+  # Calibration Temp. 2 at 0C
+  - platform: template
+    name: Calibration at 0C  - Temp. 2
+    id: cal_0_2_sen
+    icon: mdi:snowflake-alert
+    disabled_by_default: false
+    entity_category: "diagnostic"
+    lambda: |-
+      return {${cal_0_2}};
+
+  # Calibration Temp. 2 at 100C
+  - platform: template
+    name: Calibration at 100C - Temp. 2
+    id: cal_100_2_sen
+    icon: mdi:water-thermometer
+    disabled_by_default: false
+    entity_category: "diagnostic"
+    lambda: |-
+      return {${cal_100_2}};
+
 binary_sensor:
+  # Aquapi API Status
+  - platform: status
+    name: "AquaPi Status"
+    
   # Optical Sensor - LOW (yellow)
   - platform: gpio
     id: os_low
@@ -317,6 +387,15 @@ text_sensor:
       return {"${appVersion}"};
     entity_category: "diagnostic"
 
+  # GitHub Project URL
+  - platform: template
+    name: GitHub
+    id: github
+    icon: mdi:github
+    lambda: |-
+      return {"github.com/TheRealFalseReality/aquapi"};
+    entity_category: "diagnostic"
+
   # Water Level
   - platform: template
     icon: mdi:waves-arrow-up
@@ -339,7 +418,7 @@ text_sensor:
         return {"Uknown or Error"};
       }
 
-  # Temperature Range
+  # Temperature Range 1
   - platform: template
     name: Temperature Range
     id: temp_range
@@ -358,6 +437,7 @@ text_sensor:
         return {"Unknown"};
       }  
 
+  # Temperature Range 2
   - platform: template
     name: Temperature 2 Range
     id: temp_range_2
@@ -376,15 +456,6 @@ text_sensor:
       else {
         return {"Unknown"};
       }  
-
-  # GitHub Project URL
-  - platform: template
-    name: GitHub
-    id: github
-    icon: mdi:github
-    lambda: |-
-      return {"github.com/TheRealFalseReality/aquapi"};
-    entity_category: "diagnostic"
 
 button:
   # Soft Restart
@@ -436,28 +507,56 @@ button:
     disabled_by_default: true
 
 number:
+  # Temperature when Cool
   - platform: template
     name: "Temp. Cool"
     id: range_cool
     icon: mdi:water-thermometer
     optimistic: true
     mode: box
-    min_value: 0
-    max_value: 100
+    min_value: 0.0
+    max_value: 100.0
     step: 1
     restore_value: True
     initial_value: 72
     entity_category: "Config"
 
+  # Temperature when Warm
   - platform: template
     name: "Temp. Warm"
     icon: mdi:water-alert
     id: range_warm
     optimistic: true
     mode: box
-    min_value: 0
-    max_value: 100
+    min_value: 0.0
+    max_value: 100.0
     step: 1
     restore_value: True
     initial_value: 82
     entity_category: "Config"
+
+  # # Calibration Temp. at 0C - Ice Bath
+  # - platform: template
+  #   name: "Calibration Temp. at 0C - Ice Bath"
+  #   id: cal_0
+  #   icon: mdi:snowflake-alert
+  #   optimistic: true
+  #   min_value: -10.0
+  #   max_value: 10.0
+  #   step: .1
+  #   restore_value: True
+  #   initial_value: 0.0
+  #   entity_category: "Config"
+
+  # # Calibration Temp. at 100C - Boiling
+  # - platform: template
+  #   name: "Calibration Temp. at 100C - Boiling"
+  #   id: cal_100
+  #   icon: mdi:snowflake-alert
+  #   optimistic: true
+  #   min_value: 90.0
+  #   max_value: 110.0
+  #   step: .1
+  #   restore_value: True
+  #   initial_value: 100.0
+  #   entity_category: "Config"
