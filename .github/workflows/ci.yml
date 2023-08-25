@@ -13,8 +13,8 @@ jobs:
           - aquapi_config.yaml
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Build ESPHome firmware to verify configuration
-        uses: esphome/build-action@v1.5.0
+        uses: esphome/build-action@v1.8.0
         with:
           yaml_file: ${{ matrix.file }}
