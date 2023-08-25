@@ -323,7 +323,7 @@ sensor:
 binary_sensor:
   # Aquapi API Status
   - platform: status
-    name: "AquaPi Status"
+    name: "Status"
     
   # Optical Sensor - LOW (yellow)
   - platform: gpio
