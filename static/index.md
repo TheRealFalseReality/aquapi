@@ -1,4 +1,4 @@
-# AquaPi for ESPHome - TEST 
+# AquaPi for ESPHome
 
 The Aquarium meets the Smart Home!  
 
