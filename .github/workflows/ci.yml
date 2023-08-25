@@ -7,8 +7,6 @@ jobs:
   ci:
     name: Building ${{ matrix.file }}
     runs-on: ubuntu-latest
-    env:
-      ESPHOME_VERSION: 2023.7.1
     strategy:
       matrix:
         file:
