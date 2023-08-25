@@ -285,7 +285,7 @@ sensor:
     name: Calibration at 0C - Temp. 1
     id: cal_0_sen
     icon: mdi:snowflake-alert
-    disabled_by_default: false
+    disabled_by_default: true
     entity_category: "diagnostic"
     lambda: |-
       return {${cal_0}};
@@ -295,7 +295,7 @@ sensor:
     name: Calibration at 100C - Temp. 1
     id: cal_100_sen
     icon: mdi:water-thermometer
-    disabled_by_default: false
+    disabled_by_default: true
     entity_category: "diagnostic"
     lambda: |-
       return {${cal_100}};
@@ -305,7 +305,7 @@ sensor:
     name: Calibration at 0C  - Temp. 2
     id: cal_0_2_sen
     icon: mdi:snowflake-alert
-    disabled_by_default: false
+    disabled_by_default: true
     entity_category: "diagnostic"
     lambda: |-
       return {${cal_0_2}};
@@ -315,7 +315,7 @@ sensor:
     name: Calibration at 100C - Temp. 2
     id: cal_100_2_sen
     icon: mdi:water-thermometer
-    disabled_by_default: false
+    disabled_by_default: true
     entity_category: "diagnostic"
     lambda: |-
       return {${cal_100_2}};
