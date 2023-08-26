@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 8/2023
-  appVersion: "0.19.5"
+  appVersion: "0.19.6"
 
   # pins
   dallasPin: "4"
@@ -44,7 +44,7 @@ esphome:
   name: "${name}"
   friendly_name: "${friendly_name}"
   # Automatically add the mac address to the name
-  name_add_mac_suffix: false
+  name_add_mac_suffix: true
   comment: AquaPi ESP32 - Aquarium Controller & Monitor
   project:
     name: TheRealFalseReality.aquapi
@@ -282,9 +282,10 @@ sensor:
 
   # Calibration Temp. at 0C
   - platform: template
-    name: Calibration at 0C - Temp. 1
+    name: Calibration at 0°C - Temp. 1
     id: cal_0_sen
     icon: mdi:snowflake-alert
+    unit_of_measurement: "°C"
     disabled_by_default: true
     entity_category: "diagnostic"
     lambda: |-
@@ -292,9 +293,10 @@ sensor:
 
   # Calibration Temp. at 100C
   - platform: template
-    name: Calibration at 100C - Temp. 1
+    name: Calibration at 100°C - Temp. 1
     id: cal_100_sen
     icon: mdi:water-thermometer
+    unit_of_measurement: "°C"
     disabled_by_default: true
     entity_category: "diagnostic"
     lambda: |-
@@ -302,9 +304,10 @@ sensor:
 
   # Calibration Temp. 2 at 0C
   - platform: template
-    name: Calibration at 0C  - Temp. 2
+    name: Calibration at 0°C  - Temp. 2
     id: cal_0_2_sen
     icon: mdi:snowflake-alert
+    unit_of_measurement: "°C"
     disabled_by_default: true
     entity_category: "diagnostic"
     lambda: |-
@@ -312,9 +315,10 @@ sensor:
 
   # Calibration Temp. 2 at 100C
   - platform: template
-    name: Calibration at 100C - Temp. 2
+    name: Calibration at 100°C - Temp. 2
     id: cal_100_2_sen
     icon: mdi:water-thermometer
+    unit_of_measurement: "°C"
     disabled_by_default: true
     entity_category: "diagnostic"
     lambda: |-
