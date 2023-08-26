@@ -4,7 +4,7 @@ substitutions:
   friendly_name: "AquaPi"
 
   # App Version - Updated: 8/2023
-  appVersion: "0.19.6"
+  appVersion: "0.19.7.1"
 
   # pins
   dallasPin: "4"
@@ -29,16 +29,23 @@ substitutions:
   # CO2 circuit, who's address is 105
   addCO2: "105"
 
-  # calibration variables
-  # calibration at 0C - Ice Water
+  # Calibration variables
+  # Calibration at 0C - Ice Water
   cal_0: "0.0"
   cal_0_2: "0.0"
-  # calibration at 100C - Boiling Water
+  # Calibration at 100C - Boiling Water
   cal_100: "100.0"
   cal_100_2: "100.0"
 
   # Import Config
   import_config: "false"
+
+  # Sensor update intevals. 60s = 1 minute, never = disabled
+  # Water Level
+  update_water: "1s"
+
+  # EZO EC
+  update_ec: "60s"
 
 esphome:
   name: "${name}"
@@ -101,7 +108,6 @@ sensor:
   # Internal Magnetic Sensor
   - platform: esp32_hall
     name: "ESP32 Hall Sensor"
-    update_interval: 60s
     entity_category: "diagnostic"
 
   # Internal Temp.
@@ -112,7 +118,6 @@ sensor:
   - platform: wifi_signal # Reports the WiFi signal strength/RSSI in dB
     name: "WiFi Signal dB"
     id: wifi_signal_db
-    update_interval: 60s
     entity_category: "diagnostic"
 
   # Wifi %
@@ -241,7 +246,7 @@ sensor:
     state_class: "measurement"
     disabled_by_default: true
 
-  # Temperature Probes 1
+  # Temperature Probe 1
   - platform: dallas
     id: temp_1
     icon: mdi:thermometer-lines
@@ -254,7 +259,7 @@ sensor:
             - 0.0 -> ${cal_0}
             - 100.0 -> ${cal_100}
 
-  # Temperature Probes 2
+  # Temperature Probe 2
   - platform: dallas
     id: temp_2
     icon: mdi:thermometer-lines
@@ -278,7 +283,7 @@ sensor:
   - platform: template
     id: temp_f_2
     lambda: |-
-      return id(temp_1).state * 9 / 5 + 32;
+      return id(temp_2).state * 9 / 5 + 32;
 
   # Calibration Temp. at 0C
   - platform: template
