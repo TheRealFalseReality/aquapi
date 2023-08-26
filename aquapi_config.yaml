@@ -533,29 +533,3 @@ number:
     restore_value: True
     initial_value: 82
     entity_category: "Config"
-
-  # # Calibration Temp. at 0C - Ice Bath
-  # - platform: template
-  #   name: "Calibration Temp. at 0C - Ice Bath"
-  #   id: cal_0
-  #   icon: mdi:snowflake-alert
-  #   optimistic: true
-  #   min_value: -10.0
-  #   max_value: 10.0
-  #   step: .1
-  #   restore_value: True
-  #   initial_value: 0.0
-  #   entity_category: "Config"
-
-  # # Calibration Temp. at 100C - Boiling
-  # - platform: template
-  #   name: "Calibration Temp. at 100C - Boiling"
-  #   id: cal_100
-  #   icon: mdi:snowflake-alert
-  #   optimistic: true
-  #   min_value: 90.0
-  #   max_value: 110.0
-  #   step: .1
-  #   restore_value: True
-  #   initial_value: 100.0
-  #   entity_category: "Config"
