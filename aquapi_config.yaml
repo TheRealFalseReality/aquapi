@@ -2,9 +2,12 @@ substitutions:
   # names
   name: "aquapi"
   friendly_name: "AquaPi"
-
   # App Version - Updated: 8/2023
-  appVersion: "0.19.7.1"
+  app_version: "0.19.7"
+  # Import Config
+  import_config: "false"
+  # Logger Level
+  logger: "DEBUG"
 
   # pins
   dallasPin: "4"
@@ -37,15 +40,25 @@ substitutions:
   cal_100: "100.0"
   cal_100_2: "100.0"
 
-  # Import Config
-  import_config: "false"
-
-  # Sensor update intevals. 60s = 1 minute, never = disabled
+  # Sensor update intevals. 60s = 1 minute, never = disable updates
   # Water Level
   update_water: "1s"
-
+  # Temp. Probes
+  update_temp: "60s"
+  # EZO pH
+  update_ph: "60s"
   # EZO EC
   update_ec: "60s"
+  # EZO DO
+  update_do: "60s"
+  # EZO RTD
+  update_rtd: "60s"
+  # EZO PMP
+  update_pmp: "60s"
+  # EZO HUM
+  update_hum: "60s"
+  # EZO CO2
+  update_co2: "60s"
 
 esphome:
   name: "${name}"
@@ -64,6 +77,7 @@ esp32:
 
 # Enable logging
 logger:
+  level: "${logger}"
 
 # Enable Home Assistant API
 api:
@@ -103,6 +117,7 @@ light:
 # 18B20 sensor Pin
 dallas:
   - pin: ${dallasPin}
+    update_interval: "${update_temp}"
     
 sensor:
   # Internal Magnetic Sensor
@@ -142,7 +157,7 @@ sensor:
     address: ${addPH}
     unit_of_measurement: ""
     accuracy_decimals: 2
-    update_interval: 60s
+    update_interval: "${update_ph}"
     state_class: "measurement"
 
   # EZO Circuit - EC
@@ -154,7 +169,7 @@ sensor:
     address: ${addEC}
     unit_of_measurement: "ppt"
     accuracy_decimals: 2
-    update_interval: 60s
+    update_interval: "${update_ec}"
     state_class: "measurement"
 
   # Specific Gravity
@@ -189,7 +204,7 @@ sensor:
     address: ${addRTD}
     # unit_of_measurement: "°C"
     accuracy_decimals: 2
-    update_interval: 60s
+    update_interval: "${update_rtd}"
     state_class: "measurement"
     device_class: "temperature"
     disabled_by_default: true
@@ -201,9 +216,9 @@ sensor:
     name: "Humidity"
     id: hum_ezo
     address: ${addHUM}
-    # unit_of_measurement: "%"
+    unit_of_measurement: "%"
     accuracy_decimals: 2
-    update_interval: 60s
+    update_interval: "${update_hum}"
     state_class: "measurement"
     device_class: "humidity"
     disabled_by_default: true
@@ -215,9 +230,9 @@ sensor:
     name: "Cardbon Dioxide"
     id: co2_ezo
     address: ${addCO2}
-    # unit_of_measurement: "ppm"
+    unit_of_measurement: "ppm"
     accuracy_decimals: 2
-    update_interval: 60s
+    update_interval: "${update_co2}"
     state_class: "measurement"
     device_class: "carbon_dioxide"
     disabled_by_default: true
@@ -230,7 +245,7 @@ sensor:
     address: ${addDO}
     unit_of_measurement: "mg/L"
     accuracy_decimals: 2
-    update_interval: 60s
+    update_interval: "${update_do}"
     state_class: "measurement"
     disabled_by_default: true
 
@@ -242,7 +257,7 @@ sensor:
     address: ${addPMP}
     unit_of_measurement: ""
     accuracy_decimals: 2
-    update_interval: 60s
+    update_interval: "${update_pmp}"
     state_class: "measurement"
     disabled_by_default: true
 
@@ -392,7 +407,7 @@ text_sensor:
     icon: mdi:update
     update_interval: 600s
     lambda: |-
-      return {"${appVersion}"};
+      return {"${app_version}"};
     entity_category: "diagnostic"
 
   # GitHub Project URL
@@ -409,7 +424,7 @@ text_sensor:
     icon: mdi:waves-arrow-up
     name: "Water Level"
     id: water_level
-    update_interval: 1s
+    update_interval: "${update_water}"
     lambda: |-
       if(id(os_high).state == true && id(os_low).state == true) {
         // Water Level is High
@@ -431,6 +446,7 @@ text_sensor:
     name: Temperature Range
     id: temp_range
     icon: mdi:thermometer-water
+    update_interval: "${update_temp}"
     lambda: |-
       if(id(temp_f).state <= id(range_cool).state ) {
         return {"Cool"};
@@ -450,6 +466,7 @@ text_sensor:
     name: Temperature 2 Range
     id: temp_range_2
     icon: mdi:thermometer-water
+    update_interval: "${update_temp}"
     disabled_by_default: true
     lambda: |-
       if(id(temp_f_2).state <= id(range_cool).state ) {
