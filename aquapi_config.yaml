@@ -42,7 +42,7 @@ substitutions:
 
   # Sensor update intevals. 60s = 1 minute, never = disable updates
   # Water Level
-  update_water: "1s"
+  update_water: "10s"
   # Temp. Probes
   update_temp: "60s"
   # EZO pH
