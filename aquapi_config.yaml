@@ -33,11 +33,13 @@ substitutions:
   addCO2: "105"
 
   # Calibration variables
-  # Calibration at 0C - Ice Water
+  # Calibration Temp. 1
+  # 0C - Ice Water
   cal_0: "0.0"
-  cal_0_2: "0.0"
-  # Calibration at 100C - Boiling Water
+  # 100C - Boiling Water
   cal_100: "100.0"
+  # Calibration Temp. 2
+  cal_0_2: "0.0"
   cal_100_2: "100.0"
 
   # Sensor update intevals. 60s = 1 minute, never = disable updates
