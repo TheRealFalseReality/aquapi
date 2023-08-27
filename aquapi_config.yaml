@@ -3,7 +3,7 @@ substitutions:
   name: "aquapi"
   friendly_name: "AquaPi"
   # App Version - Updated: 8/2023
-  app_version: "0.19.7.2"
+  app_version: "0.20"
   # Import Config
   import_config: "false"
   # Logger Level
@@ -68,7 +68,7 @@ esphome:
   comment: AquaPi ESP32 - Aquarium Controller & Monitor
   project:
     name: TheRealFalseReality.aquapi
-    version: "${appVersion}"
+    version: "${app_version}"
 
 esp32:
   board: esp32dev
@@ -486,6 +486,21 @@ button:
   # Soft Restart
   - platform: restart
     name: "Restart"
+
+  # Facroty Restart
+  - platform: factory_reset
+    name: Factory Restet (USE WITH CAUTION)
+    disabled_by_default: true
+
+  # Safe Mode Restart
+  - platform: safe_mode
+    name: "Restart in Safe Mode"
+    disabled_by_default: true
+
+  # Shutdown
+  - platform: shutdown
+    name: "Shutdown"
+    disabled_by_default: true
 
   # EC
   # Output Parameters
