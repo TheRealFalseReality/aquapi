@@ -392,12 +392,10 @@ text_sensor:
     ip_address:
       name: IP Address
       icon: mdi:ip-network
-    # ssid:
-    #   name: Connected SSID
-    #   icon: mdi:wifi-arrow-left-right
-    # bssid:
-    #   name: Connected BSSID
-    #   icon: mdi:wifi-star
+    ssid:
+      name: ESP Connected SSID
+    bssid:
+      name: ESP Connected BSSID
     mac_address:
       name: Mac Address
       icon: mdi:chip
