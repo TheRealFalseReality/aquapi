@@ -78,6 +78,32 @@ dashboard_import:
 ```
 Using source code, you can also customize anything and add your own sensors! Make it your own!
 
+### YAML Method
+Copy the following code. Replace your exising yaml code for your ESP32 device, while keeping your wifi secrets and encrytion key it added when creating the deivce 
+```
+substitutions:
+  name: aquapi
+  friendly_name: AquaPi
+packages:
+  TheRealFalseReality.aquapi: 
+    url: https://github.com/TheRealFalseReality/aquapi
+    file: aquapi_config.yaml
+    refresh: 1d
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false # or true
+  friendly_name: ${friendly_name}
+  
+api:
+  encryption:
+    key: <your encryption key>
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+```
+
+
 ## Setup AquaPi
 ### Home Assistant
 1. Install and power on the Home Assistant device. Connect it via an ethernet cable.  
