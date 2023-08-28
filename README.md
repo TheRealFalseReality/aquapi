@@ -85,10 +85,7 @@ substitutions:
   name: aquapi
   friendly_name: AquaPi
 packages:
-  TheRealFalseReality.aquapi: 
-    url: https://github.com/TheRealFalseReality/aquapi
-    file: aquapi_config.yaml
-    refresh: 1d
+  TheRealFalseReality.aquapi: github://TheRealFalseReality/aquapi/aquapi_config.yaml@main
 esphome:
   name: ${name}
   name_add_mac_suffix: false # or true
