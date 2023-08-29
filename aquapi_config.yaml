@@ -10,7 +10,7 @@ substitutions:
   logger: "DEBUG"
 
   # pins
-  dallasPin: "4"
+  dallasPin: "16"
   opticalHighPin: "33"
   opticalLowPin: "32"
   sdaPin: "21"
