@@ -3,14 +3,14 @@ substitutions:
   name: "aquapi"
   friendly_name: "AquaPi"
   # App Version - Updated: 8/2023
-  app_version: "0.20.2"
+  app_version: "0.21"
   # Import Config
   import_config: "false"
   # Logger Level
   logger: "DEBUG"
 
   # pins
-  dallasPin: "4"
+  dallasPin: "16"
   opticalHighPin: "33"
   opticalLowPin: "32"
   sdaPin: "21"
