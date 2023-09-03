@@ -87,7 +87,7 @@ api:
 ota:
 
 dashboard_import:
-  package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@main
+  package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@test
   import_full_config: ${import_config}
 
 wifi: 
