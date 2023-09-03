@@ -3,7 +3,7 @@ substitutions:
   name: "aquapi"
   friendly_name: "AquaPi"
   # App Version - Updated: 8/2023
-  app_version: "0.21.3"
+  app_version: "0.21.4"
   # Import Config
   import_config: "false"
   # Logger Level
@@ -74,9 +74,10 @@ esphome:
   on_boot: 
     priority: 200
     then:
-      text_sensor.template.publish:
-        id: water_level
-        state: "Unknown"
+      - component.update: water_level
+      # text_sensor.template.publish:
+      #   id: water_level
+      #   state: "Unknown"
 
 esp32:
   board: esp32dev
