@@ -7,6 +7,7 @@ substitutions:
   # Import Config
   import_config: "false"
   # Logger Level
+  # Can use VERBOSE for more information
   logger: "DEBUG"
 
   # pins
@@ -33,10 +34,9 @@ substitutions:
   addCO2: "105"
 
   # Calibration variables
+  # 0C using Ice Water; 100C using Boiling Water  
   # Calibration Temp. 1
-  # 0C - Ice Water
   cal_0: "0.0"
-  # 100C - Boiling Water
   cal_100: "100.0"
   # Calibration Temp. 2
   cal_0_2: "0.0"
@@ -497,7 +497,7 @@ button:
   # Safe Mode Restart
   - platform: safe_mode
     name: "Restart in Safe Mode"
-    disabled_by_default: true
+    disabled_by_default: false
 
   # Shutdown
   - platform: shutdown

@@ -150,7 +150,17 @@ Click on it, follow the promts and enter your Wifi credentials, and click `Insta
 | ![Screenshot_20230813-144723](https://github.com/TheRealFalseReality/aquapi/assets/106857076/28256b8a-faba-4a17-b9ff-9a5dd1e0b00d) | ![Screenshot_20230813-153752](https://github.com/TheRealFalseReality/aquapi/assets/106857076/e5e198d8-a33e-4942-9cae-be37ee645611) |
  | ------------- | ------------- |
  
-9. Update AquaPi Firmware by Using ESPHome, clicking on the 3-dots under your device, and choosing `Install`. It will pull the latest code from the GitHub respository.
+### Update
+Update AquaPi Firmware by Using ESPHome, clicking on the 3-dots under your device, and choosing `Install`. It will pull the latest code from the GitHub respository.
+
+**NOTE: Depending on your Wifi congestion, you may need to put your device in Safe Mode by using the `Restart in Safe Mode` button in the device's configuration.**
+
+<details>
+<summary>See Screenshot</summary>
+
+**TODO Add Screenshot**
+
+</details>  
 
 | ![Screenshot_20230813-153815](https://github.com/TheRealFalseReality/aquapi/assets/106857076/283b61cc-f258-4176-a053-40e5f810265f) | ![Screenshot_20230813-153825](https://github.com/TheRealFalseReality/aquapi/assets/106857076/7bbd24eb-9d98-49c4-bcac-8dca8e74e37e) |
  | ------------- | ------------- |
@@ -162,6 +172,66 @@ Alternatively, after connecting to Wifi, you can access the AquaPi web server wi
 ```
 This is the ESP32's web server.  
 *Hostname is the name of the device.* (In this example: `aquapi-6734b0.local/`)
+
+### Notable Substitutions
+```
+substitutions:
+  # Logger Level
+  # Can use VERBOSE for more information
+  logger: "DEBUG" 
+
+  # pins
+  dallasPin: "16"
+  opticalHighPin: "33"
+  opticalLowPin: "32"
+  sdaPin: "21"
+  sclPin: "22"
+  
+  # EZO Circuit Addresses
+  # pH circuit, who's address is 99
+  addPH: "99"
+  # EC circuit, who's address is 100
+  addEC: "100"
+  # DO circuit, who's address is 97
+  addDO: "97"
+  # RTD circuit, who's address is 102
+  addRTD: "102"
+  # PMP circuit, who's address is 103
+  addPMP: "103"
+  # HUM circuit, who's address is 111
+  addHUM: "111"
+  # CO2 circuit, who's address is 105
+  addCO2: "105"
+
+  # Calibration variables
+  # 0C using Ice Water; 100C using Boiling Water  
+  # Calibration Temp. 1
+  cal_0: "0.0"
+  cal_100: "100.0"
+  # Calibration Temp. 2
+  cal_0_2: "0.0"
+  cal_100_2: "100.0"
+
+  # Sensor update intevals. 60s = 1 minute, never = disable updates
+  # Water Level
+  update_water: "1s"
+  # Temp. Probes
+  update_temp: "60s"
+  # EZO pH
+  update_ph: "60s"
+  # EZO EC
+  update_ec: "60s"
+  # EZO DO
+  update_do: "60s"
+  # EZO RTD
+  update_rtd: "60s"
+  # EZO PMP
+  update_pmp: "60s"
+  # EZO HUM
+  update_hum: "60s"
+  # EZO CO2
+  update_co2: "60s"
+```
 
 ## Blueprints
 These are scripts and automations I created to control other devices within Home Assistant.
