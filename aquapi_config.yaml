@@ -44,7 +44,7 @@ substitutions:
 
   # Sensor update intevals. 60s = 1 minute, never = disable updates
   # Water Level
-  update_water: "1s"
+  update_water: "60s"
   # Temp. Probes
   update_temp: "60s"
   # EZO pH
@@ -443,7 +443,7 @@ text_sensor:
     icon: mdi:waves-arrow-up
     name: "Water Level"
     id: water_level
-    # update_interval: "${update_water}"
+    update_interval: "${update_water}"
     lambda: |-
       if(id(os_high).state == true && id(os_low).state == true) {
         // Water Level is High
@@ -575,7 +575,7 @@ number:
     mode: box
     min_value: 0.0
     max_value: 100.0
-    step: 1
+    step: 0.5
     restore_value: True
     initial_value: 72
     entity_category: "Config"
@@ -593,7 +593,7 @@ number:
     mode: box
     min_value: 0.0
     max_value: 100.0
-    step: 1
+    step: 0.5
     restore_value: True
     initial_value: 82
     entity_category: "Config"
