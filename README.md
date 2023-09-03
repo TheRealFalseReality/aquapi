@@ -157,8 +157,8 @@ Update AquaPi Firmware by Using ESPHome, clicking on the 3-dots under your devic
 
 <details>
 <summary>See Screenshot</summary>
-
-**TODO Add Screenshot**
+  
+![Screenshot 2023-09-03 134530](https://github.com/TheRealFalseReality/aquapi/assets/106857076/b84bf12d-7cde-485b-bfaf-634d19b8f69f)
 
 </details>  
 
