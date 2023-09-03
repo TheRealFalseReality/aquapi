@@ -75,11 +75,6 @@ esphome:
     priority: 200
     then:
       - component.update: water_level
-      - component.update: temp_range
-      - component.update: temp_range_2
-      # text_sensor.template.publish:
-      #   id: water_level
-      #   state: "Unknown"
 
 esp32:
   board: esp32dev
@@ -469,7 +464,7 @@ text_sensor:
     name: Temperature Range
     id: temp_range
     icon: mdi:thermometer-water
-    # update_interval: "${update_temp}"
+    update_interval: "${update_temp}"
     lambda: |-
       if(id(temp_f).state <= id(range_cool).state) {
         return {"Cool"};
@@ -489,7 +484,7 @@ text_sensor:
     name: Temperature 2 Range
     id: temp_range_2
     icon: mdi:thermometer-water
-    # update_interval: "${update_temp}"
+    update_interval: "${update_temp}"
     disabled_by_default: true
     lambda: |-
       if(id(temp_f_2).state <= id(range_cool).state) {
