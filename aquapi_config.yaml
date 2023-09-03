@@ -72,6 +72,7 @@ esphome:
     name: TheRealFalseReality.aquapi
     version: "${app_version}"
   on_boot: 
+    priority: 200
     then:
       text_sensor.template.publish:
         id: water_level
