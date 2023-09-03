@@ -275,6 +275,9 @@ sensor:
           datapoints:
             - 0.0 -> ${cal_0}
             - 100.0 -> ${cal_100}
+    on_value: 
+      then:
+        - component.update: temp_range
 
   # Temperature Probe 2
   - platform: dallas
@@ -289,6 +292,9 @@ sensor:
             - 0.0 -> ${cal_0_2}
             - 100.0 -> ${cal_100_2}
     disabled_by_default: true
+    on_value: 
+      then:
+        - component.update: temp_range_2
     
   # Convert to Fahrenheit - Temp. 1
   - platform: template
@@ -363,6 +369,9 @@ binary_sensor:
     name: "Optical Sensor: Low"
     filters:
       - delayed_on_off: 30ms
+    on_state:
+      then:
+        component.update: water_level
 
   # Optical Sensor - HIGH (blue)
   - platform: gpio
@@ -376,6 +385,9 @@ binary_sensor:
     name: "Optical Sensor: High"
     filters:
       - delayed_on_off: 30ms
+    on_state:
+      then:
+        component.update: water_level
 
 text_sensor: 
   # Hostname
@@ -426,7 +438,7 @@ text_sensor:
     icon: mdi:waves-arrow-up
     name: "Water Level"
     id: water_level
-    update_interval: "${update_water}"
+    # update_interval: "${update_water}"
     lambda: |-
       if(id(os_high).state == true && id(os_low).state == true) {
         // Water Level is High
@@ -448,7 +460,7 @@ text_sensor:
     name: Temperature Range
     id: temp_range
     icon: mdi:thermometer-water
-    update_interval: "${update_temp}"
+    # update_interval: "${update_temp}"
     lambda: |-
       if(id(temp_f).state <= id(range_cool).state) {
         return {"Cool"};
@@ -468,7 +480,7 @@ text_sensor:
     name: Temperature 2 Range
     id: temp_range_2
     icon: mdi:thermometer-water
-    update_interval: "${update_temp}"
+    # update_interval: "${update_temp}"
     disabled_by_default: true
     lambda: |-
       if(id(temp_f_2).state <= id(range_cool).state) {
@@ -562,6 +574,10 @@ number:
     restore_value: True
     initial_value: 72
     entity_category: "Config"
+    on_value: 
+      then:
+        - component.update: temp_range
+        - component.update: temp_range_2
 
   # Temperature when Warm
   - platform: template
@@ -576,3 +592,7 @@ number:
     restore_value: True
     initial_value: 82
     entity_category: "Config"
+    on_value: 
+      then:
+        - component.update: temp_range
+        - component.update: temp_range_2
