@@ -3,7 +3,7 @@ substitutions:
   name: "aquapi"
   friendly_name: "AquaPi"
   # App Version - Updated: 8/2023
-  app_version: "0.21.2"
+  app_version: "0.21.3"
   # Import Config
   import_config: "false"
   # Logger Level
@@ -73,9 +73,9 @@ esphome:
     version: "${app_version}"
   on_boot: 
     then:
-      - component.update: water_level
-      - component.update: temp_range
-      - component.update: temp_range_2
+      text_sensor.template.publish:
+        id: water_level
+        state: "Unknown"
 
 esp32:
   board: esp32dev
@@ -460,7 +460,6 @@ text_sensor:
         return {"Uknown or Error"};
       }
     
-
   # Temperature Range 1
   - platform: template
     name: Temperature Range
