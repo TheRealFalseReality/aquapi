@@ -75,6 +75,8 @@ esphome:
     priority: 200
     then:
       - component.update: water_level
+      - component.update: temp_range
+      - component.update: temp_range_2
       # text_sensor.template.publish:
       #   id: water_level
       #   state: "Unknown"
