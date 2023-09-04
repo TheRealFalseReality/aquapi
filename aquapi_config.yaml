@@ -505,9 +505,9 @@ button:
   - platform: restart
     name: "Restart"
 
-  # Facroty Restart
+  # Facroty Reset
   - platform: factory_reset
-    name: Factory Restet (USE WITH CAUTION)
+    name: Factory Reset (USE WITH CAUTION)
     disabled_by_default: true
 
   # Safe Mode Restart
