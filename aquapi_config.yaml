@@ -513,6 +513,7 @@ button:
   # Safe Mode Restart
   - platform: safe_mode
     name: "Restart in Safe Mode"
+    id: restart_safe
     disabled_by_default: false
 
   # Shutdown
