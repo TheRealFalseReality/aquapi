@@ -158,10 +158,10 @@ Click on it, follow the promts and enter your Wifi credentials, and click `Insta
 | ![Screenshot_20230813-144723](https://github.com/TheRealFalseReality/aquapi/assets/106857076/28256b8a-faba-4a17-b9ff-9a5dd1e0b00d) | ![Screenshot_20230813-153752](https://github.com/TheRealFalseReality/aquapi/assets/106857076/e5e198d8-a33e-4942-9cae-be37ee645611) |
  | ------------- | ------------- |
  
-### Update
-Update AquaPi Firmware by Using ESPHome, clicking on the 3-dots under your device, and choosing `Install`. It will pull the latest code from the GitHub respository.
+### Update Wirelessly
+Update AquaPi firmware wirelessly by using ESPHome, clicking on the 3-dots under your device, and choosing `Install`. It will pull the latest code from the GitHub respository.
 
-**NOTE: Depending on your Wifi congestion, you may need to put your device in Safe Mode by using the `Restart in Safe Mode` button in the device's configuration.**
+**NOTE: If the update times out, you may need to put your device in Safe Mode by using the `Restart in Safe Mode` button in the device's configuration.**
 
 <details>
 <summary>See Screenshot</summary>

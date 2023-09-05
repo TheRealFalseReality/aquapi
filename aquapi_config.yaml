@@ -3,7 +3,7 @@ substitutions:
   name: "aquapi"
   friendly_name: "AquaPi"
   # App Version - Updated: 8/2023
-  app_version: "0.21"
+  app_version: "0.21.4"
   # Import Config
   import_config: "false"
   # Logger Level
@@ -44,7 +44,7 @@ substitutions:
 
   # Sensor update intevals. 60s = 1 minute, never = disable updates
   # Water Level
-  update_water: "1s"
+  update_water: "60s"
   # Temp. Probes
   update_temp: "60s"
   # EZO pH
@@ -71,6 +71,10 @@ esphome:
   project:
     name: TheRealFalseReality.aquapi
     version: "${app_version}"
+  on_boot: 
+    priority: 200
+    then:
+      - component.update: water_level
 
 esp32:
   board: esp32dev
@@ -275,6 +279,9 @@ sensor:
           datapoints:
             - 0.0 -> ${cal_0}
             - 100.0 -> ${cal_100}
+    on_value: 
+      then:
+        - component.update: temp_range
 
   # Temperature Probe 2
   - platform: dallas
@@ -289,6 +296,9 @@ sensor:
             - 0.0 -> ${cal_0_2}
             - 100.0 -> ${cal_100_2}
     disabled_by_default: true
+    on_value: 
+      then:
+        - component.update: temp_range_2
     
   # Convert to Fahrenheit - Temp. 1
   - platform: template
@@ -363,6 +373,9 @@ binary_sensor:
     name: "Optical Sensor: Low"
     filters:
       - delayed_on_off: 30ms
+    on_state:
+      then:
+        component.update: water_level
 
   # Optical Sensor - HIGH (blue)
   - platform: gpio
@@ -376,6 +389,9 @@ binary_sensor:
     name: "Optical Sensor: High"
     filters:
       - delayed_on_off: 30ms
+    on_state:
+      then:
+        component.update: water_level
 
 text_sensor: 
   # Hostname
@@ -442,7 +458,7 @@ text_sensor:
       } else {
         return {"Uknown or Error"};
       }
-
+    
   # Temperature Range 1
   - platform: template
     name: Temperature Range
@@ -489,14 +505,15 @@ button:
   - platform: restart
     name: "Restart"
 
-  # Facroty Restart
+  # Facroty Reset
   - platform: factory_reset
-    name: Factory Restet (USE WITH CAUTION)
+    name: Factory Reset (USE WITH CAUTION)
     disabled_by_default: true
 
   # Safe Mode Restart
   - platform: safe_mode
     name: "Restart in Safe Mode"
+    id: restart_safe
     disabled_by_default: false
 
   # Shutdown
@@ -558,10 +575,14 @@ number:
     mode: box
     min_value: 0.0
     max_value: 100.0
-    step: 1
+    step: 0.5
     restore_value: True
     initial_value: 72
     entity_category: "Config"
+    on_value: 
+      then:
+        - component.update: temp_range
+        - component.update: temp_range_2
 
   # Temperature when Warm
   - platform: template
@@ -572,7 +593,11 @@ number:
     mode: box
     min_value: 0.0
     max_value: 100.0
-    step: 1
+    step: 0.5
     restore_value: True
     initial_value: 82
     entity_category: "Config"
+    on_value: 
+      then:
+        - component.update: temp_range
+        - component.update: temp_range_2
