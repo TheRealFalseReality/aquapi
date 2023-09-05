@@ -50,7 +50,13 @@ Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 
 ### Circuit Diagram
 [See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Circuit) for more details on the circuit.  
+<details>
+<summary>See Diagram</summary>
+
 ![circuit (1)](https://github.com/TheRealFalseReality/aquapi/assets/106857076/f22f0edb-5a8c-468e-9845-12475a6760d6)
+
+</details>  
+
 
 ## Software Used  
 [**Home Assistant**](https://www.home-assistant.io/): Open source home automation that puts local control and privacy first.   
