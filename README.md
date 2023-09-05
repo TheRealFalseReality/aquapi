@@ -101,8 +101,9 @@ wifi:
   password: !secret wifi_password
 ```
 
-
 ## Setup AquaPi
+[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi)
+
 ### Home Assistant
 1. Install and power on the Home Assistant device. Connect it via an ethernet cable.  
 
@@ -175,6 +176,7 @@ This is the ESP32's web server.
 *Hostname is the name of the device.* (In this example: `aquapi-6734b0.local/`)
 
 ### Notable Substitutions
+[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Substitutions) for more information on customizing your device.
 ```
 substitutions:
   # Logger Level
@@ -235,6 +237,7 @@ substitutions:
 ```
 
 ## Blueprints
+[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Blueprints)  
 These are scripts and automations I created to control other devices within Home Assistant.
 
 ### [Feeding Script](https://community.home-assistant.io/t/turn-off-switches-to-feed-your-fish-for-a-certain-amount-of-time-then-turn-back-on-aquarium-script/600544)
