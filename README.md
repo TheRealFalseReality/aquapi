@@ -49,7 +49,7 @@ Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 *Dissolved Oxygen, Pump, Humidity, Carbon Dioxide, Temperture*
 
 ### Circuit Diagram
-
+[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Circuit) for more details on the circuit.  
 ![circuit (1)](https://github.com/TheRealFalseReality/aquapi/assets/106857076/f22f0edb-5a8c-468e-9845-12475a6760d6)
 
 ## Software Used  
