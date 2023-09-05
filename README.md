@@ -59,6 +59,7 @@ Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 ![made-for-esphome-white-on-black](https://github.com/TheRealFalseReality/aquapi/assets/106857076/c68b7da3-17c9-43bf-b8c7-f44acf63eb28)
 
 ## Install
+[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Install)
 ### From Install Page
 Use the [GitHub](https://therealfalsereality.github.io/aquapi/) pages to install software onto your AquaPi device via USB.  
 ### From Releases
