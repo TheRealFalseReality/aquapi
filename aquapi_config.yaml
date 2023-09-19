@@ -165,6 +165,7 @@ sensor:
     accuracy_decimals: 2
     update_interval: "${update_ph}"
     state_class: "measurement"
+    device_class: PH
 
   # EZO Circuit - EC
   # Salinity
