@@ -64,204 +64,29 @@ Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 
 ![made-for-esphome-white-on-black](https://github.com/TheRealFalseReality/aquapi/assets/106857076/c68b7da3-17c9-43bf-b8c7-f44acf63eb28)
 
-## Install
-[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Install)
-### From Install Page
-Use the [GitHub](https://therealfalsereality.github.io/aquapi/) pages to install software onto your AquaPi device via USB.  
-### From Releases
-Use [Releases](https://github.com/TheRealFalseReality/aquapi/releases) for a .bin and install via [ESPHome Web](https://web.esphome.io/).  
-### From Source
-1. Copy the contents of `aquapi_config.yaml` into ESPHome instance after adding an esp32 device named `AquaPi` (recommended). 
-2. Remove the following lines:
 
-If you do not want the last 5 digits of the MAC Address to be appended:
-```
-name_add_mac_suffix: true
-```
-To prevent it from importing the default config:
-```
-dashboard_import:
-  package_import_url: github://TheRealFalseReality/Aquaponics-Kit/aquaponics-kit.yaml@main
-```
-Using source code, you can also customize anything and add your own sensors! Make it your own!
-
-### YAML Method
-Copy the following code. Replace your exising yaml code for your ESP32 device, while keeping your wifi secrets and encrytion key it added when creating the deivce 
-```
-substitutions:
-  name: aquapi
-  friendly_name: AquaPi
-packages:
-  TheRealFalseReality.aquapi: github://TheRealFalseReality/aquapi/aquapi_config.yaml@main
-esphome:
-  name: ${name}
-  name_add_mac_suffix: false # or true
-  friendly_name: ${friendly_name}
-  
-api:
-  encryption:
-    key: <your encryption key>
-
-wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
-```
 
 ## Setup AquaPi
-[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi)
+**[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi)** for Setup Guides that Include:
 
 ### Home Assistant
-1. Install and power on the Home Assistant device. Connect it via an ethernet cable.  
-
-2. Navigate to the following URL, via your favorite browser:  
-```
-homeassistant.local:8123
-```
-
-3. Go through the [Home Assistant Onboarding](https://www.home-assistant.io/getting-started/onboarding/).  
-*Follow the link above to see more detail on Onboarding Home Assistant*
-
-| ![username](https://github.com/TheRealFalseReality/aquapi/assets/106857076/c42062c5-d0c5-4e4d-89ad-f71d497d9d68) | ![onboarding_devices](https://github.com/TheRealFalseReality/aquapi/assets/106857076/920ac524-c631-43a3-abe0-94bcece49be9) |
-| ------------- | ------------- |
-
-4. Power on the AquaPi and connect to Wifi:   
-On your Phone, connect to the Wifi Network `aquapi-xxxxxx`  
-*Note the name of the wifi, it macthes your devices name*  
-Select your Wifi ID, and enter your Wifi password  
-
- |  ![Screenshot_20230812-234153EDIT](https://github.com/TheRealFalseReality/aquapi/assets/106857076/05102f18-1a1d-4adf-a315-25eeca75935e) | ![Screenshot_20230812-234744EDIT](https://github.com/TheRealFalseReality/aquapi/assets/106857076/4d34a64f-33a5-4af8-8d4a-6eee95dd91c6) |
- | ------------- | ------------- |
-
-5. Back in Home Assistant, you should see a notification saying a **New Devices Discovered**. (Settings -> Devices & Services)  
-You can click the buttom below to go there automatically:  
-[![Open your Home Assistant instance and show your integrations.](https://my.home-assistant.io/badges/integrations.svg)](https://my.home-assistant.io/redirect/integrations/)
-
-![Screenshot_20230813-141349](https://github.com/TheRealFalseReality/aquapi/assets/106857076/c604c261-1f69-417d-af91-be212a6ead35) 
-
-6. Choose `Configure` under the device named `AquaPi XXXXXX` and follow to promts to add it your Home Assistant frontend.   
-*Notice the name matches the Wifi name you connected to earlier*  
-The Blue LED on the AquaPi should stop flashing when connected to Home Assistant.
-
-| ![Screenshot_20230813-141640](https://github.com/TheRealFalseReality/aquapi/assets/106857076/338765f1-fed4-41fb-848b-873081df067d) | ![AScreenshot_20230813SD144346](https://github.com/TheRealFalseReality/aquapi/assets/106857076/46bb5ef7-a34f-4778-9715-efb512ed3b04)|
- | ------------- | ------------- |
-
-7. To get updates, install the Home Assistant Add-On named ESPHome. Once installed, launch the add-on and navigate to the User-Interface by using `OPEN WEB UI`.  
-Add On Store:  
-[![Open your Home Assistant instance and show the Supervisor add-on store.](https://my.home-assistant.io/badges/supervisor_store.svg)](https://my.home-assistant.io/redirect/supervisor_store/)
-
-| ![Screenshot_20230813-144240](https://github.com/TheRealFalseReality/aquapi/assets/106857076/98edbcdc-5f8b-4e2a-bc43-115e3e3e6953) | ![Screenshot_20230813-144513](https://github.com/TheRealFalseReality/aquapi/assets/106857076/02758ba1-5b5d-4ca1-975b-d4870c63788f) |
- | ------------- | ------------- |
-
-8. In ESPHome, you should see the name of you AquaPi with a green button named `Adopt`.  
-Click on it, follow the promts and enter your Wifi credentials, and click `Install` and choose `Wirelessly` to install the most current AquaPi firmware.
-
-| ![Screenshot_20230813-144723](https://github.com/TheRealFalseReality/aquapi/assets/106857076/28256b8a-faba-4a17-b9ff-9a5dd1e0b00d) | ![Screenshot_20230813-153752](https://github.com/TheRealFalseReality/aquapi/assets/106857076/e5e198d8-a33e-4942-9cae-be37ee645611) |
- | ------------- | ------------- |
+Setting up Home Assistant and Connecting AquaPi to your Wifi.
  
 ### Update Wirelessly
-Update AquaPi firmware wirelessly by using ESPHome, clicking on the 3-dots under your device, and choosing `Install`. It will pull the latest code from the GitHub respository.
-
-**NOTE: If the update times out, you may need to put your device in Safe Mode by using the `Restart in Safe Mode` button in the device's configuration.**
-
-<details>
-<summary>See Screenshot</summary>
-  
-![Screenshot 2023-09-03 134530](https://github.com/TheRealFalseReality/aquapi/assets/106857076/b84bf12d-7cde-485b-bfaf-634d19b8f69f)
-
-</details>  
-
-| ![Screenshot_20230813-153815](https://github.com/TheRealFalseReality/aquapi/assets/106857076/283b61cc-f258-4176-a053-40e5f810265f) | ![Screenshot_20230813-153825](https://github.com/TheRealFalseReality/aquapi/assets/106857076/7bbd24eb-9d98-49c4-bcac-8dca8e74e37e) |
- | ------------- | ------------- |
+Updating the AquaPi.
 
 ### Web Server
-Alternatively, after connecting to Wifi, you can access the AquaPi web server without Home Assistant by navigating to: 
-```
-<hostname>.local/
-```
-This is the ESP32's web server.  
-*Hostname is the name of the device.* (In this example: `aquapi-6734b0.local/`)
+Connecting to the AquaPi without Home Assisstant.
 
-### Notable Substitutions
-[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Substitutions) for more information on customizing your device.
-```
-substitutions:
-  # Logger Level
-  # Can use VERBOSE for more information
-  logger: "DEBUG" 
+## Install
+**[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Install)** for guides when installing on a non-configured ESP32 device.
 
-  # pins
-  dallasPin: "16"
-  opticalHighPin: "33"
-  opticalLowPin: "32"
-  sdaPin: "21"
-  sclPin: "22"
-  
-  # EZO Circuit Addresses
-  # pH circuit, who's address is 99
-  addPH: "99"
-  # EC circuit, who's address is 100
-  addEC: "100"
-  # DO circuit, who's address is 97
-  addDO: "97"
-  # RTD circuit, who's address is 102
-  addRTD: "102"
-  # PMP circuit, who's address is 103
-  addPMP: "103"
-  # HUM circuit, who's address is 111
-  addHUM: "111"
-  # CO2 circuit, who's address is 105
-  addCO2: "105"
-
-  # Calibration variables
-  # 0C using Ice Water; 100C using Boiling Water  
-  # Calibration Temp. 1
-  cal_0: "0.0"
-  cal_100: "100.0"
-  # Calibration Temp. 2
-  cal_0_2: "0.0"
-  cal_100_2: "100.0"
-
-  # Sensor update intevals. 60s = 1 minute, never = disable updates
-  # Water Level
-  update_water: "1s"
-  # Temp. Probes
-  update_temp: "60s"
-  # EZO pH
-  update_ph: "60s"
-  # EZO EC
-  update_ec: "60s"
-  # EZO DO
-  update_do: "60s"
-  # EZO RTD
-  update_rtd: "60s"
-  # EZO PMP
-  update_pmp: "60s"
-  # EZO HUM
-  update_hum: "60s"
-  # EZO CO2
-  update_co2: "60s"
-```
+## Notable Substitutions
+**[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Substitutions)** for more information on customizing your device.
 
 ## Blueprints
-[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Blueprints)  
+**[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Blueprints)**  
 These are scripts and automations I created to control other devices within Home Assistant.
-
-### [Feeding Script](https://community.home-assistant.io/t/turn-off-switches-to-feed-your-fish-for-a-certain-amount-of-time-then-turn-back-on-aquarium-script/600544)
-This script is intended to act as a feeding routine for your aquarium fish. You can choose multiple switches to turn off, such as return pumps, wave makers, skimmers, etc., and set the amount of time for feeding, typically 10 mins. The script will turn off the switch(es) for the set time, then turn the them back on automatically.
-
-[![Open your Home Assistant instance and show the blueprint import dialog with a specific blueprint pre-filled.](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fgist.github.com%2FTheRealFalseReality%2F06d34488d84e81916768129b0398de25)
-
-### [2 Part Doser Script](https://community.home-assistant.io/t/turn-on-a-switch-to-activate-doser-equipment-for-a-certain-amount-of-time-aquarium-script/600546)
-
-This script is intended to dose your aquarium for a certain amount of time. Choose an entity to turn on, typically a 2 part Doser @ 1.1 mL/min, then set the amount of time to dose for. The script will turn on the target switch for the set time, then the switch will turn off.
-
-[![Open your Home Assistant instance and show the blueprint import dialog with a specific blueprint pre-filled.](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fgist.github.com%2FTheRealFalseReality%2F9fd8f929b5f6cc32f6e8a67cd8104941)
-
-### [ATO (Automated-Top-Off) Automation](https://community.home-assistant.io/t/create-ato-automation-control-switches-based-off-binary-sensor-aquarium-automation/600941)
-
-This automation is intended to create an ATO (Automated-Top-Off) automation for your aquarium, or anything else that needs to be refilled. You would use the AquaPi Water Level sensor to determine the presence of water and control a water pump via switch when necessary. The automation will turn the selected switch on when the Water Level is Low, and off then when the Water Level is Normal or High. By default, the switch will automatically turn off after 5 mins of being on to prevent overfill.  
-
-[![Open your Home Assistant instance and show the blueprint import dialog with a specific blueprint pre-filled.](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fgist.github.com%2FTheRealFalseReality%2Feab1edda7c678b8763ecdcddb45f2f1a)
 
 ## Useful Links:
 <details>
