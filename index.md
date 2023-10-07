@@ -19,7 +19,7 @@ Use the button below to install the pre-built firmware directly to your device v
 
 # Setup AquaPi
 Follow link below for guide:  
-**[Setup Guide](https://github.com/TheRealFalseReality/AquaPi#setup-aquapi)**
+**[Setup Guide](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi)**
 
 ## More Information
 Basic UI
