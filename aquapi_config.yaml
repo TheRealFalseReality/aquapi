@@ -12,10 +12,10 @@ substitutions:
 
   # pins
   dallasPin: "16"
-  opticalHighPin: "33" // yellow
-  opticalLowPin: "32" // blue
-  sdaPin: "21" // blue
-  sclPin: "22" // yellow
+  opticalHighPin: "33" # yellow
+  opticalLowPin: "32" # blue
+  sdaPin: "21" # blue
+  sclPin: "22" # yellow
   
   # EZO Circuit Addresses
   # pH circuit, who's address is 99
