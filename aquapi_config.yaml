@@ -12,8 +12,8 @@ substitutions:
 
   # pins
   dallasPin: "16"
-  opticalHighPin: "33" # yellow
-  opticalLowPin: "32" # blue
+  opticalHighPin: "33" # blue
+  opticalLowPin: "32" # yellow
   sdaPin: "21" # blue
   sclPin: "22" # yellow
   
