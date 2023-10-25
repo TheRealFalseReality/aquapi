@@ -14,6 +14,8 @@ substitutions:
   dallasPin: "16"
   opticalHighPin: "33" # blue
   opticalLowPin: "32" # yellow
+  auxPin1: 26
+  auxPin2: 27
   sdaPin: "21" # blue
   sclPin: "22" # yellow
   
@@ -393,6 +395,30 @@ binary_sensor:
     on_state:
       then:
         component.update: water_level
+
+  - platform: gpio
+    id: aux_1
+    pin: 
+      number: ${auxPin1}
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    name: Aux 1
+    filters:
+      - delayed_on_off: 30ms
+
+  - platform: gpio
+    id: aux_2
+    pin: 
+      number: ${auxPin2}
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    name: Aux 2
+    filters:
+      - delayed_on_off: 30ms
 
 text_sensor: 
   # Hostname
