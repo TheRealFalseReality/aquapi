@@ -54,7 +54,7 @@ Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 <details>
 <summary>See Diagram</summary>
 
-![circuit (1)](https://github.com/TheRealFalseReality/aquapi/assets/106857076/f22f0edb-5a8c-468e-9845-12475a6760d6)
+![circuit](https://github.com/TheRealFalseReality/aquapi/assets/106857076/65fef85b-ccf2-437b-ac94-f7e87cd957a0)
 
 </details>  
 
@@ -64,7 +64,6 @@ Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 [**ESPHome**](https://esphome.io/): A system to control your ESP8266/ESP32 and RP2040 by simple yet powerful configuration files and control them remotely through Home Automation systems.
 
 ![made-for-esphome-white-on-black](https://github.com/TheRealFalseReality/aquapi/assets/106857076/c68b7da3-17c9-43bf-b8c7-f44acf63eb28)
-
 
 
 ## Setup AquaPi
