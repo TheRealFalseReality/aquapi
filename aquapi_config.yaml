@@ -203,6 +203,7 @@ sensor:
   # Specific Gravity
   - platform: copy 
     source_id: ec_ezo
+    icon: mdi:shaker-outline
     name: "Specific Gravity"
     filters:
       - lambda: return x;
