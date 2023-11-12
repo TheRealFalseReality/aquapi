@@ -3,7 +3,7 @@ substitutions:
   name: "aquapi"
   friendly_name: "AquaPi"
   # App Version - Updated: 8/2023
-  app_version: "1.2.2"
+  app_version: "1.2.3"
   # Import Config
   import_config: "false"
   # Logger Level
@@ -161,6 +161,7 @@ sensor:
     name: "I2C Devices Connected"
     id: i2c_devices
     icon: mdi:integrated-circuit-chip
+    entity_category: "diagnostic"
     disabled_by_default: true
     lambda: |-
       byte error, address;
