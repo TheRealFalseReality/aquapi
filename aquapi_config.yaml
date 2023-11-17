@@ -257,7 +257,7 @@ sensor:
   - platform: template
     name: TDS
     id: sensor_tds
-    unit_of_measurement: "mg/l"
+    unit_of_measurement: "mg/L"
     icon: mdi:water-opacity
     accuracy_decimals: 0
     update_interval: "${update_ec}"
@@ -433,14 +433,16 @@ sensor:
     
   # Convert to Fahrenheit - Temp. 1
   - platform: template
-    name: Temperature 1 - Fahrenheit
+    # name: Temperature 1 - Fahrenheit
+    disabled_by_default: true
     id: temp_f
     lambda: |-
       return id(temp_1).state * 9 / 5 + 32;
 
   # Convert to Fahrenheit - Temp. 2
   - platform: template
-    name: Temperature 2 - Fahrenheit
+    # name: Temperature 2 - Fahrenheit
+    disabled_by_default: true
     id: temp_f_2
     lambda: |-
       return id(temp_2).state * 9 / 5 + 32;
@@ -707,6 +709,7 @@ button:
             id(ec_ezo).send_custom("O,SG,1");
     entity_category: "Config"
     disabled_by_default: true
+
   # Output Salinity
   - platform: template
     name: "EC - Output - Salinity"
