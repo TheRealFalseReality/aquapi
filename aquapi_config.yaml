@@ -271,7 +271,7 @@ sensor:
         return std::stof(v[0]);
       } 
       else {
-        return 0;
+        return NULL;
       }
 
   # TDS
@@ -297,7 +297,7 @@ sensor:
         return std::stof(v[1]);
       } 
       else {
-        return 0;
+        return NULL;
       }
 
   # Salinity
