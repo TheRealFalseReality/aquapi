@@ -694,6 +694,19 @@ button:
 
   # EC
   # Output Parameters
+  # Output All
+  - platform: template
+    name: "EC - Output - Salinity"
+    id: ec_sal
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).send_custom("O,EC,1");
+            id(ec_ezo).send_custom("O,TDS,1");
+            id(ec_ezo).send_custom("O,S,1");
+            id(ec_ezo).send_custom("O,SG,1");
+    entity_category: "Config"
+    disabled_by_default: true
   # Output Salinity
   - platform: template
     name: "EC - Output - Salinity"
