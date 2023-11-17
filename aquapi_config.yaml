@@ -696,8 +696,8 @@ button:
   # Output Parameters
   # Output All
   - platform: template
-    name: "EC - Output - Salinity"
-    id: ec_sal
+    name: "EC - Output - All"
+    id: ec_all
     on_press:
       then:
         - lambda: |-
@@ -710,7 +710,7 @@ button:
   # Output Salinity
   - platform: template
     name: "EC - Output - Salinity"
-    id: ec_all
+    id: ec_sal
     on_press:
       then:
         - lambda: |-
