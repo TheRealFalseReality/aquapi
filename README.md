@@ -1,4 +1,4 @@
-# AquaPi for ESPHome - TEST
+# AquaPi for ESPHome
 
 The Aquarium meets the Smart Home!  
 **[Setup Guide](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi)**
