@@ -166,7 +166,7 @@ button:
         - lambda: |-
             id(ec_ezo).send_custom("K,1");
 
-  # Get Probe Value
+  # Get Probe K Value
   - platform: template
     name: "EC - Get Probe Value"
     id: ec_probe_value

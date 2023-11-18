@@ -417,6 +417,7 @@ binary_sensor:
       then:
         component.update: water_level
 
+  # Additional Pin 1
   - platform: gpio
     id: aux_1
     pin: 
@@ -429,6 +430,7 @@ binary_sensor:
     filters:
       - delayed_on_off: 30ms
 
+  # Additional Pin 2
   - platform: gpio
     id: aux_2
     pin: 
