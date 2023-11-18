@@ -3,7 +3,7 @@ substitutions:
   name: "aquapi"
   friendly_name: "AquaPi"
   # App Version - Updated: 8/2023
-  app_version: "1.2.3"
+  app_version: "1.2.4"
   # Import Config
   import_config: "false"
   # Logger Level
@@ -200,6 +200,10 @@ sensor:
     accuracy_decimals: 2
     update_interval: "${update_ec}"
     state_class: "measurement"
+    on_custom: 
+      then:
+        - lambda: 
+            id(raw_value_ec).publish_state(x);
 
   # Specific Gravity
   - platform: copy 
@@ -548,7 +552,15 @@ text_sensor:
       }     
       else {
         return {"Unknown"};
-      }  
+      }
+
+  # Conductivity Raw Value
+  - platform: template
+    name: EC - Raw Value
+    id: raw_value_ec
+    update_interval: never
+    # disabled_by_default: true
+    entity_category: "Config"
 
 button:
   # Soft Restart
