@@ -101,7 +101,7 @@ wifi:
 
 captive_portal:
 
-web_server:
+# web_server:
 
 # Sets up Bluetooth LE (Only on ESP32) to allow the user to provision wifi credentials to the device.
 esp32_improv:
@@ -207,7 +207,8 @@ sensor:
     on_t: 
       then:
         - lambda: 
-            id(result_ph).publish_state(x); 
+
+            id(result_ph).publish_state(x);     
 
   # EZO Circuit - EC
   # Conductivity
