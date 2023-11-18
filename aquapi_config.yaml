@@ -188,6 +188,26 @@ sensor:
     update_interval: "${update_ph}"
     state_class: "measurement"
     device_class: PH
+    on_custom: 
+      then:
+        - lambda: 
+            id(result_ph).publish_state(x);
+    on_calibration: 
+      then:
+        - lambda: 
+            id(result_ph).publish_state(x);
+    on_device_information: 
+      then:
+        - lambda: 
+            id(result_ph).publish_state(x);
+    on_slope: 
+      then:
+        - lambda: 
+            id(result_ph).publish_state(x);
+    on_t: 
+      then:
+        - lambda: 
+            id(result_ph).publish_state(x);     
 
   # EZO Circuit - EC
   # Conductivity
@@ -203,7 +223,23 @@ sensor:
     on_custom: 
       then:
         - lambda: 
-            id(raw_value_ec).publish_state(x);
+            id(result_ec).publish_state(x);
+    on_calibration: 
+      then:
+        - lambda: 
+            id(result_ec).publish_state(x);
+    on_device_information: 
+      then:
+        - lambda: 
+            id(result_ec).publish_state(x);
+    on_slope: 
+      then:
+        - lambda: 
+            id(result_ec).publish_state(x);
+    on_t: 
+      then:
+        - lambda: 
+            id(result_ec).publish_state(x);
 
   # Specific Gravity
   - platform: copy 
@@ -554,11 +590,17 @@ text_sensor:
         return {"Unknown"};
       }
 
-  # Conductivity Raw Value
+  # Selected Command Result - pH
   - platform: template
-    name: EC - Raw Value
-    id: raw_value_ec
-    update_interval: never
+    name: pH - Command Result
+    id: result_ph
+    # disabled_by_default: true
+    entity_category: "Config"
+
+  # Selected Command Result - Conductivity
+  - platform: template
+    name: EC - Command Result
+    id: result_ec
     # disabled_by_default: true
     entity_category: "Config"
 
