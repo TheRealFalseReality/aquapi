@@ -77,7 +77,6 @@ esphome:
     priority: 200
     then:
       - component.update: water_level
-      - button.press: read_ec
 
 esp32:
   board: esp32dev
@@ -128,11 +127,6 @@ dallas:
   - pin: ${dallasPin}
     update_interval: "${update_temp}"
     
-interval:
-  - interval: ${update_ec}
-    then:
-      - button.press: read_ec
-
 sensor:
   # Internal Magnetic Sensor
   - platform: esp32_hall
@@ -196,141 +190,40 @@ sensor:
     device_class: PH
 
   # EZO Circuit - EC
-  # Conductivity Probe
+  # Salinity
   - platform: ezo
     icon: mdi:shaker-outline
-    # name: "Salinity"
+    name: "Salinity"
     id: ec_ezo
     address: ${addEC}
     unit_of_measurement: "ppt"
     accuracy_decimals: 2
     update_interval: "${update_ec}"
     state_class: "measurement"
-    on_custom: 
-      then:
-        - lambda: 
-            id(raw_value_ec).publish_state(x);
-    # on_calibration: 
-    #   then:
-    #     - lambda: 
-    #         id(result_ec).publish_state(x);
-    # on_device_information: 
-    #   then:
-    #     - lambda: 
-    #         id(result_ec).publish_state(x);
-    # on_slope: 
-    #   then:
-    #     - lambda: 
-    #         id(result_ec).publish_state(x);
-    # on_t: 
-    #   then:
-    #     - lambda: 
-    #         id(result_ec).publish_state(x);
-
-  # Conductivity
-  - platform: template
-    name: Conductivity
-    id: sensor_conductivity
-    icon: mdi:lightning-bolt-outline
-    unit_of_measurement: "uS/cm"
-    accuracy_decimals: 0
-    update_interval: "${update_ec}"
-    state_class: "measurement"
-    lambda: |-
-      std::string str = id(raw_value_ec).state;
-      std::vector<std::string> v;
-      char * token;
-      char seps[] = ",";
-      token = strtok (&str[0],seps);
-      while (token != NULL) {
-        v.push_back(token);
-        token = strtok (NULL, seps);
-      }
-      if (v.size() == 4) {
-        return std::stof(v[0]);
-      } 
-      else {
-        return 0;
-      }
-
-  # TDS
-  - platform: template
-    name: TDS
-    id: sensor_tds
-    unit_of_measurement: "mg/L"
-    icon: mdi:water-opacity
-    accuracy_decimals: 0
-    update_interval: "${update_ec}"
-    state_class: "measurement"
-    lambda: |-
-      std::string str = id(raw_value_ec).state;
-      std::vector<std::string> v;
-      char * token;
-      char seps[] = ",";
-      token = strtok (&str[0],seps);
-      while (token != NULL) {
-        v.push_back(token);
-        token = strtok (NULL, seps);
-      }
-      if (v.size() == 4) {
-        return std::stof(v[1]);
-      } 
-      else {
-        return 0;
-      }
-
-  # Salinity
-  - platform: template
-    name: Salinity
-    id: sensor_salinity
-    icon: mdi:shaker-outline
-    unit_of_measurement: "ppt"
-    accuracy_decimals: 2
-    update_interval: "${update_ec}"
-    state_class: "measurement"
-    lambda: |-
-      std::string str = id(raw_value_ec).state;
-      std::vector<std::string> v;
-      char * token;
-      char seps[] = ",";
-      token = strtok (&str[0],seps);
-      while (token != NULL) {
-        v.push_back(token);
-        token = strtok (NULL, seps);
-      }
-      if (v.size() == 4) {
-        return std::stof(v[2]);
-      } 
-      else {
-        return NULL;
-      }
 
   # Specific Gravity
-  - platform: template
-    name: Specific Gravity
-    id: sensor_specific_gravity
-    icon: mdi:cup-water
+  - platform: copy 
+    source_id: ec_ezo
+    icon: mdi:shaker-outline
+    name: "Specific Gravity"
+    filters:
+      - lambda: return x;
     unit_of_measurement: ""
     accuracy_decimals: 3
-    update_interval: "${update_ec}"
     state_class: "measurement"
-    lambda: |-
-      std::string str = id(raw_value_ec).state;
-      std::vector<std::string> v;
-      char * token;
-      char seps[] = ",";
-      token = strtok (&str[0],seps);
-      while (token != NULL) {
-        v.push_back(token);
-        token = strtok (NULL, seps);
-      }
-      if (v.size() == 4) {
-        return std::stof(v[3]);
-      } 
-      else {
-        return NULL;
-      }
+    disabled_by_default: true
 
+  # Conductivity
+  - platform: copy 
+    source_id: ec_ezo
+    name: "Conductivity"
+    icon: mdi:flash
+    filters:
+      - lambda: return x;
+    unit_of_measurement: "μS/cm"
+    accuracy_decimals: 3
+    state_class: "measurement"
+    disabled_by_default: true
 
   # EZO Circuit - RTD
   # Temperature
@@ -433,16 +326,12 @@ sensor:
     
   # Convert to Fahrenheit - Temp. 1
   - platform: template
-    # name: Temperature 1 - Fahrenheit
-    disabled_by_default: true
     id: temp_f
     lambda: |-
       return id(temp_1).state * 9 / 5 + 32;
 
   # Convert to Fahrenheit - Temp. 2
   - platform: template
-    # name: Temperature 2 - Fahrenheit
-    disabled_by_default: true
     id: temp_f_2
     lambda: |-
       return id(temp_2).state * 9 / 5 + 32;
@@ -657,21 +546,7 @@ text_sensor:
       }     
       else {
         return {"Unknown"};
-      }
-
-  # Conductivity Raw Value
-  - platform: template
-    name: EC - Raw Value
-    id: raw_value_ec
-    update_interval: never
-    disabled_by_default: true
-    entity_category: "Config"
-    on_value: 
-      then:
-        - component.update: sensor_salinity
-        - component.update: sensor_conductivity
-        - component.update: sensor_tds
-        - component.update: sensor_specific_gravity
+      }  
 
 button:
   # Soft Restart
@@ -696,20 +571,6 @@ button:
 
   # EC
   # Output Parameters
-  # Output All
-  - platform: template
-    name: "EC - Output - All"
-    id: ec_all
-    on_press:
-      then:
-        - lambda: |-
-            id(ec_ezo).send_custom("O,EC,1");
-            id(ec_ezo).send_custom("O,TDS,1");
-            id(ec_ezo).send_custom("O,S,1");
-            id(ec_ezo).send_custom("O,SG,1");
-    entity_category: "Config"
-    disabled_by_default: true
-
   # Output Salinity
   - platform: template
     name: "EC - Output - Salinity"
@@ -751,28 +612,6 @@ button:
             id(ec_ezo).send_custom("O,SG,0");
     entity_category: "Config"
     disabled_by_default: true
-
-  # Read pH Probe
-  - platform: template
-    name: pH - Read
-    id: read_ph
-    entity_category: "Config"
-    disabled_by_default: true
-    on_press:
-      then:
-        - lambda: |-
-            id(ph_ezo).send_custom("R");
-
-  # Read Conductivity Probe
-  - platform: template
-    name: EC - Read
-    id: read_ec
-    entity_category: "Config"
-    disabled_by_default: true
-    on_press:
-      then:
-        - lambda: |-
-            id(ec_ezo).send_custom("R");
 
 number:
   # Temperature when Cool
