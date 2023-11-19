@@ -104,8 +104,6 @@ wifi:
 
 captive_portal:
 
-# web_server:
-
 # Sets up Bluetooth LE (Only on ESP32) to allow the user to provision wifi credentials to the device.
 esp32_improv:
   authorizer: none
@@ -708,7 +706,7 @@ button:
   - platform: restart
     name: "Restart"
 
-  # Facroty Reset
+  # Factory Reset
   - platform: factory_reset
     name: Factory Reset (USE WITH CAUTION)
     disabled_by_default: true
@@ -958,7 +956,7 @@ select:
       - "Calibrate @ LOW = 4 (WILL RESET CALIBRATION)"
       - "Calibrate @ HIGH = 10 (WILL RESET CALIBRATION)"
       - "Calibrate CLEAR (WILL RESET CALIBRATION)"
-    initial_option: "Read"
+    initial_option: "Check Calibration"
     restore_value: true
     set_action:
       - logger.log:
@@ -989,7 +987,7 @@ select:
       - "Calibrate @ LOW = 12880 (WILL RESET CALIBRATION)"
       - "Calibrate @ HIGH = 80000 (WILL RESET CALIBRATION)"
       - "Calibrate CLEAR (WILL RESET CALIBRATION)"
-    initial_option: "Read"
+    initial_option: "Check Calibration"
     restore_value: true
     set_action:
       - logger.log:
