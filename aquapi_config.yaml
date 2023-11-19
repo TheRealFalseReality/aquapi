@@ -6,7 +6,6 @@ substitutions:
   app_version: "1.3"
   # Comment
   comment: "AquaPi ESP32 - Aquarium Controller & Monitor"  
-  
   # Import Config
   import_config: "false"
   # Logger Level

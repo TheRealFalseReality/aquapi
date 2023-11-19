@@ -4,11 +4,22 @@ esphome:
   # Automatically add the mac address to the name
   name_add_mac_suffix: true
   comment: "${comment}"
+  project:
+    name: TheRealFalseReality.aquapi
+    version: "${app_version}"
+  on_boot: 
+    priority: 200
+    then:
+      - component.update: water_level  
 
 esp32:
   board: esp32dev
   framework:
     type: arduino
+
+dashboard_import:
+  package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@main
+  import_full_config: ${import_config}
 
 # Enable logging
 logger:
