@@ -7,7 +7,7 @@ esphome:
 
 interval:
   # Update Raw EC
-  - interval: "${update_ec}"
+  - interval: "${update_button_ec}"
     then:
       - button.press: read_ec
 

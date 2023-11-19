@@ -7,7 +7,7 @@ esphome:
 
 interval:
   # Update Raw CO2
-  - interval: "${update_co2}"
+  - interval: "${update_button_co2}"
     then:
       - button.press: read_co2
 

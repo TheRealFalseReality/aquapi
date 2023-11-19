@@ -54,6 +54,7 @@ substitutions:
   update_ph: "60s"
   # EZO EC
   update_ec: "60s"
+  update_button_ec: "60s"
   # EZO DO
   update_do: "60s"
   # EZO RTD
@@ -62,8 +63,10 @@ substitutions:
   update_pmp: "60s"
   # EZO HUM
   update_hum: "60s"
+  update_button_hum: "60s"
   # EZO CO2
   update_co2: "60s"
+  update_button_co2: "60s"
 
 packages:
   device_base: !include common/device_base.yaml

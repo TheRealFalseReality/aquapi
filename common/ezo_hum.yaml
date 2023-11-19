@@ -7,7 +7,7 @@ esphome:
 
 interval:
   # Update Raw HUM
-  - interval: "${update_hum}"
+  - interval: "${update_button_hum}"
     then:
       - button.press: read_hum
 
