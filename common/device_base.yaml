@@ -129,6 +129,7 @@ text_sensor:
     bssid:
       name: Connected BSSID
       icon: mdi:wifi-star
+      disabled_by_default: true
     mac_address:
       name: Mac Address
       icon: mdi:chip
