@@ -4,14 +4,11 @@ substitutions:
   friendly_name: "AquaPi"
   # App Version - Updated: 8/2023
   app_version: "1.3"
-  # Comment
-  comment: "AquaPi ESP32 - Aquarium Controller & Monitor"  
   # Add MAC address to name
   suffix: "true"
   # Import Config
   import_config: "false"
-  # Logger Level
-  # Can use VERBOSE for more information
+  # Logger Level - Can use VERBOSE for more information
   logger: "DEBUG"
 
   # pins
@@ -40,7 +37,7 @@ substitutions:
   addCO2: "105"
 
   # Calibration variables
-  # 0C using Ice Water; 100C using Boiling Water  
+  # 0C using Ice Water; 100C using Boiling Water
   # Calibration Temp. 1
   cal_0: "0.0"
   cal_100: "100.0"

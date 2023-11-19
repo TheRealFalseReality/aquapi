@@ -3,7 +3,7 @@ esphome:
   friendly_name: "${friendly_name}"
   # Automatically add the mac address to the name
   name_add_mac_suffix: ${suffix}
-  comment: "${comment}"
+  comment: "AquaPi ESP32 - Aquarium Controller & Monitor"
   project:
     name: TheRealFalseReality.aquapi
     version: "${app_version}"
