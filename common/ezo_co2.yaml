@@ -56,6 +56,7 @@ sensor:
     update_interval: "${update_co2}"
     state_class: "measurement"
     device_class: "temperature"
+    entity_category: "diagnostic"
     lambda: |-
       std::string str = id(raw_value_co2).state;
       std::vector<std::string> v;
