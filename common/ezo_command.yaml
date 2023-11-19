@@ -1,0 +1,25 @@
+text_sensor:
+  # Custom Command Result
+  - platform: template
+    name: EZO - Custom Command Result
+    id: result_generic
+    disabled_by_default: true
+
+button:
+  # Send EZO Command - Custom
+  - platform: template
+    name: EZO - Send Custom Command
+    id: send_custom
+    entity_category: "Config"
+    disabled_by_default: true
+    on_press:
+      then:
+        - lambda: |-
+            id(commmand_custom).state;
+
+text:
+    platform: template
+    name: EZO - Custom Command
+    id: commmand_custom
+    mode: text
+    optimistic: true

@@ -70,6 +70,7 @@ packages:
   dallas: !include common/temperature_dallas.yaml
   pins: !include common/binary.yaml
   aquapi: !include common/aquapi.yaml
+  ezo_command: !include common/ezo_command.yaml
   ezo_ph: !include common/ezo_ph.yaml
   ezo_ec: !include common/ezo_ec.yaml
   # ezo_hum: !include common/ezo_hum.yaml

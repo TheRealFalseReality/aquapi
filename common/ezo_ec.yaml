@@ -14,13 +14,13 @@ interval:
 sensor:
   # EZO Circuits (yellow - SCL/RX, blue - SDA/TX)
   # EZO Circuit - EC
-  # Conductivity Probe
+  # Conductivity
   - platform: ezo
     icon: mdi:shaker-outline
-    # name: "Salinity"
+    name: "Conductivity"
     id: ec_ezo
     address: ${addEC}
-    unit_of_measurement: "ppt"
+    unit_of_measurement: "uS/cm"
     accuracy_decimals: 2
     update_interval: "${update_ec}"
     state_class: "measurement"
@@ -45,31 +45,31 @@ sensor:
         - lambda: 
             id(result_ec).publish_state(x);
 
-  # Conductivity
-  - platform: template
-    name: Conductivity
-    id: sensor_conductivity
-    icon: mdi:lightning-bolt-outline
-    unit_of_measurement: "uS/cm"
-    accuracy_decimals: 0
-    update_interval: "${update_ec}"
-    state_class: "measurement"
-    lambda: |-
-      std::string str = id(raw_value_ec).state;
-      std::vector<std::string> v;
-      char * token;
-      char seps[] = ",";
-      token = strtok (&str[0],seps);
-      while (token != NULL) {
-        v.push_back(token);
-        token = strtok (NULL, seps);
-      }
-      if (v.size() == 4) {
-        return std::stof(v[0]);
-      } 
-      else {
-        return NULL;
-      }
+  # # Conductivity
+  # - platform: template
+  #   name: Conductivity
+  #   id: sensor_conductivity
+  #   icon: mdi:lightning-bolt-outline
+  #   unit_of_measurement: "uS/cm"
+  #   accuracy_decimals: 0
+  #   update_interval: "${update_ec}"
+  #   state_class: "measurement"
+  #   lambda: |-
+  #     std::string str = id(raw_value_ec).state;
+  #     std::vector<std::string> v;
+  #     char * token;
+  #     char seps[] = ",";
+  #     token = strtok (&str[0],seps);
+  #     while (token != NULL) {
+  #       v.push_back(token);
+  #       token = strtok (NULL, seps);
+  #     }
+  #     if (v.size() == 4) {
+  #       return std::stof(v[0]);
+  #     } 
+  #     else {
+  #       return NULL;
+  #     }
 
   # TDS
   - platform: template
@@ -78,6 +78,7 @@ sensor:
     unit_of_measurement: "mg/L"
     icon: mdi:water-opacity
     accuracy_decimals: 0
+    disabled_by_default: true
     update_interval: "${update_ec}"
     state_class: "measurement"
     lambda: |-
@@ -158,7 +159,7 @@ text_sensor:
     on_value: 
       then:
         - component.update: sensor_salinity
-        - component.update: sensor_conductivity
+        # - component.update: sensor_conductivity
         - component.update: sensor_tds
         - component.update: sensor_specific_gravity
 
