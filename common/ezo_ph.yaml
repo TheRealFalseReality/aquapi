@@ -42,6 +42,7 @@ text_sensor:
   # Selected Command Result - pH
   - platform: template
     name: pH - Command Result
+    icon: mdi:data-matrix
     id: result_ph
     disabled_by_default: true
 

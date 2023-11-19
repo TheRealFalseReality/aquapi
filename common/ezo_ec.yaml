@@ -155,6 +155,7 @@ text_sensor:
   - platform: template
     name: EC - Raw Value
     id: raw_value_ec
+    icon: mdi:counter
     disabled_by_default: true
     on_value: 
       then:
@@ -166,6 +167,7 @@ text_sensor:
   # Selected Command Result - Conductivity
   - platform: template
     name: EC - Command Result
+    icon: mdi:data-matrix
     id: result_ec
     disabled_by_default: true
 

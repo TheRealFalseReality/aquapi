@@ -9,11 +9,10 @@ sensor:
   # EZO Circuit - RTD
   # Temperature
   - platform: ezo
-    icon: mdi:thermometer-lines
     name: "Temperature EZO"
     id: temp_ezo
     address: ${addRTD}
-    # unit_of_measurement: "°C"
+    unit_of_measurement: "°C"
     accuracy_decimals: 2
     update_interval: "${update_rtd}"
     state_class: "measurement"
