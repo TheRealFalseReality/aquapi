@@ -1,0 +1,87 @@
+esphome:
+  on_boot: 
+      priority: 200
+      then:
+        - component.update: water_level
+
+binary_sensor:
+  # Optical Sensor - LOW (yellow)
+  - platform: gpio
+    id: os_low
+    pin: 
+      number: ${opticalLowPin}
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    name: "Optical Sensor: Low"
+    filters:
+      - delayed_on_off: 30ms
+    on_state:
+      then:
+        component.update: water_level
+
+  # Optical Sensor - HIGH (blue)
+  - platform: gpio
+    id: os_high
+    pin: 
+      number: ${opticalHighPin}
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    name: "Optical Sensor: High"
+    filters:
+      - delayed_on_off: 30ms
+    on_state:
+      then:
+        component.update: water_level
+
+  # Additional Pin 1
+  - platform: gpio
+    id: aux_1
+    pin: 
+      number: ${auxPin1}
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    name: Aux 1
+    filters:
+      - delayed_on_off: 30ms
+
+  # Additional Pin 2
+  - platform: gpio
+    id: aux_2
+    pin: 
+      number: ${auxPin2}
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    name: Aux 2
+    filters:
+      - delayed_on_off: 30ms
+
+text_sensor:
+  # Water Level
+  - platform: template
+    icon: mdi:waves-arrow-up
+    name: "Water Level"
+    id: water_level
+    update_interval: "${update_water}"
+    lambda: |-
+      if(id(os_high).state == true && id(os_low).state == true) {
+        // Water Level is High
+        return {"High"};
+      }
+      if(id(os_high).state == false && id(os_low).state == false) {
+        // Water Level is Low
+        return {"Low"};
+      }
+      if(id(os_high).state == false && id(os_low).state == true) {
+        // Water Level is Normal
+        return {"Normal"};
+      } else {
+        return {"Uknown or Error"};
+      }

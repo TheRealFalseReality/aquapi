@@ -1,0 +1,120 @@
+esphome:
+    on_boot: 
+        priority: 200
+        then:
+          - button.press: send_selected_ph
+
+sensor:
+  # EZO Circuits (yellow - SCL/RX, blue - SDA/TX)
+  # EZO Circuit - pH
+  - platform: ezo
+    icon: mdi:ph
+    name: "pH"
+    id: ph_ezo
+    address: ${addPH}
+    unit_of_measurement: ""
+    accuracy_decimals: 2
+    update_interval: "${update_ph}"
+    state_class: "measurement"
+    device_class: PH
+    on_custom: 
+      then:
+        - lambda: 
+            id(result_ph).publish_state(x);
+    on_calibration: 
+      then:
+        - lambda: 
+            id(result_ph).publish_state(x);
+    on_device_information: 
+      then:
+        - lambda: 
+            id(result_ph).publish_state(x);
+    on_slope: 
+      then:
+        - lambda: 
+            id(result_ph).publish_state(x);
+    on_t: 
+      then:
+        - lambda: 
+            id(result_ph).publish_state(x); 
+
+text_sensor:
+  # Selected Command Result - pH
+  - platform: template
+    name: pH - Command Result
+    icon: mdi:data-matrix
+    id: result_ph
+    disabled_by_default: true
+
+button:
+  # Read pH Probe
+  - platform: template
+    name: pH - Read
+    id: read_ph
+    entity_category: "Config"
+    disabled_by_default: true
+    on_press:
+      then:
+        - lambda: |-
+            id(ph_ezo).send_custom("R");
+
+  # Send Selected EZO Command - pH
+  - platform: template
+    name: pH - Command Send Selected
+    id: send_selected_ph
+    entity_category: "Config"
+    disabled_by_default: true
+    on_press:
+      then:
+        - lambda: |-
+            if (id(select_command_ph).state == "Read") {
+              id(ph_ezo).send_custom("R");
+            }
+            // Get Device Firmware Version
+            if (id(select_command_ph).state == "Information") {
+              id(ph_ezo).get_device_information();
+            }
+            if (id(select_command_ph).state == "Status") {
+              id(ph_ezo).send_custom("Status");
+            }
+            if (id(select_command_ph).state == "Get Slope") {
+              id(ph_ezo).get_slope();
+            }
+            if (id(select_command_ph).state == "Check Calibration") {
+              id(ph_ezo).get_calibration();
+            }  
+            if (id(select_command_ph).state == "Calibrate @ MID  = 7  (WILL RESET CALIBRATION)") {
+              id(ph_ezo).set_calibration_point_mid(7.00);
+            }
+            if (id(select_command_ph).state == "Calibrate @ LOW  = 4  (WILL RESET CALIBRATION)") {
+              id(ph_ezo).set_calibration_point_low(4.00);
+            }
+            if (id(select_command_ph).state == "Calibrate @ HIGH = 10 (WILL RESET CALIBRATION)") {
+              id(ph_ezo).set_calibration_point_high(10.00);
+            }
+            if (id(select_command_ph).state == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
+              id(ph_ezo).clear_calibration();
+            }
+
+select:
+  - platform: template
+    name: pH - Command Select
+    id: select_command_ph
+    optimistic: true
+    disabled_by_default: true
+    entity_category: "Config"
+    options:
+      - "Read"
+      - "Information"
+      - "Status"
+      - "Get Slope"
+      - "Check Calibration"
+      - "Calibrate @ MID = 7 (WILL RESET CALIBRATION)"
+      - "Calibrate @ LOW = 4 (WILL RESET CALIBRATION)"
+      - "Calibrate @ HIGH = 10 (WILL RESET CALIBRATION)"
+      - "Calibrate CLEAR (WILL RESET CALIBRATION)"
+    initial_option: "Check Calibration"
+    set_action:
+      - logger.log:
+          format: "Chosen option: %s"
+          args: ["x.c_str()"]
