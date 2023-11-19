@@ -673,7 +673,7 @@ text_sensor:
 
   # Conductivity Raw Value
   - platform: template
-    # name: EC - Raw Value
+    name: EC - Raw Value
     id: raw_value_ec
     # disabled_by_default: true
     entity_category: "Config"
@@ -686,14 +686,14 @@ text_sensor:
 
   # Selected Command Result - pH
   - platform: template
-    # name: pH - Command Result
+    name: pH - Command Result
     id: result_ph
     # disabled_by_default: true
     entity_category: "Config"
 
   # Selected Command Result - Conductivity
   - platform: template
-    # name: EC - Command Result
+    name: EC - Command Result
     id: result_ec
     # disabled_by_default: true
     entity_category: "Config"
