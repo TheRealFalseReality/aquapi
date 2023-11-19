@@ -1,0 +1,41 @@
+# esphome:
+#     on_boot: 
+#         priority: 200
+#         then:
+#           - button.press: send_selected_ph
+
+sensor:
+  # EZO Circuits (yellow - SCL/RX, blue - SDA/TX)
+  # EZO Circuit - CO2
+  # Cardbon Dioxide
+  - platform: ezo
+    icon: mdi:molecule-co2
+    name: "Cardbon Dioxide"
+    id: co2_ezo
+    address: ${addCO2}
+    unit_of_measurement: "ppm"
+    accuracy_decimals: 2
+    update_interval: "${update_co2}"
+    state_class: "measurement"
+    device_class: "carbon_dioxide"
+    disabled_by_default: true
+    # on_custom: 
+    #   then:
+    #     - lambda: 
+    #         id(result_ph).publish_state(x);
+    # on_calibration: 
+    #   then:
+    #     - lambda: 
+    #         id(result_ph).publish_state(x);
+    # on_device_information: 
+    #   then:
+    #     - lambda: 
+    #         id(result_ph).publish_state(x);
+    # on_slope: 
+    #   then:
+    #     - lambda: 
+    #         id(result_ph).publish_state(x);
+    # on_t: 
+    #   then:
+    #     - lambda: 
+    #         id(result_ph).publish_state(x); 

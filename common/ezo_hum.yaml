@@ -1,0 +1,41 @@
+# esphome:
+#     on_boot: 
+#         priority: 200
+#         then:
+#           - button.press: send_selected_ph
+
+sensor:
+  # EZO Circuits (yellow - SCL/RX, blue - SDA/TX)
+  # EZO Circuit - HUM
+  # Humidity
+  - platform: ezo
+    icon: mdi:water-percent
+    name: "Humidity"
+    id: hum_ezo
+    address: ${addHUM}
+    unit_of_measurement: "%"
+    accuracy_decimals: 2
+    update_interval: "${update_hum}"
+    state_class: "measurement"
+    device_class: "humidity"
+    disabled_by_default: true
+    # on_custom: 
+    #   then:
+    #     - lambda: 
+    #         id(result_ph).publish_state(x);
+    # on_calibration: 
+    #   then:
+    #     - lambda: 
+    #         id(result_ph).publish_state(x);
+    # on_device_information: 
+    #   then:
+    #     - lambda: 
+    #         id(result_ph).publish_state(x);
+    # on_slope: 
+    #   then:
+    #     - lambda: 
+    #         id(result_ph).publish_state(x);
+    # on_t: 
+    #   then:
+    #     - lambda: 
+    #         id(result_ph).publish_state(x); 
