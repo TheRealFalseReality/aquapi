@@ -21,5 +21,6 @@ text:
     platform: template
     name: EZO - Custom Command
     id: commmand_custom
+    disabled_by_default: true
     mode: text
     optimistic: true
