@@ -676,7 +676,6 @@ text_sensor:
     name: EC - Raw Value
     id: raw_value_ec
     disabled_by_default: true
-    entity_category: "Config"
     on_value: 
       then:
         - component.update: sensor_salinity
@@ -689,14 +688,12 @@ text_sensor:
     name: pH - Command Result
     id: result_ph
     disabled_by_default: true
-    entity_category: "Config"
 
   # Selected Command Result - Conductivity
   - platform: template
     name: EC - Command Result
     id: result_ec
     disabled_by_default: true
-    entity_category: "Config"
 
 button:
   # Soft Restart
