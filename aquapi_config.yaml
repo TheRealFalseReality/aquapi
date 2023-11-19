@@ -773,7 +773,7 @@ button:
     name: pH - Read
     id: read_ph
     entity_category: "Config"
-    # disabled_by_default: true
+    disabled_by_default: true
     on_press:
       then:
         - lambda: |-
@@ -784,7 +784,7 @@ button:
     name: EC - Read
     id: read_ec
     entity_category: "Config"
-    # disabled_by_default: true
+    disabled_by_default: true
     on_press:
       then:
         - lambda: |-
