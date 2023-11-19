@@ -113,7 +113,6 @@ select:
       - "Calibrate @ HIGH = 10 (WILL RESET CALIBRATION)"
       - "Calibrate CLEAR (WILL RESET CALIBRATION)"
     initial_option: "Check Calibration"
-    restore_value: true
     set_action:
       - logger.log:
           format: "Chosen option: %s"
