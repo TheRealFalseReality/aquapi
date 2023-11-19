@@ -394,7 +394,8 @@ sensor:
     device_class: "carbon_dioxide"
     disabled_by_default: true
 
-  # EZO Circuit - Dissolved Oxygen
+  # EZO Circuit - DO
+  # Dissolved Oxygen
   - platform: ezo
     icon: mdi:molecule
     name: "Dissolved Oxygen"
@@ -406,7 +407,8 @@ sensor:
     state_class: "measurement"
     disabled_by_default: true
 
-  # EZO Circuit - Pump
+  # EZO Circuit - pmp
+  # Pump
   - platform: ezo
     icon: mdi:pump
     name: "Pump"
