@@ -6,6 +6,8 @@ substitutions:
   app_version: "1.3"
   # Comment
   comment: "AquaPi ESP32 - Aquarium Controller & Monitor"  
+  # Add MAC address to name
+  suffix: "true"
   # Import Config
   import_config: "false"
   # Logger Level
