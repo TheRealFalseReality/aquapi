@@ -20,7 +20,7 @@ sensor:
     id: hum_ezo
     address: ${addHUM}
     unit_of_measurement: "%"
-    accuracy_decimals: 0
+    accuracy_decimals: 2
     update_interval: "${update_hum}"
     state_class: "measurement"
     device_class: "humidity"
@@ -173,6 +173,7 @@ button:
             }
 
 select:
+  # Select Command to Send
   - platform: template
     name: HUM - Command Select
     id: select_command_hum
