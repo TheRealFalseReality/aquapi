@@ -1,0 +1,199 @@
+esphome:
+    on_boot: 
+        priority: 200
+        then:
+            - button.press: read_hum
+            - button.press: send_selected_hum
+
+interval:
+  # Update Raw HUM
+  - interval: "${update_button_hum}"
+    then:
+      - button.press: read_hum
+
+sensor:
+  # EZO Circuits (yellow - SCL/RX, blue - SDA/TX)
+  # EZO Circuit - HUM
+  # Humidity
+  - platform: ezo
+    name: "Humidity"
+    id: hum_ezo
+    address: ${addHUM}
+    unit_of_measurement: "%"
+    accuracy_decimals: 2
+    update_interval: "${update_hum}"
+    state_class: "measurement"
+    device_class: "humidity"
+    on_custom: 
+      then:
+        - lambda: 
+            id(raw_value_hum).publish_state(x);
+    on_calibration: 
+      then:
+        - lambda: 
+            id(result_hum).publish_state(x);
+    on_device_information: 
+      then:
+        - lambda: 
+            id(result_hum).publish_state(x);
+    on_slope: 
+      then:
+        - lambda: 
+            id(result_hum).publish_state(x);
+    on_t: 
+      then:
+        - lambda: 
+            id(result_hum).publish_state(x);
+
+  # Air Temperature
+  - platform: template
+    name: Air Temperature
+    id: sensor_hum_air_temperature
+    accuracy_decimals: 2
+    disabled_by_default: true
+    unit_of_measurement: "°C"
+    update_interval: "${update_hum}"
+    state_class: "measurement"
+    device_class: "temperature"
+    lambda: |-
+      std::string str = id(raw_value_hum).state;
+      std::vector<std::string> v;
+      char * token;
+      char seps[] = ",";
+      token = strtok (&str[0],seps);
+      while (token != NULL) {
+        v.push_back(token);
+        token = strtok (NULL, seps);
+      }
+      if (v.size() == 3) {
+        return std::stof(v[1]);
+      } 
+      else {
+        return NULL;
+      }
+
+  # Dew Point
+  - platform: template
+    name: Dew Point
+    id: sensor_hum_dew_point
+    accuracy_decimals: 2
+    disabled_by_default: true
+    unit_of_measurement: "°C"
+    update_interval: "${update_hum}"
+    state_class: "measurement"
+    device_class: "temperature"
+    lambda: |-
+      std::string str = id(raw_value_hum).state;
+      std::vector<std::string> v;
+      char * token;
+      char seps[] = ",";
+      token = strtok (&str[0],seps);
+      while (token != NULL) {
+        v.push_back(token);
+        token = strtok (NULL, seps);
+      }
+      if (v.size() == 3) {
+        return std::stof(v[2]);
+      } 
+      else {
+        return NULL;
+      }
+
+text_sensor:
+  # HUM Raw Value
+  - platform: template
+    name: HUM - Raw Value
+    icon: mdi:counter
+    id: raw_value_hum
+    disabled_by_default: true
+    on_value: 
+      then:
+        - component.update: sensor_hum_air_temperature
+        - component.update: sensor_hum_dew_point
+
+  # Selected Command Result - HUM
+  - platform: template
+    name: HUM - Command Result
+    id: result_hum
+    disabled_by_default: true
+
+button:
+  # Read HUM Sensor
+  - platform: template
+    name: HUM - Read
+    id: read_hum
+    entity_category: "Config"
+    disabled_by_default: true
+    on_press:
+      then:
+        - lambda: |-
+            id(hum_ezo).send_custom("R");
+
+  # Send Selected EZO Command - HUM
+  - platform: template
+    name: HUM - Command Send Selected
+    id: send_selected_hum
+    entity_category: "Config"
+    disabled_by_default: true
+    on_press:
+      then:
+        - lambda: |-
+            if (id(select_command_hum).state == "Read") {
+              id(hum_ezo).send_custom("R");
+            }
+            if (id(select_command_hum).state == "Information") {
+              id(hum_ezo).get_device_information();
+            }
+            if (id(select_command_hum).state == "Status") {
+              id(hum_ezo).send_custom("Status");
+            }
+            if (id(select_command_hum).state == "Get Enabled Parameter(s)") {
+              id(hum_ezo).send_custom("O,?");
+            }  
+            if (id(select_command_hum).state == "Output Units - Enable Humidity") {
+              id(hum_ezo).send_custom("O,HUM,1");
+            }
+            if (id(select_command_hum).state == "Output Units - Disable Humidity") {
+              id(hum_ezo).send_custom("O,HUM,0");
+            }
+            if (id(select_command_hum).state == "Output Units - Enable Temperature") {
+              id(hum_ezo).send_custom("O,T,1");
+            }
+            if (id(select_command_hum).state == "Output Units - Disable Temperature") {
+              id(hum_ezo).send_custom("O,T,0");
+            }
+            if (id(select_command_hum).state == "Output Units - Enable Dew Point") {
+              id(hum_ezo).send_custom("O,DEW,1");
+            }
+            if (id(select_command_hum).state == "Output Units - Disable Dew Point") {
+              id(hum_ezo).send_custom("O,DEW,0");
+            }
+            if (id(select_command_hum).state == "Check Calibration") {
+              id(hum_ezo).get_calibration();
+            }
+
+select:
+  # Select Command to Send
+  - platform: template
+    name: HUM - Command Select
+    id: select_command_hum
+    disabled_by_default: true
+    optimistic: true
+    entity_category: "Config"
+    options:
+      - "Read"
+      - "Information"
+      - "Status"
+      - "Get Enabled Parameter(s)"
+      - "Output Units - Enable Humidity"
+      - "Output Units - Disable Humidity"
+      - "Output Units - Enable Temperature"
+      - "Output Units - Disable Temperature"
+      - "Output Units - Enable Dew Point"
+      - "Output Units - Disable Dew Point"
+      - "Check Calibration"
+    initial_option: "Check Calibration"
+    set_action:
+      - logger.log:
+          format: "Chosen option: %s"
+          args: ["x.c_str()"]

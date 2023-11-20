@@ -1,0 +1,173 @@
+# 18B20 sensor Pin
+dallas:
+  - pin: ${dallasPin}
+    update_interval: "${update_temp}"
+
+sensor:
+  # Temperature Probe 1
+  - platform: dallas
+    id: temp_1
+    icon: mdi:thermometer-lines
+    index: 0
+    name: "Temperature"
+    filters:
+      - calibrate_linear:
+          method: least_squares
+          datapoints:
+            - 0.0 -> ${cal_0}
+            - 100.0 -> ${cal_100}
+    on_value: 
+      then:
+        - component.update: temp_range
+
+  # Temperature Probe 2
+  - platform: dallas
+    id: temp_2
+    icon: mdi:thermometer-lines
+    index: 1
+    name: "Temperature 2"
+    filters:
+      - calibrate_linear:
+          method: least_squares
+          datapoints:
+            - 0.0 -> ${cal_0_2}
+            - 100.0 -> ${cal_100_2}
+    disabled_by_default: true
+    on_value: 
+      then:
+        - component.update: temp_range_2
+
+  # Convert to Fahrenheit - Temp. 1
+  - platform: template
+    id: temp_f
+    lambda: |-
+      return id(temp_1).state * 9 / 5 + 32;
+
+  # Convert to Fahrenheit - Temp. 2
+  - platform: template
+    id: temp_f_2
+    lambda: |-
+      return id(temp_2).state * 9 / 5 + 32;
+
+  # Calibration Temp. at 0C
+  - platform: template
+    name: Calibration at 0°C - Temp. 1
+    id: cal_0_sen
+    icon: mdi:snowflake-alert
+    unit_of_measurement: "°C"
+    disabled_by_default: true
+    entity_category: "diagnostic"
+    lambda: |-
+      return {${cal_0}};
+
+  # Calibration Temp. at 100C
+  - platform: template
+    name: Calibration at 100°C - Temp. 1
+    id: cal_100_sen
+    icon: mdi:water-thermometer
+    unit_of_measurement: "°C"
+    disabled_by_default: true
+    entity_category: "diagnostic"
+    lambda: |-
+      return {${cal_100}};
+
+  # Calibration Temp. 2 at 0C
+  - platform: template
+    name: Calibration at 0°C  - Temp. 2
+    id: cal_0_2_sen
+    icon: mdi:snowflake-alert
+    unit_of_measurement: "°C"
+    disabled_by_default: true
+    entity_category: "diagnostic"
+    lambda: |-
+      return {${cal_0_2}};
+
+  # Calibration Temp. 2 at 100C
+  - platform: template
+    name: Calibration at 100°C - Temp. 2
+    id: cal_100_2_sen
+    icon: mdi:water-thermometer
+    unit_of_measurement: "°C"
+    disabled_by_default: true
+    entity_category: "diagnostic"
+    lambda: |-
+      return {${cal_100_2}};
+
+text_sensor:
+  # Temperature Range 1
+  - platform: template
+    name: Temperature Range
+    id: temp_range
+    icon: mdi:thermometer-water
+    update_interval: "${update_temp}"
+    lambda: |-
+      if(id(temp_f).state <= id(range_cool).state) {
+        return {"Cool"};
+      }
+      if(id(temp_f).state < id(range_warm).state && id(temp_f).state > id(range_cool).state) {
+        return {"OK"};
+      }
+      if(id(temp_f).state >= id(range_warm).state) {
+        return {"Warm"};
+      }     
+      else {
+        return {"Unknown"};
+      }  
+
+  # Temperature Range 2
+  - platform: template
+    name: Temperature 2 Range
+    id: temp_range_2
+    icon: mdi:thermometer-water
+    update_interval: "${update_temp}"
+    disabled_by_default: true
+    lambda: |-
+      if(id(temp_f_2).state <= id(range_cool).state) {
+        return {"Cool"};
+      }
+      if(id(temp_f_2).state < id(range_warm).state && id(temp_f_2).state > id(range_cool).state) {
+        return {"OK"};
+      }
+      if(id(temp_f_2).state >= id(range_warm).state) {
+        return {"Warm"};
+      }     
+      else {
+        return {"Unknown"};
+      }
+
+number:
+  # Temperature when Cool
+  - platform: template
+    name: "Temp. Cool"
+    id: range_cool
+    icon: mdi:water-thermometer
+    optimistic: true
+    mode: box
+    min_value: 0.0
+    max_value: 100.0
+    step: 0.5
+    restore_value: True
+    initial_value: 72
+    entity_category: "Config"
+    on_value: 
+      then:
+        - component.update: temp_range
+        - component.update: temp_range_2
+
+  # Temperature when Warm
+  - platform: template
+    name: "Temp. Warm"
+    icon: mdi:water-alert
+    id: range_warm
+    optimistic: true
+    mode: box
+    min_value: 0.0
+    max_value: 100.0
+    step: 0.5
+    restore_value: True
+    initial_value: 82
+    entity_category: "Config"
+    on_value: 
+      then:
+        - component.update: temp_range
+        - component.update: temp_range_2
