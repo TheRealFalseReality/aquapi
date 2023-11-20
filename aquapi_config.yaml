@@ -8,7 +8,7 @@ substitutions:
   suffix: "true"
   # Import Config
   import_config: "false"
-  # Logger Level - Can use VERBOSE for more information
+  # Logger Level - Can use VERBOSE for more information in Logs
   logger: "DEBUG"
 
   # pins
