@@ -13,8 +13,8 @@ substitutions:
 
   # pins
   dallasPin: "16"
-  opticalHighPin: "33" # blue
   opticalLowPin: "32" # yellow
+  opticalHighPin: "33" # blue
   auxPin1: "26" # blue
   auxPin2: "27" # yellow
   sdaPin: "21" # blue
