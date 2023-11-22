@@ -94,9 +94,9 @@ sensor:
       if (v.size() == 4) {
         return std::stof(v[1]);
       } 
-      // else {
-      //   return NULL;
-      // }
+      else {
+        return NULL;
+      }
 
   # Salinity
   - platform: template
@@ -120,9 +120,9 @@ sensor:
       if (v.size() == 4) {
         return std::stof(v[2]);
       } 
-      // else {
-      //   return NULL;
-      // }
+      else {
+        return NULL;
+      }
 
   # Specific Gravity
   - platform: template
@@ -146,9 +146,9 @@ sensor:
       if (v.size() == 4) {
         return std::stof(v[3]);
       } 
-      // else {
-      //   return NULL;
-      // }
+      else {
+        return NULL;
+      }
 
 text_sensor:
   # Conductivity Raw Value
