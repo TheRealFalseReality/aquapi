@@ -70,9 +70,9 @@ sensor:
       if (v.size() == 2) {
         return std::stof(v[1]);
       } 
-      else {
-        return NULL;
-      }
+      // else {
+      //   return NULL;
+      // }
 
 text_sensor:
   # CO2 Raw Value

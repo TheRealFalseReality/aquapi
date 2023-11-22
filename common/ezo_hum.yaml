@@ -68,9 +68,9 @@ sensor:
       if (v.size() == 3) {
         return std::stof(v[1]);
       } 
-      else {
-        return NULL;
-      }
+      // else {
+      //   return NULL;
+      // }
 
   # Dew Point
   - platform: template
