@@ -84,9 +84,9 @@ sensor:
   - platform: template
     name: TDS
     id: sensor_tds
-    unit_of_measurement: "mg/L"
+    unit_of_measurement: "g/L"
     icon: mdi:water-opacity
-    accuracy_decimals: 0
+    accuracy_decimals: 2
     disabled_by_default: true
     update_interval: "${update_ec}"
     state_class: "measurement"
@@ -101,7 +101,7 @@ sensor:
         token = strtok (NULL, seps);
       }
       if (v.size() == 4) {
-        return std::stof(v[1]);
+        return (std::stof(v[1]) / 1000);
       } 
       else {
         return NAN;
