@@ -77,7 +77,7 @@ sensor:
         return std::stof(v[1]);
       } 
       else {
-        return NULL;
+        return NAN;
       }
 
 text_sensor:
