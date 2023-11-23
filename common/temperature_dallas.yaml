@@ -1,3 +1,16 @@
+substitutions:
+  dallasPin: "16"
+  update_temp: "60s"
+
+  # Calibration variables
+  # 0C using Ice Water; 100C using Boiling Water  
+  # Calibration Temp. 1
+  cal_0: "0.0"
+  cal_100: "100.0"
+  # Calibration Temp. 2
+  cal_0_2: "0.0"
+  cal_100_2: "100.0"
+
 # 18B20 sensor Pin
 dallas:
   - pin: ${dallasPin}
@@ -122,13 +135,13 @@ text_sensor:
     update_interval: "${update_temp}"
     disabled_by_default: true
     lambda: |-
-      if(id(temp_f_2).state <= id(range_cool).state) {
+      if(id(temp_f_2).state <= id(range_cool_2).state) {
         return {"Cool"};
       }
-      if(id(temp_f_2).state < id(range_warm).state && id(temp_f_2).state > id(range_cool).state) {
+      if(id(temp_f_2).state < id(range_warm_2).state && id(temp_f_2).state > id(range_cool_2).state) {
         return {"OK"};
       }
-      if(id(temp_f_2).state >= id(range_warm).state) {
+      if(id(temp_f_2).state >= id(range_warm_2).state) {
         return {"Warm"};
       }     
       else {
@@ -136,7 +149,7 @@ text_sensor:
       }
 
 number:
-  # Temperature when Cool
+  # Temperature 1 when Cool
   - platform: template
     name: "Temp. Cool"
     id: range_cool
@@ -152,9 +165,8 @@ number:
     on_value: 
       then:
         - component.update: temp_range
-        - component.update: temp_range_2
 
-  # Temperature when Warm
+  # Temperature 1 when Warm
   - platform: template
     name: "Temp. Warm"
     icon: mdi:water-alert
@@ -170,4 +182,39 @@ number:
     on_value: 
       then:
         - component.update: temp_range
+
+  # Temperature 2 when Cool
+  - platform: template
+    name: "Temp. 2 Cool"
+    id: range_cool_2
+    icon: mdi:water-thermometer
+    optimistic: true
+    disabled_by_default: true
+    mode: box
+    min_value: 0.0
+    max_value: 100.0
+    step: 0.5
+    restore_value: True
+    initial_value: 72
+    entity_category: "Config"
+    on_value: 
+      then:
+        - component.update: temp_range_2
+
+  # Temperature 2 when Warm
+  - platform: template
+    name: "Temp. 2 Warm"
+    icon: mdi:water-alert
+    id: range_warm_2
+    optimistic: true
+    disabled_by_default: true
+    mode: box
+    min_value: 0.0
+    max_value: 100.0
+    step: 0.5
+    restore_value: True
+    initial_value: 82
+    entity_category: "Config"
+    on_value: 
+      then:
         - component.update: temp_range_2

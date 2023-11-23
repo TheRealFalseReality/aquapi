@@ -1,3 +1,11 @@
+substitutions:  
+  opticalLowPin: "32"
+  opticalHighPin: "33"
+  auxPin1: "26"
+  auxPin2: "27"
+  # Water Level
+  update_water: "60s"
+
 esphome:
   on_boot: 
       priority: 200

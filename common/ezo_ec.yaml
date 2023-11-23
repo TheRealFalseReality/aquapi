@@ -1,3 +1,9 @@
+substitutions:
+  # EC circuit, who's address is 100
+  addEC: "100"
+  update_ec: "60s"
+  update_button_ec: "60s"
+
 esphome:
     on_boot: 
         priority: 200
@@ -95,7 +101,7 @@ sensor:
         return std::stof(v[1]);
       } 
       else {
-        return NULL;
+        return NAN;
       }
 
   # Salinity
@@ -121,7 +127,7 @@ sensor:
         return std::stof(v[2]);
       } 
       else {
-        return NULL;
+        return NAN;
       }
 
   # Specific Gravity
@@ -147,7 +153,7 @@ sensor:
         return std::stof(v[3]);
       } 
       else {
-        return NULL;
+        return NAN;
       }
 
 text_sensor:

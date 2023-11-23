@@ -1,3 +1,8 @@
+substitutions:
+  # PMP circuit, who's address is 103
+  addPMP: "103"
+  update_pmp: "60s"
+
 # esphome:
 #     on_boot: 
 #         priority: 200

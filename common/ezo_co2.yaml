@@ -1,3 +1,9 @@
+substitutions:
+  # CO2 circuit, who's address is 105
+  addCO2: "105"
+  update_co2: "60s"
+  update_button_co2: "60s"
+  
 esphome:
     on_boot: 
         priority: 200
@@ -71,7 +77,7 @@ sensor:
         return std::stof(v[1]);
       } 
       else {
-        return NULL;
+        return NAN;
       }
 
 text_sensor:

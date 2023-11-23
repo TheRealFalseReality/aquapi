@@ -1,0 +1,64 @@
+substitutions:
+  # names
+  name: "aquapi"
+  friendly_name: "AquaPi"
+  # Logger Level - Can use VERBOSE for more information in Logs
+  logger: "DEBUG"
+
+  # pins
+  opticalLowPin: "32" # yellow
+  opticalHighPin: "33" # blue
+  auxPin1: "26" # blue
+  auxPin2: "27" # yellow
+  dallasPin: "16"
+
+  sdaPin: "21" # blue
+  sclPin: "22" # yellow
+  
+  # EZO Circuit Addresses
+  # pH circuit, who's address is 99
+  addPH: "99"
+  # EC circuit, who's address is 100
+  addEC: "100"
+  # DO circuit, who's address is 97
+  addDO: "97"
+  # RTD circuit, who's address is 102
+  addRTD: "102"
+  # PMP circuit, who's address is 103
+  addPMP: "103"
+  # HUM circuit, who's address is 111
+  addHUM: "111"
+  # CO2 circuit, who's address is 105
+  addCO2: "105"
+
+  # Calibration variables
+  # 0C using Ice Water; 100C using Boiling Water
+  # Calibration Temp. 1
+  cal_0: "0.0"
+  cal_100: "100.0"
+  # Calibration Temp. 2
+  cal_0_2: "0.0"
+  cal_100_2: "100.0"
+
+  # Sensor update intevals. 60s = 1 minute, never = disable updates
+  # Water Level
+  update_water: "60s"
+  # Temp. Probes
+  update_temp: "60s"
+  # EZO pH
+  update_ph: "60s"
+  # EZO EC
+  update_ec: "60s"
+  update_button_ec: "60s"
+  # EZO DO
+  update_do: "60s"
+  # EZO RTD
+  update_rtd: "60s"
+  # EZO PMP
+  update_pmp: "60s"
+  # EZO HUM
+  update_hum: "60s"
+  update_button_hum: "60s"
+  # EZO CO2
+  update_co2: "60s"
+  update_button_co2: "60s"

@@ -1,3 +1,8 @@
+substitutions:
+  # DO circuit, who's address is 97
+  addDO: "97"
+  update_do: "60s"
+
 # esphome:
 #     on_boot: 
 #         priority: 200
