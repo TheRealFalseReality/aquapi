@@ -26,13 +26,13 @@ sensor:
     name: "Conductivity"
     id: ec_ezo
     address: ${addEC}
-    unit_of_measurement: "uS/cm"
+    unit_of_measurement: "mS/cm"
     accuracy_decimals: 2
     update_interval: "${update_ec}"
     state_class: "measurement"
     filters:
-      lambda: |-
-        return (x / 1000)
+      - lambda:
+          return (x / 1000);
     on_custom: 
       then:
         - lambda: 
