@@ -1,3 +1,9 @@
+substitutions:
+  # CO2 circuit, who's address is 105
+  addCO2: "105"
+  update_co2: "60s"
+  update_button_co2: "60s"
+  
 esphome:
     on_boot: 
         priority: 200
@@ -70,9 +76,9 @@ sensor:
       if (v.size() == 2) {
         return std::stof(v[1]);
       } 
-      // else {
-      //   return NULL;
-      // }
+      else {
+        return NULL;
+      }
 
 text_sensor:
   # CO2 Raw Value

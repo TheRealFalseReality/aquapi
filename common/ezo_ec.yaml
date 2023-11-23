@@ -1,3 +1,9 @@
+substitutions:
+  # EC circuit, who's address is 100
+  addEC: "100"
+  update_ec: "60s"
+  update_button_ec: "60s"
+
 esphome:
     on_boot: 
         priority: 200

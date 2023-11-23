@@ -1,3 +1,9 @@
+substitutions:
+  # HUM circuit, who's address is 111
+  addHUM: "111"
+  update_hum: "60s"
+  update_button_hum: "60s"
+
 esphome:
     on_boot: 
         priority: 200
@@ -50,7 +56,6 @@ sensor:
     name: Air Temperature
     id: sensor_hum_air_temperature
     accuracy_decimals: 2
-    disabled_by_default: true
     unit_of_measurement: "°C"
     update_interval: "${update_hum}"
     state_class: "measurement"
@@ -68,16 +73,15 @@ sensor:
       if (v.size() == 3) {
         return std::stof(v[1]);
       } 
-      // else {
-      //   return NULL;
-      // }
+      else {
+        return NULL;
+      }
 
   # Dew Point
   - platform: template
     name: Dew Point
     id: sensor_hum_dew_point
     accuracy_decimals: 2
-    disabled_by_default: true
     unit_of_measurement: "°C"
     update_interval: "${update_hum}"
     state_class: "measurement"
@@ -173,7 +177,6 @@ button:
             }
 
 select:
-  # Select Command to Send
   - platform: template
     name: HUM - Command Select
     id: select_command_hum

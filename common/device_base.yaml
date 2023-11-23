@@ -1,3 +1,15 @@
+substitutions:
+  # Import Config
+  import_config: "false"
+  # Add MAC address to name
+  suffix: "true"
+  # Logger Level - Can use VERBOSE for more information in Logs
+  logger: "DEBUG"
+
+  # I2C pins
+  sdaPin: "21" # blue
+  sclPin: "22" # yellow
+
 esphome:
   name: "${name}"
   friendly_name: "${friendly_name}"

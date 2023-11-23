@@ -1,3 +1,16 @@
+substitutions:
+  dallasPin: "16"
+  update_temp: "60s"
+
+  # Calibration variables
+  # 0C using Ice Water; 100C using Boiling Water  
+  # Calibration Temp. 1
+  cal_0: "0.0"
+  cal_100: "100.0"
+  # Calibration Temp. 2
+  cal_0_2: "0.0"
+  cal_100_2: "100.0"
+
 # 18B20 sensor Pin
 dallas:
   - pin: ${dallasPin}
