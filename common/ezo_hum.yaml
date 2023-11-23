@@ -8,8 +8,8 @@ esphome:
     on_boot: 
         priority: 200
         then:
-            - button.press: read_hum
-            - button.press: send_selected_hum
+          - button.press: read_hum
+          - button.press: send_selected_hum
 
 interval:
   # Update Raw HUM
@@ -131,8 +131,16 @@ button:
     on_press:
       then:
         - lambda: |-
-            id(hum_ezo).send_custom("R");
-
+            byte error;
+            Wire.beginTransmission(${addHUM});
+            error = Wire.endTransmission();
+            if (error == 0) {
+              id(hum_ezo).send_custom("R");
+            }
+            else {
+              ESP_LOGW("custom_humidity_read", "No Humidity sensor detected at address: ${addHUM}!!");
+            }
+              
   # Send Selected EZO Command - HUM
   - platform: template
     name: HUM - Command Send Selected

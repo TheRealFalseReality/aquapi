@@ -3,13 +3,13 @@ substitutions:
   addCO2: "105"
   update_co2: "60s"
   update_button_co2: "60s"
-  
+
 esphome:
     on_boot: 
         priority: 200
         then:
-            - button.press: read_co2
-            - button.press: send_selected_co2
+          - button.press: read_co2
+          - button.press: send_selected_co2
 
 interval:
   # Update Raw CO2
@@ -57,12 +57,11 @@ sensor:
     name: CO2 Internal Temperature
     id: sensor_co2_internal_temperature
     accuracy_decimals: 2
-    disabled_by_default: true
     unit_of_measurement: "°C"
     update_interval: "${update_co2}"
+    entity_category: "diagnostic"
     state_class: "measurement"
     device_class: "temperature"
-    entity_category: "diagnostic"
     lambda: |-
       std::string str = id(raw_value_co2).state;
       std::vector<std::string> v;
@@ -107,7 +106,15 @@ button:
     on_press:
       then:
         - lambda: |-
-            id(co2_ezo).send_custom("R");
+            byte error;
+            Wire.beginTransmission(${addCO2});
+            error = Wire.endTransmission();
+            if (error == 0) {
+              id(co2_ezo).send_custom("R");
+            }
+            else {
+              ESP_LOGW("custom_co2_read", "No Carbon Dioxide sensor detected at address: ${addCO2}!!");
+            }
 
   # Send Selected EZO Command - CO2
   - platform: template
@@ -138,6 +145,9 @@ button:
             }
             if (id(select_command_co2).state == "Check Calibration") {
               id(co2_ezo).get_calibration();
+            }
+            else {
+              id(co2_ezo).send_custom("R");
             }
 
 select:

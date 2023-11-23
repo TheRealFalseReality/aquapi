@@ -8,8 +8,8 @@ esphome:
     on_boot: 
         priority: 200
         then:
-            - button.press: read_ec
-            - button.press: send_selected_ec
+          - button.press: read_ec
+          - button.press: send_selected_ec
 
 interval:
   # Update Raw EC
@@ -187,7 +187,15 @@ button:
     on_press:
       then:
         - lambda: |-
-            id(ec_ezo).send_custom("R");
+            byte error;
+            Wire.beginTransmission(${addEC});
+            error = Wire.endTransmission();
+            if (error == 0) {
+              id(ec_ezo).send_custom("R");
+            }
+            else {
+              ESP_LOGW("custom_conductivity_read", "No Conductivity sensor detected at address: ${addEC}!!");
+            }
 
   # Send Selected EZO Command - Conductitivy
   - platform: template

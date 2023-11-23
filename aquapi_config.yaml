@@ -3,12 +3,12 @@ substitutions:
   name: "aquapi"
   friendly_name: "AquaPi"
   # App Version - Updated: 8/2023
-  app_version: "1.3.3"
+  app_version: "1.3.4"
 
 packages:
   device_base: !include common/device_base.yaml
   dallas: !include common/temperature_dallas.yaml
-  pins: !include common/binary.yaml
+  binary: !include common/binary.yaml
   aquapi: !include common/aquapi.yaml
   # ezo_command: !include common/ezo_command.yaml
   ezo_ph: !include common/ezo_ph.yaml
