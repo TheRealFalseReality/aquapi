@@ -30,6 +30,9 @@ sensor:
     accuracy_decimals: 2
     update_interval: "${update_ec}"
     state_class: "measurement"
+    filters:
+      lambda: |-
+        return (x / 1000)
     on_custom: 
       then:
         - lambda: 
