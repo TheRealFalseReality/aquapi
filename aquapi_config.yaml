@@ -5,6 +5,12 @@ substitutions:
   # App Version - Updated: 8/2023
   app_version: "1.3.4"
 
+  update_do: "never"
+  update_rtd: "never"
+  update_pmp: "never"
+  update_hum: "never"
+  update_co2: "never"
+
 packages:
   device_base: !include common/device_base.yaml
   dallas: !include common/temperature_dallas.yaml
