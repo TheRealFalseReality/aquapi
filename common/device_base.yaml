@@ -19,10 +19,6 @@ esphome:
   project:
     name: TheRealFalseReality.aquapi
     version: "${app_version}"
-  on_boot: 
-    priority: 200
-    then:
-      - component.update: water_level  
 
 esp32:
   board: esp32dev
