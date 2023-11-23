@@ -175,6 +175,9 @@ button:
             if (id(select_command_hum).state == "Check Calibration") {
               id(hum_ezo).get_calibration();
             }
+            else {
+              id(hum_ezo).send_custom("R");
+            }
 
 select:
   - platform: template

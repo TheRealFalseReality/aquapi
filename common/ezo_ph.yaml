@@ -100,6 +100,9 @@ button:
             if (id(select_command_ph).state == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(ph_ezo).clear_calibration();
             }
+            else {
+              id(ph_ezo).send_custom("R");
+            }
 
 select:
   - platform: template
