@@ -70,7 +70,7 @@ sensor:
         v.push_back(token);
         token = strtok (NULL, seps);
       }
-      if (v.size() == 3) {
+      if (v.size() == 4) {
         return std::stof(v[1]);
       } 
       else {
@@ -96,8 +96,8 @@ sensor:
         v.push_back(token);
         token = strtok (NULL, seps);
       }
-      if (v.size() == 3) {
-        return std::stof(v[2]);
+      if (v.size() == 4) {
+        return std::stof(v[3]);
       } 
       else {
         return NAN;
