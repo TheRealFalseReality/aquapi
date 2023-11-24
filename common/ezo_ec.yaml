@@ -8,8 +8,8 @@ esphome:
     on_boot: 
         priority: 200
         then:
-            - button.press: read_ec
-            - button.press: send_selected_ec
+          - button.press: read_ec
+          - button.press: send_selected_ec
 
 interval:
   # Update Raw EC
@@ -26,10 +26,13 @@ sensor:
     name: "Conductivity"
     id: ec_ezo
     address: ${addEC}
-    unit_of_measurement: "uS/cm"
+    unit_of_measurement: "mS/cm"
     accuracy_decimals: 2
     update_interval: "${update_ec}"
     state_class: "measurement"
+    filters:
+      - lambda:
+          return (x / 1000);
     on_custom: 
       then:
         - lambda: 
@@ -81,9 +84,9 @@ sensor:
   - platform: template
     name: TDS
     id: sensor_tds
-    unit_of_measurement: "mg/L"
+    unit_of_measurement: "g/L"
     icon: mdi:water-opacity
-    accuracy_decimals: 0
+    accuracy_decimals: 2
     disabled_by_default: true
     update_interval: "${update_ec}"
     state_class: "measurement"
@@ -98,7 +101,7 @@ sensor:
         token = strtok (NULL, seps);
       }
       if (v.size() == 4) {
-        return std::stof(v[1]);
+        return (std::stof(v[1]) / 1000);
       } 
       else {
         return NAN;
@@ -187,7 +190,15 @@ button:
     on_press:
       then:
         - lambda: |-
-            id(ec_ezo).send_custom("R");
+            byte error;
+            Wire.beginTransmission(${addEC});
+            error = Wire.endTransmission();
+            if (error == 0) {
+              id(ec_ezo).send_custom("R");
+            }
+            else {
+              ESP_LOGW("custom_conductivity_read", "No Conductivity sensor detected at address: ${addEC}!!");
+            }
 
   # Send Selected EZO Command - Conductitivy
   - platform: template
@@ -263,6 +274,9 @@ button:
             }
             if (id(select_command_ec).state == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(ec_ezo).clear_calibration();
+            }
+            else {
+              id(ec_ezo).send_custom("R");
             }
 
 select:
