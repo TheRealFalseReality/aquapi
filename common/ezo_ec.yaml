@@ -223,7 +223,10 @@ button:
             }  
             if (id(select_command_ec).state == "Get TDS Value") {
               id(ec_ezo).send_custom("TDS,?");
-            }  
+            }
+            if (id(select_command_ec).state == "Set TDS Value to NaCl - 0.48") {
+              id(ec_ezo).send_custom("TDS,0.48");
+            }
             if (id(select_command_ec).state == "Get Enabled Parameter(s)") {
               id(ec_ezo).send_custom("O,?");
             }  
@@ -260,12 +263,6 @@ button:
               id(ec_ezo).send_custom("O,S,0");
               id(ec_ezo).send_custom("O,SG,0");
             }
-            if (id(select_command_ec).state == "Get TDS Value") {
-              id(ec_ezo).send_custom("TDS,?");
-            }
-            if (id(select_command_ec).state == "Set TDS Value to NaCl - 0.48") {
-              id(ec_ezo).send_custom("TDS,0.48");
-            }
             if (id(select_command_ec).state == "Check Calibration") {
               id(ec_ezo).get_calibration();
             }  
@@ -298,6 +295,7 @@ select:
       - "Status"
       - "Get Probe K Value"
       - "Get TDS Value"
+      - "Set TDS Value to NaCl - 0.48"
       - "Get Enabled Parameter(s)"
       - "Set Probe Type K1"
       - "Output Units - All (Default)"
@@ -305,8 +303,6 @@ select:
       - "Output Units - Salinity"
       - "Output Units - Specific Gravity"
       - "Output Units - TDS"
-      - "Get TDS Value"
-      - "Set TDS Value to NaCl - 0.48"
       - "Check Calibration"
       - "Calibrate @ 0 (WILL RESET CALIBRATION)"
       - "Calibrate @ LOW = 12880 (WILL RESET CALIBRATION)"
