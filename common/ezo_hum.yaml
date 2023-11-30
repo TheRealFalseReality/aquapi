@@ -103,6 +103,12 @@ sensor:
         return NAN;
       }
 
+  # Absolute Humidity
+  - platform: absolute_humidity
+    name: Absolute Humidity
+    temperature: sensor_hum_air_temperature
+    humidity: hum_ezo
+
 text_sensor:
   # HUM Raw Value
   - platform: template

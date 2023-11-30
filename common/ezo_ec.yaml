@@ -223,7 +223,10 @@ button:
             }  
             if (id(select_command_ec).state == "Get TDS Value") {
               id(ec_ezo).send_custom("TDS,?");
-            }  
+            }
+            if (id(select_command_ec).state == "Set TDS Value to NaCl - 0.48") {
+              id(ec_ezo).send_custom("TDS,0.48");
+            }
             if (id(select_command_ec).state == "Get Enabled Parameter(s)") {
               id(ec_ezo).send_custom("O,?");
             }  
@@ -292,6 +295,7 @@ select:
       - "Status"
       - "Get Probe K Value"
       - "Get TDS Value"
+      - "Set TDS Value to NaCl - 0.48"
       - "Get Enabled Parameter(s)"
       - "Set Probe Type K1"
       - "Output Units - All (Default)"
