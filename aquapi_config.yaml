@@ -14,8 +14,8 @@ packages:
   debug: !include common/debug.yaml
   ezo_ph: !include common/ezo_ph.yaml
   ezo_ec: !include common/ezo_ec.yaml
-  ezo_hum: !include common/ezo_hum.yaml
-  ezo_rtd: !include common/ezo_rtd.yaml
-  ezo_co2: !include common/ezo_co2.yaml
-  ezo_do: !include common/ezo_do.yaml
-  ezo_pmp: !include common/ezo_pmp.yaml
+  # ezo_hum: !include common/ezo_hum.yaml
+  # ezo_rtd: !include common/ezo_rtd.yaml
+  # ezo_co2: !include common/ezo_co2.yaml
+  # ezo_do: !include common/ezo_do.yaml
+  # ezo_pmp: !include common/ezo_pmp.yaml
