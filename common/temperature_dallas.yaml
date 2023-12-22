@@ -23,6 +23,8 @@ sensor:
     icon: mdi:thermometer-lines
     index: 0
     name: "Temperature"
+    state_class: "measurement"
+    device_class: "temperature"
     filters:
       - calibrate_linear:
           method: least_squares
@@ -39,6 +41,8 @@ sensor:
     icon: mdi:thermometer-lines
     index: 1
     name: "Temperature 2"
+    state_class: "measurement"
+    device_class: "temperature"
     filters:
       - calibrate_linear:
           method: least_squares
