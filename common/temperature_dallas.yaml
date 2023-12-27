@@ -121,7 +121,7 @@ binary_sensor:
             return true;
           }
           else {
-            return false
+            return false;
           }
 
   - platform: template
@@ -135,7 +135,7 @@ binary_sensor:
             return true;
           }
           else {
-            return false
+            return false;
           }
 
 text_sensor:
