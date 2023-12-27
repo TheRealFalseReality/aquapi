@@ -115,26 +115,24 @@ binary_sensor:
     name: Ideal Temperature
     id: ideal_temp
     icon: mdi:thermometer-check
-    filters:
-      - lambda: |-
-          if (id(temp_range).state == "OK") {
-            return true;
-          } else {
-            return {};
-          }
+    lambda: |-
+      if (id(temp_range).state == "OK") {
+        return true;
+      } else {
+        return false;
+      }
 
   - platform: template
     name: Ideal Temperature 2
     id: ideal_temp_2
     icon: mdi:thermometer-check
     disabled_by_default: true
-    filters:
-      - lambda: |-
-          if (id(temp_range_2).state == "OK") {
-            return true;
-          } else {
-            return {};
-          }
+    lambda: |-
+      if (id(temp_range_2).state == "OK") {
+        return true;
+      } else {
+        return false;
+      }
 
 text_sensor:
   # Temperature Range 1
