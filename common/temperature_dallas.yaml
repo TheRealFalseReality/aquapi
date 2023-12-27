@@ -34,6 +34,7 @@ sensor:
     on_value: 
       then:
         - component.update: temp_range
+        - component.update: ideal_temp
 
   # Temperature Probe 2
   - platform: dallas
@@ -53,6 +54,7 @@ sensor:
     on_value: 
       then:
         - component.update: temp_range_2
+        - component.update: ideal_temp_2
 
   # Convert to Fahrenheit - Temp. 1
   - platform: template
@@ -112,20 +114,19 @@ sensor:
 
 binary_sensor:
   - platform: template
-    name: Ideal Temp
+    name: Ideal Temperature
     id: ideal_temp
     icon: mdi:thermometer-check
     filters:
       - lambda: |-
           if (id(temp_range).state == "OK") {
             return true;
-          }
-          else {
-            return false;
+          } else {
+            return {};
           }
 
   - platform: template
-    name: Ideal Temp 2
+    name: Ideal Temperature 2
     id: ideal_temp_2
     icon: mdi:thermometer-check
     disabled_by_default: true
@@ -133,9 +134,8 @@ binary_sensor:
       - lambda: |-
           if (id(temp_range_2).state == "OK") {
             return true;
-          }
-          else {
-            return false;
+          } else {
+            return {};
           }
 
 text_sensor:
@@ -197,6 +197,7 @@ number:
     on_value: 
       then:
         - component.update: temp_range
+        - component.update: ideal_temp
 
   # Temperature 1 when Warm
   - platform: template
@@ -214,6 +215,7 @@ number:
     on_value: 
       then:
         - component.update: temp_range
+        - component.update: ideal_temp
 
   # Temperature 2 when Cool
   - platform: template
@@ -232,6 +234,7 @@ number:
     on_value: 
       then:
         - component.update: temp_range_2
+        - component.update: ideal_temp_2
 
   # Temperature 2 when Warm
   - platform: template
@@ -250,3 +253,4 @@ number:
     on_value: 
       then:
         - component.update: temp_range_2
+        - component.update: ideal_temp_2
