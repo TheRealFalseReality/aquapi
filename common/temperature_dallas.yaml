@@ -34,7 +34,6 @@ sensor:
     on_value: 
       then:
         - component.update: temp_range
-        - component.update: ideal_temp
 
   # Temperature Probe 2
   - platform: dallas
@@ -54,7 +53,6 @@ sensor:
     on_value: 
       then:
         - component.update: temp_range_2
-        - component.update: ideal_temp_2
 
   # Convert to Fahrenheit - Temp. 1
   - platform: template
@@ -197,7 +195,6 @@ number:
     on_value: 
       then:
         - component.update: temp_range
-        - component.update: ideal_temp
 
   # Temperature 1 when Warm
   - platform: template
@@ -215,7 +212,6 @@ number:
     on_value: 
       then:
         - component.update: temp_range
-        - component.update: ideal_temp
 
   # Temperature 2 when Cool
   - platform: template
@@ -234,7 +230,6 @@ number:
     on_value: 
       then:
         - component.update: temp_range_2
-        - component.update: ideal_temp_2
 
   # Temperature 2 when Warm
   - platform: template
@@ -253,4 +248,3 @@ number:
     on_value: 
       then:
         - component.update: temp_range_2
-        - component.update: ideal_temp_2
