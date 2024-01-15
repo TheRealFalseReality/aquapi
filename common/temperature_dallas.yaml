@@ -23,6 +23,8 @@ sensor:
     icon: mdi:thermometer-lines
     index: 0
     name: "Temperature"
+    state_class: "measurement"
+    device_class: "temperature"
     filters:
       - calibrate_linear:
           method: least_squares
@@ -39,6 +41,8 @@ sensor:
     icon: mdi:thermometer-lines
     index: 1
     name: "Temperature 2"
+    state_class: "measurement"
+    device_class: "temperature"
     filters:
       - calibrate_linear:
           method: least_squares
@@ -105,6 +109,30 @@ sensor:
     entity_category: "diagnostic"
     lambda: |-
       return {${cal_100_2}};
+
+binary_sensor:
+  - platform: template
+    name: Ideal Temperature
+    id: ideal_temp
+    icon: mdi:thermometer-check
+    lambda: |-
+      if (id(temp_range).state == "OK") {
+        return true;
+      } else {
+        return false;
+      }
+
+  - platform: template
+    name: Ideal Temperature 2
+    id: ideal_temp_2
+    icon: mdi:thermometer-check
+    disabled_by_default: true
+    lambda: |-
+      if (id(temp_range_2).state == "OK") {
+        return true;
+      } else {
+        return false;
+      }
 
 text_sensor:
   # Temperature Range 1
