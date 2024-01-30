@@ -197,7 +197,7 @@ button:
               id(ec_ezo).send_custom("R");
             }
             else {
-              ESP_LOGW("custom_conductivity_read", "No Conductivity sensor detected at address: ${addEC}!!");
+              ESP_LOGW("custom_conductivity_read", "No Conductivity sensor detected at address: ${addEC}!");
             }
 
   # Send Selected EZO Command - Conductitivy

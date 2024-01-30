@@ -11,6 +11,9 @@ substitutions:
   cal_0_2: "0.0"
   cal_100_2: "100.0"
 
+  range_cool: "74"
+  range_warm: "82"
+
 # 18B20 sensor Pin
 dallas:
   - pin: ${dallasPin}
@@ -188,7 +191,7 @@ number:
     max_value: 100.0
     step: 0.5
     restore_value: True
-    initial_value: 72
+    initial_value: ${range_cool}
     entity_category: "Config"
     on_value: 
       then:
@@ -205,7 +208,7 @@ number:
     max_value: 100.0
     step: 0.5
     restore_value: True
-    initial_value: 82
+    initial_value: ${range_warm}
     entity_category: "Config"
     on_value: 
       then:
@@ -223,7 +226,7 @@ number:
     max_value: 100.0
     step: 0.5
     restore_value: True
-    initial_value: 72
+    initial_value: ${range_cool}
     entity_category: "Config"
     on_value: 
       then:
@@ -241,7 +244,7 @@ number:
     max_value: 100.0
     step: 0.5
     restore_value: True
-    initial_value: 82
+    initial_value: ${range_warm}
     entity_category: "Config"
     on_value: 
       then:
