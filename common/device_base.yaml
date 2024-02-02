@@ -5,8 +5,8 @@ substitutions:
   logger: "DEBUG"
 
   # I2C pins
-  sdaPin: "22" # blue
-  sclPin: "21" # yellow
+  sdaPin: "21" # yellow
+  sclPin: "22" # blue
 
 esphome:
   name: "${name}"
