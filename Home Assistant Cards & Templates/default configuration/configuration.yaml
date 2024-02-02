@@ -1,0 +1,34 @@
+
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+lovelace:
+  mode: yaml
+  resources:
+  - url: /local/community/lovelace-mushroom/mushroom.js
+    type: module
+  - url: /local/community/banner-card/banner-card.js
+    type: module
+  - url: /local/community/history-explorer-card/history-explorer-card.js
+    type: module
+  - url: /local/community/list-card/list-card.js
+    type: module
+  - url: /local/community/lovelace-auto-entities/auto-entities.js
+    type: module
+  - url: /local/community/lovelace-card-mod/card-mod.js
+    type: module
+  - url: /local/community/lovelace-home-feed-card/lovelace-home-feed-card.js
+    type: module
+  - url: /local/community/lovelace-layout-card/layout-card.js
+    type: module
+  - url: /local/community/mini-graph-card/mini-graph-card-bundle.js
+    type: module
+  - url: /local/community/scheduler-card/scheduler-card.js

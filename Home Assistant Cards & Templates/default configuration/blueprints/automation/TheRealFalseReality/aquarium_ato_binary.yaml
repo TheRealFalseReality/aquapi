@@ -1,0 +1,117 @@
+blueprint:
+  name: Aquarium ATO Automation
+  description: Create an ATO (Automated-Top-Off) Automation. Turn on Water Pump when
+    binary sensor is off, and stop when binary sensor is on. (v1.4)
+  domain: automation
+  input:
+    condition:
+      name: Add Condition(s)
+      description: Add conditions if needed
+      default: []
+      selector:
+        condition: {}
+    sensor:
+      name: Binary Sensor
+      description: Binary sensor used to detect water level.
+      selector:
+        entity:
+          domain:
+          - binary_sensor
+          multiple: false
+    switch:
+      name: Water Pump
+      description: Switch to turn on Water Pump to refill to normal level.
+      selector:
+        entity:
+          filter:
+          - domain:
+            - switch
+          multiple: false
+    delay_on:
+      name: On Delay
+      description: Water Pump on delay.
+      default: 0
+      selector:
+        number:
+          min: 0.0
+          max: 30.0
+          unit_of_measurement: seconds
+          mode: slider
+          step: 1.0
+    normal_time:
+      name: Normal Off Delay
+      description: Time delay when water level is Normal to turn off pump, helps prevent
+        frequent refills.
+      default: 1
+      selector:
+        number:
+          min: 0.0
+          max: 5.0
+          unit_of_measurement: minutes
+          mode: slider
+          step: 1.0
+    pump_max_time:
+      name: Water Pump Max On Time
+      description: Turn off water pump if exceeds a certain time to prevent over-flow.
+      default: 5
+      selector:
+        number:
+          min: 1.0
+          max: 30.0
+          unit_of_measurement: minutes
+          mode: slider
+          step: 1.0
+  source_url: https://gist.github.com/TheRealFalseReality/651bc40bf0e539c767e5bac408962f82
+variables:
+  switch: !input switch
+  condition: !input condition
+alias: Aquarium ATO Binary
+description: Control ATO pump with binary sensor.
+trigger:
+- platform: state
+  entity_id: !input sensor
+  for:
+    seconds: !input delay_on
+  to: 'off'
+  from: 'on'
+  alias: When Water Level is Low
+- platform: state
+  entity_id: !input sensor
+  for:
+    minutes: !input normal_time
+  to: 'on'
+  alias: When Water Level is Normal
+- platform: state
+  entity_id: !input switch
+  to: 'on'
+  for:
+    minutes: !input pump_max_time
+  alias: When ATO device is On for a set Time
+- platform: state
+  entity_id: !input sensor
+  to: unavailable
+- platform: state
+  entity_id: !input sensor
+  to: unknown
+condition: []
+action:
+- if:
+  - condition: !input condition
+  then:
+  - if:
+    - condition: state
+      entity_id: !input sensor
+      state: 'off'
+    then:
+    - service: switch.turn_on
+      entity_id: !input switch
+    alias: If Water Level is Low, turn on ATO
+  - if:
+    - condition: state
+      entity_id: !input switch
+      state: 'on'
+    then:
+    - service: switch.turn_off
+      entity_id: !input switch
+    alias: If ATO is On, turn Off
+mode: single

@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "input_number",
+  "data": {
+    "items": [
+      {
+        "id": "aquarium_aquarium_volume",
+        "min": 0.0,
+        "max": 10000.0,
+        "name": "Aquarium - Aquarium - Volume",
+        "icon": "mdi:fishbowl-outline",
+        "mode": "box",
+        "unit_of_measurement": "gal",
+        "step": 10.0
+      },
+      {
+        "id": "aquarium_ammonia",
+        "min": 0.0,
+        "max": 10.0,
+        "name": "Aquarium - Ammonia",
+        "icon": "mdi:bottle-tonic-skull",
+        "mode": "box",
+        "step": 0.25,
+        "unit_of_measurement": "ppm"
+      },
+      {
+        "id": "aquarium_nitrite",
+        "min": 0.0,
+        "max": 6.0,
+        "name": "Aquarium - Nitrite",
+        "icon": "mdi:biohazard",
+        "step": 0.25,
+        "unit_of_measurement": "ppm",
+        "mode": "box"
+      },
+      {
+        "id": "aquarium_nitrate",
+        "min": 0.0,
+        "max": 200.0,
+        "name": "Aquarium - Nitrate",
+        "icon": "mdi:chemical-weapon",
+        "mode": "box",
+        "unit_of_measurement": "ppm",
+        "step": 5.0
+      },
+      {
+        "id": "aquarium_salinity",
+        "min": 28.0,
+        "max": 38.0,
+        "name": "Aquarium - Salinity",
+        "icon": "mdi:shaker-outline",
+        "step": 0.5,
+        "mode": "slider",
+        "unit_of_measurement": "ppt"
+      },
+      {
+        "id": "aquarium_sg",
+        "min": 1.000,
+        "max": 2.000,
+        "name": "Aquarium - Specific Gravity",
+        "icon": "mdi:cup-water",
+        "step": 0.001,
+        "mode": "slider",
+        "unit_of_measurement": "ppt"
+      },
+      {
+        "id": "aquarium_phosphate",
+        "min": 0.0,
+        "max": 12.0,
+        "name": "Aquarium - Phosphate",
+        "icon": "mdi:molecule",
+        "step": 0.25,
+        "mode": "box"
+      },
+      {
+        "id": "aquarium_calcium",
+        "min": 0.0,
+        "max": 600.0,
+        "name": "Aquarium - Calcium",
+        "icon": "mdi:nutrition",
+        "step": 20.0,
+        "mode": "box",
+        "unit_of_measurement": "ppm"
+      },
+      {
+        "id": "aquarium_carbonate_hardness",
+        "min": 0.0,
+        "max": 500.0,
+        "name": "Aquarium - Carbonate Hardness",
+        "icon": "mdi:molecule-co",
+        "mode": "box",
+        "step": 5.0,
+        "unit_of_measurement": "ppm"
+      },
+      {
+        "id": "aquarium_magnesium",
+        "min": 0.0,
+        "max": 5000.0,
+        "name": "Aquarium - Magnesium",
+        "icon": "mdi:mortar-pestle-plus",
+        "mode": "box",
+        "step": 5.0,
+        "unit_of_measurement": "ppm"
+      },
+      {
+        "id": "aquarium_ph",
+        "min": 6.0,
+        "max": 9.0,
+        "name": "Aquarium - pH",
+        "icon": "mdi:ph",
+        "step": 0.1,
+        "mode": "box"
+      }
+    ]
+  }
+}

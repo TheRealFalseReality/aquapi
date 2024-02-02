@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace_resources",
+  "data": {
+    "items": [
+      {
+        "id": "7caf7ec876354d69b1369745f63dd88d",
+        "url": "/hacsfiles/lovelace-layout-card/layout-card.js?hacstag=156434866244",
+        "type": "module"
+      },
+      {
+        "id": "1043a70f2a7740f39fbe50a16292e8cc",
+        "url": "/hacsfiles/lovelace-mushroom/mushroom.js?hacstag=444350375310",
+        "type": "module"
+      },
+      {
+        "id": "8c3927fb5a3b48569eaa462f44b98e3e",
+        "url": "/hacsfiles/pool-monitor-card/pool_monitor_card.js?hacstag=640244449151",
+        "type": "module"
+      },
+      {
+        "id": "35f12904ff2c4260a858907e537aaf25",
+        "url": "/hacsfiles/history-explorer-card/history-explorer-card.js?hacstag=4403747941050",
+        "type": "module"
+      },
+      {
+        "id": "0948097b067d45c284384f2642e4a881",
+        "url": "/hacsfiles/mini-graph-card/mini-graph-card-bundle.js?hacstag=1512800620110",
+        "type": "module"
+      },
+      {
+        "id": "26a9f0b30fd8474da0a74665d0399123",
+        "url": "/hacsfiles/lovelace-card-mod/card-mod.js?hacstag=190927524323",
+        "type": "module"
+      },
+      {
+        "id": "9fa18aa7932543099f9aaa4baddef93b",
+        "url": "/hacsfiles/lovelace-home-feed-card/lovelace-home-feed-card.js?hacstag=174016256064",
+        "type": "module"
+      },
+      {
+        "id": "69c8fb0a129b49f0a3d0ce5ac71208a6",
+        "url": "/hacsfiles/apexcharts-card/apexcharts-card.js?hacstag=331701152204",
+        "type": "module"
+      },
+      {
+        "id": "321bfdc4e029452bb623868610a9aec1",
+        "url": "/hacsfiles/button-card/button-card.js?hacstag=146194325411",
+        "type": "module"
+      },
+      {
+        "id": "12de6c004400469dae23bcbd839e8ec3",
+        "url": "/hacsfiles/fullscreen-card/fullscreen-card.js?hacstag=29028126708",
+        "type": "module"
+      },
+      {
+        "id": "35f743775cc44c95a0249e9e9f0636cb",
+        "url": "/hacsfiles/kiosk-mode/kiosk-mode.js?hacstag=497319128420",
+        "type": "module"
+      },
+      {
+        "id": "4e7588b170944b60b68717069aa6abf6",
+        "url": "/hacsfiles/scheduler-card/scheduler-card.js?hacstag=2862701573211",
+        "type": "module"
+      },
+      {
+        "id": "b0a8342493e746b7849432a9d9dfddda",
+        "url": "/hacsfiles/hass-swipe-navigation/swipe-navigation.js?hacstag=5017254791131",
+        "type": "module"
+      },
+      {
+        "id": "146f282298ee46148f560cb23d6902f2",
+        "url": "/hacsfiles/keep-texts-in-tabs/keep-texts-in-tabs.js?hacstag=683553739111",
+        "type": "module"
+      },
+      {
+        "id": "437edc859b3745cf9b2fd674a542074e",
+        "url": "/hacsfiles/lovelace-auto-entities/auto-entities.js?hacstag=1677445841121",
+        "type": "module"
+      }
+    ]
+  }
+}
