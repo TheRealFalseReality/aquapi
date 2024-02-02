@@ -1,6 +1,6 @@
 substitutions:  
-  opticalLowPin: "32" # yellow
-  opticalHighPin: "33" # blue
+  opticalLowPin: "33" # yellow
+  opticalHighPin: "32" # blue
   auxPin1: "26" # yellow
   auxPin2: "27" # blue
   # Water Level

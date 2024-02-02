@@ -5,7 +5,7 @@ substitutions:
   logger: "DEBUG"
 
   # I2C pins
-  sdaPin: "22" # blue Switch?
+  sdaPin: "22" # blue
   sclPin: "21" # yellow
 
 esphome:
