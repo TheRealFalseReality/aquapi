@@ -33,7 +33,7 @@ sensor:
     pump_voltage:
       id: pump_voltage
       name: Pump Voltage
-      disabled_by_default: true
+    disabled_by_default: true
 
 binary_sensor:
   - platform: ezo_pmp
