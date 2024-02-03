@@ -3,43 +3,82 @@ substitutions:
   addPMP: "103"
   update_pmp: "60s"
 
-# esphome:
-#     on_boot: 
-#         priority: 200
-#         then:
-#           - button.press: send_selected_ph
+ezo_pmp:
+  id: ezo_pmp
+  address: ${addPMP}  # Default Address for the EZO-PMP.
+  update_interval: "${update_pmp}"
 
 sensor:
-  # EZO Circuits (yellow - SCL/RX, blue - SDA/TX)
-  # EZO Circuit - pmp
-  # Pump
-  - platform: ezo
-    icon: mdi:pump
-    name: "Pump"
-    id: pmp_ezo
-    address: ${addPMP}
-    unit_of_measurement: ""
-    accuracy_decimals: 2
-    update_interval: "${update_pmp}"
-    state_class: "measurement"
+  - platform: ezo_pmp
+    current_volume_dosed:
+      id: current_volume_dosed
+      name: Current Volume Dosed
+  - platform: ezo_pmp
+    total_volume_dosed:
+      id: total_volume_dosed
+      name: Total Volume Dosed
+  - platform: ezo_pmp
+    absolute_total_volume_dosed:
+      id: absolute_total_volume_dosed
+      name: Absolute Total Volume Dosed
+  - platform: ezo_pmp
+    last_volume_requested:
+      id: last_volume_requested
+      name: Last Volume Requested
+  - platform: ezo_pmp
+    max_flow_rate:
+      id: max_flow_rate
+      name: Max Flow Rate
+  - platform: ezo_pmp
+    pump_voltage:
+      id: pump_voltage
+      name: Pump Voltage
+      disabled_by_default: true
+
+binary_sensor:
+  - platform: ezo_pmp
+    pump_state:
+      id: pump_state
+      name: Pump State
+  - platform: ezo_pmp
+    is_paused:
+      id: is_paused
+      name: Is Paused
+
+text_sensor:
+  - platform: ezo_pmp
+    dosing_mode:
+      id: dosing_mode
+      name: Dosing Mode
+  - platform: ezo_pmp
+    calibration_status:
+      id: calibration_status
+      name: Calibration Status
     disabled_by_default: true
-    # on_custom: 
-    #   then:
-    #     - lambda: 
-    #         id(result_ph).publish_state(x);
-    # on_calibration: 
-    #   then:
-    #     - lambda: 
-    #         id(result_ph).publish_state(x);
-    # on_device_information: 
-    #   then:
-    #     - lambda: 
-    #         id(result_ph).publish_state(x);
-    # on_slope: 
-    #   then:
-    #     - lambda: 
-    #         id(result_ph).publish_state(x);
-    # on_t: 
-    #   then:
-    #     - lambda: 
-    #         id(result_ph).publish_state(x); 
+
+number:
+  - platform: template
+    id: volume
+    name: "Volume"
+    optimistic: true
+    min_value: 0
+    max_value: 100
+    step: 0.01
+  - platform: template
+    id: duration
+    name: "Duration"
+    optimistic: true
+    min_value: 0
+    max_value: 100
+    step: 1
+
+button:
+  - platform: template
+    name: "Dose Over Time"
+    on_press:
+      - ezo_pmp.dose_volume_over_time:
+          id: ezo_pump
+          volume: !lambda |-
+                  return id(volume).state;
+          duration: !lambda |-
+                  return id(duration).state;
