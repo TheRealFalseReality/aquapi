@@ -4,7 +4,7 @@ substitutions:
   update_pmp: "60s"
 
 ezo_pmp:
-  id: ezo_pmp
+  id: ezo_pump
   address: ${addPMP}  # Default Address for the EZO-PMP.
   update_interval: "${update_pmp}"
 
@@ -33,7 +33,7 @@ sensor:
     pump_voltage:
       id: pump_voltage
       name: Pump Voltage
-    disabled_by_default: true
+    # disabled_by_default: true
 
 binary_sensor:
   - platform: ezo_pmp
@@ -54,7 +54,7 @@ text_sensor:
     calibration_status:
       id: calibration_status
       name: Calibration Status
-    disabled_by_default: true
+    # disabled_by_default: true
 
 number:
   - platform: template
