@@ -1,80 +1,86 @@
 substitutions:
   # PMP circuit, who's address is 103
   addPMP: "103"
+  addPMP_alt1: "108"
+  addPMP_alt2: "109"
+  addPMP_alt3: "110"
   update_pmp: "60s"
 
 ezo_pmp:
   id: ezo_pump
-  address: ${addPMP}  # Default Address for the EZO-PMP.
+  address: ${addPMP}
   update_interval: "${update_pmp}"
 
 sensor:
   - platform: ezo_pmp
     current_volume_dosed:
       id: current_volume_dosed
-      name: Current Volume Dosed
+      name: Pump - Current Volume Dosed
   - platform: ezo_pmp
     total_volume_dosed:
       id: total_volume_dosed
-      name: Total Volume Dosed
+      name: Pump - Total Volume Dosed
   - platform: ezo_pmp
     absolute_total_volume_dosed:
       id: absolute_total_volume_dosed
-      name: Absolute Total Volume Dosed
+      name: Pump - Absolute Total Volume Dosed
   - platform: ezo_pmp
     last_volume_requested:
       id: last_volume_requested
-      name: Last Volume Requested
+      name: Pump - Last Volume Requested
   - platform: ezo_pmp
     max_flow_rate:
       id: max_flow_rate
-      name: Max Flow Rate
+      name: Pump - Max Flow Rate
   - platform: ezo_pmp
     pump_voltage:
       id: pump_voltage
-      name: Pump Voltage
-    # disabled_by_default: true
+      name: Pump - Voltage
+      disabled_by_default: true
 
 binary_sensor:
   - platform: ezo_pmp
     pump_state:
       id: pump_state
-      name: Pump State
+      name: Pump - State
   - platform: ezo_pmp
     is_paused:
       id: is_paused
-      name: Is Paused
+      name: Pump - Paused Status
+      disabled_by_default: true
 
 text_sensor:
   - platform: ezo_pmp
     dosing_mode:
       id: dosing_mode
-      name: Dosing Mode
+      name: Pump - Dosing Mode
   - platform: ezo_pmp
     calibration_status:
       id: calibration_status
-      name: Calibration Status
-    # disabled_by_default: true
+      name: Pump - Calibration Status
+      disabled_by_default: true
 
 number:
   - platform: template
     id: volume
-    name: "Volume"
+    name: "Pump - Volume to Dose"
     optimistic: true
     min_value: 0
     max_value: 100
+    mode: box
     step: 0.01
   - platform: template
     id: duration
-    name: "Duration"
+    name: "Pump - Duration to Dose (minutes)"
     optimistic: true
     min_value: 0
     max_value: 100
-    step: 1
+    mode: box
+    step: 0.5
 
 button:
   - platform: template
-    name: "Dose Over Time"
+    name: "Pump - Dose Over Time"
     on_press:
       - ezo_pmp.dose_volume_over_time:
           id: ezo_pump

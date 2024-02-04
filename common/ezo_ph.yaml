@@ -4,10 +4,10 @@ substitutions:
   update_ph: "60s"
 
 esphome:
-    on_boot: 
-        priority: 200
-        then:
-          - button.press: send_selected_ph
+  on_boot: 
+    priority: 200
+    then:
+      - button.press: send_selected_ph
 
 sensor:
   # EZO Circuits (yellow - SCL/RX, blue - SDA/TX)
