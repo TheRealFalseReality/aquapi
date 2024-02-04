@@ -8,7 +8,7 @@ substitutions:
 button:
   # Change I2C Address of EZO-PMP
   - platform: template
-    name: "Pump -> ${addPMP_default} - Change I2C Address"
+    name: "Pump(Blue) -> ${addPMP_default} - Change I2C Address"
     on_press:
         then:
         - ezo_pmp.change_i2c_address:
@@ -32,7 +32,7 @@ button:
             address: ${addPMP_alt2}
 
   - platform: template
-    name: "Pump -> ${addPMP_alt3} - Change I2C Address"
+    name: "Pump(Orange) -> ${addPMP_alt3} - Change I2C Address"
     on_press:
         then:
         - ezo_pmp.change_i2c_address:
