@@ -1,15 +1,22 @@
+substitutions:
+  # PMP circuit, who's address is 103
+  addPMP_default: "103"
+  addPMP_alt1: "108"
+  addPMP_alt2: "109"
+  addPMP_alt3: "110"
+
 button:
   # Change I2C Address of EZO-PMP
   - platform: template
-    name: "Pump - Change I2C Address to ${addPMP}"
+    name: "Pump -> ${addPMP_default} - Change I2C Address"
     on_press:
         then:
         - ezo_pmp.change_i2c_address:
             id: ezo_pump
-            address: ${addPMP}
+            address: ${addPMP_default}
 
   - platform: template
-    name: "Pump - Change I2C Address to ${addPMP_alt1}"
+    name: "Pump(Red) -> ${addPMP_alt1} - Change I2C Address"
     on_press:
         then:
         - ezo_pmp.change_i2c_address:
@@ -17,7 +24,7 @@ button:
             address: ${addPMP_alt1}
 
   - platform: template
-    name: "Pump - Change I2C Address to ${addPMP_alt2}"
+    name: "Pump(Green) -> ${addPMP_alt2} - Change I2C Address"
     on_press:
         then:
         - ezo_pmp.change_i2c_address:
@@ -25,7 +32,7 @@ button:
             address: ${addPMP_alt2}
 
   - platform: template
-    name: "Pump - Change I2C Address to ${addPMP_alt3}"
+    name: "Pump -> ${addPMP_alt3} - Change I2C Address"
     on_press:
         then:
         - ezo_pmp.change_i2c_address:

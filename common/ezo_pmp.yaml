@@ -1,9 +1,6 @@
 substitutions:
   # PMP circuit, who's address is 103
   addPMP: "103"
-  addPMP_alt1: "108"
-  addPMP_alt2: "109"
-  addPMP_alt3: "110"
   update_pmp: "60s"
 
 ezo_pmp:
@@ -63,12 +60,13 @@ text_sensor:
 number:
   - platform: template
     id: volume
-    name: "Pump - Volume to Dose"
+    name: "Pump - Volume to Dose (mL)"
     optimistic: true
     min_value: 0
     max_value: 100
     mode: box
     step: 0.01
+    initial_value: 10
   - platform: template
     id: duration
     name: "Pump - Duration to Dose (minutes)"
@@ -77,6 +75,7 @@ number:
     max_value: 100
     mode: box
     step: 0.5
+    initial_value: 5
 
 button:
   - platform: template
