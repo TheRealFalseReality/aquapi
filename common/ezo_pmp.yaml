@@ -10,22 +10,27 @@ ezo_pmp:
 
 sensor:
   - platform: ezo_pmp
+    icon: mdi:pump
     current_volume_dosed:
       id: current_volume_dosed
       name: Pump - Current Volume Dosed
   - platform: ezo_pmp
+    icon: mdi:timer-sand-empty
     total_volume_dosed:
       id: total_volume_dosed
       name: Pump - Total Volume Dosed
   - platform: ezo_pmp
+    icon: mdi:timer-sand-full
     absolute_total_volume_dosed:
       id: absolute_total_volume_dosed
       name: Pump - Absolute Total Volume Dosed
   - platform: ezo_pmp
+    icon: mdi:history
     last_volume_requested:
       id: last_volume_requested
       name: Pump - Last Volume Requested
   - platform: ezo_pmp
+    icon: mdi:car-speed-limiter
     max_flow_rate:
       id: max_flow_rate
       name: Pump - Max Flow Rate
@@ -48,10 +53,12 @@ binary_sensor:
 
 text_sensor:
   - platform: ezo_pmp
+    icon: mdi:auto-mode
     dosing_mode:
       id: dosing_mode
       name: Pump - Dosing Mode
   - platform: ezo_pmp
+    icon: mdi:tape-measure
     calibration_status:
       id: calibration_status
       name: Pump - Calibration Status
@@ -60,26 +67,27 @@ text_sensor:
 number:
   - platform: template
     id: volume
-    name: "Pump - Volume to Dose (mL)"
+    icon: mdi:pump
+    name: "Pump - Volume to Dose"
     optimistic: true
     min_value: 0
     max_value: 100
     mode: box
     step: 0.01
-    initial_value: 10
   - platform: template
     id: duration
+    icon: mdi:pump
     name: "Pump - Duration to Dose (minutes)"
     optimistic: true
     min_value: 0
     max_value: 100
     mode: box
     step: 0.5
-    initial_value: 5
 
 button:
   - platform: template
     name: "Pump - Dose Over Time"
+    icon: mdi:clock-time-two-outline
     on_press:
       - ezo_pmp.dose_volume_over_time:
           id: ezo_pump
