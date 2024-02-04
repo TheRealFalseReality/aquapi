@@ -10,30 +10,30 @@ ezo_pmp:
 
 sensor:
   - platform: ezo_pmp
-    icon: mdi:pump
     current_volume_dosed:
       id: current_volume_dosed
       name: Pump - Current Volume Dosed
+      icon: mdi:pump
   - platform: ezo_pmp
-    icon: mdi:timer-sand-empty
     total_volume_dosed:
       id: total_volume_dosed
       name: Pump - Total Volume Dosed
+      icon: mdi:timer-sand-empty
   - platform: ezo_pmp
-    icon: mdi:timer-sand-full
     absolute_total_volume_dosed:
       id: absolute_total_volume_dosed
       name: Pump - Absolute Total Volume Dosed
+      icon: mdi:timer-sand-full
   - platform: ezo_pmp
-    icon: mdi:history
     last_volume_requested:
       id: last_volume_requested
       name: Pump - Last Volume Requested
+      icon: mdi:history
   - platform: ezo_pmp
-    icon: mdi:car-speed-limiter
     max_flow_rate:
       id: max_flow_rate
       name: Pump - Max Flow Rate
+      icon: mdi:car-speed-limiter
   - platform: ezo_pmp
     pump_voltage:
       id: pump_voltage
@@ -53,16 +53,16 @@ binary_sensor:
 
 text_sensor:
   - platform: ezo_pmp
-    icon: mdi:auto-mode
     dosing_mode:
       id: dosing_mode
-      name: Pump - Dosing Mode
+      name: Pump - Dosing Mode 
+      icon: mdi:auto-mode
   - platform: ezo_pmp
-    icon: mdi:tape-measure
     calibration_status:
       id: calibration_status
       name: Pump - Calibration Status
       disabled_by_default: true
+      icon: mdi:tape-measure
 
 number:
   - platform: template
