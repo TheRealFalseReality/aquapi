@@ -186,7 +186,7 @@ button:
     name: EC - Read
     id: read_ec
     entity_category: "Config"
-    disabled_by_default: true
+    # disabled_by_default: true
     on_press:
       then:
         - lambda: |-
@@ -205,7 +205,7 @@ button:
     name: EC - Command Send Selected
     id: send_selected_ec
     entity_category: "Config"
-    disabled_by_default: true
+    # disabled_by_default: true
     on_press:
       then:
         - lambda: |-
@@ -286,7 +286,7 @@ select:
   - platform: template
     name: EC - Command Select
     id: select_command_ec
-    disabled_by_default: true
+    # disabled_by_default: true
     optimistic: true
     entity_category: "Config"
     options:
