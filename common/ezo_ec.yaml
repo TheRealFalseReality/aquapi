@@ -178,6 +178,7 @@ text_sensor:
     name: EC - Command Result
     icon: mdi:data-matrix
     id: result_ec
+    entity_category: "Config"
     # disabled_by_default: true
 
 button:
