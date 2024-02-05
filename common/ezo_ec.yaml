@@ -202,7 +202,7 @@ button:
 
   # Send Selected EZO Command - Conductitivy
   - platform: template
-    name: EC - Command Send Selected
+    name: "EC - Send 'id(select_command_ec).state' Command"
     id: send_selected_ec
     entity_category: "Config"
     disabled_by_default: true
