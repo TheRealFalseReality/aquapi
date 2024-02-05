@@ -178,7 +178,7 @@ text_sensor:
     name: EC - Command Result
     icon: mdi:data-matrix
     id: result_ec
-    disabled_by_default: true
+    # disabled_by_default: true
 
 button:
   # Read Conductivity Probe
@@ -202,7 +202,7 @@ button:
 
   # Send Selected EZO Command - Conductitivy
   - platform: template
-    name: "EC - Send 'id(select_command_ec).state' Command"
+    name: EC - Command Send Selected
     id: send_selected_ec
     entity_category: "Config"
     disabled_by_default: true
