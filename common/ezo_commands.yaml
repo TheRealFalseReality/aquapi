@@ -1,11 +1,11 @@
 substitutions:
   # PMP circuit, who's address is 103
-  addPMP_default: "103"
+  # addPMP_default: "103"
   addPMP_alt1: "108"
   addPMP_alt2: "109"
   addPMP_alt3: "110"
 
-# button:
+button:
 #   # Change I2C Address of EZO-PMP
 #   - platform: template
 #     name: "Pump(Blue) -> ${addPMP_default} - Change I2C Address"
