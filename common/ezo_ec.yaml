@@ -165,7 +165,7 @@ text_sensor:
     name: EC - Raw Value
     id: raw_value_ec
     icon: mdi:counter
-    disabled_by_default: true
+    # disabled_by_default: true
     on_value: 
       then:
         - component.update: sensor_salinity
@@ -178,7 +178,6 @@ text_sensor:
     name: EC - Command Result
     icon: mdi:data-matrix
     id: result_ec
-    # entity_category: "Config"
     # disabled_by_default: true
 
 button:

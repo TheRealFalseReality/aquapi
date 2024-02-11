@@ -95,7 +95,7 @@ sensor:
     id: i2c_devices
     icon: mdi:integrated-circuit-chip
     entity_category: "diagnostic"
-    # disabled_by_default: true
+    disabled_by_default: true
     lambda: |-
       byte error, address;
       int nDevices;

@@ -49,7 +49,7 @@ text_sensor:
     name: pH - Command Result
     icon: mdi:data-matrix
     id: result_ph
-    disabled_by_default: true
+    # disabled_by_default: true
 
 button:
   # Read pH Probe
@@ -57,7 +57,7 @@ button:
     name: pH - Read
     id: read_ph
     entity_category: "Config"
-    disabled_by_default: true
+    # disabled_by_default: true
     on_press:
       then:
         - lambda: |-
@@ -76,7 +76,7 @@ button:
     name: pH - Command Send Selected
     id: send_selected_ph
     entity_category: "Config"
-    disabled_by_default: true
+    # disabled_by_default: true
     on_press:
       then:
         - lambda: |-
@@ -114,7 +114,7 @@ select:
     name: pH - Command Select
     id: select_command_ph
     optimistic: true
-    disabled_by_default: true
+    # disabled_by_default: true
     entity_category: "Config"
     options:
       - "Read"
