@@ -3,6 +3,21 @@ substitutions:
   addPH: "99"
   update_ph: "60s"
 
+api:
+  services: 
+    - service: ph_read
+      then:
+        - lambda: |-
+            byte error;
+            id(ph_ezo).send_custom("R");
+            error = Wire.endTransmission();
+            if (error == 0) {
+              id(ph_ezo).send_custom("R");
+            }
+            else {
+              ESP_LOGW("custom_ph_read", "No pH sensor detected at address: ${addPH}!!");
+            }
+
 esphome:
   on_boot: 
     priority: 200
@@ -56,6 +71,7 @@ button:
   - platform: template
     name: pH - Read
     id: read_ph
+    icon: mdi:read
     entity_category: "Config"
     # disabled_by_default: true
     on_press:

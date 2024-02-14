@@ -101,6 +101,7 @@ button:
   - platform: template
     name: CO2 - Read
     id: read_co2
+    icon: mdi:read
     entity_category: "Config"
     disabled_by_default: true
     on_press:

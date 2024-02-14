@@ -1,0 +1,34 @@
+blueprint:
+  name: 'Aquarium - AquaPi: Continuous Conductivity Read (TEST)'
+  description: Read Conductivity(EC) probe every second for 60 seconds. [More Info]  (v1) [Script]
+  domain: script
+  # source_url:
+  input:
+    read_sensor:
+      name: Conductivity(EC) Sensor
+      description: 'EC Sensor to Calibrate
+
+        **DEVICENAME EC**'
+      selector:
+        entity:
+          filter:
+            - domain: sensor
+              integration: esphome
+          multiple: false
+variables:
+  read_sensor: !input read_sensor
+sequence:
+  - repeat:
+      sequence:
+        - service: button.press
+          metadata: {}
+          data: {}
+          target:
+            entity_id: !input read_sensor
+        - delay:
+            hours: 0
+            minutes: 0
+            seconds: 1
+            milliseconds: 0
+      count: 60
+mode: restart

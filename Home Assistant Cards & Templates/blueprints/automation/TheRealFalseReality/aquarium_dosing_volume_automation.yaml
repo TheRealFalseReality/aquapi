@@ -1,0 +1,134 @@
+blueprint:
+  name: Aquarium - Dosing Automation
+  description: Activate a script that activates Doser Equipment when a switch is turned
+    on from off, with a max time to prevent overdosing. Intended to be used with the
+    script [Aquarium Dosing - Volume](https://community.home-assistant.io/t/aquarium-turn-on-a-switch-to-activate-doser-equipment-for-a-certain-amount-of-volume-or-time/600546).
+    (v1.22) [Automation]
+  domain: automation
+  source_url: https://gist.github.com/TheRealFalseReality/596777245f2a364fc01801c4922370a1
+  input:
+    condition:
+      name: Add Condition(s)
+      description: Add conditions if needed
+      default: []
+      selector:
+        condition: {}
+    doseScript:
+      name: Doser Script(s)
+      description: Script that activates the Doser Equipment.
+      selector:
+        entity:
+          domain:
+          - script
+          multiple: false
+    doseSwitch:
+      name: Doser Switch
+      description: Switch that activates the Doser Equipment. **Use the same switch
+        the selected script above uses**.
+      selector:
+        entity:
+          domain:
+          - switch
+          multiple: false
+    doseTime:
+      name: Dose Max Time
+      description: 'Max time for the doser to be on, will automatically turn off Doser
+        Switch after the set time has passed. Prevents Doser from overdosing. (Default:
+        30min)'
+      default:
+        minutes: 30
+      selector:
+        duration: {}
+    additional_actions:
+      name: Additional Actions
+      description: 'Add additional actions to the script. Will execute before everything
+        else, each time the automation is triggered successfully. Variables: condition,
+        doseName, condition, doseSwitch, doseTime, additional_actions.'
+      default: []
+      selector:
+        action: {}
+trigger:
+- platform: state
+  entity_id: !input doseSwitch
+  from: 'off'
+  to: 'on'
+  id: trigger_on
+- platform: state
+  entity_id: !input doseSwitch
+  from: unknown
+  to: 'on'
+- platform: state
+  entity_id: !input doseSwitch
+  from: unavailable
+  to: 'on'
+- platform: state
+  entity_id: !input doseSwitch
+  to: 'off'
+- platform: state
+  entity_id: !input doseSwitch
+  to: 'on'
+  for: !input doseTime
+- platform: state
+  entity_id: !input doseSwitch
+  to: 'on'
+  for: '{{ doseTime * 1.5 }}'
+- platform: state
+  entity_id: !input doseSwitch
+  to: 'on'
+  for: '{{ doseTime * 2 }}'
+- platform: state
+  entity_id: !input doseSwitch
+  to: 'on'
+  for: '{{ doseTime * 2.5 }}'
+- platform: state
+  entity_id: !input doseSwitch
+  to: 'on'
+  for: '{{ doseTime * 3 }}'
+variables:
+  condition: !input condition
+  doseScript: !input doseScript
+  doseSwitch: !input doseSwitch
+  doseTime: !input doseTime
+  doseName: '{{ states[doseSwitch].name }}'
+  notify_title_fail: Dosing Stopped or Cancelled
+  notify_message_fail: Dosing of {{ doseName }} has stopped or been cancelled.
+  additional_actions: !input additional_actions
+action:
+- if:
+  - condition: !input condition
+  then:
+  - choose:
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: !input doseSwitch
+          state: 'off'
+        - condition: not
+          conditions:
+          - condition: trigger
+            id: trigger_on
+      sequence:
+      - service: script.turn_off
+        metadata: {}
+        data: {}
+        entity_id: !input doseScript
+      - service: switch.turn_off
+        metadata: {}
+        data: {}
+        entity_id: !input doseSwitch
+    default:
+    - choose: []
+      default: !input additional_actions
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 0
+        milliseconds: 10
+    - condition: state
+      entity_id: !input doseScript
+      state: 'off'
+    - service: script.turn_on
+      metadata: {}
+      data: {}
+      entity_id: !input doseScript

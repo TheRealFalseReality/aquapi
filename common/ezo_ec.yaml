@@ -4,6 +4,21 @@ substitutions:
   update_ec: "60s"
   update_button_ec: "60s"
 
+api:
+  services: 
+    - service: ec_read
+      then:
+        - lambda: |-
+            byte error;
+            Wire.beginTransmission(${addEC});
+            error = Wire.endTransmission();
+            if (error == 0) {
+              id(ec_ezo).send_custom("R");
+            }
+            else {
+              ESP_LOGW("custom_conductivity_read", "No Conductivity sensor detected at address: ${addEC}!");
+            }
+
 esphome:
     on_boot: 
         priority: 200
@@ -184,6 +199,7 @@ button:
   # Read Conductivity Probe
   - platform: template
     name: EC - Read
+    icon: mdi:read
     id: read_ec
     entity_category: "Config"
     # disabled_by_default: true
