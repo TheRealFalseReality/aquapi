@@ -2,7 +2,12 @@ substitutions:
   # PMP circuit, who's address is 103
   addPMP: "103" # White
   update_pmp: "60s"
-  
+
+ezo_pmp:
+  - id: ezo_pump
+    address: ${addPMP}
+    update_interval: "${update_pmp}"
+
 api:
   services: 
     - service: pump_dose_volume
@@ -34,7 +39,7 @@ api:
               return dose_rate;
             duration: !lambda |-
               return dose_time;
-    - service: pump_set_calibration
+    - service: pump_dose_set_calibration
       variables:
         actual_volume: float
       then:
@@ -43,61 +48,66 @@ api:
             volume: !lambda |-
               return actual_volume;
 
-ezo_pmp:
-  id: ezo_pump
-  address: ${addPMP}
-  update_interval: "${update_pmp}"
-
 sensor:
   - platform: ezo_pmp
+    id: ezo_pump
     current_volume_dosed:
       id: current_volume_dosed
       name: Pump - Current Volume Dosed
       icon: mdi:cube-scan
+  # - platform: ezo_pmp
+    # id: ezo_pump
+  #   total_volume_dosed:
+  #     id: total_volume_dosed
+  #     name: Pump - Total Volume Dosed
+  #     icon: mdi:timer-sand-empty
   - platform: ezo_pmp
-    total_volume_dosed:
-      id: total_volume_dosed
-      name: Pump - Total Volume Dosed
-      icon: mdi:timer-sand-empty
-  - platform: ezo_pmp
+    id: ezo_pump
     absolute_total_volume_dosed:
       id: absolute_total_volume_dosed
       name: Pump - Absolute Total Volume Dosed
       icon: mdi:timer-sand-full
   - platform: ezo_pmp
+    id: ezo_pump
     last_volume_requested:
       id: last_volume_requested
       name: Pump - Last Volume Requested
       icon: mdi:history
   - platform: ezo_pmp
+    id: ezo_pump
     max_flow_rate:
       id: max_flow_rate
       name: Pump - Max Volume/Time Flow Rate
       icon: mdi:car-speed-limiter
-  - platform: ezo_pmp
-    pump_voltage:
-      id: pump_voltage
-      name: Pump - Voltage
-      disabled_by_default: true
+  # - platform: ezo_pmp
+    # id: ezo_pump
+  #   pump_voltage:
+  #     id: pump_voltage
+  #     name: Pump - Voltage
+  #     disabled_by_default: true
 
 binary_sensor:
   - platform: ezo_pmp
+    id: ezo_pump
     pump_state:
       id: pump_state
       name: Pump - State
-  - platform: ezo_pmp
-    is_paused:
-      id: is_paused
-      name: Pump - Paused Status
-      disabled_by_default: true
+  # - platform: ezo_pmp
+    # id: ezo_pump
+  #   is_paused:
+  #     id: is_paused
+  #     name: Pump - Paused Status
+  #     disabled_by_default: true
 
 text_sensor:
   - platform: ezo_pmp
+    id: ezo_pump
     dosing_mode:
       id: dosing_mode
       name: Pump - Dosing Mode 
       icon: mdi:auto-mode
   - platform: ezo_pmp
+    id: ezo_pump
     calibration_status:
       id: calibration_status
       name: Pump - Calibration Status
