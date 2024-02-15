@@ -6,18 +6,23 @@ substitutions:
 
 api:
   services: 
-    - service: ec_read
+    - service: ec_read_continous
       then:
-        - lambda: |-
-            byte error;
-            Wire.beginTransmission(${addEC});
-            error = Wire.endTransmission();
-            if (error == 0) {
-              id(ec_ezo).send_custom("R");
-            }
-            else {
-              ESP_LOGW("custom_conductivity_read", "No Conductivity sensor detected at address: ${addEC}!");
-            }
+      - repeat:
+          count: 60
+          then:
+          - button.press: read_ec
+          - delay: 1s
+          # - lambda: |-
+          #     byte error;
+          #     Wire.beginTransmission(${addEC});
+          #     error = Wire.endTransmission();
+          #     if (error == 0) {
+          #       id(ec_ezo).send_custom("R");
+          #     }
+          #     else {
+          #       ESP_LOGW("custom_conductivity_read", "No Conductivity sensor detected at address: ${addEC}!");
+          #     }
 
 esphome:
     on_boot: 

@@ -5,18 +5,23 @@ substitutions:
 
 api:
   services: 
-    - service: ph_read
+    - service: ph_read_continous
       then:
-        - lambda: |-
-            byte error;
-            id(ph_ezo).send_custom("R");
-            error = Wire.endTransmission();
-            if (error == 0) {
-              id(ph_ezo).send_custom("R");
-            }
-            else {
-              ESP_LOGW("custom_ph_read", "No pH sensor detected at address: ${addPH}!!");
-            }
+      - repeat:
+          count: 60
+          then:
+          - button.press: read_ph
+          - delay: 1s
+          # - lambda: |-
+          #     byte error;
+          #     id(ph_ezo).send_custom("R");
+          #     error = Wire.endTransmission();
+          #     if (error == 0) {
+          #       id(ph_ezo).send_custom("R");
+          #     }
+          #     else {
+          #       ESP_LOGW("custom_ph_read", "No pH sensor detected at address: ${addPH}!!");
+          #     }
 
 esphome:
   on_boot: 
