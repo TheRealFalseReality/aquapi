@@ -1,9 +1,9 @@
 substitutions:
   # names
-  name: "aquapi"
-  friendly_name: "AquaPi"
+  name: "aquapi_pump"
+  friendly_name: "AquaPi Pump"
   # App Version - Updated: 11/2023
-  app_version: "1.5"
+  app_version: "1.0"
 
 packages:
   device_base: !include common/device_base.yaml
