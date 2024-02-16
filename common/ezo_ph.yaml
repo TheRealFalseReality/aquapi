@@ -6,9 +6,11 @@ substitutions:
 api:
   services: 
     - service: ph_read_continous
+      variables:
+        time: int
       then:
       - repeat:
-          count: 60
+          count: !lambda return time;
           then:
           - button.press: read_ph
           - delay: 1s
