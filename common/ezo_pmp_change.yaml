@@ -121,7 +121,7 @@ sensor:
       name: Pump Waste - Max Volume/Time Flow Rate
       icon: mdi:car-speed-limiter
   # - platform: ezo_pmp
-    # id: ezo_pump_waste
+  #   id: ezo_pump_waste
   #   pump_voltage:
   #     id: pump_voltage_waste
   #     name: Pump Waste - Voltage
@@ -220,7 +220,7 @@ number:
   - platform: template
     id: volume_waste
     icon: mdi:pump
-    name: Pump - Volume to Dose (mL)
+    name: Pump Waste - Volume to Dose (mL)
     optimistic: true
     initial_value: 10 # cannot be less than +/-0.1mL
     min_value: -378541
@@ -230,7 +230,7 @@ number:
   - platform: template
     id: duration_waste
     icon: mdi:timer
-    name: Pump - Time to Dose (minutes)
+    name: Pump Waste - Time to Dose (minutes)
     optimistic: true
     initial_value: 1
     min_value: 1
@@ -240,7 +240,7 @@ number:
   - platform: template
     id: flow_rate_waste
     icon: mdi:pump
-    name: Pump - Volume/Time Flow Rate (mL/min)
+    name: Pump Waste - Volume/Time Flow Rate (mL/min)
     optimistic: true
     initial_value: 10
     min_value: .5
@@ -250,7 +250,7 @@ number:
   - platform: template
     id: volume_clean
     icon: mdi:pump
-    name: Pump - Volume to Dose (mL)
+    name: Pump Clean - Volume to Dose (mL)
     optimistic: true
     initial_value: 10 # cannot be less than +/-0.1mL
     min_value: -378541
@@ -260,7 +260,7 @@ number:
   - platform: template
     id: duration_clean
     icon: mdi:timer
-    name: Pump - Time to Dose (minutes)
+    name: Pump Clean - Time to Dose (minutes)
     optimistic: true
     initial_value: 1
     min_value: 1
@@ -270,7 +270,7 @@ number:
   - platform: template
     id: flow_rate_clean
     icon: mdi:pump
-    name: Pump - Volume/Time Flow Rate (mL/min)
+    name: Pump Clean - Volume/Time Flow Rate (mL/min)
     optimistic: true
     initial_value: 10
     min_value: .5
@@ -357,6 +357,7 @@ button:
     on_press:
       - ezo_pmp.clear_calibration:
           id: ezo_pump_waste
+          
   - platform: template
     name: Pump Clean - Dose Volume for Time
     icon: mdi:clock-time-two-outline
