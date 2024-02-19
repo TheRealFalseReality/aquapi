@@ -8,7 +8,7 @@ api:
   services: 
     - service: ec_read_continous
       variables:
-        time: int
+        time: int 
       then:
       - repeat:
           count: !lambda return time;
@@ -138,6 +138,7 @@ sensor:
     accuracy_decimals: 2
     update_interval: "${update_ec}"
     state_class: "measurement"
+    device_class: "volatile_organic_compounds_parts"
     lambda: |-
       std::string str = id(raw_value_ec).state;
       std::vector<std::string> v;
