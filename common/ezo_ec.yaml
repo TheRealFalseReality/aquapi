@@ -52,6 +52,7 @@ sensor:
     accuracy_decimals: 2
     update_interval: "${update_ec}"
     state_class: "measurement"
+    device_class: "volatile_organic_compounds_parts"
     filters:
       - lambda:
           return (x / 1000);
@@ -112,6 +113,7 @@ sensor:
     disabled_by_default: true
     update_interval: "${update_ec}"
     state_class: "measurement"
+    device_class: "volatile_organic_compounds_parts"
     lambda: |-
       std::string str = id(raw_value_ec).state;
       std::vector<std::string> v;
@@ -165,6 +167,7 @@ sensor:
     accuracy_decimals: 3
     update_interval: "${update_ec}"
     state_class: "measurement"
+    device_class: "volatile_organic_compounds_parts"
     lambda: |-
       std::string str = id(raw_value_ec).state;
       std::vector<std::string> v;
