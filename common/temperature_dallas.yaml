@@ -59,12 +59,16 @@ sensor:
 
   # Convert to Fahrenheit - Temp. 1
   - platform: template
+    state_class: "measurement"
+    device_class: "temperature"
     id: temp_f
     lambda: |-
       return id(temp_1).state * 9 / 5 + 32;
 
   # Convert to Fahrenheit - Temp. 2
   - platform: template
+    state_class: "measurement"
+    device_class: "temperature"
     id: temp_f_2
     lambda: |-
       return id(temp_2).state * 9 / 5 + 32;
@@ -76,6 +80,8 @@ sensor:
     icon: mdi:snowflake-alert
     unit_of_measurement: "°C"
     disabled_by_default: true
+    state_class: "measurement"
+    device_class: "temperature"
     entity_category: "diagnostic"
     lambda: |-
       return {${cal_0}};
@@ -87,6 +93,8 @@ sensor:
     icon: mdi:water-thermometer
     unit_of_measurement: "°C"
     disabled_by_default: true
+    state_class: "measurement"
+    device_class: "temperature"
     entity_category: "diagnostic"
     lambda: |-
       return {${cal_100}};
@@ -98,6 +106,8 @@ sensor:
     icon: mdi:snowflake-alert
     unit_of_measurement: "°C"
     disabled_by_default: true
+    state_class: "measurement"
+    device_class: "temperature"
     entity_category: "diagnostic"
     lambda: |-
       return {${cal_0_2}};
@@ -109,6 +119,8 @@ sensor:
     icon: mdi:water-thermometer
     unit_of_measurement: "°C"
     disabled_by_default: true
+    state_class: "measurement"
+    device_class: "temperature"
     entity_category: "diagnostic"
     lambda: |-
       return {${cal_100_2}};
@@ -193,6 +205,7 @@ number:
     restore_value: True
     initial_value: ${range_cool}
     entity_category: "Config"
+    device_class: "temperature"
     on_value: 
       then:
         - component.update: temp_range
@@ -210,6 +223,7 @@ number:
     restore_value: True
     initial_value: ${range_warm}
     entity_category: "Config"
+    device_class: "temperature"
     on_value: 
       then:
         - component.update: temp_range
@@ -228,6 +242,7 @@ number:
     restore_value: True
     initial_value: ${range_cool}
     entity_category: "Config"
+    device_class: "temperature"
     on_value: 
       then:
         - component.update: temp_range_2
@@ -246,6 +261,7 @@ number:
     restore_value: True
     initial_value: ${range_warm}
     entity_category: "Config"
+    device_class: "temperature"
     on_value: 
       then:
         - component.update: temp_range_2
