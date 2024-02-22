@@ -26,6 +26,12 @@ api:
       then:
       - lambda: |-
           id(ph_ezo).set_calibration_point_high(10.00);
+    - service: ezo_ph_custom_command
+      variables:
+        command: string
+      then:
+        - lambda: |-
+            id(ph_ezo).send_custom("command");
 
 esphome:
   on_boot: 

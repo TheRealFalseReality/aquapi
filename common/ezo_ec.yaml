@@ -27,6 +27,12 @@ api:
       then:
       - lambda: |-
           id(ec_ezo).set_calibration_generic(80000);
+    - service: ezo_EC_custom_command
+      variables:
+        command: string
+      then:
+        - lambda: |-
+            id(ec_ezo).send_custom("command");
           
 esphome:
     on_boot: 
