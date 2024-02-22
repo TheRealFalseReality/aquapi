@@ -15,17 +15,19 @@ api:
           then:
           - button.press: read_ec
           - delay: 1s
-          # - lambda: |-
-          #     byte error;
-          #     Wire.beginTransmission(${addEC});
-          #     error = Wire.endTransmission();
-          #     if (error == 0) {
-          #       id(ec_ezo).send_custom("R");
-          #     }
-          #     else {
-          #       ESP_LOGW("custom_conductivity_read", "No Conductivity sensor detected at address: ${addEC}!");
-          #     }
-
+    - service: ec_calibrate_dry
+      then:
+      - lambda: |-
+          id(ec_ezo).set_calibration_generic(0.00);
+    - service: ec_calibrate_low
+      then:
+      - lambda: |-
+          id(ec_ezo).set_calibration_generic(12880);
+    - service: ec_calibrate_high
+      then:
+      - lambda: |-
+          id(ec_ezo).set_calibration_generic(80000);
+          
 esphome:
     on_boot: 
         priority: 200
@@ -293,14 +295,14 @@ button:
             if (id(select_command_ec).state == "Check Calibration") {
               id(ec_ezo).get_calibration();
             }  
-            if (id(select_command_ec).state == "Calibrate @ 0 (WILL RESET CALIBRATION)") {
-              id(ec_ezo).set_calibration_point_mid(7.00);
+            if (id(select_command_ec).state == "Calibrate Dry @ 0 (WILL RESET CALIBRATION)") {
+              id(ec_ezo).set_calibration_generic(0.00);
             }
             if (id(select_command_ec).state == "Calibrate @ LOW = 12880 (WILL RESET CALIBRATION)") {
-              id(ec_ezo).set_calibration_point_low(4.00);
+              id(ec_ezo).set_calibration_generic(12880);
             }
             if (id(select_command_ec).state == "Calibrate @ HIGH = 80000 (WILL RESET CALIBRATION)") {
-              id(ec_ezo).set_calibration_point_high(10.00);
+              id(ec_ezo).set_calibration_generic(80000);
             }
             if (id(select_command_ec).state == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(ec_ezo).clear_calibration();

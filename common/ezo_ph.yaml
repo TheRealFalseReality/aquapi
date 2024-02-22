@@ -14,16 +14,18 @@ api:
           then:
           - button.press: read_ph
           - delay: 1s
-          # - lambda: |-
-          #     byte error;
-          #     id(ph_ezo).send_custom("R");
-          #     error = Wire.endTransmission();
-          #     if (error == 0) {
-          #       id(ph_ezo).send_custom("R");
-          #     }
-          #     else {
-          #       ESP_LOGW("custom_ph_read", "No pH sensor detected at address: ${addPH}!!");
-          #     }
+    - service: ph_calibrate_mid
+      then:
+      - lambda: |-
+          id(ph_ezo).set_calibration_point_mid(7.00);
+    - service: ph_calibrate_low
+      then:
+      - lambda: |-
+          id(ph_ezo).set_calibration_point_low(4.00);
+    - service: ph_calibrate_high
+      then:
+      - lambda: |-
+          id(ph_ezo).set_calibration_point_high(10.00);
 
 esphome:
   on_boot: 
