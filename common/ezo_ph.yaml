@@ -31,7 +31,7 @@ api:
         command: string
       then:
         - lambda: |-
-            id(ph_ezo).send_custom("command");
+            id(ph_ezo).send_custom(command);
 
 esphome:
   on_boot: 
