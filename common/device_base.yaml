@@ -37,6 +37,8 @@ ota:
 
 wifi: 
   ap:
+  
+web_server:
 
 captive_portal:
 
