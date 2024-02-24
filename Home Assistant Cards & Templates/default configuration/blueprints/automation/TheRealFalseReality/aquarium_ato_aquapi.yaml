@@ -1,0 +1,140 @@
+blueprint:
+  name: Aquarium ATO Automation (AquaPi)
+  description: Create an ATO (Automated-Top-Off) Automation. Turn on Water Pump when
+    water level is Low, and stop when level is Normal or High. (v1.5)
+  domain: automation
+  input:
+    condition:
+      name: Add Condition(s)
+      description: Add conditions if needed
+      default: []
+      selector:
+        condition: {}
+    sensor:
+      name: Water Sensor
+      description: Sensor used to detect water level.
+      selector:
+        entity:
+          domain:
+          - sensor
+          multiple: false
+    switch:
+      name: Water Pump
+      description: Switch to turn on Water Pump to refill to normal level.
+      selector:
+        entity:
+          filter:
+          - domain:
+            - switch
+          multiple: false
+    delay_on:
+      name: On Delay
+      description: Water Pump on delay.
+      default: 0
+      selector:
+        number:
+          min: 0.0
+          max: 30.0
+          unit_of_measurement: seconds
+          mode: slider
+          step: 1.0
+    normal_time:
+      name: Normal Off Delay
+      description: Time delay when water level is Normal to turn off pump, helps prevent
+        frequent refills.
+      default: 1
+      selector:
+        number:
+          min: 0.0
+          max: 5.0
+          unit_of_measurement: minutes
+          mode: slider
+          step: 1.0
+    pump_max_time:
+      name: Water Pump Max On Time
+      description: Turn off water pump if exceeds a certain time to prevent over-flow.
+      default: 5
+      selector:
+        number:
+          min: 1
+          max: 30.0
+          unit_of_measurement: minutes
+          mode: slider
+          step: 1.0
+  source_url: https://gist.github.com/TheRealFalseReality/eab1edda7c678b8763ecdcddb45f2f1a
+variables:
+  switch: !input switch
+  condition: !input condition
+alias: Aquarium - ATO Trigger
+description: Control ATO Equipment
+trigger:
+- platform: state
+  entity_id: !input sensor
+  from: Normal
+  to: Low
+  for:
+    seconds: !input delay_on
+- platform: state
+  entity_id: !input sensor
+  from: Normal
+  to: High
+- platform: state
+  entity_id: !input sensor
+  to: Normal
+  for:
+    minutes: !input normal_time
+- platform: state
+  entity_id: !input switch
+  to: 'on'
+  for:
+    minutes: !input pump_max_time
+- platform: state
+  entity_id: !input sensor
+  to: unavailable
+- platform: state
+  entity_id: !input sensor
+  to: unknown  
+condition: []
+action:
+- if:
+  - condition: !input condition
+  then:
+  - if:
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: !input sensor
+          state: Low
+        - condition: state
+          entity_id: !input switch
+          state: "off"
+    then:
+    - service: switch.turn_on
+      entity_id: !input switch
+    else: []
+    enabled: true
+    alias: If Low, turn ON ATO
+  - if:
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: !input sensor
+        state: High
+      - condition: state
+        entity_id: !input sensor
+        state: Normal
+    then:
+    - service: switch.turn_off
+      entity_id: !input switch
+    else: []
+    enabled: true
+    alias: If High or Normal, Turn OFF ATO
+  - if:
+    - condition: state
+      entity_id: !input switch
+      state: 'on'
+    then:
+    - service: switch.turn_off
+      entity_id: !input switch
+    alias: If ATO is On, turn Off
+mode: single

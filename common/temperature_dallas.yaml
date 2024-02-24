@@ -11,6 +11,9 @@ substitutions:
   cal_0_2: "0.0"
   cal_100_2: "100.0"
 
+  range_cool: "74"
+  range_warm: "82"
+
 # 18B20 sensor Pin
 dallas:
   - pin: ${dallasPin}
@@ -56,12 +59,16 @@ sensor:
 
   # Convert to Fahrenheit - Temp. 1
   - platform: template
+    state_class: "measurement"
+    device_class: "temperature"
     id: temp_f
     lambda: |-
       return id(temp_1).state * 9 / 5 + 32;
 
   # Convert to Fahrenheit - Temp. 2
   - platform: template
+    state_class: "measurement"
+    device_class: "temperature"
     id: temp_f_2
     lambda: |-
       return id(temp_2).state * 9 / 5 + 32;
@@ -73,6 +80,8 @@ sensor:
     icon: mdi:snowflake-alert
     unit_of_measurement: "°C"
     disabled_by_default: true
+    state_class: "measurement"
+    device_class: "temperature"
     entity_category: "diagnostic"
     lambda: |-
       return {${cal_0}};
@@ -84,6 +93,8 @@ sensor:
     icon: mdi:water-thermometer
     unit_of_measurement: "°C"
     disabled_by_default: true
+    state_class: "measurement"
+    device_class: "temperature"
     entity_category: "diagnostic"
     lambda: |-
       return {${cal_100}};
@@ -95,6 +106,8 @@ sensor:
     icon: mdi:snowflake-alert
     unit_of_measurement: "°C"
     disabled_by_default: true
+    state_class: "measurement"
+    device_class: "temperature"
     entity_category: "diagnostic"
     lambda: |-
       return {${cal_0_2}};
@@ -106,6 +119,8 @@ sensor:
     icon: mdi:water-thermometer
     unit_of_measurement: "°C"
     disabled_by_default: true
+    state_class: "measurement"
+    device_class: "temperature"
     entity_category: "diagnostic"
     lambda: |-
       return {${cal_100_2}};
@@ -181,15 +196,16 @@ number:
   - platform: template
     name: "Temp. Cool"
     id: range_cool
-    icon: mdi:water-thermometer
+    icon: mdi:snowflake-thermometer
     optimistic: true
     mode: box
     min_value: 0.0
     max_value: 100.0
     step: 0.5
     restore_value: True
-    initial_value: 72
+    initial_value: ${range_cool}
     entity_category: "Config"
+    device_class: "temperature"
     on_value: 
       then:
         - component.update: temp_range
@@ -197,7 +213,7 @@ number:
   # Temperature 1 when Warm
   - platform: template
     name: "Temp. Warm"
-    icon: mdi:water-alert
+    icon: mdi:sun-thermometer
     id: range_warm
     optimistic: true
     mode: box
@@ -205,8 +221,9 @@ number:
     max_value: 100.0
     step: 0.5
     restore_value: True
-    initial_value: 82
+    initial_value: ${range_warm}
     entity_category: "Config"
+    device_class: "temperature"
     on_value: 
       then:
         - component.update: temp_range
@@ -215,7 +232,7 @@ number:
   - platform: template
     name: "Temp. 2 Cool"
     id: range_cool_2
-    icon: mdi:water-thermometer
+    icon: mdi:snowflake-thermometer
     optimistic: true
     disabled_by_default: true
     mode: box
@@ -223,8 +240,9 @@ number:
     max_value: 100.0
     step: 0.5
     restore_value: True
-    initial_value: 72
+    initial_value: ${range_cool}
     entity_category: "Config"
+    device_class: "temperature"
     on_value: 
       then:
         - component.update: temp_range_2
@@ -232,7 +250,7 @@ number:
   # Temperature 2 when Warm
   - platform: template
     name: "Temp. 2 Warm"
-    icon: mdi:water-alert
+    icon: mdi:sun-thermometer
     id: range_warm_2
     optimistic: true
     disabled_by_default: true
@@ -241,8 +259,9 @@ number:
     max_value: 100.0
     step: 0.5
     restore_value: True
-    initial_value: 82
+    initial_value: ${range_warm}
     entity_category: "Config"
+    device_class: "temperature"
     on_value: 
       then:
         - component.update: temp_range_2

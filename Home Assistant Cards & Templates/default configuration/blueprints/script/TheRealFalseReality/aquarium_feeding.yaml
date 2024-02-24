@@ -1,0 +1,39 @@
+blueprint:
+  name: Aquarium Feeding
+  description: Turn off switches to feed your fish for a certain amount of time.
+  domain: script
+  input:
+    switch:
+      name: Equipment Switch
+      description: Switch(es) to turn off equipment.
+      selector:
+        target:
+          entity:
+          - domain:
+            - switch
+    feed_time:
+      description: 'Time to turn off equipment (default: 10min).'
+      name: Feed Time
+      default: 10
+      selector:
+        number:
+          min: 1.0
+          max: 60.0
+          unit_of_measurement: minutes
+          mode: slider
+          step: 1.0
+  source_url: https://gist.github.com/TheRealFalseReality/06d34488d84e81916768129b0398de25
+alias: Aquarium Feed
+sequence:
+- service: switch.turn_off
+  data: {}
+  target: !input switch
+- delay:
+    hours: 0
+    minutes: !input feed_time
+    seconds: 0
+    milliseconds: 0
+- service: switch.turn_on
+  data: {}
+  target: !input switch
+mode: single

@@ -1,0 +1,35 @@
+blueprint:
+  name: 'Aquarium - AquaPi: Continuous pH Read (TEST)'
+  description: Read pH probe every second for 60 seconds. [More Info] (v1) [Script]
+  domain: script
+  # source_url:
+  input:
+    ph_sensor:
+      name: pH Sensor
+      description: 'ph Sensor to Calibrate
+
+        *DEVICENAME ph**'
+      selector:
+        entity:
+          filter:
+            - domain: sensor
+              integration: esphome
+              device_class: ph
+          multiple: false
+variables:
+  ph_sensor: !input ph_sensor
+sequence:
+  - repeat:
+      sequence:
+        - service: button.press
+          metadata: {}
+          data: {}
+          target:
+            entity_id: !input ph_sensor
+        - delay:
+            hours: 0
+            minutes: 0
+            seconds: 1
+            milliseconds: 0
+      count: 60
+mode: restart

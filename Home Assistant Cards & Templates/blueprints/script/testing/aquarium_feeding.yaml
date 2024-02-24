@@ -1,0 +1,77 @@
+blueprint:
+  name: Aquarium - Feeding
+  description: Turn off switches to feed your fish for a certain amount of time. [More
+    Info](https://community.home-assistant.io/t/aquarium-turn-off-switches-to-feed-your-fish-for-a-certain-amount-of-time-then-turn-back-on-script/600544/1)
+    (1.1.2) [Script]
+  domain: script
+  source_url: https://gist.github.com/TheRealFalseReality/06d34488d84e81916768129b0398de25
+  input:
+    condition:
+      name: Add Condition(s)
+      description: Add conditions if needed
+      default: []
+      selector:
+        condition: {}
+    switch:
+      name: Equipment Switch
+      description: Switch(es) to turn off equipment.
+      selector:
+        target:
+          entity:
+          - domain:
+            - switch
+    feed_time:
+      description: 'Time to turn off equipment (default: 10min).'
+      name: Feed Time
+      default:
+        minutes: 10
+      selector:
+        duration: {}
+    notify:
+      name: Persistent Notification (Recommended)
+      description: Notify Home Assistant when script is executed.
+      default: true
+      selector:
+        boolean: {}
+    additional_actions:
+      name: Additional Actions
+      description: "Add additional actions to the script. Will execute before everything
+        else.\n- Example: To send to Mobile Device using the official Home Assistant
+        App:\n\n  Notifications -> Send a notification via mobile.YOUR_DEVICE_NAME\n
+        \ ```\n  service: notify.YOUR_DEVICE_NAME\n  metadata: {}\n  data:\n    message:
+        \"{{ message }}\"\n    title: \"{{ title }}\"\n  ```\n\n  Copy
+        {{ message }} into `message`. This will switch to \"yaml\" mode. Above
+        is a completed example.\n"
+      default: []
+      selector:
+        action: {}
+variables:
+  condition: !input condition
+  switch: !input switch
+  feed_time: !input feed_time
+  additional_actions: !input additional_actions
+  notify: !input notify
+  title: Aquarium - Feeding
+  message: Feeding Fish for {{ feed_time }}
+sequence:
+- if:
+  - condition: !input condition
+  then:
+  - choose: []
+    default: !input additional_actions
+  - service: switch.turn_off
+    data: {}
+    target: !input switch
+  - if:
+    - condition: template
+      value_template: '{{ notify }}'
+    then:
+    - service: notify.persistent_notification
+      data:
+        message: '{{ message }}'
+        title: '{{ title }}'
+  - delay: !input feed_time
+  - service: switch.turn_on
+    data: {}
+    target: !input switch
+mode: restart

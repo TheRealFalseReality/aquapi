@@ -3,11 +3,41 @@ substitutions:
   addPH: "99"
   update_ph: "60s"
 
+api:
+  services: 
+    - service: ph_read_continous
+      variables:
+        time: int
+      then:
+      - repeat:
+          count: !lambda return time;
+          then:
+          - button.press: read_ph
+          - delay: 1s
+    - service: ph_calibrate_mid
+      then:
+      - lambda: |-
+          id(ph_ezo).set_calibration_point_mid(7.00);
+    - service: ph_calibrate_low
+      then:
+      - lambda: |-
+          id(ph_ezo).set_calibration_point_low(4.00);
+    - service: ph_calibrate_high
+      then:
+      - lambda: |-
+          id(ph_ezo).set_calibration_point_high(10.00);
+    - service: ezo_ph_custom_command
+      variables:
+        command: string
+      then:
+        - lambda: |-
+            id(ph_ezo).send_custom(command);
+
 esphome:
-    on_boot: 
-        priority: 200
-        then:
-          - button.press: send_selected_ph
+  on_boot: 
+    priority: 200
+    then:
+      - button.press: send_selected_ph
 
 sensor:
   # EZO Circuits (yellow - SCL/RX, blue - SDA/TX)
@@ -49,15 +79,16 @@ text_sensor:
     name: pH - Command Result
     icon: mdi:data-matrix
     id: result_ph
-    disabled_by_default: true
+    # disabled_by_default: true
 
 button:
   # Read pH Probe
   - platform: template
     name: pH - Read
     id: read_ph
+    icon: mdi:read
     entity_category: "Config"
-    disabled_by_default: true
+    # disabled_by_default: true
     on_press:
       then:
         - lambda: |-
@@ -76,7 +107,7 @@ button:
     name: pH - Command Send Selected
     id: send_selected_ph
     entity_category: "Config"
-    disabled_by_default: true
+    # disabled_by_default: true
     on_press:
       then:
         - lambda: |-
@@ -114,7 +145,7 @@ select:
     name: pH - Command Select
     id: select_command_ph
     optimistic: true
-    disabled_by_default: true
+    # disabled_by_default: true
     entity_category: "Config"
     options:
       - "Read"

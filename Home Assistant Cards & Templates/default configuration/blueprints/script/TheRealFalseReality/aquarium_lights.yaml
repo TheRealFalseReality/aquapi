@@ -1,0 +1,20 @@
+blueprint:
+  name: Aquarium Lights
+  description: Create a script to toggle all your Aquarium Lights all at once.
+  domain: script
+  input:
+    target_light:
+      name: Light Switch
+      description: Light(s) to toggle.
+      selector:
+        target:
+          entity:
+          - domain:
+            - light
+  source_url: https://gist.github.com/TheRealFalseReality/046bbbbef7cee12740190945d5ed22b9
+alias: Aquarium Lights
+sequence:
+- service: light.toggle
+  data: {}
+  target: !input target_light
+mode: single

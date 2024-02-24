@@ -101,6 +101,7 @@ button:
   - platform: template
     name: CO2 - Read
     id: read_co2
+    icon: mdi:read
     entity_category: "Config"
     disabled_by_default: true
     on_press:
@@ -113,7 +114,7 @@ button:
               id(co2_ezo).send_custom("R");
             }
             else {
-              ESP_LOGW("custom_co2_read", "No Carbon Dioxide sensor detected at address: ${addCO2}!!");
+              ESP_LOGW("custom_co2_read", "No Carbon Dioxide sensor detected at address: ${addCO2}!");
             }
 
   # Send Selected EZO Command - CO2

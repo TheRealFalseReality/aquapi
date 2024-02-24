@@ -1,8 +1,8 @@
 substitutions:  
-  opticalLowPin: "32" # yellow
-  opticalHighPin: "33" # blue
+  opticalLowPin: "33" # yellow
+  opticalHighPin: "32" # blue
   auxPin1: "26" # yellow
-  auxPin2: "27" # blue
+  auxPin2: "25" # blue
   # Water Level
   update_water: "60s"
 
@@ -16,6 +16,7 @@ binary_sensor:
   # Optical Sensor - LOW (yellow)
   - platform: gpio
     id: os_low
+    disabled_by_default: true
     pin: 
       number: ${opticalLowPin}
       inverted: true
@@ -32,6 +33,7 @@ binary_sensor:
   # Optical Sensor - HIGH (blue)
   - platform: gpio
     id: os_high
+    disabled_by_default: true
     pin: 
       number: ${opticalHighPin}
       inverted: true
@@ -48,6 +50,7 @@ binary_sensor:
   # Additional Pin 1
   - platform: gpio
     id: aux_1
+    disabled_by_default: true
     pin: 
       number: ${auxPin1}
       inverted: true
@@ -61,6 +64,7 @@ binary_sensor:
   # Additional Pin 2
   - platform: gpio
     id: aux_2
+    disabled_by_default: true
     pin: 
       number: ${auxPin2}
       inverted: true
