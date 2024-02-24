@@ -7,13 +7,13 @@ substitutions:
 
 packages:
   device_base: !include common/device_base.yaml
+  aquapi: !include common/aquapi.yaml
   dallas: !include common/temperature_dallas.yaml
   binary: !include common/binary.yaml
-  aquapi: !include common/aquapi.yaml
-  debug: !include common/debug.yaml
   ezo_ph: !include common/ezo_ph.yaml
   ezo_ec: !include common/ezo_ec.yaml
   # ezo_hum: !include common/ezo_hum.yaml
   # ezo_rtd: !include common/ezo_rtd.yaml
   # ezo_co2: !include common/ezo_co2.yaml
   # ezo_do: !include common/ezo_do.yaml
+  debug: !include common/debug.yaml
