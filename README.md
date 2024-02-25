@@ -89,9 +89,9 @@ These are scripts and automations I created to control other devices within Home
 
 [**HomeAssistant**](https://www.home-assistant.io/installation/)  
 [**ESPHome**](https://esphome.io/)  
-[**AtlasIoT Installation Guide**](https://files.atlas-scientific.com/How-to-install-Atlas-iot-software.pdf)  
 [**EZO Raspberry Pi Sample Code**](https://files.atlas-scientific.com/pi_sample_code.pdf)   
 [**EZO pH Circuit Datasheet**](https://files.atlas-scientific.com/pH_EZO_Datasheet.pdf)  
 [**EZO EC Circuit Datasheet**](https://files.atlas-scientific.com/EC_EZO_Datasheet.pdf)  
+[**EZO Pump Circuit Datasheet**](https://files.atlas-scientific.com/EZO_PMP_Datasheet.pdf) 
 
 </details>
