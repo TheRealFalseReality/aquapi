@@ -73,15 +73,15 @@ Updating the AquaPi.
 ### Web Server
 Connecting to the AquaPi without Home Assisstant.
 
+## Blueprints
+**[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Blueprints)**  
+These are scripts and automations I created to control other devices within Home Assistant.
+
 ## Install
 **[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Install)** for guides when installing on a non-configured ESP32 device.
 
 ## Notable Substitutions
 **[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Substitutions)** for more information on customizing your device.
-
-## Blueprints
-**[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Blueprints)**  
-These are scripts and automations I created to control other devices within Home Assistant.
 
 ## Useful Links:
 <details>
