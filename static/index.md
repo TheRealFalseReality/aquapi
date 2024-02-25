@@ -43,25 +43,25 @@ If you want to try some of the Dashboard or Cards I use, follow the link below. 
 ***Water Level*** 
   - Food Grade Optical Infrared Water Liquid Level Sensor  
   
-***pH:*** [Atlas Scientific pH Kit](https://atlas-scientific.com/kits/ph-kit/)  
+***pH:*** [Atlas Scientific pH Kit](https://files.atlas-scientific.com/pH_EZO_Datasheet.pdf)  
   - EZO™ pH Circuit  
   - Double junction silver / silver chloride Lab Grade pH Probe
   - Electrically Isolated EZO™ Carrier Board
 
-***Salinity:*** [Atlas Scientific Conductivity K 1.0 Kit](https://atlas-scientific.com/kits/conductivity-k-1-0-kit/)  
+***Salinity:*** [Atlas Scientific Conductivity K 1.0 Kit](https://files.atlas-scientific.com/EC_EZO_Datasheet.pdf)  
   - EZO™ EC Circuit  
   - Conductivity Probe: 5 µS/cm to 200,000 µS/cm
   - Electrically Isolated EZO™ Carrier Board
 
-***Pump:*** [Atlas Scientific Pump Basic Kit](https://atlas-scientific.com/kits/ezo-pmp-kit/)  
+***Pump:*** [Atlas Scientific Pump Basic Kit](https://files.atlas-scientific.com/EZO_PMP_Datasheet.pdf)  
   - EZO™ Pump Embedded Circuit  
   - Flow Rate: 0.5ml to 105ml/mins
 
 **Other EZO probes that should work but not yet tested:**  
-[Dissolved Oxygen](https://atlas-scientific.com/kits/dissolved-oxygen-kit/), [Humidity](https://atlas-scientific.com/probes/humidity-probe/), 
-[Carbon Dioxide](https://atlas-scientific.com/probes/co2-sensor/), 
-[ORP](https://atlas-scientific.com/kits/orp-kit/),
-[Temperture](https://atlas-scientific.com/kits/inline-temperature-kit/)
+[Dissolved Oxygen](https://files.atlas-scientific.com/LG_DO_probe.pdf), [Humidity](https://files.atlas-scientific.com/EZO-HUM-Datasheet.pdf), 
+[Carbon Dioxide](https://files.atlas-scientific.com/EZO_CO2_Datasheet.pdf), 
+[ORP](https://files.atlas-scientific.com/orp_probe.pdf),
+[Temperture](https://files.atlas-scientific.com/EZO_RTD_Datasheet.pdf)
 
 **Prerequisite!!** A Raspberry Pi (or something similar) running HomeAssistant to communicate and interact with the ESP32 via `homeassistant.local:8123`.
 Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
