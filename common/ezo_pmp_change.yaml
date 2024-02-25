@@ -105,6 +105,18 @@ api:
               return volume;
             duration: !lambda |-
               return duration;
+    - service: pump_water_change_quick
+      variables:
+        volume: float
+      then:
+        - ezo_pmp.dose_volume:
+            id: ezo_pump_clean
+            volume: !lambda |-
+              return volume;
+        - ezo_pmp.dose_volume:
+            id: ezo_pump_waste
+            volume: !lambda |-
+              return volume;
     - service: pump_waste_change_address
       variables:
         address: int
