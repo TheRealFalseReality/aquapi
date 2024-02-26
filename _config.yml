@@ -6,4 +6,4 @@ google_analytics: G-BPGR2QSCVL
 # theme: jekyll-theme-minima
 remote_theme: jekyll/minima
 minima:
-  skin: auto
+  skin: dark
