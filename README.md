@@ -43,19 +43,32 @@ If you want to try some of the Dashboard or Cards I use, follow the link below. 
 ***Water Level*** 
   - Food Grade Optical Infrared Water Liquid Level Sensor  
   
-***pH:*** [Atlas Scientific pH Kit](https://files.atlas-scientific.com/pH_EZO_Datasheet.pdf)  
-  - EZO™ pH Circuit  
-  - Double junction silver / silver chloride Lab Grade pH Probe
+**pH:** *Atlas Scientific pH: [EZO-pH](https://files.atlas-scientific.com/pH_EZO_Datasheet.pdf) & [Lab Grade pH Probe](https://files.atlas-scientific.com/pH_probe.pdf)*  
+  - EZO™ pH Circuit, ISO 10523 Compliant  
+  - Double junction silver / silver chloride Lab Grade pH Probe with Vanadium III, Gen 3
   - Electrically Isolated EZO™ Carrier Board
+  - Range: 0 - 14
+  - Time Before Recalibration: 1 Year
+  - Life Expectancy: ~2.5+ Years
 
-***Salinity:*** [Atlas Scientific Conductivity K 1.0 Kit](https://files.atlas-scientific.com/EC_EZO_Datasheet.pdf)  
-  - EZO™ EC Circuit  
-  - Conductivity Probe: 5 µS/cm to 200,000 µS/cm
+**Salinity:** *Atlas Scientific Conductivity: [EZO-EC](https://files.atlas-scientific.com/EC_EZO_Datasheet.pdf) & [Conductivity Probe K 1.0](https://files.atlas-scientific.com/EC_K_1.0_probe.pdf)*  
+  - EZO™ EC Circuit, ISO 7888 Compliant  
+  - Conductivity Probe K 1.0, Graphite, Gen 3
   - Electrically Isolated EZO™ Carrier Board
+  - Range: 0.07 − 500,000+ μS/cm
+  - Time Before Recalibration: ~10 Years
+  - Life Expectancy: ~10 Years
 
-***Pump:*** [Atlas Scientific Pump Basic Kit](https://files.atlas-scientific.com/EZO_PMP_Datasheet.pdf)  
+**Pump:** *Atlas Scientific Pump: [EZO-PMP](https://files.atlas-scientific.com/EZO_PMP_Datasheet.pdf)*  
   - EZO™ Pump Embedded Circuit  
   - Flow Rate: 0.5ml to 105ml/mins
+  - Tube Size: 5mm
+  - Head Height: 8.1m(26.5')
+
+**Carbon Dioxide Air:** *Atlas Scientific CO2: [EZO-CO2](https://files.atlas-scientific.com/EZO_CO2_Datasheet.pdf)*  
+  - EZO™ CO2 Embedded Circuit, Gaseous  
+  - Range: 0 − 10,000 ppm
+  - Life Expectancy: ~5.5 Years
 
 **Other EZO probes that should work but not yet tested:**  
 [Dissolved Oxygen](https://files.atlas-scientific.com/LG_DO_probe.pdf), [Humidity](https://files.atlas-scientific.com/EZO-HUM-Datasheet.pdf), 
