@@ -10,5 +10,11 @@ minima:
 author:
   name: TheRealFalseReality
 header_pages:
-  - blueprints.md
+  - [blueprints.md](https://github.com/TheRealFalseReality)
   - about.md
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+social_links:
+  - { platform: facebook,       user_url: "https://www.facebook.com/OfficialCapitalCityAquatics/" }
+  - { platform: github,         user_url: "https://github.com/TheRealFalseReality" }
