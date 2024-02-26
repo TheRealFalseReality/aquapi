@@ -69,14 +69,14 @@ If you want to try some of the Dashboard or Cards I use, follow the link below. 
   - Tube Size: 5mm
   - Head Height: 8.1m(26.5')
 
+**Pump:** *Atlas Scientific Pump [EZO-PMP](https://files.atlas-scientific.com/EZO_PMP_Datasheet.pdf)*  
+  - EZO™ Pump Embedded Circuit  
+  - Flow Rate: 0.5ml to 105ml/mins
+
 **Carbon Dioxide Gaseous:** *Atlas Scientific CO2: [EZO-CO2](https://files.atlas-scientific.com/EZO_CO2_Datasheet.pdf)*  
   - EZO™ CO2 Embedded Circuit, Gaseous  
   - Range: 0 − 10,000 ppm
   - Life Expectancy: ~5.5 Years
-
-***Pump:*** *[Atlas Scientific Pump Basic Kit](https://atlas-scientific.com/kits/ezo-pmp-kit/)*  
-  - EZO™ Pump Embedded Circuit  
-  - Flow Rate: 0.5ml to 105ml/mins
 
 **Other EZO probes that should work but not yet tested:**  
 [Dissolved Oxygen](https://files.atlas-scientific.com/LG_DO_probe.pdf), 
