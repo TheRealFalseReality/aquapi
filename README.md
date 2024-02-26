@@ -8,6 +8,8 @@ Powered by an [esp32](https://esphome.io/) and Controlled by [HomeAssistant](htt
 Use the 'View on GitHub' link above for more information and make suggestions.  
 
 **[Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi)**
+| ![PXL_20230529_200205979](https://github.com/TheRealFalseReality/aquapi/assets/106857076/a1e396a5-3df3-4f6e-b8a4-1e9ae5a47179) | ![PXL_20240224_022516268~2](https://github.com/TheRealFalseReality/aquapi/assets/106857076/949d85aa-419b-4f73-9ae4-53700a768cf1) |
+| ------------- | ------------- |
 
 ## Installation
 **You can typically skip this as AquaPi comes pre-installed!**  
@@ -22,8 +24,9 @@ Follow link below for guide:
 <a href="https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi" target="_blank"><b>Setup Guide</b></a>
 
 ## Home Assistant & AquaPi
-Basic UI
-![Basic UI](https://user-images.githubusercontent.com/106857076/236688799-8565d281-13e9-4a98-83ca-60933a509a5e.png)
+UI
+| ![Screenshot 2024-02-22 000808](https://github.com/TheRealFalseReality/aquapi/assets/106857076/acf7f2e3-1a05-41a6-9d6a-b9d062852ff6) | ![Screenshot 2024-02-22 001408](https://github.com/TheRealFalseReality/aquapi/assets/106857076/044033a8-73b6-45c2-a5b3-5288c3015e24) |
+| ------------- | ------------- |
 
 ### [Blueprints](https://github.com/TheRealFalseReality/aquapi/wiki/Blueprints)
 There are scripts and automations I created to control other devices within Home Assistant. Click the link above to view them all!
