@@ -7,3 +7,5 @@ google_analytics: G-BPGR2QSCVL
 remote_theme: jekyll/minima
 minima:
   skin: dark
+author:
+  name: TheRealFalseReality
