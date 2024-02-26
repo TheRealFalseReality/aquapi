@@ -97,8 +97,6 @@ These are scripts and automations I created to control other devices within Home
 
 ## Install
 **[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Install)** for guides when installing on a non-configured ESP32 device.
-<esp-web-install-button manifest="./manifest.json"></esp-web-install-button>  
-<script type="module" src="https://unpkg.com/esp-web-tools@9.1.0/dist/web/install-button.js?module"></script>
 
 ## Notable Substitutions
 **[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Substitutions)** for more information on customizing your device.
