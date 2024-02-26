@@ -9,6 +9,7 @@ minima:
   skin: dark
 author:
   name: TheRealFalseReality
+  email: contact@capitalcityaquatics.com
 header_pages:
   - setup.md
   - blueprints.md
