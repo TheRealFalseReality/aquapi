@@ -1,46 +1,6 @@
-# CHANGEME: Set these variable to your liking
 title: AquaPi powered by ESPHome
-logo: assests/logo88x88.png
+logo: assests/AquaPiLogo_small.png
 description: Powered by HomeAssistant & ESPHome
 show_downloads: false
 google_analytics: G-BPGR2QSCVL
-remote_theme: minimal-mistakes
-author:
-  avatar: assests/logo88x88.png
-
-# Reading Files
-include:
-  - .htaccess
-  - _pages
-exclude:
-  - "*.sublime-project"
-  - "*.sublime-workspace"
-  - vendor
-  - .asset-cache
-  - .bundle
-  - .jekyll-assets-cache
-  - .sass-cache
-  - assets/js/plugins
-  - assets/js/_main.js
-  - assets/js/vendor
-  - Capfile
-  - CHANGELOG
-  - config
-  - Gemfile
-  - Gruntfile.js
-  - gulpfile.js
-  - LICENSE
-  - log
-  - node_modules
-  - package.json
-  - package-lock.json
-  - Rakefile
-  - README
-  - tmp
-  - /docs # ignore Minimal Mistakes /docs
-  - /test # ignore Minimal Mistakes /test
-keep_files:
-  - .git
-  - .svn
-encoding: "utf-8"
-markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+theme: jekyll-theme-cayman
