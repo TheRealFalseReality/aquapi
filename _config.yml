@@ -9,3 +9,5 @@ minima:
   skin: dark
 author:
   name: TheRealFalseReality
+header_pages:
+  - about.md
