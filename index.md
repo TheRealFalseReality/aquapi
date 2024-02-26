@@ -1,10 +1,7 @@
-<img align="left" src="https://github.com/TheRealFalseReality/aquapi/blob/5e4a82a5755e06d9029109c4bd55601596198b7c/assests/image/AquaPi%20Logo.png" alt="drawing" style="width:150px;"/>
-
 The Aquarium meets the Smart Home!  
-**[View on GitHub](https://github.com/TheRealFalseReality/aquapi)**  
-
-Monitor your Aquarium's Temperature and Water Level. With EZO Circuit Boards and Probe upgrades, you can also monitor your pH, Salinity, Dissolved Oxygen and other EZO circuits and probes.  
-Powered by an **[esp32](https://esphome.io/)** and Controlled by **[HomeAssistant](https://www.home-assistant.io/installation/)**. You can set alerts for anything, [make automations](https://github.com/TheRealFalseReality/aquapi/wiki/Blueprints) for auto-top-off, and make beautiful graphs of your aquarium's data.  
+**[View on GitHub](https://github.com/TheRealFalseReality/aquapi)**
+| ![AquaPiLogo300](https://github.com/TheRealFalseReality/aquapi/assets/106857076/1e22c144-24c4-4d27-a835-4b3466f5daad) | Monitor your Aquarium's Temperature and Water Level. With EZO Circuit Boards and Probe upgrades, you can also monitor your pH, Salinity, Dissolved Oxygen and other EZO circuits and probes. Powered by an **[esp32](https://esphome.io/)** and Controlled by **[HomeAssistant](https://www.home-assistant.io/installation/)**. You can set alerts for anything, [make automations](https://github.com/TheRealFalseReality/aquapi/wiki/Blueprints) for auto-top-off, and make beautiful graphs of your aquarium's data.  |  
+| ------------- | ------------- |
 
 ### **[Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi)**
 ![PXL_20230529_200205979](https://github.com/TheRealFalseReality/aquapi/assets/106857076/1ebcddb2-d481-48f0-9136-ca698cbe1889)
