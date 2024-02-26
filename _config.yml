@@ -1,4 +1,7 @@
 # CHANGEME: Set these variable to your liking
 title: AquaPi powered by ESPHome
-description: Powered by HomeAssistant, ESPHome and ESP Web Tools
-theme: jekyll-theme-cayman
+icon: assests/AquaPi Logo.svg
+description: Powered by HomeAssistant & ESPHome
+show_downloads: true
+google_analytics: G-BPGR2QSCVL
+theme: jekyll-theme-minimal
