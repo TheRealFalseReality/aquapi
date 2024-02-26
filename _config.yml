@@ -10,8 +10,8 @@ minima:
 author:
   name: TheRealFalseReality
 header_pages:
-  - [blueprints.md](https://github.com/TheRealFalseReality)
-  - about.md
+  - blueprints.md
+  # - about.md
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
