@@ -1,3 +1,5 @@
+# AquaPi for ESPHome
+
 The Aquarium meets the Smart Home!  
 
 Monitor your Aquarium's Temperature and Water Level. With EZO Circuit Boards and Probe upgrades, you can also monitor your pH, Salinity, Dissolved Oxygen and other EZO circuits and probes.  
@@ -23,9 +25,6 @@ Follow link below for guide:
 ## Home Assistant & AquaPi
 UI
 ![Screenshot 2024-02-22 000808](https://github.com/TheRealFalseReality/aquapi/assets/106857076/e985df09-6e08-474d-aa9c-b4e803a5c20c)
-
-### [Blueprints](https://github.com/TheRealFalseReality/aquapi/wiki/Blueprints)
-There are scripts and automations I created to control other devices within Home Assistant. Click the link above to view them all!
 
 ### [Blueprints](https://github.com/TheRealFalseReality/aquapi/wiki/Blueprints)
 There are scripts and automations I created to control other devices within Home Assistant. Click the link above to view them all!
