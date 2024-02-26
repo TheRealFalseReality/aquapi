@@ -1,7 +1,9 @@
 # CHANGEME: Set these variable to your liking
 title: AquaPi powered by ESPHome
-avatar: assests/logo88x88.png
+logo: assests/logo88x88.png
 description: Powered by HomeAssistant & ESPHome
 show_downloads: false
 google_analytics: G-BPGR2QSCVL
 remote_theme: minimal-mistakes
+author:
+  avatar: assests/logo88x88.png
