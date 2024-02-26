@@ -10,6 +10,7 @@ minima:
 author:
   name: TheRealFalseReality
 header_pages:
+  - setup.md
   - blueprints.md
   # - about.md
 plugins:
