@@ -3,4 +3,5 @@ logo: assests/AquaPiLogo_small.png
 description: Powered by HomeAssistant & ESPHome
 show_downloads: false
 google_analytics: G-BPGR2QSCVL
-theme: jekyll-theme-minima
+# theme: jekyll-theme-minima
+remote_theme: jekyll/minima
