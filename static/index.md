@@ -27,9 +27,6 @@ UI
 ### [Blueprints](https://github.com/TheRealFalseReality/aquapi/wiki/Blueprints)
 There are scripts and automations I created to control other devices within Home Assistant. Click the link above to view them all!
 
-### [Blueprints](https://github.com/TheRealFalseReality/aquapi/wiki/Blueprints)
-There are scripts and automations I created to control other devices within Home Assistant. Click the link above to view them all!
-
 ### Home Assistand Dashboard & Card Examples
 If you want to try some of the Dashboard or Cards I use, follow the link below. You may need addtional integrations or custom cards for some of them!  
 <a href="https://github.com/TheRealFalseReality/aquapi/tree/main/Example%20HomeAssistant%20Cards%20%26%20Templates" target="_blank"><b>Example HomeAssistant Cards & Templates</b></a>
