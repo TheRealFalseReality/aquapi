@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Blueprint
-permalink: /blueprint/
+title: Blueprints
+permalink: /blueprints/
 ---
 
 # Blueprints for Automations & Scripts #TODO
