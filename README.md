@@ -1,63 +1,86 @@
 # AquaPi for ESPHome
 
 The Aquarium meets the Smart Home!  
-**[Setup Guide](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi)**
 
 Monitor your Aquarium's Temperature and Water Level. With EZO Circuit Boards and Probe upgrades, you can also monitor your pH, Salinity, Dissolved Oxygen and other EZO circuits and probes.  
 Powered by an [esp32](https://esphome.io/) and Controlled by [HomeAssistant](https://www.home-assistant.io/installation/). You can set alerts for anything, make automations for auto-top-off (see Blueprints), and make beautiful graphs of your aquarium's data (see screenshot).  
 
-[Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi)
+Use the 'View on GitHub' link above for more information and make suggestions.  
 
-Basic UI
-![Basic UI](https://user-images.githubusercontent.com/106857076/236688799-8565d281-13e9-4a98-83ca-60933a509a5e.png)
-
-<details>
-<summary>Advanced UI</summary>
-
-| ![Example UI1](https://user-images.githubusercontent.com/106857076/236688777-846e7a3d-2fd2-4e98-8f9c-48cfeec7d34c.png)  | ![Example UI2](https://user-images.githubusercontent.com/106857076/236688759-711f32b8-b182-4808-9adf-8385ac39ba29.png) |
+**[Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi)**
+| ![PXL_20230529_200205979](https://github.com/TheRealFalseReality/aquapi/assets/106857076/a1e396a5-3df3-4f6e-b8a4-1e9ae5a47179) | ![PXL_20240224_022516268~2](https://github.com/TheRealFalseReality/aquapi/assets/106857076/949d85aa-419b-4f73-9ae4-53700a768cf1) |
 | ------------- | ------------- |
 
-</details>  
+## Installation
+**You can typically skip this as AquaPi comes pre-installed!**  
+Use the button below to install the pre-built firmware directly to your device via USB from the browser.
+
+<esp-web-install-button manifest="./manifest.json"></esp-web-install-button>
+
+<script type="module" src="https://unpkg.com/esp-web-tools@9.1.0/dist/web/install-button.js?module"></script>
+
+## Setup AquaPi
+Follow link below for guide:  
+<a href="https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi" target="_blank"><b>Setup Guide</b></a>
+
+## Home Assistant & AquaPi
+UI
+| ![Screenshot 2024-02-22 000808](https://github.com/TheRealFalseReality/aquapi/assets/106857076/acf7f2e3-1a05-41a6-9d6a-b9d062852ff6) | ![Screenshot 2024-02-22 001408](https://github.com/TheRealFalseReality/aquapi/assets/106857076/044033a8-73b6-45c2-a5b3-5288c3015e24) |
+| ------------- | ------------- |
+
+### [Blueprints](https://github.com/TheRealFalseReality/aquapi/wiki/Blueprints)
+There are scripts and automations I created to control other devices within Home Assistant. Click the link above to view them all!
 
 ### Home Assistand Dashboard & Card Examples
 If you want to try some of the Dashboard or Cards I use, follow the link below. You may need addtional integrations or custom cards for some of them!  
-**[Example HomeAssistant Cards & Templates](https://github.com/TheRealFalseReality/aquapi/tree/main/Example%20HomeAssistant%20Cards%20%26%20Templates)**  
+<a href="https://github.com/TheRealFalseReality/aquapi/tree/main/Example%20HomeAssistant%20Cards%20%26%20Templates" target="_blank"><b>Example HomeAssistant Cards & Templates</b></a>
 
 ## Hardware Used
-**ESP32 devkit**  
+**ESP32 devkit**   
 **HomeAssistant** using a Raspberry Pi 3 or above. The more RAM, the better.  
-**Prerequisite!!** A Raspberry Pi (or something similar) running HomeAssistant to communicate and interact with the ESP32 via `homeassistant.local:8123`.
-Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 
-### Probes
+**Probes**:  
 ***Temperature*** 
   - DS18B20 Waterproof Thermistor  
   
 ***Water Level*** 
   - Food Grade Optical Infrared Water Liquid Level Sensor  
   
-***pH:*** Atlas Scientific pH Kit  
-  - EZO™ pH Circuit  
-  - Double junction silver / silver chloride Lab Grade pH Probe
+**pH:** *Atlas Scientific pH: [EZO-pH](https://files.atlas-scientific.com/pH_EZO_Datasheet.pdf) & [Lab Grade pH Probe](https://files.atlas-scientific.com/pH_probe.pdf)*  
+  - EZO™ pH Circuit, ISO 10523 Compliant  
+  - Double junction silver / silver chloride Lab Grade pH Probe with Vanadium III, Gen 3
   - Electrically Isolated EZO™ Carrier Board
+  - Range: 0 - 14
+  - Time Before Recalibration: 1 Year
+  - Life Expectancy: ~2.5+ Years
 
-***Salinity:*** Atlas Scientific Conductivity Kit  
-  - EZO™ EC Circuit  
-  - Conductivity Probe: 5 µS/cm to 200,000 µS/cm
+**Salinity:** *Atlas Scientific Conductivity: [EZO-EC](https://files.atlas-scientific.com/EC_EZO_Datasheet.pdf) & [Conductivity Probe K 1.0](https://files.atlas-scientific.com/EC_K_1.0_probe.pdf)*  
+  - EZO™ EC Circuit, ISO 7888 Compliant  
+  - Conductivity Probe K 1.0, Graphite, Gen 3
   - Electrically Isolated EZO™ Carrier Board
+  - Range: 0.07 − 500,000+ μS/cm
+  - Time Before Recalibration: ~10 Years
+  - Life Expectancy: ~10 Years
 
-**Other EZO probes that should work but not yet tested:**   
-*Dissolved Oxygen, Pump, Humidity, Carbon Dioxide, Temperture*
+**Pump:** *Atlas Scientific Pump: [EZO-PMP](https://files.atlas-scientific.com/EZO_PMP_Datasheet.pdf)*  
+  - EZO™ Pump Embedded Circuit  
+  - Flow Rate: 0.5ml to 105ml/mins
+  - Tube Size: 5mm
+  - Head Height: 8.1m(26.5')
 
-### Circuit Diagram
-[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Circuit) for more details on the circuit.  
-<details>
-<summary>See Diagram</summary>
+**Carbon Dioxide Air:** *Atlas Scientific CO2: [EZO-CO2](https://files.atlas-scientific.com/EZO_CO2_Datasheet.pdf)*  
+  - EZO™ CO2 Embedded Circuit, Gaseous  
+  - Range: 0 − 10,000 ppm
+  - Life Expectancy: ~5.5 Years
 
-![circuit](https://github.com/TheRealFalseReality/aquapi/assets/106857076/65fef85b-ccf2-437b-ac94-f7e87cd957a0)
+**Other EZO probes that should work but not yet tested:**  
+[Dissolved Oxygen](https://files.atlas-scientific.com/LG_DO_probe.pdf), [Humidity](https://files.atlas-scientific.com/EZO-HUM-Datasheet.pdf), 
+[Carbon Dioxide](https://files.atlas-scientific.com/EZO_CO2_Datasheet.pdf), 
+[ORP](https://files.atlas-scientific.com/orp_probe.pdf),
+[Temperture](https://files.atlas-scientific.com/EZO_RTD_Datasheet.pdf)
 
-</details>  
-
+**Prerequisite!!** A Raspberry Pi (or something similar) running HomeAssistant to communicate and interact with the ESP32 via `homeassistant.local:8123`.
+Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 
 ## Software Used  
 [**Home Assistant**](https://www.home-assistant.io/): Open source home automation that puts local control and privacy first.   
@@ -65,32 +88,7 @@ Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 
 ![made-for-esphome-white-on-black](https://github.com/TheRealFalseReality/aquapi/assets/106857076/c68b7da3-17c9-43bf-b8c7-f44acf63eb28)
 
-
-## Setup AquaPi
-**[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi)** for Setup Guides that Include:
-
-### Home Assistant
-Setting up Home Assistant and Connecting AquaPi to your Wifi.
- 
-### Update Wirelessly
-Updating the AquaPi.
-
-### Web Server
-Connecting to the AquaPi without Home Assisstant.
-
-## Install
-**[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Install)** for guides when installing on a non-configured ESP32 device.
-
-## Notable Substitutions
-**[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Substitutions)** for more information on customizing your device.
-
-## Blueprints
-**[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Blueprints)**  
-These are scripts and automations I created to control other devices within Home Assistant.
-
 ## Useful Links:
-<details>
-<summary>See Links</summary>
 
 [**HomeAssistant**](https://www.home-assistant.io/installation/)  
 [**ESPHome**](https://esphome.io/)  
@@ -98,5 +96,3 @@ These are scripts and automations I created to control other devices within Home
 [**EZO Raspberry Pi Sample Code**](https://files.atlas-scientific.com/pi_sample_code.pdf)   
 [**EZO pH Circuit Datasheet**](https://files.atlas-scientific.com/pH_EZO_Datasheet.pdf)  
 [**EZO EC Circuit Datasheet**](https://files.atlas-scientific.com/EC_EZO_Datasheet.pdf)  
-
-</details>
