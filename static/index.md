@@ -1,3 +1,5 @@
+# AquaPi for ESPHome
+
 The Aquarium meets the Smart Home!  
 
 Monitor your Aquarium's Temperature and Water Level. With EZO Circuit Boards and Probe upgrades, you can also monitor your pH, Salinity, Dissolved Oxygen and other EZO circuits and probes.  
