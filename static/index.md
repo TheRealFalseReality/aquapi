@@ -8,6 +8,7 @@ Powered by an [esp32](https://esphome.io/) and Controlled by [HomeAssistant](htt
 Use the 'View on GitHub' link above for more information and make suggestions.  
 
 **[Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi)**
+![PXL_20230529_200205979](https://github.com/TheRealFalseReality/aquapi/assets/106857076/1ebcddb2-d481-48f0-9136-ca698cbe1889)
 
 ## Installation
 **You can typically skip this as AquaPi comes pre-installed!**  
@@ -22,8 +23,11 @@ Follow link below for guide:
 <a href="https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi" target="_blank"><b>Setup Guide</b></a>
 
 ## Home Assistant & AquaPi
-Basic UI
-![Basic UI](https://user-images.githubusercontent.com/106857076/236688799-8565d281-13e9-4a98-83ca-60933a509a5e.png)
+UI
+![Screenshot 2024-02-22 000808](https://github.com/TheRealFalseReality/aquapi/assets/106857076/e985df09-6e08-474d-aa9c-b4e803a5c20c)
+
+### [Blueprints](https://github.com/TheRealFalseReality/aquapi/wiki/Blueprints)
+There are scripts and automations I created to control other devices within Home Assistant. Click the link above to view them all!
 
 ### [Blueprints](https://github.com/TheRealFalseReality/aquapi/wiki/Blueprints)
 There are scripts and automations I created to control other devices within Home Assistant. Click the link above to view them all!
@@ -42,7 +46,7 @@ If you want to try some of the Dashboard or Cards I use, follow the link below. 
   
 ***Water Level*** 
   - Food Grade Optical Infrared Water Liquid Level Sensor  
-  
+
 **pH:** *Atlas Scientific pH: [EZO-pH](https://files.atlas-scientific.com/pH_EZO_Datasheet.pdf) & [Lab Grade pH Probe](https://files.atlas-scientific.com/pH_probe.pdf)*  
   - EZO™ pH Circuit, ISO 10523 Compliant  
   - Double junction silver / silver chloride Lab Grade pH Probe with Vanadium III, Gen 3
@@ -65,14 +69,18 @@ If you want to try some of the Dashboard or Cards I use, follow the link below. 
   - Tube Size: 5mm
   - Head Height: 8.1m(26.5')
 
-**Carbon Dioxide Air:** *Atlas Scientific CO2: [EZO-CO2](https://files.atlas-scientific.com/EZO_CO2_Datasheet.pdf)*  
+**Carbon Dioxide Gaseous:** *Atlas Scientific CO2: [EZO-CO2](https://files.atlas-scientific.com/EZO_CO2_Datasheet.pdf)*  
   - EZO™ CO2 Embedded Circuit, Gaseous  
   - Range: 0 − 10,000 ppm
   - Life Expectancy: ~5.5 Years
 
+***Pump:*** *[Atlas Scientific Pump Basic Kit](https://atlas-scientific.com/kits/ezo-pmp-kit/)*  
+  - EZO™ Pump Embedded Circuit  
+  - Flow Rate: 0.5ml to 105ml/mins
+
 **Other EZO probes that should work but not yet tested:**  
-[Dissolved Oxygen](https://files.atlas-scientific.com/LG_DO_probe.pdf), [Humidity](https://files.atlas-scientific.com/EZO-HUM-Datasheet.pdf), 
-[Carbon Dioxide](https://files.atlas-scientific.com/EZO_CO2_Datasheet.pdf), 
+[Dissolved Oxygen](https://files.atlas-scientific.com/LG_DO_probe.pdf), 
+[Humidity](https://files.atlas-scientific.com/EZO-HUM-Datasheet.pdf), 
 [ORP](https://files.atlas-scientific.com/orp_probe.pdf),
 [Temperture](https://files.atlas-scientific.com/EZO_RTD_Datasheet.pdf)
 
