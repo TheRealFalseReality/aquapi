@@ -59,7 +59,8 @@ Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
   - Life Expectancy: ~5.5 Years
 
 **Other EZO probes that should work but not yet tested:**  
-[Dissolved Oxygen](https://files.atlas-scientific.com/LG_DO_probe.pdf), [Humidity](https://files.atlas-scientific.com/EZO-HUM-Datasheet.pdf), 
+[Dissolved Oxygen](https://files.atlas-scientific.com/LG_DO_probe.pdf), 
+[Humidity](https://files.atlas-scientific.com/EZO-HUM-Datasheet.pdf), 
 [ORP](https://files.atlas-scientific.com/orp_probe.pdf),
 [Temperture](https://files.atlas-scientific.com/EZO_RTD_Datasheet.pdf)
 
