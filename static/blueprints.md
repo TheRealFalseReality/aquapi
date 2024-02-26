@@ -3,8 +3,6 @@ layout: page
 title: Blueprints
 permalink: /blueprints/
 ---
-
-# Blueprints
 These are scripts and automations I created to control other devices within Home Assistant.  
 ### [Join the Community](https://community.home-assistant.io/u/therealfalsereality/activity/topics)
 
