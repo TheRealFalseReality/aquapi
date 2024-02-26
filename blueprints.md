@@ -4,7 +4,7 @@ title: Blueprints
 permalink: /blueprints/
 ---
 
-# Blueprints for Automations & Scripts #TODO
+# Blueprints
 These are scripts and automations I created to control other devices within Home Assistant.  
 ### [Join the Community](https://community.home-assistant.io/u/therealfalsereality/activity/topics)
 
