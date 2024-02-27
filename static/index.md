@@ -17,7 +17,7 @@ Monitor your Aquarium's Temperature and Water Level. With EZO Circuit Boards and
 ***Water Level*** 
   - Food Grade Optical Infrared Water Liquid Level Sensor  
 
-**pH:** *Atlas Scientific pH: [EZO-pH](https://files.atlas-scientific.com/pH_EZO_Datasheet.pdf) & [Lab Grade pH Probe](https://files.atlas-scientific.com/pH_probe.pdf)*  
+***pH:*** Atlas Scientific pH: [EZO-pH](https://files.atlas-scientific.com/pH_EZO_Datasheet.pdf) & [Lab Grade pH Probe](https://files.atlas-scientific.com/pH_probe.pdf)  
   - EZO™ pH Circuit, ISO 10523 Compliant  
   - Double junction silver / silver chloride Lab Grade pH Probe with Vanadium III, Gen 3
   - Electrically Isolated EZO™ Carrier Board
@@ -25,7 +25,7 @@ Monitor your Aquarium's Temperature and Water Level. With EZO Circuit Boards and
   - Time Before Recalibration: 1 Year
   - Life Expectancy: ~2.5+ Years
 
-**Salinity:** *Atlas Scientific Conductivity: [EZO-EC](https://files.atlas-scientific.com/EC_EZO_Datasheet.pdf) & [Conductivity Probe K 1.0](https://files.atlas-scientific.com/EC_K_1.0_probe.pdf)*  
+***Salinity:*** Atlas Scientific Conductivity: [EZO-EC](https://files.atlas-scientific.com/EC_EZO_Datasheet.pdf) & [Conductivity Probe K 1.0](https://files.atlas-scientific.com/EC_K_1.0_probe.pdf)  
   - EZO™ EC Circuit, ISO 7888 Compliant  
   - Conductivity Probe K 1.0, Graphite, Gen 3
   - Electrically Isolated EZO™ Carrier Board
@@ -33,17 +33,13 @@ Monitor your Aquarium's Temperature and Water Level. With EZO Circuit Boards and
   - Time Before Recalibration: ~10 Years
   - Life Expectancy: ~10 Years
 
-**Pump:** *Atlas Scientific Pump: [EZO-PMP](https://files.atlas-scientific.com/EZO_PMP_Datasheet.pdf)*  
+***Pump:*** Atlas Scientific Pump: [EZO-PMP](https://files.atlas-scientific.com/EZO_PMP_Datasheet.pdf)  
   - EZO™ Pump Embedded Circuit  
   - Flow Rate: 0.5ml to 105ml/mins
   - Tube Size: 5mm
   - Head Height: 8.1m(26.5')
 
-**Pump:** *Atlas Scientific Pump [EZO-PMP](https://files.atlas-scientific.com/EZO_PMP_Datasheet.pdf)*  
-  - EZO™ Pump Embedded Circuit  
-  - Flow Rate: 0.5ml to 105ml/mins
-
-**Carbon Dioxide Gaseous:** *Atlas Scientific CO2: [EZO-CO2](https://files.atlas-scientific.com/EZO_CO2_Datasheet.pdf)*  
+***Carbon Dioxide - Gaseous:*** Atlas Scientific CO2: [EZO-CO2](https://files.atlas-scientific.com/EZO_CO2_Datasheet.pdf)  
   - EZO™ CO2 Embedded Circuit, Gaseous  
   - Range: 0 − 10,000 ppm
   - Life Expectancy: ~5.5 Years
