@@ -62,6 +62,7 @@ sensor:
     entity_category: "diagnostic"
     state_class: "measurement"
     device_class: "temperature"
+    disabled_by_default: true
     lambda: |-
       std::string str = id(raw_value_co2).state;
       std::vector<std::string> v;
