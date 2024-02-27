@@ -1,10 +1,11 @@
-# AquaPi for ESPHome
+# AquaPi for ESPHome [Test Branch]
+<img align="left" src="https://github.com/TheRealFalseReality/aquapi/blob/5e4a82a5755e06d9029109c4bd55601596198b7c/assests/image/AquaPi%20Logo.png" alt="drawing" style="width:150px;"/>
 
 The Aquarium meets the Smart Home!  
 **[Setup Guide](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi)**
 
 Monitor your Aquarium's Temperature and Water Level. With EZO Circuit Boards and Probe upgrades, you can also monitor your pH, Salinity, Dissolved Oxygen and other EZO circuits and probes.  
-Powered by an [esp32](https://esphome.io/) and Controlled by [HomeAssistant](https://www.home-assistant.io/installation/). You can set alerts for anything, make automations for auto-top-off (see Blueprints), and make beautiful graphs of your aquarium's data (see screenshot).  
+Powered by an [esp32](https://esphome.io/) and Controlled by [HomeAssistant](https://www.home-assistant.io/installation/). You can set alerts for anything, [make automations](https://github.com/TheRealFalseReality/aquapi/wiki/Blueprints) for auto-top-off, and make beautiful graphs of your aquarium's data.  
 
 ### **[Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi)**
 | ![PXL_20230529_200205979](https://github.com/TheRealFalseReality/aquapi/assets/106857076/1ebcddb2-d481-48f0-9136-ca698cbe1889) | ![PXL_20240224_022516268~2](https://github.com/TheRealFalseReality/aquapi/assets/106857076/db50c972-2bbd-4c9f-9f62-fa6e62f41cf3) |
@@ -66,12 +67,6 @@ Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 
 ### Circuit Diagram
 [See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Circuit) for more details on the circuit.  
-<details>
-<summary>See Diagram</summary>
-
-![circuit](https://github.com/TheRealFalseReality/aquapi/assets/106857076/65fef85b-ccf2-437b-ac94-f7e87cd957a0)
-
-</details>  
 
 ## Software Used  
 [**Home Assistant**](https://www.home-assistant.io/): Open source home automation that puts local control and privacy first.   
@@ -107,9 +102,9 @@ These are scripts and automations I created to control other devices within Home
 
 [**HomeAssistant**](https://www.home-assistant.io/installation/)  
 [**ESPHome**](https://esphome.io/)  
-[**EZO Raspberry Pi Sample Code**](https://files.atlas-scientific.com/pi_sample_code.pdf)   
-[**EZO pH Circuit Datasheet**](https://files.atlas-scientific.com/pH_EZO_Datasheet.pdf)  
-[**EZO EC Circuit Datasheet**](https://files.atlas-scientific.com/EC_EZO_Datasheet.pdf)  
-[**EZO Pump Circuit Datasheet**](https://files.atlas-scientific.com/EZO_PMP_Datasheet.pdf) 
+[**EZO-pH Circuit Datasheet**](https://files.atlas-scientific.com/pH_EZO_Datasheet.pdf)  
+[**EZO-EC Circuit Datasheet**](https://files.atlas-scientific.com/EC_EZO_Datasheet.pdf)  
+[**EZO-PMP Circuit Datasheet**](https://files.atlas-scientific.com/EZO_PMP_Datasheet.pdf)  
+[**EZO-CO2 Circuit Datasheet**](https://files.atlas-scientific.com/EZO_CO2_Datasheet.pdf)  
 
 </details>

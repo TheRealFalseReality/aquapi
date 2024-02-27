@@ -1,4 +1,22 @@
-# CHANGEME: Set these variable to your liking
-title: AquaPi powered by ESPHome
-description: Powered by HomeAssistant, ESPHome and ESP Web Tools
-theme: jekyll-theme-cayman
+title: AquaPi for ESPHome
+logo: assests/AquaPiLogo_small.png
+description: Powered by HomeAssistant & ESPHome
+show_downloads: false
+google_analytics: G-BPGR2QSCVL
+# theme: jekyll-theme-minima
+remote_theme: jekyll/minima
+minima:
+  skin: dark
+author:
+  name: TheRealFalseReality
+  email: contact@capitalcityaquatics.com
+header_pages:
+  - setup.md
+  - blueprints.md
+  # - about.md
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+social_links:
+  - { platform: facebook,       user_url: "https://www.facebook.com/OfficialCapitalCityAquatics/" }
+  - { platform: github,         user_url: "https://github.com/TheRealFalseReality" }
