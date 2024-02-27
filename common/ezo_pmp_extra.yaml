@@ -1,0 +1,252 @@
+substitutions:
+  # PMP circuit, who's address is 103
+  addPMP_2: "110" # Orange
+  update_pmp: "60s"
+
+ezo_pmp:
+  - id: ezo_pump_2
+    address: ${addPMP_2}
+    update_interval: "${update_pmp}"
+
+api:
+  services: 
+    - service: pump_2_dose_volume
+      variables: 
+        dose_volume: float
+      then: 
+        - ezo_pmp.dose_volume:
+            id: ezo_pump_2
+            volume: !lambda 'return dose_volume;'
+    - service: pump_2_dose_volume_time
+      variables:
+        dose_volume: float
+        dose_time: float
+      then:
+        - ezo_pmp.dose_volume_over_time:
+            id: ezo_pump_2
+            volume: !lambda |-
+              return dose_volume;
+            duration: !lambda |-
+              return dose_time;
+    - service: pump_2_dose_flow_rate_time
+      variables:
+        dose_rate: float
+        dose_time: float
+      then:
+        - ezo_pmp.dose_with_constant_flow_rate:
+            id: ezo_pump_2
+            volume_per_minute: !lambda |-
+              return dose_rate;
+            duration: !lambda |-
+              return dose_time;
+    - service: pump_2_dose_set_calibration
+      variables:
+        actual_volume: float
+      then:
+        - ezo_pmp.set_calibration_volume:
+            id: ezo_pump_2
+            volume: !lambda |-
+              return actual_volume;
+    - service: pump_2_change_address
+      variables:
+        address: int
+      then:
+        - ezo_pmp.change_i2c_address:
+            id: ezo_pump_2
+            address: !lambda |-
+              return address;
+
+sensor:
+  - platform: ezo_pmp
+    id: ezo_pump_2
+    current_volume_dosed:
+      id: current_volume_dosed_2
+      name: Pump 2 - Current Volume Dosed
+      icon: mdi:cube-scan
+      device_class: 'volume'
+      unit_of_measurement: 'mL'
+  - platform: ezo_pmp
+    id: ezo_pump_2
+    total_volume_dosed:
+      id: total_volume_dosed_2
+      name: Pump 2 - Total Volume Dosed
+      icon: mdi:timer-sand-empty
+      device_class: 'volume'
+      unit_of_measurement: 'mL'
+      disabled_by_default: true
+  - platform: ezo_pmp
+    id: ezo_pump_2
+    absolute_total_volume_dosed:
+      id: absolute_total_volume_dosed_2
+      name: Pump 2 - Absolute Total Volume Dosed
+      icon: mdi:timer-sand-full
+      device_class: 'volume'
+      unit_of_measurement: 'mL'
+  - platform: ezo_pmp
+    id: ezo_pump_2
+    last_volume_requested:
+      id: last_volume_requested_2
+      name: Pump 2 - Last Volume Requested
+      icon: mdi:history
+      device_class: 'volume'
+      unit_of_measurement: 'mL'
+  - platform: ezo_pmp
+    id: ezo_pump_2
+    max_flow_rate:
+      id: max_flow_rate_2
+      name: Pump 2 - Max Volume/Time Flow Rate
+      icon: mdi:car-speed-limiter
+      unit_of_measurement: 'mL/min'
+  - platform: ezo_pmp
+    id: ezo_pump_2
+    pump_voltage:
+      id: pump_2_voltage
+      name: Pump 2 - Voltage
+      disabled_by_default: true
+      device_class: 'voltage'
+
+binary_sensor:
+  - platform: ezo_pmp
+    id: ezo_pump_2
+    pump_state:
+      id: pump_2_state
+      name: Pump 2 - State
+      icon: mdi:pump_2
+  - platform: ezo_pmp
+    id: ezo_pump_2
+    is_paused:
+      id: is_paused_2
+      name: Pump 2 - Paused Status
+      disabled_by_default: true
+
+text_sensor:
+  - platform: ezo_pmp
+    id: ezo_pump_2
+    dosing_mode:
+      id: dosing_mode_2
+      name: Pump 2 - Dosing Mode 
+      icon: mdi:auto-mode
+  - platform: ezo_pmp
+    id: ezo_pump_2
+    calibration_status:
+      id: calibration_status_2
+      name: Pump 2 - Calibration Status
+      # disabled_by_default: true
+      icon: mdi:tape-measure
+
+number:
+  - platform: template
+    id: volume_2
+    icon: mdi:pump_2
+    name: Pump 2 - Volume to Dose
+    device_class: 'volume'
+    unit_of_measurement: 'mL'
+    optimistic: true
+    initial_value: 10 # cannot be less than +/-0.1mL
+    min_value: -378541
+    max_value: 378541 # 100 gal
+    mode: box
+    step: 0.1
+  - platform: template
+    id: duration_2
+    icon: mdi:timer
+    name: Pump 2 - Time to Dose
+    device_class: 'duration'
+    unit_of_measurement: 'min'
+    optimistic: true
+    initial_value: 1
+    min_value: 1
+    max_value: 1440 # 24 hours
+    mode: box
+    step: 0.1
+  - platform: template
+    id: flow_rate_2
+    icon: mdi:waves-arrow-right
+    name: Pump 2 - Volume/Time Flow Rate
+    unit_of_measurement: 'mL/min'
+    optimistic: true
+    initial_value: 10
+    min_value: .5
+    max_value: 105 # may need to lower to 40
+    mode: box
+    step: 0.1
+
+button:
+  # TODO Make UI
+  - platform: template
+    name: Pump 2 - Dose Volume for Time
+    icon: mdi:clock-time-two-outline
+    id: dose_over_time_2
+    on_press:
+      - ezo_pmp.dose_volume_over_time:
+          id: ezo_pump_2
+          volume: !lambda |-
+            return id(volume).state;
+          duration: !lambda |-
+            return id(duration).state;
+  - platform: template
+    name: Pump 2 - Dose Continuously
+    icon: mdi:infinity
+    id: dose_continuously_2
+    on_press:
+      - ezo_pmp.dose_continuously:
+          id: ezo_pump_2
+  - platform: template
+    name: Pump 2 - Dose Volume
+    icon: mdi:pump_2
+    id: dose_volume_2
+    on_press:
+      - ezo_pmp.dose_volume:
+          id: ezo_pump_2
+          volume: !lambda |-
+            return id(volume).state;
+  - platform: template
+    name: Pump 2 - Dose at Volume/Time Flow Rate for Time
+    icon: mdi:format-text-wrapping-overflow
+    id: dose_flow_rate_2
+    on_press:
+      - ezo_pmp.dose_with_constant_flow_rate:
+          id: ezo_pump_2
+          volume_per_minute: !lambda |-
+            return id(flow_rate).state;
+          duration: !lambda |-
+            return id(duration).state;
+  - platform: template
+    name: Pump 2 - Pause Dosing
+    icon: mdi:pause
+    id: dose_pause_2
+    on_press:
+      - ezo_pmp.pause_dosing:
+          id: ezo_pump_2
+  - platform: template
+    name: Pump 2 - Stop Dosing
+    icon: mdi:stop
+    id: dose_stop_2
+    on_press:
+      - ezo_pmp.stop_dosing:
+          id: ezo_pump_2
+  - platform: template
+    name: Pump 2 - Clear Total Volume Dosed
+    icon: mdi:backspace
+    id: dose_clear_2
+    on_press:
+      - ezo_pmp.clear_total_volume_dosed:
+          id: ezo_pump_2
+
+  # Calibrate
+  - platform: template
+    name: Pump 2 - Set Calibration Volume
+    icon: mdi:tape-measure
+    id: dose_calibrate_volume_2
+    on_press:
+      - ezo_pmp.set_calibration_volume:
+          id: ezo_pump_2
+          volume: !lambda |-
+            return id(volume).state;
+  - platform: template
+    name: Pump 2 - Clear Calibration Volume
+    icon: mdi:cancel
+    id: dose_calibrate_volume_clear_2
+    on_press:
+      - ezo_pmp.clear_calibration:
+          id: ezo_pump_2

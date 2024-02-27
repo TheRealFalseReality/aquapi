@@ -17,6 +17,7 @@ packages:
   ezo_co2: !include common/ezo_co2.yaml
   # ezo_do: !include common/ezo_do.yaml
   ezo_pmp: !include common/ezo_pmp.yaml
+  # ezo_pmp_extra: !include common/ezo_pmp_extra.yaml
   ezo_pmp_change: !include common/ezo_pmp_change.yaml
-  ezo_commands: !include common/ezo_commands.yaml
-  debug: !include common/debug.yaml
+  # ezo_commands: !include common/ezo_commands.yaml
+  # debug: !include common/debug.yaml
