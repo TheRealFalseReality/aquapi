@@ -1,11 +1,20 @@
-# AquaPi for ESPHome [Test Branch]
-<img align="left" src="https://github.com/TheRealFalseReality/aquapi/blob/5e4a82a5755e06d9029109c4bd55601596198b7c/assests/image/AquaPi%20Logo.png" alt="drawing" style="width:150px;"/>
+# AquaPi for ESPHome
+<img align="left" src="https://github.com/TheRealFalseReality/aquapi/blob/5e4a82a5755e06d9029109c4bd55601596198b7c/assests/image/AquaPi%20Logo.png" alt="drawing" style="width:120px;"/>
 
 The Aquarium meets the Smart Home!  
 **[Setup Guide](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi)**
 
-Monitor your Aquarium's Temperature and Water Level. With EZO Circuit Boards and Probe upgrades, you can also monitor your pH, Salinity, Dissolved Oxygen and other EZO circuits and probes.  
-Powered by an [esp32](https://esphome.io/) and Controlled by [HomeAssistant](https://www.home-assistant.io/installation/). You can set alerts for anything, [make automations](https://github.com/TheRealFalseReality/aquapi/wiki/Blueprints) for auto-top-off, and make beautiful graphs of your aquarium's data.  
+AquaPi for ESPHome is a project that helps you build a powerful aquarium monitoring and automation system using affordable [ESPHome](https://esphome.io/) devices and [Home Assistant](https://www.home-assistant.io/installation/).
+Make endless automations and monitor temperature, water level, and upgrade for advanced aquarium monitoring: pH, salinity, dissolved oxygen, and more (using EZO circuits and probes).  
+
+Why use AquaPi?
+
+- **Open-source**: Freely available for anyone to access, modify, and contribute to.
+- **Modular**: Designed to be easily expanded and customized based on your specific needs.
+- **Modernized**: Utilizes the latest technologies and tools for a seamless user experience.
+- **Customizable**: Adapt the system to fit your unique aquarium setup and monitoring preferences.
+- **Affordable**: Offers a cost-effective alternative to many high-end monitoring solutions.
+- **Powerful**: Provides comprehensive monitoring capabilities for various water parameters.
 
 ### **[Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi)**
 | ![PXL_20230529_200205979](https://github.com/TheRealFalseReality/aquapi/assets/106857076/1ebcddb2-d481-48f0-9136-ca698cbe1889) | ![PXL_20240224_022516268~2](https://github.com/TheRealFalseReality/aquapi/assets/106857076/db50c972-2bbd-4c9f-9f62-fa6e62f41cf3) |
