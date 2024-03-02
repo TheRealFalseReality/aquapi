@@ -16,6 +16,14 @@ Why use AquaPi?
 ### **[Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi)**
 ![PXL_20230529_200205979](https://github.com/TheRealFalseReality/aquapi/assets/106857076/1ebcddb2-d481-48f0-9136-ca698cbe1889)
 
+## Install
+**You can typically skip this as AquaPi comes pre-installed!**  
+Use the button below to install the pre-built firmware directly to your device via USB from the browser.  
+
+<esp-web-install-button manifest="./manifest.json"></esp-web-install-button>  
+
+<script type="module" src="https://unpkg.com/esp-web-tools@9.1.0/dist/web/install-button.js?module"></script>  
+
 ## Hardware Used
 **ESP32 devkit**   
 **HomeAssistant** using a Raspberry Pi 3 or above. The more RAM, the better.  
