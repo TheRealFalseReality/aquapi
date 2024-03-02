@@ -5,11 +5,13 @@ permalink: /setup/
 ---
 ## Install
 **You can typically skip this as AquaPi comes pre-installed!**  
-Use the button below to install the pre-built firmware directly to your device via USB from the browser.  
 
-<esp-web-install-button manifest="./manifest.json"></esp-web-install-button>  
+### Easy
+Go back to [**Home**](https://therealfalsereality.github.io/aquapi/) and scroll down to ***Install*** and click the ***Connect*** button.  
 
-<script type="module" src="https://unpkg.com/esp-web-tools@9.1.0/dist/web/install-button.js?module"></script>  
+### Releases .bin
+1. Download latest .bin from [**Releases**](https://github.com/TheRealFalseReality/aquapi/releases)  
+2. Install via [**ESPHome - Web**](https://web.esphome.io/)  
 
 ## Setup AquaPi
 Follow link below for guide:  
