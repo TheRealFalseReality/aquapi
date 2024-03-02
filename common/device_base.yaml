@@ -42,9 +42,9 @@ web_server:
 
 captive_portal:
 
-# # Sets up Bluetooth LE (Only on ESP32) to allow the user to provision wifi credentials to the device.
-# esp32_improv:
-#   authorizer: none
+# Sets up Bluetooth LE (Only on ESP32) to allow the user to provision wifi credentials to the device.
+esp32_improv:
+  authorizer: none
   
 improv_serial:
 
