@@ -16,7 +16,7 @@ binary_sensor:
   # Optical Sensor - LOW (yellow)
   - platform: gpio
     id: os_low
-    disabled_by_default: true
+    # disabled_by_default: true
     pin: 
       number: ${opticalLowPin}
       inverted: true
@@ -33,7 +33,7 @@ binary_sensor:
   # Optical Sensor - HIGH (blue)
   - platform: gpio
     id: os_high
-    disabled_by_default: true
+    # disabled_by_default: true
     pin: 
       number: ${opticalHighPin}
       inverted: true
