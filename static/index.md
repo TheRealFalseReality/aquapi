@@ -52,7 +52,7 @@ Use the button below to install the pre-built firmware directly to your device v
   - Time Before Recalibration: ~10 Years
   - Life Expectancy: ~10 Years
 
-***Pump:*** Atlas Scientific Pump: [EZO-PMP](https://files.atlas-scientific.com/EZO_PMP_Datasheet.pdf)  
+***Peristaltic Dosing Pump:*** Atlas Scientific Pump: [EZO-PMP](https://files.atlas-scientific.com/EZO_PMP_Datasheet.pdf)  
   - EZO™ Pump Embedded Circuit  
   - Flow Rate: 0.5ml to 105ml/mins
   - Tube Size: 5mm
