@@ -13,6 +13,7 @@ Why use AquaPi?
 - **Modular**: Designed to be easily expanded and customized based on your specific needs.
 - **Modernized**: Utilizes the latest technologies and tools for a seamless user experience.
 - **Customizable**: Adapt the system to fit your unique aquarium setup and monitoring preferences.
+- **Versatile**: Expand the system's capabilities with your own compatible sensors and equipment.
 - **Affordable**: Offers a cost-effective alternative to many high-end monitoring solutions.
 - **Powerful**: Provides comprehensive monitoring capabilities for various water parameters.
 
