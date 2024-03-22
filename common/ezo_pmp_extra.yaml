@@ -64,6 +64,7 @@ sensor:
       name: Pump 2 - Current Volume Dosed
       icon: mdi:cube-scan
       device_class: 'volume'
+      state_class: total
       unit_of_measurement: 'mL'
   - platform: ezo_pmp
     id: ezo_pump_2
@@ -81,6 +82,7 @@ sensor:
       name: Pump 2 - Absolute Total Volume Dosed
       icon: mdi:timer-sand-full
       device_class: 'volume'
+      state_class: total
       unit_of_measurement: 'mL'
   - platform: ezo_pmp
     id: ezo_pump_2
@@ -89,6 +91,7 @@ sensor:
       name: Pump 2 - Last Volume Requested
       icon: mdi:history
       device_class: 'volume'
+      state_class: total
       unit_of_measurement: 'mL'
   - platform: ezo_pmp
     id: ezo_pump_2
