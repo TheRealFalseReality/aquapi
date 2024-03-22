@@ -10,6 +10,7 @@ Why use AquaPi?
 - **Modular**: Designed to be easily expanded and customized based on your specific needs.
 - **Modernized**: Utilizes the latest technologies and tools for a seamless user experience.
 - **Customizable**: Adapt the system to fit your unique aquarium setup and monitoring preferences.
+- **Versatile**: Expand the system's capabilities with your own compatible sensors and equipment.
 - **Affordable**: Offers a cost-effective alternative to many high-end monitoring solutions.
 - **Powerful**: Provides comprehensive monitoring capabilities for various water parameters.
 
@@ -51,7 +52,7 @@ Use the button below to install the pre-built firmware directly to your device v
   - Time Before Recalibration: ~10 Years
   - Life Expectancy: ~10 Years
 
-***Pump:*** Atlas Scientific Pump: [EZO-PMP](https://files.atlas-scientific.com/EZO_PMP_Datasheet.pdf)  
+***Peristaltic Dosing Pump:*** Atlas Scientific Pump: [EZO-PMP](https://files.atlas-scientific.com/EZO_PMP_Datasheet.pdf)  
   - EZO™ Pump Embedded Circuit  
   - Flow Rate: 0.5ml to 105ml/mins
   - Tube Size: 5mm
