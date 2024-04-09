@@ -39,6 +39,7 @@ wifi:
   ap:
   
 web_server:
+  version: 3
 
 captive_portal:
 
