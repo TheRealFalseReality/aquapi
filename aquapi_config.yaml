@@ -20,4 +20,4 @@ packages:
   # ezo_pmp_extra: !include common/ezo_pmp_extra.yaml
   ezo_pmp_change: !include common/ezo_pmp_change.yaml
   # ezo_commands: !include common/ezo_commands.yaml
-  debug: !include common/debug.yaml
+  # debug: !include common/debug.yaml
