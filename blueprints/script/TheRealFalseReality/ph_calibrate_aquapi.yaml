@@ -1,0 +1,112 @@
+blueprint:
+  name: 'Aquarium - AquaPi: Calibrate pH EZO Probe'
+  description: Calibrate pH probe for the AquaPi, an Atlas Scientific EZO board and
+    probe. Calibrate at Mid 7, Low 4 and High 10. [More Info] (v1.1.2) [Script]
+  domain: script
+  source_url: https://gist.github.com/TheRealFalseReality/f965fe88fd8b379fc37142f9376b84e6
+  input:
+    ph_sensor:
+      name: pH Sensor
+      description: 'ph Sensor to Calibrate
+
+        **AquaPi DEVICENAME ph**'
+      selector:
+        entity:
+          filter:
+          - domain:
+            - sensor
+            integration: esphome
+            device_class:
+            - ph
+          multiple: false
+    ph_selector:
+      name: pH Selector
+      description: 'ph Selector Entity from the AquaPi to Calibrate
+
+        **AquaPi DEVICENAME pH - Command Select**'
+      selector:
+        entity:
+          filter:
+          - domain:
+            - select
+            integration: esphome
+          multiple: false
+    ph_command:
+      name: pH Command
+      description: 'ph Command Entity from the AquaPi to Calibrate
+
+        **AquaPi DEVICENAME pH - Command Send Selected**'
+      selector:
+        entity:
+          filter:
+          - domain:
+            - button
+          multiple: false
+variables:
+  ph_sensor: !input ph_sensor
+  ph_selector: !input ph_selector
+  ph_command: !input ph_command
+sequence:
+- choose:
+  - conditions:
+    - condition: numeric_state
+      entity_id: !input ph_sensor
+      below: 4.1
+      above: 3.9
+    sequence:
+    - service: select.select_option
+      metadata: {}
+      data:
+        option: Calibrate @ LOW = 4 (WILL RESET CALIBRATION)
+      target:
+        entity_id: !input ph_selector
+    - service: notify.persistent_notification
+      data:
+        message: 'pH Calibrated for LOW - pH: 4. Now continue to MID - pH: 10.'
+        title: 'Calibration: Low'
+  - conditions:
+    - condition: numeric_state
+      entity_id: !input ph_sensor
+      above: 6.9
+      below: 7.1
+    sequence:
+    - service: select.select_option
+      metadata: {}
+      data:
+        option: Calibrate @ MID = 7 (WILL RESET CALIBRATION)
+      target:
+        entity_id: !input ph_selector
+    - service: notify.persistent_notification
+      data:
+        message: 'pH Calibrated for MID - pH: 7. Now continue to LOW - pH: 4.'
+        title: 'Calibration: Mid'
+  - conditions:
+    - condition: numeric_state
+      entity_id: !input ph_sensor
+      above: 9.7
+      below: 10.1
+    sequence:
+    - service: select.select_option
+      metadata: {}
+      data:
+        option: Calibrate @ HIGH = 10 (WILL RESET CALIBRATION)
+      target:
+        entity_id: !input ph_selector
+    - service: notify.persistent_notification
+      data:
+        message: 'pH Calibrated for HIGH - pH: 10. Now check calibration.'
+        title: 'Calibration: High'
+  default:
+  - service: select.select_option
+    metadata: {}
+    data:
+      option: Check Calibration
+    target:
+      entity_id: !input ph_selector
+  - service: notify.persistent_notification
+    data:
+      message: 'pH Calibration is not within range of LOW: 4, MID: 7 or HIGH: 10.
+
+        Start with Low solution, then Mid, and finish with High.'
+      title: 'Calibration: Not in Range'
+mode: restart

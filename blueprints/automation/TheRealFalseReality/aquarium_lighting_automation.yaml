@@ -1,0 +1,82 @@
+blueprint:
+  name: Aquarium - Lights Automation
+  description: Create an automation to toggle all your Aquarium Light(s) all at once
+    at a certain time, daily. When automation is run manually, light(s) will turn off. [More Info](https://community.home-assistant.io/t/aquarium-toggle-lights-at-certain-times-of-day/684862)
+    (v1.1) [Automation]
+  domain: automation
+  source_url: https://gist.github.com/TheRealFalseReality/3b7f47a0f7e957a2c162a5acd205d26b
+  input:
+    condition:
+      name: Add Condition(s)
+      description: Add conditions if needed
+      default: []
+      selector:
+        condition: {}
+    target_light:
+      name: Light Switch(es)
+      description: Light(s) to toggle.
+      selector:
+        target:
+          entity:
+          - domain:
+            - light
+    time_on:
+      name: Time On
+      description: Time to turn on lights.
+      default: '10:00:00'
+      selector:
+        time: {}
+    time_off:
+      name: Time Off
+      description: Time to turn off lights.
+      default: '18:00:00'
+      selector:
+        time: {}
+    additional_actions:
+      name: Additional Actions
+      description: Add additional actions to the script. Will execute before everything
+        else.
+      default: []
+      selector:
+        action: {}
+trigger:
+- platform: time
+  at: !input time_on
+  id: time_on
+- platform: time
+  at: !input time_off
+  id: time_off
+variables:
+  condition: !input condition
+  target_light: !input target_light
+  time_on: !input time_on
+  time_off: !input time_off
+  additional_actions: !input additional_actions
+action:
+- if:
+  - condition: !input condition
+  then:
+  - choose: []
+    default: !input additional_actions
+  - choose:
+    - conditions:
+      - condition: trigger
+        id:
+        - time_on
+      sequence:
+      - service: light.turn_on
+        data: {}
+        target: !input target_light
+    - conditions:
+      - condition: trigger
+        id:
+        - time_off
+      sequence:
+      - service: light.turn_off
+        data: {}
+        target: !input target_light
+    default:
+    - service: light.turn_off
+      data: {}
+      target: !input target_light
+mode: restart

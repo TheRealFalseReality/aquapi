@@ -1,0 +1,67 @@
+blueprint:
+  name: Notify - Send a Notification Based on Custom Trigger
+  description: This automation will send a persistent notification to Home Assistant
+    when the automation is triggered. Option to send to mobile device with Additional
+    Actions. [More Info]() (v1.1) [Automation]
+  domain: automation
+  source_url: https://gist.github.com/TheRealFalseReality/647b0b754ef85295dd68e7e06ba4f4e7
+  input:
+    trigger_additional:
+      name: Trigger(s)
+      description: Add triggers
+      default: []
+      selector:
+        trigger: {}
+    condition:
+      name: Add Condition(s)
+      description: Add conditions if needed.
+      default: []
+      selector:
+        condition: {}
+    input_title:
+      name: Notification Title
+      description: "Title of the Notification.\n Default: Notify"
+      default: '{{ title }}'
+      selector:
+        text:
+          multiple: false
+          multiline: false
+    input_message:
+      name: Notification Message
+      description: "Message of the Notification.\n Default: TRIGGER_FRIENDLYNAME is
+        SENSORSTATE\n `{{ state_attr(trigger.entity_id, 'friendly_name') }} is {{
+        trigger.to_state.state }}.`"
+      default: '{{ message }}'
+      selector:
+        text:
+          multiple: false
+          multiline: true
+    additional_actions:
+      name: Additional Actions
+      description: "Add additional actions to the script.\n - Example: To send to
+        Mobile Device using the official Home Assistant App:\n\n  Notifications ->
+        Send a notification via mobile.YOUR_DEVICE_NAME\n  ```\n  service: notify.YOUR_DEVICE_NAME\n
+        \ metadata: {}\n  data:\n    message: \"{{ message }}\"\n    title: \"{{ title
+        }}\"\n  ```\n\n  Copy {{ message }} into `message`. This will switch to \"yaml\"
+        mode. Above is a completed example.\n"
+      default: []
+      selector:
+        action: {}
+variables:
+  additional_actions: !input additional_actions
+  condition: !input condition
+  trigger_additional: !input trigger_additional
+  message: '{{ state_attr(trigger.entity_id, ''friendly_name'') }} is {{ trigger.to_state.state
+    }}.'
+  title: ' Notify '
+trigger: !input trigger_additional
+action:
+- if:
+  - condition: !input condition
+  then:
+  - service: notify.persistent_notification
+    data:
+      message: !input input_message
+      title: !input input_title
+  - choose: []
+    default: !input additional_actions
