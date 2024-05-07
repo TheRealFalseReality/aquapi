@@ -54,7 +54,7 @@ esp32_camera:
   power_down_pin: GPIO32
 
   # Image settings
-  name: My Camera
+  name: AquaPi Camera
 
 # esp32_camera_web_server:
 #   - port: 8080
@@ -62,6 +62,7 @@ esp32_camera:
 #   - port: 8081
 #     mode: snapshot
 
+# LED Control
 switch:
   - platform: gpio
     pin: 4
