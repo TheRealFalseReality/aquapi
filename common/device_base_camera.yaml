@@ -67,6 +67,7 @@ switch:
   - platform: gpio
     pin: 4
     name: "LED"
+    id: camera_led
 
 sensor:
   # Internal Temp.
@@ -123,16 +124,6 @@ text_sensor:
     # mac_address:
     #   name: Mac Address
     #   icon: mdi:chip
-
-  # Version
-  - platform: template
-    name: "Version"
-    id: app_version
-    icon: mdi:update
-    update_interval: 600s
-    lambda: |-
-      return {"${version}"};
-    entity_category: "diagnostic"
 
 button:
   # Soft Restart
