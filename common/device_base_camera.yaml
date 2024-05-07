@@ -13,6 +13,15 @@ esphome:
   project:
     name: TheRealFalseReality.aquapi
     version: "${app_version}"
+  on_boot: 
+    then:
+      - light.turn_on: camera_led
+      - delay: 150ms
+      - light.turn_off: camera_led
+      - delay: 150ms
+      - light.turn_on: camera_led
+      - delay: 150ms
+      - light.turn_off: camera_led
 
 esp32:
   board: esp32dev
@@ -62,13 +71,18 @@ esp32_camera:
 #   - port: 8081
 #     mode: snapshot
 
-# # LED Control
-# switch:
-#   - platform: gpio
-#     pin: 4
-#     name: "LED"
-#     id: camera_led
+# LED Control
+output:
+  - platform: gpio
+    pin: 4
+    id: camera_pin
 
+light:
+  - platform: binary
+    output: camera_pin
+    name: Camera LED
+    id: camera_led
+    
 sensor:
   # Internal Temp.
   - platform: internal_temperature
