@@ -62,12 +62,12 @@ esp32_camera:
 #   - port: 8081
 #     mode: snapshot
 
-# LED Control
-switch:
-  - platform: gpio
-    pin: 4
-    name: "LED"
-    id: camera_led
+# # LED Control
+# switch:
+#   - platform: gpio
+#     pin: 4
+#     name: "LED"
+#     id: camera_led
 
 sensor:
   # Internal Temp.
