@@ -49,11 +49,16 @@ web_server:
   
 improv_serial:
 
-# Internal Red LED
 light:
+# Internal Red LED
   - platform: status_led
     id: internal_led
     pin: 33
+    
+  - platform: binary
+    output: camera_pin
+    name: Camera LED
+    id: camera_led
 
 esp32_camera:
   external_clock:
@@ -82,12 +87,6 @@ output:
   - platform: gpio
     pin: 4
     id: camera_pin
-
-light:
-  - platform: binary
-    output: camera_pin
-    name: Camera LED
-    id: camera_led
     
 sensor:
   # Internal Temp.
