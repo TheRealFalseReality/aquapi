@@ -49,6 +49,12 @@ web_server:
   
 improv_serial:
 
+# Internal Red LED
+light:
+  - platform: status_led
+    id: internal_led
+    pin: 33
+
 esp32_camera:
   external_clock:
     pin: GPIO0
