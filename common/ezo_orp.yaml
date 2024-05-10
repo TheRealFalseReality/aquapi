@@ -49,7 +49,7 @@ sensor:
     accuracy_decimals: 2
     update_interval: "${update_orp}"
     state_class: "measurement"
-    device_class: VOLTAGE
+    device_class: voltage
     on_custom: 
       then:
         - lambda: 

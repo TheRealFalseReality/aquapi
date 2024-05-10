@@ -345,7 +345,7 @@ select:
       - "Output Units - Specific Gravity"
       - "Output Units - TDS"
       - "Check Calibration"
-      - "Calibrate @ 0 (WILL RESET CALIBRATION)"
+      - "Calibrate @ DRY (WILL RESET CALIBRATION)"
       - "Calibrate @ LOW = 12880 (WILL RESET CALIBRATION)"
       - "Calibrate @ HIGH = 80000 (WILL RESET CALIBRATION)"
       - "Calibrate CLEAR (WILL RESET CALIBRATION)"
