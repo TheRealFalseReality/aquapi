@@ -12,6 +12,7 @@ packages:
   binary: !include common/binary.yaml
   ezo_ph: !include common/ezo_ph.yaml
   ezo_ec: !include common/ezo_ec.yaml
+  ezo_orp: !include common/ezo_orp.yaml
   # ezo_hum: !include common/ezo_hum.yaml
   # ezo_rtd: !include common/ezo_rtd.yaml
   ezo_co2: !include common/ezo_co2.yaml
