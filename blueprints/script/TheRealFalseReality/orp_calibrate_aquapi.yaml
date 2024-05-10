@@ -3,7 +3,7 @@ blueprint:
   description: Calibrate ORP probe for the AquaPi, an Atlas Scientific
     EZO board and probe. (v1.1) [Script]
   domain: script
-  source_url: https://gist.github.com/TheRealFalseReality/f619b484d63a479004c1d6613b90df1a
+  source_url: https://github.com/TheRealFalseReality/aquapi/blob/4e0398a5e3ef6a5262ae8e70c1598208d8ee226a/blueprints/script/TheRealFalseReality/orp_calibrate_aquapi.yaml
   input:
     orp_sensor:
       name: ORP Sensor
