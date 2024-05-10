@@ -1,7 +1,7 @@
 blueprint:
   name: 'Aquarium - AquaPi: Calibrate pH EZO Probe'
   description: Calibrate pH probe for the AquaPi, an Atlas Scientific EZO board and
-    probe. Calibrate at Mid 7, Low 4 and High 10. [More Info] (v1.1.2) [Script]
+    probe. Calibrate at Mid 7, Low 4 and High 10. [More Info] (v1.1.3) [Script]
   domain: script
   source_url: https://gist.github.com/TheRealFalseReality/f965fe88fd8b379fc37142f9376b84e6
   input:

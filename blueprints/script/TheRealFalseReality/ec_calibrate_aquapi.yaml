@@ -1,7 +1,7 @@
 blueprint:
   name: 'Aquarium - AquaPi: Calibrate Conductivity EZO Probe'
   description: Calibrate Conductivity(EC) probe for the AquaPi, an Atlas Scientific
-    EZO board and probe. (v1.1) [Script]
+    EZO board and probe. (v1.1.1) [Script]
   domain: script
   source_url: https://gist.github.com/TheRealFalseReality/f619b484d63a479004c1d6613b90df1a
   input:
@@ -16,6 +16,8 @@ blueprint:
           - domain:
             - sensor
             integration: esphome
+            device_class:
+            - volatile_organic_compounds_parts
           multiple: false
     ec_selector:
       name: Conductivity Selector
@@ -41,31 +43,31 @@ blueprint:
             - button
             integration: esphome
           multiple: false
-    condition:
-      name: Add Condition(s)
-      description: Add conditions if needed.
-      default: []
-      selector:
-        condition: {}
-    additional_actions:
-      name: Additional Action(s)
-      description: Add additional actions to the script if wanted. Will execute before
-        everything else.
-      default: []
-      selector:
-        action: {}
+    # condition:
+    #   name: Add Condition(s)
+    #   description: Add conditions if needed.
+    #   default: []
+    #   selector:
+    #     condition: {}
+    # additional_actions:
+    #   name: Additional Action(s)
+    #   description: Add additional actions to the script if wanted. Will execute before
+    #     everything else.
+    #   default: []
+    #   selector:
+    #     action: {}
 variables:
-  condition: !input condition
-  additional_actions: !input additional_actions
+  # condition: !input condition
+  # additional_actions: !input additional_actions
   ec_sensor: !input ec_sensor
   ec_selector: !input ec_selector
   ec_command: !input ec_command
 sequence:
 - if:
-  - condition: !input condition
-  then:
-  - choose: []
-    default: !input additional_actions
+  # - condition: !input condition
+  # then:
+  # - choose: []
+  #   default: !input additional_actions
   - choose:
     - conditions:
       - condition: numeric_state
@@ -75,12 +77,12 @@ sequence:
       - service: select.select_option
         metadata: {}
         data:
-          option: Calibrate @ 0 (WILL RESET CALIBRATION)
+          option: Calibrate @ DRY (WILL RESET CALIBRATION)
         target:
           entity_id: !input ec_selector
       - service: notify.persistent_notification
         data:
-          message: EC - Conductivity Calibrated for AIR - 0 mS/cm. Now continue to
+          message: EC - Conductivity Calibrated for DRY/AIR - 0 mS/cm. Now continue to
             LOW - 12.88 mS/cm.
           title: 'EC Calibration: Air'
     - conditions:

@@ -1,0 +1,154 @@
+substitutions:
+  # ORP circuit, who's address is 99
+  addORP: "98"
+  update_orp: "60s"
+
+api:
+  services: 
+    - service: orp_read_continous
+      variables:
+        time: int
+      then:
+      - repeat:
+          count: !lambda return time;
+          then:
+          - button.press: read_orp
+          - delay: 1s
+    - service: orp_calibrate_225
+      then:
+      - lambda: |-
+          id(orp_ezo).send_custom(Cal,225);
+    - service: orp_calibrate_custom
+      variables:
+        value: int
+      then:
+      - lambda: |-
+          id(orp_ezo).send_custom(Cal,'{{ value }}');
+    - service: ezo_orp_custom_command
+      variables:
+        command: string
+      then:
+        - lambda: |-
+            id(orp_ezo).send_custom(command);
+
+esphome:
+  on_boot: 
+    priority: 200
+    then:
+      - button.press: send_selected_orp
+
+sensor:
+  # EZO Circuits (yellow - SCL/RX, blue - SDA/TX)
+  # EZO Circuit - ORP
+  - platform: ezo
+    icon: mdi:react
+    name: "ORP"
+    id: orp_ezo
+    address: ${addORP}
+    unit_of_measurement: mV
+    accuracy_decimals: 2
+    update_interval: "${update_orp}"
+    state_class: "measurement"
+    device_class: voltage
+    on_custom: 
+      then:
+        - lambda: 
+            id(result_orp).publish_state(x);
+    on_calibration: 
+      then:
+        - lambda: 
+            id(result_orp).publish_state(x);
+    on_device_information: 
+      then:
+        - lambda: 
+            id(result_orp).publish_state(x);
+    on_slope: 
+      then:
+        - lambda: 
+            id(result_orp).publish_state(x);
+    on_t: 
+      then:
+        - lambda: 
+            id(result_orp).publish_state(x); 
+
+text_sensor:
+  # Selected Command Result - ORP
+  - platform: template
+    name: ORP - Command Result
+    icon: mdi:data-matrix
+    id: result_orp
+    # disabled_by_default: true
+
+button:
+  # Read ORP Probe
+  - platform: template
+    name: ORP - Read
+    id: read_orp
+    icon: mdi:read
+    entity_category: "Config"
+    # disabled_by_default: true
+    on_press:
+      then:
+        - lambda: |-
+            byte error;
+            id(orp_ezo).send_custom("R");
+            error = Wire.endTransmission();
+            if (error == 0) {
+              id(orp_ezo).send_custom("R");
+            }
+            else {
+              ESP_LOGW("custom_orp_read", "No ORP sensor detected at address: ${addORP}!!");
+            }
+
+  # Send Selected EZO Command - ORP
+  - platform: template
+    name: ORP - Command Send Selected
+    id: send_selected_orp
+    entity_category: "Config"
+    # disabled_by_default: true
+    on_press:
+      then:
+        - lambda: |-
+            if (id(select_command_orp).state == "Read") {
+              id(orp_ezo).send_custom("R");
+            }
+            // Get Device Firmware Version
+            if (id(select_command_orp).state == "Information") {
+              id(orp_ezo).get_device_information();
+            }
+            if (id(select_command_orp).state == "Status") {
+              id(orp_ezo).send_custom("Status");
+            }
+            if (id(select_command_orp).state == "Check Calibration") {
+              id(orp_ezo).get_calibration();
+            }  
+            if (id(select_command_orp).state == "Calibrate @ 225 mV (WILL RESET CALIBRATION)") {
+              id(orp_ezo).send_custom(Cal,225);
+            }
+            if (id(select_command_orp).state == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
+              id(orp_ezo).clear_calibration();
+            }
+            else {
+              id(orp_ezo).send_custom("R");
+            }
+
+
+select:
+  - platform: template
+    name: ORP - Command Select
+    id: select_command_orp
+    optimistic: true
+    # disabled_by_default: true
+    entity_category: "Config"
+    options:
+      - "Read"
+      - "Information"
+      - "Status"
+      - "Check Calibration"
+      - "Calibrate @ 225 mV (WILL RESET CALIBRATION)"
+      - "Calibrate CLEAR (WILL RESET CALIBRATION)"
+    initial_option: "Check Calibration"
+    set_action:
+      - logger.log:
+          format: "Chosen option: %s"
+          args: ["x.c_str()"]
