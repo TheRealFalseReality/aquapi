@@ -3,7 +3,7 @@ substitutions:
   name: "aquapi"
   friendly_name: "AquaPi"
   # App Version - Updated: 1/2024
-  app_version: "1.7"
+  app_version: "1.7.1"
 
 packages:
   device_base: !include common/device_base.yaml
@@ -19,6 +19,6 @@ packages:
   # ezo_do: !include common/ezo_do.yaml
   ezo_pmp: !include common/ezo_pmp.yaml
   # ezo_pmp_extra: !include common/ezo_pmp_extra.yaml
-  ezo_pmp_change: !include common/ezo_pmp_change.yaml
+  ezo_pmp_duo_1: !include common/ezo_pmp_duo_1.yaml
   # ezo_commands: !include common/ezo_commands.yaml
   # debug: !include common/debug.yaml
