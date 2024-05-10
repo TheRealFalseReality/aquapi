@@ -1,0 +1,224 @@
+blueprint:
+  name: 'Aquarium - AquaPi: Water Change'
+  description: 'Turn on two AquaPi EZO Pumps to simultaneously remove waste water
+    (Red) and add clean water (Green) daily, in gallons, per month.
+
+    **Note, this automation will fail if the calculated flow rate exceeds either of
+    the EZO Pump''s Max Volume/Time Flow Rates.** [More Info]() (v1) [Automation]'
+  domain: automation
+  source_url: https://gist.github.com/TheRealFalseReality/87fc1893eb345d8ac5bf340848b9f6ca
+  input:
+    condition:
+      name: Add Condition(s)
+      description: Add conditions if needed.
+      default: []
+      selector:
+        condition: {}
+    aquarium_name:
+      name: Aquarium Name
+      description: Name of the Aquarium for the water change (Marine Aquarium).
+      selector:
+        text:
+          multiple: false
+          multiline: false
+    pump_waste_button:
+      name: AquaPi Dose Pump for Waste Water
+      description: Select the **AquaPi DEVICENAME Pump Waste - Dose Volume for Time**
+        button.
+      selector:
+        entity:
+          filter:
+          - domain:
+            - button
+            integration: esphome
+          multiple: false
+    pump_waste_volume:
+      name: AquaPi Dose Pump Volume Input for Waste Water
+      description: Select the **AquaPi DEVICENAME Pump Waste - Volume to Dose** input
+        number entity.
+      selector:
+        entity:
+          filter:
+          - domain:
+            - number
+            integration: esphome
+          multiple: false
+    pump_waste_time:
+      name: AquaPi Dose Pump Time Input for Waste Water
+      description: Select the **AquaPi DEVICENAME Pump Waste - Time to Dose** input
+        number entity.
+      selector:
+        entity:
+          filter:
+          - domain:
+            - number
+            integration: esphome
+          multiple: false
+    pump_clean_button:
+      name: AquaPi Dose Pump for Clean Water
+      description: Select the **AquaPi DEVICENAME Pump Clean - Dose Volume for Time**
+        button.
+      selector:
+        entity:
+          filter:
+          - domain:
+            - button
+            integration: esphome
+          multiple: false
+    pump_clean_volume:
+      name: AquaPi Dose Pump Volume Input for Clean Water
+      description: Select the **AquaPi DEVICENAME Pump Clean - Volume to Dose** input
+        number entity.
+      selector:
+        entity:
+          filter:
+          - domain:
+            - number
+            integration: esphome
+          multiple: false
+    pump_clean_time:
+      name: AquaPi Dose Pump Time Input for Clean Water
+      description: Select the **AquaPi DEVICENAME Pump Clean - Time to Dose** input
+        number entity.
+      selector:
+        entity:
+          filter:
+          - domain:
+            - number
+            integration: esphome
+          multiple: false
+    change_volume_monthly:
+      name: Water Change Volume Montly
+      description: "Volume to change every month. Max: 100 gallons.\n Recommended
+        10 - 15% monthly water change.\n ***Example: 120 gallon aquarium at 10% water
+        change every month. 120gal x 0.10 = 12gal a month.***"
+      selector:
+        number:
+          min: 0.1
+          max: 100.0
+          step: 0.1
+          unit_of_measurement: gal
+          mode: box
+    time_start:
+      name: Time to Start
+      description: Time to start the Water Change every day.
+      default: '10:00:00'
+      selector:
+        time: {}
+    change_time:
+      name: Water Change Over Time
+      description: Change the water amount over this time in hours every day.
+      default: 8
+      selector:
+        number:
+          min: 4.0
+          max: 23.0
+          step: 1.0
+          unit_of_measurement: hours
+          mode: slider
+    notify:
+      name: Persistent Notification
+      description: Notify Home Assistant when script is executed.
+      default: true
+      selector:
+        boolean: {}
+    additional_actions:
+      name: Additional Actions
+      description: "Add additional actions to the script. Will execute before everything
+        else.\n- Example: To send to Mobile Device using the official Home Assistant
+        App:\n\n  Notifications -> Send a notification via mobile.YOUR_DEVICE_NAME\n
+        \ ```\n  service: notify.YOUR_DEVICE_NAME\n  metadata: {}\n  data:\n    message:
+        \"{{ message }}\"\n    title: \"{{ title }}\"\n  ```\n\n  Copy {{ message
+        }} into `message`. This will switch to \"yaml\" mode. Above is a completed
+        example.\n"
+      default: []
+      selector:
+        action: {}
+trigger:
+- platform: time
+  at: !input time_start
+variables:
+  condition: !input condition
+  pump_waste_button: !input pump_waste_button
+  pump_clean_button: !input pump_clean_button
+  pump_clean_volume: !input pump_clean_volume
+  pump_waste_volume: !input pump_waste_volume
+  pump_clean_time: !input pump_clean_time
+  pump_waste_time: !input pump_waste_time
+  change_time: !input change_time
+  time_start: !input time_start
+  change_volume_monthly: !input change_volume_monthly
+  change_volume: '{{ (change_volume_monthly * 3) / 91 }}'
+  aquarium_name: !input aquarium_name
+  additional_actions: !input additional_actions
+  notify: !input notify
+  calculated_time: '{{ change_time * 60 }}'
+  calculated_volume: '{{ change_volume * 3785.41 }}'
+  calculated_flow_rate: '{{ change_volume / change_time }}'
+  calculated_flow_rate_metric: '{{ calculated_volume / calculated_time }}'
+  title: '{{ aquarium_name }} Water Change'
+  message: 'Changing {{ change_volume | float | round(2, default=2) }} gal of {{ aquarium_name
+    }} water for {{ change_time }} hours at {{ calculated_flow_rate | float | round(2,
+    default=2) }} gal/hr ({{ calculated_flow_rate_metric | float | round(2, default=2)}}
+    mL/min). Monthly Water Change Amount: {{ change_volume_monthly }} gallons.'
+  title_fail: '{{ aquarium_name }} Water Change Failed'
+  message_fail: "Failed to dose {{ aquarium_name }} due to conditions not passing.\n
+    Conditions: {{ condition }}"
+  title_fail_rate: '{{ aquarium_name }} Water Change Failed'
+  message_fail_rate: '{{ calculated_flow_rate_metric | float | round(2, default=2)}}
+    mL/min is greater than the typical Volume/Time flow rate (50 mL/min), for accuracy,
+    the automation may not execute.'
+action:
+- if:
+  - condition: !input condition
+  then:
+  - choose: []
+    default: !input additional_actions
+  - service: number.set_value
+    entity_id:
+    - !input pump_clean_volume
+    - !input pump_waste_volume
+    data:
+      value: '{{ calculated_volume }}'
+  - service: number.set_value
+    entity_id:
+    - !input pump_clean_time
+    - !input pump_waste_time
+    data:
+      value: '{{ calculated_time }}'
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 100
+  - service: button.press
+    metadata: {}
+    data: {}
+    entity_id:
+    - !input pump_waste_button
+    - !input pump_clean_button
+  - if:
+    - condition: template
+      value_template: '{{ notify }}'
+    then:
+    - service: notify.persistent_notification
+      data:
+        message: '{{ message }}'
+        title: '{{ title }}'
+    - if:
+      - condition: template
+        value_template: '{{ calculated_flow_rate_metric > 50 }}'
+      then:
+      - service: notify.persistent_notification
+        data:
+          message: '{{ message_fail_rate }}'
+          title: '{{ title_fail_rate }}'
+  else:
+  - if:
+    - condition: template
+      value_template: '{{ notify }}'
+    then:
+    - service: notify.persistent_notification
+      data:
+        message: '{{ message_fail }}'
+        title: '{{ title_fail }}'

@@ -1,0 +1,79 @@
+blueprint:
+  name: Notify - Mobile Device
+  description: Send notification to mobile device. (v1) [Script]
+  domain: script
+  source_url: https://gist.github.com/TheRealFalseReality/34b7108f7a1c4ab32eba123894c7358e
+  input:
+    condition:
+      name: Add Condition(s)
+      description: Add conditions if needed
+      default: []
+      selector:
+        condition: {}
+    notify_device:
+      name: Device to notify
+      description: Device needs to run the official Home Assistant app to receive
+        notifications
+      selector:
+        device:
+          integration: mobile_app
+          multiple: false
+    title:
+      selector:
+        text:
+          multiline: false
+          multiple: false
+      name: Title
+      description: Enter a title for the notification.
+    message:
+      selector:
+        text:
+          multiline: true
+          multiple: false
+      name: Message
+      description: Enter a message for the notification.
+    delay_notification:
+      name: Notification Delay (Optional)
+      description: Wait before sending another notification.
+      default: 0
+      selector:
+        duration: {}
+    clickaction_url:
+      name: URL to navigate to. (Optional)
+      description: The URL to navigate to when clicking on the notification.
+      default: /lovelace/
+      selector:
+        text:
+          multiple: false
+          multiline: false
+    additional_actions:
+      name: Additional Action(s)
+      description: Add additional actions to the script if wanted. Will execute before
+        everything else.
+      default: []
+      selector:
+        action: {}
+variables:
+  condition: !input condition
+  notify_device: !input notify_device
+  title: !input title
+  message: !input message
+  clickaction_url: !input clickaction_url
+  additional_actions: !input additional_actions
+  delay_notification: !input delay_notification
+sequence:
+- if:
+  - condition: !input condition
+  then:
+  - choose: []
+    default: !input additional_actions
+  - device_id: !input notify_device
+    domain: mobile_app
+    type: notify
+    message: '{{ message }}'
+    title: '{{ title }}'
+    data:
+      url: '{{ url }}'
+      clickAction: '{{ url }}'
+  - delay: !input delay_notification
+mode: single

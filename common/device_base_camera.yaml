@@ -1,0 +1,167 @@
+substitutions:
+  # Import Config
+  import_config: "false"
+  # Logger Level - Can use VERBOSE for more information in Logs
+  logger: "DEBUG"
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  # Automatically add the mac address to the name
+  name_add_mac_suffix: true
+  comment: "AquaPiCam ESP32 - Aquarium Camera"
+  project:
+    name: TheRealFalseReality.aquapi
+    version: "${app_version}"
+  on_boot: 
+    then:
+      - light.turn_on: camera_led
+      - delay: 150ms
+      - light.turn_off: camera_led
+      - delay: 150ms
+      - light.turn_on: camera_led
+      - delay: 150ms
+      - light.turn_off: camera_led
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+dashboard_import:
+  package_import_url: github://TheRealFalseReality/aquapi/aquapi_camera_config.yaml@main
+  import_full_config: ${import_config}
+
+# Enable logging
+logger:
+  level: "${logger}"
+
+api:
+
+ota:
+
+wifi: 
+  ap:
+
+captive_portal:
+
+web_server:
+  
+improv_serial:
+
+light:
+# Internal Red LED
+  - platform: status_led
+    id: internal_led
+    pin: 33
+    
+  - platform: binary
+    output: camera_pin
+    name: Camera LED
+    id: camera_led
+
+esp32_camera:
+  external_clock:
+    pin: GPIO0
+    frequency: 20MHz
+  i2c_pins:
+    sda: GPIO26
+    scl: GPIO27
+  data_pins: [GPIO5, GPIO18, GPIO19, GPIO21, GPIO36, GPIO39, GPIO34, GPIO35]
+  vsync_pin: GPIO25
+  href_pin: GPIO23
+  pixel_clock_pin: GPIO22
+  power_down_pin: GPIO32
+
+  # Image settings
+  name: AquaPi Camera
+
+# esp32_camera_web_server:
+#   - port: 8080
+#     mode: stream
+#   - port: 8081
+#     mode: snapshot
+
+# LED Control
+output:
+  - platform: gpio
+    pin: 4
+    id: camera_pin
+    
+sensor:
+  # Internal Temp.
+  - platform: internal_temperature
+    name: "Internal Temperature"
+
+  # Wifi Signal 
+  - platform: wifi_signal # Reports the WiFi signal strength/RSSI in dB
+    # name: "WiFi Signal dB"
+    id: wifi_signal_db
+    update_interval: 60s
+    entity_category: "diagnostic"
+
+  # Wifi %
+  - platform: copy # Reports the WiFi signal strength in %
+    source_id: wifi_signal_db
+    name: "WiFi Signal Strength"
+    filters:
+      - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
+    unit_of_measurement: "%"
+    entity_category: "diagnostic"
+
+    # Uptime sensor
+  - platform: uptime
+    name: Uptime 
+
+binary_sensor:
+  # API Status
+  - platform: status
+    name: "Status"
+
+text_sensor: 
+  # Hostname
+  - platform: template
+    name: "Hostname"
+    id: hostname
+    icon: mdi:cellphone-arrow-down
+    lambda: |-
+      return {"${name}"};
+    entity_category: "diagnostic"
+
+  # Wifi Info
+  - platform: wifi_info
+    ip_address:
+      name: IP Address
+      icon: mdi:ip-network
+    ssid:
+      name: Connected SSID
+      icon: mdi:wifi-arrow-left-right
+    # bssid:
+    #   name: Connected BSSID
+    #   icon: mdi:wifi-star
+    #   disabled_by_default: true
+    # mac_address:
+    #   name: Mac Address
+    #   icon: mdi:chip
+
+button:
+  # Soft Restart
+  - platform: restart
+    id: restart_button
+    name: "Restart"
+
+  # # Factory Reset
+  # - platform: factory_reset
+  #   name: Factory Reset (USE WITH CAUTION)
+  #   disabled_by_default: true
+
+  # # Safe Mode Restart
+  # - platform: safe_mode
+  #   name: "Restart in Safe Mode"
+  #   id: restart_safe
+
+  # # Shutdown
+  # - platform: shutdown
+  #   name: "Shutdown"
+  #   disabled_by_default: true
+  #   id: shutdown_button
