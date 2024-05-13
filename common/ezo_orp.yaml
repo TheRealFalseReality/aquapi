@@ -123,7 +123,7 @@ button:
               id(orp_ezo).get_calibration();
             }  
             if (id(select_command_orp).state == "Calibrate @ 225 mV (WILL RESET CALIBRATION)") {
-              id(orp_ezo).send_custom(Cal,225);
+              id(orp_ezo).send_custom("Cal,225");
             }
             if (id(select_command_orp).state == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(orp_ezo).clear_calibration();

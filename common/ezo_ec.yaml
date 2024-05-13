@@ -308,13 +308,13 @@ button:
               id(ec_ezo).get_calibration();
             }  
             if (id(select_command_ec).state == "Calibrate @ DRY (WILL RESET CALIBRATION)") {
-              id(ec_ezo).send_custom(Cal,dry);
+              id(ec_ezo).send_custom("Cal,dry");
             }
             if (id(select_command_ec).state == "Calibrate @ LOW = 12880 (WILL RESET CALIBRATION)") {
-              id(ec_ezo).send_custom(Cal,low,12880);
+              id(ec_ezo).send_custom("Cal,low,12880");
             }
             if (id(select_command_ec).state == "Calibrate @ HIGH = 80000 (WILL RESET CALIBRATION)") {
-              id(ec_ezo).send_custom(Cal,high,80000);
+              id(ec_ezo).send_custom("Cal,high,80000");
             }
             if (id(select_command_ec).state == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(ec_ezo).clear_calibration();
