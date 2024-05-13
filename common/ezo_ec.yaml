@@ -18,15 +18,15 @@ api:
     - service: ec_calibrate_dry
       then:
       - lambda: |-
-          id(ec_ezo).send_custom(Cal,dry);
+          id(ec_ezo).send_custom("Cal,dry");
     - service: ec_calibrate_low
       then:
       - lambda: |-
-          id(ec_ezo).send_custom(Cal,low,12880);
+          id(ec_ezo).send_custom("Cal,low,12880");
     - service: ec_calibrate_high
       then:
       - lambda: |-
-          id(ec_ezo).send_custom(Cal,high,80000);
+          id(ec_ezo).send_custom("Cal,high,80000");
     # - service: ec_calibrate_custom
     #   variables:
     #     value: int

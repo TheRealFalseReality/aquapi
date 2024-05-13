@@ -17,7 +17,7 @@ api:
     - service: orp_calibrate_225
       then:
       - lambda: |-
-          id(orp_ezo).send_custom(Cal,225);
+          id(orp_ezo).send_custom("Cal,225");
     # - service: orp_calibrate_custom
     #   variables:
     #     value: int
