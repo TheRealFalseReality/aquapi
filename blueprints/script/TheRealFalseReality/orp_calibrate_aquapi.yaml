@@ -1,7 +1,7 @@
 blueprint:
   name: 'Aquarium - AquaPi: Calibrate ORP EZO Probe'
   description: Calibrate ORP probe for the AquaPi, an Atlas Scientific
-    EZO board and probe. (v1.1) [Script]
+    EZO board and probe. (v1.2) [Script]
   domain: script
   source_url: https://github.com/TheRealFalseReality/aquapi/blob/4e0398a5e3ef6a5262ae8e70c1598208d8ee226a/blueprints/script/TheRealFalseReality/orp_calibrate_aquapi.yaml
   input:
@@ -43,7 +43,17 @@ blueprint:
             - button
             integration: esphome
           multiple: false
-variables:
+    orp_calibrate:
+      name: OPR Calibration Value
+      description: Solution value to calibrate ORP probe. (default = 225 mV)
+      unit_of_measurement: mV
+      mode: box
+      default: 225
+      selector:
+        number:
+          min: 0
+          max: 1000
+variables: 
   orp_sensor: !input orp_sensor
   orp_selector: !input orp_selector
   orp_command: !input orp_command
