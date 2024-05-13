@@ -7,10 +7,10 @@ api:
   services: 
     - service: orp_read_continous
       variables:
-        time: int
+        seconds: int
       then:
       - repeat:
-          count: !lambda return time;
+          count: !lambda return seconds;
           then:
           - button.press: read_orp
           - delay: 1s
