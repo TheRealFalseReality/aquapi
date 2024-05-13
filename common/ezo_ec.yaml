@@ -33,12 +33,12 @@ api:
     #   then:
     #   - lambda: |-
     #       id(ec_ezo).send_custom(Cal,value);
-    # - service: ezo_ec_custom_command
-    #   variables:
-    #     command: string
-    #   then:
-    #     - lambda: |-
-    #         id(ec_ezo).send_custom(command);
+    - service: ezo_ec_custom_command
+      variables:
+        command: string
+      then:
+        - lambda: |-
+            id(ec_ezo).send_custom('{{ command }}');
           
 esphome:
     on_boot: 
