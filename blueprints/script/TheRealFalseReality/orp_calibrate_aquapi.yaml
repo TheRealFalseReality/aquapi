@@ -46,17 +46,18 @@ blueprint:
     orp_calibrate:
       name: OPR Calibration Value
       description: Solution value to calibrate ORP probe. (default = 225 mV)
-      unit_of_measurement: mV
-      mode: box
       default: 225
       selector:
         number:
+          unit_of_measurement: "mV"
+          mode: box
           min: 0
           max: 1000
 variables: 
   orp_sensor: !input orp_sensor
   orp_selector: !input orp_selector
   orp_command: !input orp_command
+  orp_calibrate: !input orp_calibrate
 sequence:
   - choose:
     - conditions:
