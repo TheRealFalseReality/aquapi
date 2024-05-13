@@ -18,18 +18,18 @@ api:
       then:
       - lambda: |-
           id(orp_ezo).send_custom(Cal,225);
-    - service: orp_calibrate_custom
-      variables:
-        value: int
-      then:
-      - lambda: |-
-          id(orp_ezo).send_custom(Cal,'{{ value }}');
-    - service: ezo_orp_custom_command
-      variables:
-        command: string
-      then:
-        - lambda: |-
-            id(orp_ezo).send_custom(command);
+    # - service: orp_calibrate_custom
+    #   variables:
+    #     value: int
+    #   then:
+    #   - lambda: |-
+    #       id(orp_ezo).send_custom(Cal,value);
+    # - service: ezo_orp_custom_command
+    #   variables:
+    #     command: string
+    #   then:
+    #     - lambda: |-
+    #         id(orp_ezo).send_custom(command);
 
 esphome:
   on_boot: 

@@ -14,24 +14,24 @@ api:
           then:
           - button.press: read_ph
           - delay: 1s
-    - service: ph_calibrate_mid
+    - service: ph_calibrate_mid_7
       then:
       - lambda: |-
           id(ph_ezo).set_calibration_point_mid(7.00);
-    - service: ph_calibrate_low
+    - service: ph_calibrate_low_4
       then:
       - lambda: |-
           id(ph_ezo).set_calibration_point_low(4.00);
-    - service: ph_calibrate_high
+    - service: ph_calibrate_high_10
       then:
       - lambda: |-
           id(ph_ezo).set_calibration_point_high(10.00);
-    - service: ezo_ph_custom_command
-      variables:
-        command: string
-      then:
-        - lambda: |-
-            id(ph_ezo).send_custom(command);
+    # - service: ezo_ph_custom_command
+    #   variables:
+    #     command: string
+    #   then:
+    #     - lambda: |-
+    #         id(ph_ezo).send_custom(command);
 
 esphome:
   on_boot: 

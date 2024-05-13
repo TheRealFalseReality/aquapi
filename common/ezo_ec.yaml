@@ -27,18 +27,18 @@ api:
       then:
       - lambda: |-
           id(ec_ezo).send_custom(Cal,high,80000);
-    - service: ec_calibrate_custom
-      variables:
-        value: int
-      then:
-      - lambda: |-
-          id(ec_ezo).send_custom(Cal,'{{ value }}');
-    - service: ezo_ec_custom_command
-      variables:
-        command: string
-      then:
-        - lambda: |-
-            id(ec_ezo).send_custom(command);
+    # - service: ec_calibrate_custom
+    #   variables:
+    #     value: int
+    #   then:
+    #   - lambda: |-
+    #       id(ec_ezo).send_custom(Cal,value);
+    # - service: ezo_ec_custom_command
+    #   variables:
+    #     command: string
+    #   then:
+    #     - lambda: |-
+    #         id(ec_ezo).send_custom(command);
           
 esphome:
     on_boot: 
