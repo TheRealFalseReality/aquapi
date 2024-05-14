@@ -6,7 +6,7 @@ blueprint:
     **Note, this script will fail if the calculated flow rate exceeds either of the
     EZO Pump''s Max Volume/Time Flow Rates.** [More Info]() (v1) [Script]'
   domain: script
-  source_url: https://gist.github.com/TheRealFalseReality/d01e00f94e1b25c9b723b12757d45f58
+  source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/script/TheRealFalseReality/aquapi_water_change_script.yaml
   input:
     condition:
       name: Add Condition(s)
