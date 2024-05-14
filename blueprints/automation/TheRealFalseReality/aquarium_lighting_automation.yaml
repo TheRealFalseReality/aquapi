@@ -4,7 +4,7 @@ blueprint:
     at a certain time, daily. When automation is run manually, light(s) will turn off. [More Info](https://community.home-assistant.io/t/aquarium-toggle-lights-at-certain-times-of-day/684862)
     (v1.1) [Automation]
   domain: automation
-  source_url: https://gist.github.com/TheRealFalseReality/3b7f47a0f7e957a2c162a5acd205d26b
+  source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/automation/TheRealFalseReality/aquarium_lighting_automation.yaml
   input:
     condition:
       name: Add Condition(s)
