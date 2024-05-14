@@ -1,7 +1,7 @@
 blueprint:
   name: 'Aquarium - AquaPi: Calibrate Conductivity EZO Probe'
   description: Calibrate Conductivity(EC) probe for the AquaPi, an Atlas Scientific
-    EZO board and probe. (v1.1.2) [Script]
+    EZO board and probe, at Dry, Low (12.88 mS/cm) and High (80 mS/cm). (v1.1.2) [Script]
   domain: script
   source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/script/TheRealFalseReality/ec_calibrate_aquapi.yaml
   input:
@@ -68,7 +68,7 @@ sequence:
       data:
         message: EC - Conductivity Calibrated for DRY/AIR - 0 mS/cm. Now continue to
           LOW - 12.88 mS/cm.
-        title: 'EC Calibration: Air'
+        title: 'EC Calibration: Dry'
   - conditions:
     - condition: numeric_state
       entity_id: !input ec_sensor
