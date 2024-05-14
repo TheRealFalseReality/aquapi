@@ -1,0 +1,883 @@
+type: custom:layout-card
+layout_type: custom:vertical-layout
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:mushroom-title-card
+        title: Current Status & History
+        subtitle: ''
+      - type: vertical-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - show_state: true
+                show_name: true
+                camera_view: auto
+                type: picture-entity
+                entity: sensor.aquapi_marine_temperature
+                image: /local/custom/PXL_20230606_162534564.jpg
+                name: Marine
+                tap_action:
+                  action: more-info
+              - type: custom:auto-entities
+                card:
+                  type: custom:mushroom-chips-card
+                  alignment: center
+                card_param: chips
+                filter:
+                  include:
+                    - entity_id: '*marine_temperature_2'
+                      options:
+                        type: entity
+                        tap_action:
+                          action: more-info
+                    - entity_id: '*marine_ph'
+                      options:
+                        type: entity
+                        tap_action:
+                          action: more-info
+                    - entity_id: '*marine_salinity'
+                      options:
+                        type: entity
+                        tap_action:
+                          action: more-info
+                    - name: '*Marine: Ammonia'
+                      options:
+                        type: entity
+                        tap_action:
+                          action: more-info
+                    - name: '*Marine: Nitrite'
+                      options:
+                        type: entity
+                        tap_action:
+                          action: more-info
+                    - name: '*Marine: Nitrate'
+                      options:
+                        type: entity
+                        tap_action:
+                          action: more-info
+                    - name: '*Marine: Phosphate'
+                      options:
+                        type: entity
+                        tap_action:
+                          action: more-info
+                    - name: '*Marine: Calcium'
+                      options:
+                        type: entity
+                        tap_action:
+                          action: more-info
+                    - name: '*Marine: Carbonate Hardness'
+                      options:
+                        type: entity
+                        tap_action:
+                          action: more-info
+                  exclude:
+                    - state: unavailable
+                    - state: unknown
+                    - state: Unknown
+                    - hidden_by: user
+                    - hidden_by: integration
+                    - entity_id: '*internal*'
+                show_empty: true
+                sort: {}
+              - type: custom:auto-entities
+                card:
+                  type: entities
+                  header:
+                    type: buttons
+                    entities:
+                      - entity: script.aquarium_feed
+                        name: Feed
+                      - entity: switch.plug1
+                        name: Dose Trace
+                      - entity: switch.plug2
+                        name: Skimmer
+                filter:
+                  include:
+                    - entity_id: '*marine_temperature_range'
+                      options:
+                        name: Temperature Range
+                        tap_action:
+                          action: more-info
+                        secondary_info: last-changed
+                    - entity_id: '*marine_heater_state*'
+                      options:
+                        name: Heater
+                        tap_action:
+                          action: more-info
+                        secondary_info: last-changed
+                    - entity_id: '*marine_heater_on*'
+                      options:
+                        name: Heater Time On Today
+                        tap_action:
+                          action: more-info
+                        secondary_info: last-changed
+                    - entity_id: '*marine_skimmer_container*'
+                      options:
+                        name: Skimmer Container
+                        tap_action:
+                          action: more-info
+                        secondary_info: last-changed
+                    - entity_id: '*marine_ato_state*'
+                      options:
+                        name: ATO
+                        tap_action:
+                          action: more-info
+                        secondary_info: last-changed
+                    - entity_id: '*marine_ato_on*'
+                      options:
+                        name: ATO On Today
+                        tap_action:
+                          action: more-info
+                        secondary_info: last-changed
+                    - entity_id: '*marine_water_level'
+                      options:
+                        name: Water Level
+                        tap_action:
+                          action: more-info
+                        secondary_info: last-changed
+                    - entity_id: '*marine_water_hardness'
+                      options:
+                        name: Water Hardness
+                        tap_action:
+                          action: more-info
+                        secondary_info: last-changed
+                    - name: '*Marine: Marine Trace Doser State'
+                      options:
+                        name: Marine Trace Doser
+                        tap_action:
+                          action: more-info
+                        secondary_info: last-changed
+                    - name: '*Marine: Marine Trace Dosed Weekly'
+                      options:
+                        name: Marine Trace Dosed Weekly
+                        tap_action:
+                          action: more-info
+                        secondary_info: last-changed
+                  exclude:
+                    - state: unavailable
+                    - state: unknown
+                    - state: Unknown
+                    - hidden_by: user
+                    - hidden_by: integration
+                    - entity_id: '*on_count*'
+                    - domain: automation
+                    - domain: script
+          - show_name: true
+            show_icon: true
+            show_state: true
+            type: glance
+            entities:
+              - entity: sensor.aquapi_marine_salinity
+                name: Salinity
+              - entity: sensor.aquapi_marine_specific_gravity
+                name: Specific Gravity
+              - entity: sensor.aquapi_marine_conductivity
+                name: Conductivity
+            state_color: false
+          - type: glance
+            entities:
+              - entity: input_number.marine_volume
+                name: Volume
+              - entity: sensor.marine_water_weight
+                name: Water Weight
+              - entity: sensor.marine_aquarium_power
+                name: Current Power
+              - entity: sensor.marine_aquarium_energy_monthly
+                name: Montly Energy
+      - type: custom:history-explorer-card
+        defaultTimeRange: 1d
+        stateTextMode: auto
+        statistics:
+          enabled: true
+          mode: mean
+          period: hour
+        combineSameUnits: true
+        cardName: historycard-97723151
+        showCurrentValues: true
+        uiLayout:
+          selector: hide
+        header: Timeline
+        stateColors:
+          sensor.Heating: red
+          sensor.Standby: darkgreen
+          sensor.Ok: forestgreen
+          sensor.Cool: cyan
+          sensor.Warm: orangered
+          sensor.Normal: slateblue
+          sensor.High: gold
+          sensor.Low: firebrick
+        graphs:
+          - type: timeline
+            entities:
+              - entity: sensor.marine_temperature_range
+                name: Temp.
+              - entity: sensor.marine_heater_state
+                name: Heater
+              - entity: sensor.aquapi_marine_water_level
+                name: Water Lvl.
+              - entity: sensor.marine_skimmer_container
+                name: Skimmer
+              - entity: sensor.marine_trace_doser_state
+                name: Trace
+        view_layout:
+          position: main
+      - type: custom:auto-entities
+        filter:
+          include:
+            - entity_id: '*marine_water_level'
+            - entity_id: '*marine_temperature_range*'
+            - entity_id: '*marine_heater_state'
+            - entity_id: '*marine_heater_on_count*'
+            - entity_id: '*marine*skimmer_container*'
+            - entity_id: '*marine_trace_doser_state'
+            - entity_id: '*marine_reservoir*'
+          exclude:
+            - state: unavailable
+            - state: unknown
+            - state: Unknown
+            - hidden_by: user
+            - hidden_by: integration
+            - device: AquaPi 6734b0 - TEST
+        card:
+          type: custom:home-feed-card
+          title: Marine Feed
+          card_id: m_aq_feed
+          scrollbars_enabled: false
+          calendars: null
+          id_filter: ^home_feed_.*
+          more_info_on_tap: true
+          state_color: true
+        show_empty: true
+  - type: vertical-stack
+    cards:
+      - type: custom:mushroom-title-card
+        title: Parameters
+        subtitle: ''
+      - type: custom:mini-graph-card
+        animate: true
+        name: Temperature
+        align_state: center
+        hours_to_show: 72
+        cache: true
+        color_thresholds:
+          - value: 70
+            color: '#0a748c'
+          - value: 74
+            color: '#497eb0'
+          - value: 78
+            color: '#58c02b'
+          - value: 80
+            color: '#babf22'
+          - value: 84
+            color: '#c0392b'
+        show:
+          labels: true
+          legend: false
+          icon_adaptive_color: true
+          name_adaptive_color: true
+        entities:
+          - entity: sensor.aquapi_marine_temperature
+            name: Marine
+            icon: mdi:thermometer-water
+      - type: custom:mini-graph-card
+        animate: true
+        align_state: center
+        name: pH
+        hours_to_show: 72
+        cache: true
+        show:
+          labels: true
+          legend: false
+          icon_adaptive_color: true
+          name_adaptive_color: true
+        color_thresholds:
+          - value: 8.1
+            color: '#0a748c'
+          - value: 8.2
+            color: '#497eb0'
+          - value: 8.3
+            color: '#670e80'
+          - value: 8.4
+            color: '#babf22'
+          - value: 8.5
+            color: '#c0392b'
+        entities:
+          - entity: sensor.aquapi_marine_ph
+            name: Marine
+      - type: custom:mini-graph-card
+        animate: true
+        align_state: center
+        name: Salinity
+        hours_to_show: 72
+        cache: true
+        show:
+          labels: true
+          legend: false
+          icon_adaptive_color: true
+          name_adaptive_color: true
+        color_thresholds:
+          - value: 31
+            color: '#0a748c'
+          - value: 33
+            color: '#497eb0'
+          - value: 35
+            color: '#16149c'
+          - value: 37
+            color: '#babf22'
+          - value: 39
+            color: '#c0392b'
+        entities:
+          - entity: sensor.aquapi_marine_salinity
+            name: Marine
+      - square: false
+        type: grid
+        cards:
+          - type: custom:mini-graph-card
+            animate: true
+            name: Ammonia
+            align_state: center
+            hours_to_show: 72
+            height: 150
+            cache: true
+            show:
+              labels: true
+              legend: false
+              icon_adaptive_color: true
+              name_adaptive_color: true
+            color_thresholds:
+              - value: 0
+                color: '#d96c14'
+              - value: 1
+                color: '#babf22'
+              - value: 4
+                color: '#c0392b'
+            entities:
+              - entity: input_number.ammonia_marine
+                name: Marine
+          - type: custom:mini-graph-card
+            animate: true
+            name: Nitrite
+            height: 150
+            align_state: center
+            hours_to_show: 72
+            cache: true
+            show:
+              labels: true
+              legend: false
+              icon_adaptive_color: true
+              name_adaptive_color: true
+            color_thresholds:
+              - value: 0
+                color: '#d914d2'
+              - value: 1
+                color: '#babf22'
+              - value: 3
+                color: '#c0392b'
+            entities:
+              - entity: input_number.nitrite_2
+                name: Marine
+          - type: custom:mini-graph-card
+            animate: true
+            name: Nitrate
+            height: 150
+            align_state: center
+            hours_to_show: 72
+            cache: true
+            show:
+              labels: true
+              legend: false
+              icon_adaptive_color: true
+              name_adaptive_color: true
+            color_thresholds:
+              - value: 0
+                color: '#148ad9'
+              - value: 20
+                color: '#babf22'
+              - value: 80
+                color: '#c0392b'
+            entities:
+              - entity: input_number.nitrate_marine
+                name: Marine
+          - type: custom:mini-graph-card
+            animate: true
+            name: Phospahte
+            height: 150
+            align_state: center
+            hours_to_show: 72
+            cache: true
+            show:
+              labels: true
+              legend: false
+              icon_adaptive_color: true
+              name_adaptive_color: true
+            color_thresholds:
+              - value: 0
+                color: '#0b8015'
+              - value: 2
+                color: '#babf22'
+              - value: 8
+                color: '#c0392b'
+            entities:
+              - entity: input_number.phosphate_marine
+                name: Marine
+        columns: 2
+      - type: custom:pool-monitor-card
+        title: Parameter Ranges
+        show_labels: false
+        show_last_updated: true
+        temperature: sensor.aquapi_marine_temperature
+        temperature_setpoint: 77
+        temperature_step: 5
+        temperature_unit: °F
+        ph: sensor.aquapi_marine_ph
+        ph_setpoint: 8.2
+        salinity: sensor.aquapi_marine_salinity
+        salinity_unit: ppt
+        salinity_setpoint: 34
+        salinity_step: 3
+        calcium: input_number.calcium_marine
+        calcium_setpoint: 400
+        calcium_step: 50
+        alkalinity: input_number.carbonate_hardness_marine
+        alkalinity_setpoint: 178
+        alkalinity_step: 36
+    view_layout:
+      column: 2
+  - type: vertical-stack
+    cards:
+      - type: custom:mushroom-title-card
+        title: Device Controls & Power
+        subtitle: ''
+      - square: false
+        columns: 1
+        type: grid
+        cards:
+          - type: custom:mod-card
+            style:
+              hui-horizontal-stack-card$: |
+                buttons-card {
+                  margin-left: 0px !important;
+                  margin-right: 0px !important;
+                  margin-bottom: 0px !important;
+                  flex: unset !important; 
+                }
+                mini-graph-card {
+                  margin-right: 0px !important;
+                  width: 60%;
+                  margin-bottom: 0px !important;
+                  flex: unset !important; 
+                }
+            card:
+              type: horizontal-stack
+              cards:
+                - show_name: true
+                  show_icon: true
+                  type: button
+                  tap_action:
+                    action: toggle
+                  entity: switch.tp_link_power_strip_d0b7_plug_4
+                  name: Main Light
+                - type: custom:mini-graph-card
+                  animate: true
+                  align_state: center
+                  hours_to_show: 72
+                  height: 150
+                  cache: true
+                  line_color: lightblue
+                  show:
+                    name: false
+                    icon: false
+                    labels: true
+                    legend: false
+                  entities:
+                    - entity: sensor.plug_4_current_consumption
+          - type: custom:mod-card
+            style:
+              hui-horizontal-stack-card$: |
+                buttons-card {
+                  margin-left: 0px !important;
+                  margin-right: 0px !important;
+                  margin-bottom: 0px !important;
+                  flex: unset !important; 
+                }
+                mini-graph-card {
+                  margin-right: 0px !important;
+                  width: 60%;
+                  margin-bottom: 0px !important;
+                  flex: unset !important; 
+                }
+            card:
+              type: horizontal-stack
+              cards:
+                - show_name: true
+                  show_icon: true
+                  type: button
+                  tap_action:
+                    action: toggle
+                  entity: switch.plug6
+                  name: Refugium Light
+                - type: custom:mini-graph-card
+                  animate: true
+                  align_state: center
+                  hours_to_show: 72
+                  height: 150
+                  cache: true
+                  line_color: papayawhip
+                  show:
+                    name: false
+                    icon: false
+                    labels: true
+                    legend: false
+                  entities:
+                    - entity: sensor.refugium_white_current_consumption
+          - type: custom:mod-card
+            style:
+              hui-horizontal-stack-card$: |
+                buttons-card {
+                  margin-left: 0px !important;
+                  margin-right: 0px !important;
+                  margin-bottom: 0px !important;
+                  flex: unset !important; 
+                }
+                mini-graph-card {
+                  margin-right: 0px !important;
+                  width: 60%;
+                  margin-bottom: 0px !important;
+                  flex: unset !important; 
+                }
+            card:
+              type: horizontal-stack
+              cards:
+                - show_name: true
+                  show_icon: true
+                  type: button
+                  tap_action:
+                    action: toggle
+                  entity: switch.plug3
+                  name: Return Pump
+                - type: custom:mini-graph-card
+                  animate: true
+                  name: Main Pump
+                  align_state: center
+                  hours_to_show: 72
+                  height: 150
+                  cache: true
+                  line_color: green
+                  show:
+                    name: false
+                    icon: false
+                    labels: true
+                    legend: false
+                  entities:
+                    - entity: sensor.main_system_pump_current_consumption
+          - type: custom:mod-card
+            style:
+              hui-horizontal-stack-card$: |
+                buttons-card {
+                  margin-left: 0px !important;
+                  margin-right: 0px !important;
+                  margin-bottom: 0px !important;
+                  flex: unset !important; 
+                }
+                mini-graph-card {
+                  margin-right: 0px !important;
+                  width: 60%;
+                  margin-bottom: 0px !important;
+                  flex: unset !important; 
+                }
+            card:
+              type: horizontal-stack
+              cards:
+                - show_name: true
+                  show_icon: true
+                  type: button
+                  tap_action:
+                    action: toggle
+                  entity: switch.tp_link_power_strip_d0b7_plug_3
+                  name: Canister Filter
+                - type: custom:mini-graph-card
+                  animate: true
+                  align_state: center
+                  hours_to_show: 72
+                  height: 150
+                  cache: true
+                  line_color: magenta
+                  show:
+                    name: false
+                    icon: false
+                    labels: true
+                    legend: false
+                  entities:
+                    - entity: sensor.plug_3_current_consumption
+          - type: custom:mod-card
+            style:
+              hui-horizontal-stack-card$: |
+                buttons-card {
+                  margin-left: 0px !important;
+                  margin-right: 0px !important;
+                  margin-bottom: 0px !important;
+                  flex: unset !important; 
+                }
+                mini-graph-card {
+                  margin-right: 0px !important;
+                  width: 60%;
+                  margin-bottom: 0px !important;
+                  flex: unset !important; 
+                }
+            card:
+              type: horizontal-stack
+              cards:
+                - show_name: true
+                  show_icon: true
+                  type: button
+                  tap_action:
+                    action: toggle
+                  entity: switch.plug2
+                  name: Skimmer
+                - type: custom:mini-graph-card
+                  animate: true
+                  align_state: center
+                  hours_to_show: 72
+                  height: 150
+                  cache: true
+                  line_color: blue
+                  show:
+                    name: false
+                    icon: false
+                    labels: true
+                    legend: false
+                  entities:
+                    - entity: sensor.skimmer_current_consumption
+          - type: custom:mod-card
+            style:
+              hui-horizontal-stack-card$: |
+                buttons-card {
+                  margin-left: 0px !important;
+                  margin-right: 0px !important;
+                  margin-bottom: 0px !important;
+                  flex: unset !important; 
+                }
+                mini-graph-card {
+                  margin-right: 0px !important;
+                  width: 60%;
+                  margin-bottom: 0px !important;
+                  flex: unset !important; 
+                }
+            card:
+              type: horizontal-stack
+              cards:
+                - show_name: true
+                  show_icon: true
+                  type: button
+                  tap_action:
+                    action: toggle
+                  entity: switch.plug4
+                  name: Heater
+                - type: custom:mini-graph-card
+                  animate: true
+                  align_state: center
+                  hours_to_show: 72
+                  height: 150
+                  cache: true
+                  line_color: red
+                  show:
+                    name: false
+                    icon: false
+                    labels: true
+                    legend: false
+                  entities:
+                    - entity: sensor.heater_current_consumption
+          - type: custom:mod-card
+            style:
+              hui-horizontal-stack-card$: |
+                buttons-card {
+                  margin-left: 0px !important;
+                  margin-right: 0px !important;
+                  margin-bottom: 0px !important;
+                  flex: unset !important; 
+                }
+                mini-graph-card {
+                  margin-right: 0px !important;
+                  width: 60%;
+                  margin-bottom: 0px !important;
+                  flex: unset !important; 
+                }
+            card:
+              type: horizontal-stack
+              cards:
+                - show_name: true
+                  show_icon: true
+                  type: button
+                  tap_action:
+                    action: toggle
+                  entity: switch.tp_link_power_strip_d0b7_plug_1
+                  name: UV Sterilizer
+                - type: custom:mini-graph-card
+                  animate: true
+                  align_state: center
+                  hours_to_show: 72
+                  height: 150
+                  cache: true
+                  line_color: cyan
+                  show:
+                    name: false
+                    icon: false
+                    labels: true
+                    legend: false
+                  entities:
+                    - entity: sensor.plug_1_current_consumption
+          - type: custom:mod-card
+            style:
+              hui-horizontal-stack-card$: |
+                buttons-card {
+                  margin-left: 0px !important;
+                  margin-right: 0px !important;
+                  margin-bottom: 0px !important;
+                  flex: unset !important; 
+                }
+                mini-graph-card {
+                  margin-right: 0px !important;
+                  width: 60%;
+                  margin-bottom: 0px !important;
+                  flex: unset !important; 
+                }
+            card:
+              type: horizontal-stack
+              cards:
+                - show_name: true
+                  show_icon: true
+                  type: button
+                  tap_action:
+                    action: toggle
+                  entity: switch.plug5
+                  name: Wave Maker
+                - type: custom:mini-graph-card
+                  animate: true
+                  align_state: center
+                  hours_to_show: 72
+                  height: 150
+                  cache: true
+                  line_color: yellow
+                  show:
+                    name: false
+                    icon: false
+                    labels: true
+                    legend: false
+                  entities:
+                    - entity: sensor.wave_maker_current_consumption
+          - type: custom:mod-card
+            style:
+              hui-horizontal-stack-card$: |
+                buttons-card {
+                  margin-left: 0px !important;
+                  margin-right: 0px !important;
+                  margin-bottom: 0px !important;
+                  flex: unset !important; 
+                }
+                mini-graph-card {
+                  margin-right: 0px !important;
+                  width: 60%;
+                  margin-bottom: 0px !important;
+                  flex: unset !important; 
+                }
+            card:
+              type: horizontal-stack
+              cards:
+                - show_name: true
+                  show_icon: true
+                  type: button
+                  tap_action:
+                    action: toggle
+                  entity: switch.tp_link_power_strip_d0b7_plug_5
+                  name: Powerhead
+                - type: custom:mini-graph-card
+                  animate: true
+                  align_state: center
+                  hours_to_show: 72
+                  height: 150
+                  cache: true
+                  line_color: orange
+                  show:
+                    name: false
+                    icon: false
+                    labels: true
+                    legend: false
+                  entities:
+                    - entity: sensor.plug_5_current_consumption
+          - type: custom:mod-card
+            style:
+              hui-horizontal-stack-card$: |
+                buttons-card {
+                  margin-left: 0px !important;
+                  margin-right: 0px !important;
+                  margin-bottom: 0px !important;
+                  flex: unset !important; 
+                }
+                mini-graph-card {
+                  margin-right: 0px !important;
+                  width: 60%;
+                  margin-bottom: 0px !important;
+                  flex: unset !important; 
+                }
+            card:
+              type: horizontal-stack
+              cards:
+                - show_name: true
+                  show_icon: true
+                  type: button
+                  tap_action:
+                    action: toggle
+                  entity: switch.plug1
+                  name: Marine Trace Doser
+                - type: custom:mini-graph-card
+                  animate: true
+                  align_state: center
+                  hours_to_show: 72
+                  height: 150
+                  cache: true
+                  line_color: orange
+                  show:
+                    name: false
+                    icon: false
+                    labels: true
+                    legend: false
+                  entities:
+                    - entity: sensor.fluval_306_current_consumption
+    view_layout:
+      column: 3
+  - type: vertical-stack
+    cards:
+      - type: custom:auto-entities
+        filter:
+          template: |-
+            {% for state in states.sensor -%}
+              {%- if (state.entity_id | regex_match("^sensor.*marine_heater_on_today($|)", ignorecase=False)) -%}
+                {{
+                  {
+                    'entity': state.entity_id,
+                    'name': state.attributes.friendly_name|regex_replace(find='(:|)( Heater on Today|)', replace='', ignorecase=True)
+                  }
+                }},
+              {%- endif -%}
+            {%- endfor %}
+          exclude: []
+        card:
+          type: custom:mini-graph-card
+          name: Heater Duration
+          show:
+            graph: bar
+            labels: true
+            icon_adaptive_color: true
+            name_adaptive_color: true
+          hours_to_show: 168
+          aggregate_func: max
+          group_by: date
+        sort:
+          method: friendly_name
+          reverse: false
+    view_layout:
+      column: 2
+layout:
+  max_cols: 3
+  max_width: 600
