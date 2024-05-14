@@ -3,7 +3,7 @@ blueprint:
   description: Read AquaPi probe every second for 60 seconds. [More Info]  (v1.1)
     [Script]
   domain: script
-  source_url: https://gist.github.com/TheRealFalseReality/31de3a3654209bd4a97317762858c271
+  source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/script/TheRealFalseReality/aquapi_ezo_read.yaml
   input:
     read_button:
       name: Read Button
@@ -16,8 +16,18 @@ blueprint:
             - button
             integration: esphome
           multiple: false
+    time_count:
+      name: Read Time
+      description: Time, in seconds to read the probe for, max of 300s (5min). (default = 60 seconds)
+      default: 60
+      selector:
+        number:
+          min: 1
+          max: 300
+          unit_of_measurement: seconds
 variables:
   read_button: !input read_button
+  time_count: !input time_count
 sequence:
 - repeat:
     sequence:
@@ -31,5 +41,5 @@ sequence:
         minutes: 0
         seconds: 1
         milliseconds: 0
-    count: 60
+    count: '{{ time_count }}'
 mode: restart
