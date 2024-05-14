@@ -61,10 +61,10 @@ sequence:
           option: Calibrate @ DRY (WILL RESET CALIBRATION)
         target:
           entity_id: !input ec_selector
-    - delay:
-        milliseconds: 500
-    - service: button.press
-      entity_id: !input ec_command
+      - delay:
+          milliseconds: 500
+      - service: button.press
+        entity_id: !input ec_command
       - service: notify.persistent_notification
         data:
           message: EC - Conductivity Calibrated for DRY/AIR - 0 mS/cm. Now continue to
@@ -113,7 +113,7 @@ sequence:
     - service: notify.persistent_notification
       data:
         message: 'EC - Conductivity Calibration is not within range of AIR: 0 mS/cm,
-          LOW: 12.88 mS/cm or HIGH: 80 mS/cm.
+          LOW: 12.88 mS/cm or HIGH: 80 mS/cm.  (±2 mS/CM)
 
           Start with in-air, no solution, then Low, and finish with High.'
         title: 'EC Calibration: Not in Range'
