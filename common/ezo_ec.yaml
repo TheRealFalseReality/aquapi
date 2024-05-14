@@ -54,7 +54,7 @@ interval:
       - button.press: read_ec
 
 sensor:
-  # EZO Circuits (yellow - SCL/RX, blue - SDA/TX)
+  # EZO Circuits (SCL/RX, SDA/TX)
   # EZO Circuit - EC
   # Conductivity
   - platform: ezo
@@ -319,9 +319,9 @@ button:
             if (id(select_command_ec).state == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(ec_ezo).clear_calibration();
             }
-            else {
-              id(ec_ezo).send_custom("R");
-            }
+            // else {
+            //   id(ec_ezo).send_custom("R");
+            // }
 
 select:
   - platform: template

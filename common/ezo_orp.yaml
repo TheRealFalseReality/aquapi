@@ -38,7 +38,7 @@ esphome:
       - button.press: send_selected_orp
 
 sensor:
-  # EZO Circuits (yellow - SCL/RX, blue - SDA/TX)
+  # EZO Circuits (SCL/RX, SDA/TX)
   # EZO Circuit - ORP
   - platform: ezo
     icon: mdi:react

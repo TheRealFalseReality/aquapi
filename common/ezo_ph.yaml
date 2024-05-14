@@ -40,7 +40,7 @@ esphome:
       - button.press: send_selected_ph
 
 sensor:
-  # EZO Circuits (yellow - SCL/RX, blue - SDA/TX)
+  # EZO Circuits (SCL/RX, SDA/TX)
   # EZO Circuit - pH
   - platform: ezo
     icon: mdi:ph
@@ -139,9 +139,9 @@ button:
             if (id(select_command_ph).state == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(ph_ezo).clear_calibration();
             }
-            else {
-              id(ph_ezo).send_custom("R");
-            }
+            // else {
+            //   id(ph_ezo).send_custom("R");
+            // }
 
 
 select:
