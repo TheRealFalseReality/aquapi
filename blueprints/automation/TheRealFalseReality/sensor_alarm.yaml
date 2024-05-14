@@ -6,7 +6,7 @@ blueprint:
     [More Info]()
     (v1) [Automation]
   domain: automation
-  source_url: https://gist.github.com/TheRealFalseReality/6ebac7cb7823302f4aafeebb369b3e4a
+  source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/automation/TheRealFalseReality/sensor_alarm.yaml
   input:
     tank_name:
       name: Aquarium Name
