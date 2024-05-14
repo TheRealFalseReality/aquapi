@@ -3,7 +3,7 @@ blueprint:
   description: Turn on an AquaPi EZO Pump to dose a specific amount in mL.
     [More Info]() (v1) [Script]
   domain: script
-  source_url: https://gist.github.com/TheRealFalseReality/28e6b8a5413227afcec0bf14d3e9bab7
+  source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/script/TheRealFalseReality/aquapi_dosing.yaml
   input:
     condition:
       name: Add Condition(s)

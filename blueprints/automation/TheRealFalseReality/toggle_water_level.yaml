@@ -3,7 +3,7 @@ blueprint:
   description: This automation blueprint will turn devices on or off when water level
     is high or low. (v1.21) [Automation]
   domain: automation
-  source_url: https://gist.github.com/TheRealFalseReality/6a764c0904067d44ca45e8e59a3d8747
+  source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/automation/TheRealFalseReality/toggle_water_level.yaml
   input:
     condition:
       name: Add Condition(s)
