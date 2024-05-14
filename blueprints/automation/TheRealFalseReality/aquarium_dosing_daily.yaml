@@ -4,7 +4,7 @@ blueprint:
     time each day. [More Info](https://community.home-assistant.io/t/aquarium-turn-on-a-switch-to-activate-doser-equipment-for-a-certain-amount-of-volume-or-time/600546)
     (v1.1.1) [Automation]
   domain: automation
-  source_url: https://gist.github.com/TheRealFalseReality/555beb10be631e24ebbf0720253cd1f8
+  source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/automation/TheRealFalseReality/aquarium_dosing_daily.yaml
   input:
     condition:
       name: Add Condition(s)
