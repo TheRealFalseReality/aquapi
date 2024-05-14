@@ -4,7 +4,7 @@ blueprint:
     when the automation is triggered. Option to send to mobile device with Additional
     Actions. [More Info]() (v1.1) [Automation]
   domain: automation
-  source_url: https://gist.github.com/TheRealFalseReality/647b0b754ef85295dd68e7e06ba4f4e7
+  source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/automation/TheRealFalseReality/notify_trigger.yaml
   input:
     trigger_additional:
       name: Trigger(s)
