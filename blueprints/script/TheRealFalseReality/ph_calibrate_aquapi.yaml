@@ -109,7 +109,7 @@ sequence:
       entity_id: !input ph_selector
   - service: notify.persistent_notification
     data:
-      message: 'pH Calibration is not within range of LOW: 4, MID: 7 or HIGH: 10.
+      message: 'pH Calibration is not within range of LOW: 4, MID: 7 or HIGH: 10.  (±0.1)
 
         Start with Low solution, then Mid, and finish with High.'
       title: 'Calibration: Not in Range'
