@@ -1,7 +1,7 @@
 blueprint:
   name: 'Aquarium - AquaPi: Calibrate ORP EZO Probe @ 225 mV'
   description: Calibrate ORP probe for the AquaPi, an Atlas Scientific EZO board and
-    probe. (v1.2.1) [Script]
+    probe. (v1.2.2) [Script]
   domain: script
   source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/script/TheRealFalseReality/orp_calibrate_aquapi.yaml
   input:
@@ -61,7 +61,7 @@ sequence:
         option: Calibrate @ 225 mV (WILL RESET CALIBRATION)
       target:
         entity_id: !input orp_selector
-    - delay: 
+    - delay:
         milliseconds: 500
     - service: button.press
       entity_id: !input orp_command
@@ -76,6 +76,10 @@ sequence:
       option: Check Calibration
     target:
       entity_id: !input orp_selector
+  - delay:
+      milliseconds: 500
+  - service: button.press
+    entity_id: !input orp_command
   - service: notify.persistent_notification
     data:
       message: ORP - ORP Calibration is not within range of 225 mV (210 - 230 mV)
