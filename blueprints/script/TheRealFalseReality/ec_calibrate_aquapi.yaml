@@ -1,9 +1,9 @@
 blueprint:
   name: 'Aquarium - AquaPi: Calibrate Conductivity EZO Probe'
   description: Calibrate Conductivity(EC) probe for the AquaPi, an Atlas Scientific
-    EZO board and probe. (v1.1.1) [Script]
+    EZO board and probe. (v1.1.2) [Script]
   domain: script
-  source_url: https://gist.github.com/TheRealFalseReality/f619b484d63a479004c1d6613b90df1a
+  source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/script/TheRealFalseReality/ec_calibrate_aquapi.yaml
   input:
     ec_sensor:
       name: Conductivity Sensor
@@ -43,31 +43,12 @@ blueprint:
             - button
             integration: esphome
           multiple: false
-    # condition:
-    #   name: Add Condition(s)
-    #   description: Add conditions if needed.
-    #   default: []
-    #   selector:
-    #     condition: {}
-    # additional_actions:
-    #   name: Additional Action(s)
-    #   description: Add additional actions to the script if wanted. Will execute before
-    #     everything else.
-    #   default: []
-    #   selector:
-    #     action: {}
 variables:
-  # condition: !input condition
-  # additional_actions: !input additional_actions
   ec_sensor: !input ec_sensor
   ec_selector: !input ec_selector
   ec_command: !input ec_command
 sequence:
 - if:
-  # - condition: !input condition
-  # then:
-  # - choose: []
-  #   default: !input additional_actions
   - choose:
     - conditions:
       - condition: numeric_state
@@ -80,6 +61,10 @@ sequence:
           option: Calibrate @ DRY (WILL RESET CALIBRATION)
         target:
           entity_id: !input ec_selector
+      - delay:
+          milliseconds: 500
+      - service: button.press
+        entity_id: !input ec_command
       - service: notify.persistent_notification
         data:
           message: EC - Conductivity Calibrated for DRY/AIR - 0 mS/cm. Now continue to
@@ -128,7 +113,7 @@ sequence:
     - service: notify.persistent_notification
       data:
         message: 'EC - Conductivity Calibration is not within range of AIR: 0 mS/cm,
-          LOW: 12.88 mS/cm or HIGH: 80 mS/cm.
+          LOW: 12.88 mS/cm or HIGH: 80 mS/cm.  (±2 mS/CM)
 
           Start with in-air, no solution, then Low, and finish with High.'
         title: 'EC Calibration: Not in Range'

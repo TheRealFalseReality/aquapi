@@ -1,9 +1,9 @@
 blueprint:
-  name: 'Aquarium - AquaPi: Calibrate ORP EZO Probe'
-  description: Calibrate ORP probe for the AquaPi, an Atlas Scientific
-    EZO board and probe. (v1.2) [Script]
+  name: 'Aquarium - AquaPi: Calibrate ORP EZO Probe @ 225 mV'
+  description: Calibrate ORP probe for the AquaPi, an Atlas Scientific EZO board and
+    probe. (v1.2.2) [Script]
   domain: script
-  source_url: https://github.com/TheRealFalseReality/aquapi/blob/4e0398a5e3ef6a5262ae8e70c1598208d8ee226a/blueprints/script/TheRealFalseReality/orp_calibrate_aquapi.yaml
+  source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/script/TheRealFalseReality/orp_calibrate_aquapi.yaml
   input:
     orp_sensor:
       name: ORP Sensor
@@ -43,48 +43,45 @@ blueprint:
             - button
             integration: esphome
           multiple: false
-    orp_calibrate:
-      name: OPR Calibration Value
-      description: Solution value to calibrate ORP probe. (default = 225 mV)
-      default: 225
-      selector:
-        number:
-          unit_of_measurement: "mV"
-          mode: box
-          min: 0
-          max: 1000
-variables: 
+variables:
   orp_sensor: !input orp_sensor
   orp_selector: !input orp_selector
   orp_command: !input orp_command
-  orp_calibrate: !input orp_calibrate
 sequence:
-  - choose:
-    - conditions:
-      - condition: numeric_state
-        entity_id: !input orp_sensor
-        above: 220
-        below: 230
-      sequence:
-      - service: select.select_option
-        metadata: {}
-        data:
-          option: Calibrate @ 225 mV (WILL RESET CALIBRATION)
-        target:
-          entity_id: !input orp_selector
-      - service: notify.persistent_notification
-        data:
-          message: ORP - ORP Calibrated for 225 mV 
-          title: 'ORP Calibration: 225 mV'
-    default:
+- choose:
+  - conditions:
+    - condition: numeric_state
+      entity_id: !input orp_sensor
+      above: 210
+      below: 230
+    sequence:
     - service: select.select_option
       metadata: {}
       data:
-        option: Check Calibration
+        option: Calibrate @ 225 mV (WILL RESET CALIBRATION)
       target:
         entity_id: !input orp_selector
+    - delay:
+        milliseconds: 500
+    - service: button.press
+      entity_id: !input orp_command
     - service: notify.persistent_notification
       data:
-        message: 'ORP - ORP Calibration is not within range of 225 +/- 5 mV'
-        title: 'ORP Calibration: Not in Range'
+        message: ORP - ORP Calibrated for 225 mV
+        title: 'ORP Calibration: 225 mV'
+  default:
+  - service: select.select_option
+    metadata: {}
+    data:
+      option: Check Calibration
+    target:
+      entity_id: !input orp_selector
+  - delay:
+      milliseconds: 500
+  - service: button.press
+    entity_id: !input orp_command
+  - service: notify.persistent_notification
+    data:
+      message: ORP - ORP Calibration is not within range of 225 mV (210 - 230 mV)
+      title: 'ORP Calibration: Not in Range'
 mode: restart
