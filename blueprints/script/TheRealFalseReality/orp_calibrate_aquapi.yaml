@@ -1,5 +1,5 @@
 blueprint:
-  name: 'Aquarium - AquaPi: Calibrate ORP EZO Probe @ 225 mV'
+  name: 'Aquarium - AquaPi: Calibrate ORP EZO Probe'
   description: Calibrate ORP probe for the AquaPi, an Atlas Scientific EZO board and
     probe, at 225 mV. (v1.2.2) [Script]
   domain: script
