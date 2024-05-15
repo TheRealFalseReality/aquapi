@@ -46,6 +46,7 @@ wifi:
 captive_portal:
 
 web_server:
+  version: 3
   
 improv_serial:
 
