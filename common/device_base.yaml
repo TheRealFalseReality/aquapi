@@ -37,7 +37,7 @@ ota:
 
 wifi: 
   ap:
-  
+
 web_server:
   version: 3
 
