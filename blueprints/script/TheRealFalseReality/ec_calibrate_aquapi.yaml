@@ -1,5 +1,5 @@
 blueprint:
-  name: 'Aquarium - AquaPi: Calibrate Conductivity EZO Probe'
+  name: 'Aquarium - AquaPi: Calibrate Conductivity(EC) EZO Probe'
   description: Calibrate Conductivity(EC) probe for the AquaPi, an Atlas Scientific
     EZO board and probe, at Dry, Low (12.88 mS/cm) and High (80 mS/cm). (v1.1.2) [Script]
   domain: script
