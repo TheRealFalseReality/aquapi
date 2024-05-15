@@ -92,6 +92,7 @@ blueprint:
       description: "Volume to change every month. Max: 100 gallons.\n Recommended
         10 - 15% monthly water change.\n ***Example: 120 gallon aquarium at 10% water
         change every month. 120gal x 0.10 = 12gal a month.***"
+      default: 5
       selector:
         number:
           min: 0.1
