@@ -96,9 +96,9 @@ blueprint:
         number:
           min: 0.1
           max: 100.0
-          step: 0.1
+          step: 0.5
           unit_of_measurement: gal
-          mode: box
+          # mode: box
     change_time:
       name: Water Change Over Time
       description: Change the water amount over this time in hours every day.
