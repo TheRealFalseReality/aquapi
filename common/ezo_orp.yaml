@@ -1,5 +1,5 @@
 substitutions:
-  # ORP circuit, who's address is 99
+  # ORP circuit, who's address is 98
   addORP: "98"
   update_orp: "60s"
 
