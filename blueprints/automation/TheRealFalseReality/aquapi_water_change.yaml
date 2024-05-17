@@ -4,7 +4,7 @@ blueprint:
     (Red) and add clean water (Green) daily, in gallons, per month.
 
     **Note, this automation will fail if the calculated flow rate exceeds either of
-    the EZO Pump''s Max Volume/Time Flow Rates.** [More Info]() (v1) [Automation]'
+    the EZO Pump''s Max Volume/Time Flow Rates.** [More Info]() (v1.0.1) [Automation]'
   domain: automation
   source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/automation/TheRealFalseReality/aquapi_water_change.yaml
   input:
@@ -21,72 +21,99 @@ blueprint:
         text:
           multiple: false
           multiline: false
-    pump_waste_button:
-      name: AquaPi Dose Pump for Waste Water
-      description: Select the **AquaPi DEVICENAME Pump Waste - Dose Volume for Time**
+    pump_button:
+      name: AquaPi Dose Pump for Water Change
+      description: Select the **Dose Volume for Time**
         button.
       selector:
-        entity:
-          filter:
-          - domain:
-            - button
-            integration: esphome
-          multiple: false
-    pump_waste_volume:
-      name: AquaPi Dose Pump Volume Input for Waste Water
-      description: Select the **AquaPi DEVICENAME Pump Waste - Volume to Dose** input
+        target:
+          entity:
+            - domain: button
+              integration: esphome
+    pump_volume:
+      name: AquaPi Dose Pump Volume Input for Water Change
+      description: Select the **Volume to Dose** input
         number entity.
       selector:
-        entity:
-          filter:
-          - domain:
-            - number
-            integration: esphome
-          multiple: false
-    pump_waste_time:
-      name: AquaPi Dose Pump Time Input for Waste Water
-      description: Select the **AquaPi DEVICENAME Pump Waste - Time to Dose** input
+        target:
+          entity:
+            - domain: number
+              integration: esphome
+    pump_time:
+      name: AquaPi Dose Pump Time Input for Water Change
+      description: Select the **Time to Dose** input
         number entity.
       selector:
-        entity:
-          filter:
-          - domain:
-            - number
-            integration: esphome
-          multiple: false
-    pump_clean_button:
-      name: AquaPi Dose Pump for Clean Water
-      description: Select the **AquaPi DEVICENAME Pump Clean - Dose Volume for Time**
-        button.
-      selector:
-        entity:
-          filter:
-          - domain:
-            - button
-            integration: esphome
-          multiple: false
-    pump_clean_volume:
-      name: AquaPi Dose Pump Volume Input for Clean Water
-      description: Select the **AquaPi DEVICENAME Pump Clean - Volume to Dose** input
-        number entity.
-      selector:
-        entity:
-          filter:
-          - domain:
-            - number
-            integration: esphome
-          multiple: false
-    pump_clean_time:
-      name: AquaPi Dose Pump Time Input for Clean Water
-      description: Select the **AquaPi DEVICENAME Pump Clean - Time to Dose** input
-        number entity.
-      selector:
-        entity:
-          filter:
-          - domain:
-            - number
-            integration: esphome
-          multiple: false
+        target:
+          entity:
+            - domain: number
+              integration: esphome
+    # pump_waste_button:
+    #   name: AquaPi Dose Pump for Waste Water
+    #   description: Select the **AquaPi DEVICENAME Pump Waste - Dose Volume for Time**
+    #     button.
+    #   selector:
+    #     entity:
+    #       filter:
+    #       - domain:
+    #         - button
+    #         integration: esphome
+    #       multiple: false
+    # pump_waste_volume:
+    #   name: AquaPi Dose Pump Volume Input for Waste Water
+    #   description: Select the **AquaPi DEVICENAME Pump Waste - Volume to Dose** input
+    #     number entity.
+    #   selector:
+    #     entity:
+    #       filter:
+    #       - domain:
+    #         - number
+    #         integration: esphome
+    #       multiple: false
+    # pump_waste_time:
+    #   name: AquaPi Dose Pump Time Input for Waste Water
+    #   description: Select the **AquaPi DEVICENAME Pump Waste - Time to Dose** input
+    #     number entity.
+    #   selector:
+    #     entity:
+    #       filter:
+    #       - domain:
+    #         - number
+    #         integration: esphome
+    #       multiple: false
+    # pump_clean_button:
+    #   name: AquaPi Dose Pump for Clean Water
+    #   description: Select the **AquaPi DEVICENAME Pump Clean - Dose Volume for Time**
+    #     button.
+    #   selector:
+    #     entity:
+    #       filter:
+    #       - domain:
+    #         - button
+    #         integration: esphome
+    #       multiple: false
+    # pump_clean_volume:
+    #   name: AquaPi Dose Pump Volume Input for Clean Water
+    #   description: Select the **AquaPi DEVICENAME Pump Clean - Volume to Dose** input
+    #     number entity.
+    #   selector:
+    #     entity:
+    #       filter:
+    #       - domain:
+    #         - number
+    #         integration: esphome
+    #       multiple: false
+    # pump_clean_time:
+    #   name: AquaPi Dose Pump Time Input for Clean Water
+    #   description: Select the **AquaPi DEVICENAME Pump Clean - Time to Dose** input
+    #     number entity.
+    #   selector:
+    #     entity:
+    #       filter:
+    #       - domain:
+    #         - number
+    #         integration: esphome
+    #       multiple: false
     change_volume_monthly:
       name: Water Change Volume Montly
       description: "Volume to change every month. Max: 100 gallons.\n Recommended
@@ -137,14 +164,18 @@ blueprint:
 trigger:
 - platform: time
   at: !input time_start
+  id: time_trigger
 variables:
   condition: !input condition
-  pump_waste_button: !input pump_waste_button
-  pump_clean_button: !input pump_clean_button
-  pump_clean_volume: !input pump_clean_volume
-  pump_waste_volume: !input pump_waste_volume
-  pump_clean_time: !input pump_clean_time
-  pump_waste_time: !input pump_waste_time
+  pump_button: !input pump_button
+  pump_volume: !input pump_volume
+  pump_time: !input pump_time
+  # pump_waste_button: !input pump_waste_button
+  # pump_clean_button: !input pump_clean_button
+  # pump_clean_volume: !input pump_clean_volume
+  # pump_waste_volume: !input pump_waste_volume
+  # pump_clean_time: !input pump_clean_time
+  # pump_waste_time: !input pump_waste_time
   change_time: !input change_time
   time_start: !input time_start
   change_volume_monthly: !input change_volume_monthly
@@ -175,15 +206,11 @@ action:
   - choose: []
     default: !input additional_actions
   - service: number.set_value
-    entity_id:
-    - !input pump_clean_volume
-    - !input pump_waste_volume
+    target: !input pump_volume
     data:
       value: '{{ calculated_volume }}'
   - service: number.set_value
-    entity_id:
-    - !input pump_clean_time
-    - !input pump_waste_time
+    target: !input pump_time
     data:
       value: '{{ calculated_time }}'
   - delay:
@@ -194,9 +221,7 @@ action:
   - service: button.press
     metadata: {}
     data: {}
-    entity_id:
-    - !input pump_waste_button
-    - !input pump_clean_button
+    target: !input pump_button
   - if:
     - condition: template
       value_template: '{{ notify }}'
