@@ -1,9 +1,9 @@
 blueprint:
   name: 'Aquarium - AquaPi: Toggle Switches Based on Water Level'
   description: This automation blueprint will turn devices on or off when water level
-    is high or low. (v1.21) [Automation]
+    is high or low. (v1.21.1) [Automation]
   domain: automation
-  source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/automation/TheRealFalseReality/toggle_water_level.yaml
+  source_url: https://gist.github.com/TheRealFalseReality/6a764c0904067d44ca45e8e59a3d8747
   input:
     condition:
       name: Add Condition(s)
@@ -16,63 +16,56 @@ blueprint:
       description: The AquaPi sensor that detects water level
       selector:
         entity:
-          domain:
-          - sensor
-          multiple: false
+          domain: sensor
+          integration: esphome
     switchHighOff:
       name: High Switch OFF
       description: Switch(es) to turn OFF when Water Level is High
-      default: []
+      default: {}
       selector:
-        entity:
-          domain:
-          - switch
-          multiple: true
+        target:
+          entity:
+            domain: switch
     switchHighOn:
       name: High Switch ON
       description: Switch(es) to turn ON when Water Level is High
-      default: []
+      default: {}
       selector:
-        entity:
-          domain:
-          - switch
-          multiple: true
+        target:
+          entity:
+            domain: switch
     switchNormalOff:
       name: Normal Switch OFF
       description: Switch(es) to turn OFF when Water Level is Normal
-      default: []
+      default: {}
       selector:
-        entity:
-          domain:
-          - switch
-          multiple: true
+        target:
+          entity:
+            domain: switch
     switchNormalOn:
       name: Normal Switch ON
       description: Switch(es) to turn ON when Water Level is Normal
-      default: []
+      default: {}
       selector:
-        entity:
-          domain:
-          - switch
-          multiple: true
+        target:
+          entity:
+            domain: switch
     switchLowOff:
-      name: Low Switch OFF
-      description: Switch(es) to turn OFF when Water Level is Low
-      default: []
+      name: Normal Switch ON
+      description: Switch(es) to turn ON when Water Level is Normal
+      default: {}
       selector:
-        entity:
-          domain:
-          - switch
-          multiple: true
+        target:
+          entity:
+            domain: switch
     switchLowOn:
-      name: Low Switch ON
-      description: Switch(es) to turn ON when Water Level is Low
-      default: []
+      name: Normal Switch ON
+      description: Switch(es) to turn ON when Water Level is Normal
+      default: {}
       selector:
-        entity:
-          domain:
-          - switch
-          multiple: true
+        target:
+          entity:
+            domain: switch
     delayHigh:
       name: Delay when High (Optional)
       description: Wait before toggling devices
@@ -147,25 +140,25 @@ action:
       state: High
     then:
     - service: switch.turn_off
-      entity_id: !input switchHighOff
+      target: !input switchHighOff
     - service: switch.turn_on
-      entity_id: !input switchHighOn
+      target: !input switchHighOn
   - if:
     - condition: state
       entity_id: !input sensor
       state: Normal
     then:
     - service: switch.turn_off
-      entity_id: !input switchNormalOff
+      target: !input switchNormalOff
     - service: switch.turn_on
-      entity_id: !input switchNormalOn
+      target: !input switchNormalOn
   - if:
     - condition: state
       entity_id: !input sensor
       state: Low
     then:
     - service: switch.turn_off
-      entity_id: !input switchLowOff
+      target: !input switchLowOff
     - service: switch.turn_on
-      entity_id: !input switchLowOn
+      target: !input switchLowOn
 mode: restart
