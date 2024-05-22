@@ -2,7 +2,7 @@ blueprint:
   name: Aquarium - Dosing Volume Daily
   description: Turn on a switch to activate doser equipment for a certain amount of
     time based on volume and given dose rate each day. [More Info](https://community.home-assistant.io/t/aquarium-turn-on-a-switch-to-activate-doser-equipment-for-a-certain-amount-of-volume-or-time/600546)
-    (v1.3.3) [Automation]
+    (v1.3.4) [Automation]
   domain: automation
   source_url: https://gist.github.com/TheRealFalseReality/06f78b75ce11593202f4a1a0bf7bb5da
   input:
