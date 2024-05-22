@@ -1,5 +1,5 @@
 blueprint:
-  name: Aquarium - Dosing Automation
+  name: Aquarium - Dosing Automation for Script
   description: Activate a script that activates Doser Equipment when a switch is turned
     on from off, with a max time to prevent overdosing. Intended to be used with the
     script [Aquarium Dosing - Volume](https://community.home-assistant.io/t/aquarium-turn-on-a-switch-to-activate-doser-equipment-for-a-certain-amount-of-volume-or-time/600546).
