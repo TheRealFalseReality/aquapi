@@ -140,4 +140,13 @@ action:
         metadata: {}
         data: {}
         entity_id: !input doseScript
+  else:
+  - if:
+    - condition: template
+      value_template: '{{ notify }}'
+    then:
+    - service: notify.persistent_notification
+      data:
+        message: '{{ notify_message_fail }}'
+        title: '{{ notify_title_fail }}'
 mode: restart
