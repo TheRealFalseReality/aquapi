@@ -3,7 +3,7 @@ blueprint:
   description: Activate a script that activates Doser Equipment when a switch is turned
     on from off, with a max time to prevent overdosing. Intended to be used with the
     script [Aquarium Dosing - Volume](https://community.home-assistant.io/t/aquarium-turn-on-a-switch-to-activate-doser-equipment-for-a-certain-amount-of-volume-or-time/600546).
-    (v1.3.5) [Automation]
+    (v1.3.6) [Automation]
   domain: automation
   source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/automation/TheRealFalseReality/aquarium_dosing_volume_automation.yaml
   input:
@@ -73,10 +73,6 @@ trigger:
   from: unavailable
   to: 'on'
   id: unknown_on
-# - platform: state
-#   entity_id: !input doseSwitch
-#   to: 'off'
-#   id: switch_off
 - platform: state
   entity_id: !input doseSwitch
   to: 'on'
@@ -114,26 +110,34 @@ action:
       - condition: trigger
         id: trigger_on
       sequence:
-        - choose: []
-          default: !input additional_actions
-        - if:
-          - condition: state
-            entity_id: !input doseScript
-            state: 'off'
-          then:
-          - service: script.turn_on
-            metadata: {}
-            data: {}
-            entity_id: !input doseScript
+      - choose: []
+        default: !input additional_actions
+      - if:
+        - condition: state
+          entity_id: !input doseScript
+          state: 'off'
+        then:
+        - service: script.turn_on
+          metadata: {}
+          data: {}
+          entity_id: !input doseScript
     default:
-      - service: switch.turn_off
-        metadata: {}
-        data: {}
-        entity_id: !input doseSwitch
-      - service: notify.persistent_notification
-        data:
-          message: '{{ notify_message_fail_max }}'
-          title: '{{ notify_title_fail_max }}'
+    - service: switch.turn_off
+      metadata: {}
+      data: {}
+      entity_id: !input doseSwitch
+    - if:
+      - condition: trigger
+        id: max_time
+      then:
+        - if:
+          - condition: template
+            value_template: '{{ notify }}'
+          then:
+            - service: notify.persistent_notification
+              data:
+                message: '{{ notify_message_fail_max }}'
+                title: '{{ notify_title_fail_max }}'
   else:
   - if:
     - condition: template
