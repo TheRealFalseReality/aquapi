@@ -27,7 +27,7 @@ blueprint:
         entity:
           domain:
           - switch
-          multiple: false
+          multiple: true
     doseRate:
       description: Calibrated dosing rate of doser equipment (in mL/min). BRS 2-part
         doser is 1.1 mL/min.
