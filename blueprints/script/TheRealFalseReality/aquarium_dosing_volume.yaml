@@ -90,33 +90,37 @@ sequence:
   - condition: !input condition
   then:
   - choose: []
-    default: !input additional_actions
-  - service: switch.turn_on
-    data: {}
-    target: !input doseSwitch
+    default: !input additional_actions  
   - if:
     - condition: template
-      value_template: '{{ notify }}'
+      value_template: '{{ this.state == ''off'' }}'
     then:
-    - service: notify.persistent_notification
-      data:
-        message: '{{ message }}'
-        title: '{{ title }}'
-  - delay:
-      hours: 0
-      minutes: '{{ doseTime }}'
-      seconds: 0
-      milliseconds: 0
-  - service: switch.turn_off
-    data: {}
-    target: !input doseSwitch
+    - service: switch.turn_on
+      data: {}
+      target: !input doseSwitch
+    - if:
+      - condition: template
+        value_template: '{{ notify }}'
+      then:
+      - service: notify.persistent_notification
+        data:
+          message: '{{ message }}'
+          title: '{{ title }}'
+    - delay:
+        hours: 0
+        minutes: '{{ doseTime }}'
+        seconds: 0
+        milliseconds: 0
+    - service: switch.turn_off
+      data: {}
+      target: !input doseSwitch
+    else:
+    - service: switch.turn_off
+      data: {}
+      target: !input doseSwitch
   else:
-  - if:
-    - condition: template
-      value_template: '{{ notify }}'
-    then:
-    - service: notify.persistent_notification
-      data:
-        message: '{{ message_fail }}'
-        title: '{{ title_fail }}'
+  - service: notify.persistent_notification
+    data:
+      message: '{{ message_fail }}'
+      title: '{{ title_fail }}'
 mode: restart
