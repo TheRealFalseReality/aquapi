@@ -160,12 +160,8 @@ sequence:
         message: '{{ message }}'
         title: '{{ title }}'
   else:
-  - if:
-    - condition: template
-      value_template: '{{ notify }}'
-    then:
-    - service: notify.persistent_notification
-      data:
-        message: '{{ message_fail }}'
-        title: '{{ title_fail }}'
+  - service: notify.persistent_notification
+    data:
+      message: '{{ message_fail }}'
+      title: '{{ title_fail }}'
 mode: single
