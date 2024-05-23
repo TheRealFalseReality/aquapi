@@ -139,12 +139,8 @@ action:
                 message: '{{ notify_message_fail_max }}'
                 title: '{{ notify_title_fail_max }}'
   else:
-  - if:
-    - condition: template
-      value_template: '{{ notify }}'
-    then:
-    - service: notify.persistent_notification
-      data:
-        message: '{{ notify_message_fail }}'
-        title: '{{ notify_title_fail }}'
+  - service: notify.persistent_notification
+    data:
+      message: '{{ notify_message_fail }}'
+      title: '{{ notify_title_fail }}'
 mode: restart
