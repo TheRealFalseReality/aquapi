@@ -23,97 +23,31 @@ blueprint:
           multiline: false
     pump_button:
       name: AquaPi Dose Pump for Water Change
-      description: Select the **Dose Volume for Time**
-        button.
+      description: Select the **Dose Volume for Time** button.
       selector:
         target:
           entity:
-            - domain: button
-              integration: esphome
+          - domain:
+            - button
+            integration: esphome
     pump_volume:
       name: AquaPi Dose Pump Volume Input for Water Change
-      description: Select the **Volume to Dose** input
-        number entity.
+      description: Select the **Volume to Dose** input number entity.
       selector:
         target:
           entity:
-            - domain: number
-              integration: esphome
+          - domain:
+            - number
+            integration: esphome
     pump_time:
       name: AquaPi Dose Pump Time Input for Water Change
-      description: Select the **Time to Dose** input
-        number entity.
+      description: Select the **Time to Dose** input number entity.
       selector:
         target:
           entity:
-            - domain: number
-              integration: esphome
-    # pump_waste_button:
-    #   name: AquaPi Dose Pump for Waste Water
-    #   description: Select the **AquaPi DEVICENAME Pump Waste - Dose Volume for Time**
-    #     button.
-    #   selector:
-    #     entity:
-    #       filter:
-    #       - domain:
-    #         - button
-    #         integration: esphome
-    #       multiple: false
-    # pump_waste_volume:
-    #   name: AquaPi Dose Pump Volume Input for Waste Water
-    #   description: Select the **AquaPi DEVICENAME Pump Waste - Volume to Dose** input
-    #     number entity.
-    #   selector:
-    #     entity:
-    #       filter:
-    #       - domain:
-    #         - number
-    #         integration: esphome
-    #       multiple: false
-    # pump_waste_time:
-    #   name: AquaPi Dose Pump Time Input for Waste Water
-    #   description: Select the **AquaPi DEVICENAME Pump Waste - Time to Dose** input
-    #     number entity.
-    #   selector:
-    #     entity:
-    #       filter:
-    #       - domain:
-    #         - number
-    #         integration: esphome
-    #       multiple: false
-    # pump_clean_button:
-    #   name: AquaPi Dose Pump for Clean Water
-    #   description: Select the **AquaPi DEVICENAME Pump Clean - Dose Volume for Time**
-    #     button.
-    #   selector:
-    #     entity:
-    #       filter:
-    #       - domain:
-    #         - button
-    #         integration: esphome
-    #       multiple: false
-    # pump_clean_volume:
-    #   name: AquaPi Dose Pump Volume Input for Clean Water
-    #   description: Select the **AquaPi DEVICENAME Pump Clean - Volume to Dose** input
-    #     number entity.
-    #   selector:
-    #     entity:
-    #       filter:
-    #       - domain:
-    #         - number
-    #         integration: esphome
-    #       multiple: false
-    # pump_clean_time:
-    #   name: AquaPi Dose Pump Time Input for Clean Water
-    #   description: Select the **AquaPi DEVICENAME Pump Clean - Time to Dose** input
-    #     number entity.
-    #   selector:
-    #     entity:
-    #       filter:
-    #       - domain:
-    #         - number
-    #         integration: esphome
-    #       multiple: false
+          - domain:
+            - number
+            integration: esphome
     change_volume_monthly:
       name: Water Change Volume Montly
       description: "Volume to change every month. Max: 100 gallons.\n Recommended
@@ -160,12 +94,6 @@ variables:
   pump_button: !input pump_button
   pump_volume: !input pump_volume
   pump_time: !input pump_time
-  # pump_waste_button: !input pump_waste_button
-  # pump_clean_button: !input pump_clean_button
-  # pump_clean_volume: !input pump_clean_volume
-  # pump_waste_volume: !input pump_waste_volume
-  # pump_clean_time: !input pump_clean_time
-  # pump_waste_time: !input pump_waste_time
   change_time: !input change_time
   change_volume_monthly: !input change_volume_monthly
   change_volume: '{{ (change_volume_monthly * 3) / 91 }}'
@@ -185,9 +113,9 @@ variables:
   message_fail: "Failed to dose {{ aquarium_name }} due to conditions not passing.\n
     Conditions: {{ condition }}"
   title_fail_rate: '{{ aquarium_name }} Water Change Failed'
-  message_fail_rate: "The measured flow rate of {{ calculated_flow_rate_metric | float
+  message_fail_rate: The measured flow rate of {{ calculated_flow_rate_metric | float
     | round(2, default=2)}} mL/min exceeds the typical rate of 50 mL/min. To ensure
-      accuracy, the automation process may be halted."
+    accuracy, the automation process may be halted.
 sequence:
 - if:
   - condition: !input condition
@@ -228,12 +156,8 @@ sequence:
           message: '{{ message_fail_rate }}'
           title: '{{ title_fail_rate }}'
   else:
-  - if:
-    - condition: template
-      value_template: '{{ notify }}'
-    then:
-    - service: notify.persistent_notification
-      data:
-        message: '{{ message_fail }}'
-        title: '{{ title_fail }}'
+  - service: notify.persistent_notification
+    data:
+      message: '{{ message_fail }}'
+      title: '{{ title_fail }}'
 mode: single
