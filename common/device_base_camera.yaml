@@ -16,11 +16,11 @@ esphome:
   on_boot: 
     then:
       - light.turn_on: camera_led
-      - delay: 250ms
+      - delay: 500ms
       - light.turn_off: camera_led
-      - delay: 250ms
+      - delay: 500ms
       - light.turn_on: camera_led
-      - delay: 250ms
+      - delay: 500ms
       - light.turn_off: camera_led
 
 esp32:
