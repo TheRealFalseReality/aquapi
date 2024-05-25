@@ -46,7 +46,7 @@ sensor:
     id: orp_ezo
     address: ${addORP}
     unit_of_measurement: mV
-    accuracy_decimals: 2
+    accuracy_decimals: 1
     update_interval: "${update_orp}"
     state_class: "measurement"
     device_class: voltage
@@ -128,9 +128,9 @@ button:
             if (id(select_command_orp).state == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(orp_ezo).clear_calibration();
             }
-            else {
-              id(orp_ezo).send_custom("R");
-            }
+            // else {
+            //   id(orp_ezo).send_custom("R");
+            // }
 
 
 select:
