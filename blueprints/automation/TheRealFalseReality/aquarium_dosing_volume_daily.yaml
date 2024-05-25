@@ -214,4 +214,4 @@ action:
       data:
         message: '{{ notify_message_fail }}'
         title: '{{ notify_title_fail }}'
-mode: restart
+mode: single
