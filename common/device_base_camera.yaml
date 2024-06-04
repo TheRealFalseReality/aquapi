@@ -24,7 +24,7 @@ esphome:
       - light.turn_off: camera_led
 
 esp32:
-  board: esp32dev
+  board: esp32cam
   framework:
     type: arduino
 

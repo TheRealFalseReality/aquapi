@@ -1,5 +1,5 @@
 # [AquaPi for ESPHome](https://therealfalsereality.github.io/aquapi/)
-<img align="left" src="https://github.com/TheRealFalseReality/aquapi/blob/5e4a82a5755e06d9029109c4bd55601596198b7c/assests/image/AquaPi%20Logo.png" alt="drawing" style="width:120px;"/>
+<img ="left" src="https://github.com/TheRealFalseReality/aquapi/blob/5e4a82a5755e06d9029109c4bd55601596198b7c/assests/image/AquaPi%20Logo.png" alt="drawing" style="width:120px;"/>
 
 The Aquarium meets the Smart Home!  
 **[Setup Guide](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi)**
@@ -19,14 +19,14 @@ Why use AquaPi?
 
 ### **[Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi)**
 | ![PXL_20230529_200205979](https://github.com/TheRealFalseReality/aquapi/assets/106857076/1ebcddb2-d481-48f0-9136-ca698cbe1889) | ![PXL_20240224_022516268~2](https://github.com/TheRealFalseReality/aquapi/assets/106857076/db50c972-2bbd-4c9f-9f62-fa6e62f41cf3) |
-| ------------- | ------------- |
+|--------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
 
 UI
 | ![Screenshot 2024-02-22 000808](https://github.com/TheRealFalseReality/aquapi/assets/106857076/e985df09-6e08-474d-aa9c-b4e803a5c20c) | ![Screenshot 2024-02-22 001408](https://github.com/TheRealFalseReality/aquapi/assets/106857076/a430aabc-2c28-43e7-9779-3c5c04c4b7db)  |
 | ------------- | ------------- |
 
-### Home Assistand Dashboard & Card Examples
-If you want to try some of the Dashboard or Cards I use, follow the link below. You may need addtional integrations or custom cards for some of them!  
+### Home Assistant Dashboard & Card Examples
+If you want to try some of the Dashboard or Cards I use, follow the link below. You may need additional integrations or custom cards for some of them!  
 **[Example HomeAssistant Cards & Templates](https://github.com/TheRealFalseReality/aquapi/tree/main/Example%20HomeAssistant%20Cards%20%26%20Templates)**  
 
 ## Hardware Used
@@ -60,7 +60,7 @@ Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 
 **Peristaltic Dosing Pump:** *Atlas Scientific Pump: [EZO-PMP](https://files.atlas-scientific.com/EZO_PMP_Datasheet.pdf)*  
   - EZO™ Pump Embedded Circuit  
-  - Flow Rate: 0.5ml to 105ml/mins
+  - Flow Rate: 0.5ml to 105ml/min
   - Tube Size: 5mm
   - Head Height: 8.1m(26.5')
 
@@ -73,7 +73,7 @@ Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 [Dissolved Oxygen](https://files.atlas-scientific.com/LG_DO_probe.pdf), 
 [Humidity](https://files.atlas-scientific.com/EZO-HUM-Datasheet.pdf), 
 [ORP](https://files.atlas-scientific.com/orp_probe.pdf),
-[Temperture](https://files.atlas-scientific.com/EZO_RTD_Datasheet.pdf)
+[Temperature](https://files.atlas-scientific.com/EZO_RTD_Datasheet.pdf)
 
 ### Circuit Diagram
 [See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Circuit) for more details on the circuit.  
@@ -94,7 +94,7 @@ Setting up Home Assistant and Connecting AquaPi to your Wifi.
 Updating the AquaPi.
 
 ### [Web Server](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi#update)
-Connecting to the AquaPi without Home Assisstant.
+Connecting to the AquaPi without Home Assistant.
 
 ## Blueprints
 **[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Blueprints)**  
