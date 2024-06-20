@@ -3,7 +3,7 @@ substitutions:
   name: "aquapi"
   friendly_name: "AquaPi"
   # App Version - Updated: 1/2024
-  app_version: "1.7.2"
+  app_version: "1.8"
 
 packages:
   device_base: !include common/device_base.yaml
