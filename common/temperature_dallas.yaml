@@ -16,7 +16,8 @@ substitutions:
 
 # 18B20 sensor Pin
 one_wire:
-  - pin: ${dallasPin}
+  - platform: gpio
+    pin: ${dallasPin}
     update_interval: "${update_temp}"
 
 sensor:
