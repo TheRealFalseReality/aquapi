@@ -15,13 +15,14 @@ substitutions:
   range_warm: "82"
 
 # 18B20 sensor Pin
-dallas:
-  - pin: ${dallasPin}
+one_wire:
+  - platform: gpio
+    pin: ${dallasPin}
     update_interval: "${update_temp}"
 
 sensor:
   # Temperature Probe 1
-  - platform: dallas
+  - platform: dallas_temp
     id: temp_1
     icon: mdi:thermometer-lines
     index: 0
@@ -39,7 +40,7 @@ sensor:
         - component.update: temp_range
 
   # Temperature Probe 2
-  - platform: dallas
+  - platform: dallas_temp
     id: temp_2
     icon: mdi:thermometer-lines
     index: 1

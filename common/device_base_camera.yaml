@@ -5,6 +5,7 @@ substitutions:
   logger: "DEBUG"
 
 esphome:
+  min_version: 2024.6.0
   name: "${name}"
   friendly_name: "${friendly_name}"
   # Automatically add the mac address to the name
@@ -39,6 +40,7 @@ logger:
 api:
 
 ota:
+  platform: esphome
 
 wifi: 
   ap:
