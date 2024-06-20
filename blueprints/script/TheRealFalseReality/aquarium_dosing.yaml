@@ -2,9 +2,9 @@ blueprint:
   name: Aquarium - Dosing Time
   description: Turn on a switch to activate doser equipment for a certain amount of
     time. [More Info](https://community.home-assistant.io/t/aquarium-turn-on-a-switch-to-activate-doser-equipment-for-a-certain-amount-of-volume-or-time/600546)
-    (v1.3.2) [Script]
+    (v1.3.3) [Script]
   domain: script
-  source_url: https://gist.github.com/TheRealFalseReality/9fd8f929b5f6cc32f6e8a67cd8104941
+  source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/script/TheRealFalseReality/aquarium_dosing.yaml
   input:
     condition:
       name: Add Condition(s)
@@ -19,7 +19,7 @@ blueprint:
         text:
           multiline: false
           multiple: false
-    switch:
+    doseSwitch:
       name: Doser Switch
       description: Switch that activates the Doser Equipment.
       selector:
@@ -54,7 +54,7 @@ blueprint:
         action: {}
 variables:
   condition: !input condition
-  switch: !input switch
+  doseSwitch: !input doseSwitch
   doseName: !input doseName
   doser_time: !input doser_time
   title: '{{ doseName }}'
@@ -69,29 +69,33 @@ sequence:
   - condition: !input condition
   then:
   - choose: []
-    default: !input additional_actions
+    default: !input additional_actions  
   - if:
     - condition: template
-      value_template: '{{ notify }}'
+      value_template: '{{ this.state == ''off'' }}'
     then:
-    - service: notify.persistent_notification
-      data:
-        message: '{{ message }}'
-        title: '{{ title }}'
-  - service: switch.turn_on
-    data: {}
-    target: !input switch
-  - delay: !input doser_time
-  - service: switch.turn_off
-    data: {}
-    target: !input switch
+    - service: switch.turn_on
+      data: {}
+      target: !input doseSwitch
+    - if:
+      - condition: template
+        value_template: '{{ notify }}'
+      then:
+      - service: notify.persistent_notification
+        data:
+          message: '{{ message }}'
+          title: '{{ title }}'
+    - delay: !input doser_time
+    - service: switch.turn_off
+      data: {}
+      target: !input doseSwitch
+    else:
+    - service: switch.turn_off
+      data: {}
+      target: !input doseSwitch
   else:
-  - if:
-    - condition: template
-      value_template: '{{ notify }}'
-    then:
-    - service: notify.persistent_notification
-      data:
-        message: '{{ message_fail }}'
-        title: '{{ title_fail }}'
+  - service: notify.persistent_notification
+    data:
+      message: '{{ message_fail }}'
+      title: '{{ title_fail }}'
 mode: restart

@@ -16,15 +16,15 @@ esphome:
   on_boot: 
     then:
       - light.turn_on: camera_led
-      - delay: 150ms
+      - delay: 500ms
       - light.turn_off: camera_led
-      - delay: 150ms
+      - delay: 500ms
       - light.turn_on: camera_led
-      - delay: 150ms
+      - delay: 500ms
       - light.turn_off: camera_led
 
 esp32:
-  board: esp32dev
+  board: esp32cam
   framework:
     type: arduino
 
@@ -46,6 +46,7 @@ wifi:
 captive_portal:
 
 web_server:
+  version: 3
   
 improv_serial:
 

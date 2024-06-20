@@ -3,7 +3,7 @@ blueprint:
   description: Create a script to toggle all your Aquarium Lights all at once. (v1.1)
     [Script]
   domain: script
-  source_url: https://gist.github.com/TheRealFalseReality/046bbbbef7cee12740190945d5ed22b9
+  source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/script/TheRealFalseReality/aquarium_lights.yaml
   input:
     condition:
       name: Add Condition(s)

@@ -18,7 +18,7 @@ interval:
       - button.press: read_co2
 
 sensor:
-  # EZO Circuits (yellow - SCL/RX, blue - SDA/TX)
+  # EZO Circuits (SCL/RX, SDA/TX)
   # EZO Circuit - CO2
   # Cardbon Dioxide
   - platform: ezo

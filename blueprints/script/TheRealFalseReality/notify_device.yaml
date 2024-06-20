@@ -2,7 +2,7 @@ blueprint:
   name: Notify - Mobile Device
   description: Send notification to mobile device. (v1) [Script]
   domain: script
-  source_url: https://gist.github.com/TheRealFalseReality/34b7108f7a1c4ab32eba123894c7358e
+  source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/script/TheRealFalseReality/notify_device.yaml
   input:
     condition:
       name: Add Condition(s)

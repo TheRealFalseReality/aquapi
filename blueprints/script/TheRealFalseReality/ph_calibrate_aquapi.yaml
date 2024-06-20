@@ -1,9 +1,9 @@
 blueprint:
   name: 'Aquarium - AquaPi: Calibrate pH EZO Probe'
   description: Calibrate pH probe for the AquaPi, an Atlas Scientific EZO board and
-    probe. Calibrate at Mid 7, Low 4 and High 10. [More Info] (v1.1.3) [Script]
+    probe. Calibrate at Mid 7, Low 4 and High 10. [More Info] (v1.1.5) [Script]
   domain: script
-  source_url: https://gist.github.com/TheRealFalseReality/f965fe88fd8b379fc37142f9376b84e6
+  source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/script/TheRealFalseReality/ph_calibrate_aquapi.yaml
   input:
     ph_sensor:
       name: pH Sensor
@@ -60,6 +60,10 @@ sequence:
         option: Calibrate @ LOW = 4 (WILL RESET CALIBRATION)
       target:
         entity_id: !input ph_selector
+    - delay:
+        milliseconds: 500
+    - service: button.press
+      entity_id: !input ph_command
     - service: notify.persistent_notification
       data:
         message: 'pH Calibrated for LOW - pH: 4. Now continue to MID - pH: 10.'
@@ -76,6 +80,10 @@ sequence:
         option: Calibrate @ MID = 7 (WILL RESET CALIBRATION)
       target:
         entity_id: !input ph_selector
+    - delay:
+        milliseconds: 500
+    - service: button.press
+      entity_id: !input ph_command
     - service: notify.persistent_notification
       data:
         message: 'pH Calibrated for MID - pH: 7. Now continue to LOW - pH: 4.'
@@ -92,6 +100,10 @@ sequence:
         option: Calibrate @ HIGH = 10 (WILL RESET CALIBRATION)
       target:
         entity_id: !input ph_selector
+    - delay:
+        milliseconds: 500
+    - service: button.press
+      entity_id: !input ph_command
     - service: notify.persistent_notification
       data:
         message: 'pH Calibrated for HIGH - pH: 10. Now check calibration.'
@@ -103,9 +115,13 @@ sequence:
       option: Check Calibration
     target:
       entity_id: !input ph_selector
+  - delay:
+      milliseconds: 500
+  - service: button.press
+    entity_id: !input ph_command
   - service: notify.persistent_notification
     data:
-      message: 'pH Calibration is not within range of LOW: 4, MID: 7 or HIGH: 10.
+      message: 'pH Calibration is not within range of LOW: 4, MID: 7 or HIGH: 10.  (±0.1)
 
         Start with Low solution, then Mid, and finish with High.'
       title: 'Calibration: Not in Range'

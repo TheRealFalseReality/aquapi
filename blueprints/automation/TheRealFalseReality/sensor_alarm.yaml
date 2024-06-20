@@ -1,0 +1,105 @@
+blueprint:
+  name: "Aquarium - AquaPi: Send a Notification Based on an AquaPi Sensor Value"
+  description: This automation will send a persistent notification to Home Assistant
+    when a selected sensor (Temperature, pH, Salinity, etc.) is out of range. Option to send
+    to mobile device with Additional Actions.
+    [More Info]()
+    (v1) [Automation]
+  domain: automation
+  source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/automation/TheRealFalseReality/sensor_alarm.yaml
+  input:
+    tank_name:
+      name: Aquarium Name
+      description: Name of the Aquarium (ex. Marine Aquarium).
+      default: My Aquarium
+      selector:
+        text:
+          multiple: false
+          multiline: false
+    sensors:
+      name: Sensors
+      description: "Select AquaPi sensors to trigger the automation and send the notification.\n
+        Create a blueprint for each sensor type, i.e., temperaure, pH, etc."
+      selector:
+        entity:
+          filter:
+            - domain: sensor
+              integration: esphome
+              device_class:
+                - ph
+                - volatile_organic_compounds_parts
+                - temperature
+          multiple: true
+    value_above:
+      name: Above Value
+      description: Set number to trigger automation when sensor value crosses above this threshold.
+      selector:
+        number:
+          min: 0.01
+          max: 1000.0
+          step: 0.01
+          mode: box
+    value_below:
+      name: Below Value
+      description: Set number to trigger automation when sensor value crosses below this threshold.
+      selector:
+        number:
+          min: 0.01
+          max: 1000.0
+          step: 0.01
+          mode: box
+    input_title:
+      name: Notification Title
+      description: "Title of the Notification.\n
+        Default: TANKNAME Alarm\n
+        `{{ tank_name }} Alarm`"
+      default: '{{ title }}'
+      selector:
+        text:
+          multiple: false
+          multiline: false
+    input_message:
+      name: Notification Message
+      description: "Message of the Notification.\n
+        Default: TRIGGER_FRIENDLYNAME is SENSORSTATE\n
+        `{{ state_attr(trigger.entity_id, 'friendly_name') }} is {{ trigger.to_state.state }}`"
+      default: '{{ message }}'
+      selector:
+        text:
+          multiple: false
+          multiline: true
+    additional_actions:
+      name: Additional Actions
+      description: "Add additional actions to the script.\n
+        - Example: To send to Mobile Device using the official Home Assistant
+        App:\n\n  Notifications -> Send a notification via mobile.YOUR_DEVICE_NAME\n
+        \ ```\n  service: notify.YOUR_DEVICE_NAME\n  metadata: {}\n  data:\n    message:
+        \"{{ message }}\"\n    title: \"{{ title }}\"\n  ```\n\n  Copy {{ message
+        }} into `message`. This will switch to \"yaml\" mode. Above is a completed
+        example.\n"
+      default: []
+      selector:
+        action: {}
+variables:
+  additional_actions: !input additional_actions
+  tank_name: !input tank_name
+  sensors: !input sensors
+  value_below: !input value_below
+  value_above: !input value_above
+  message: "{{ state_attr(trigger.entity_id, 'friendly_name') }} is {{
+    trigger.to_state.state }}."
+  title: "{{ tank_name }} Alarm"
+trigger:
+  - platform: numeric_state
+    entity_id: !input sensors
+    above: !input value_above
+  - platform: numeric_state
+    entity_id: !input sensors
+    below: !input value_below
+action:
+- choose: []
+  default: !input additional_actions
+- service: notify.persistent_notification
+  data:
+    message: '{{ message }}'
+    title: '{{ title }}'

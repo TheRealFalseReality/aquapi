@@ -1,5 +1,5 @@
 substitutions:
-  # ORP circuit, who's address is 99
+  # ORP circuit, who's address is 98
   addORP: "98"
   update_orp: "60s"
 
@@ -7,29 +7,29 @@ api:
   services: 
     - service: orp_read_continous
       variables:
-        time: int
+        seconds: int
       then:
       - repeat:
-          count: !lambda return time;
+          count: !lambda return seconds;
           then:
           - button.press: read_orp
           - delay: 1s
     - service: orp_calibrate_225
       then:
       - lambda: |-
-          id(orp_ezo).send_custom(Cal,225);
-    - service: orp_calibrate_custom
-      variables:
-        value: int
-      then:
-      - lambda: |-
-          id(orp_ezo).send_custom(Cal,'{{ value }}');
-    - service: ezo_orp_custom_command
-      variables:
-        command: string
-      then:
-        - lambda: |-
-            id(orp_ezo).send_custom(command);
+          id(orp_ezo).send_custom("Cal,225");
+    # - service: orp_calibrate_custom
+    #   variables:
+    #     value: int
+    #   then:
+    #   - lambda: |-
+    #       id(orp_ezo).send_custom(Cal,value);
+    # - service: ezo_orp_custom_command
+    #   variables:
+    #     command: string
+    #   then:
+    #     - lambda: |-
+    #         id(orp_ezo).send_custom(command);
 
 esphome:
   on_boot: 
@@ -38,7 +38,7 @@ esphome:
       - button.press: send_selected_orp
 
 sensor:
-  # EZO Circuits (yellow - SCL/RX, blue - SDA/TX)
+  # EZO Circuits (SCL/RX, SDA/TX)
   # EZO Circuit - ORP
   - platform: ezo
     icon: mdi:react
@@ -46,7 +46,7 @@ sensor:
     id: orp_ezo
     address: ${addORP}
     unit_of_measurement: mV
-    accuracy_decimals: 2
+    accuracy_decimals: 1
     update_interval: "${update_orp}"
     state_class: "measurement"
     device_class: voltage
@@ -123,14 +123,14 @@ button:
               id(orp_ezo).get_calibration();
             }  
             if (id(select_command_orp).state == "Calibrate @ 225 mV (WILL RESET CALIBRATION)") {
-              id(orp_ezo).send_custom(Cal,225);
+              id(orp_ezo).send_custom("Cal,225");
             }
             if (id(select_command_orp).state == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(orp_ezo).clear_calibration();
             }
-            else {
-              id(orp_ezo).send_custom("R");
-            }
+            // else {
+            //   id(orp_ezo).send_custom("R");
+            // }
 
 
 select:

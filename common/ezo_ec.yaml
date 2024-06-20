@@ -8,37 +8,37 @@ api:
   services: 
     - service: ec_read_continous
       variables:
-        time: int 
+        seconds: int 
       then:
       - repeat:
-          count: !lambda return time;
+          count: !lambda return seconds;
           then:
           - button.press: read_ec
           - delay: 1s
     - service: ec_calibrate_dry
       then:
       - lambda: |-
-          id(ec_ezo).send_custom(Cal,dry);
+          id(ec_ezo).send_custom("Cal,dry");
     - service: ec_calibrate_low
       then:
       - lambda: |-
-          id(ec_ezo).send_custom(Cal,low,12880);
+          id(ec_ezo).send_custom("Cal,low,12880");
     - service: ec_calibrate_high
       then:
       - lambda: |-
-          id(ec_ezo).send_custom(Cal,high,80000);
-    - service: ec_calibrate_custom
-      variables:
-        value: int
-      then:
-      - lambda: |-
-          id(ec_ezo).send_custom(Cal,'{{ value }}');
-    - service: ezo_ec_custom_command
-      variables:
-        command: string
-      then:
-        - lambda: |-
-            id(ec_ezo).send_custom(command);
+          id(ec_ezo).send_custom("Cal,high,80000");
+    # - service: ec_calibrate_custom
+    #   variables:
+    #     value: int
+    #   then:
+    #   - lambda: |-
+    #       id(ec_ezo).send_custom(Cal,value);
+    # - service: ezo_ec_custom_command
+    #   variables:
+    #     command: string
+    #   then:
+    #     - lambda: |-
+    #         id(ec_ezo).send_custom('{{ command }}');
           
 esphome:
     on_boot: 
@@ -54,7 +54,7 @@ interval:
       - button.press: read_ec
 
 sensor:
-  # EZO Circuits (yellow - SCL/RX, blue - SDA/TX)
+  # EZO Circuits (SCL/RX, SDA/TX)
   # EZO Circuit - EC
   # Conductivity
   - platform: ezo
@@ -308,20 +308,20 @@ button:
               id(ec_ezo).get_calibration();
             }  
             if (id(select_command_ec).state == "Calibrate @ DRY (WILL RESET CALIBRATION)") {
-              id(ec_ezo).send_custom(Cal,dry);
+              id(ec_ezo).send_custom("Cal,dry");
             }
             if (id(select_command_ec).state == "Calibrate @ LOW = 12880 (WILL RESET CALIBRATION)") {
-              id(ec_ezo).send_custom(Cal,low,12880);
+              id(ec_ezo).send_custom("Cal,low,12880");
             }
             if (id(select_command_ec).state == "Calibrate @ HIGH = 80000 (WILL RESET CALIBRATION)") {
-              id(ec_ezo).send_custom(Cal,high,80000);
+              id(ec_ezo).send_custom("Cal,high,80000");
             }
             if (id(select_command_ec).state == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(ec_ezo).clear_calibration();
             }
-            else {
-              id(ec_ezo).send_custom("R");
-            }
+            // else {
+            //   id(ec_ezo).send_custom("R");
+            // }
 
 select:
   - platform: template

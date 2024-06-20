@@ -1,10 +1,10 @@
 blueprint:
-  name: 'Aquarium - AquaPi: Daily Water Change'
+  name: 'Aquarium - AquaPi: Daily Quick Water Change'
   description: 'Turn on two AquaPi EZO Pumps to simultaneously remove waste water
     (Red) and add clean water (Green) daily, in gallons, per month.
 
     **Note, this automation will fail if the calculated flow rate exceeds either of
-    the EZO Pump''s Max Volume/Time Flow Rates.** [More Info]() (v1.0.1) [Automation]'
+    the EZO Pump''s Max Volume/Time Flow Rates.** [More Info]() (v1.0) [Automation]'
   domain: automation
   source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/automation/TheRealFalseReality/aquapi_water_change.yaml
   input:
@@ -23,7 +23,7 @@ blueprint:
           multiline: false
     pump_button:
       name: AquaPi Dose Pump for Water Change
-      description: Select the **Dose Volume for Time**
+      description: Select the **Dose Volume**
         button.
       selector:
         target:
@@ -39,15 +39,15 @@ blueprint:
           entity:
             - domain: number
               integration: esphome
-    pump_time:
-      name: AquaPi Dose Pump Time Input for Water Change
-      description: Select the **Time to Dose** input
-        number entity.
-      selector:
-        target:
-          entity:
-            - domain: number
-              integration: esphome
+    # pump_time:
+    #   name: AquaPi Dose Pump Time Input for Water Change
+    #   description: Select the **Time to Dose** input
+    #     number entity.
+    #   selector:
+    #     target:
+    #       entity:
+    #         - domain: number
+    #           integration: esphome
     # pump_waste_button:
     #   name: AquaPi Dose Pump for Waste Water
     #   description: Select the **AquaPi DEVICENAME Pump Waste - Dose Volume for Time**
@@ -132,17 +132,17 @@ blueprint:
       default: '10:00:00'
       selector:
         time: {}
-    change_time:
-      name: Water Change Over Time
-      description: Change the water amount over this time in hours every day.
-      default: 8
-      selector:
-        number:
-          min: 4.0
-          max: 23.0
-          step: 1.0
-          unit_of_measurement: hours
-          mode: slider
+    # change_time:
+    #   name: Water Change Over Time
+    #   description: Change the water amount over this time in hours every day.
+    #   default: 8
+    #   selector:
+    #     number:
+    #       min: 4.0
+    #       max: 23.0
+    #       step: 1.0
+    #       unit_of_measurement: hours
+    #       mode: slider
     notify:
       name: Persistent Notification
       description: Notify Home Assistant when script is executed.
@@ -169,36 +169,38 @@ variables:
   condition: !input condition
   pump_button: !input pump_button
   pump_volume: !input pump_volume
-  pump_time: !input pump_time
+  # pump_time: !input pump_time
   # pump_waste_button: !input pump_waste_button
   # pump_clean_button: !input pump_clean_button
   # pump_clean_volume: !input pump_clean_volume
   # pump_waste_volume: !input pump_waste_volume
   # pump_clean_time: !input pump_clean_time
   # pump_waste_time: !input pump_waste_time
-  change_time: !input change_time
+  # change_time: !input change_time
   time_start: !input time_start
   change_volume_monthly: !input change_volume_monthly
   change_volume: '{{ (change_volume_monthly * 3) / 91 }}'
   aquarium_name: !input aquarium_name
   additional_actions: !input additional_actions
   notify: !input notify
-  calculated_time: '{{ change_time * 60 }}'
+  # calculated_time: '{{ change_time * 60 }}'
   calculated_volume: '{{ change_volume * 3785.41 }}'
-  calculated_flow_rate: '{{ change_volume / change_time }}'
-  calculated_flow_rate_metric: '{{ calculated_volume / calculated_time }}'
+  # calculated_flow_rate: '{{ change_volume / change_time }}'
+  # calculated_flow_rate_metric: '{{ calculated_volume / calculated_time }}'
   title: '{{ aquarium_name }} Water Change'
   message: 'Changing {{ change_volume | float | round(2, default=2) }} gal of {{ aquarium_name
-    }} water for {{ change_time }} hours at {{ calculated_flow_rate | float | round(2,
-    default=2) }} gal/hr ({{ calculated_flow_rate_metric | float | round(2, default=2)}}
-    mL/min). Monthly Water Change Amount: {{ change_volume_monthly }} gallons.'
+    }} at max flow rate. Monthly Water Change Amount: {{ change_volume_monthly }} gallons.'
+  # message: 'Changing {{ change_volume | float | round(2, default=2) }} gal of {{ aquarium_name
+  #   }} water for {{ change_time }} hours at {{ calculated_flow_rate | float | round(2,
+  #   default=2) }} gal/hr ({{ calculated_flow_rate_metric | float | round(2, default=2)}}
+  #   mL/min). Monthly Water Change Amount: {{ change_volume_monthly }} gallons.'
   title_fail: '{{ aquarium_name }} Water Change Failed'
   message_fail: "Failed to dose {{ aquarium_name }} due to conditions not passing.\n
     Conditions: {{ condition }}"
-  title_fail_rate: '{{ aquarium_name }} Water Change Failed'
-  message_fail_rate: '{{ calculated_flow_rate_metric | float | round(2, default=2)}}
-    mL/min is greater than the typical Volume/Time flow rate (50 mL/min), for accuracy,
-    the automation may not execute.'
+  # title_fail_rate: '{{ aquarium_name }} Water Change Failed'
+  # message_fail_rate: '{{ calculated_flow_rate_metric | float | round(2, default=2)}}
+  #   mL/min is greater than the typical Volume/Time flow rate (50 mL/min), for accuracy,
+  #   the automation may not execute.'
 action:
 - if:
   - condition: !input condition
@@ -209,10 +211,10 @@ action:
     target: !input pump_volume
     data:
       value: '{{ calculated_volume }}'
-  - service: number.set_value
-    target: !input pump_time
-    data:
-      value: '{{ calculated_time }}'
+  # - service: number.set_value
+  #   target: !input pump_time
+  #   data:
+  #     value: '{{ calculated_time }}'
   - delay:
       hours: 0
       minutes: 0
@@ -230,14 +232,14 @@ action:
       data:
         message: '{{ message }}'
         title: '{{ title }}'
-    - if:
-      - condition: template
-        value_template: '{{ calculated_flow_rate_metric > 50 }}'
-      then:
-      - service: notify.persistent_notification
-        data:
-          message: '{{ message_fail_rate }}'
-          title: '{{ title_fail_rate }}'
+    # - if:
+    #   - condition: template
+    #     value_template: '{{ calculated_flow_rate_metric > 50 }}'
+    #   then:
+    #   - service: notify.persistent_notification
+    #     data:
+    #       message: '{{ message_fail_rate }}'
+    #       title: '{{ title_fail_rate }}'
   else:
   - if:
     - condition: template

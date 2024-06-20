@@ -1,0 +1,26 @@
+substitutions:
+  binarypin1: "34"
+  binarypin2: "35"
+
+binary_sensor:
+  - platform: gpio
+    id: binary_pin_1
+    name: Binary Sensor 1
+    pin: 
+      number: ${binarypin1}
+      inverted: true
+      mode:
+        input: true
+    filters:
+      - delayed_on_off: 30ms
+
+  - platform: gpio
+    id: binary_pin_2
+    name: Binary Sensor 2
+    pin: 
+      number: ${binarypin2}
+      inverted: true
+      mode:
+        input: true
+    filters:
+      - delayed_on_off: 30ms

@@ -2,9 +2,9 @@ blueprint:
   name: Aquarium - Dosing Volume Daily
   description: Turn on a switch to activate doser equipment for a certain amount of
     time based on volume and given dose rate each day. [More Info](https://community.home-assistant.io/t/aquarium-turn-on-a-switch-to-activate-doser-equipment-for-a-certain-amount-of-volume-or-time/600546)
-    (v1.3.2) [Automation]
+    (v1.3.6) [Automation]
   domain: automation
-  source_url: https://gist.github.com/TheRealFalseReality/06f78b75ce11593202f4a1a0bf7bb5da
+  source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/automation/TheRealFalseReality/aquarium_dosing_volume_daily.yaml
   input:
     condition:
       name: Add Condition(s)
@@ -21,13 +21,12 @@ blueprint:
           multiline: false
     doseSwitch:
       name: Doser Switch
-      description: Switch that activates the Doser Equipment. Make a Group Helper
-        switch for multiple switches.
+      description: Switch that activates the Doser Equipment.
       selector:
         entity:
           domain:
           - switch
-          multiple: false
+          multiple: true
     doseRate:
       description: Calibrated dosing rate of doser equipment (in mL/min). BRS 2-part
         doser is 1.1 mL/min.
@@ -106,7 +105,7 @@ blueprint:
 trigger:
 - platform: time
   at: !input time_start
-  id: trigger_time
+  id: trigger_on
 - platform: state
   entity_id: !input doseSwitch
   from: 'off'
@@ -122,20 +121,19 @@ trigger:
   to: 'on'
 - platform: state
   entity_id: !input doseSwitch
-  id: trigger_off
-  to: 'off'
-- platform: state
-  entity_id: !input doseSwitch
   to: 'on'
   for: !input doseTime_max
+  id: max_time
 - platform: state
   entity_id: !input doseSwitch
   to: 'on'
   for: !input doseTime_max_1
+  id: max_time
 - platform: state
   entity_id: !input doseSwitch
   to: 'on'
   for: !input doseTime_max_2
+  id: max_time
 variables:
   condition: !input condition
   doseName: !input doseName
@@ -157,51 +155,56 @@ variables:
     Conditions: {{ condition }}'
   additional_actions: !input additional_actions
   notify: !input notify
+  notify_message_fail_max: Dose Time Exceeded for {{ doseName }}. Switch should have
+    been switched Off to prevent overdosing.
+  notify_title_fail_max: Dose Time Exceeded
 action:
 - if:
   - condition: !input condition
   then:
   - choose:
     - conditions:
-      - condition: or
-        conditions:
-        - condition: not
-          conditions:
-          - condition: trigger
-            id: trigger_on
-          - condition: trigger
-            id: trigger_time
+      - condition: trigger
+        id: trigger_on
       sequence:
+      - choose: []
+        default: !input additional_actions
+      - service: switch.turn_on
+        data: {}
+        entity_id: !input doseSwitch
+      - if:
+        - condition: template
+          value_template: '{{ notify }}'
+        then:
+        - service: notify.persistent_notification
+          data:
+            message: '{{ notify_message }}'
+            title: '{{ notify_title }}'
+      - delay:
+          hours: 0
+          minutes: '{{ doseTime }}'
+          seconds: 0
+          milliseconds: 0
+      - service: switch.turn_off
+        data: {}
+        entity_id: !input doseSwitch
+    default:
       - service: switch.turn_off
         metadata: {}
         data: {}
         entity_id: !input doseSwitch
-    default:
-    - choose: []
-      default: !input additional_actions
-    - service: switch.turn_on
-      data: {}
-      entity_id: !input doseSwitch
-    - if:
-      - condition: and
-        conditions:
-        - condition: template
-          value_template: '{{ notify }}'
+      - if:
         - condition: trigger
-          id: trigger_on
-      then:
-      - service: notify.persistent_notification
-        data:
-          message: '{{ notify_message }}'
-          title: '{{ notify_title }}'
-    - delay:
-        hours: 0
-        minutes: '{{ doseTime }}'
-        seconds: 0
-        milliseconds: 0
-    - service: switch.turn_off
-      data: {}
-      entity_id: !input doseSwitch
+          id: max_time
+        then:
+          - if:
+            - condition: template
+              value_template: '{{ notify }}'
+            then:
+              - service: notify.persistent_notification
+                data:
+                  message: '{{ notify_message_fail_max }}'
+                  title: '{{ notify_title_fail_max }}'
   else:
   - if:
     - condition: template
@@ -211,4 +214,4 @@ action:
       data:
         message: '{{ notify_message_fail }}'
         title: '{{ notify_title_fail }}'
-mode: restart
+mode: single

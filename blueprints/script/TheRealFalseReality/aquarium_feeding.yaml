@@ -4,7 +4,7 @@ blueprint:
     Info](https://community.home-assistant.io/t/aquarium-turn-off-switches-to-feed-your-fish-for-a-certain-amount-of-time-then-turn-back-on-script/600544/1)
     (1.2) [Script]
   domain: script
-  source_url: https://gist.github.com/TheRealFalseReality/06d34488d84e81916768129b0398de25
+  source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/script/TheRealFalseReality/aquarium_feeding.yaml
   input:
     condition:
       name: Add Condition(s)

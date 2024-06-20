@@ -5,8 +5,8 @@ substitutions:
   logger: "DEBUG"
 
   # I2C pins
-  sdaPin: "21" # yellow
-  sclPin: "22" # blue
+  sdaPin: "21" # yellow/TX
+  sclPin: "22" # blue/RX
 
 esphome:
   name: "${name}"
@@ -37,7 +37,7 @@ ota:
 
 wifi: 
   ap:
-  
+
 web_server:
   version: 3
 

@@ -1,9 +1,9 @@
 substitutions:
-  # PMP circuit, who's address is 103
-  addPMP_default: "103"
-  addPMP_alt1: "108"
-  addPMP_alt2: "109"
-  addPMP_alt3: "110"
+  # PMP circuit, who's default address is 103
+  addPMP_default: "103" #Blue
+  addPMP_alt1: "108" # Waste/Red
+  addPMP_alt2: "109" # Clean/Green
+  addPMP_alt3: "110" #Orange
 
 button:
   # Change I2C Address of EZO-PMP

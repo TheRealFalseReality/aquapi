@@ -1,0 +1,123 @@
+blueprint:
+  name: "Aquarium - AquaPi: Dosing"
+  description: Turn on an AquaPi EZO Pump to dose a specific amount in mL.
+    [More Info]() (v1) [Script]
+  domain: script
+  source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/script/TheRealFalseReality/aquapi_dosing.yaml
+  input:
+    condition:
+      name: Add Condition(s)
+      description: Add conditions if needed.
+      default: []
+      selector:
+        condition: {}
+    dose_name:
+      name: Dose Name
+      description: Name of what you are dosing (ex. Marine Trace).
+      selector:
+        text:
+          multiple: false
+          multiline: false
+    pump_button:
+      name: AquaPi Dose Pump
+      description: Select the **AquaPi DEVICENAME Pump - Dose Volume** button(s).
+      selector:
+        entity: 
+          filter:
+            - domain: button
+              integration: esphome
+    volume_number:
+      name: AquaPi Dose Volume Input Number
+      description: Select the **AquaPi DEVICENAME Pump - Volume to Dose** input number sensor 
+        to set the Volume to dose.
+      selector:
+        entity: 
+          filter:
+            - domain: number
+              integration: esphome
+    dose_volume:
+      name: Dose Volume (mL)
+      description: "Volume to dose. The EZO Pump will dose at max flow rate, about 105 mL/min. 
+        *This may not match the sensor reported from the AquaPi.* Max: 1000 mL"
+      selector:
+        number:
+          min: 1
+          max: 1000
+          step: 0.1
+          unit_of_measurement: mL
+          mode: box
+    notify:
+      name: Persistent Notification (Recommended)
+      description: Notify Home Assistant when script is executed.
+      default: true
+      selector:
+        boolean: {}
+    additional_actions:
+      name: Additional Actions
+      description: |
+        Add additional actions to the script. Will execute before everything else.
+        - Example: To send to Mobile Device using the official Home Assistant App:
+
+          Notifications -> Send a notification via mobile.YOUR_DEVICE_NAME
+          ```
+          service: notify.YOUR_DEVICE_NAME
+          metadata: {}
+          data:
+            message: "{{ message }}"
+            title: "{{ title }}"
+          ```
+
+          Copy {{ message }} into `message`. This will switch to "yaml" mode. Above is a completed example.
+      default: []
+      selector:
+        action: {}
+variables:
+  condition: !input condition
+  pump_button: !input pump_button
+  volume_number: !input volume_number
+  dose_volume: !input dose_volume
+  dose_name: !input dose_name
+  title: 'Dosing - {{ dose_name }}'
+  message: Dosing {{ dose_volume }}mL of {{ dose_name }}.
+  title_fail: '{{ dose_name }} Failed'
+  message_fail: "Failed to dose {{ dose_name }} due to conditions not passing.\n
+    Conditions: {{ condition }}"
+  additional_actions: !input additional_actions
+  notify: !input notify
+sequence:
+- if:
+  - condition: !input condition
+  then:
+  - choose: []
+    default: !input additional_actions
+  - service: number.set_value
+    entity_id: !input volume_number
+    data:
+      value: !input dose_volume
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 100
+  - service: button.press
+    metadata: {}
+    data: {}
+    entity_id: !input pump_button
+  - if:
+    - condition: template
+      value_template: '{{ notify }}'
+    then:
+    - service: notify.persistent_notification
+      data:
+        message: '{{ message }}'
+        title: '{{ title }}'
+  else:
+  - if:
+    - condition: template
+      value_template: '{{ notify }}'
+    then:
+    - service: notify.persistent_notification
+      data:
+        message: '{{ message_fail }}'
+        title: '{{ title_fail }}'
+mode: restart

@@ -10,7 +10,7 @@ substitutions:
 #           - button.press: send_selected_ph
 
 sensor:
-  # EZO Circuits (yellow - SCL/RX, blue - SDA/TX)
+  # EZO Circuits (SCL/RX, SDA/TX)
   # EZO Circuit - DO
   # Dissolved Oxygen
   - platform: ezo
