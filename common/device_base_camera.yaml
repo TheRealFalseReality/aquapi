@@ -159,9 +159,9 @@ button:
     entity_category: "config"
     on_press: 
       then:
-    - ota.http_request.flash:
-        md5_url: https://github.com/TheRealFalseReality/aquapi/blob/main/bin/ota/aquapicamera.md5
-        url: https://github.com/TheRealFalseReality/aquapi/blob/main/bin/ota/aquapicamera.ota.bin       
+        - ota.http_request.flash:
+            md5_url: https://github.com/TheRealFalseReality/aquapi/blob/main/bin/ota/aquapicamera.md5
+            url: https://github.com/TheRealFalseReality/aquapi/blob/main/bin/ota/aquapicamera.ota.bin       
 
   # # Factory Reset
   # - platform: factory_reset
