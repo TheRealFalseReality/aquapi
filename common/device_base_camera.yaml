@@ -39,9 +39,11 @@ logger:
 
 api:
 
+http_request:
+
 ota:
-  - platform: esphome
-  # - platform: http_request
+  # - platform: esphome
+  - platform: http_request
 
 wifi: 
   ap:
@@ -154,28 +156,28 @@ button:
     id: restart_button
     name: "Restart"
 
-  # - platform: template
-  #   id: update_firmware
-  #   name: Update Firmware
-  #   entity_category: "config"
-  #   on_press: 
-  #     then:
-  #       - ota.http_request.flash:
-  #           md5_url: https://github.com/TheRealFalseReality/aquapi/blob/main/bin/ota/aquapicamera.md5
-  #           url: https://github.com/TheRealFalseReality/aquapi/blob/main/bin/ota/aquapicamera.ota.bin       
+  - platform: template
+    id: update_firmware
+    name: Update Firmware
+    entity_category: "config"
+    on_press: 
+      then:
+        - ota.http_request.flash:
+            md5_url: https://github.com/TheRealFalseReality/aquapi/blob/main/bin/ota/aquapicamera.md5
+            url: https://github.com/TheRealFalseReality/aquapi/blob/main/bin/ota/aquapicamera.ota.bin       
 
-  # # Factory Reset
-  # - platform: factory_reset
-  #   name: Factory Reset (USE WITH CAUTION)
-  #   disabled_by_default: true
+  # Factory Reset
+  - platform: factory_reset
+    name: Factory Reset (USE WITH CAUTION)
+    disabled_by_default: true
 
-  # # Safe Mode Restart
-  # - platform: safe_mode
-  #   name: "Restart in Safe Mode"
-  #   id: restart_safe
+  # Safe Mode Restart
+  - platform: safe_mode
+    name: "Restart in Safe Mode"
+    id: restart_safe
 
-  # # Shutdown
-  # - platform: shutdown
-  #   name: "Shutdown"
-  #   disabled_by_default: true
-  #   id: shutdown_button
+  # Shutdown
+  - platform: shutdown
+    name: "Shutdown"
+    disabled_by_default: true
+    id: shutdown_button
