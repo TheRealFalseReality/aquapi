@@ -43,7 +43,7 @@ http_request:
   verify_ssl: false
 
 ota:
-  # - platform: esphome
+  - platform: esphome
   - platform: http_request
 
 wifi: 
