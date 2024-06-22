@@ -18,7 +18,6 @@ substitutions:
 one_wire:
   - platform: gpio
     pin: ${dallasPin}
-    update_interval: "${update_temp}"
 
 sensor:
   # Temperature Probe 1
@@ -29,6 +28,7 @@ sensor:
     name: "Temperature"
     state_class: "measurement"
     device_class: "temperature"
+    update_interval: "${update_temp}"
     filters:
       - calibrate_linear:
           method: least_squares
