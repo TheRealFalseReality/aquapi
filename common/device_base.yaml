@@ -173,6 +173,7 @@ button:
     id: update_firmware
     name: Update Firmware (Experimental)
     entity_category: "config"
+    disabled_by_default: true
     on_press: 
       then:
         - ota.http_request.flash:
