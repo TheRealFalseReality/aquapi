@@ -1,11 +1,12 @@
+# Board rev 1.2
 substitutions:
-  binarypin1: "34"
-  binarypin2: "35"
+  binarypin1: "34" # yellow 
+  binarypin2: "35" # blue
 
 binary_sensor:
   - platform: gpio
     id: binary_pin_1
-    name: Binary Sensor 1
+    name: Leak Sensor
     pin: 
       number: ${binarypin1}
       inverted: true

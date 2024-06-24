@@ -9,6 +9,7 @@ substitutions:
   sclPin: "22" # blue/RX
 
 esphome:
+  min_version: 2024.6.0
   name: "${name}"
   friendly_name: "${friendly_name}"
   # Automatically add the mac address to the name
@@ -33,7 +34,12 @@ logger:
 
 api:
 
+http_request:
+  verify_ssl: false
+
 ota:
+  - platform: esphome
+  - platform: http_request
 
 wifi: 
   ap:
@@ -162,3 +168,14 @@ button:
   - platform: shutdown
     name: "Shutdown"
     disabled_by_default: true
+
+  - platform: template
+    id: update_firmware
+    name: Update Firmware (Experimental)
+    entity_category: "config"
+    disabled_by_default: true
+    on_press: 
+      then:
+        - ota.http_request.flash:
+            md5_url: https://github.com/TheRealFalseReality/aquapi/blob/main/bin/ota/aquapi.md5
+            url: https://github.com/TheRealFalseReality/aquapi/blob/main/bin/ota/aquapi.ota.bin   

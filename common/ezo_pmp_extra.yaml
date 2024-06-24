@@ -1,6 +1,10 @@
 substitutions:
-  # PMP circuit, who's address is 103
+  # PMP circuit
   addPMP_2: "110" # Orange
+
+  # TODO Add Rest of Pumps
+  addPMP_3: "104" # Yellow
+  addPMP_4: "106" # Blue
   update_pmp: "60s"
 
 ezo_pmp:

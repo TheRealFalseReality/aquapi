@@ -5,6 +5,7 @@ substitutions:
   logger: "DEBUG"
 
 esphome:
+  min_version: 2024.6.0
   name: "${name}"
   friendly_name: "${friendly_name}"
   # Automatically add the mac address to the name
@@ -38,8 +39,12 @@ logger:
 
 api:
 
+http_request:
+  verify_ssl: false
+
 ota:
-  platform: esphome
+  - platform: esphome
+  - platform: http_request
 
 wifi: 
   ap:
@@ -111,7 +116,7 @@ sensor:
     unit_of_measurement: "%"
     entity_category: "diagnostic"
 
-    # Uptime sensor
+  # Uptime sensor
   - platform: uptime
     name: Uptime 
 
@@ -152,18 +157,28 @@ button:
     id: restart_button
     name: "Restart"
 
-  # # Factory Reset
-  # - platform: factory_reset
-  #   name: Factory Reset (USE WITH CAUTION)
-  #   disabled_by_default: true
+  - platform: template
+    id: update_firmware
+    name: Update Firmware
+    entity_category: "config"
+    on_press: 
+      then:
+        - ota.http_request.flash:
+            md5_url: https://github.com/TheRealFalseReality/aquapi/blob/main/bin/ota/aquapicamera.md5
+            url: https://github.com/TheRealFalseReality/aquapi/blob/main/bin/ota/aquapicamera.ota.bin       
 
-  # # Safe Mode Restart
-  # - platform: safe_mode
-  #   name: "Restart in Safe Mode"
-  #   id: restart_safe
+  # Factory Reset
+  - platform: factory_reset
+    name: Factory Reset (USE WITH CAUTION)
+    disabled_by_default: true
 
-  # # Shutdown
-  # - platform: shutdown
-  #   name: "Shutdown"
-  #   disabled_by_default: true
-  #   id: shutdown_button
+  # Safe Mode Restart
+  - platform: safe_mode
+    name: "Restart in Safe Mode"
+    id: restart_safe
+
+  # Shutdown
+  - platform: shutdown
+    name: "Shutdown"
+    disabled_by_default: true
+    id: shutdown_button
