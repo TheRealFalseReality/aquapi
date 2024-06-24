@@ -15,7 +15,7 @@ substitutions:
   sdaPin: "21" # blue
   sclPin: "22" # yellow
   
-  # EZO Circuit Addresses
+  # EZO Circuit I2C Addresses
   # pH circuit, who's address is 99
   addPH: "99"
   # EC circuit, who's address is 100
@@ -30,6 +30,14 @@ substitutions:
   addHUM: "111"
   # CO2 circuit, who's address is 105
   addCO2: "105"
+
+  # PMP circuit addresses
+  addPMP: "103" # White
+  addPMPWaste: "108" # Red - Waste Water
+  addPMPClean: "109" # Green - Clean Water
+  addPMP_2: "110" # Orange
+  addPMP_3: "104" # Yellow
+  addPMP_4: "106" # Blue
 
   # Calibration variables
   # 0C using Ice Water; 100C using Boiling Water

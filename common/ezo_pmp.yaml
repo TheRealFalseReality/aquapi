@@ -1,5 +1,5 @@
 substitutions:
-  # PMP circuit, who's address is 103
+  # PMP circuit
   addPMP: "103" # White
   update_pmp: "60s"
 

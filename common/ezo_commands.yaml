@@ -1,6 +1,6 @@
 substitutions:
   # PMP circuit, who's default address is 103
-  addPMP_default: "103" #Blue
+  addPMP_default: "103" #White
   addPMP_alt1: "108" # Waste/Red
   addPMP_alt2: "109" # Clean/Green
   addPMP_alt3: "110" #Orange
