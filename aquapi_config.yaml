@@ -10,6 +10,7 @@ packages:
   aquapi: !include common/aquapi.yaml
   dallas: !include common/temperature_dallas.yaml
   binary: !include common/binary.yaml
+  binary_input: !include common/binary_input.yaml
   ezo_ph: !include common/ezo_ph.yaml
   ezo_ec: !include common/ezo_ec.yaml
   ezo_orp: !include common/ezo_orp.yaml
