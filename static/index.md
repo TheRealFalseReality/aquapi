@@ -53,6 +53,16 @@ Use the button below to install the pre-built firmware directly to your device v
   - Time Before Recalibration: ~10 Years
   - Life Expectancy: ~10 Years
 
+**Dissolved Oxygen:** *Atlas Scientific DO: [EZO-DO](https://files.atlas-scientific.com/DO_EZO_Datasheet.pdf) & [Dissolved Oxygen Probe](https://files.atlas-scientific.com/LG_DO_probe.pdf)*  
+  - EZO™ DO Embedded Circuit  
+  - Range: 0.00 - 100 mg/L (0 - 350% saturation)
+  - Life Expectancy: ~4 Years
+    
+**ORP:** *Atlas Scientific ORP: [EZO-ORP](https://files.atlas-scientific.com/ORP_EZO_Datasheet.pdf) & [ORP Probe](https://files.atlas-scientific.com/orp_probe.pdf)*  
+  - EZO™ ORP Embedded Circuit  
+  - Range: -2000mV - 2000 mV
+  - Life Expectancy: ~2 Years
+
 ***Peristaltic Dosing Pump:*** Atlas Scientific Pump: [EZO-PMP](https://files.atlas-scientific.com/EZO_PMP_Datasheet.pdf)  
   - EZO™ Pump Embedded Circuit  
   - Flow Rate: 0.5ml to 105ml/mins
@@ -65,9 +75,7 @@ Use the button below to install the pre-built firmware directly to your device v
   - Life Expectancy: ~5.5 Years
 
 **Other EZO probes that should work but not yet tested:**  
-[Dissolved Oxygen](https://files.atlas-scientific.com/LG_DO_probe.pdf), 
 [Humidity](https://files.atlas-scientific.com/EZO-HUM-Datasheet.pdf), 
-[ORP](https://files.atlas-scientific.com/orp_probe.pdf),
 [Temperture](https://files.atlas-scientific.com/EZO_RTD_Datasheet.pdf)
 
 **Prerequisite!!** A Raspberry Pi (or something similar) running HomeAssistant to communicate and interact with the ESP32 via `homeassistant.local:8123`.
