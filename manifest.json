@@ -1,0 +1,13 @@
+{
+    "name": "AquaPi",
+    "version": "1.8.3",
+    "builds": [
+      {
+        "chipFamily": "ESP32",
+        "ota": {
+          "md5": "19846cd079d975f7ee77e99f248af5b0",
+          "path": "https://github.com/TheRealFalseReality/aquapi/blob/main/bin/ota/aquapi.ota.bin",
+        }
+      }
+    ]
+  }

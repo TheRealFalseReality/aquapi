@@ -39,12 +39,12 @@ logger:
 
 api:
 
-http_request:
-  verify_ssl: false
+# http_request:
+#   verify_ssl: false
 
 ota:
   - platform: esphome
-  - platform: http_request
+  # - platform: http_request
 
 wifi: 
   ap:
@@ -68,6 +68,7 @@ light:
     id: camera_led
 
 esp32_camera:
+  name: AquaPi Camera
   external_clock:
     pin: GPIO0
     frequency: 20MHz
@@ -81,7 +82,13 @@ esp32_camera:
   power_down_pin: GPIO32
 
   # Image settings
-  name: AquaPi Camera
+  # resolution: 1024X768
+  # resolution: 720x1280
+  # resolution: 1080x1920
+  # resolution: 2560x1920
+  # jpeg_quality: 10
+  # vertical_flip: false
+  # horizontal_mirror: False
 
 # esp32_camera_web_server:
 #   - port: 8080
@@ -157,15 +164,15 @@ button:
     id: restart_button
     name: "Restart"
 
-  - platform: template
-    id: update_firmware
-    name: Update Firmware
-    entity_category: "config"
-    on_press: 
-      then:
-        - ota.http_request.flash:
-            md5_url: https://github.com/TheRealFalseReality/aquapi/blob/main/bin/ota/aquapicamera.md5
-            url: https://github.com/TheRealFalseReality/aquapi/blob/main/bin/ota/aquapicamera.ota.bin       
+  # - platform: template
+  #   id: update_firmware
+  #   name: Update Firmware
+  #   entity_category: "config"
+  #   on_press: 
+  #     then:
+  #       - ota.http_request.flash:
+  #           md5_url: https://github.com/TheRealFalseReality/aquapi/blob/main/bin/ota/aquapicamera.md5
+  #           url: https://github.com/TheRealFalseReality/aquapi/blob/main/bin/ota/aquapicamera.ota.bin       
 
   # Factory Reset
   - platform: factory_reset
