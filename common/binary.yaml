@@ -61,7 +61,7 @@ binary_sensor:
     filters:
       - delayed_on_off: 30ms
 
-  # Additional Pin 2
+  # Leak Sensor
   - platform: gpio
     id: leak_sensor
     disabled_by_default: true
