@@ -9,7 +9,6 @@ binary_sensor:
     name: Leak Sensor
     pin: 
       number: ${binarypin1}
-      inverted: true
       mode:
         input: true
     filters:
@@ -20,7 +19,6 @@ binary_sensor:
     name: Binary Sensor 2
     pin: 
       number: ${binarypin2}
-      inverted: true
       mode:
         input: true
     filters:
