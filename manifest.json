@@ -12,7 +12,7 @@
           ],
         "ota": {
           "md5": "19846cd079d975f7ee77e99f248af5b0",
-          "path": "/bin/ota/aquapi.ota.bin",
+          "path": "https://github.com/TheRealFalseReality/aquapi/blob/main/bin/ota/aquapi.ota.bin",
           "release_url": "https://github.com/TheRealFalseReality/aquapi/releases/tag/v1.8.3",
           "summary": "Another update"
         }
