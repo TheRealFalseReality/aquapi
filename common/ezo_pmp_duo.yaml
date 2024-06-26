@@ -1,7 +1,7 @@
 substitutions:
   # PMP circuit, who's address is 103
-  addPMP_1: "108" # Red - Waste Water
-  addPMP_2: "109" # Green - Clean Water
+  addPMP_1: "108" # Red - Waste
+  addPMP_2: "109" # Green - Clean
   update_pmp_1: "60s"
   update_pmp_2: "60s"
   

@@ -10,61 +10,61 @@ substitutions:
   update_pmp_6: "60s"
 
 ezo_pmp:
-  - id: ezo_pump_2
+  - id: ezo_pump_orange
     address: ${addPMP_4}
     update_interval: "${update_pmp_4}"
 
 api:
   services: 
-    - service: pump_2_dose_volume
+    - service: pump_orange_dose_volume
       variables: 
         dose_volume: float
       then: 
         - ezo_pmp.dose_volume:
-            id: ezo_pump_2
+            id: ezo_pump_orange
             volume: !lambda 'return dose_volume;'
-    - service: pump_2_dose_volume_time
+    - service: pump_orange_dose_volume_time
       variables:
         dose_volume: float
         dose_time: float
       then:
         - ezo_pmp.dose_volume_over_time:
-            id: ezo_pump_2
+            id: ezo_pump_orange
             volume: !lambda |-
               return dose_volume;
             duration: !lambda |-
               return dose_time;
-    - service: pump_2_dose_flow_rate_time
+    - service: pump_orange_dose_flow_rate_time
       variables:
         dose_rate: float
         dose_time: float
       then:
         - ezo_pmp.dose_with_constant_flow_rate:
-            id: ezo_pump_2
+            id: ezo_pump_orange
             volume_per_minute: !lambda |-
               return dose_rate;
             duration: !lambda |-
               return dose_time;
-    - service: pump_2_dose_set_calibration
+    - service: pump_orange_dose_set_calibration
       variables:
         actual_volume: float
       then:
         - ezo_pmp.set_calibration_volume:
-            id: ezo_pump_2
+            id: ezo_pump_orange
             volume: !lambda |-
               return actual_volume;
-    - service: pump_2_change_address
+    - service: pump_orange_change_address
       variables:
         address: int
       then:
         - ezo_pmp.change_i2c_address:
-            id: ezo_pump_2
+            id: ezo_pump_orange
             address: !lambda |-
               return address;
 
 sensor:
   - platform: ezo_pmp
-    id: ezo_pump_2
+    id: ezo_pump_orange
     current_volume_dosed:
       id: current_volume_dosed_2
       name: Pump 2 - Current Volume Dosed
@@ -73,7 +73,7 @@ sensor:
       state_class: total
       unit_of_measurement: 'mL'
   - platform: ezo_pmp
-    id: ezo_pump_2
+    id: ezo_pump_orange
     total_volume_dosed:
       id: total_volume_dosed_2
       name: Pump 2 - Total Volume Dosed
@@ -82,7 +82,7 @@ sensor:
       unit_of_measurement: 'mL'
       disabled_by_default: true
   - platform: ezo_pmp
-    id: ezo_pump_2
+    id: ezo_pump_orange
     absolute_total_volume_dosed:
       id: absolute_total_volume_dosed_2
       name: Pump 2 - Absolute Total Volume Dosed
@@ -91,7 +91,7 @@ sensor:
       state_class: total
       unit_of_measurement: 'mL'
   - platform: ezo_pmp
-    id: ezo_pump_2
+    id: ezo_pump_orange
     last_volume_requested:
       id: last_volume_requested_2
       name: Pump 2 - Last Volume Requested
@@ -100,29 +100,29 @@ sensor:
       state_class: total
       unit_of_measurement: 'mL'
   - platform: ezo_pmp
-    id: ezo_pump_2
+    id: ezo_pump_orange
     max_flow_rate:
       id: max_flow_rate_2
       name: Pump 2 - Max Volume/Time Flow Rate
       icon: mdi:car-speed-limiter
       unit_of_measurement: 'mL/min'
   - platform: ezo_pmp
-    id: ezo_pump_2
+    id: ezo_pump_orange
     pump_voltage:
-      id: pump_2_voltage
+      id: pump_orange_voltage
       name: Pump 2 - Voltage
       disabled_by_default: true
       device_class: 'voltage'
 
 binary_sensor:
   - platform: ezo_pmp
-    id: ezo_pump_2
+    id: ezo_pump_orange
     pump_state:
-      id: pump_2_state
+      id: pump_orange_state
       name: Pump 2 - State
-      icon: mdi:pump_2
+      icon: mdi:pump_orange
   - platform: ezo_pmp
-    id: ezo_pump_2
+    id: ezo_pump_orange
     is_paused:
       id: is_paused_2
       name: Pump 2 - Paused Status
@@ -130,13 +130,13 @@ binary_sensor:
 
 text_sensor:
   - platform: ezo_pmp
-    id: ezo_pump_2
+    id: ezo_pump_orange
     dosing_mode:
       id: dosing_mode_2
       name: Pump 2 - Dosing Mode 
       icon: mdi:auto-mode
   - platform: ezo_pmp
-    id: ezo_pump_2
+    id: ezo_pump_orange
     calibration_status:
       id: calibration_status_2
       name: Pump 2 - Calibration Status
@@ -146,7 +146,7 @@ text_sensor:
 number:
   - platform: template
     id: volume_2
-    icon: mdi:pump_2
+    icon: mdi:pump_orange
     name: Pump 2 - Volume to Dose
     device_class: 'volume'
     unit_of_measurement: 'mL'
@@ -188,7 +188,7 @@ button:
     id: dose_over_time_2
     on_press:
       - ezo_pmp.dose_volume_over_time:
-          id: ezo_pump_2
+          id: ezo_pump_orange
           volume: !lambda |-
             return id(volume).state;
           duration: !lambda |-
@@ -199,14 +199,14 @@ button:
     id: dose_continuously_2
     on_press:
       - ezo_pmp.dose_continuously:
-          id: ezo_pump_2
+          id: ezo_pump_orange
   - platform: template
     name: Pump 2 - Dose Volume
-    icon: mdi:pump_2
+    icon: mdi:pump_orange
     id: dose_volume_2
     on_press:
       - ezo_pmp.dose_volume:
-          id: ezo_pump_2
+          id: ezo_pump_orange
           volume: !lambda |-
             return id(volume).state;
   - platform: template
@@ -215,7 +215,7 @@ button:
     id: dose_flow_rate_2
     on_press:
       - ezo_pmp.dose_with_constant_flow_rate:
-          id: ezo_pump_2
+          id: ezo_pump_orange
           volume_per_minute: !lambda |-
             return id(flow_rate).state;
           duration: !lambda |-
@@ -226,21 +226,21 @@ button:
     id: dose_pause_2
     on_press:
       - ezo_pmp.pause_dosing:
-          id: ezo_pump_2
+          id: ezo_pump_orange
   - platform: template
     name: Pump 2 - Stop Dosing
     icon: mdi:stop
     id: dose_stop_2
     on_press:
       - ezo_pmp.stop_dosing:
-          id: ezo_pump_2
+          id: ezo_pump_orange
   - platform: template
     name: Pump 2 - Clear Total Volume Dosed
     icon: mdi:backspace
     id: dose_clear_2
     on_press:
       - ezo_pmp.clear_total_volume_dosed:
-          id: ezo_pump_2
+          id: ezo_pump_orange
 
   # Calibrate
   - platform: template
@@ -249,7 +249,7 @@ button:
     id: dose_calibrate_volume_2
     on_press:
       - ezo_pmp.set_calibration_volume:
-          id: ezo_pump_2
+          id: ezo_pump_orange
           volume: !lambda |-
             return id(volume).state;
   - platform: template
@@ -258,4 +258,4 @@ button:
     id: dose_calibrate_volume_clear_2
     on_press:
       - ezo_pmp.clear_calibration:
-          id: ezo_pump_2
+          id: ezo_pump_orange
