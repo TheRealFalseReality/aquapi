@@ -8,7 +8,6 @@ update:
     source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/manifest_camera.json
 
 ota:
-  - platform: esphome
   - platform: http_request
 
 button:
