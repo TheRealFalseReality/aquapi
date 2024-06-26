@@ -1,0 +1,18 @@
+http_request:
+  verify_ssl: false
+
+ota:
+  - platform: esphome
+  - platform: http_request
+
+button:
+  - platform: template
+    id: update_firmware
+    name: Update Firmware (Experimental)
+    entity_category: "config"
+    # disabled_by_default: true
+    on_press: 
+      then:
+        - ota.http_request.flash:
+            md5_url: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/bin/ota/aquapicamera.md5
+            url: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/bin/ota/aquapicamera.ota.bin

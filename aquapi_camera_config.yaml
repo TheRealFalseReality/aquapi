@@ -3,9 +3,10 @@ substitutions:
   name: "aquapicamera"
   friendly_name: "AquaPiCamera"
   # App Version - Updated: 5/2024
-  app_version: "1.1.2-cam"
+  app_version: "1.1.3-cam"
 
 packages:
   device_base_camera: !include common/device_base_camera.yaml
   aquapi: !include common/aquapi.yaml
+  ota_https: !include common/ota_https.yaml
   # debug: !include common/debug.yaml
