@@ -61,6 +61,7 @@ light:
   - platform: status_led
     id: internal_led
     pin: 33
+    ignore_strapping_warning: true
     
   - platform: binary
     output: camera_pin
