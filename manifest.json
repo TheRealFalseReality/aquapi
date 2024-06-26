@@ -1,6 +1,6 @@
 {
   "name": "AquaPi",
-  "version": "1.8.3",
+  "version": "1.8.5",
   "home_assistant_domain": "esphome",
   "builds": [
     {
@@ -8,7 +8,7 @@
       "ota": {
         "md5": "7ed726f6b2868d8ec972b7a9ccfeee27",
         "path": "/TheRealFalseReality/aquapi/main/bin/factory/aquapi.factory.bin",
-        "release_url": "https://github.com/TheRealFalseReality/aquapi/releases/tag/v1.8.3"
+        "release_url": "https://github.com/TheRealFalseReality/aquapi/releases/tag/v1.8.5"
       }
     }
   ]
