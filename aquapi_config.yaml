@@ -2,7 +2,7 @@ substitutions:
   # names
   name: "aquapi"
   friendly_name: "AquaPi"
-  # App Version - Updated: 1/2024
+  # App Version - Updated: 6/2024
   app_version: "1.8.3"
 
 packages:
