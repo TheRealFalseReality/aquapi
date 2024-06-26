@@ -67,8 +67,9 @@ i2c:
 light:
   - platform: status_led
     id: internal_led
-    pin: GPIO2
-    ignore_strapping_warning: true
+    pin:
+      number: GPIO2
+      ignore_strapping_warning: true
 
 sensor:
   # Internal Magnetic Sensor
