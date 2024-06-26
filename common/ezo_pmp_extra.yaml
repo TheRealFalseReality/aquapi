@@ -1,17 +1,17 @@
 substitutions:
   # PMP circuit
-  addPMP_2: "110" # Orange
+  addPMP_4: "110" # Orange
 
   # TODO Add Rest of Pumps
-  addPMP_3: "104" # Yellow
-  addPMP_4: "106" # Blue
+  addPMP_5: "104" # Yellow
+  addPMP_6: "106" # Blue
   update_pmp_4: "60s"
   update_pmp_5: "60s"  
   update_pmp_6: "60s"
 
 ezo_pmp:
   - id: ezo_pump_2
-    address: ${addPMP_2}
+    address: ${addPMP_4}
     update_interval: "${update_pmp_4}"
 
 api:

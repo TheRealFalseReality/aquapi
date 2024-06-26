@@ -1,6 +1,6 @@
 substitutions:
   # PMP circuit
-  addPMP: "103" # White
+  addPMP_3: "103" # White
   update_pmp_3: "60s"
 
 ezo_pmp:

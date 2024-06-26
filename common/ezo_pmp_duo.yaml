@@ -1,16 +1,16 @@
 substitutions:
   # PMP circuit, who's address is 103
-  addPMPWaste: "108" # Red - Waste Water
-  addPMPClean: "109" # Green - Clean Water
+  addPMP_1: "108" # Red - Waste Water
+  addPMP_2: "109" # Green - Clean Water
   update_pmp_1: "60s"
   update_pmp_2: "60s"
   
 ezo_pmp:
   - id: ezo_pump_waste
-    address: ${addPMPWaste}
+    address: ${addPMP_1}
     update_interval: "${update_pmp_1}"
   - id: ezo_pump_clean
-    address: ${addPMPClean}
+    address: ${addPMP_2}
     update_interval: "${update_pmp_2}"
 
 api:
