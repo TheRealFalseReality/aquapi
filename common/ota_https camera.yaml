@@ -10,6 +10,7 @@ button:
     id: update_firmware
     name: Update Firmware (Experimental)
     entity_category: "config"
+    icon: mdi:update
     # disabled_by_default: true
     on_press: 
       then:
