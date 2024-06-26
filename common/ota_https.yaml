@@ -1,5 +1,5 @@
 substitutions:
-  update_finmware_sensor: 6h
+  update_firmware_sensor_interval: 6h
 
 http_request:
   verify_ssl: false
@@ -7,7 +7,7 @@ http_request:
 update:
   - platform: http_request
     name: Firmware Update
-    update_interval: "${update_finmware_sensor}"
+    update_interval: "${update_firmware_sensor_interval}"
     id: update_firmware_sensor
     entity_category: 'diagnostic'
     source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/manifest.json
