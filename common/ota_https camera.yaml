@@ -8,6 +8,7 @@ update:
   - platform: http_request
     name: Firmware Update
     update_interval: "${update_finmware_sensor}"
+    entity_category: 'diagnostic'
     id: update_firmware_sensor
     source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/manifest_camera.json
 

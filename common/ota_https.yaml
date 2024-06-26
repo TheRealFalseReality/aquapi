@@ -9,6 +9,7 @@ update:
     name: Firmware Update
     update_interval: "${update_finmware_sensor}"
     id: update_firmware_sensor
+    entity_category: 'diagnostic'
     source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/manifest.json
 
 ota:
