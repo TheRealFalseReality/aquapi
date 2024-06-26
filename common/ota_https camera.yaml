@@ -1,6 +1,11 @@
 http_request:
   verify_ssl: false
 
+update:
+  - platform: http_request
+    name: Firmware Update
+    source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/manifest_camera.json
+
 ota:
   - platform: esphome
   - platform: http_request
