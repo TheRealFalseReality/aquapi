@@ -5,7 +5,7 @@ substitutions:
 
 ezo_pmp:
   - id: ezo_pump_white
-    address: ${addPMP}
+    address: ${addPMP_3}
     update_interval: "${update_pmp_3}"
 
 api:
