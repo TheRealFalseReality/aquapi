@@ -1,9 +1,13 @@
+substitutions:
+  update_finmware_sensor: 6h
+
 http_request:
   verify_ssl: false
 
 update:
   - platform: http_request
     name: Firmware Update
+    update_interval: "${update_finmware_sensor}"
     id: update_firmware_sensor
     source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/manifest_camera.json
 
