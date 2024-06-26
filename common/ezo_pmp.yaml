@@ -1,12 +1,12 @@
 substitutions:
   # PMP circuit
   addPMP: "103" # White
-  update_pmp: "60s"
+  update_pmp_3: "60s"
 
 ezo_pmp:
   - id: ezo_pump
     address: ${addPMP}
-    update_interval: "${update_pmp}"
+    update_interval: "${update_pmp_3}"
 
 api:
   services: 
