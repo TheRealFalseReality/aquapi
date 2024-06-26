@@ -8,5 +8,5 @@ substitutions:
 packages:
   device_base_camera: !include common/device_base_camera.yaml
   aquapi: !include common/aquapi.yaml
-  ota_https: !include common/ota_https.yaml
+  ota_https: !include common/ota_https_camera.yaml
   # debug: !include common/debug.yaml
