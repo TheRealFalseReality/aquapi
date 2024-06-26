@@ -1,0 +1,29 @@
+substitutions:
+  update_finmware_sensor: 6h
+
+http_request:
+  verify_ssl: false
+
+update:
+  - platform: http_request
+    name: Firmware Update
+    update_interval: "${update_finmware_sensor}"
+    id: update_firmware_sensor
+    entity_category: 'diagnostic'
+    source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/manifest.json
+
+ota:
+  - platform: http_request
+
+button:
+  - platform: template
+    id: update_firmware
+    name: Update Firmware (Experimental)
+    entity_category: "config"
+    icon: mdi:update
+    # disabled_by_default: true
+    on_press: 
+      then:
+        - ota.http_request.flash:
+            md5_url: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/bin/ota/aquapi.md5
+            url: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/bin/ota/aquapi.ota.bin
