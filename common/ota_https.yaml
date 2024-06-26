@@ -4,6 +4,7 @@ http_request:
 update:
   - platform: http_request
     name: Firmware Update
+    id: update_firmware_sensor
     source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/manifest.json
 
 ota:
