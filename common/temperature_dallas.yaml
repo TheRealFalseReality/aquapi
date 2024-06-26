@@ -24,7 +24,6 @@ sensor:
   - platform: dallas_temp
     id: temp_1
     icon: mdi:thermometer-lines
-    # index: 0
     name: "Temperature"
     state_class: "measurement"
     device_class: "temperature"
@@ -43,7 +42,7 @@ sensor:
   # - platform: dallas_temp
   #   id: temp_2
   #   icon: mdi:thermometer-lines
-  #   index: 1
+  #   address: 
   #   name: "Temperature 2"
   #   state_class: "measurement"
   #   device_class: "temperature"
