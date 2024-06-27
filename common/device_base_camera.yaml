@@ -1,8 +1,10 @@
 substitutions:
   # Import Config
   import_config: "false"
-  # Logger Level - Can use VERBOSE for more information in Logs
-  logger: "DEBUG"
+
+  # I2C pins
+  sdaPin: "21" # yellow/TX
+  sclPin: "22" # blue/RX
 
 esphome:
   min_version: 2024.6.0
@@ -33,29 +35,6 @@ dashboard_import:
   package_import_url: github://TheRealFalseReality/aquapi/aquapi_camera_config.yaml@main
   import_full_config: ${import_config}
 
-# Enable logging
-logger:
-  level: "${logger}"
-
-api:
-
-# http_request:
-#   verify_ssl: false
-
-ota:
-  - platform: esphome
-  # - platform: http_request
-
-wifi: 
-  ap:
-
-captive_portal:
-
-web_server:
-  version: 3
-  
-improv_serial:
-
 light:
 # Internal Red LED
   - platform: status_led
@@ -75,8 +54,8 @@ esp32_camera:
       ignore_strapping_warning: true
     frequency: 20MHz
   i2c_pins:
-    sda: GPIO26
-    scl: GPIO27
+    sda: ${sdaPin}
+    scl: ${sclPin}
   data_pins: [GPIO5, GPIO18, GPIO19, GPIO21, GPIO36, GPIO39, GPIO34, GPIO35]
   vsync_pin: GPIO25
   href_pin: GPIO23
@@ -103,91 +82,3 @@ output:
   - platform: gpio
     pin: 4
     id: camera_pin
-    
-sensor:
-  # Internal Temp.
-  - platform: internal_temperature
-    name: "Internal Temperature"
-
-  # Wifi Signal 
-  - platform: wifi_signal # Reports the WiFi signal strength/RSSI in dB
-    # name: "WiFi Signal dB"
-    id: wifi_signal_db
-    update_interval: 60s
-    entity_category: "diagnostic"
-
-  # Wifi %
-  - platform: copy # Reports the WiFi signal strength in %
-    source_id: wifi_signal_db
-    name: "WiFi Signal Strength"
-    filters:
-      - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
-    unit_of_measurement: "%"
-    entity_category: "diagnostic"
-
-  # Uptime sensor
-  - platform: uptime
-    name: Uptime 
-
-binary_sensor:
-  # API Status
-  - platform: status
-    name: "Status"
-
-text_sensor: 
-  # Hostname
-  - platform: template
-    name: "Hostname"
-    id: hostname
-    icon: mdi:cellphone-arrow-down
-    lambda: |-
-      return {"${name}"};
-    entity_category: "diagnostic"
-
-  # Wifi Info
-  - platform: wifi_info
-    ip_address:
-      name: IP Address
-      icon: mdi:ip-network
-    ssid:
-      name: Connected SSID
-      icon: mdi:wifi-arrow-left-right
-    # bssid:
-    #   name: Connected BSSID
-    #   icon: mdi:wifi-star
-    #   disabled_by_default: true
-    # mac_address:
-    #   name: Mac Address
-    #   icon: mdi:chip
-
-button:
-  # Soft Restart
-  - platform: restart
-    id: restart_button
-    name: "Restart"
-
-  # - platform: template
-  #   id: update_firmware
-  #   name: Update Firmware
-  #   entity_category: "config"
-  #   on_press: 
-  #     then:
-  #       - ota.http_request.flash:
-  #           md5_url: https://github.com/TheRealFalseReality/aquapi/blob/main/bin/ota/aquapicamera.md5
-  #           url: https://github.com/TheRealFalseReality/aquapi/blob/main/bin/ota/aquapicamera.ota.bin       
-
-  # Factory Reset
-  - platform: factory_reset
-    name: Factory Reset (USE WITH CAUTION)
-    disabled_by_default: true
-
-  # Safe Mode Restart
-  - platform: safe_mode
-    name: "Restart in Safe Mode"
-    id: restart_safe
-
-  # Shutdown
-  - platform: shutdown
-    name: "Shutdown"
-    disabled_by_default: true
-    id: shutdown_button
