@@ -62,7 +62,6 @@ text_sensor:
       return {"${name}"};
     entity_category: "diagnostic"
 
-text_sensor:
   # Wifi Info
   - platform: wifi_info
     ip_address:
