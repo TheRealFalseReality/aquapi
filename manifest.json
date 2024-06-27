@@ -6,9 +6,13 @@
   "builds": [
     {
       "chipFamily": "ESP32",
+      "ota": {
+        "path": "aquapi-esp32/aquapi-esp32.ota.bin",
+        "md5": "3280416a4bd87bd8a6add347eda2bab8"
+      },
       "parts": [
         {
-          "path": "aquapi-esp32/aquapi-esp32.bin",
+          "path": "aquapi-esp32/aquapi-esp32.factory.bin",
           "offset": 0
         }
       ]
