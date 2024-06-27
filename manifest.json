@@ -1,6 +1,6 @@
 {
   "name": "AquaPi",
-  "version": "2024.6",
+  "version": "",
   "home_assistant_domain": "esphome",
   "new_install_skip_erase": false,
   "builds": [
@@ -8,8 +8,7 @@
       "chipFamily": "ESP32",
       "ota": {
         "path": "aquapi-esp32/aquapi-esp32.ota.bin",
-        "md5": "160cf585f8dd4b98356b284ef80459f4",
-        "release_url": "https://github.com/TheRealFalseReality/aquapi/releases/tag/2024.6"
+        "md5": "e6df8c5dc2a009b0d3163fe2824f2758"
       },
       "parts": [
         {
