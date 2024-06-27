@@ -70,7 +70,9 @@ light:
 esp32_camera:
   name: AquaPi Camera
   external_clock:
-    pin: GPIO0
+    pin: 
+      number: GPIO0
+      ignore_strapping_warning: true
     frequency: 20MHz
   i2c_pins:
     sda: GPIO26
