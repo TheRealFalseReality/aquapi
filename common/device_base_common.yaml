@@ -62,6 +62,20 @@ text_sensor:
       return {"${name}"};
     entity_category: "diagnostic"
 
+text_sensor:
+  # Wifi Info
+  - platform: wifi_info
+    ip_address:
+      name: IP Address
+      icon: mdi:ip-network
+    ssid:
+      name: Connected SSID
+      icon: mdi:wifi-arrow-left-right
+    scan_results:
+      name: ESP Latest Scan Results
+    dns_address:
+      name: ESP DNS Address
+
 button:
   # Soft Restart
   - platform: restart

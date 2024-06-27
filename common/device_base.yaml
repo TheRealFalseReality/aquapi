@@ -70,12 +70,6 @@ sensor:
 text_sensor:
   # Wifi Info
   - platform: wifi_info
-    ip_address:
-      name: IP Address
-      icon: mdi:ip-network
-    ssid:
-      name: Connected SSID
-      icon: mdi:wifi-arrow-left-right
     bssid:
       name: Connected BSSID
       icon: mdi:wifi-star
@@ -83,3 +77,7 @@ text_sensor:
     mac_address:
       name: Mac Address
       icon: mdi:chip
+    scan_results:
+      name: ESP Latest Scan Results
+    dns_address:
+      name: ESP DNS Address
