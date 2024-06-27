@@ -67,6 +67,7 @@ sensor:
       }
       return nDevices;
 
+text_sensor:
   # Wifi Info
   - platform: wifi_info
     ip_address:
