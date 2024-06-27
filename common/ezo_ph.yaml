@@ -35,7 +35,7 @@ api:
 
 esphome:
   on_boot: 
-    priority: 200
+    priority: 800
     then:
       - button.press: send_selected_ph
 
