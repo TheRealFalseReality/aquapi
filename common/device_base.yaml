@@ -77,7 +77,3 @@ text_sensor:
     mac_address:
       name: Mac Address
       icon: mdi:chip
-    scan_results:
-      name: ESP Latest Scan Results
-    dns_address:
-      name: ESP DNS Address

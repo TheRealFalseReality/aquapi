@@ -70,10 +70,6 @@ text_sensor:
     ssid:
       name: Connected SSID
       icon: mdi:wifi-arrow-left-right
-    scan_results:
-      name: ESP Latest Scan Results
-    dns_address:
-      name: ESP DNS Address
 
 button:
   # Soft Restart
