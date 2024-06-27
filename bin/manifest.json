@@ -7,7 +7,7 @@
       "chipFamily": "ESP32",
       "ota": {
         "md5": "018d4c9b70c910361d29d4ada3af76b6",
-        "path": "/TheRealFalseReality/aquapi/main/bin/ota/aquapi.ota.bin",
+        "path": "bin/ota/aquapi.ota.bin",
         "release_url": "https://github.com/TheRealFalseReality/aquapi/releases/tag/2024.6"
       }
     }
