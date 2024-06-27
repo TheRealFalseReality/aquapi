@@ -4,7 +4,7 @@ text_sensor:
     name: "AquaPi Version"
     id: aquapi_version
     icon: mdi:update
-    update_interval: 600s
+    update_interval: '365days'
     lambda: |-
       return {"${app_version}"};
     entity_category: "diagnostic"
@@ -14,6 +14,7 @@ text_sensor:
     name: GitHub
     id: github
     icon: mdi:github
+    update_interval: '365days'
     lambda: |-
       return {"github.com/TheRealFalseReality/aquapi"};
     entity_category: "diagnostic"

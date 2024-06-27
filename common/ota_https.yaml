@@ -11,7 +11,7 @@ update:
     id: update_firmware_sensor
     entity_category: 'diagnostic'
     icon: mdi:update
-    source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/manifest.json
+    source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/bin/manifest.json
 
 ota:
   - platform: http_request

@@ -34,10 +34,10 @@ logger:
 
 api:
 
-update:
-  - platform: http_request
-    name: Firmware Update
-    source: https://github.com/TheRealFalseReality/aquapi/blob/main/manifest.json
+# update:
+#   - platform: http_request
+#     name: Firmware Update
+#     source: https://github.com/TheRealFalseReality/aquapi/blob/main/manifest.json
 
 ota:
   - platform: esphome
