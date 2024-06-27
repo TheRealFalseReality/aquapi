@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    uses: esphome/workflows/.github/workflows/publish.yml@dependabot/github_actions/esphome/build-action-3.1.0
+    uses: esphome/workflows/.github/workflows/publish.yml@main
     with:
       # CHANGEME: Set the filenames of your config files here:
       files: aquapi_config.yaml
