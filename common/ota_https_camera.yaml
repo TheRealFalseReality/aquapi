@@ -1,17 +1,17 @@
-substitutions:
-  update_firmware_sensor_interval: 6h
+# substitutions:
+#   update_firmware_sensor_interval: 6h
 
 http_request:
   verify_ssl: false
 
-update:
-  - platform: http_request
-    name: Firmware Update
-    update_interval: "${update_firmware_sensor_interval}"
-    entity_category: 'diagnostic'
-    icon: mdi:update
-    id: update_firmware_sensor
-    source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/manifest_camera.json
+# update:
+#   - platform: http_request
+#     name: Firmware Update
+#     update_interval: "${update_firmware_sensor_interval}"
+#     entity_category: 'diagnostic'
+#     icon: mdi:update
+#     id: update_firmware_sensor
+#     source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/manifest_camera.json
 
 ota:
   - platform: http_request
