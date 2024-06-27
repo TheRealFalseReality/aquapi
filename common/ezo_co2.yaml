@@ -6,7 +6,7 @@ substitutions:
 
 esphome:
     on_boot: 
-        priority: 200
+        priority: 800
         then:
           - button.press: read_co2
           - button.press: send_selected_co2

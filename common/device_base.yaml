@@ -1,8 +1,6 @@
 substitutions:
   # Import Config
   import_config: "false"
-  # Logger Level - Can use VERBOSE for more information in Logs
-  logger: "DEBUG"
 
   # I2C pins
   sdaPin: "21" # yellow/TX
@@ -28,34 +26,6 @@ dashboard_import:
   package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@main
   import_full_config: ${import_config}
 
-# Enable logging
-logger:
-  level: "${logger}"
-
-api:
-
-# update:
-#   - platform: http_request
-#     name: Firmware Update
-#     source: https://github.com/TheRealFalseReality/aquapi/blob/main/manifest.json
-
-ota:
-  - platform: esphome
-  
-wifi: 
-  ap:
-
-web_server:
-  version: 3
-
-captive_portal:
-
-# # Sets up Bluetooth LE (Only on ESP32) to allow the user to provision wifi credentials to the device.
-# esp32_improv:
-#   authorizer: none
-  
-improv_serial:
-
 # i2c Pins
 i2c:
   sda: ${sdaPin}
@@ -77,30 +47,6 @@ sensor:
     name: "ESP32 Hall Sensor"
     entity_category: "diagnostic"
 
-  # Internal Temp.
-  - platform: internal_temperature
-    name: "Internal Temperature"
-
-  # Wifi Signal 
-  - platform: wifi_signal # Reports the WiFi signal strength/RSSI in dB
-    # name: "WiFi Signal dB"
-    id: wifi_signal_db
-    update_interval: 60s
-    entity_category: "diagnostic"
-
-  # Wifi %
-  - platform: copy # Reports the WiFi signal strength in %
-    source_id: wifi_signal_db
-    name: "WiFi Signal Strength"
-    filters:
-      - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
-    unit_of_measurement: "%"
-    entity_category: "diagnostic"
-
-    # Uptime sensor
-  - platform: uptime
-    name: Uptime 
-
   # of I2C devices connected
   - platform: template
     name: "I2C Devices Connected"
@@ -121,29 +67,9 @@ sensor:
       }
       return nDevices;
 
-binary_sensor:
-  # API Status
-  - platform: status
-    name: "Status"
-
-text_sensor: 
-  # Hostname
-  - platform: template
-    name: "Hostname"
-    id: hostname
-    icon: mdi:cellphone-arrow-down
-    lambda: |-
-      return {"${name}"};
-    entity_category: "diagnostic"
-
+text_sensor:
   # Wifi Info
   - platform: wifi_info
-    ip_address:
-      name: IP Address
-      icon: mdi:ip-network
-    ssid:
-      name: Connected SSID
-      icon: mdi:wifi-arrow-left-right
     bssid:
       name: Connected BSSID
       icon: mdi:wifi-star
@@ -151,23 +77,3 @@ text_sensor:
     mac_address:
       name: Mac Address
       icon: mdi:chip
-
-button:
-  # Soft Restart
-  - platform: restart
-    name: "Restart"
-
-  # Factory Reset
-  - platform: factory_reset
-    name: Factory Reset (USE WITH CAUTION)
-    disabled_by_default: true
-
-  # Safe Mode Restart
-  - platform: safe_mode
-    name: "Restart in Safe Mode"
-    id: restart_safe
-    
-  # Shutdown
-  - platform: shutdown
-    name: "Shutdown"
-    disabled_by_default: true
