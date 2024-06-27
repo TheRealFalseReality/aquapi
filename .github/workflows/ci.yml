@@ -15,6 +15,6 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
       - name: Build ESPHome firmware to verify configuration
-        uses: esphome/build-action@v1.10.0
+        uses: esphome/build-action@v3.1.0
         with:
           yaml_file: ${{ matrix.file }}
