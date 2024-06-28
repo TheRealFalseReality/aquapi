@@ -18,3 +18,4 @@ jobs:
         uses: esphome/build-action@v3.1.0
         with:
           yaml_file: ${{ matrix.file }}
+          release_url: https://github.com/TheRealFalseReality/aquapi/releases
