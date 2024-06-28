@@ -7,7 +7,7 @@ substitutions:
 #     on_boot: 
 #         priority: 200
 #         then:
-#           - button.press: send_selected_ph
+#           - button.press: send_selected_do
 
 sensor:
   # EZO Circuits (SCL/RX, SDA/TX)
