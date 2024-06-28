@@ -19,7 +19,7 @@ ota:
 button:
   - platform: template
     id: update_firmware
-    name: Update Firmware (Experimental)
+    name: Update Firmware (Experimental - ESP32cam)
     entity_category: "config"
     icon: mdi:update
     # disabled_by_default: true

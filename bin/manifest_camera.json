@@ -1,6 +1,6 @@
 {
   "name": "AquaPi Camera",
-  "version": "2024.6",
+  "version": "2024.6.2-cam",
   "home_assistant_domain": "esphome",
   "builds": [
     {
