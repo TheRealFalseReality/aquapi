@@ -1,6 +1,6 @@
 blueprint:
   name: 'Aquarium - AquaPi: Water Change [Script]'
-  description: 'Turn on two AquaPi EZO Pumps to simultaneously remove waste water
+  description: 'Turn on two AquaPi EZO Pumps simultaneously to remove waste water
     (Red) and add clean water (Green), in gallons.
 
     **Note, this script will fail if the calculated flow rate exceeds either of the
