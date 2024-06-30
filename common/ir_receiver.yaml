@@ -1,0 +1,13 @@
+substitutions:
+  irReceiverPin: "35"
+
+remote_receiver:
+  id: ir_receiver
+  pin: 
+    number: ${irReceiverPin}
+    inverted: true
+  # dump:
+  #   - raw
+  #   - lg
+  #   - rc_switch
+  # dump: all
