@@ -39,49 +39,6 @@ blueprint:
           - domain:
             - number
             integration: esphome
-    # pump_waste_button:
-    #   name: AquaPi Dose Pump for Waste Water
-    #   description: Select the **AquaPi DEVICENAME Pump Waste - Dose Volume** button.
-    #   selector:
-    #     entity:
-    #       filter:
-    #       - domain:
-    #         - button
-    #         integration: esphome
-    #       multiple: false
-    # pump_waste_volume:
-    #   name: AquaPi Dose Pump Volume Input for Waste Water
-    #   description: Select the **AquaPi DEVICENAME Pump Waste - Volume to Dose** input
-    #     number entity.
-    #   selector:
-    #     entity:
-    #       filter:
-    #       - domain:
-    #         - number
-    #         integration: esphome
-    #       multiple: false
-    # pump_clean_button:
-    #   name: AquaPi Dose Pump for Clean Water
-    #   description: Select the **AquaPi DEVICENAME Pump Clean - Dose Volume for Time**
-    #     button.
-    #   selector:
-    #     entity:
-    #       filter:
-    #       - domain:
-    #         - button
-    #         integration: esphome
-    #       multiple: false
-    # pump_clean_volume:
-    #   name: AquaPi Dose Pump Volume Input for Clean Water
-    #   description: Select the **AquaPi DEVICENAME Pump Clean - Volume to Dose** input
-    #     number entity.
-    #   selector:
-    #     entity:
-    #       filter:
-    #       - domain:
-    #         - number
-    #         integration: esphome
-    #       multiple: false
     change_volume:
       name: Water Change Volume
       description: "Volume to change. Max: 100 gallons.\n Recommended 10 - 15% monthly
@@ -116,10 +73,6 @@ variables:
   condition: !input condition
   pump_button: !input pump_button
   pump_volume: !input pump_volume
-  # pump_waste_button: !input pump_waste_button
-  # pump_clean_button: !input pump_clean_button
-  # pump_clean_volume: !input pump_clean_volume
-  # pump_waste_volume: !input pump_waste_volume
   change_volume: !input change_volume
   aquarium_name: !input aquarium_name
   additional_actions: !input additional_actions
