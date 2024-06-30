@@ -1,6 +1,6 @@
 blueprint:
   name: 'Aquarium - AquaPi: Daily Water Change'
-  description: 'Turn on two AquaPi EZO Pumps to simultaneously remove waste water
+  description: 'Turn on two AquaPi EZO Pumps simultaneously to remove waste water
     (Red) and add clean water (Green) daily, in gallons, per month.
 
     **Note, this automation will fail if the calculated flow rate exceeds either of
