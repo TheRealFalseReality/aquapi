@@ -4,7 +4,7 @@ blueprint:
     (Red) and add clean water (Green) daily, in gallons.
 
     **Note, this script will fail if the calculated flow rate exceeds either of the
-    EZO Pump''s Max Volume/Time Flow Rates.** [More Info]() (v1.0.1) [Script]'
+    EZO Pump''s Max Volume/Time Flow Rates.** [More Info](https://community.home-assistant.io/t/atlas-scientific-ezo-pmp-peristaltic-pumps/744639/1) (v1.0.1) [Script]'
   domain: script
   source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/script/TheRealFalseReality/aquapi_water_change_script.yaml
   input:
