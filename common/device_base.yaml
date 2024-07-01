@@ -3,8 +3,8 @@ substitutions:
   import_config: "false"
 
   # I2C pins
-  sdaPin: "21" # yellow/TX
-  sclPin: "22" # blue/RX
+  sdaPin: "21" # yellow/TX PMP-green
+  sclPin: "22" # blue/RX PMP-white
 
 esphome:
   min_version: 2024.6.0

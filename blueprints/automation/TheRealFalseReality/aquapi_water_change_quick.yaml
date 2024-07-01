@@ -4,7 +4,7 @@ blueprint:
     (Red) and add clean water (Green) daily, in gallons, per month.
 
     **Note, this automation will fail if the calculated flow rate exceeds either of
-    the EZO Pump''s Max Volume/Time Flow Rates.** [More Info]() (v1.0) [Automation]'
+    the EZO Pump''s Max Volume/Time Flow Rates.** [More Info](https://community.home-assistant.io/t/atlas-scientific-ezo-pmp-peristaltic-pumps/744639/1) (v1.0) [Automation]'
   domain: automation
   source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/automation/TheRealFalseReality/aquapi_water_change.yaml
   input:

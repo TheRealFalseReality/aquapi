@@ -12,6 +12,8 @@ packages:
   ota_https: !include common/ota_https.yaml
   dallas: !include common/temperature_dallas.yaml
   binary: !include common/binary.yaml
+  # ir_receiver: !include common/ir_receiver.yaml
+  # dht: !include common/dht.yaml
   # binary_input: !include common/binary_input.yaml
   ezo_ph: !include common/ezo_ph.yaml
   ezo_ec: !include common/ezo_ec.yaml

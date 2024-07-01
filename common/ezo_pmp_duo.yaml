@@ -6,10 +6,10 @@ substitutions:
   update_pmp_2: "60s"
   
 ezo_pmp:
-  - id: ezo_pump_waste
+  - id: ezo_pump_red
     address: ${addPMP_1}
     update_interval: "${update_pmp_1}"
-  - id: ezo_pump_clean
+  - id: ezo_pump_green
     address: ${addPMP_2}
     update_interval: "${update_pmp_2}"
 
@@ -20,7 +20,7 @@ api:
         dose_volume: float
       then: 
         - ezo_pmp.dose_volume:
-            id: ezo_pump_waste
+            id: ezo_pump_red
             volume: !lambda 'return dose_volume;'
     - service: pump_waste_volume_time
       variables:
@@ -28,7 +28,7 @@ api:
         dose_time: float
       then:
         - ezo_pmp.dose_volume_over_time:
-            id: ezo_pump_waste
+            id: ezo_pump_red
             volume: !lambda |-
               return dose_volume;
             duration: !lambda |-
@@ -39,7 +39,7 @@ api:
         dose_time: float
       then:
         - ezo_pmp.dose_with_constant_flow_rate:
-            id: ezo_pump_waste
+            id: ezo_pump_red
             volume_per_minute: !lambda |-
               return dose_rate;
             duration: !lambda |-
@@ -49,7 +49,7 @@ api:
         actual_volume: float
       then:
         - ezo_pmp.set_calibration_volume:
-            id: ezo_pump_waste
+            id: ezo_pump_red
             volume: !lambda |-
               return actual_volume;
     - service: pump_clean_volume
@@ -57,7 +57,7 @@ api:
         dose_volume: float
       then: 
         - ezo_pmp.dose_volume:
-            id: ezo_pump_clean
+            id: ezo_pump_green
             volume: !lambda 'return dose_volume;'
     - service: pump_clean_volume_time
       variables:
@@ -65,7 +65,7 @@ api:
         dose_time: float
       then:
         - ezo_pmp.dose_volume_over_time:
-            id: ezo_pump_clean
+            id: ezo_pump_green
             volume: !lambda |-
               return dose_volume;
             duration: !lambda |-
@@ -76,7 +76,7 @@ api:
         dose_time: float
       then:
         - ezo_pmp.dose_with_constant_flow_rate:
-            id: ezo_pump_clean
+            id: ezo_pump_green
             volume_per_minute: !lambda |-
               return dose_rate;
             duration: !lambda |-
@@ -86,7 +86,7 @@ api:
         actual_volume: float
       then:
         - ezo_pmp.set_calibration_volume:
-            id: ezo_pump_clean
+            id: ezo_pump_green
             volume: !lambda |-
               return actual_volume;
     - service: pump_water_change
@@ -95,13 +95,13 @@ api:
         duration: float
       then:
         - ezo_pmp.dose_volume_over_time:
-            id: ezo_pump_clean
+            id: ezo_pump_green
             volume: !lambda |-
               return volume;
             duration: !lambda |-
               return duration;
         - ezo_pmp.dose_volume_over_time:
-            id: ezo_pump_waste
+            id: ezo_pump_red
             volume: !lambda |-
               return volume;
             duration: !lambda |-
@@ -111,11 +111,11 @@ api:
         volume: float
       then:
         - ezo_pmp.dose_volume:
-            id: ezo_pump_clean
+            id: ezo_pump_green
             volume: !lambda |-
               return volume;
         - ezo_pmp.dose_volume:
-            id: ezo_pump_waste
+            id: ezo_pump_red
             volume: !lambda |-
               return volume;
     - service: pump_waste_change_address
@@ -123,7 +123,7 @@ api:
         address: int
       then:
         - ezo_pmp.change_i2c_address:
-            id: ezo_pump_waste
+            id: ezo_pump_red
             address: !lambda |-
               return address;
     - service: pump_clean_change_address
@@ -131,13 +131,13 @@ api:
         address: int
       then:
         - ezo_pmp.change_i2c_address:
-            id: ezo_pump_clean
+            id: ezo_pump_green
             address: !lambda |-
               return address;
 
 sensor:
   - platform: ezo_pmp
-    id: ezo_pump_waste
+    id: ezo_pump_red
     current_volume_dosed:
       id: current_volume_dosed_waste
       name: Pump Waste - Current Volume Dosed
@@ -146,7 +146,7 @@ sensor:
       state_class: total
       unit_of_measurement: 'mL'
   - platform: ezo_pmp
-    id: ezo_pump_waste
+    id: ezo_pump_red
     total_volume_dosed:
       id: total_volume_dosed_waste
       name: Pump Waste - Total Volume Dosed
@@ -155,7 +155,7 @@ sensor:
       unit_of_measurement: 'mL'
       disabled_by_default: true
   - platform: ezo_pmp
-    id: ezo_pump_waste
+    id: ezo_pump_red
     absolute_total_volume_dosed:
       id: absolute_total_volume_dosed_waste
       name: Pump Waste - Absolute Total Volume Dosed
@@ -164,7 +164,7 @@ sensor:
       state_class: total
       unit_of_measurement: 'mL'
   - platform: ezo_pmp
-    id: ezo_pump_waste
+    id: ezo_pump_red
     last_volume_requested:
       id: last_volume_requested_waste
       name: Pump Waste - Last Volume Requested
@@ -173,21 +173,21 @@ sensor:
       device_class: 'volume'
       unit_of_measurement: 'mL'
   - platform: ezo_pmp
-    id: ezo_pump_waste
+    id: ezo_pump_red
     max_flow_rate:
       id: max_flow_rate_waste
       name: Pump Waste - Max Volume/Time Flow Rate
       icon: mdi:car-speed-limiter
       unit_of_measurement: 'mL/min'
   - platform: ezo_pmp
-    id: ezo_pump_waste
+    id: ezo_pump_red
     pump_voltage:
       id: pump_voltage_waste
       name: Pump Waste - Voltage
       disabled_by_default: true
       device_class: 'voltage'
   - platform: ezo_pmp
-    id: ezo_pump_clean
+    id: ezo_pump_green
     current_volume_dosed:
       id: current_volume_dosed_clean
       name: Pump Clean - Current Volume Dosed
@@ -196,7 +196,7 @@ sensor:
       state_class: total
       unit_of_measurement: 'mL'
   - platform: ezo_pmp
-    id: ezo_pump_clean
+    id: ezo_pump_green
     total_volume_dosed:
       id: total_volume_dosed_clean
       name: Pump Clean - Total Volume Dosed
@@ -205,7 +205,7 @@ sensor:
       device_class: 'volume'
       unit_of_measurement: 'mL'
   - platform: ezo_pmp
-    id: ezo_pump_clean
+    id: ezo_pump_green
     absolute_total_volume_dosed:
       id: absolute_total_volume_dosed_clean
       name: Pump Clean - Absolute Total Volume Dosed
@@ -214,7 +214,7 @@ sensor:
       state_class: total
       unit_of_measurement: 'mL'
   - platform: ezo_pmp
-    id: ezo_pump_clean
+    id: ezo_pump_green
     last_volume_requested:
       id: last_volume_requested_clean
       name: Pump Clean - Last Volume Requested
@@ -223,14 +223,14 @@ sensor:
       state_class: total
       unit_of_measurement: 'mL'
   - platform: ezo_pmp
-    id: ezo_pump_clean
+    id: ezo_pump_green
     max_flow_rate:
       id: max_flow_rate_clean
       name: Pump Clean - Max Volume/Time Flow Rate
       icon: mdi:car-speed-limiter
       unit_of_measurement: 'mL/min'
   - platform: ezo_pmp
-    id: ezo_pump_clean
+    id: ezo_pump_green
     pump_voltage:
       id: pump_voltage_clean
       name: Pump Clean - Voltage
@@ -239,25 +239,25 @@ sensor:
 
 binary_sensor:
   - platform: ezo_pmp
-    id: ezo_pump_waste
+    id: ezo_pump_red
     pump_state:
       id: pump_state_waste
       icon: mdi:pump
       name: Pump Waste - State
   - platform: ezo_pmp
-    id: ezo_pump_waste
+    id: ezo_pump_red
     is_paused:
       id: is_paused_waste
       name: Pump Waste - Paused Status
       disabled_by_default: true
   - platform: ezo_pmp
-    id: ezo_pump_clean
+    id: ezo_pump_green
     pump_state:
       id: pump_state_clean
       icon: mdi:pump
       name: Pump Clean - State
   - platform: ezo_pmp
-    id: ezo_pump_clean
+    id: ezo_pump_green
     is_paused:
       id: is_paused_clean
       name: Pump Clean - Paused Status
@@ -266,26 +266,26 @@ binary_sensor:
 
 text_sensor:
   - platform: ezo_pmp
-    id: ezo_pump_waste
+    id: ezo_pump_red
     dosing_mode:
       id: dosing_mode_waste
       name: Pump Waste - Dosing Mode 
       icon: mdi:auto-mode
   - platform: ezo_pmp
-    id: ezo_pump_waste
+    id: ezo_pump_red
     calibration_status:
       id: calibration_status_waste
       name: Pump Waste - Calibration Status
       # disabled_by_default: true
       icon: mdi:tape-measure
   - platform: ezo_pmp
-    id: ezo_pump_clean
+    id: ezo_pump_green
     dosing_mode:
       id: dosing_mode_clean
       name: Pump Clean - Dosing Mode 
       icon: mdi:auto-mode
   - platform: ezo_pmp
-    id: ezo_pump_clean
+    id: ezo_pump_green
     calibration_status:
       id: calibration_status_clean
       name: Pump Clean - Calibration Status
@@ -372,7 +372,7 @@ button:
     id: dose_over_time_waste
     on_press:
       - ezo_pmp.dose_volume_over_time:
-          id: ezo_pump_waste
+          id: ezo_pump_red
           volume: !lambda |-
             return id(volume_waste).state;
           duration: !lambda |-
@@ -383,14 +383,14 @@ button:
     id: dose_continuously_waste
     on_press:
       - ezo_pmp.dose_continuously:
-          id: ezo_pump_waste
+          id: ezo_pump_red
   - platform: template
     name: Pump Waste - Dose Volume
     icon: mdi:pump
     id: dose_volume_waste
     on_press:
       - ezo_pmp.dose_volume:
-          id: ezo_pump_waste
+          id: ezo_pump_red
           volume: !lambda |-
             return id(volume_waste).state;
   - platform: template
@@ -399,7 +399,7 @@ button:
     id: dose_flow_rate_waste
     on_press:
       - ezo_pmp.dose_with_constant_flow_rate:
-          id: ezo_pump_waste
+          id: ezo_pump_red
           volume_per_minute: !lambda |-
             return id(flow_rate_waste).state;
           duration: !lambda |-
@@ -410,21 +410,21 @@ button:
     id: dose_pause_waste
     on_press:
       - ezo_pmp.pause_dosing:
-          id: ezo_pump_waste
+          id: ezo_pump_red
   - platform: template
     name: Pump Waste - Stop Dosing
     icon: mdi:stop
     id: dose_stop_waste
     on_press:
       - ezo_pmp.stop_dosing:
-          id: ezo_pump_waste
+          id: ezo_pump_red
   - platform: template
     name: Pump Waste - Clear Total Volume Dosed
     icon: mdi:backspace
     id: dose_clear_waste
     on_press:
       - ezo_pmp.clear_total_volume_dosed:
-          id: ezo_pump_waste
+          id: ezo_pump_red
 
   # Calibrate
   - platform: template
@@ -433,7 +433,7 @@ button:
     id: dose_calibrate_volume_waste
     on_press:
       - ezo_pmp.set_calibration_volume:
-          id: ezo_pump_waste
+          id: ezo_pump_red
           volume: !lambda |-
             return id(volume_waste).state;
   - platform: template
@@ -442,7 +442,7 @@ button:
     id: dose_calibrate_volume_clear_waste
     on_press:
       - ezo_pmp.clear_calibration:
-          id: ezo_pump_waste
+          id: ezo_pump_red
           
   - platform: template
     name: Pump Clean - Dose Volume for Time
@@ -450,7 +450,7 @@ button:
     id: dose_over_time_clean
     on_press:
       - ezo_pmp.dose_volume_over_time:
-          id: ezo_pump_clean
+          id: ezo_pump_green
           volume: !lambda |-
             return id(volume_clean).state;
           duration: !lambda |-
@@ -461,14 +461,14 @@ button:
     id: dose_continuously_clean
     on_press:
       - ezo_pmp.dose_continuously:
-          id: ezo_pump_clean
+          id: ezo_pump_green
   - platform: template
     name: Pump Clean - Dose Volume
     icon: mdi:pump
     id: dose_volume_clean
     on_press:
       - ezo_pmp.dose_volume:
-          id: ezo_pump_clean
+          id: ezo_pump_green
           volume: !lambda |-
             return id(volume_clean).state;
   - platform: template
@@ -477,7 +477,7 @@ button:
     id: dose_flow_rate_clean
     on_press:
       - ezo_pmp.dose_with_constant_flow_rate:
-          id: ezo_pump_clean
+          id: ezo_pump_green
           volume_per_minute: !lambda |-
             return id(flow_rate_clean).state;
           duration: !lambda |-
@@ -488,21 +488,21 @@ button:
     id: dose_pause_clean
     on_press:
       - ezo_pmp.pause_dosing:
-          id: ezo_pump_clean
+          id: ezo_pump_green
   - platform: template
     name: Pump Clean - Stop Dosing
     icon: mdi:stop
     id: dose_stop_clean
     on_press:
       - ezo_pmp.stop_dosing:
-          id: ezo_pump_clean
+          id: ezo_pump_green
   - platform: template
     name: Pump Clean - Clear Total Volume Dosed
     icon: mdi:backspace
     id: dose_clear_clean
     on_press:
       - ezo_pmp.clear_total_volume_dosed:
-          id: ezo_pump_clean
+          id: ezo_pump_green
 
   # Calibrate
   - platform: template
@@ -511,7 +511,7 @@ button:
     id: dose_calibrate_volume_clean
     on_press:
       - ezo_pmp.set_calibration_volume:
-          id: ezo_pump_clean
+          id: ezo_pump_green
           volume: !lambda |-
             return id(volume_clean).state;
   - platform: template
@@ -520,4 +520,4 @@ button:
     id: dose_calibrate_volume_clear_clean
     on_press:
       - ezo_pmp.clear_calibration:
-          id: ezo_pump_clean
+          id: ezo_pump_green

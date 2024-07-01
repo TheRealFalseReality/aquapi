@@ -1,0 +1,31 @@
+substitutions:
+  dhtPin: "25"
+  update_dht: "60s"
+  
+sensor:
+  # DHT
+  - platform: dht
+    pin: ${dhtPin}
+    # model: DHT11
+    temperature:
+      name: "Air Temperature"
+      id: air_temperature
+    humidity:
+      name: "Humidity"
+      id: relative_humidity
+    update_interval: "${update_dht}"
+
+  - platform: absolute_humidity
+    name: Absolute Humidity
+    temperature: air_temperature
+    humidity: relative_humidity
+
+  - platform: template
+    name: Dew Point
+    id: dew_point
+    icon: mdi:thermometer-water
+    state_class: "measurement"
+    device_class: "temperature"
+    unit_of_measurement: "°C"    
+    lambda: |- 
+      return ( id(air_temperature).state - (( 100 - id(relative_humidity).state ) / 5 ) );
