@@ -6,7 +6,7 @@ http_request:
 
 update:
   - platform: http_request
-    name: Firmware Update
+    name: AquaPi SnapCam Firmware Update
     update_interval: "${update_firmware_sensor_interval}"
     entity_category: 'diagnostic'
     icon: mdi:update
@@ -19,7 +19,7 @@ ota:
 button:
   - platform: template
     id: update_firmware
-    name: Update Firmware (Experimental - ESP32cam)
+    name: Update AquaPi SnapCam Firmware (Experimental - ESP32cam)
     entity_category: "config"
     icon: mdi:update
     # disabled_by_default: true
