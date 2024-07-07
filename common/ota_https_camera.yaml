@@ -13,9 +13,6 @@ update:
     id: update_firmware_sensor
     source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/bin/manifest_camera.json
 
-ota:
-  - platform: http_request
-
 button:
   - platform: template
     id: update_firmware
