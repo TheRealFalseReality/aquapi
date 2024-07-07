@@ -6,20 +6,17 @@ http_request:
 
 update:
   - platform: http_request
-    name: Firmware Update
+    name: AquaPi Firmware Update
     update_interval: "${update_firmware_sensor_interval}"
     id: update_firmware_sensor
     entity_category: 'diagnostic'
     icon: mdi:update
     source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/gh-pages/manifest.json
 
-ota:
-  - platform: http_request
-
 button:
   - platform: template
     id: update_firmware
-    name: Update Firmware (Experimental - ESP32)
+    name: Update AquaPi Firmware (Experimental - ESP32)
     entity_category: "config"
     icon: mdi:update
     # disabled_by_default: true

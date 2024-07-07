@@ -10,6 +10,7 @@ api:
 
 ota:
   - platform: esphome
+  - platform: http_request
 
 wifi: 
   ap:
