@@ -114,12 +114,12 @@ trigger:
   entity_id: !input sensor
   to: High
   for: !input delay_high
-  id: trigger_on
+  id: trigger_off
 - platform: state
   entity_id: !input sensor
   to: Normal
   for: !input normal_time
-  id: trigger_on
+  id: trigger_off
 - platform: state
   entity_id: !input switch
   to: 'on'
