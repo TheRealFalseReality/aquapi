@@ -13,9 +13,6 @@ update:
     icon: mdi:update
     source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/gh-pages/manifest.json
 
-ota:
-  - platform: http_request
-
 button:
   - platform: template
     id: update_firmware
