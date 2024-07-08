@@ -1,6 +1,6 @@
 {
   "name": "AquaPi",
-  "version": "2024.6.4",
+  "version": "",
   "home_assistant_domain": "esphome",
   "new_install_skip_erase": false,
   "builds": [
@@ -8,7 +8,7 @@
       "chipFamily": "ESP32",
       "ota": {
         "path": "aquapi-esp32/aquapi-esp32.ota.bin",
-        "md5": "b3c5d782f03e2bd4ca01799cb0fcb07f"
+        "md5": "87537c2868c762b98af070cf1e3a8084"
       },
       "parts": [
         {
