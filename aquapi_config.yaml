@@ -9,7 +9,7 @@ packages:
   common: !include common/device_base_common.yaml
   device_base: !include common/device_base.yaml
   aquapi: !include common/aquapi.yaml
-  ota_https: !include common/ota_https.yaml
+  # ota_https: !include common/ota_https.yaml
   dallas: !include common/temperature_dallas.yaml
   binary: !include common/binary.yaml
   # ir_receiver: !include common/ir_receiver.yaml
