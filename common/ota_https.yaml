@@ -1,6 +1,10 @@
 substitutions:
   update_firmware_sensor_interval: 6h
 
+
+ota:
+  - platform: http_request
+
 http_request:
   verify_ssl: false
 
