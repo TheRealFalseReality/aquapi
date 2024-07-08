@@ -143,6 +143,12 @@ trigger:
   entity_id: !input switch
   from: unavailable
   to: 'on'
+- platform: state
+  entity_id: !input switch
+  to: unavailable
+- platform: state
+  entity_id: !input switch
+  to: unknown
 action:
 - if:
   - condition: !input condition

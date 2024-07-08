@@ -118,6 +118,12 @@ trigger:
   entity_id: !input switch
   to: 'on'
   for: !input pump_max_time_2
+- platform: state
+  entity_id: !input switch
+  to: unavailable
+- platform: state
+  entity_id: !input switch
+  to: unknown
 action:
 - if:
   - condition: !input condition
