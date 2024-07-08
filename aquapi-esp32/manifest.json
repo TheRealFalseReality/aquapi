@@ -2,7 +2,7 @@
   "chipFamily": "ESP32",
   "ota": {
     "path": "aquapi-esp32/aquapi-esp32.ota.bin",
-    "md5": "a4776b5277468c993beadd905d8e6342"
+    "md5": "864c70669a156a453fcbba3ca19e8b74"
   },
   "parts": [
     {
