@@ -35,12 +35,15 @@ If you want to try some of the Dashboard or Cards I use, follow the link below. 
 **Prerequisite!!** A Raspberry Pi (or something similar) running HomeAssistant to communicate and interact with the ESP32 via `homeassistant.local:8123`.
 Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 
-### Probes
+### Sensors
 ***Temperature*** 
   - DS18B20 Waterproof Thermistor  
   
 ***Water Level*** 
-  - Food Grade Optical Infrared Water Liquid Level Sensor  
+  - Food Grade Optical Infrared Water Liquid Level Sensor
+    
+***Water Leak Sensor***
+  - Liquid Detection Sensor, 6ft Cable, 2 Mounting Screws w/Magnetic Mount
   
 **pH:** *Atlas Scientific pH: [EZO-pH](https://files.atlas-scientific.com/pH_EZO_Datasheet.pdf) & [Lab Grade pH Probe](https://files.atlas-scientific.com/pH_probe.pdf)*  
   - EZO™ pH Circuit, ISO 10523 Compliant  
