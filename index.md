@@ -30,7 +30,7 @@ Use the button below to install the pre-built firmware directly to your device v
 **ESP32 devkit**   
 **HomeAssistant** using a Raspberry Pi 3 or above. The more RAM, the better.  
 
-**Probes**:  
+**Sensors**:  
 ***Temperature*** 
   - DS18B20 Waterproof Thermistor  
   
