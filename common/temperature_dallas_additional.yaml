@@ -1,51 +1,46 @@
 substitutions:
-  dallasPin: "16"
-  update_temp: "60s"
+  temp_name: Temperature 2
+  temp_id: ${temp_id}
+  temp_address: ''
 
   # Calibration variables
-  # 0C using Ice Water; 100C using Boiling Water  
-  # Calibration Temp. 1
-  cal_0: "0.0"
-  cal_100: "100.0"
-  range_cool: "74"
-  range_warm: "82"
-
-# 18B20 sensor Pin
-one_wire:
-  - platform: gpio
-    pin: ${dallasPin}
+  # 0C using Ice Water; 100C using Boiling Water
+  # # Calibration Temp. 2
+  cal_0_${temp_id}: "0.0"
+  cal_100_${temp_id}: "100.0"
 
 sensor:
-  # Temperature Probe 1
+  # Temperature Probe 2
   - platform: dallas_temp
-    id: temp_1
+    id: ${temp_id}
     icon: mdi:thermometer-lines
-    name: "Temperature"
+    address: ${temp_address}
+    name: ${temp_name}
     state_class: "measurement"
     device_class: "temperature"
-    update_interval: "${update_temp}"
     filters:
       - calibrate_linear:
           method: least_squares
           datapoints:
-            - 0.0 -> ${cal_0}
-            - 100.0 -> ${cal_100}
+            - 0.0 -> ${cal_0_${temp_id}}
+            - 100.0 -> ${cal_100_${temp_id}}
+    disabled_by_default: true
     on_value: 
       then:
-        - component.update: temp_range
+        - component.update: range_${temp_id}
 
-  # Convert to Fahrenheit - Temp. 1
+  # Convert to Fahrenheit - Temp. 2
   - platform: template
     state_class: "measurement"
     device_class: "temperature"
-    id: temp_f
+    id: fah_${temp_id}
     lambda: |-
-      return id(temp_1).state * 9 / 5 + 32;
+      return id(${temp_id}).state * 9 / 5 + 32;
 
-  # Calibration Temp. at 0C
+  # Calibration Temp. 2 at 0C
   - platform: template
-    name: Calibration at 0°C - Temp. 1
-    id: cal_0_sen
+    name: Calibration at 0°C  - ${temp_name}
+    id: cal_0_${temp_id}_sen
     icon: mdi:snowflake-alert
     unit_of_measurement: "°C"
     disabled_by_default: true
@@ -53,12 +48,12 @@ sensor:
     device_class: "temperature"
     entity_category: "diagnostic"
     lambda: |-
-      return {${cal_0}};
+      return {${cal_0_${temp_id}}};
 
-  # Calibration Temp. at 100C
+  # Calibration Temp. 2 at 100C
   - platform: template
-    name: Calibration at 100°C - Temp. 1
-    id: cal_100_sen
+    name: Calibration at 100°C - Temp. 2
+    id: cal_100_${temp_id}_sen
     icon: mdi:water-thermometer
     unit_of_measurement: "°C"
     disabled_by_default: true
@@ -66,48 +61,51 @@ sensor:
     device_class: "temperature"
     entity_category: "diagnostic"
     lambda: |-
-      return {${cal_100}};
+      return {${cal_100_${temp_id}}};
 
 binary_sensor:
   - platform: template
-    name: Ideal Temperature
-    id: ideal_temp
+    name: Ideal Temperature 2
+    id: ideal_${temp_id}
     icon: mdi:thermometer-check
+    disabled_by_default: true
     lambda: |-
-      if (id(temp_range).state == "OK") {
+      if (id(range_${temp_id}).state == "OK") {
         return true;
       } else {
         return false;
       }
 
 text_sensor:
-  # Temperature Range 1
+  # Temperature Range 2
   - platform: template
-    name: Temperature Range
-    id: temp_range
+    name: Temperature 2 Range
+    id: range_${temp_id}
     icon: mdi:thermometer-water
     update_interval: "${update_temp}"
+    disabled_by_default: true
     lambda: |-
-      if(id(temp_f).state <= id(range_cool).state) {
+      if(id(fah_${temp_id}).state <= id(range_cool_${temp_id}).state) {
         return {"Cool"};
       }
-      if(id(temp_f).state < id(range_warm).state && id(temp_f).state > id(range_cool).state) {
+      if(id(fah_${temp_id}).state < id(range_cool_${temp_id}).state && id(fah_${temp_id}).state > id(range_cool_${temp_id}).state) {
         return {"OK"};
       }
-      if(id(temp_f).state >= id(range_warm).state) {
+      if(id(fah_${temp_id}).state >= id(range_cool_${temp_id}).state) {
         return {"Warm"};
       }     
       else {
         return {"Unknown"};
-      }  
+      }
 
 number:
-  # Temperature 1 when Cool
+  # Temperature 2 when Cool
   - platform: template
-    name: "Temp. Cool"
-    id: range_cool
+    name: "${temp_name} Cool"
+    id: range_cool_${temp_id}
     icon: mdi:snowflake-thermometer
     optimistic: true
+    disabled_by_default: true
     mode: box
     min_value: 0.0
     max_value: 100.0
@@ -118,14 +116,15 @@ number:
     device_class: "temperature"
     on_value: 
       then:
-        - component.update: temp_range
+        - component.update: range_${temp_id}
 
-  # Temperature 1 when Warm
+  # Temperature 2 when Warm
   - platform: template
-    name: "Temp. Warm"
+    name: "${temp_name} Warm"
     icon: mdi:sun-thermometer
-    id: range_warm
+    id: range_cool_${temp_id}
     optimistic: true
+    disabled_by_default: true
     mode: box
     min_value: 0.0
     max_value: 100.0
@@ -136,4 +135,4 @@ number:
     device_class: "temperature"
     on_value: 
       then:
-        - component.update: temp_range
+        - component.update: range_${temp_id}
