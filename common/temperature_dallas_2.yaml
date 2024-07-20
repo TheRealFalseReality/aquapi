@@ -74,6 +74,7 @@ binary_sensor:
         return false;
       }
 
+text_sensor:
   # Temperature Range 2
   - platform: template
     name: Temperature 2 Range
