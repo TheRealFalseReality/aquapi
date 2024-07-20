@@ -78,7 +78,7 @@ text_sensor:
   # Temperature Range 2
   - platform: template
     name: Temperature 2 Range
-    id: temp_range_2
+    id: range_temp_2
     icon: mdi:thermometer-water
     update_interval: "${update_temp}"
     lambda: |-
