@@ -6,7 +6,6 @@ substitutions:
   app_version: "2024.7.1"
 
 packages:
-  common: !include common/device_base_common.yaml
   device_base: !include common/device_base.yaml
   aquapi: !include common/aquapi.yaml
   # ota_https: !include common/ota_https.yaml
