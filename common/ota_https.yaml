@@ -7,24 +7,24 @@ ota:
 http_request:
   verify_ssl: false
 
-update:
-  - platform: http_request
-    name: AquaPi Firmware Update
-    update_interval: "${update_firmware_sensor_interval}"
-    id: update_firmware_sensor
-    entity_category: 'diagnostic'
-    icon: mdi:update
-    source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/gh-pages/manifest.json
-
-# button:
-#   - platform: template
-#     id: update_firmware
-#     name: Update AquaPi Firmware (Experimental - ESP32)
-#     entity_category: "config"
+# update:
+#   - platform: http_request
+#     name: AquaPi Firmware Update
+#     update_interval: "${update_firmware_sensor_interval}"
+#     id: update_firmware_sensor
+#     entity_category: 'diagnostic'
 #     icon: mdi:update
-#     # disabled_by_default: true
-#     on_press: 
-#       then:
-#         - ota.http_request.flash:
-#             md5_url: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/bin/ota/aquapi-esp32.ota.md5
-#             url: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/bin/ota/aquapi-esp32.ota.bin
+#     source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/gh-pages/manifest.json
+
+button:
+  - platform: template
+    id: update_firmware
+    name: Update AquaPi Firmware - Releaseed (Experimental - ESP32)
+    entity_category: "config"
+    icon: mdi:update
+    # disabled_by_default: true
+    on_press: 
+      then:
+        - ota.http_request.flash:
+            md5_url: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/bin/ota/aquapi-esp32.ota.md5
+            url: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/bin/ota/aquapi-esp32.ota.bin
