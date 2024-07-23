@@ -19,7 +19,7 @@ http_request:
 button:
   - platform: template
     id: update_firmware
-    name: Update AquaPi Firmware (Experimental - ESP32)
+    name: Update AquaPi Firmware - Releaseed (Experimental - ESP32)
     entity_category: "config"
     icon: mdi:update
     # disabled_by_default: true
