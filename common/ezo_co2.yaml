@@ -20,10 +20,10 @@ interval:
 sensor:
   # EZO Circuits (SCL/RX, SDA/TX)
   # EZO Circuit - CO2
-  # Cardbon Dioxide
+  # Carbon Dioxide
   - platform: ezo
     icon: mdi:molecule-co2
-    name: "Cardbon Dioxide"
+    name: "Carbon Dioxide"
     id: co2_ezo
     address: ${addCO2}
     unit_of_measurement: "ppm"
