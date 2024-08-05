@@ -1,8 +1,6 @@
 substitutions:  
   opticalLowPin: "33" # yellow
   opticalHighPin: "32" # blue
-  auxPin: "26" # yellow
-  leak_sensor: "25" # blue
   # Water Level
   update_water: "60s"
 
@@ -46,34 +44,6 @@ binary_sensor:
     on_state:
       then:
         component.update: water_level
-
-  # Additional Pin 1
-  - platform: gpio
-    id: aux_1
-    disabled_by_default: true
-    pin: 
-      number: ${auxPin}
-      inverted: true
-      mode:
-        input: true
-        pullup: true
-    name: Aux 1
-    filters:
-      - delayed_on_off: 30ms
-
-  # Leak Sensor
-  - platform: gpio
-    id: leak_sensor
-    disabled_by_default: true
-    pin: 
-      number: ${leak_sensor}
-      inverted: true
-      mode:
-        input: true
-        pullup: true
-    name: Leak Sensor
-    filters:
-      - delayed_on_off: 30ms
 
 text_sensor:
   # Water Level

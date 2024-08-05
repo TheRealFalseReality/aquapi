@@ -1,0 +1,17 @@
+substitutions:  
+  leak_sensor_pin: "14"
+
+binary_sensor:
+  # Leak Sensor
+  - platform: gpio
+    id: leak_sensor
+    # disabled_by_default: true
+    pin: 
+      number: ${leak_sensor_pin}
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    name: Leak Sensor
+    filters:
+      - delayed_on_off: 30ms

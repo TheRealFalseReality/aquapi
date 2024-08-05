@@ -1,5 +1,5 @@
 substitutions:
-  dhtPin: "25"
+  dhtPin: "34"
   update_dht: "60s"
   
 sensor:
