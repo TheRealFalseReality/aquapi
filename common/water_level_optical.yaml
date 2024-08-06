@@ -6,9 +6,9 @@ substitutions:
 
 esphome:
   on_boot: 
-      priority: 200
-      then:
-        - component.update: water_level
+    priority: 800
+    then:
+      - component.update: water_level
 
 binary_sensor:
   # Optical Sensor - LOW (yellow)

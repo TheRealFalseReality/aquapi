@@ -5,11 +5,11 @@ substitutions:
   update_button_co2: "60s"
 
 esphome:
-    on_boot: 
-        priority: 800
-        then:
-          - button.press: read_co2
-          - button.press: send_selected_co2
+  on_boot: 
+    priority: 800
+    then:
+      - button.press: read_co2
+      - button.press: send_selected_co2
 
 interval:
   # Update Raw CO2
