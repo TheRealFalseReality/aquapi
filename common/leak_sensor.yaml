@@ -1,5 +1,5 @@
 substitutions:  
-  leak_sensor_pin: "14"
+  leak_sensor_pin: "27"
 
 binary_sensor:
   # Leak Sensor
