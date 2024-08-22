@@ -7,6 +7,7 @@ sensor:
   - platform: dht
     pin: ${dhtPin}
     # model: DHT11
+    id: dht_sensor
     temperature:
       name: "Air Temperature"
       id: air_temperature
