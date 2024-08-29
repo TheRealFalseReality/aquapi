@@ -10,7 +10,7 @@ packages:
   aquapi: !include common/aquapi.yaml
   # ota_https: !include common/ota_https.yaml
   dallas: !include common/temperature_dallas.yaml
-  binary: !include common/binary.yaml
+  optical: !include common/optical.yaml
   # ir_receiver: !include common/ir_receiver.yaml
   # dht: !include common/dht.yaml
   # binary_input: !include common/binary_input.yaml
@@ -24,5 +24,6 @@ packages:
   ezo_pmp: !include common/ezo_pmp.yaml
   # ezo_pmp_extra: !include common/ezo_pmp_extra.yaml
   ezo_pmp_duo: !include common/ezo_pmp_duo.yaml
+  # dac: !include common/dac.yaml
   # ezo_commands: !include common/ezo_commands.yaml
   # debug: !include common/debug.yaml
