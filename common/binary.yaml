@@ -15,7 +15,6 @@ binary_sensor:
     filters:
       - delayed_on_off: 30ms
 
-  # Optical Sensor - HIGH (blue)
   - platform: gpio
     id: binary_2
     pin: 
