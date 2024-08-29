@@ -1,28 +1,33 @@
-substitutions:
-  binary_1: "13" # yellow
-  binary_2: "27" # blue
-
+# TODO
+substitutions:  
+  dac_1: "26" # yellow
+  dac_2: "25" # blue
+  
 binary_sensor:
+  # DAC Pin 1
   - platform: gpio
-    id: binary_1
+    id: aux_1
+    disabled_by_default: true
     pin: 
-      number: ${binary_1}
+      number: ${dac_1}
       inverted: true
       mode:
         input: true
         pullup: true
-    name: "Binary 1"
+    name: DAC 1
     filters:
       - delayed_on_off: 30ms
 
+  # DAC Pin 1
   - platform: gpio
-    id: binary_2
+    id: aux_1
+    disabled_by_default: true
     pin: 
-      number: ${binary_2}
+      number: ${dac_2}
       inverted: true
       mode:
         input: true
         pullup: true
-    name: "Binary 2"
+    name: DAC 1
     filters:
       - delayed_on_off: 30ms
