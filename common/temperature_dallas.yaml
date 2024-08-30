@@ -19,7 +19,7 @@ sensor:
   # Temperature Probe 1
   - platform: dallas_temp
     id: temp_1
-    icon: mdi:thermometer-lines
+    icon: mdi:thermometer-water
     name: "Temperature"
     state_class: "measurement"
     device_class: "temperature"
@@ -46,7 +46,7 @@ sensor:
   - platform: template
     name: Calibration at 0°C - Temp. 1
     id: cal_0_sen
-    icon: mdi:snowflake-alert
+    icon: mdi:thermometer-low
     unit_of_measurement: "°C"
     disabled_by_default: true
     state_class: "measurement"
@@ -59,7 +59,7 @@ sensor:
   - platform: template
     name: Calibration at 100°C - Temp. 1
     id: cal_100_sen
-    icon: mdi:water-thermometer
+    icon: mdi:thermometer-high
     unit_of_measurement: "°C"
     disabled_by_default: true
     state_class: "measurement"
@@ -85,7 +85,7 @@ text_sensor:
   - platform: template
     name: Temperature Range
     id: temp_range
-    icon: mdi:thermometer-water
+    icon: mdi:thermometer-alert
     update_interval: "${update_temp}"
     lambda: |-
       if(id(temp_f).state <= id(range_cool).state) {
@@ -106,7 +106,7 @@ number:
   - platform: template
     name: "Temp. Cool"
     id: range_cool
-    icon: mdi:snowflake-thermometer
+    icon: mdi:thermometer-low
     optimistic: true
     mode: box
     min_value: 0.0
@@ -123,7 +123,7 @@ number:
   # Temperature 1 when Warm
   - platform: template
     name: "Temp. Warm"
-    icon: mdi:sun-thermometer
+    icon: mdi:thermometer-high
     id: range_warm
     optimistic: true
     mode: box
