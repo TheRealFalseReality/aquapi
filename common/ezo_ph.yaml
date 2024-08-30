@@ -26,6 +26,10 @@ api:
       then:
       - lambda: |-
           id(ph_ezo).set_calibration_point_high(10.00);
+    - service: ph_calibrate_high_1001
+      then:
+      - lambda: |-
+          id(ph_ezo).set_calibration_point_high(10.01);
     # - service: ezo_ph_custom_command
     #   variables:
     #     command: string
