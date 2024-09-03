@@ -7,11 +7,9 @@ substitutions:
 api:
   services: 
     - service: ec_read_continous
-      variables:
-        seconds: int 
       then:
       - repeat:
-          count: !lambda return seconds;
+          count: 60
           then:
           - button.press: read_ec
           - delay: 1s

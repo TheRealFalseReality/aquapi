@@ -6,11 +6,9 @@ substitutions:
 api:
   services: 
     - service: orp_read_continous
-      variables:
-        seconds: int
       then:
       - repeat:
-          count: !lambda return seconds;
+          count: 60
           then:
           - button.press: read_orp
           - delay: 1s
