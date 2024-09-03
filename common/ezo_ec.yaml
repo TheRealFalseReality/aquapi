@@ -19,11 +19,11 @@ api:
       then:
       - lambda: |-
           id(ec_ezo).send_custom("Cal,dry");
-    - service: ec_calibrate_low
+    - service: ec_calibrate_low_12880
       then:
       - lambda: |-
           id(ec_ezo).send_custom("Cal,low,12880");
-    - service: ec_calibrate_high
+    - service: ec_calibrate_high_80000
       then:
       - lambda: |-
           id(ec_ezo).send_custom("Cal,high,80000");
