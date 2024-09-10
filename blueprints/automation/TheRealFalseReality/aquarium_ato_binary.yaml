@@ -50,7 +50,8 @@ blueprint:
       default: 
         hours: 6
       selector:
-        duration: {}
+        duration:
+          enable_day: true  
     pump_max_time:
       name: Water Pump Max On Time
       description: Turn off water pump if exceeds a certain time to prevent over-flow
