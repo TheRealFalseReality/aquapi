@@ -2,7 +2,7 @@ blueprint:
   name: Aquarium - ATO Automation
   description: Create an ATO (Automated-Top-Off) Automation. Turn on Water Pump when
     binary sensor is off, and stop when binary sensor is on. [More Info](https://community.home-assistant.io/t/aquarium-create-ato-automation-control-switches-based-off-a-sensor/600941)
-    (v1.7.3) [Automation]
+    (v1.8) [Automation]
   domain: automation
   source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/automation/TheRealFalseReality/aquarium_ato_binary.yaml
   input:
@@ -42,6 +42,13 @@ blueprint:
         frequent refills.
       default:
         seconds: 30
+      selector:
+        duration: {}
+    stop_timer:
+      name: Stop Automation
+      description: "Stop Automation for duration when Max Time is exceeded. (default: 6 hours)"
+      default: 
+        hours: 6
       selector:
         duration: {}
     pump_max_time:
@@ -93,6 +100,7 @@ variables:
   pump_max_time_2: !input pump_max_time_2
   additional_actions: !input additional_actions
   additional_actions_end: !input additional_actions_end
+  silence_timer: !input silence_timer
 alias: Aquarium ATO Binary
 description: Control ATO pump with binary sensor.
 trigger:
@@ -151,4 +159,21 @@ action:
     else:
     - service: switch.turn_off
       entity_id: !input switch
+  - if: 
+    - condition: trigger
+      id: max_time
+    then:
+      - service: notify.persistent_notification
+        data:
+          message: "Max Time Exceeded for ATO Pump"
+          title: "Aquarium ATO"
+      - service: automation.turn_off
+        target:
+          entity_id: "{{ this.entity_id }}"
+        data:
+          stop_actions: false
+      - delay: !input silence_timer
+      - service: automation.turn_on
+        target:
+          entity_id: "{{ this.entity_id }}"
 mode: single
