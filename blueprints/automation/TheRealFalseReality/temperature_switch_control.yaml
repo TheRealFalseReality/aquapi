@@ -1,7 +1,7 @@
 blueprint:
   name: Aquarium - Toggle Switches Based on Temperature
   description: This automation blueprint will turn switches on or off when the selected
-    temperature sensor is above or below a certain value. (v2) [Automation]
+    temperature sensor is above or below a certain value. (v2.1) [Automation]
   domain: automation
   source_url: https://gist.github.com/TheRealFalseReality/9788b2f9ba2e5e51a05bd081441314d3
   input:
@@ -22,7 +22,7 @@ blueprint:
     coolTemperature:
       name: Cool Temperature
       description: Toggles devices when below this value.
-      default: 74
+      default: 74.0
       selector:
         number:
           min: 60.0
@@ -30,10 +30,21 @@ blueprint:
           unit_of_measurement: °F
           mode: slider
           step: 1.0
+    middleTemperature:
+      name: Middle Temperature
+      description: Toggles devices when crosses this value.
+      default: 78.0
+      selector:
+        number:
+          min: 60.0
+          max: 90.0
+          unit_of_measurement: °F
+          mode: slider
+          step: 1.0
     warmTemperature:
       name: Warm Temperature
       description: Toggles devices when above this value.
-      default: 84
+      default: 84.0
       selector:
         number:
           min: 70.0
@@ -41,54 +52,36 @@ blueprint:
           unit_of_measurement: °F
           mode: slider
           step: 1.0
-    switchCoolOn:
-      name: Cool Switch ON
-      description: 'Switch(es) to turn ON when Temperature Sensor is below Cool Temperature''s
-        value.
-
-        Typically a Heater.'
+    actionCool:
+      name: Action Cool
+      description: Action(s) to run when Temperature Sensor value crosses below Cool Temperature value.
       default: []
       selector:
-        target:
-          entity:
-          - domain:
-            - switch
-    switchCoolOff:
-      name: Cool Switch OFF
-      description: 'Switch(es) to turn OFF when Temperature Sensor is below Cool Temperature''s
-        value.
-
-        Typically a Chiller or Fan.'
+        action: {}
+    actionBetween:
+      name: Action Between
+      description: Action(s) to run when Temperature Sensor value crosses above Cool Temperature or below Warm Temperature value.
       default: []
       selector:
-        target:
-          entity:
-          - domain:
-            - switch
-    switchWarmOn:
-      name: Warm Switch ON
-      description: 'Switch(es) to turn ON when Temperature Sensor is above Warm Temperature''s
-        value.
-
-        Typically a Chiller or Fan.'
+        action: {}
+    actionMiddleBelow:
+      name: Action Middle Below
+      description: Action(s) to run when Temperature Sensor value crosses below the Middle Temperature value.
       default: []
       selector:
-        target:
-          entity:
-          - domain:
-            - switch
-    switchWarmOff:
-      name: Warm Switch OFF
-      description: 'Switch(es) to turn OFF when Temperature Sensor is above Warm Temperature''s
-        value.
-
-        Typically a Heater.'
+        action: {}
+    actionMiddleAbove:
+      name: Action Middle Above
+      description: Action(s) to run when Temperature Sensor value crosses above the Middle Temperature value.
       default: []
       selector:
-        target:
-          entity:
-          - domain:
-            - switch
+        action: {}
+    actionWarm:
+      name: Action Warm
+      description: Action(s) to run when Temperature Sensor value crosses above Warm Temperature value.
+      default: []
+      selector:
+        action: {}
     additional_actions:
       name: Additional Actions
       description: Add additional actions to the script. Will execute before everything
@@ -101,10 +94,13 @@ variables:
   sensorTemperature: !input sensorTemperature
   coolTemperature: !input coolTemperature
   warmTemperature: !input warmTemperature
-  switchCoolOn: !input switchCoolOn
-  switchCoolOff: !input switchCoolOff
-  switchWarmOn: !input switchWarmOn
-  switchWarmOff: !input switchWarmOff
+  actionCool: !input actionCool
+  actionWarm: !input actionWarm
+  actionBetween: !input actionBetween
+  actionMiddleAbove: !input actionMiddleAbove
+  actionMiddleBelow: !input actionMiddleBelow
+  middleTemperatureRaw: "{{ ((coolTemperature | float) + (warmTemperature | float)) / 2.0 }}"
+  middleTemperature: !input middleTemperature
   additional_actions: !input additional_actions
 trigger:
 - platform: numeric_state
@@ -115,6 +111,19 @@ trigger:
   entity_id: !input sensorTemperature
   below: !input coolTemperature
   id: below
+- platform: numeric_state
+  entity_id: !input sensorTemperature
+  below: !input warmTemperature
+  above: !input coolTemperature
+  id: between
+- platform: numeric_state
+  entity_id: !input sensorTemperature
+  below: !input middleTemperature
+  id: middlle_below
+- platform: numeric_state
+  entity_id: !input sensorTemperature
+  above: !input middleTemperature
+  id: middlle_above
 condition: []
 action:
 - if:
@@ -128,17 +137,30 @@ action:
         id:
           - above
       sequence:
-      - service: switch.turn_on
-        data: {}
-        target: !input switchWarmOn
-      - service: switch.turn_off
-        data: {}
-        target: !input switchWarmOff
+      - choose: []
+        default: !input actionWarm
+    - conditions:
+      - condition: trigger
+        id:
+          - below
+      sequence:
+      - choose: []
+        default: !input actionCool
+    - conditions:
+      - condition: trigger
+        id:
+          - middlle_below
+      sequence:
+      - choose: []
+        default: !input actionMiddleBelow
+    - conditions:
+      - condition: trigger
+        id:
+          - middlle_above
+      sequence:
+      - choose: []
+        default: !input actionMiddleAbove
     default:
-      - service: switch.turn_off
-        data: {}
-        target: !input switchCoolOff
-      - service: switch.turn_on
-        data: {}
-        target: !input switchCoolOn
+      - choose: []
+        default: !input actionBetween
 mode: restart
