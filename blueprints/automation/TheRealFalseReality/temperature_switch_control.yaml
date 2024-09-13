@@ -21,7 +21,7 @@ blueprint:
           multiple: false
     coolTemperature:
       name: Cool Temperature
-      description: Toggles devices when below this value.
+      description: Toggle devices when the **Temperature Sensor** value crosses below this value.
       default: 74.0
       selector:
         number:
@@ -32,7 +32,7 @@ blueprint:
           step: 1.0
     middleTemperature:
       name: Middle Temperature
-      description: Toggles devices when crosses this value.
+      description: Toggle devices when the **Temperature Sensor** value crosses this value.
       default: 78.0
       selector:
         number:
@@ -43,7 +43,7 @@ blueprint:
           step: 1.0
     warmTemperature:
       name: Warm Temperature
-      description: Toggles devices when above this value.
+      description: Toggle devices when the **Temperature Sensor** value crosses above this value.
       default: 84.0
       selector:
         number:
@@ -54,31 +54,31 @@ blueprint:
           step: 1.0
     actionCool:
       name: Action Cool
-      description: Action(s) to run when Temperature Sensor value crosses below Cool Temperature value.
+      description: Action(s) to run when the **Temperature Sensor** value crosses below the **Cool Temperature** value.
       default: []
       selector:
         action: {}
     actionBetween:
       name: Action Between
-      description: Action(s) to run when Temperature Sensor value crosses above Cool Temperature or below Warm Temperature value.
+      description: Action(s) to run when the **Temperature Sensor** value crosses above the **Cool Temperature** value or below the **Warm Temperature** value.
       default: []
       selector:
         action: {}
     actionMiddleBelow:
       name: Action Middle Below
-      description: Action(s) to run when Temperature Sensor value crosses below the Middle Temperature value.
+      description: Action(s) to run when the **Temperature Sensor** value crosses below the **Middle Temperature** value.
       default: []
       selector:
         action: {}
     actionMiddleAbove:
       name: Action Middle Above
-      description: Action(s) to run when Temperature Sensor value crosses above the Middle Temperature value.
+      description: Action(s) to run when the **Temperature Sensor** value crosses above the **Middle Temperature** value.
       default: []
       selector:
         action: {}
     actionWarm:
       name: Action Warm
-      description: Action(s) to run when Temperature Sensor value crosses above Warm Temperature value.
+      description: Action(s) to run when the **Temperature Sensor** value crosses above the **Warm Temperature** value.
       default: []
       selector:
         action: {}
