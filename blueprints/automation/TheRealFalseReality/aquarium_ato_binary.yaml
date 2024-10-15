@@ -2,7 +2,7 @@ blueprint:
   name: Aquarium - ATO Automation
   description: Create an ATO (Automated-Top-Off) Automation. Turn on Water Pump when
     binary sensor is off, and stop when binary sensor is on. [More Info](https://community.home-assistant.io/t/aquarium-create-ato-automation-control-switches-based-off-a-sensor/600941)
-    (v1.8) [Automation]
+    (v1.8.1) [Automation]
   domain: automation
   source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/automation/TheRealFalseReality/aquarium_ato_binary.yaml
   input:
