@@ -44,7 +44,7 @@ blueprint:
         seconds: 30
       selector:
         duration: {}
-    silence_timer:
+    stop_timer:
       name: Stop Automation
       description: "Stop Automation for duration when Max Time is exceeded. (default: 6 hours)"
       default: 
@@ -101,7 +101,7 @@ variables:
   pump_max_time_2: !input pump_max_time_2
   additional_actions: !input additional_actions
   additional_actions_end: !input additional_actions_end
-  silence_timer: !input silence_timer
+  stop_timer: !input stop_timer
 alias: Aquarium ATO Binary
 description: Control ATO pump with binary sensor.
 trigger:
@@ -173,7 +173,7 @@ action:
           entity_id: "{{ this.entity_id }}"
         data:
           stop_actions: false
-      - delay: !input silence_timer
+      - delay: !input stop_timer
       - service: automation.turn_on
         target:
           entity_id: "{{ this.entity_id }}"
