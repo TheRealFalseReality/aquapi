@@ -44,7 +44,7 @@ blueprint:
         seconds: 30
       selector:
         duration: {}
-    stop_timer:
+    silence_timer:
       name: Stop Automation
       description: "Stop Automation for duration when Max Time is exceeded. (default: 6 hours)"
       default: 
