@@ -123,6 +123,7 @@ sensor:
     pump_voltage:
       id: pump_white_voltage
       name: Pump - Voltage
+      icon: mdi:lightning-bolt-circle
       disabled_by_default: true
       device_class: 'voltage'
       web_server:
@@ -143,6 +144,7 @@ binary_sensor:
       id: is_paused
       name: Pump - Paused Status
       disabled_by_default: true
+      icon: mdi:pause
       web_server:
         sorting_group_id: sorting_group_pump_white
 

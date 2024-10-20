@@ -207,6 +207,7 @@ sensor:
     pump_voltage:
       id: pump_voltage_clean
       name: Pump Clean - Voltage
+      icon: mdi:lightning-bolt-circle
       disabled_by_default: true
       device_class: 'voltage'
       web_server:
@@ -271,6 +272,7 @@ sensor:
     pump_voltage:
       id: pump_voltage_waste
       name: Pump Waste - Voltage
+      icon: mdi:lightning-bolt-circle
       disabled_by_default: true
       device_class: 'voltage'
       web_server:
@@ -291,6 +293,7 @@ binary_sensor:
     is_paused:
       id: is_paused_clean
       name: Pump Clean - Paused Status
+      icon: mdi:pause
       disabled_by_default: true
       web_server:
         sorting_group_id: sorting_group_pump_green
@@ -309,6 +312,7 @@ binary_sensor:
     is_paused:
       id: is_paused_waste
       name: Pump Waste - Paused Status
+      icon: mdi:pause
       disabled_by_default: true
       web_server:
         sorting_group_id: sorting_group_pump_red

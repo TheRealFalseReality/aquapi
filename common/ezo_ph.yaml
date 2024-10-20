@@ -124,6 +124,7 @@ button:
     name: pH - Command Send Selected
     id: send_selected_ph
     entity_category: "Config"
+    icon: mdi:apple-keyboard-command
     # disabled_by_default: true
     on_press:
       then:
@@ -166,6 +167,7 @@ select:
   - platform: template
     name: pH - Command Select
     id: select_command_ph
+    icon: mdi:apple-keyboard-command
     optimistic: true
     # disabled_by_default: true
     entity_category: "Config"

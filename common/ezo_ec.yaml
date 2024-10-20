@@ -268,6 +268,7 @@ button:
   # Send Selected EZO Command - Conductitivy
   - platform: template
     name: EC - Command Send Selected
+    icon: mdi:apple-keyboard-command
     id: send_selected_ec
     entity_category: "Config"
     # disabled_by_default: true
@@ -353,6 +354,7 @@ select:
   - platform: template
     name: EC - Command Select
     id: select_command_ec
+    icon: mdi:apple-keyboard-command
     # disabled_by_default: true
     optimistic: true
     entity_category: "Config"

@@ -24,6 +24,7 @@ binary_sensor:
   # Optical Sensor - LOW (yellow)
   - platform: gpio
     id: os_low
+    icon: mdi:arrow-down-bold
     # disabled_by_default: true
     pin: 
       number: ${opticalLowPin}
@@ -43,6 +44,7 @@ binary_sensor:
   # Optical Sensor - HIGH (blue)
   - platform: gpio
     id: os_high
+    icon: mdi:arrow-up-bold
     # disabled_by_default: true
     pin: 
       number: ${opticalHighPin}
@@ -83,3 +85,4 @@ text_sensor:
       }
     web_server:
       sorting_group_id: sorting_group_water_level
+      sorting_weight: 10

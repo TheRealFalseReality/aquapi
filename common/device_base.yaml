@@ -80,6 +80,7 @@ sensor:
   # Internal Temp.
   - platform: internal_temperature
     name: "Internal Temperature"
+    icon: mdi:thermometer
     web_server:
       sorting_group_id: sorting_group_diagnostic
 
@@ -87,6 +88,7 @@ sensor:
   - platform: wifi_signal # Reports the WiFi signal strength/RSSI in dB
     name: "WiFi Signal dB"
     disabled_by_default: true
+    icon: mdi:wifi
     id: wifi_signal_db
     update_interval: 60s
     entity_category: "diagnostic"
@@ -97,6 +99,7 @@ sensor:
   - platform: copy # Reports the WiFi signal strength in %
     source_id: wifi_signal_db
     name: "WiFi Signal Strength"
+    icon: mdi:wifi
     filters:
       - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
     unit_of_measurement: "%"
@@ -143,6 +146,7 @@ binary_sensor:
   # API Status
   - platform: status
     name: "Status"
+    icon: mdi:check-circle
     web_server:
       sorting_group_id: sorting_group_diagnostic
 

@@ -129,6 +129,7 @@ sensor:
       id: pump_orange_voltage
       name: Pump 2 - Voltage
       disabled_by_default: true
+      icon: mdi:lightning-bolt-circle
       device_class: 'voltage'
       web_server:
         sorting_group_id: sorting_group_pump_orange
@@ -145,6 +146,7 @@ binary_sensor:
     is_paused:
       id: is_paused_2
       name: Pump 2 - Paused Status
+      icon: mdi:pause
       disabled_by_default: true
       web_server:
         sorting_group_id: sorting_group_pump_orange

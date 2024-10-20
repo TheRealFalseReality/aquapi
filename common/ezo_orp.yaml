@@ -117,6 +117,7 @@ button:
   - platform: template
     name: ORP - Command Send Selected
     id: send_selected_orp
+    icon: mdi:apple-keyboard-command
     entity_category: "Config"
     # disabled_by_default: true
     on_press:
@@ -152,6 +153,7 @@ select:
     name: ORP - Command Select
     id: select_command_orp
     optimistic: true
+    icon: mdi:apple-keyboard-command
     # disabled_by_default: true
     entity_category: "Config"
     options:
