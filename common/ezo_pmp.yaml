@@ -8,7 +8,7 @@ sorting_group_pump_weight: 80
 web_server:
   sorting_groups:
     - id: sorting_group_pump
-      name: "Pump - Orange"
+      name: "Pump"
       sorting_weight: ${sorting_group_pump_weight}
 
 ezo_pmp:
