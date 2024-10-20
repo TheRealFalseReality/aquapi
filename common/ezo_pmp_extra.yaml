@@ -9,7 +9,7 @@ substitutions:
   update_pmp_5: "60s"  
   update_pmp_6: "60s"
 
-  sorting_group_pump_extra_weight: 88
+  sorting_group_pump_extra_weight: '84'
 
 web_server:
   sorting_groups:
