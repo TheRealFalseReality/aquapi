@@ -5,7 +5,7 @@ substitutions:
   update_pmp_1: "60s"
   update_pmp_2: "60s"
 
-sorting_group_pump_duo_weight: 80
+  sorting_group_pump_duo_weight: 80
 
 web_server:
   sorting_groups:
