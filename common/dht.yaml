@@ -15,12 +15,14 @@ sensor:
       name: "Humidity"
       id: relative_humidity
     update_interval: "${update_dht}"
-
+    web_server:
+      sorting_group_id: sorting_group_misc
   - platform: absolute_humidity
     name: Absolute Humidity
     temperature: air_temperature
     humidity: relative_humidity
-
+    web_server:
+      sorting_group_id: sorting_group_misc
   - platform: template
     name: Dew Point
     id: dew_point
@@ -30,3 +32,5 @@ sensor:
     unit_of_measurement: "°C"    
     lambda: |- 
       return ( id(air_temperature).state - (( 100 - id(relative_humidity).state ) / 5 ) );
+    web_server:
+      sorting_group_id: sorting_group_misc

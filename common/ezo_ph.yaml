@@ -3,6 +3,14 @@ substitutions:
   addPH: "99"
   update_ph: "60s"
 
+  sorting_group_ph: '30'
+
+web_server:
+  sorting_groups:
+    - id: sorting_group_ph
+      name: "pH - EZO"
+      sorting_weight: ${sorting_group_ph}
+      
 api:
   services: 
     - service: ph_read_continous
@@ -73,7 +81,10 @@ sensor:
     on_t: 
       then:
         - lambda: 
-            id(result_ph).publish_state(x); 
+            id(result_ph).publish_state(x);
+    web_server:
+      sorting_group_id: sorting_group_ph
+      sorting_weight: 10
 
 text_sensor:
   # Selected Command Result - pH
@@ -82,6 +93,8 @@ text_sensor:
     icon: mdi:data-matrix
     id: result_ph
     # disabled_by_default: true
+    web_server:
+      sorting_group_id: sorting_group_ph
 
 button:
   # Read pH Probe
@@ -103,6 +116,8 @@ button:
             else {
               ESP_LOGW("custom_ph_read", "No pH sensor detected at address: ${addPH}!!");
             }
+    web_server:
+      sorting_group_id: sorting_group_ph
 
   # Send Selected EZO Command - pH
   - platform: template
@@ -144,7 +159,8 @@ button:
             // else {
             //   id(ph_ezo).send_custom("R");
             // }
-
+    web_server:
+      sorting_group_id: sorting_group_ph
 
 select:
   - platform: template
@@ -168,3 +184,5 @@ select:
       - logger.log:
           format: "Chosen option: %s"
           args: ["x.c_str()"]
+    web_server:
+      sorting_group_id: sorting_group_ph
