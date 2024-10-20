@@ -4,6 +4,14 @@ substitutions:
   update_co2: "60s"
   update_button_co2: "60s"
 
+  sorting_group_co2: '34'
+
+web_server:
+  sorting_groups:
+    - id: sorting_group_co2
+      name: "CO2 (Gaseous) - EZO"
+      sorting_weight: ${sorting_group_co2}
+
 esphome:
     on_boot: 
         priority: 800
@@ -51,6 +59,9 @@ sensor:
       then:
         - lambda: 
             id(result_co2).publish_state(x);
+    web_server:
+      sorting_group_id: sorting_group_co2
+      sorting_weight: 10
 
   # Internal Temperature
   - platform: template
@@ -79,6 +90,8 @@ sensor:
       else {
         return NAN;
       }
+    web_server:
+      sorting_group_id: sorting_group_co2
 
 text_sensor:
   # CO2 Raw Value
@@ -90,12 +103,16 @@ text_sensor:
     on_value: 
       then:
         - component.update: sensor_co2_internal_temperature
+    web_server:
+      sorting_group_id: sorting_group_co2
 
   # Selected Command Result - CO2
   - platform: template
     name: CO2 - Command Result
     id: result_co2
     disabled_by_default: true
+    web_server:
+      sorting_group_id: sorting_group_co2
 
 button:
   # Read CO2 Sensor
@@ -117,6 +134,8 @@ button:
             else {
               ESP_LOGW("custom_co2_read", "No Carbon Dioxide sensor detected at address: ${addCO2}!");
             }
+    web_server:
+      sorting_group_id: sorting_group_co2
 
   # Send Selected EZO Command - CO2
   - platform: template
@@ -151,6 +170,8 @@ button:
             else {
               id(co2_ezo).send_custom("R");
             }
+    web_server:
+      sorting_group_id: sorting_group_co2
 
 select:
   - platform: template
@@ -172,3 +193,5 @@ select:
       - logger.log:
           format: "Chosen option: %s"
           args: ["x.c_str()"]
+    web_server:
+      sorting_group_id: sorting_group_co2

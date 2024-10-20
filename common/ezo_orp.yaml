@@ -2,6 +2,14 @@ substitutions:
   # ORP circuit, who's address is 98
   addORP: "98"
   update_orp: "60s"
+  
+  sorting_group_orp: '33'
+
+web_server:
+  sorting_groups:
+    - id: sorting_group_orp
+      name: "ORP (Oxidation-Reduction Potential) - EZO"
+      sorting_weight: ${sorting_group_orp}
 
 api:
   services: 
@@ -67,7 +75,10 @@ sensor:
     on_t: 
       then:
         - lambda: 
-            id(result_orp).publish_state(x); 
+            id(result_orp).publish_state(x);
+    web_server:
+      sorting_group_id: sorting_group_orp
+      sorting_weight: 10
 
 text_sensor:
   # Selected Command Result - ORP
@@ -76,6 +87,8 @@ text_sensor:
     icon: mdi:data-matrix
     id: result_orp
     # disabled_by_default: true
+    web_server:
+      sorting_group_id: sorting_group_orp
 
 button:
   # Read ORP Probe
@@ -97,6 +110,8 @@ button:
             else {
               ESP_LOGW("custom_orp_read", "No ORP sensor detected at address: ${addORP}!!");
             }
+    web_server:
+      sorting_group_id: sorting_group_orp
 
   # Send Selected EZO Command - ORP
   - platform: template
@@ -129,7 +144,8 @@ button:
             // else {
             //   id(orp_ezo).send_custom("R");
             // }
-
+    web_server:
+      sorting_group_id: sorting_group_orp
 
 select:
   - platform: template
@@ -150,3 +166,5 @@ select:
       - logger.log:
           format: "Chosen option: %s"
           args: ["x.c_str()"]
+    web_server:
+      sorting_group_id: sorting_group_orp

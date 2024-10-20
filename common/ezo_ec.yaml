@@ -4,12 +4,12 @@ substitutions:
   update_ec: "60s"
   update_button_ec: "60s"
 
-  sorting_group_ec: '30'
+  sorting_group_ec: '31'
 
 web_server:
   sorting_groups:
     - id: sorting_group_ec
-      name: "ec - EZO"
+      name: "Salinity - EZO"
       sorting_weight: ${sorting_group_ec}
 
 api:
