@@ -54,6 +54,9 @@ web_server:
     - id: sorting_group_config
       name: "AquaPi Configuration"
       sorting_weight: ${sorting_group_config_weight}
+    - id: sorting_group_misc
+      name: "Misc. Sensors"
+      sorting_weight: ${sorting_group_misc_weight}
   
 improv_serial:
 

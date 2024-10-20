@@ -5,8 +5,8 @@ substitutions:
   update_pmp_green: "60s"
   update_pmp_red: "60s"
 
-  sorting_group_pump_green_weight: '82'
-  sorting_group_pump_red_weight: '84'
+  sorting_group_pump_green_weight: '81'
+  sorting_group_pump_red_weight: '82'
 
 web_server:
   sorting_groups:
