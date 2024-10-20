@@ -3,6 +3,14 @@ substitutions:
   addPMP_3: "103" # White
   update_pmp_3: "60s"
 
+sorting_group_pump_weight: 80
+
+web_server:
+  sorting_groups:
+    - id: sorting_group_pump
+      name: "Pump - Orange"
+      sorting_weight: ${sorting_group_pump_weight}
+
 ezo_pmp:
   - id: ezo_pump_white
     address: ${addPMP_3}
@@ -66,6 +74,8 @@ sensor:
       device_class: 'volume'
       unit_of_measurement: 'mL'
       state_class: total
+    web_server:
+      sorting_group_id: sorting_group_pump
   - platform: ezo_pmp
     id: ezo_pump_white
     total_volume_dosed:
@@ -75,6 +85,8 @@ sensor:
       device_class: 'volume'
       unit_of_measurement: 'mL'
       disabled_by_default: true
+    web_server:
+      sorting_group_id: sorting_group_pump
   - platform: ezo_pmp
     id: ezo_pump_white
     absolute_total_volume_dosed:
@@ -84,6 +96,8 @@ sensor:
       device_class: 'volume'
       state_class: total
       unit_of_measurement: 'mL'
+    web_server:
+      sorting_group_id: sorting_group_pump
   - platform: ezo_pmp
     id: ezo_pump_white
     last_volume_requested:
@@ -93,6 +107,8 @@ sensor:
       device_class: 'volume'
       state_class: total
       unit_of_measurement: 'mL'
+    web_server:
+      sorting_group_id: sorting_group_pump
   - platform: ezo_pmp
     id: ezo_pump_white
     max_flow_rate:
@@ -100,6 +116,8 @@ sensor:
       name: Pump - Max Volume/Time Flow Rate
       icon: mdi:car-speed-limiter
       unit_of_measurement: 'mL/min'
+    web_server:
+      sorting_group_id: sorting_group_pump
   - platform: ezo_pmp
     id: ezo_pump_white
     pump_voltage:
@@ -107,6 +125,8 @@ sensor:
       name: Pump - Voltage
       disabled_by_default: true
       device_class: 'voltage'
+    web_server:
+      sorting_group_id: sorting_group_pump
 
 binary_sensor:
   - platform: ezo_pmp
@@ -115,12 +135,16 @@ binary_sensor:
       id: pump_white_state
       name: Pump - State
       icon: mdi:pump
+    web_server:
+      sorting_group_id: sorting_group_pump
   - platform: ezo_pmp
     id: ezo_pump_white
     is_paused:
       id: is_paused
       name: Pump - Paused Status
       disabled_by_default: true
+    web_server:
+      sorting_group_id: sorting_group_pump
 
 text_sensor:
   - platform: ezo_pmp
@@ -129,6 +153,8 @@ text_sensor:
       id: dosing_mode
       name: Pump - Dosing Mode 
       icon: mdi:auto-mode
+    web_server:
+      sorting_group_id: sorting_group_pump
   - platform: ezo_pmp
     id: ezo_pump_white
     calibration_status:
@@ -136,6 +162,8 @@ text_sensor:
       name: Pump - Calibration Status
       # disabled_by_default: true
       icon: mdi:tape-measure
+    web_server:
+      sorting_group_id: sorting_group_pump
 
 number:
   - platform: template
@@ -150,6 +178,8 @@ number:
     max_value: 378541 # 100 gal
     mode: box
     step: 0.1
+    web_server:
+      sorting_group_id: sorting_group_pump
   - platform: template
     id: duration
     icon: mdi:timer
@@ -162,6 +192,8 @@ number:
     max_value: 1440 # 24 hours
     mode: box
     step: 0.1
+    web_server:
+      sorting_group_id: sorting_group_pump
   - platform: template
     id: flow_rate
     icon: mdi:waves-arrow-right
@@ -173,6 +205,8 @@ number:
     max_value: 105 # may need to lower to 40
     mode: box
     step: 0.1
+    web_server:
+      sorting_group_id: sorting_group_pump
 
 button:
   # TODO Make UI
@@ -187,6 +221,8 @@ button:
             return id(volume).state;
           duration: !lambda |-
             return id(duration).state;
+    web_server:
+      sorting_group_id: sorting_group_pump
   - platform: template
     name: Pump - Dose Continuously
     icon: mdi:infinity
@@ -194,6 +230,8 @@ button:
     on_press:
       - ezo_pmp.dose_continuously:
           id: ezo_pump_white
+    web_server:
+      sorting_group_id: sorting_group_pump
   - platform: template
     name: Pump - Dose Volume
     icon: mdi:pump
@@ -203,6 +241,8 @@ button:
           id: ezo_pump_white
           volume: !lambda |-
             return id(volume).state;
+    web_server:
+      sorting_group_id: sorting_group_pump
   - platform: template
     name: Pump - Dose at Volume/Time Flow Rate for Time
     icon: mdi:format-text-wrapping-overflow
@@ -214,6 +254,8 @@ button:
             return id(flow_rate).state;
           duration: !lambda |-
             return id(duration).state;
+    web_server:
+      sorting_group_id: sorting_group_pump
   - platform: template
     name: Pump - Pause Dosing
     icon: mdi:pause
@@ -221,6 +263,8 @@ button:
     on_press:
       - ezo_pmp.pause_dosing:
           id: ezo_pump_white
+    web_server:
+      sorting_group_id: sorting_group_pump
   - platform: template
     name: Pump - Stop Dosing
     icon: mdi:stop
@@ -228,6 +272,8 @@ button:
     on_press:
       - ezo_pmp.stop_dosing:
           id: ezo_pump_white
+    web_server:
+      sorting_group_id: sorting_group_pump
   - platform: template
     name: Pump - Clear Total Volume Dosed
     icon: mdi:backspace
@@ -235,6 +281,8 @@ button:
     on_press:
       - ezo_pmp.clear_total_volume_dosed:
           id: ezo_pump_white
+    web_server:
+      sorting_group_id: sorting_group_pump
 
   # Calibrate
   - platform: template
@@ -246,6 +294,8 @@ button:
           id: ezo_pump_white
           volume: !lambda |-
             return id(volume).state;
+    web_server:
+      sorting_group_id: sorting_group_pump
   - platform: template
     name: Pump - Clear Calibration Volume
     icon: mdi:cancel
@@ -253,3 +303,5 @@ button:
     on_press:
       - ezo_pmp.clear_calibration:
           id: ezo_pump_white
+    web_server:
+      sorting_group_id: sorting_group_pump
