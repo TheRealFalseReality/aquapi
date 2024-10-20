@@ -9,6 +9,14 @@ substitutions:
   update_pmp_5: "60s"  
   update_pmp_6: "60s"
 
+sorting_group_pump_extra_weight: 90
+
+web_server:
+  sorting_groups:
+    - id: sorting_group_pump_extra
+      name: "Pump - Orange"
+      sorting_weight: ${sorting_group_pump_extra_weight}
+
 ezo_pmp:
   - id: ezo_pump_orange
     address: ${addPMP_4}
@@ -72,6 +80,8 @@ sensor:
       device_class: 'volume'
       state_class: total
       unit_of_measurement: 'mL'
+    web_server:
+      sorting_group_id: sorting_group_pump_extra
   - platform: ezo_pmp
     id: ezo_pump_orange
     total_volume_dosed:
@@ -81,6 +91,8 @@ sensor:
       device_class: 'volume'
       unit_of_measurement: 'mL'
       disabled_by_default: true
+    web_server:
+      sorting_group_id: sorting_group_pump_extra
   - platform: ezo_pmp
     id: ezo_pump_orange
     absolute_total_volume_dosed:
@@ -90,6 +102,8 @@ sensor:
       device_class: 'volume'
       state_class: total
       unit_of_measurement: 'mL'
+    web_server:
+      sorting_group_id: sorting_group_pump_extra
   - platform: ezo_pmp
     id: ezo_pump_orange
     last_volume_requested:
@@ -99,6 +113,8 @@ sensor:
       device_class: 'volume'
       state_class: total
       unit_of_measurement: 'mL'
+    web_server:
+      sorting_group_id: sorting_group_pump_extra
   - platform: ezo_pmp
     id: ezo_pump_orange
     max_flow_rate:
@@ -106,6 +122,8 @@ sensor:
       name: Pump 2 - Max Volume/Time Flow Rate
       icon: mdi:car-speed-limiter
       unit_of_measurement: 'mL/min'
+    web_server:
+      sorting_group_id: sorting_group_pump_extra
   - platform: ezo_pmp
     id: ezo_pump_orange
     pump_voltage:
@@ -113,6 +131,8 @@ sensor:
       name: Pump 2 - Voltage
       disabled_by_default: true
       device_class: 'voltage'
+    web_server:
+      sorting_group_id: sorting_group_pump_extra
 
 binary_sensor:
   - platform: ezo_pmp
@@ -127,6 +147,8 @@ binary_sensor:
       id: is_paused_2
       name: Pump 2 - Paused Status
       disabled_by_default: true
+    web_server:
+      sorting_group_id: sorting_group_pump_extra
 
 text_sensor:
   - platform: ezo_pmp
@@ -135,6 +157,8 @@ text_sensor:
       id: dosing_mode_2
       name: Pump 2 - Dosing Mode 
       icon: mdi:auto-mode
+    web_server:
+      sorting_group_id: sorting_group_pump_extra
   - platform: ezo_pmp
     id: ezo_pump_orange
     calibration_status:
@@ -142,6 +166,8 @@ text_sensor:
       name: Pump 2 - Calibration Status
       # disabled_by_default: true
       icon: mdi:tape-measure
+    web_server:
+      sorting_group_id: sorting_group_pump_extra
 
 number:
   - platform: template
@@ -156,6 +182,8 @@ number:
     max_value: 378541 # 100 gal
     mode: box
     step: 0.1
+    web_server:
+      sorting_group_id: sorting_group_pump_extra
   - platform: template
     id: duration_2
     icon: mdi:timer
@@ -168,6 +196,8 @@ number:
     max_value: 1440 # 24 hours
     mode: box
     step: 0.1
+    web_server:
+      sorting_group_id: sorting_group_pump_extra
   - platform: template
     id: flow_rate_2
     icon: mdi:waves-arrow-right
@@ -179,6 +209,8 @@ number:
     max_value: 105 # may need to lower to 40
     mode: box
     step: 0.1
+    web_server:
+      sorting_group_id: sorting_group_pump_extra
 
 button:
   # TODO Make UI
@@ -193,6 +225,8 @@ button:
             return id(volume).state;
           duration: !lambda |-
             return id(duration).state;
+    web_server:
+      sorting_group_id: sorting_group_pump_extra
   - platform: template
     name: Pump 2 - Dose Continuously
     icon: mdi:infinity
@@ -200,6 +234,8 @@ button:
     on_press:
       - ezo_pmp.dose_continuously:
           id: ezo_pump_orange
+    web_server:
+      sorting_group_id: sorting_group_pump_extra
   - platform: template
     name: Pump 2 - Dose Volume
     icon: mdi:pump_orange
@@ -209,6 +245,8 @@ button:
           id: ezo_pump_orange
           volume: !lambda |-
             return id(volume).state;
+    web_server:
+      sorting_group_id: sorting_group_pump_extra
   - platform: template
     name: Pump 2 - Dose at Volume/Time Flow Rate for Time
     icon: mdi:format-text-wrapping-overflow
@@ -220,6 +258,8 @@ button:
             return id(flow_rate).state;
           duration: !lambda |-
             return id(duration).state;
+    web_server:
+      sorting_group_id: sorting_group_pump_extra
   - platform: template
     name: Pump 2 - Pause Dosing
     icon: mdi:pause
@@ -227,6 +267,8 @@ button:
     on_press:
       - ezo_pmp.pause_dosing:
           id: ezo_pump_orange
+    web_server:
+      sorting_group_id: sorting_group_pump_extra
   - platform: template
     name: Pump 2 - Stop Dosing
     icon: mdi:stop
@@ -234,6 +276,8 @@ button:
     on_press:
       - ezo_pmp.stop_dosing:
           id: ezo_pump_orange
+    web_server:
+      sorting_group_id: sorting_group_pump_extra
   - platform: template
     name: Pump 2 - Clear Total Volume Dosed
     icon: mdi:backspace
@@ -241,6 +285,8 @@ button:
     on_press:
       - ezo_pmp.clear_total_volume_dosed:
           id: ezo_pump_orange
+    web_server:
+      sorting_group_id: sorting_group_pump_extra
 
   # Calibrate
   - platform: template
@@ -252,6 +298,8 @@ button:
           id: ezo_pump_orange
           volume: !lambda |-
             return id(volume).state;
+    web_server:
+      sorting_group_id: sorting_group_pump_extra
   - platform: template
     name: Pump 2 - Clear Calibration Volume
     icon: mdi:cancel
@@ -259,3 +307,5 @@ button:
     on_press:
       - ezo_pmp.clear_calibration:
           id: ezo_pump_orange
+    web_server:
+      sorting_group_id: sorting_group_pump_extra
