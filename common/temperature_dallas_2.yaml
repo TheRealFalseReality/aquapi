@@ -25,6 +25,9 @@ sensor:
     on_value: 
       then:
         - component.update: temp_range_2
+    web_server:
+      sorting_group_id: sorting_group_temperature
+      sorting_weight: 60
 
   # Convert to Fahrenheit - Temp. 2
   - platform: template
@@ -33,6 +36,9 @@ sensor:
     id: temp_f_2
     lambda: |-
       return id(temp_2).state * 9 / 5 + 32;
+    web_server:
+      sorting_group_id: sorting_group_temperature
+      sorting_weight: 60
 
   # Calibration Temp. 2 at 0C
   - platform: template
@@ -45,6 +51,9 @@ sensor:
     entity_category: "diagnostic"
     lambda: |-
       return {${cal_0_2}};
+    web_server:
+      sorting_group_id: sorting_group_temperature
+      sorting_weight: 60
 
   # Calibration Temp. 2 at 100C
   - platform: template
@@ -57,6 +66,9 @@ sensor:
     entity_category: "diagnostic"
     lambda: |-
       return {${cal_100_2}};
+    web_server:
+      sorting_group_id: sorting_group_temperature
+      sorting_weight: 60
 
 binary_sensor:
   - platform: template
@@ -69,6 +81,9 @@ binary_sensor:
       } else {
         return false;
       }
+    web_server:
+      sorting_group_id: sorting_group_temperature
+      sorting_weight: 60
 
 text_sensor:
   # Temperature Range 2
@@ -90,6 +105,9 @@ text_sensor:
       else {
         return {"Unknown"};
       }
+    web_server:
+      sorting_group_id: sorting_group_temperature
+      sorting_weight: 60
 
 number:
   # Temperature 2 when Cool
@@ -109,6 +127,9 @@ number:
     on_value: 
       then:
         - component.update: temp_range_2
+    web_server:
+      sorting_group_id: sorting_group_temperature
+      sorting_weight: 60
 
   # Temperature 2 when Warm
   - platform: template
@@ -127,3 +148,6 @@ number:
     on_value: 
       then:
         - component.update: temp_range_2
+    web_server:
+      sorting_group_id: sorting_group_temperature
+      sorting_weight: 60
