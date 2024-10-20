@@ -8,6 +8,7 @@ substitutions:
   sdaPin: "21" # yellow/TX PMP-green
   sclPin: "22" # blue/RX PMP-white
 
+  sorting_group_misc_weight: '97'
   sorting_group_diagnostic_weight: '98'
   sorting_group_config_weight: '99'
 

@@ -1,3 +1,12 @@
+substitutions:
+  sorting_group_debug: '80'
+
+web_server:
+  sorting_groups:
+    - id: sorting_group_debug
+      name: "Debug"
+      sorting_weight: ${sorting_group_debug}
+      
 debug:
   update_interval: 5s
 
@@ -5,14 +14,24 @@ sensor:
   - platform: debug
     free:
       name: "Heap Free"
+      web_server:
+        sorting_group_id: sorting_group_debug
     block:
       name: "Heap Max Block"
+      web_server:
+        sorting_group_id: sorting_group_debug
     loop_time:
       name: "Loop Time"
+      web_server:
+        sorting_group_id: sorting_group_debug
 
 text_sensor:
   - platform: debug
     device:
       name: "Device Info"
+      web_server:
+        sorting_group_id: sorting_group_debug
     reset_reason:
       name: "Reset Reason"
+      web_server:
+        sorting_group_id: sorting_group_debug
