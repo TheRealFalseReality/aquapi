@@ -8,8 +8,8 @@ substitutions:
   sdaPin: "21" # yellow/TX PMP-green
   sclPin: "22" # blue/RX PMP-white
 
-  sorting_group_diagnostic_weight: '900'
-  sorting_group_config_weight: '1000'
+  sorting_group_diagnostic_weight: '90'
+  sorting_group_config_weight: '99'
 
 esphome:
   min_version: 2024.6.0
@@ -49,10 +49,10 @@ web_server:
   version: 3
   sorting_groups:
     - id: sorting_group_diagnostic
-      name: "Diagnostic"
+      name: "Diagnostic Sort"
       sorting_weight: ${sorting_group_diagnostic_weight}
     - id: sorting_group_config
-      name: "Configuration"
+      name: "Configuration Sort"
       sorting_weight: ${sorting_group_config_weight}
   
 improv_serial:
