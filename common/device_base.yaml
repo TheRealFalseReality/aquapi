@@ -159,18 +159,24 @@ text_sensor:
     ip_address:
       name: IP Address
       icon: mdi:ip-network
+      web_server:
+        sorting_group_id: sorting_group_diagnostic
     ssid:
       name: Connected SSID
       icon: mdi:wifi-arrow-left-right
+      web_server:
+        sorting_group_id: sorting_group_diagnostic
     bssid:
       name: Connected BSSID
       icon: mdi:wifi-star
       disabled_by_default: true
+      web_server:
+        sorting_group_id: sorting_group_diagnostic
     mac_address:
       name: Mac Address
       icon: mdi:chip
-    web_server:
-      sorting_group_id: sorting_group_diagnostic
+      web_server:
+        sorting_group_id: sorting_group_diagnostic
 
 button:
   # Soft Restart
