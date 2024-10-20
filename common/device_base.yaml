@@ -49,10 +49,10 @@ web_server:
   version: 3
   sorting_groups:
     - id: sorting_group_diagnostic
-      name: "Diagnostic"
+      name: "AquaPi Diagnostic"
       sorting_weight: ${sorting_group_diagnostic_weight}
     - id: sorting_group_config
-      name: "Configuration"
+      name: "AquaPi Configuration"
       sorting_weight: ${sorting_group_config_weight}
   
 improv_serial:
