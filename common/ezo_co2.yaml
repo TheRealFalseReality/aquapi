@@ -65,7 +65,7 @@ sensor:
 
   # Internal Temperature
   - platform: template
-    name: CO2 Internal Temperature
+    name: CO2 - Internal Temperature
     id: sensor_co2_internal_temperature
     accuracy_decimals: 2
     unit_of_measurement: "°C"

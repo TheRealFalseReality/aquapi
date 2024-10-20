@@ -57,7 +57,7 @@ binary_sensor:
       then:
         component.update: water_level
     web_server:
-      sorting_group_id: sorting_group_temperature
+      sorting_group_id: sorting_group_water_level
 
 text_sensor:
   # Water Level
@@ -82,4 +82,4 @@ text_sensor:
         return {"Uknown or Error"};
       }
     web_server:
-      sorting_group_id: sorting_group_temperature
+      sorting_group_id: sorting_group_water_level

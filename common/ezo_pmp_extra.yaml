@@ -1,13 +1,12 @@
 substitutions:
   # PMP circuit
-  addPMP_4: "110" # Orange
+  addPMP_orange: "110" # Orange
+  addPMP_yellow: "104" # Yellow
+  addPMP_blue: "106" # Blue
 
-  # TODO Add Rest of Pumps
-  addPMP_5: "104" # Yellow
-  addPMP_6: "106" # Blue
-  update_pmp_4: "60s"
-  update_pmp_5: "60s"  
-  update_pmp_6: "60s"
+  update_pmp_orange: "60s"
+  update_pmp_yellow: "60s"  
+  update_pmp_blue: "60s"
 
   sorting_group_pump_orange_weight: '83'
 
@@ -19,8 +18,8 @@ web_server:
 
 ezo_pmp:
   - id: ezo_pump_orange
-    address: ${addPMP_4}
-    update_interval: "${update_pmp_4}"
+    address: ${addPMP_orange}
+    update_interval: "${update_pmp_orange}"
 
 api:
   services: 
