@@ -1,7 +1,6 @@
 substitutions:
   dallasPin: "16"
   update_temp: "60s"
-  sorting_group_temperature_weight: '5'
 
   # Calibration variables
   # 0C using Ice Water; 100C using Boiling Water  
@@ -10,6 +9,8 @@ substitutions:
   cal_100: "100.0"
   range_cool: "74"
   range_warm: "82"
+
+  sorting_group_temperature_weight: '10'
 
 web_server:
   sorting_groups:
