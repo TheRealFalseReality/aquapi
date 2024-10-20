@@ -366,8 +366,8 @@ number:
     max_value: 378541 # 100 gal
     mode: box
     step: 0.1
-      web_server:
-        sorting_group_id: sorting_group_pump_green
+    web_server:
+      sorting_group_id: sorting_group_pump_green
   - platform: template
     id: duration_clean
     icon: mdi:timer
@@ -380,8 +380,8 @@ number:
     max_value: 1440 # 24 hours
     mode: box
     step: 0.1
-      web_server:
-        sorting_group_id: sorting_group_pump_green
+    web_server:
+      sorting_group_id: sorting_group_pump_green
   - platform: template
     id: flow_rate_clean
     icon: mdi:waves-arrow-right
@@ -393,8 +393,8 @@ number:
     max_value: 105 # may need to lower to 40
     mode: box
     step: 0.1
-      web_server:
-        sorting_group_id: sorting_group_pump_green
+    web_server:
+      sorting_group_id: sorting_group_pump_green
 
   # Red
   - platform: template
@@ -409,8 +409,8 @@ number:
     max_value: 378541 # 100 gal
     mode: box
     step: 0.1
-      web_server:
-        sorting_group_id: sorting_group_pump_red
+    web_server:
+      sorting_group_id: sorting_group_pump_red
   - platform: template
     id: duration_waste
     icon: mdi:timer
@@ -423,8 +423,8 @@ number:
     max_value: 1440 # 24 hours
     mode: box
     step: 0.1
-      web_server:
-        sorting_group_id: sorting_group_pump_red
+    web_server:
+      sorting_group_id: sorting_group_pump_red
   - platform: template
     id: flow_rate_waste
     icon: mdi:waves-arrow-left
@@ -436,8 +436,8 @@ number:
     max_value: 105 # may need to lower to 40
     mode: box
     step: 0.1
-      web_server:
-        sorting_group_id: sorting_group_pump_red
+    web_server:
+      sorting_group_id: sorting_group_pump_red
 
 button:
   # Green
@@ -452,8 +452,8 @@ button:
             return id(volume_clean).state;
           duration: !lambda |-
             return id(duration_clean).state;
-      web_server:
-        sorting_group_id: sorting_group_pump_green
+    web_server:
+      sorting_group_id: sorting_group_pump_green
   - platform: template
     name: Pump Clean - Dose Continuously
     icon: mdi:infinity
@@ -461,8 +461,8 @@ button:
     on_press:
       - ezo_pmp.dose_continuously:
           id: ezo_pump_green
-      web_server:
-        sorting_group_id: sorting_group_pump_green
+    web_server:
+      sorting_group_id: sorting_group_pump_green
   - platform: template
     name: Pump Clean - Dose Volume
     icon: mdi:pump
@@ -472,8 +472,8 @@ button:
           id: ezo_pump_green
           volume: !lambda |-
             return id(volume_clean).state;
-      web_server:
-        sorting_group_id: sorting_group_pump_duo
+    web_server:
+      sorting_group_id: sorting_group_pump_green
   - platform: template
     name: Pump Clean - Dose at Volume/Time Flow Rate for Time
     icon: mdi:format-text-wrapping-overflow
@@ -485,8 +485,8 @@ button:
             return id(flow_rate_clean).state;
           duration: !lambda |-
             return id(duration_clean).state;
-      web_server:
-        sorting_group_id: sorting_group_pump_green
+    web_server:
+      sorting_group_id: sorting_group_pump_green
   - platform: template
     name: Pump Clean - Pause Dosing
     icon: mdi:pause
@@ -494,8 +494,8 @@ button:
     on_press:
       - ezo_pmp.pause_dosing:
           id: ezo_pump_green
-      web_server:
-        sorting_group_id: sorting_group_pump_green
+    web_server:
+      sorting_group_id: sorting_group_pump_green
   - platform: template
     name: Pump Clean - Stop Dosing
     icon: mdi:stop
@@ -503,8 +503,8 @@ button:
     on_press:
       - ezo_pmp.stop_dosing:
           id: ezo_pump_green
-      web_server:
-        sorting_group_id: sorting_group_pump_green
+    web_server:
+      sorting_group_id: sorting_group_pump_green
   - platform: template
     name: Pump Clean - Clear Total Volume Dosed
     icon: mdi:backspace
@@ -512,8 +512,8 @@ button:
     on_press:
       - ezo_pmp.clear_total_volume_dosed:
           id: ezo_pump_green
-      web_server:
-        sorting_group_id: sorting_group_pump_green
+    web_server:
+      sorting_group_id: sorting_group_pump_green
   - platform: template
     name: Pump Clean - Set Calibration Volume
     icon: mdi:tape-measure
@@ -523,8 +523,8 @@ button:
           id: ezo_pump_green
           volume: !lambda |-
             return id(volume_clean).state;
-      web_server:
-        sorting_group_id: sorting_group_pump_green
+    web_server:
+      sorting_group_id: sorting_group_pump_green
   - platform: template
     name: Pump Clean - Clear Calibration Volume
     icon: mdi:cancel
@@ -532,8 +532,8 @@ button:
     on_press:
       - ezo_pmp.clear_calibration:
           id: ezo_pump_green
-      web_server:
-        sorting_group_id: sorting_group_pump_green
+    web_server:
+      sorting_group_id: sorting_group_pump_green
         
   # Red
   - platform: template
@@ -547,8 +547,8 @@ button:
             return id(volume_waste).state;
           duration: !lambda |-
             return id(duration_waste).state;
-      web_server:
-        sorting_group_id: sorting_group_pump_red
+    web_server:
+      sorting_group_id: sorting_group_pump_red
   - platform: template
     name: Pump Waste - Dose Continuously
     icon: mdi:infinity
@@ -556,8 +556,8 @@ button:
     on_press:
       - ezo_pmp.dose_continuously:
           id: ezo_pump_red
-      web_server:
-        sorting_group_id: sorting_group_pump_red
+    web_server:
+      sorting_group_id: sorting_group_pump_red
   - platform: template
     name: Pump Waste - Dose Volume
     icon: mdi:pump
@@ -567,8 +567,8 @@ button:
           id: ezo_pump_red
           volume: !lambda |-
             return id(volume_waste).state;
-      web_server:
-        sorting_group_id: sorting_group_pump_red
+    web_server:
+      sorting_group_id: sorting_group_pump_red
   - platform: template
     name: Pump Waste - Dose at Volume/Time Flow Rate for Time
     icon: mdi:format-text-wrapping-overflow
@@ -580,8 +580,8 @@ button:
             return id(flow_rate_waste).state;
           duration: !lambda |-
             return id(duration_waste).state;
-      web_server:
-        sorting_group_id: sorting_group_pump_red
+    web_server:
+      sorting_group_id: sorting_group_pump_red
   - platform: template
     name: Pump Waste - Pause Dosing
     icon: mdi:pause
@@ -589,8 +589,8 @@ button:
     on_press:
       - ezo_pmp.pause_dosing:
           id: ezo_pump_red
-      web_server:
-        sorting_group_id: sorting_group_pump_duo
+    web_server:
+      sorting_group_id: sorting_group_pump_red
   - platform: template
     name: Pump Waste - Stop Dosing
     icon: mdi:stop
@@ -598,8 +598,8 @@ button:
     on_press:
       - ezo_pmp.stop_dosing:
           id: ezo_pump_red
-      web_server:
-        sorting_group_id: sorting_group_pump_red
+    web_server:
+      sorting_group_id: sorting_group_pump_red
   - platform: template
     name: Pump Waste - Clear Total Volume Dosed
     icon: mdi:backspace
@@ -607,8 +607,8 @@ button:
     on_press:
       - ezo_pmp.clear_total_volume_dosed:
           id: ezo_pump_red
-      web_server:
-        sorting_group_id: sorting_group_pump_red
+    web_server:
+      sorting_group_id: sorting_group_pump_red
   - platform: template
     name: Pump Waste - Set Calibration Volume
     icon: mdi:tape-measure
@@ -618,8 +618,8 @@ button:
           id: ezo_pump_red
           volume: !lambda |-
             return id(volume_waste).state;
-      web_server:
-        sorting_group_id: sorting_group_pump_red
+    web_server:
+      sorting_group_id: sorting_group_pump_red
   - platform: template
     name: Pump Waste - Clear Calibration Volume
     icon: mdi:cancel
@@ -627,5 +627,5 @@ button:
     on_press:
       - ezo_pmp.clear_calibration:
           id: ezo_pump_red
-      web_server:
-        sorting_group_id: sorting_group_pump_red
+    web_server:
+      sorting_group_id: sorting_group_pump_red
