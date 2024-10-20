@@ -43,6 +43,7 @@ sensor:
         - component.update: temp_range
     web_server:
       sorting_group_id: sorting_group_temperature
+      sorting_weight: 10
 
   # Convert to Fahrenheit - Temp. 1
   - platform: template
@@ -120,6 +121,7 @@ text_sensor:
       }  
     web_server:
       sorting_group_id: sorting_group_temperature
+      sorting_weight: 12
 
 number:
   # Temperature 1 when Cool
