@@ -178,8 +178,8 @@ number:
     max_value: 378541 # 100 gal
     mode: box
     step: 0.1
-      web_server:
-        sorting_group_id: sorting_group_pump_white
+    web_server:
+      sorting_group_id: sorting_group_pump_white
   - platform: template
     id: duration
     icon: mdi:timer
@@ -192,8 +192,8 @@ number:
     max_value: 1440 # 24 hours
     mode: box
     step: 0.1
-      web_server:
-        sorting_group_id: sorting_group_pump_white
+    web_server:
+      sorting_group_id: sorting_group_pump_white
   - platform: template
     id: flow_rate
     icon: mdi:waves-arrow-right
@@ -205,8 +205,8 @@ number:
     max_value: 105 # may need to lower to 40
     mode: box
     step: 0.1
-      web_server:
-        sorting_group_id: sorting_group_pump_white
+    web_server:
+      sorting_group_id: sorting_group_pump_white
 
 button:
   # TODO Make UI
@@ -221,8 +221,8 @@ button:
             return id(volume).state;
           duration: !lambda |-
             return id(duration).state;
-      web_server:
-        sorting_group_id: sorting_group_pump_white
+    web_server:
+      sorting_group_id: sorting_group_pump_white
   - platform: template
     name: Pump - Dose Continuously
     icon: mdi:infinity
@@ -230,8 +230,8 @@ button:
     on_press:
       - ezo_pmp.dose_continuously:
           id: ezo_pump_white
-      web_server:
-        sorting_group_id: sorting_group_pump_white
+    web_server:
+      sorting_group_id: sorting_group_pump_white
   - platform: template
     name: Pump - Dose Volume
     icon: mdi:pump
@@ -241,8 +241,8 @@ button:
           id: ezo_pump_white
           volume: !lambda |-
             return id(volume).state;
-      web_server:
-        sorting_group_id: sorting_group_pump_white
+    web_server:
+      sorting_group_id: sorting_group_pump_white
   - platform: template
     name: Pump - Dose at Volume/Time Flow Rate for Time
     icon: mdi:format-text-wrapping-overflow
@@ -254,8 +254,8 @@ button:
             return id(flow_rate).state;
           duration: !lambda |-
             return id(duration).state;
-      web_server:
-        sorting_group_id: sorting_group_pump_white
+    web_server:
+      sorting_group_id: sorting_group_pump_white
   - platform: template
     name: Pump - Pause Dosing
     icon: mdi:pause
@@ -263,8 +263,8 @@ button:
     on_press:
       - ezo_pmp.pause_dosing:
           id: ezo_pump_white
-      web_server:
-        sorting_group_id: sorting_group_pump_white
+    web_server:
+      sorting_group_id: sorting_group_pump_white
   - platform: template
     name: Pump - Stop Dosing
     icon: mdi:stop
@@ -272,8 +272,8 @@ button:
     on_press:
       - ezo_pmp.stop_dosing:
           id: ezo_pump_white
-      web_server:
-        sorting_group_id: sorting_group_pump_white
+    web_server:
+      sorting_group_id: sorting_group_pump_white
   - platform: template
     name: Pump - Clear Total Volume Dosed
     icon: mdi:backspace
@@ -281,8 +281,8 @@ button:
     on_press:
       - ezo_pmp.clear_total_volume_dosed:
           id: ezo_pump_white
-      web_server:
-        sorting_group_id: sorting_group_pump_white
+    web_server:
+      sorting_group_id: sorting_group_pump_white
 
   # Calibrate
   - platform: template
@@ -294,8 +294,8 @@ button:
           id: ezo_pump_white
           volume: !lambda |-
             return id(volume).state;
-      web_server:
-        sorting_group_id: sorting_group_pump_white
+    web_server:
+      sorting_group_id: sorting_group_pump_white
   - platform: template
     name: Pump - Clear Calibration Volume
     icon: mdi:cancel
@@ -303,5 +303,5 @@ button:
     on_press:
       - ezo_pmp.clear_calibration:
           id: ezo_pump_white
-      web_server:
-        sorting_group_id: sorting_group_pump_white
+    web_server:
+      sorting_group_id: sorting_group_pump_white
