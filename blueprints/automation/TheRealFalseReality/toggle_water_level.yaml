@@ -51,7 +51,7 @@ blueprint:
           entity:
             domain: switch
     switchLowOff:
-      name: Normal Switch ON
+      name: Low Switch ON
       description: Switch(es) to turn ON when Water Level is Normal
       default: {}
       selector:
@@ -59,7 +59,7 @@ blueprint:
           entity:
             domain: switch
     switchLowOn:
-      name: Normal Switch ON
+      name: Low Switch ON
       description: Switch(es) to turn ON when Water Level is Normal
       default: {}
       selector:
