@@ -1,7 +1,7 @@
 blueprint:
   name: 'Aquarium - AquaPi: Toggle Switches Based on Water Level'
   description: This automation blueprint will turn devices on or off when water level
-    is high or low. (v1.21.1) [Automation]
+    is high or low. (v1.21.2) [Automation]
   domain: automation
   source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/automation/TheRealFalseReality/toggle_water_level.yaml
   input:
