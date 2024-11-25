@@ -6,6 +6,14 @@ substitutions:
   # Water Level
   update_water: "60s"
 
+  sorting_group_water_level_weight: '11'
+
+web_server:
+  sorting_groups:
+    - id: sorting_group_water_level
+      name: "Water Level"
+      sorting_weight: ${sorting_group_water_level_weight}
+
 esphome:
   on_boot: 
       priority: 200
@@ -16,6 +24,7 @@ binary_sensor:
   # Optical Sensor - LOW (yellow)
   - platform: gpio
     id: os_low
+    icon: mdi:arrow-down-bold
     # disabled_by_default: true
     pin: 
       number: ${opticalLowPin}
@@ -29,10 +38,13 @@ binary_sensor:
     on_state:
       then:
         component.update: water_level
+    web_server:
+      sorting_group_id: sorting_group_water_level
 
   # Optical Sensor - HIGH (blue)
   - platform: gpio
     id: os_high
+    icon: mdi:arrow-up-bold
     # disabled_by_default: true
     pin: 
       number: ${opticalHighPin}
@@ -46,6 +58,8 @@ binary_sensor:
     on_state:
       then:
         component.update: water_level
+    web_server:
+      sorting_group_id: sorting_group_water_level
 
 text_sensor:
   # Water Level
@@ -69,3 +83,6 @@ text_sensor:
       } else {
         return {"Uknown or Error"};
       }
+    web_server:
+      sorting_group_id: sorting_group_water_level
+      sorting_weight: 10

@@ -17,7 +17,8 @@ binary_sensor:
     name: DAC 1
     filters:
       - delayed_on_off: 30ms
-
+    web_server:
+      sorting_group_id: sorting_group_misc
   # DAC Pin 1
   - platform: gpio
     id: aux_1
@@ -31,3 +32,5 @@ binary_sensor:
     name: DAC 1
     filters:
       - delayed_on_off: 30ms
+    web_server:
+      sorting_group_id: sorting_group_misc

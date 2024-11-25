@@ -8,6 +8,8 @@ text_sensor:
     lambda: |-
       return {"${app_version}"};
     entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_diagnostic
 
   # GitHub Project URL
   - platform: template
@@ -18,3 +20,5 @@ text_sensor:
     lambda: |-
       return {"github.com/TheRealFalseReality/aquapi"};
     entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_diagnostic

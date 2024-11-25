@@ -8,6 +8,10 @@ substitutions:
   sdaPin: "21" # yellow/TX PMP-green
   sclPin: "22" # blue/RX PMP-white
 
+  sorting_group_misc_weight: '97'
+  sorting_group_diagnostic_weight: '98'
+  sorting_group_config_weight: '99'
+
 esphome:
   min_version: 2024.6.0
   name: "${name}"
@@ -43,7 +47,17 @@ wifi:
 captive_portal:
 
 web_server:
-#   version: 3
+  version: 3
+  sorting_groups:
+    - id: sorting_group_diagnostic
+      name: "AquaPi Diagnostic"
+      sorting_weight: ${sorting_group_diagnostic_weight}
+    - id: sorting_group_config
+      name: "AquaPi Configuration"
+      sorting_weight: ${sorting_group_config_weight}
+    - id: sorting_group_misc
+      name: "Misc. Sensors"
+      sorting_weight: ${sorting_group_misc_weight}
   
 improv_serial:
 
@@ -66,32 +80,45 @@ sensor:
   # Internal Temp.
   - platform: internal_temperature
     name: "Internal Temperature"
+    icon: mdi:thermometer
+    web_server:
+      sorting_group_id: sorting_group_diagnostic
 
   # Wifi Signal 
   - platform: wifi_signal # Reports the WiFi signal strength/RSSI in dB
     name: "WiFi Signal dB"
     disabled_by_default: true
+    icon: mdi:wifi
     id: wifi_signal_db
     update_interval: 60s
     entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_diagnostic
 
   # Wifi %
   - platform: copy # Reports the WiFi signal strength in %
     source_id: wifi_signal_db
     name: "WiFi Signal Strength"
+    icon: mdi:wifi
     filters:
       - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
     unit_of_measurement: "%"
     entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_diagnostic
 
   # Uptime sensor
   - platform: uptime
     name: Uptime 
+    web_server:
+      sorting_group_id: sorting_group_diagnostic
 
   # Internal Magnetic Sensor
   - platform: esp32_hall
     name: "ESP32 Hall Sensor"
     entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_diagnostic
 
   # of I2C devices connected
   - platform: template
@@ -112,11 +139,16 @@ sensor:
         }
       }
       return nDevices;
+    web_server:
+      sorting_group_id: sorting_group_diagnostic
 
 binary_sensor:
   # API Status
   - platform: status
     name: "Status"
+    icon: mdi:check-circle
+    web_server:
+      sorting_group_id: sorting_group_diagnostic
 
 text_sensor:
   # Hostname
@@ -127,41 +159,59 @@ text_sensor:
     lambda: |-
       return {"${name}"};
     entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_diagnostic
 
   # Wifi Info
   - platform: wifi_info
     ip_address:
       name: IP Address
       icon: mdi:ip-network
+      web_server:
+        sorting_group_id: sorting_group_diagnostic
     ssid:
       name: Connected SSID
       icon: mdi:wifi-arrow-left-right
+      web_server:
+        sorting_group_id: sorting_group_diagnostic
     bssid:
       name: Connected BSSID
       icon: mdi:wifi-star
       disabled_by_default: true
+      web_server:
+        sorting_group_id: sorting_group_diagnostic
     mac_address:
       name: Mac Address
       icon: mdi:chip
+      web_server:
+        sorting_group_id: sorting_group_diagnostic
 
 button:
   # Soft Restart
   - platform: restart
     id: restart_button
     name: "Restart"
+    web_server:
+      sorting_group_id: sorting_group_config
 
   # Factory Reset
   - platform: factory_reset
     name: Factory Reset (USE WITH CAUTION)
     disabled_by_default: true
+    web_server:
+      sorting_group_id: sorting_group_config
 
   # Safe Mode Restart
   - platform: safe_mode
     name: "Restart in Safe Mode"
     id: restart_safe
+    web_server:
+      sorting_group_id: sorting_group_config
 
   # Shutdown
   - platform: shutdown
     name: "Shutdown"
     disabled_by_default: true
     id: shutdown_button
+    web_server:
+      sorting_group_id: sorting_group_config

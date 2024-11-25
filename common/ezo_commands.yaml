@@ -14,6 +14,8 @@ button:
         - ezo_pmp.change_i2c_address:
             id: ezo_pump_white
             address: ${addPMP_default}
+    web_server:
+      sorting_group_id: sorting_group_config
 
   - platform: template
     name: "Pump(Red) -> ${addPMP_alt1} - Change I2C Address"
@@ -22,6 +24,8 @@ button:
         - ezo_pmp.change_i2c_address:
             id: ezo_pump_white
             address: ${addPMP_alt1}
+    web_server:
+      sorting_group_id: sorting_group_config
 
   - platform: template
     name: "Pump(Green) -> ${addPMP_alt2} - Change I2C Address"
@@ -30,6 +34,8 @@ button:
         - ezo_pmp.change_i2c_address:
             id: ezo_pump_white
             address: ${addPMP_alt2}
+    web_server:
+      sorting_group_id: sorting_group_config
 
   - platform: template
     name: "Pump(Orange) -> ${addPMP_alt3} - Change I2C Address"
@@ -38,3 +44,5 @@ button:
         - ezo_pmp.change_i2c_address:
             id: ezo_pump_white
             address: ${addPMP_alt3}
+    web_server:
+      sorting_group_id: sorting_group_config

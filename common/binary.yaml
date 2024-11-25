@@ -14,7 +14,9 @@ binary_sensor:
     name: "Binary 1"
     filters:
       - delayed_on_off: 30ms
-
+    web_server:
+      sorting_group_id: sorting_group_misc
+    icon: mdi:check-circle
   - platform: gpio
     id: leak_sensor
     pin: 
@@ -26,3 +28,6 @@ binary_sensor:
     name: "Leak Sensor"
     filters:
       - delayed_on_off: 30ms
+    web_server:
+      sorting_group_id: sorting_group_misc
+    icon: mdi:pipe-leak

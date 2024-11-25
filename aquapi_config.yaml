@@ -1,16 +1,16 @@
 substitutions:
+  # App Version
+  app_version: "24.10.13"
   # names
   name: "aquapi"
   friendly_name: "AquaPi"
-  # App Version - Updated: 6/2024
-  app_version: "24.8.2"
 
 packages:
   device_base: !include common/device_base.yaml
   aquapi: !include common/aquapi.yaml
   # ota_https: !include common/ota_https.yaml
   dallas: !include common/temperature_dallas.yaml
-  optical: !include common/optical.yaml
+  water_level: !include common/water_level.yaml
   binary: !include common/binary.yaml
   # ir_receiver: !include common/ir_receiver.yaml
   # dht: !include common/dht.yaml

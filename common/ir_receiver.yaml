@@ -11,3 +11,5 @@ remote_receiver:
   #   - lg
   #   - rc_switch
   # dump: all
+  web_server:
+    sorting_group_id: sorting_group_misc

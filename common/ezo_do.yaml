@@ -3,6 +3,14 @@ substitutions:
   addDO: "97"
   update_do: "60s"
 
+  sorting_group_ec: '32'
+
+web_server:
+  sorting_groups:
+    - id: sorting_group_do
+      name: "Dissolved Oxygen - EZO"
+      sorting_weight: ${sorting_group_do}
+
 # esphome:
 #     on_boot: 
 #         priority: 200
@@ -42,4 +50,7 @@ sensor:
     # on_t: 
     #   then:
     #     - lambda: 
-    #         id(result_ph).publish_state(x); 
+    #         id(result_ph).publish_state(x);
+    web_server:
+      sorting_group_id: sorting_group_ec
+      sorting_weight: 10

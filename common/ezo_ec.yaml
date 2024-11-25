@@ -4,6 +4,14 @@ substitutions:
   update_ec: "60s"
   update_button_ec: "60s"
 
+  sorting_group_ec: '31'
+
+web_server:
+  sorting_groups:
+    - id: sorting_group_ec
+      name: "Salinity - EZO"
+      sorting_weight: ${sorting_group_ec}
+
 api:
   services: 
     - service: ec_read_continous
@@ -88,6 +96,9 @@ sensor:
       then:
         - lambda: 
             id(result_ec).publish_state(x);
+    web_server:
+      sorting_group_id: sorting_group_ec
+      sorting_weight: 13
 
   # # Conductivity
   # - platform: template
@@ -142,6 +153,9 @@ sensor:
       else {
         return NAN;
       }
+    web_server:
+      sorting_group_id: sorting_group_ec
+      sorting_weight: 14
 
   # Salinity
   - platform: template
@@ -169,6 +183,9 @@ sensor:
       else {
         return NAN;
       }
+    web_server:
+      sorting_group_id: sorting_group_ec
+      sorting_weight: 10
 
   # Specific Gravity
   - platform: template
@@ -196,6 +213,9 @@ sensor:
       else {
         return NAN;
       }
+    web_server:
+      sorting_group_id: sorting_group_ec
+      sorting_weight: 11
 
 text_sensor:
   # Conductivity Raw Value
@@ -210,6 +230,8 @@ text_sensor:
         # - component.update: sensor_conductivity
         - component.update: sensor_tds
         - component.update: sensor_specific_gravity
+    web_server:
+      sorting_group_id: sorting_group_ec
 
   # Selected Command Result - Conductivity
   - platform: template
@@ -217,6 +239,8 @@ text_sensor:
     icon: mdi:data-matrix
     id: result_ec
     # disabled_by_default: true
+    web_server:
+      sorting_group_id: sorting_group_ec
 
 button:
   # Read Conductivity Probe
@@ -238,10 +262,13 @@ button:
             else {
               ESP_LOGW("custom_conductivity_read", "No Conductivity sensor detected at address: ${addEC}!");
             }
+    web_server:
+      sorting_group_id: sorting_group_ec
 
   # Send Selected EZO Command - Conductitivy
   - platform: template
     name: EC - Command Send Selected
+    icon: mdi:apple-keyboard-command
     id: send_selected_ec
     entity_category: "Config"
     # disabled_by_default: true
@@ -320,11 +347,14 @@ button:
             // else {
             //   id(ec_ezo).send_custom("R");
             // }
+    web_server:
+      sorting_group_id: sorting_group_ec
 
 select:
   - platform: template
     name: EC - Command Select
     id: select_command_ec
+    icon: mdi:apple-keyboard-command
     # disabled_by_default: true
     optimistic: true
     entity_category: "Config"
@@ -352,3 +382,5 @@ select:
       - logger.log:
           format: "Chosen option: %s"
           args: ["x.c_str()"]
+    web_server:
+      sorting_group_id: sorting_group_ec

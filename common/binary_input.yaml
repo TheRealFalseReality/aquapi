@@ -13,7 +13,8 @@ binary_sensor:
         input: true
     filters:
       - delayed_on_off: 30ms
-
+    web_server:
+      sorting_group_id: sorting_group_misc
   - platform: gpio
     id: binary_pin_2
     name: Binary Sensor 2
@@ -23,3 +24,5 @@ binary_sensor:
         input: true
     filters:
       - delayed_on_off: 30ms
+    web_server:
+      sorting_group_id: sorting_group_misc

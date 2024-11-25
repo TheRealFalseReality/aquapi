@@ -10,6 +10,14 @@ substitutions:
   range_cool: "74"
   range_warm: "82"
 
+  sorting_group_temperature_weight: '10'
+
+web_server:
+  sorting_groups:
+    - id: sorting_group_temperature
+      name: "Temperature"
+      sorting_weight: ${sorting_group_temperature_weight}
+
 # 18B20 sensor Pin
 one_wire:
   - platform: gpio
@@ -33,6 +41,9 @@ sensor:
     on_value: 
       then:
         - component.update: temp_range
+    web_server:
+      sorting_group_id: sorting_group_temperature
+      sorting_weight: 10
 
   # Convert to Fahrenheit - Temp. 1
   - platform: template
@@ -41,6 +52,8 @@ sensor:
     id: temp_f
     lambda: |-
       return id(temp_1).state * 9 / 5 + 32;
+    web_server:
+      sorting_group_id: sorting_group_temperature
 
   # Calibration Temp. at 0C
   - platform: template
@@ -54,6 +67,8 @@ sensor:
     entity_category: "diagnostic"
     lambda: |-
       return {${cal_0}};
+    web_server:
+      sorting_group_id: sorting_group_temperature
 
   # Calibration Temp. at 100C
   - platform: template
@@ -67,6 +82,8 @@ sensor:
     entity_category: "diagnostic"
     lambda: |-
       return {${cal_100}};
+    web_server:
+      sorting_group_id: sorting_group_temperature
 
 binary_sensor:
   - platform: template
@@ -79,6 +96,8 @@ binary_sensor:
       } else {
         return false;
       }
+    web_server:
+      sorting_group_id: sorting_group_temperature
 
 text_sensor:
   # Temperature Range 1
@@ -100,6 +119,9 @@ text_sensor:
       else {
         return {"Unknown"};
       }  
+    web_server:
+      sorting_group_id: sorting_group_temperature
+      sorting_weight: 12
 
 number:
   # Temperature 1 when Cool
@@ -119,6 +141,8 @@ number:
     on_value: 
       then:
         - component.update: temp_range
+    web_server:
+      sorting_group_id: sorting_group_temperature
 
   # Temperature 1 when Warm
   - platform: template
@@ -137,3 +161,5 @@ number:
     on_value: 
       then:
         - component.update: temp_range
+    web_server:
+      sorting_group_id: sorting_group_temperature
