@@ -1,6 +1,6 @@
 packages:
   # Include all of the core configuration
-  core: !include project-template-esp32-c3.yaml
+  core: !include aquapi_config.yaml
 
 esphome:
   # This will allow for project identification,
@@ -13,7 +13,7 @@ esphome:
 # In this case it is the core yaml file that does not contain the extra things
 # that are provided by this factory yaml file as the user does not need these once adopted.
 dashboard_import:
-  package_import_url: github://esphome/esphome-project-template/project-template-esp32-c3.yaml@main
+  package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml
 
 # Sets up Bluetooth LE (Only on ESP32) to allow the user
 # to provision wifi credentials to the device.
