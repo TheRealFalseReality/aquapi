@@ -3,7 +3,7 @@ substitutions:
   addDO: "97"
   update_do: "60s"
 
-  sorting_group_ec: '32'
+  sorting_group_do: '32'
 
 web_server:
   sorting_groups:
@@ -11,46 +11,222 @@ web_server:
       name: "Dissolved Oxygen - EZO"
       sorting_weight: ${sorting_group_do}
 
-# esphome:
-#     on_boot: 
-#         priority: 200
-#         then:
-#           - button.press: send_selected_do
+api:
+  actions: 
+    - action: do_read_continous
+      then:
+      - repeat:
+          count: 60
+          then:
+          - button.press: read_do
+          - delay: 1s
+    - action: do_calibrate_dry
+      then:
+      - lambda: |-
+          id(do_ezo).send_custom("Cal");
+    - action: do_calibrate_0
+      then:
+      - lambda: |-
+          id(do_ezo).send_custom("Cal,0");
+    - action: do_salinity_compensation_35ppt
+      then:
+      - lambda: |-
+          id(do_ezo).send_custom("S,35.0,ppt");
+    - action: do_output_all_parameters
+      then:
+      - lambda: |-
+          id(do_ezo).send_custom("O,mg,1");
+          id(do_ezo).send_custom("O,%,1");
+
+esphome:
+    on_boot: 
+        priority: 800
+        then:
+          - button.press: read_do
+          - button.press: send_selected_do
 
 sensor:
   # EZO Circuits (SCL/RX, SDA/TX)
   # EZO Circuit - DO
-  # Dissolved Oxygen
+  # Dissolved Oxygen % Saturation
   - platform: ezo
-    icon: mdi:molecule
-    name: "Dissolved Oxygen"
+    icon: mdi:gas-cylinder
+    name: "Dissolved Oxygen % Saturation"
     id: do_ezo
     address: ${addDO}
-    unit_of_measurement: "mg/L"
+    unit_of_measurement: "%"
     accuracy_decimals: 2
     update_interval: "${update_do}"
     state_class: "measurement"
     disabled_by_default: true
-    # on_custom: 
-    #   then:
-    #     - lambda: 
-    #         id(result_ph).publish_state(x);
-    # on_calibration: 
-    #   then:
-    #     - lambda: 
-    #         id(result_ph).publish_state(x);
-    # on_device_information: 
-    #   then:
-    #     - lambda: 
-    #         id(result_ph).publish_state(x);
-    # on_slope: 
-    #   then:
-    #     - lambda: 
-    #         id(result_ph).publish_state(x);
-    # on_t: 
-    #   then:
-    #     - lambda: 
-    #         id(result_ph).publish_state(x);
     web_server:
-      sorting_group_id: sorting_group_ec
+      sorting_group_id: sorting_group_do
       sorting_weight: 10
+    on_custom: 
+      then:
+        - lambda: 
+            id(result_do).publish_state(x);
+    on_calibration: 
+      then:
+        - lambda: 
+            id(result_do).publish_state(x);
+    on_device_information: 
+      then:
+        - lambda: 
+            id(result_do).publish_state(x);
+
+  # Dissolved Oxygen mg/L
+  - platform: template
+    name: Dissolved Oxygen
+    id: sensor_do
+    unit_of_measurement: "mg/L"
+    icon: mdi:gas-cylinder
+    accuracy_decimals: 2
+    disabled_by_default: true
+    update_interval: "${update_do}"
+    state_class: "measurement"
+    web_server:
+      sorting_group_id: sorting_group_do
+      sorting_weight: 11
+    lambda: |-
+      std::string str = id(raw_value_do).state;
+      std::vector<std::string> v;
+      char * token;
+      char seps[] = ",";
+      token = strtok (&str[0],seps);
+      while (token != NULL) {
+        v.push_back(token);
+        token = strtok (NULL, seps);
+      }
+      if (v.size() == 2) {
+        return (std::stof(v[1]) / 1000);
+      } 
+      else {
+        return NAN;
+      }
+
+text_sensor:
+  # Dissolved Oxygen Raw Value
+  - platform: template
+    name: DO - Raw Value
+    id: raw_value_do
+    icon: mdi:counter
+    # disabled_by_default: true
+    on_value: 
+      then:
+        - component.update: do_ezo
+        - component.update: sensor_do
+    web_server:
+      sorting_group_id: sorting_group_do
+
+  # Selected Command Result - Dissolved Oxygen
+  - platform: template
+    name: DO - Command Result
+    icon: mdi:data-matrix
+    id: result_do
+    # disabled_by_default: true
+    web_server:
+      sorting_group_id: sorting_group_do
+
+button:
+  # Read Conductivity Probe
+  - platform: template
+    name: DO - Read
+    icon: mdi:read
+    id: read_do
+    entity_category: "Config"
+    # disabled_by_default: true
+    web_server:
+      sorting_group_id: sorting_group_do
+    on_press:
+      then:
+        - lambda: |-
+            byte error;
+            Wire.beginTransmission(${addDO});
+            error = Wire.endTransmission();
+            if (error == 0) {
+              id(do_ezo).send_custom("R");
+            }
+            else {
+              ESP_LOGW("custom_do_read", "No Dissolved Oxygen sensor detected at address: ${addDO}!");
+            }
+
+  # Send Selected EZO Command - Dissolved Oxygen
+  - platform: template
+    name: DO - Command Send Selected
+    icon: mdi:apple-keyboard-command
+    id: send_selected_do
+    entity_category: "Config"
+    # disabled_by_default: true
+    web_server:
+      sorting_group_id: sorting_group_do
+    on_press:
+      then:
+        - lambda: |-
+            if (id(select_command_do).state == "Read") {
+              id(do_ezo).send_custom("R");
+            }
+            if (id(select_command_do).state == "Information") {
+              id(do_ezo).get_device_information();
+            }
+            if (id(select_command_do).state == "Status") {
+              id(do_ezo).send_custom("Status");
+            }
+            if (id(select_command_do).state == "Get Enabled Parameter(s)") {
+              id(do_ezo).send_custom("O,?");
+            }  
+            if (id(select_command_do).state == "Output Units - All (Default)") {
+              id(do_ezo).send_custom("O,mg,1");
+              id(do_ezo).send_custom("O,%,1");
+            }
+            if (id(select_command_do).state == "Output Units - % Saturation") {
+              id(do_ezo).send_custom("O,mg,0");
+              id(do_ezo).send_custom("O,%,1");
+            }
+            if (id(select_command_do).state == "Output Units - mg/L") {
+              id(do_ezo).send_custom("O,mg,1");
+              id(do_ezo).send_custom("O,%,0");
+            }
+            if (id(select_command_do).state == "Check Calibration") {
+              id(do_ezo).get_calibration();
+            }  
+            if (id(select_command_do).state == "Calibrate @ DRY (WILL RESET CALIBRATION)") {
+              id(do_ezo).send_custom("Cal");
+            }
+            if (id(select_command_do).state == "Calibrate @ 0% (WILL RESET CALIBRATION)") {
+              id(do_ezo).send_custom("Cal,0");
+            }
+            if (id(select_command_do).state == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
+              id(do_ezo).clear_calibration();
+            }
+            // else {
+            //   id(do_ezo).send_custom("R");
+            // }
+
+select:
+  - platform: template
+    name: DO - Command Select
+    id: select_command_do
+    icon: mdi:apple-keyboard-command
+    # disabled_by_default: true
+    optimistic: true
+    entity_category: "Config"
+    options:
+      - "Read"
+      - "Information"
+      - "Status"
+      - "Get Enabled Parameter(s)"
+      - "Output Units - All (Default)"
+      - "Output Units - % Saturation"
+      - "Output Units - mg/L"
+      - "Check Calibration"
+      - "Calibrate @ DRY (WILL RESET CALIBRATION)"
+      - "Calibrate @ 0% (WILL RESET CALIBRATION)"
+      - "Calibrate CLEAR (WILL RESET CALIBRATION)"
+    initial_option: "Check Calibration"
+    set_action:
+      - logger.log:
+          format: "Chosen option: %s"
+          args: ["x.c_str()"]
+    web_server:
+      sorting_group_id: sorting_group_do
