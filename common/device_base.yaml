@@ -39,11 +39,11 @@ logger:
 api:
   actions:
     - action: send_ezo_command
-    variables:
-      command: string
-    then:
-      - lambda: |-
-          return 'command';
+      variables:
+        command: string
+      then:
+        - lambda: |-
+            return 'command';
 
 ota:
   - platform: esphome
@@ -106,7 +106,7 @@ sensor:
   - platform: copy # Reports the WiFi signal strength in %
     source_id: wifi_signal_db
     name: "WiFi Signal Strength"
-    icon: mdi:wifi++;lm 
+    icon: mdi:wifi
     filters:
       - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
     unit_of_measurement: "%"
