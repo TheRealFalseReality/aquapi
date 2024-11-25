@@ -1,0 +1,31 @@
+name: Build and Publish ESPHome firmware and website
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  build-firmware:
+    name: Build Firmware
+    uses: esphome/workflows/.github/workflows/build.yml@2024.11.1
+    with:
+      #### Modify below here to match your project ####
+      files: |
+        aquapi_config.yaml
+      esphome-version: 2024.11.1
+      combined-name: AquaPi
+
+      release-summary: ${{ github.event.release.body }}
+      release-url: ${{ github.event.release.html_url }}
+      release-version: ${{ github.event.release.tag_name }}
+
+  upload-to-release:
+    name: Upload to Release
+    uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@2024.11.1
+    needs:
+      - build-firmware
+    with:
+      version: ${{ github.event.release.tag_name }}
