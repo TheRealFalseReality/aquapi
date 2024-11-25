@@ -20,7 +20,7 @@ jobs:
       matrix:
         #### Modify below here to match your project ####
         file:
-          - aquapi_config.yaml
+          - aquapi_config
 
         esphome-version:
           - stable
