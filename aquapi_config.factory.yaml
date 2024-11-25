@@ -1,0 +1,25 @@
+packages:
+  # Include all of the core configuration
+  core: !include project-template-esp32-c3.yaml
+
+esphome:
+  # This will allow for project identification,
+  # configuration and updates.
+  project:
+    name: esphome.project-template
+    version: dev # This will be replaced by the github workflows with the `release` version
+
+# This should point to the public location of the yaml file that will be adopted.
+# In this case it is the core yaml file that does not contain the extra things
+# that are provided by this factory yaml file as the user does not need these once adopted.
+dashboard_import:
+  package_import_url: github://esphome/esphome-project-template/project-template-esp32-c3.yaml@main
+
+# Sets up Bluetooth LE (Only on ESP32) to allow the user
+# to provision wifi credentials to the device.
+esp32_improv:
+  authorizer: none
+
+# Sets up the improv via serial client for Wi-Fi provisioning.
+# Handy if your device has a usb port for the user to add credentials when they first get it.
+improv_serial:
