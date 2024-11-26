@@ -1,6 +1,7 @@
 name: Build and Publish ESPHome firmware and website
 
 on:
+  workflow_dispatch:
   release:
     types: [published]
 
@@ -16,7 +17,7 @@ jobs:
       files: |
         aquapi_config.yaml
       esphome-version: 2024.11.1
-      combined-name: AquaPi
+      # combined-name: AquaPi
 
       release-summary: ${{ github.event.release.body }}
       release-url: ${{ github.event.release.html_url }}
