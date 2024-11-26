@@ -14,17 +14,17 @@ update:
     id: update_firmware_sensor
     entity_category: 'diagnostic'
     icon: mdi:update
-    source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/bin/AquaPi.manifest.json
+    source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/refs/heads/main/bin/AquaPi.manifest.json
 
 button:
   - platform: template
     id: update_firmware
-    name: Update AquaPi Firmware - Releaseed (Experimental - ESP32)
+    name: Update AquaPi Firmware - Releaseed (Experimental - v24.10.14)
     entity_category: "config"
     icon: mdi:update
-    # disabled_by_default: true
+    disabled_by_default: true
     on_press: 
       then:
         - ota.http_request.flash:
-            md5_url: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/bin/aquapi-esp32.ota.bin.md5
-            url: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/bin/aquapi-esp32.ota.bin
+            md5_url: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/refs/heads/main/bin/aquapi-esp32.ota.bin.md5
+            url: https://github.com/TheRealFalseReality/aquapi/raw/refs/heads/main/bin/aquapi-esp32.ota.bin
