@@ -6,7 +6,7 @@ esphome:
   # This will allow for project identification,
   # configuration and updates.
   project:
-    name: esphome.project-template
+    name: AquaPi
     version: dev # This will be replaced by the github workflows with the `release` version
 
 # This should point to the public location of the yaml file that will be adopted.
