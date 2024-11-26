@@ -7,14 +7,14 @@ ota:
 http_request:
   verify_ssl: false
 
-# update:
-#   - platform: http_request
-#     name: AquaPi Firmware Update
-#     update_interval: "${update_firmware_sensor_interval}"
-#     id: update_firmware_sensor
-#     entity_category: 'diagnostic'
-#     icon: mdi:update
-#     source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/gh-pages/manifest.json
+update:
+  - platform: http_request
+    name: AquaPi Firmware Update
+    update_interval: "${update_firmware_sensor_interval}"
+    id: update_firmware_sensor
+    entity_category: 'diagnostic'
+    icon: mdi:update
+    source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/static/AquaPi.manifest.json
 
 button:
   - platform: template
