@@ -1,6 +1,6 @@
 {
   "name": "AquaPi",
-  "version": "24.10.14",
+  "version": "24.11.5",
   "home_assistant_domain": "esphome",
   "new_install_prompt_erase": false,
   "builds": [
@@ -8,9 +8,9 @@
       "chipFamily": "ESP32",
       "ota": {
         "path": "aquapi-esp32.ota.bin",
-        "md5": "243d109d050654ba1de1d63dc28a3d58",
-        "summary": "## What's Changed\r\n* Test web server v3 by @TheRealFalseReality in https://github.com/TheRealFalseReality/aquapi/pull/78\r\n\r\n\r\n**Full Changelog**: https://github.com/TheRealFalseReality/aquapi/compare/24.8.1...24.11.1",
-        "release_url": "https://github.com/TheRealFalseReality/aquapi/releases/tag/24.11.1"
+        "md5": "f69da1aee724d2ace8e754ac03e5a2c0",
+        "summary": "**Full Changelog**: https://github.com/TheRealFalseReality/aquapi/compare/11.1.4...24.11.5",
+        "release_url": "https://github.com/TheRealFalseReality/aquapi/releases/tag/24.11.5"
       },
       "parts": [
         {
