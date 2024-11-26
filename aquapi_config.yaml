@@ -1,6 +1,6 @@
 substitutions:
   # App Version
-  app_version: "24.10.14"
+  app_version: "24.11.1"
   # names
   name: "aquapi"
   friendly_name: "AquaPi"
