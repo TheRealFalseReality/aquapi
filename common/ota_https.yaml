@@ -15,6 +15,8 @@ update:
     entity_category: 'diagnostic'
     icon: mdi:update
     source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/refs/heads/main/bin/AquaPi.manifest.json
+    web_server:
+      sorting_group_id: sorting_group_diagnostic
 
 button:
   - platform: template
@@ -23,6 +25,8 @@ button:
     entity_category: "config"
     icon: mdi:update
     disabled_by_default: true
+    web_server:
+      sorting_group_id: sorting_group_config
     on_press: 
       then:
         - ota.http_request.flash:
