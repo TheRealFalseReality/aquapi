@@ -37,6 +37,12 @@ logger:
   level: "${logger}"
 
 api:
+  # actions:
+  #   - action: send_ezo_command
+  #     variables:
+  #       command: string
+  #     then:
+  #       - lambda: return command;
 
 ota:
   - platform: esphome

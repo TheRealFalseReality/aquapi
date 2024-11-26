@@ -13,33 +13,41 @@ web_server:
       sorting_weight: ${sorting_group_ec}
 
 api:
-  services: 
-    - service: ec_read_continous
+  actions: 
+    - action: ec_read_continous
       then:
       - repeat:
           count: 60
           then:
           - button.press: read_ec
           - delay: 1s
-    - service: ec_calibrate_dry
+    - action: ec_calibrate_dry
       then:
       - lambda: |-
           id(ec_ezo).send_custom("Cal,dry");
-    - service: ec_calibrate_low_12880
+    - action: ec_calibrate_low_12880
       then:
       - lambda: |-
           id(ec_ezo).send_custom("Cal,low,12880");
-    - service: ec_calibrate_high_80000
+    - action: ec_calibrate_high_80000
       then:
       - lambda: |-
           id(ec_ezo).send_custom("Cal,high,80000");
-    # - service: ec_calibrate_custom
+    - action: ec_output_all_parameters
+      then:
+      - lambda: |-      
+          id(ec_ezo).send_custom("O,EC,1");
+          id(ec_ezo).send_custom("O,TDS,1");
+          id(ec_ezo).send_custom("O,S,1");
+          id(ec_ezo).send_custom("O,SG,1");
+
+    # - action: ec_calibrate_custom
     #   variables:
     #     value: int
     #   then:
     #   - lambda: |-
     #       id(ec_ezo).send_custom(Cal,value);
-    # - service: ezo_ec_custom_command
+    # - action: ezo_ec_custom_command
     #   variables:
     #     command: string
     #   then:
@@ -76,6 +84,9 @@ sensor:
     filters:
       - lambda:
           return (x / 1000);
+    web_server:
+      sorting_group_id: sorting_group_ec
+      sorting_weight: 13
     on_custom: 
       then:
         - lambda: 
@@ -88,17 +99,6 @@ sensor:
       then:
         - lambda: 
             id(result_ec).publish_state(x);
-    on_slope: 
-      then:
-        - lambda: 
-            id(result_ec).publish_state(x);
-    on_t: 
-      then:
-        - lambda: 
-            id(result_ec).publish_state(x);
-    web_server:
-      sorting_group_id: sorting_group_ec
-      sorting_weight: 13
 
   # # Conductivity
   # - platform: template
@@ -226,6 +226,7 @@ text_sensor:
     # disabled_by_default: true
     on_value: 
       then:
+        - component.update: ec_ezo
         - component.update: sensor_salinity
         # - component.update: sensor_conductivity
         - component.update: sensor_tds
@@ -311,7 +312,7 @@ button:
               id(ec_ezo).send_custom("O,S,0");
               id(ec_ezo).send_custom("O,SG,0");
             }
-            if (id(select_command_ec).state == "Salinity") {
+            if (id(select_command_ec).state == "Output Units - Salinity") {
               id(ec_ezo).send_custom("O,EC,0");
               id(ec_ezo).send_custom("O,TDS,0");
               id(ec_ezo).send_custom("O,S,1");

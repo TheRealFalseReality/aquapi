@@ -17,15 +17,15 @@ ezo_pmp:
     update_interval: "${update_pmp_white}"
 
 api:
-  services: 
-    - service: pump_white_dose_volume
+  actions: 
+    - action: pump_white_dose_volume
       variables: 
         dose_volume: float
       then: 
         - ezo_pmp.dose_volume:
             id: ezo_pump_white
             volume: !lambda 'return dose_volume;'
-    - service: pump_white_dose_volume_time
+    - action: pump_white_dose_volume_time
       variables:
         dose_volume: float
         dose_time: float
@@ -36,7 +36,7 @@ api:
               return dose_volume;
             duration: !lambda |-
               return dose_time;
-    - service: pump_white_dose_flow_rate_time
+    - action: pump_white_dose_flow_rate_time
       variables:
         dose_rate: float
         dose_time: float
@@ -47,7 +47,7 @@ api:
               return dose_rate;
             duration: !lambda |-
               return dose_time;
-    - service: pump_white_dose_set_calibration
+    - action: pump_white_dose_set_calibration
       variables:
         actual_volume: float
       then:
@@ -55,7 +55,7 @@ api:
             id: ezo_pump_white
             volume: !lambda |-
               return actual_volume;
-    - service: pump_white_change_address
+    - action: pump_white_change_address
       variables:
         address: int
       then:

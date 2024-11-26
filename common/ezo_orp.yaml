@@ -12,25 +12,25 @@ web_server:
       sorting_weight: ${sorting_group_orp}
 
 api:
-  services: 
-    - service: orp_read_continous
+  actions: 
+    - action: orp_read_continous
       then:
       - repeat:
           count: 60
           then:
           - button.press: read_orp
           - delay: 1s
-    - service: orp_calibrate_225
+    - action: orp_calibrate_225
       then:
       - lambda: |-
           id(orp_ezo).send_custom("Cal,225");
-    # - service: orp_calibrate_custom
+    # - action: orp_calibrate_custom
     #   variables:
     #     value: int
     #   then:
     #   - lambda: |-
     #       id(orp_ezo).send_custom(Cal,value);
-    # - service: ezo_orp_custom_command
+    # - action: ezo_orp_custom_command
     #   variables:
     #     command: string
     #   then:

@@ -12,31 +12,31 @@ web_server:
       sorting_weight: ${sorting_group_ph}
       
 api:
-  services: 
-    - service: ph_read_continous
+  actions: 
+    - action: ph_read_continous
       then:
       - repeat:
           count: 60
           then:
           - button.press: read_ph
           - delay: 1s
-    - service: ph_calibrate_mid_7
+    - action: ph_calibrate_mid_7
       then:
       - lambda: |-
           id(ph_ezo).set_calibration_point_mid(7.00);
-    - service: ph_calibrate_low_4
+    - action: ph_calibrate_low_4
       then:
       - lambda: |-
           id(ph_ezo).set_calibration_point_low(4.00);
-    - service: ph_calibrate_high_10
+    - action: ph_calibrate_high_10
       then:
       - lambda: |-
           id(ph_ezo).set_calibration_point_high(10.00);
-    - service: ph_calibrate_high_1001
+    - action: ph_calibrate_high_1001
       then:
       - lambda: |-
           id(ph_ezo).set_calibration_point_high(10.01);
-    # - service: ezo_ph_custom_command
+    # - action: ezo_ph_custom_command
     #   variables:
     #     command: string
     #   then:

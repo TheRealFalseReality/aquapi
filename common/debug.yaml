@@ -1,5 +1,5 @@
 substitutions:
-  sorting_group_debug: '80'
+  sorting_group_debug: '96'
 
 web_server:
   sorting_groups:
