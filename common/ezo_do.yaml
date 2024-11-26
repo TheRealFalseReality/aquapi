@@ -58,7 +58,7 @@ sensor:
     accuracy_decimals: 2
     update_interval: "${update_do}"
     state_class: "measurement"
-    disabled_by_default: true
+    # disabled_by_default: true
     web_server:
       sorting_group_id: sorting_group_do
       sorting_weight: 10
