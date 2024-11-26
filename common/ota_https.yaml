@@ -14,7 +14,7 @@ update:
     id: update_firmware_sensor
     entity_category: 'diagnostic'
     icon: mdi:update
-    source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/static/AquaPi.manifest.json
+    source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/bin/AquaPi.manifest.json
 
 button:
   - platform: template
@@ -26,5 +26,5 @@ button:
     on_press: 
       then:
         - ota.http_request.flash:
-            md5_url: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/bin/ota/aquapi-esp32.ota.md5
+            md5_url: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/bin/aquapi-esp32.ota.bin.md5
             url: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/bin/aquapi-esp32.ota.bin
