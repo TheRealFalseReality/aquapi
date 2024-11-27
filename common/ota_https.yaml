@@ -15,21 +15,21 @@ update:
     id: update_firmware_sensor
     entity_category: 'diagnostic'
     icon: mdi:update
-    source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/refs/heads/main/bin/aquapi.manifest.json
+    source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/bin/aquapi.manifest.json
     web_server:
       sorting_group_id: sorting_group_diagnostic
 
-# button:
-#   - platform: template
-#     id: update_firmware
-#     name: Update AquaPi Firmware - Stable
-#     entity_category: "config"
-#     icon: mdi:update
-#     disabled_by_default: true
-#     web_server:
-#       sorting_group_id: sorting_group_config
-#     on_press: 
-#       then:
-#         - ota.http_request.flash:
-#             md5_url: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/refs/heads/main/bin/aquapi-esp32.ota.bin.md5
-#             url: https://github.com/TheRealFalseReality/aquapi/raw/refs/heads/main/bin/aquapi-esp32.ota.bin
+button:
+  - platform: template
+    id: update_firmware
+    name: Update AquaPi Firmware - Stable
+    entity_category: "config"
+    icon: mdi:update
+    disabled_by_default: true
+    web_server:
+      sorting_group_id: sorting_group_config
+    on_press: 
+      then:
+        - ota.http_request.flash:
+            md5_url: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/bin/aquapi-esp32.ota.bin.md5
+            url: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/bin/aquapi-esp32.ota.bin
