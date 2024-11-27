@@ -11,12 +11,14 @@ sensor:
     temperature:
       name: "Air Temperature"
       id: air_temperature
+      web_server:
+        sorting_group_id: sorting_group_misc
     humidity:
       name: "Humidity"
       id: relative_humidity
+      web_server:
+        sorting_group_id: sorting_group_misc
     update_interval: "${update_dht}"
-    web_server:
-      sorting_group_id: sorting_group_misc
   - platform: absolute_humidity
     name: Absolute Humidity
     temperature: air_temperature
