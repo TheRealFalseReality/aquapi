@@ -8,9 +8,9 @@
       "chipFamily": "ESP32",
       "ota": {
         "path": "aquapi-esp32.ota.bin",
-        "md5": "b88a06a6244bfe4021151f8f78615afa",
-        "summary": "TEST TEST TEST\n\n**Full Changelog**: https://github.com/TheRealFalseReality/aquapi/compare/24.11.5...24.11.6",
-        "release_url": "https://github.com/TheRealFalseReality/aquapi/releases/tag/24.11.51"
+        "md5": "40872f43378aa7b31d7049f8019c685c",
+        "summary": "## What's Changed\r\n* Added support for Dissolved Oxygen, EZO-DO\r\n* Added ability to update AquaPi firmware from Home Assistant frontend, ota via https\r\n\r\n* 82 ota via https by @TheRealFalseReality in https://github.com/TheRealFalseReality/aquapi/pull/84\r\n\r\n\r\n**Full Changelog**: https://github.com/TheRealFalseReality/aquapi/compare/24.11.51...24.11.7",
+        "release_url": "https://github.com/TheRealFalseReality/aquapi/releases/tag/24.11.7"
       },
       "parts": [
         {
