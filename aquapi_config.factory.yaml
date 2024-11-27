@@ -1,0 +1,46 @@
+packages:
+  # Include all of the core configuration
+  device_base: !include common/device_base.yaml
+  aquapi: !include common/aquapi.yaml
+  ota_https: !include common/ota_https.yaml
+  dallas: !include common/temperature_dallas.yaml
+  water_level: !include common/water_level.yaml
+  binary: !include common/binary.yaml
+  ezo_ph: !include common/ezo_ph.yaml
+  ezo_ec: !include common/ezo_ec.yaml
+  ezo_orp: !include common/ezo_orp.yaml
+  ezo_co2: !include common/ezo_co2.yaml
+  ezo_do: !include common/ezo_do.yaml
+  ezo_pmp: !include common/ezo_pmp.yaml
+  ezo_pmp_duo: !include common/ezo_pmp_duo.yaml
+  # ir_receiver: !include common/ir_receiver.yaml
+  # dht: !include common/dht.yaml
+  # binary_input: !include common/binary_input.yaml
+  # ezo_hum: !include common/ezo_hum.yaml
+  # ezo_rtd: !include common/ezo_rtd.yaml
+  # ezo_pmp_extra: !include common/ezo_pmp_extra.yaml
+  # dac: !include common/dac.yaml
+  # ezo_commands: !include common/ezo_commands.yaml
+  # debug: !include common/debug.yaml
+
+esphome:
+  # This will allow for project identification,
+  # configuration and updates.
+  project:
+    name: esphome.project-template
+    version: dev # This will be replaced by the github workflows with the `release` version
+
+# This should point to the public location of the yaml file that will be adopted.
+# In this case it is the core yaml file that does not contain the extra things
+# that are provided by this factory yaml file as the user does not need these once adopted.
+dashboard_import:
+  package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@main
+
+# Sets up Bluetooth LE (Only on ESP32) to allow the user
+# to provision wifi credentials to the device.
+esp32_improv:
+  authorizer: none
+
+# Sets up the improv via serial client for Wi-Fi provisioning.
+# Handy if your device has a usb port for the user to add credentials when they first get it.
+improv_serial:
