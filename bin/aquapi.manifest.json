@@ -9,7 +9,7 @@
       "ota": {
         "path": "aquapi-esp32.ota.bin",
         "md5": "b88a06a6244bfe4021151f8f78615afa",
-        "summary": "**Full Changelog**: https://github.com/TheRealFalseReality/aquapi/compare/24.11.5...24.11.6",
+        "summary": "TEST TEST TEST\n\n**Full Changelog**: https://github.com/TheRealFalseReality/aquapi/compare/24.11.5...24.11.6",
         "release_url": "https://github.com/TheRealFalseReality/aquapi/releases/tag/24.11.51"
       },
       "parts": [
