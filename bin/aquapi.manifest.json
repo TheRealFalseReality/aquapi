@@ -1,6 +1,6 @@
 {
   "name": "AquaPi",
-  "version": "24.11.5",
+  "version": "24.11.7",
   "home_assistant_domain": "esphome",
   "new_install_prompt_erase": false,
   "builds": [
@@ -9,7 +9,7 @@
       "ota": {
         "path": "aquapi-esp32.ota.bin",
         "md5": "f69da1aee724d2ace8e754ac03e5a2c0",
-        "summary": "Dissolved Oxygen Support\n**Full Changelog**: https://github.com/TheRealFalseReality/aquapi/compare/11.1.4...24.11.5",
+        "summary": "Dissolved Oxygen Support\n\n**Full Changelog**: https://github.com/TheRealFalseReality/aquapi/compare/11.1.4...24.11.5",
         "release_url": "https://github.com/TheRealFalseReality/aquapi/releases/tag/24.11.5"
       },
       "parts": [
