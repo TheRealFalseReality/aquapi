@@ -4,15 +4,15 @@ ota:
 http_request:
   verify_ssl: false
 
-# update:
-#   - platform: http_request
-#     name: AquaPi Firmware Update
-#     id: update_firmware_sensor
-#     entity_category: 'diagnostic'
-#     icon: mdi:update
-#     source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/bin/aquapi.manifest.json
-#     web_server:
-#       sorting_group_id: sorting_group_diagnostic
+update:
+  - platform: http_request
+    name: AquaPi Firmware Update
+    id: update_firmware_sensor
+    entity_category: 'diagnostic'
+    icon: mdi:update
+    source: https://raw.githubusercontent.com/TheRealFalseReality/aquapi/main/bin/aquapi.manifest.json
+    web_server:
+      sorting_group_id: sorting_group_diagnostic
 
 button:
   - platform: template
