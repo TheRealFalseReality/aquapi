@@ -1,12 +1,12 @@
-substitutions:
-  update_firmware_sensor_interval: 6s
-  # update_firmware_sensor_interval: 6h
+# substitutions:
+#   update_firmware_sensor_interval: 6s
+#   # update_firmware_sensor_interval: 6h
 
-ota:
-  - platform: http_request
+# ota:
+#   - platform: http_request
 
-http_request:
-  verify_ssl: false
+# http_request:
+#   verify_ssl: false
 
 # update:
 #   - platform: http_request
