@@ -3,6 +3,7 @@ substitutions:
   import_config: "false"
   # Logger Level - Can use VERBOSE for more information in Logs
   logger: "DEBUG"
+  suffix: "true"
 
   # I2C pins
   sdaPin: "21" # yellow/TX PMP-green
@@ -17,7 +18,7 @@ esphome:
   name: "${name}"
   friendly_name: "${friendly_name}"
   # Automatically add the mac address to the name
-  name_add_mac_suffix: true
+  name_add_mac_suffix: "${suffix}"
   comment: "AquaPi ESP32 - Aquarium Controller & Monitor"
   project:
     name: TheRealFalseReality.aquapi
