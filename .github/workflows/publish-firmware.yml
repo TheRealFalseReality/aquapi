@@ -16,7 +16,7 @@ jobs:
       #### Modify below here to match your project ####
       files: |
         aquapi_config.yaml
-      esphome-version: 2024.11.1
+      esphome-version: latest
       # combined-name: AquaPi
 
       release-summary: ${{ github.event.release.body }}
