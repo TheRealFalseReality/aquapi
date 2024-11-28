@@ -1,6 +1,4 @@
 substitutions:
-  # Import Config
-  import_config: "false"
   # Logger Level - Can use VERBOSE for more information in Logs
   logger: "DEBUG"
 
@@ -30,7 +28,7 @@ esp32:
 
 dashboard_import:
   package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@main
-  import_full_config: ${import_config}
+  import_full_config: false
 
 # Enable logging
 logger:
