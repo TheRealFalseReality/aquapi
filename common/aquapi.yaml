@@ -2,6 +2,7 @@ substitutions:
   sorting_group_misc_weight: '97'
   sorting_group_diagnostic_weight: '98'
   sorting_group_config_weight: '99'
+  import: "false"
 
 esphome:
   min_version: 2024.6.0
@@ -16,7 +17,7 @@ esphome:
 
 dashboard_import:
   package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@main
-  import_full_config: false
+  import_full_config: "${import}"
 
 web_server:
   version: 3
