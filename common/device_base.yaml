@@ -10,9 +10,24 @@ substitutions:
   sorting_group_diagnostic_weight: '98'
   sorting_group_config_weight: '99'
 
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
 # Enable logging
 logger:
   level: "${logger}"
+
+# i2c Pins
+i2c:
+  sda: ${sdaPin}
+  scl: ${sclPin}
+  scan: true
+  id: bus_a
+
+wifi: 
+  ap:
 
 # api:
   # actions:

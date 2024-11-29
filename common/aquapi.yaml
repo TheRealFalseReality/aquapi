@@ -9,17 +9,9 @@ esphome:
     name: therealfalsereality.aquapi
     version: "${app_version}"
 
-esp32:
-  board: esp32dev
-  framework:
-    type: arduino
-
 dashboard_import:
   package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@main
   import_full_config: false
-
-wifi: 
-  ap:
 
 web_server:
   version: 3
@@ -33,14 +25,7 @@ web_server:
     - id: sorting_group_misc
       name: "Misc. Sensors"
       sorting_weight: ${sorting_group_misc_weight}
-
-# i2c Pins
-i2c:
-  sda: ${sdaPin}
-  scl: ${sclPin}
-  scan: true
-  id: bus_a
-
+      
 text_sensor: 
   # AquaPi Version
   - platform: template
