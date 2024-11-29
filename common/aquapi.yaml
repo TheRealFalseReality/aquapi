@@ -1,3 +1,8 @@
+substitutions:
+  sorting_group_misc_weight: '97'
+  sorting_group_diagnostic_weight: '98'
+  sorting_group_config_weight: '99'
+
 esphome:
   min_version: 2024.6.0
   name: "${name}"
