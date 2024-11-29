@@ -3,8 +3,8 @@ substitutions:
   logger: "DEBUG"
 
   # I2C pins
-  sdaPin: "21" # yellow/TX PMP-green
-  sclPin: "22" # blue/RX PMP-white
+  sdaPin: "21" # yellow/TX PMP -> green
+  sclPin: "22" # blue/RX PMP -> white
 
 esp32:
   board: esp32dev
