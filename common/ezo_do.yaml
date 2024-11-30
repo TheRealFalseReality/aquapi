@@ -85,7 +85,7 @@ sensor:
   # Dissolved Oxygen % Saturation
   - platform: template
     name: "Dissolved Oxygen % Saturation"
-    id: sensor_do_percent_percent
+    id: sensor_do_percent
     unit_of_measurement: "%"
     icon: mdi:gas-cylinder
     accuracy_decimals: 2
