@@ -85,7 +85,7 @@ sensor:
   # Dissolved Oxygen % Saturation
   - platform: template
     name: "Dissolved Oxygen % Saturation"
-    id: sensor_do_percent
+    id: sensor_do_percent_percent
     unit_of_measurement: "%"
     icon: mdi:gas-cylinder
     accuracy_decimals: 2
@@ -122,7 +122,7 @@ text_sensor:
     on_value: 
       then:
         - component.update: do_ezo
-        - component.update: sensor_do
+        - component.update: sensor_do_percent
     web_server:
       sorting_group_id: sorting_group_do
 
