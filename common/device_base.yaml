@@ -1,4 +1,11 @@
 substitutions:
+  # App Version
+  app_version: "1.0"
+  # names
+  name: "esp32"
+  friendly_name: "ESP32"
+  comment: "Firmware for ESP32"
+  project_name: "esphome.esp32"
   # Logger Level - Can use VERBOSE for more information in Logs
   logger: "DEBUG"
 
@@ -6,10 +13,26 @@ substitutions:
   sdaPin: "21" # yellow/TX PMP-green
   sclPin: "22" # blue/RX PMP-white
 
+  sorting_group_name: ""
+  sorting_group_misc_weight: '97'
+  sorting_group_diagnostic_weight: '98'
+  sorting_group_config_weight: '99'
+
 esp32:
   board: esp32dev
   framework:
     type: arduino
+
+esphome:
+  min_version: 2024.6.0
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  # Automatically add the mac address to the name
+  name_add_mac_suffix: true
+  comment: "${comment}"
+  project:
+    name: "${project_name}"
+    version: "${app_version}"
 
 # Enable logging
 logger:
@@ -37,6 +60,19 @@ ota:
   - platform: esphome
 
 captive_portal:
+
+web_server:
+  version: 3
+  sorting_groups:
+    - id: sorting_group_diagnostic
+      name: "${sorting_group_name}Diagnostic"
+      sorting_weight: ${sorting_group_diagnostic_weight}
+    - id: sorting_group_config
+      name: "AquaPi Configuration"
+      sorting_weight: ${sorting_group_config_weight}
+    - id: sorting_group_misc
+      name: "Misc. Sensors"
+      sorting_weight: ${sorting_group_misc_weight}
   
 improv_serial:
 
