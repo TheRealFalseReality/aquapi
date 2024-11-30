@@ -2,6 +2,7 @@ substitutions:
   # DO circuit, who's address is 97
   addDO: "97"
   update_do: "60s"
+  update_button_do: "60s"
 
   sorting_group_do: '32'
 
@@ -45,13 +46,19 @@ esphome:
           - button.press: read_do
           - button.press: send_selected_do
 
+interval:
+  # Update Raw DO
+  - interval: "${update_button_do}"
+    then:
+      - button.press: read_do
+
 sensor:
   # EZO Circuits (SCL/RX, SDA/TX)
   # EZO Circuit - DO
-  # Dissolved Oxygen % Saturation
+  # Dissolved Oxygen mg/L
   - platform: ezo
     icon: mdi:gas-cylinder
-    name: "Dissolved Oxygen % Saturation"
+    name: "Dissolved Oxygen"
     id: do_ezo
     address: ${addDO}
     unit_of_measurement: "%"
@@ -65,7 +72,7 @@ sensor:
     on_custom: 
       then:
         - lambda: 
-            id(result_do).publish_state(x);
+            id(raw_value_do).publish_state(x);
     on_calibration: 
       then:
         - lambda: 
@@ -75,11 +82,11 @@ sensor:
         - lambda: 
             id(result_do).publish_state(x);
 
-  # Dissolved Oxygen mg/L
+  # Dissolved Oxygen % Saturation
   - platform: template
-    name: Dissolved Oxygen
-    id: sensor_do
-    unit_of_measurement: "mg/L"
+    name: "Dissolved Oxygen % Saturation"
+    id: sensor_do_percent
+    unit_of_measurement: "%"
     icon: mdi:gas-cylinder
     accuracy_decimals: 2
     disabled_by_default: true
@@ -99,7 +106,7 @@ sensor:
         token = strtok (NULL, seps);
       }
       if (v.size() == 2) {
-        return (std::stof(v[1]) / 1000);
+        return (std::stof(v[1]));
       } 
       else {
         return NAN;
