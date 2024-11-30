@@ -1,12 +1,12 @@
 substitutions:
-  # App Version
-  app_version: "1.0"
   # names
   name: "esp32"
   friendly_name: "ESP32"
   comment: "Firmware for ESP32"
   project_name: "esphome.esp32"
   
+  # App Version
+  app_version: "1.0"  
   # Logger Level - Can use VERBOSE for more information in Logs
   logger: "DEBUG"
 
