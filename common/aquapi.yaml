@@ -8,7 +8,7 @@ substitutions:
 
 dashboard_import:
   package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@main
-  import_full_config: false
+  import_full_config: "${import}"
       
 text_sensor: 
   # AquaPi Version
