@@ -61,7 +61,7 @@ sensor:
     name: "Dissolved Oxygen"
     id: do_ezo
     address: ${addDO}
-    unit_of_measurement: "%"
+    unit_of_measurement: "mg/L"
     accuracy_decimals: 2
     update_interval: "${update_do}"
     state_class: "measurement"
