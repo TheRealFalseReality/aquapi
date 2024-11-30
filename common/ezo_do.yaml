@@ -209,7 +209,7 @@ button:
             if (id(select_command_do).state == "Salinity Compensation Value") {
               id(do_ezo).send_custom("S,35.0,ppt");
             }
-            if (id(select_command_do).state == "Salinity Compensation @ 35ppt") {
+            if (id(select_command_do).state == "Set Salinity Compensation @ 35ppt") {
               id(do_ezo).send_custom("S,?");
             }
             // else {
