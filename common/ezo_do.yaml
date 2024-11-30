@@ -88,7 +88,7 @@ sensor:
     id: sensor_do_percent
     unit_of_measurement: "%"
     icon: mdi:gas-cylinder
-    accuracy_decimals: 2
+    accuracy_decimals: 1
     disabled_by_default: true
     update_interval: "${update_do}"
     state_class: "measurement"
@@ -206,6 +206,12 @@ button:
             if (id(select_command_do).state == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(do_ezo).clear_calibration();
             }
+            if (id(select_command_do).state == "Salinity Compensation Value") {
+              id(do_ezo).send_custom("S,35.0,ppt");
+            }
+            if (id(select_command_do).state == "Salinity Compensation @ 35ppt") {
+              id(do_ezo).send_custom("S,?");
+            }
             // else {
             //   id(do_ezo).send_custom("R");
             // }
@@ -230,6 +236,8 @@ select:
       - "Calibrate @ DRY (WILL RESET CALIBRATION)"
       - "Calibrate @ 0% (WILL RESET CALIBRATION)"
       - "Calibrate CLEAR (WILL RESET CALIBRATION)"
+      - "Salinity Compensation Value"
+      - "Set Salinity Compensation @ 35ppt"
     initial_option: "Check Calibration"
     set_action:
       - logger.log:
