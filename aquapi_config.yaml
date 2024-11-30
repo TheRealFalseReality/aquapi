@@ -1,12 +1,6 @@
 substitutions:
   # App Version
   app_version: "24.11.7.1"
-  # names
-  name: "aquapi"
-  friendly_name: "AquaPi"
-  comment: "AquaPi ESP32 - Aquarium Controller & Monitor"
-  project_name: "therealfalsereality.aquapi"
-  sorting_group_name: "AquaPi "
 
 packages:
   device_base: !include common/device_base.yaml
