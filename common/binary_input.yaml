@@ -6,7 +6,7 @@ substitutions:
 binary_sensor:
   - platform: gpio
     id: binary_pin_1
-    name: Leak Sensor
+    name: Binary Sensor 1
     pin: 
       number: ${binarypin1}
       mode:
