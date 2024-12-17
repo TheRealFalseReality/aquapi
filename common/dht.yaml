@@ -1,12 +1,13 @@
 substitutions:
   dhtPin: "25"
   update_dht: "60s"
+  dht_type: "DHT11"
   
 sensor:
   # DHT
   - platform: dht
     pin: ${dhtPin}
-    # model: DHT11
+    model: "${dht_type}"
     id: dht_sensor
     temperature:
       name: "Air Temperature"
