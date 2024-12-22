@@ -98,6 +98,7 @@ sensor:
       id: absolute_total_volume_dosed_2
       name: Pump 2 - Absolute Total Volume Dosed
       icon: mdi:timer-sand-full
+      disabled_by_default: true
       device_class: 'volume'
       state_class: total
       unit_of_measurement: 'mL'
@@ -110,6 +111,7 @@ sensor:
       name: Pump 2 - Last Volume Requested
       icon: mdi:history
       device_class: 'volume'
+      disabled_by_default: true
       state_class: total
       unit_of_measurement: 'mL'
       web_server:
@@ -120,6 +122,7 @@ sensor:
       id: max_flow_rate_2
       name: Pump 2 - Max Volume/Time Flow Rate
       icon: mdi:car-speed-limiter
+      disabled_by_default: true
       unit_of_measurement: 'mL/min'
       web_server:
         sorting_group_id: sorting_group_pump_orange
@@ -165,7 +168,7 @@ text_sensor:
     calibration_status:
       id: calibration_status_2
       name: Pump 2 - Calibration Status
-      # disabled_by_default: true
+      disabled_by_default: true
       icon: mdi:tape-measure
       web_server:
         sorting_group_id: sorting_group_pump_orange
@@ -214,7 +217,6 @@ number:
         sorting_group_id: sorting_group_pump_orange
 
 button:
-  # TODO Make UI
   - platform: template
     name: Pump 2 - Dose Volume for Time
     icon: mdi:clock-time-two-outline
@@ -281,6 +283,7 @@ button:
         sorting_group_id: sorting_group_pump_orange
   - platform: template
     name: Pump 2 - Clear Total Volume Dosed
+    disabled_by_default: true
     icon: mdi:backspace
     id: dose_clear_2
     on_press:
@@ -303,6 +306,7 @@ button:
         sorting_group_id: sorting_group_pump_orange
   - platform: template
     name: Pump 2 - Clear Calibration Volume
+    disabled_by_default: true
     icon: mdi:cancel
     id: dose_calibrate_volume_clear_2
     on_press:

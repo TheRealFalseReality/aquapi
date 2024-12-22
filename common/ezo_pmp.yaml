@@ -91,6 +91,7 @@ sensor:
     id: ezo_pump_white
     absolute_total_volume_dosed:
       id: absolute_total_volume_dosed
+      disabled_by_default: true
       name: Pump - Absolute Total Volume Dosed
       icon: mdi:timer-sand-full
       device_class: 'volume'
@@ -104,6 +105,7 @@ sensor:
       id: last_volume_requested
       name: Pump - Last Volume Requested
       icon: mdi:history
+      disabled_by_default: true
       device_class: 'volume'
       state_class: total
       unit_of_measurement: 'mL'
@@ -115,6 +117,7 @@ sensor:
       id: max_flow_rate
       name: Pump - Max Volume/Time Flow Rate
       icon: mdi:car-speed-limiter
+      disabled_by_default: true
       unit_of_measurement: 'mL/min'
       web_server:
         sorting_group_id: sorting_group_pump_white
@@ -162,7 +165,7 @@ text_sensor:
     calibration_status:
       id: calibration_status
       name: Pump - Calibration Status
-      # disabled_by_default: true
+      disabled_by_default: true
       icon: mdi:tape-measure
       web_server:
         sorting_group_id: sorting_group_pump_white
@@ -211,7 +214,6 @@ number:
       sorting_group_id: sorting_group_pump_white
 
 button:
-  # TODO Make UI
   - platform: template
     name: Pump - Dose Volume for Time
     icon: mdi:clock-time-two-outline
@@ -278,6 +280,7 @@ button:
       sorting_group_id: sorting_group_pump_white
   - platform: template
     name: Pump - Clear Total Volume Dosed
+    disabled_by_default: true
     icon: mdi:backspace
     id: dose_clear
     on_press:
@@ -301,6 +304,7 @@ button:
   - platform: template
     name: Pump - Clear Calibration Volume
     icon: mdi:cancel
+    disabled_by_default: true
     id: dose_calibrate_volume_clear
     on_press:
       - ezo_pmp.clear_calibration:
