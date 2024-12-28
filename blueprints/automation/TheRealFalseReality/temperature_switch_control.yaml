@@ -1,9 +1,9 @@
 blueprint:
   name: Aquarium - Toggle Switches Based on Temperature
   description: This automation blueprint will turn switches on or off when the selected
-    temperature sensor is above or below a certain value. (v2.1) [Automation]
+    temperature sensor is above or below a certain value. (v2.1.1) [Automation]
   domain: automation
-  source_url: https://gist.github.com/TheRealFalseReality/9788b2f9ba2e5e51a05bd081441314d3
+  source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/automation/TheRealFalseReality/temperature_switch_control.yaml
   input:
     condition:
       name: Add Condition(s)
