@@ -160,9 +160,9 @@ button:
             if (id(select_command_ph).state == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(ph_ezo).clear_calibration();
             }
-            if (id(select_command_ph).state == "Reset EZO (WILL RESET CALIBRATION)") {
-              id(ph_ezo).send_custom("Factory");
-            }
+            // if (id(select_command_ph).state == "Reset EZO (WILL RESET CALIBRATION)") {
+            //   id(ph_ezo).send_custom("Factory");
+            // }
             else {
               id(ph_ezo).send_custom("R");
             }
@@ -188,7 +188,7 @@ select:
       - "Calibrate @ HIGH = 10 (WILL RESET CALIBRATION)"
       - "Calibrate @ HIGH = 10.01 (WILL RESET CALIBRATION)"
       - "Calibrate CLEAR (WILL RESET CALIBRATION)"
-      - "Reset EZO (WILL RESET CALIBRATION)"
+      # - "Reset EZO (WILL RESET CALIBRATION)"
     initial_option: "Check Calibration"
     set_action:
       - logger.log:
