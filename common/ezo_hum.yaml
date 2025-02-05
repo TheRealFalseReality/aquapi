@@ -25,6 +25,21 @@ interval:
     then:
       - button.press: read_hum
 
+api:
+  actions: 
+    - action: hum_change_address
+      variables:
+        address: int
+      then:
+        - lambda: |-
+            id(hum_ezo).send_custom("I2C,{{address}}");
+    - action: hum_custom_command
+      variables:
+        command: string
+      then:
+        - lambda: |-
+            id(hum_ezo).send_custom({{command}});
+
 sensor:
   # EZO Circuits (SCL/RX, SDA/TX)
   # EZO Circuit - HUM

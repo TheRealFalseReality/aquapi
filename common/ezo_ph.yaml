@@ -10,9 +10,21 @@ web_server:
     - id: sorting_group_ph
       name: "pH - EZO"
       sorting_weight: ${sorting_group_ph}
-      
+
 api:
   actions: 
+    - action: ph_change_address
+      variables:
+        address: int
+      then:
+        - lambda: |-
+            id(ph_ezo).send_custom("I2C,{{address}}");
+    - action: ph_custom_command
+      variables:
+        command: string
+      then:
+        - lambda: |-
+            id(ph_ezo).send_custom({{command}});
     - action: ph_read_continous
       then:
       - repeat:

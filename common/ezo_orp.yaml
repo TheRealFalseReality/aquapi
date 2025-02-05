@@ -13,6 +13,18 @@ web_server:
 
 api:
   actions: 
+    - action: orp_change_address
+      variables:
+        address: int
+      then:
+        - lambda: |-
+            id(orp_ezo).send_custom("I2C,{{address}}");
+    - action: orp_custom_command
+      variables:
+        command: string
+      then:
+        - lambda: |-
+            id(orp_ezo).send_custom({{command}});
     - action: orp_read_continous
       then:
       - repeat:
@@ -24,19 +36,6 @@ api:
       then:
       - lambda: |-
           id(orp_ezo).send_custom("Cal,225");
-    # - action: orp_calibrate_custom
-    #   variables:
-    #     value: int
-    #   then:
-    #   - lambda: |-
-    #       id(orp_ezo).send_custom(Cal,value);
-    # - action: ezo_orp_custom_command
-    #   variables:
-    #     command: string
-    #   then:
-    #     - lambda: |-
-    #         id(orp_ezo).send_custom(command);
-
 esphome:
   on_boot: 
     priority: 800

@@ -17,6 +17,21 @@ web_server:
 #         then:
 #           - button.press: send_selected_rtd
 
+api:
+  actions: 
+    - action: temperature_rtd_change_address
+      variables:
+        address: int
+      then:
+        - lambda: |-
+            id(temp_ezo).send_custom("I2C,{{address}}");
+    - action: temperature_rtd_custom_command
+      variables:
+        command: string
+      then:
+        - lambda: |-
+            id(temp_ezo).send_custom({{command}});
+
 sensor:
   # EZO Circuits (yellow - SCL/RX, blue - SDA/TX)
   # EZO Circuit - RTD

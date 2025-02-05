@@ -14,6 +14,18 @@ web_server:
 
 api:
   actions: 
+    - action: do_change_address
+      variables:
+        address: int
+      then:
+        - lambda: |-
+            id(do_ezo).send_custom("I2C,{{address}}");
+    - action: do_custom_command
+      variables:
+        command: string
+      then:
+        - lambda: |-
+            id(do_ezo).send_custom({{command}});
     - action: do_read_continous
       then:
       - repeat:

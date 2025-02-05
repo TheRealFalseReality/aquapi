@@ -25,6 +25,21 @@ interval:
     then:
       - button.press: read_co2
 
+api:
+  actions: 
+    - action: co2_change_address
+      variables:
+        address: int
+      then:
+        - lambda: |-
+            id(co2_ezo).send_custom("I2C,{{address}}");
+    - action: co2_custom_command
+      variables:
+        command: string
+      then:
+        - lambda: |-
+            id(co2_ezo).send_custom({{command}});
+
 sensor:
   # EZO Circuits (SCL/RX, SDA/TX)
   # EZO Circuit - CO2
