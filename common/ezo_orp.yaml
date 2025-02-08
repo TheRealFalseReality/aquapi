@@ -36,6 +36,7 @@ api:
       then:
       - lambda: |-
           id(orp_ezo).send_custom("Cal,225");
+          
 esphome:
   on_boot: 
     priority: 800

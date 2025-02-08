@@ -49,14 +49,6 @@ i2c:
 wifi: 
   ap:
 
-# api:
-  # actions:
-  #   - action: send_ezo_command
-  #     variables:
-  #       command: string
-  #     then:
-  #       - lambda: return command;
-
 ota:
   - platform: esphome
 
@@ -112,6 +104,7 @@ sensor:
     filters:
       - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
     unit_of_measurement: "%"
+    device_class: ""
     entity_category: "diagnostic"
     web_server:
       sorting_group_id: sorting_group_diagnostic
