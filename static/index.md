@@ -37,8 +37,8 @@ Use the button below to install the pre-built firmware directly to your device v
 ***Temperature*** 
   - DS18B20 Waterproof Thermistor  
   
-***Water Level*** 
-  - Food Grade Optical Infrared Water Liquid Level Sensor
+***Water Level - Optical*** 
+  - 2 Food Grade Optical Infrared Water Liquid Sensors w/Magnetic Mount
 
 ***Water Leak Sensor***
   - Liquid Detection Sensor, 6ft Cable, 2 Mounting Screws w/Magnetic Mount
