@@ -1,183 +1,177 @@
 substitutions:
   # PMP circuit
-  addPMP_orange: "110" # Orange
   addPMP_yellow: "104" # Yellow
-  addPMP_blue: "106" # Blue
-
-  update_pmp_orange: "60s"
   update_pmp_yellow: "60s"  
-  update_pmp_blue: "60s"
-
-  sorting_group_pump_orange_weight: '83'
+  sorting_group_pump_yellow_weight: '83'
 
 web_server:
   sorting_groups:
-    - id: sorting_group_pump_orange
-      name: "Pump - Orange"
-      sorting_weight: ${sorting_group_pump_orange_weight}
+    - id: sorting_group_pump_yellow
+      name: "Pump - Yellow"
+      sorting_weight: ${sorting_group_pump_yellow_weight}
 
 ezo_pmp:
-  - id: ezo_pump_orange
-    address: ${addPMP_orange}
-    update_interval: "${update_pmp_orange}"
+  - id: ezo_pump_yellow
+    address: ${addPMP_yellow}
+    update_interval: "${update_pmp_yellow}"
 
 api:
   actions: 
-    - action: pump_orange_dose_volume
+    - action: pump_yellow_dose_volume
       variables: 
         dose_volume: float
       then: 
         - ezo_pmp.dose_volume:
-            id: ezo_pump_orange
+            id: ezo_pump_yellow
             volume: !lambda 'return dose_volume;'
-    - action: pump_orange_dose_volume_time
+    - action: pump_yellow_dose_volume_time
       variables:
         dose_volume: float
         dose_time: float
       then:
         - ezo_pmp.dose_volume_over_time:
-            id: ezo_pump_orange
+            id: ezo_pump_yellow
             volume: !lambda |-
               return dose_volume;
             duration: !lambda |-
               return dose_time;
-    - action: pump_orange_dose_flow_rate_time
+    - action: pump_yellow_dose_flow_rate_time
       variables:
         dose_rate: float
         dose_time: float
       then:
         - ezo_pmp.dose_with_constant_flow_rate:
-            id: ezo_pump_orange
+            id: ezo_pump_yellow
             volume_per_minute: !lambda |-
               return dose_rate;
             duration: !lambda |-
               return dose_time;
-    - action: pump_orange_dose_set_calibration
+    - action: pump_yellow_dose_set_calibration
       variables:
         actual_volume: float
       then:
         - ezo_pmp.set_calibration_volume:
-            id: ezo_pump_orange
+            id: ezo_pump_yellow
             volume: !lambda |-
               return actual_volume;
-    - action: pump_orange_change_address
+    - action: pump_yellow_change_address
       variables:
         address: int
       then:
         - ezo_pmp.change_i2c_address:
-            id: ezo_pump_orange
+            id: ezo_pump_yellow
             address: !lambda |-
               return address;
-
+              
 sensor:
   - platform: ezo_pmp
-    id: ezo_pump_orange
+    id: ezo_pump_yellow
     current_volume_dosed:
       id: current_volume_dosed_2
-      name: Pump 2 - Current Volume Dosed
+      name: Pump Yellow - Current Volume Dosed
       icon: mdi:cube-scan
       device_class: 'volume'
       state_class: total
       unit_of_measurement: 'mL'
       web_server:
-        sorting_group_id: sorting_group_pump_orange
+        sorting_group_id: sorting_group_pump_yellow
   - platform: ezo_pmp
-    id: ezo_pump_orange
+    id: ezo_pump_yellow
     total_volume_dosed:
       id: total_volume_dosed_2
-      name: Pump 2 - Total Volume Dosed
+      name: Pump Yellow - Total Volume Dosed
       icon: mdi:timer-sand-empty
       device_class: 'volume'
       unit_of_measurement: 'mL'
       disabled_by_default: true
       web_server:
-        sorting_group_id: sorting_group_pump_orange
+        sorting_group_id: sorting_group_pump_yellow
   - platform: ezo_pmp
-    id: ezo_pump_orange
+    id: ezo_pump_yellow
     absolute_total_volume_dosed:
       id: absolute_total_volume_dosed_2
-      name: Pump 2 - Absolute Total Volume Dosed
+      name: Pump Yellow - Absolute Total Volume Dosed
       icon: mdi:timer-sand-full
       disabled_by_default: true
       device_class: 'volume'
       state_class: total
       unit_of_measurement: 'mL'
       web_server:
-        sorting_group_id: sorting_group_pump_orange
+        sorting_group_id: sorting_group_pump_yellow
   - platform: ezo_pmp
-    id: ezo_pump_orange
+    id: ezo_pump_yellow
     last_volume_requested:
       id: last_volume_requested_2
-      name: Pump 2 - Last Volume Requested
+      name: Pump Yellow - Last Volume Requested
       icon: mdi:history
       device_class: 'volume'
       disabled_by_default: true
       state_class: total
       unit_of_measurement: 'mL'
       web_server:
-        sorting_group_id: sorting_group_pump_orange
+        sorting_group_id: sorting_group_pump_yellow
   - platform: ezo_pmp
-    id: ezo_pump_orange
+    id: ezo_pump_yellow
     max_flow_rate:
       id: max_flow_rate_2
-      name: Pump 2 - Max Volume/Time Flow Rate
+      name: Pump Yellow - Max Volume/Time Flow Rate
       icon: mdi:car-speed-limiter
       disabled_by_default: true
       unit_of_measurement: 'mL/min'
       web_server:
-        sorting_group_id: sorting_group_pump_orange
+        sorting_group_id: sorting_group_pump_yellow
   - platform: ezo_pmp
-    id: ezo_pump_orange
+    id: ezo_pump_yellow
     pump_voltage:
-      id: pump_orange_voltage
-      name: Pump 2 - Voltage
+      id: pump_yellow_voltage
+      name: Pump Yellow - Voltage
       disabled_by_default: true
       icon: mdi:lightning-bolt-circle
       device_class: 'voltage'
       web_server:
-        sorting_group_id: sorting_group_pump_orange
+        sorting_group_id: sorting_group_pump_yellow
 
 binary_sensor:
   - platform: ezo_pmp
-    id: ezo_pump_orange
+    id: ezo_pump_yellow
     pump_state:
-      id: pump_orange_state
-      name: Pump 2 - State
-      icon: mdi:pump_orange
+      id: pump_yellow_state
+      name: Pump Yellow - State
+      icon: mdi:pump_yellow
   - platform: ezo_pmp
-    id: ezo_pump_orange
+    id: ezo_pump_yellow
     is_paused:
       id: is_paused_2
-      name: Pump 2 - Paused Status
+      name: Pump Yellow - Paused Status
       icon: mdi:pause
       disabled_by_default: true
       web_server:
-        sorting_group_id: sorting_group_pump_orange
+        sorting_group_id: sorting_group_pump_yellow
 
 text_sensor:
   - platform: ezo_pmp
-    id: ezo_pump_orange
+    id: ezo_pump_yellow
     dosing_mode:
       id: dosing_mode_2
-      name: Pump 2 - Dosing Mode 
+      name: Pump Yellow - Dosing Mode 
       icon: mdi:auto-mode
       web_server:
-        sorting_group_id: sorting_group_pump_orange
+        sorting_group_id: sorting_group_pump_yellow
   - platform: ezo_pmp
-    id: ezo_pump_orange
+    id: ezo_pump_yellow
     calibration_status:
       id: calibration_status_2
-      name: Pump 2 - Calibration Status
+      name: Pump Yellow - Calibration Status
       disabled_by_default: true
       icon: mdi:tape-measure
       web_server:
-        sorting_group_id: sorting_group_pump_orange
+        sorting_group_id: sorting_group_pump_yellow
 
 number:
   - platform: template
     id: volume_2
-    icon: mdi:pump_orange
-    name: Pump 2 - Volume to Dose
+    icon: mdi:pump_yellow
+    name: Pump Yellow - Volume to Dose
     device_class: 'volume'
     unit_of_measurement: 'mL'
     optimistic: true
@@ -187,11 +181,11 @@ number:
     mode: box
     step: 0.1
       web_server:
-        sorting_group_id: sorting_group_pump_orange
+        sorting_group_id: sorting_group_pump_yellow
   - platform: template
     id: duration_2
     icon: mdi:timer
-    name: Pump 2 - Time to Dose
+    name: Pump Yellow - Time to Dose
     device_class: 'duration'
     unit_of_measurement: 'min'
     optimistic: true
@@ -201,11 +195,11 @@ number:
     mode: box
     step: 0.1
       web_server:
-        sorting_group_id: sorting_group_pump_orange
+        sorting_group_id: sorting_group_pump_yellow
   - platform: template
     id: flow_rate_2
     icon: mdi:waves-arrow-right
-    name: Pump 2 - Volume/Time Flow Rate
+    name: Pump Yellow - Volume/Time Flow Rate
     unit_of_measurement: 'mL/min'
     optimistic: true
     initial_value: 10
@@ -214,103 +208,103 @@ number:
     mode: box
     step: 0.1
       web_server:
-        sorting_group_id: sorting_group_pump_orange
+        sorting_group_id: sorting_group_pump_yellow
 
 button:
   - platform: template
-    name: Pump 2 - Dose Volume for Time
+    name: Pump Yellow - Dose Volume for Time
     icon: mdi:clock-time-two-outline
     id: dose_over_time_2
     on_press:
       - ezo_pmp.dose_volume_over_time:
-          id: ezo_pump_orange
+          id: ezo_pump_yellow
           volume: !lambda |-
             return id(volume).state;
           duration: !lambda |-
             return id(duration).state;
       web_server:
-        sorting_group_id: sorting_group_pump_orange
+        sorting_group_id: sorting_group_pump_yellow
   - platform: template
-    name: Pump 2 - Dose Continuously
+    name: Pump Yellow - Dose Continuously
     icon: mdi:infinity
     id: dose_continuously_2
     on_press:
       - ezo_pmp.dose_continuously:
-          id: ezo_pump_orange
+          id: ezo_pump_yellow
       web_server:
-        sorting_group_id: sorting_group_pump_orange
+        sorting_group_id: sorting_group_pump_yellow
   - platform: template
-    name: Pump 2 - Dose Volume
-    icon: mdi:pump_orange
+    name: Pump Yellow - Dose Volume
+    icon: mdi:pump_yellow
     id: dose_volume_2
     on_press:
       - ezo_pmp.dose_volume:
-          id: ezo_pump_orange
+          id: ezo_pump_yellow
           volume: !lambda |-
             return id(volume).state;
       web_server:
-        sorting_group_id: sorting_group_pump_orange
+        sorting_group_id: sorting_group_pump_yellow
   - platform: template
-    name: Pump 2 - Dose at Volume/Time Flow Rate for Time
+    name: Pump Yellow - Dose at Volume/Time Flow Rate for Time
     icon: mdi:format-text-wrapping-overflow
     id: dose_flow_rate_2
     on_press:
       - ezo_pmp.dose_with_constant_flow_rate:
-          id: ezo_pump_orange
+          id: ezo_pump_yellow
           volume_per_minute: !lambda |-
             return id(flow_rate).state;
           duration: !lambda |-
             return id(duration).state;
       web_server:
-        sorting_group_id: sorting_group_pump_orange
+        sorting_group_id: sorting_group_pump_yellow
   - platform: template
-    name: Pump 2 - Pause Dosing
+    name: Pump Yellow - Pause Dosing
     icon: mdi:pause
     id: dose_pause_2
     on_press:
       - ezo_pmp.pause_dosing:
-          id: ezo_pump_orange
+          id: ezo_pump_yellow
       web_server:
-        sorting_group_id: sorting_group_pump_orange
+        sorting_group_id: sorting_group_pump_yellow
   - platform: template
-    name: Pump 2 - Stop Dosing
+    name: Pump Yellow - Stop Dosing
     icon: mdi:stop
     id: dose_stop_2
     on_press:
       - ezo_pmp.stop_dosing:
-          id: ezo_pump_orange
+          id: ezo_pump_yellow
       web_server:
-        sorting_group_id: sorting_group_pump_orange
+        sorting_group_id: sorting_group_pump_yellow
   - platform: template
-    name: Pump 2 - Clear Total Volume Dosed
+    name: Pump Yellow - Clear Total Volume Dosed
     disabled_by_default: true
     icon: mdi:backspace
     id: dose_clear_2
     on_press:
       - ezo_pmp.clear_total_volume_dosed:
-          id: ezo_pump_orange
+          id: ezo_pump_yellow
       web_server:
-        sorting_group_id: sorting_group_pump_orange
+        sorting_group_id: sorting_group_pump_yellow
 
   # Calibrate
   - platform: template
-    name: Pump 2 - Set Calibration Volume
+    name: Pump Yellow - Set Calibration Volume
     icon: mdi:tape-measure
     id: dose_calibrate_volume_2
     on_press:
       - ezo_pmp.set_calibration_volume:
-          id: ezo_pump_orange
+          id: ezo_pump_yellow
           volume: !lambda |-
             return id(volume).state;
       web_server:
-        sorting_group_id: sorting_group_pump_orange
+        sorting_group_id: sorting_group_pump_yellow
   - platform: template
-    name: Pump 2 - Clear Calibration Volume
+    name: Pump Yellow - Clear Calibration Volume
     disabled_by_default: true
     icon: mdi:cancel
     id: dose_calibrate_volume_clear_2
     on_press:
       - ezo_pmp.clear_calibration:
-          id: ezo_pump_orange
+          id: ezo_pump_yellow
       web_server:
-        sorting_group_id: sorting_group_pump_orange
+        sorting_group_id: sorting_group_pump_yellow
