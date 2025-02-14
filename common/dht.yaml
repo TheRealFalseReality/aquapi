@@ -1,5 +1,5 @@
 substitutions:
-  dhtPin: "25"
+  dhtPin: "18" #was 25
   update_dht: "60s"
   dht_type: "DHT11"
   
