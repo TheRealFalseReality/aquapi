@@ -2,7 +2,7 @@ substitutions:
   # PMP circuit
   addPMP_yellow: "104" # Yellow
   update_pmp_yellow: "60s"  
-  sorting_group_pump_yellow_weight: '83'
+  sorting_group_pump_yellow_weight: '85'
 
 web_server:
   sorting_groups:

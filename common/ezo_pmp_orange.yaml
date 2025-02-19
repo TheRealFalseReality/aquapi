@@ -2,7 +2,7 @@ substitutions:
   # PMP circuit
   addPMP_orange: "110" # Orange
   update_pmp_orange: "60s"
-  sorting_group_pump_orange_weight: '83'
+  sorting_group_pump_orange_weight: '84'
 
 web_server:
   sorting_groups:
