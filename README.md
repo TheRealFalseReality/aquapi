@@ -96,7 +96,7 @@ Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 [**Home Assistant**](https://www.home-assistant.io/): Open source home automation that puts local control and privacy first.   
 [**ESPHome**](https://esphome.io/): A system to control your ESP8266/ESP32 and RP2040 by simple yet powerful configuration files and control them remotely through Home Automation systems.
 
-![made-for-esphome-white-on-black](assests/106857076/c68b7da3-17c9-43bf-b8c7-f44acf63eb28)
+![made-for-esphome-white-on-black](https://github.com/TheRealFalseReality/aquapi/assets/106857076/c68b7da3-17c9-43bf-b8c7-f44acf63eb28)
 
 ## Setup AquaPi
 ### **[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi)** for Setup Guides that Include:
