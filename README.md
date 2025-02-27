@@ -1,5 +1,5 @@
 # [AquaPi for ESPHome](./)
-<img src="/assests/image/AquaPi Logo.png" alt="drawing" style="float:left;width:120px;"/>
+<img src="/assets/image/AquaPi Logo.png" alt="drawing" style="float:left;width:120px;"/>
 
 The Aquarium meets the Smart Home!  
 **[Setup Guide](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi)**  
