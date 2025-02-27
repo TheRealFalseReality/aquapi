@@ -1,11 +1,14 @@
 # [AquaPi for ESPHome](./)
-<img src="/assets/image/AquaPi Logo.png" alt="drawing" style="float:left;width:120px;"/>
+<img src="/assets/image/AquaPi Logo.png" alt="drawing" align="left" width="120"/>
 
-The Aquarium meets the Smart Home!  
+The Aquarium meets the Smart Home!
+
 **[Setup Guide](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi)**  
-**[Build It Yourself](https://github.com/TheRealFalseReality/aquapi/wiki/Build-It-Yourself)**
+**[Build It Yourself](https://github.com/TheRealFalseReality/aquapi/wiki/Build-It-Yourself)**  
+**[Wiki](https://github.com/TheRealFalseReality/aquapi/wiki)**  
 
-**[Join the conversation on Reef2Reef!](https://www.reef2reef.com/threads/aquapi-an-open-souce-aquarium-controller.1033171/)**
+
+**[Join the conversation on Reef2Reef!](https://www.reef2reef.com/threads/aquapi-an-open-souce-aquarium-controller.1033171/)**  
 
 AquaPi for ESPHome is a project that helps you build a powerful aquarium monitoring and automation system using affordable [ESPHome](https://esphome.io/) devices and [Home Assistant](https://www.home-assistant.io/installation/).
 Make endless automations and monitor temperature, water level, and upgrade for advanced aquarium monitoring: pH, salinity, dissolved oxygen, and more (using EZO circuits and probes).  
