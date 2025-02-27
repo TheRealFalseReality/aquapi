@@ -21,11 +21,11 @@ Why use AquaPi?
 - **Powerful**: Provides comprehensive monitoring capabilities for various water parameters.
 
 ### **[Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi)**
-| ![PXL_20230529_200205979](assets/106857076/1ebcddb2-d481-48f0-9136-ca698cbe1889) | ![PXL_20240224_022516268~2](assets/106857076/db50c972-2bbd-4c9f-9f62-fa6e62f41cf3) |
+| ![PXL_20230529_200205979](https://github.com/TheRealFalseReality/aquapi/assets/106857076/1ebcddb2-d481-48f0-9136-ca698cbe1889) | ![PXL_20240224_022516268~2](https://github.com/TheRealFalseReality/aquapi/assets/106857076/db50c972-2bbd-4c9f-9f62-fa6e62f41cf3) |
 |--------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
 
 UI
-| ![Screenshot 2024-02-22 000808](assets/106857076/e985df09-6e08-474d-aa9c-b4e803a5c20c) | ![Screenshot 2024-02-22 001408](assets/106857076/a430aabc-2c28-43e7-9779-3c5c04c4b7db)  |
+| ![Screenshot 2024-02-22 000808](https://github.com/TheRealFalseReality/aquapi/assets/106857076/e985df09-6e08-474d-aa9c-b4e803a5c20c) | ![Screenshot 2024-02-22 001408](https://github.com/TheRealFalseReality/aquapi/assets/106857076/a430aabc-2c28-43e7-9779-3c5c04c4b7db)  |
 | ------------- | ------------- |
 
 ### Home Assistant Dashboard & Card Examples
@@ -96,7 +96,7 @@ Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 [**Home Assistant**](https://www.home-assistant.io/): Open source home automation that puts local control and privacy first.   
 [**ESPHome**](https://esphome.io/): A system to control your ESP8266/ESP32 and RP2040 by simple yet powerful configuration files and control them remotely through Home Automation systems.
 
-![made-for-esphome-white-on-black](assets/106857076/c68b7da3-17c9-43bf-b8c7-f44acf63eb28)
+![made-for-esphome-white-on-black](assests/106857076/c68b7da3-17c9-43bf-b8c7-f44acf63eb28)
 
 ## Setup AquaPi
 ### **[See Wiki](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi)** for Setup Guides that Include:
