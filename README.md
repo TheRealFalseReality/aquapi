@@ -1,5 +1,5 @@
 # [AquaPi for ESPHome](./)
-<img src="/assests/image/AquaPi Logo.png" alt="drawing" style="float:left;width:120px;"/> 
+<img src="/assests/image/AquaPi Logo.png" alt="drawing" style="float:left;width:120px;"/>
 
 The Aquarium meets the Smart Home!  
 **[Setup Guide](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi)**  
@@ -22,7 +22,7 @@ Why use AquaPi?
 
 ### **[Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi)**
 | ![PXL_20230529_200205979](https://github.com/TheRealFalseReality/aquapi/assets/106857076/1ebcddb2-d481-48f0-9136-ca698cbe1889) | ![PXL_20240224_022516268~2](https://github.com/TheRealFalseReality/aquapi/assets/106857076/db50c972-2bbd-4c9f-9f62-fa6e62f41cf3) |
-|--------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+|----------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
 
 UI
 | ![Screenshot 2024-02-22 000808](https://github.com/TheRealFalseReality/aquapi/assets/106857076/e985df09-6e08-474d-aa9c-b4e803a5c20c) | ![Screenshot 2024-02-22 001408](https://github.com/TheRealFalseReality/aquapi/assets/106857076/a430aabc-2c28-43e7-9779-3c5c04c4b7db)  |
