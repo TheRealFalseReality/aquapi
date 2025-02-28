@@ -2,7 +2,6 @@
 <img src="https://github.com/user-attachments/assets/82f9049b-6f08-4b2e-a0d2-6ff4690f0480" alt="drawing" align="left" width="120"/>
 
 The Aquarium meets the Smart Home!
-![AquaPi Logo Blue]()
 
 **[Setup Guide](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi)**  
 **[Build It Yourself](https://github.com/TheRealFalseReality/aquapi/wiki/Build-It-Yourself)**  
