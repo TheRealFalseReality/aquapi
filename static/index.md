@@ -4,7 +4,7 @@ The Aquarium meets the Smart Home!
 
 **[Setup Guide](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi)**  
 **[Build It Yourself](https://github.com/TheRealFalseReality/aquapi/wiki/Build-It-Yourself)**  
-**[Wiki](https://github.com/TheRealFalseReality/aquapi/wiki)**  
+**[View on GitHub](https://github.com/TheRealFalseReality/aquapi)**  
 
 **[Join the conversation on Reef2Reef!](https://www.reef2reef.com/threads/aquapi-an-open-souce-aquarium-controller.1033171/)**  
 
