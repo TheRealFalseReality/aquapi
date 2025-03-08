@@ -2,7 +2,7 @@ blueprint:
   name: 'Aquarium - AquaPi: ATO Automation'
   description: Create an ATO (Automated-Top-Off) Automation. Turn on Water Pump when
     water level is Low, and stop when level is Normal or High. [More Info](https://community.home-assistant.io/t/aquarium-create-ato-automation-control-switches-based-off-a-sensor/600941)
-    (v1.10) [Automation]
+    (v1.10.1) [Automation]
   domain: automation
   source_url: https://github.com/TheRealFalseReality/aquapi/blob/main/blueprints/automation/TheRealFalseReality/aquarium_ato_aquapi.yaml
   input:
@@ -54,9 +54,9 @@ blueprint:
         duration: {}
     stop_timer:
       name: Stop Automation
-      description: "Stop Automation for duration when Max Time is exceeded. (default: 6 hours)"
+      description: "Stop Automation for duration when Max Time is exceeded. (default: 2 hours)"
       default: 
-        hours: 6
+        hours: 2
       selector:
         duration: 
           enable_day: true  
