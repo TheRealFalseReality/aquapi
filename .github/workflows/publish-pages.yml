@@ -32,6 +32,9 @@ jobs:
         uses: actions/checkout@v4.2.2
 
       - run: mkdir -p output/firmware
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
       - name: Build
         uses: actions/jekyll-build-pages@v1.0.13
