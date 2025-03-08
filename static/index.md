@@ -22,7 +22,7 @@ Why use AquaPi?
 - **Affordable**: Offers a cost-effective alternative to many high-end monitoring solutions.
 - **Powerful**: Provides comprehensive monitoring capabilities for various water parameters.
 
-### **[Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi)**
+### **[Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi-wmgdj)**
 ![PXL_20230529_200205979](https://github.com/TheRealFalseReality/aquapi/assets/106857076/1ebcddb2-d481-48f0-9136-ca698cbe1889)
 
 ## Install
