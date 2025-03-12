@@ -23,16 +23,16 @@ Why use AquaPi?
 - **Powerful**: Provides comprehensive monitoring capabilities for various water parameters.
 
 ### **[Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi-wmgdj)**
+
+| [Try out the AquaPi Demo!](https://thefalsehome.duckdns.org/dashboard-aquariums/overview?hide_sidebar&hide_header&hide_search&hide_assistant&block_context_menu&hide_notifications&hide_dialog_light_actions&hide_dialog_climate_actions&hide_dialog_media_actions&hide_dialog_camera_actions&hide_dialog_timer_actions&hide_edit_dashboard&hide_refresh&hide_dialog_history_show_more&hide_dialog_logbook_show_more&hide_dialog_header_action_items) | Username: ***AquaPi*** <br>  Password: ***aquapi***  |
+| ------------- | ------------- |
+
 | ![PXL_20230529_200205979](https://github.com/TheRealFalseReality/aquapi/assets/106857076/1ebcddb2-d481-48f0-9136-ca698cbe1889) | ![PXL_20240224_022516268~2](https://github.com/TheRealFalseReality/aquapi/assets/106857076/db50c972-2bbd-4c9f-9f62-fa6e62f41cf3) |
 |----------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
 
 UI
 | ![Screenshot 2024-02-22 000808](https://github.com/TheRealFalseReality/aquapi/assets/106857076/e985df09-6e08-474d-aa9c-b4e803a5c20c) | ![Screenshot 2024-02-22 001408](https://github.com/TheRealFalseReality/aquapi/assets/106857076/a430aabc-2c28-43e7-9779-3c5c04c4b7db)  |
 | ------------- | ------------- |
-
-### Home Assistant Dashboard & Card Examples
-If you want to try some of the Dashboard or Cards I use, follow the link below. You may need additional integrations or custom cards for some of them!  
-**[Example HomeAssistant Cards & Templates](https://github.com/TheRealFalseReality/aquapi/tree/main/Example%20HomeAssistant%20Cards%20%26%20Templates)**  
 
 ## Hardware Used
 **ESP32 devkit**  
