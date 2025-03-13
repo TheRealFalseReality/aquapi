@@ -1,6 +1,6 @@
 substitutions:
   # PMP circuit
-  addPMP_blue: "104" # blue
+  addPMP_blue: "106" # blue
   update_pmp_blue: "60s"  
   sorting_group_pump_blue_weight: '83'
 

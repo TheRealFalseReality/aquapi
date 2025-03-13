@@ -23,6 +23,12 @@ Why use AquaPi?
 - **Powerful**: Provides comprehensive monitoring capabilities for various water parameters.
 
 ### **[Buy Now!](https://www.capitalcityaquatics.com/store/p/aquapi-wmgdj)**
+
+## Demo
+### [**Try out the AquaPi Demo!**](https://thefalsehome.duckdns.org/dashboard-aquariums/overview?hide_sidebar&hide_header&hide_search&hide_assistant&block_context_menu&hide_notifications&hide_dialog_light_actions&hide_dialog_climate_actions&hide_dialog_media_actions&hide_dialog_camera_actions&hide_dialog_timer_actions&hide_edit_dashboard&hide_refresh&hide_dialog_history_show_more&hide_dialog_logbook_show_more&hide_dialog_header_action_items)  
+Username: ***AquaPi***  
+Password: ***aquapi***  
+
 ![PXL_20230529_200205979](https://github.com/TheRealFalseReality/aquapi/assets/106857076/1ebcddb2-d481-48f0-9136-ca698cbe1889)
 
 ## Install
