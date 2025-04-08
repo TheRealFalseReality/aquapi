@@ -24,7 +24,6 @@ Why use AquaPi?
 
 ### **[Buy Now!](https://www.capitalcityaquatics.com/store/aquapi)**
 
-
 ## Demo
 [**Try out the AquaPi Demo!**](https://www.capitalcityaquatics.com/store#storelivedemo)
 
