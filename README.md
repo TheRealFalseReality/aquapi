@@ -27,11 +27,19 @@ Why use AquaPi?
 ## Demo
 [**Try out the AquaPi Demo!**](https://www.capitalcityaquatics.com/store#storelivedemo)
 
-| ![PXL_20230529_200205979](https://github.com/TheRealFalseReality/aquapi/assets/106857076/1ebcddb2-d481-48f0-9136-ca698cbe1889) | ![PXL_20240224_022516268~2](https://github.com/TheRealFalseReality/aquapi/assets/106857076/db50c972-2bbd-4c9f-9f62-fa6e62f41cf3) |
-|----------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
+<table>
+  <tr>
+    <td>
+      <img src="assets/image/AquaPi+-+Transp.png" alt="aquapi"/>
+    </td>
+    <td>
+      <img src="https://github.com/TheRealFalseReality/aquapi/assets/106857076/db50c972-2bbd-4c9f-9f62-fa6e62f41cf3" alt="PXL_20240224_022516268~2" width="1080"/>
+    </td>
+  </tr>
+</table>
 
 UI
-| ![Screenshot 2024-02-22 000808](https://github.com/TheRealFalseReality/aquapi/assets/106857076/e985df09-6e08-474d-aa9c-b4e803a5c20c) | ![Screenshot 2024-02-22 001408](https://github.com/TheRealFalseReality/aquapi/assets/106857076/a430aabc-2c28-43e7-9779-3c5c04c4b7db)  |
+| <img src="assets/image/Screenshot 2024-10-15 120850.png" alt="dashboard"/> | ![Screenshot 2024-02-22 001408](https://github.com/TheRealFalseReality/aquapi/assets/106857076/a430aabc-2c28-43e7-9779-3c5c04c4b7db)  |
 | ------------- | ------------- |
 
 ## Hardware Used
