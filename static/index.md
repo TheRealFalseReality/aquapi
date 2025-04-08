@@ -28,7 +28,7 @@ Why use AquaPi?
 ## Demo
 [**Try out the AquaPi Demo!**](https://www.capitalcityaquatics.com/store#storelivedemo)
 
-![PXL_20230529_200205979](https://github.com/TheRealFalseReality/aquapi/assets/106857076/1ebcddb2-d481-48f0-9136-ca698cbe1889)
+<img src="https://github.com/user-attachments/assets/55a075f4-0c2d-4bb9-b1b6-1e03be27b56c" alt="aquapi" align="center"/>
 
 ## Install
 **You can typically skip this as AquaPi comes pre-installed!**  
