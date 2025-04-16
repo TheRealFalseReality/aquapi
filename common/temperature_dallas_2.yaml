@@ -17,6 +17,7 @@ sensor:
     state_class: "measurement"
     device_class: "temperature"
     filters:
+      - filter_out: NAN
       - calibrate_linear:
           method: least_squares
           datapoints:

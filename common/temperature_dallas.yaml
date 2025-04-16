@@ -33,6 +33,7 @@ sensor:
     device_class: "temperature"
     update_interval: "${update_temp}"
     filters:
+      - filter_out: NAN
       - calibrate_linear:
           method: least_squares
           datapoints:

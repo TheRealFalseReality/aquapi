@@ -20,12 +20,16 @@ sensor:
       web_server:
         sorting_group_id: sorting_group_misc
     update_interval: "${update_dht}"
+    filters:
+      - filter_out: NAN
   - platform: absolute_humidity
     name: Absolute Humidity
     temperature: air_temperature
     humidity: relative_humidity
     web_server:
       sorting_group_id: sorting_group_misc
+    filters:
+      - filter_out: NAN
   - platform: template
     name: Dew Point
     id: dew_point
@@ -37,3 +41,5 @@ sensor:
       return ( id(air_temperature).state - (( 100 - id(relative_humidity).state ) / 5 ) );
     web_server:
       sorting_group_id: sorting_group_misc
+    filters:
+      - filter_out: NAN
