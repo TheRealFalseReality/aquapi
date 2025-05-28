@@ -118,6 +118,7 @@ sensor:
   # Internal Magnetic Sensor
   - platform: esp32_hall
     name: "ESP32 Hall Sensor"
+    id: hall_sensor
     entity_category: "diagnostic"
     web_server:
       sorting_group_id: sorting_group_diagnostic
