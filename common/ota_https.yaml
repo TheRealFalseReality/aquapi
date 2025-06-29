@@ -1,5 +1,5 @@
 substitutions:
-  ota_update_interval: 6h
+  ota_update_interval: 24h
 
 ota:
   - platform: http_request
