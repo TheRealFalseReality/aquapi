@@ -115,14 +115,6 @@ sensor:
     web_server:
       sorting_group_id: sorting_group_diagnostic
 
-  # Internal Magnetic Sensor
-  - platform: esp32_hall
-    name: "ESP32 Hall Sensor"
-    id: hall_sensor
-    entity_category: "diagnostic"
-    web_server:
-      sorting_group_id: sorting_group_diagnostic
-
   # of I2C devices connected
   - platform: template
     name: "I2C Devices Connected"
