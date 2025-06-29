@@ -1,6 +1,6 @@
 substitutions:
   # App Version
-  app_version: "25.5.0"
+  app_version: "25.6.0"
 
 packages:
   device_base: !include common/device_base.yaml
