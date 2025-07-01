@@ -37,11 +37,6 @@ Use the button below to install the pre-built firmware directly to your device v
 
 <script type="module" src="https://unpkg.com/esp-web-tools@9.1.0/dist/web/install-button.js?module"></script>  
 
-### MQTT
-<esp-web-install-button manifest="https://github.com/TheRealFalseReality/aquapi_mqtt/releases/download/25.6.0/aquapi_mqtt.manifest.json"></esp-web-install-button>  
-
-<script type="module" src="https://unpkg.com/esp-web-tools@9.1.0/dist/web/install-button.js?module"></script>  
-
 ## Hardware Used
 **ESP32 devkit**   
 **HomeAssistant** using a Raspberry Pi 3 or above. The more RAM, the better.  
