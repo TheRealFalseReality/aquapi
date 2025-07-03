@@ -538,7 +538,6 @@ button:
     disabled_by_default: true
     icon: mdi:backspace
     id: dose_clear_clean
-    disabled_by_default: true
     on_press:
       - ezo_pmp.clear_total_volume_dosed:
           id: ezo_pump_green
