@@ -70,6 +70,7 @@ sensor:
     current_volume_dosed:
       id: current_volume_dosed
       name: Pump White - Current Volume Dosed
+      disabled_by_default: true
       icon: mdi:cube-scan
       device_class: 'volume'
       unit_of_measurement: 'mL'
@@ -138,6 +139,7 @@ binary_sensor:
     pump_state:
       id: pump_white_state
       name: Pump White - State
+      disabled_by_default: true
       icon: mdi:pump
       web_server:
         sorting_group_id: sorting_group_pump_white
@@ -157,6 +159,7 @@ text_sensor:
     dosing_mode:
       id: dosing_mode
       name: Pump White - Dosing Mode 
+      disabled_by_default: true
       icon: mdi:auto-mode
       web_server:
         sorting_group_id: sorting_group_pump_white
@@ -175,6 +178,7 @@ number:
     id: volume
     icon: mdi:pump
     name: Pump White - Volume to Dose
+    disabled_by_default: true
     device_class: 'volume'
     unit_of_measurement: 'mL'
     optimistic: true
@@ -189,6 +193,7 @@ number:
     id: duration
     icon: mdi:timer
     name: Pump White - Time to Dose
+    disabled_by_default: true
     device_class: 'duration'
     unit_of_measurement: 'min'
     optimistic: true
@@ -202,7 +207,8 @@ number:
   - platform: template
     id: flow_rate
     icon: mdi:waves-arrow-right
-    name: Pump White - Volume/Time Flow Rate
+    name: Pump White - Volume/Time Flow Rat
+    disabled_by_default: true
     unit_of_measurement: 'mL/min'
     optimistic: true
     initial_value: 10
@@ -216,6 +222,7 @@ number:
 button:
   - platform: template
     name: Pump White - Dose Volume for Time
+    disabled_by_default: true
     icon: mdi:clock-time-two-outline
     id: dose_over_time
     on_press:
@@ -229,6 +236,7 @@ button:
       sorting_group_id: sorting_group_pump_white
   - platform: template
     name: Pump White - Dose Continuously
+    disabled_by_default: true
     icon: mdi:infinity
     id: dose_continuously
     on_press:
@@ -238,6 +246,7 @@ button:
       sorting_group_id: sorting_group_pump_white
   - platform: template
     name: Pump White - Dose Volume
+    disabled_by_default: true
     icon: mdi:pump
     id: dose_volume
     on_press:
@@ -249,6 +258,7 @@ button:
       sorting_group_id: sorting_group_pump_white
   - platform: template
     name: Pump White - Dose at Volume/Time Flow Rate for Time
+    disabled_by_default: true
     icon: mdi:format-text-wrapping-overflow
     id: dose_flow_rate
     on_press:
@@ -262,6 +272,7 @@ button:
       sorting_group_id: sorting_group_pump_white
   - platform: template
     name: Pump White - Pause Dosing
+    disabled_by_default: true
     icon: mdi:pause
     id: dose_pause
     on_press:
@@ -271,6 +282,7 @@ button:
       sorting_group_id: sorting_group_pump_white
   - platform: template
     name: Pump White - Stop Dosing
+    disabled_by_default: true
     icon: mdi:stop
     id: dose_stop
     on_press:
@@ -292,6 +304,7 @@ button:
   # Calibrate
   - platform: template
     name: Pump White - Set Calibration Volume
+    disabled_by_default: true
     icon: mdi:tape-measure
     id: dose_calibrate_volume
     on_press:

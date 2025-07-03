@@ -47,6 +47,7 @@ sensor:
   - platform: ezo
     icon: mdi:molecule-co2
     name: "Carbon Dioxide"
+    disabled_by_default: true
     id: co2_ezo
     address: ${addCO2}
     unit_of_measurement: "ppm"
