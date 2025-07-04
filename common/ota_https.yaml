@@ -1,6 +1,3 @@
-substitutions:
-  ota_update_interval: 24h
-
 ota:
   - platform: http_request
 
@@ -12,7 +9,6 @@ update:
     name: AquaPi Firmware Update
     id: update_firmware_sensor
     entity_category: 'diagnostic'
-    update_interval: ${ota_update_interval}
     icon: mdi:update
     source: https://therealfalsereality.github.io/aquapi/firmware/aquapi.manifest.json
     web_server:
