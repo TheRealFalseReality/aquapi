@@ -1,12 +1,12 @@
 # Board rev 1.2
 substitutions:
-  binarypin1: "34" # yellow 
-  binarypin2: "35" # blue
+  binary_input_1: "34" # yellow 
+  binary_input_2: "35" # blue
 
 binary_sensor:
   - platform: gpio
-    id: binary_pin_1
-    name: Binary Sensor 1
+    id: binary_input_1
+    name: Binary Input Sensor 1
     pin: 
       number: ${binarypin1}
       mode:
@@ -16,8 +16,8 @@ binary_sensor:
     web_server:
       sorting_group_id: sorting_group_misc
   - platform: gpio
-    id: binary_pin_2
-    name: Binary Sensor 2
+    id: binary_input_2
+    name: Binary Input Sensor 2
     pin: 
       number: ${binarypin2}
       mode:
