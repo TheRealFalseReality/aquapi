@@ -9,7 +9,9 @@ binary_sensor:
     name: Binary Sensor 2
     pin: 
       number: ${binary_pin_2}
+      inverted: true
       mode:
+        pullup: true
         input: true
     filters:
       - delayed_on_off: 30ms
@@ -20,7 +22,9 @@ binary_sensor:
     name: Binary Sensor 3
     pin: 
       number: ${binary_pin_3}
+      inverted: true
       mode:
+        pullup: true
         input: true
     filters:
       - delayed_on_off: 30ms
