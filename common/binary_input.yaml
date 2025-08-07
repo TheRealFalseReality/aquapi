@@ -6,7 +6,6 @@ substitutions:
   binary_pin_5: "17" # blue
   binary_pin_6: "23" # blue
 
-
 binary_sensor:
   - platform: gpio
     id: binary_pin_2
