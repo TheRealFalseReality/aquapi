@@ -1,7 +1,7 @@
 # Board rev 1.2
 substitutions:
-  binary_pin_2: "34" # yellow 
-  binary_pin_3: "35" # blue
+  binary_pin_2: "18" # yellow 
+  binary_pin_3: "19" # blue
 
 binary_sensor:
   - platform: gpio
