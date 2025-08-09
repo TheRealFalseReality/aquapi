@@ -109,10 +109,16 @@
                         <p class="text-xs text-gray-300">Online</p>
                     </div>
                 </div>
-                <!-- Close Button for the Lightbox -->
-                <button id="close-chat-button" class="text-gray-400 hover:text-white transition duration-200">
-                    <i class="fas fa-times fa-lg"></i>
-                </button>
+                <div class="flex items-center">
+                    <!-- Version number moved inside the chat header -->
+                    <div id="chat-version-number" class="p-2 text-right text-xs text-gray-500">
+                        Version: 25.8.1.7
+                    </div>
+                    <!-- Close Button for the Lightbox -->
+                    <button id="close-chat-button" class="text-gray-400 hover:text-white transition duration-200 ml-2">
+                        <i class="fas fa-times fa-lg"></i>
+                    </button>
+                </div>
             </div>
 
             <!-- Chat History -->
@@ -132,7 +138,7 @@
                         <i id="toggle-icon" class="fas fa-chevron-down transform transition-transform duration-300"></i>
                     </button>
                     <div id="suggested-questions-container" class="hidden overflow-hidden transition-all duration-300">
-                        <div class="mt-2 flex flex-wrap justify-center gap-2">
+                        <div class="mt-2 flex flex-wrap justify-center gap-2 pb-2">
                             <button id="suggested-question-button-1" class="flex-1 p-3 bg-blue-100 text-blue-600 rounded-lg shadow-md hover:bg-blue-200 transition duration-200">What is AquaPi?</button>
                             <button id="suggested-question-button-2" class="flex-1 p-3 bg-blue-100 text-blue-600 rounded-lg shadow-md hover:bg-blue-200 transition duration-200">Compare AquaPi to Apex Neptune</button>
                             <button id="suggested-question-button-3" class="flex-1 p-3 bg-blue-100 text-blue-600 rounded-lg shadow-md hover:bg-blue-200 transition duration-200">What parameters can AquaPi monitor?</button>
@@ -146,6 +152,12 @@
                 
                 <!-- Water analysis input form -->
                 <div id="analysis-form" class="hidden space-y-2 mb-4 p-4 bg-gray-100 rounded-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="text-sm font-semibold text-gray-700">Water Parameters</h4>
+                        <button id="close-analysis-form" class="text-gray-500 hover:text-gray-700 transition-colors duration-200">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
                     <input type="text" id="tank-type-input" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="e.g., Freshwater Community, Reef Tank">
                     <div class="flex items-center space-x-2">
                         <input type="text" id="temp-input" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Temperature in °F">
@@ -161,9 +173,11 @@
                     <div class="flex items-center space-x-2">
                         <input type="text" id="salinity-input" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Salinity (ppt) or leave blank for freshwater">
                         <div class="toggle-switch-container m-0">
-                            <input type="checkbox" id="salinity-unit-toggle" name="salinity-unit-toggle">
-                            <label class="toggle-switch-label" for="salinity-unit-toggle"></label>
                             <span class="label text-sm" id="salinity-unit-label">ppt</span>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="salinity-unit-toggle" name="salinity-unit-toggle">
+                                <label class="toggle-switch-label" for="salinity-unit-toggle"></label>
+                            </div>
                         </div>
                     </div>
                     <textarea id="additional-info-input" class="w-full p-2 border border-gray-300 rounded-lg resize-none" rows="3" placeholder="Any other details about your tank? (e.g., livestock, recent changes, issues)"></textarea>
@@ -179,6 +193,10 @@
                 </div>
             </div>
         </div>
+    </div>
+    <!-- Version number moved to the bottom right of the body -->
+    <div id="version-number-main" class="fixed bottom-2 right-2 text-right text-xs text-gray-500">
+        Version: 25.8.1.7
     </div>
 
     <script>
@@ -205,14 +223,21 @@
         const suggestedQuestionsContainer = document.getElementById('suggested-questions-container');
         const suggestedQuestionsToggle = document.getElementById('suggested-questions-toggle');
         const toggleIcon = document.getElementById('toggle-icon');
+        const closeAnalysisFormButton = document.getElementById('close-analysis-form');
         const suggestedQuestionButton1 = document.getElementById('suggested-question-button-1');
         const suggestedQuestionButton2 = document.getElementById('suggested-question-button-2');
         const suggestedQuestionButton3 = document.getElementById('suggested-question-button-3');
         const suggestedQuestionButton4 = document.getElementById('suggested-question-button-4');
+        const chatVersionNumber = document.getElementById('chat-version-number');
+        const mainVersionNumber = document.getElementById('version-number-main');
+
 
         let conversationHistory = []; // Stores the full conversation history
         let tempUnit = 'F'; // Default to Fahrenheit
         let salinityUnit = 'ppt'; // New state variable for salinity unit
+        const API_KEY = "AIzaSyC_LqNFttcJ_0jhA-GM9bgWgsPJ2TImSuk"; // Canvas will automatically provide the API key
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
+
 
         // Persona prompt to give the AI context. This is prepended to the first user message.
         const personaPrompt = `You are AquaPi, an AI assistant for the AquaPi aquarium monitoring and automation system. Your purpose is to help users understand and use the system.
@@ -322,15 +347,12 @@
             
             try {
                 const payload = { contents: [{ role: "user", parts: [{ text: analysisPrompt }] }] };
-                const apiKey = "AIzaSyC_LqNFttcJ_0jhA-GM9bgWgsPJ2TImSuk"; // Canvas will automatically provide the API key
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-
                 let response;
                 let text = "I'm sorry, I seem to be having trouble processing that request right now. Please try again later.";
                 const maxRetries = 5;
                 for (let i = 0; i < maxRetries; i++) {
                     try {
-                        response = await fetch(apiUrl, {
+                        response = await fetch(API_URL, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify(payload)
@@ -400,15 +422,12 @@
                     contents: contents
                 };
                 
-                const apiKey = "AIzaSyC_LqNFttcJ_0jhA-GM9bgWgsPJ2TImSuk"; // Canvas will automatically provide the API key
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-
                 let response;
                 let text = "I'm sorry, I seem to be having trouble processing that request right now. Please try again later.";
                 const maxRetries = 5;
                 for (let i = 0; i < maxRetries; i++) {
                     try {
-                        response = await fetch(apiUrl, {
+                        response = await fetch(API_URL, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify(payload)
@@ -451,24 +470,21 @@
         }
 
         // Handle sending messages
-        function sendMessage() {
+        async function handleChatSubmission() {
             const message = userInput.value.trim();
             if (message) {
                 displayMessage(message, 'user');
                 conversationHistory.push({ role: "user", parts: [{ text: message }] });
                 userInput.value = '';
+                await getBotResponse();
             }
         }
         
         // Event listeners for sending messages with a click or pressing Enter
-        sendButton.addEventListener('click', () => {
-            sendMessage();
-            getBotResponse();
-        });
+        sendButton.addEventListener('click', handleChatSubmission);
         userInput.addEventListener('keydown', (event) => {
             if (event.key === 'Enter') {
-                sendMessage();
-                getBotResponse();
+                handleChatSubmission();
             }
         });
 
@@ -478,10 +494,28 @@
             analysisForm.classList.toggle('hidden');
             const isHidden = analysisForm.classList.contains('hidden');
             
-            // Hide/show the main input and suggestions based on analysis form state
-            userInputContainer.classList.toggle('hidden', !isHidden);
-            suggestedQuestionsContainer.classList.toggle('hidden', !isHidden);
-            suggestedQuestionsToggle.classList.toggle('hidden', !isHidden);
+            if (isHidden) {
+                // If form is now hidden, un-hide the other UI elements
+                suggestedQuestionsContainer.classList.remove('hidden');
+                toggleIcon.classList.remove('rotate-180');
+                suggestedQuestionsToggle.classList.remove('hidden');
+                userInputContainer.classList.remove('hidden');
+            } else {
+                // If form is now visible, hide the other UI elements
+                suggestedQuestionsContainer.classList.add('hidden');
+                toggleIcon.classList.add('rotate-180');
+                suggestedQuestionsToggle.classList.add('hidden');
+                userInputContainer.classList.add('hidden');
+            }
+        });
+
+        // Event listener for closing the analysis form
+        closeAnalysisFormButton.addEventListener('click', () => {
+            analysisForm.classList.add('hidden');
+            suggestedQuestionsContainer.classList.remove('hidden');
+            toggleIcon.classList.remove('rotate-180');
+            suggestedQuestionsToggle.classList.remove('hidden');
+            userInputContainer.classList.remove('hidden'); // Ensure the user input field is visible
         });
 
         // Event listener for the temperature unit toggle switch
@@ -501,14 +535,15 @@
             if (salinityUnitToggle.checked) {
                 salinityUnit = 'SG';
                 salinityInput.placeholder = 'Salinity (SG) or leave blank for freshwater';
+                salinityUnitLabel.textContent = 'SG';
             } else {
                 salinityUnit = 'ppt';
                 salinityInput.placeholder = 'Salinity (ppt) or leave blank for freshwater';
+                salinityUnitLabel.textContent = 'ppt';
             }
-            salinityUnitLabel.textContent = salinityUnitToggle.checked ? 'SG' : 'ppt';
         });
 
-        submitAnalysisButton.addEventListener('click', () => {
+        submitAnalysisButton.addEventListener('click', async () => {
             const tankType = tankTypeInput.value;
             const ph = phInput.value;
             const temp = tempInput.value;
@@ -523,10 +558,13 @@
                 const userMessage = `Please analyze my water parameters for my ${tankType} tank. Temp: ${temp}°${tempUnit}${phMessage}${salinity ? `, Salinity: ${salinity} ${salinityUnitText}` : ''}${additionalInfo ? `, Additional Info: ${additionalInfo}` : ''}.`;
 
                 displayMessage(userMessage, 'user');
+
+                // Hide the form and restore the user input field immediately
+                analysisForm.classList.add('hidden');
+                userInputContainer.classList.remove('hidden');
                 
                 // Pass the new info to the analysis function
-                analyzeWaterParameters(tankType, ph, temp, salinity, additionalInfo);
-                analysisForm.classList.add('hidden');
+                await analyzeWaterParameters(tankType, ph, temp, salinity, additionalInfo);
             } else {
                 // This is a modal-like alert that's better than window.alert
                 const messageBox = document.createElement('div');
@@ -554,6 +592,9 @@
                 chatLightbox.classList.add('visible');
             }, 10);
             
+            // Hide version number on the main screen
+            mainVersionNumber.classList.add('hidden');
+
             // Re-initialize the welcome message
             if (conversationHistory.length === 0) {
                 const initialMessage = "# Welcome to AquaPi!\n\nI'm your friendly AI assistant, here to help you get the most out of our open-source aquarium monitoring system.\n\nTo get started, please tell me a bit about your setup:\n\n- What kind of aquarium do you have? (e.g., freshwater, reef)\n- What are your monitoring and automation goals?\n- Are you familiar with ESPHome and Home Assistant?\n\nDon't forget to check out our new ✨ AI Water Analysis feature!";
@@ -568,6 +609,8 @@
             setTimeout(() => {
                 chatLightbox.classList.add('hidden');
             }, 300);
+            // Show version number on the main screen
+            mainVersionNumber.classList.remove('hidden');
         });
         
         // Event listener to close the lightbox when clicking outside the chat container
@@ -578,6 +621,8 @@
                 setTimeout(() => {
                     chatLightbox.classList.add('hidden');
                 }, 300);
+                // Show version number on the main screen
+                mainVersionNumber.classList.remove('hidden');
             }
         });
 
@@ -588,35 +633,39 @@
         });
         
         // Event listener for the suggested question buttons
-        suggestedQuestionButton1.addEventListener('click', () => {
+        suggestedQuestionButton1.addEventListener('click', async () => {
             const question = suggestedQuestionButton1.textContent.trim();
             userInput.value = question;
-            sendMessage();
+            // Close the drawer immediately
             suggestedQuestionsContainer.classList.add('hidden');
             toggleIcon.classList.remove('rotate-180');
+            await handleChatSubmission();
         });
-        suggestedQuestionButton2.addEventListener('click', () => {
+        suggestedQuestionButton2.addEventListener('click', async () => {
             const question = suggestedQuestionButton2.textContent.trim();
             userInput.value = question;
-            sendMessage();
+            // Close the drawer immediately
             suggestedQuestionsContainer.classList.add('hidden');
             toggleIcon.classList.remove('rotate-180');
+            await handleChatSubmission();
         });
-        suggestedQuestionButton3.addEventListener('click', () => {
+        suggestedQuestionButton3.addEventListener('click', async () => {
             const question = suggestedQuestionButton3.textContent.trim();
             userInput.value = question;
-            sendMessage();
+            // Close the drawer immediately
             suggestedQuestionsContainer.classList.add('hidden');
             toggleIcon.classList.remove('rotate-180');
+            await handleChatSubmission();
         });
-        suggestedQuestionButton4.addEventListener('click', () => {
+        suggestedQuestionButton4.addEventListener('click', async () => {
             const question = suggestedQuestionButton4.textContent.trim();
             userInput.value = question;
-            sendMessage();
+            // Close the drawer immediately
             suggestedQuestionsContainer.classList.add('hidden');
             toggleIcon.classList.remove('rotate-180');
+            await handleChatSubmission();
         });
-
+        
         // New event listener for the suggestions toggle button
         suggestedQuestionsToggle.addEventListener('click', () => {
             suggestedQuestionsContainer.classList.toggle('hidden');
@@ -630,4 +679,3 @@
     </script>
 </body>
 </html>
-
