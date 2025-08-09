@@ -70,7 +70,7 @@
             left: calc(100% - 2px);
             transform: translateX(-100%);
         }
-        /* New CSS for the fade effect */
+        /* CSS for the fade effect */
         #chat-lightbox {
             opacity: 0;
             transition: opacity 0.3s ease-in-out;
@@ -81,12 +81,19 @@
     </style>
 </head>
 <body class="flex items-center justify-center h-screen bg-gray-100 p-4">
-    <!-- Button to open the chat window -->
-    <button id="open-chat-button" class="flex items-center justify-center p-4 bg-blue-600 text-white rounded-lg shadow-xl hover:bg-blue-700 transition duration-200">
-        <img src="https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/AquaPiLogo150px.png?raw=true" alt="AquaPi Logo" class="w-8 h-8 object-contain mr-3">
-        <span class="text-xl font-bold">AquaPi Assistant</span>
-    </button>
-
+    <div class="flex flex-col items-center justify-center">
+        <!-- New marketing text block -->
+        <div class="text-center max-w-md mb-6 p-4 bg-white rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Aquarium Care, Simplified.</h2>
+            <p class="text-gray-600">Get instant expert advice, analyze your water parameters, and learn how to automate your tank with AquaPi. Start a conversation now to transform your aquarium care routine.</p>
+        </div>
+        <!-- Button to open the chat window -->
+        <button id="open-chat-button" class="flex items-center justify-center p-4 bg-blue-600 text-white rounded-lg shadow-xl hover:bg-blue-700 transition duration-200">
+            <img src="https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/AquaPiLogo150px.png?raw=true" alt="AquaPi Logo" class="w-8 h-8 object-contain mr-3">
+            <span class="text-xl font-bold">AquaPi Assistant</span>
+        </button>
+    </div>
+    
     <!-- Chat Lightbox Overlay -->
     <div id="chat-lightbox" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center hidden">
         <div id="chat-container" class="flex flex-col bg-white rounded-lg shadow-xl overflow-hidden w-full max-w-3xl h-full sm:max-w-4xl lg:max-w-5xl xl:max-w-6xl">
@@ -115,11 +122,26 @@
 
             <!-- AI Feature and User Input Area -->
             <div class="p-4 bg-gray-50 border-t border-gray-200">
-                <!-- Button to toggle the water analysis form -->
-                <div class="mb-4 text-center">
-                    <button id="analyze-button" class="w-full p-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition duration-200">
-                        Analyze Water Parameters ✨
+                <!-- Collapsible suggestions drawer -->
+                <div class="mb-4">
+                    <button id="suggested-questions-toggle" class="w-full p-2 bg-gray-200 text-gray-800 rounded-lg shadow-md hover:bg-gray-300 transition duration-200 font-semibold text-sm flex items-center justify-between">
+                        <span class="flex items-center">
+                            <i class="fas fa-comment-dots mr-2"></i>
+                            Ask or Analyze
+                        </span>
+                        <i id="toggle-icon" class="fas fa-chevron-down transform transition-transform duration-300"></i>
                     </button>
+                    <div id="suggested-questions-container" class="hidden overflow-hidden transition-all duration-300">
+                        <div class="mt-2 flex flex-wrap justify-center gap-2">
+                            <button id="suggested-question-button-1" class="flex-1 p-3 bg-blue-100 text-blue-600 rounded-lg shadow-md hover:bg-blue-200 transition duration-200">What is AquaPi?</button>
+                            <button id="suggested-question-button-2" class="flex-1 p-3 bg-blue-100 text-blue-600 rounded-lg shadow-md hover:bg-blue-200 transition duration-200">Compare AquaPi to Apex Neptune</button>
+                            <button id="suggested-question-button-3" class="flex-1 p-3 bg-blue-100 text-blue-600 rounded-lg shadow-md hover:bg-blue-200 transition duration-200">What parameters can AquaPi monitor?</button>
+                            <button id="suggested-question-button-4" class="flex-1 p-3 bg-blue-100 text-blue-600 rounded-lg shadow-md hover:bg-blue-200 transition duration-200">Can I use my own sensors?</button>
+                            <button id="analyze-button-drawer" class="flex-1 p-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition duration-200">
+                                Analyze Water Parameters ✨
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Water analysis input form -->
@@ -164,7 +186,7 @@
         const chatHistoryElement = document.getElementById('chat-history');
         const userInput = document.getElementById('user-input');
         const sendButton = document.getElementById('send-button');
-        const analyzeButton = document.getElementById('analyze-button');
+        const analyzeButtonDrawer = document.getElementById('analyze-button-drawer');
         const analysisForm = document.getElementById('analysis-form');
         const submitAnalysisButton = document.getElementById('submit-analysis');
         const tankTypeInput = document.getElementById('tank-type-input');
@@ -180,6 +202,13 @@
         const openChatButton = document.getElementById('open-chat-button');
         const closeChatButton = document.getElementById('close-chat-button');
         const chatLightbox = document.getElementById('chat-lightbox');
+        const suggestedQuestionsContainer = document.getElementById('suggested-questions-container');
+        const suggestedQuestionsToggle = document.getElementById('suggested-questions-toggle');
+        const toggleIcon = document.getElementById('toggle-icon');
+        const suggestedQuestionButton1 = document.getElementById('suggested-question-button-1');
+        const suggestedQuestionButton2 = document.getElementById('suggested-question-button-2');
+        const suggestedQuestionButton3 = document.getElementById('suggested-question-button-3');
+        const suggestedQuestionButton4 = document.getElementById('suggested-question-button-4');
 
         let conversationHistory = []; // Stores the full conversation history
         let tempUnit = 'F'; // Default to Fahrenheit
@@ -428,58 +457,55 @@
                 displayMessage(message, 'user');
                 conversationHistory.push({ role: "user", parts: [{ text: message }] });
                 userInput.value = '';
-                getBotResponse();
             }
         }
         
         // Event listeners for sending messages with a click or pressing Enter
-        sendButton.addEventListener('click', sendMessage);
+        sendButton.addEventListener('click', () => {
+            sendMessage();
+            getBotResponse();
+        });
         userInput.addEventListener('keydown', (event) => {
             if (event.key === 'Enter') {
                 sendMessage();
+                getBotResponse();
             }
         });
 
         // Event listener for the new analysis feature button
+        const analyzeButton = document.getElementById('analyze-button-drawer'); // Using the new ID
         analyzeButton.addEventListener('click', () => {
             analysisForm.classList.toggle('hidden');
             const isHidden = analysisForm.classList.contains('hidden');
-
-            if (isHidden) {
-                // If form is now hidden
-                analyzeButton.innerText = 'Analyze Water Parameters ✨';
-                userInputContainer.classList.remove('hidden');
-            } else {
-                // If form is now visible
-                analyzeButton.innerText = 'Close';
-                userInputContainer.classList.add('hidden');
-            }
+            
+            // Hide/show the main input and suggestions based on analysis form state
+            userInputContainer.classList.toggle('hidden', !isHidden);
+            suggestedQuestionsContainer.classList.toggle('hidden', !isHidden);
+            suggestedQuestionsToggle.classList.toggle('hidden', !isHidden);
         });
 
         // Event listener for the temperature unit toggle switch
         unitToggle.addEventListener('change', () => {
             if (unitToggle.checked) {
                 tempUnit = 'F';
-                tempUnitLabel.textContent = 'Fahrenheit (°F)';
                 tempInput.placeholder = 'Temperature in °F';
             } else {
                 tempUnit = 'C';
-                tempUnitLabel.textContent = 'Celsius (°C)';
                 tempInput.placeholder = 'Temperature in °C';
             }
+            tempUnitLabel.textContent = unitToggle.checked ? 'Fahrenheit (°F)' : 'Celsius (°C)';
         });
 
         // New event listener for the salinity unit toggle switch
         salinityUnitToggle.addEventListener('change', () => {
             if (salinityUnitToggle.checked) {
                 salinityUnit = 'SG';
-                salinityUnitLabel.textContent = 'SG';
                 salinityInput.placeholder = 'Salinity (SG) or leave blank for freshwater';
             } else {
                 salinityUnit = 'ppt';
-                salinityUnitLabel.textContent = 'ppt';
                 salinityInput.placeholder = 'Salinity (ppt) or leave blank for freshwater';
             }
+            salinityUnitLabel.textContent = salinityUnitToggle.checked ? 'SG' : 'ppt';
         });
 
         submitAnalysisButton.addEventListener('click', () => {
@@ -501,8 +527,6 @@
                 // Pass the new info to the analysis function
                 analyzeWaterParameters(tankType, ph, temp, salinity, additionalInfo);
                 analysisForm.classList.add('hidden');
-                analyzeButton.innerText = 'Analyze Water Parameters ✨';
-                userInputContainer.classList.remove('hidden');
             } else {
                 // This is a modal-like alert that's better than window.alert
                 const messageBox = document.createElement('div');
@@ -529,7 +553,7 @@
             setTimeout(() => {
                 chatLightbox.classList.add('visible');
             }, 10);
-
+            
             // Re-initialize the welcome message
             if (conversationHistory.length === 0) {
                 const initialMessage = "# Welcome to AquaPi!\n\nI'm your friendly AI assistant, here to help you get the most out of our open-source aquarium monitoring system.\n\nTo get started, please tell me a bit about your setup:\n\n- What kind of aquarium do you have? (e.g., freshwater, reef)\n- What are your monitoring and automation goals?\n- Are you familiar with ESPHome and Home Assistant?\n\nDon't forget to check out our new ✨ AI Water Analysis feature!";
@@ -546,7 +570,7 @@
             }, 300);
         });
         
-        // New event listener to close the lightbox when clicking outside the chat container
+        // Event listener to close the lightbox when clicking outside the chat container
         chatLightbox.addEventListener('click', (event) => {
             if (event.target === chatLightbox) {
                 chatLightbox.classList.remove('visible');
@@ -555,6 +579,48 @@
                     chatLightbox.classList.add('hidden');
                 }, 300);
             }
+        });
+
+        // Add scroll functionality
+        openChatButton.addEventListener('click', () => {
+          // scroll down 5% of the window's height
+          window.scrollBy(0, window.innerHeight * 0.05);
+        });
+        
+        // Event listener for the suggested question buttons
+        suggestedQuestionButton1.addEventListener('click', () => {
+            const question = suggestedQuestionButton1.textContent.trim();
+            userInput.value = question;
+            sendMessage();
+            suggestedQuestionsContainer.classList.add('hidden');
+            toggleIcon.classList.remove('rotate-180');
+        });
+        suggestedQuestionButton2.addEventListener('click', () => {
+            const question = suggestedQuestionButton2.textContent.trim();
+            userInput.value = question;
+            sendMessage();
+            suggestedQuestionsContainer.classList.add('hidden');
+            toggleIcon.classList.remove('rotate-180');
+        });
+        suggestedQuestionButton3.addEventListener('click', () => {
+            const question = suggestedQuestionButton3.textContent.trim();
+            userInput.value = question;
+            sendMessage();
+            suggestedQuestionsContainer.classList.add('hidden');
+            toggleIcon.classList.remove('rotate-180');
+        });
+        suggestedQuestionButton4.addEventListener('click', () => {
+            const question = suggestedQuestionButton4.textContent.trim();
+            userInput.value = question;
+            sendMessage();
+            suggestedQuestionsContainer.classList.add('hidden');
+            toggleIcon.classList.remove('rotate-180');
+        });
+
+        // New event listener for the suggestions toggle button
+        suggestedQuestionsToggle.addEventListener('click', () => {
+            suggestedQuestionsContainer.classList.toggle('hidden');
+            toggleIcon.classList.toggle('rotate-180');
         });
 
         // Initial greeting from the bot - now only displayed when the lightbox is opened
