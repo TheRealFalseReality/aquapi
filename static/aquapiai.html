@@ -70,7 +70,7 @@
             left: calc(100% - 2px);
             transform: translateX(-100%);
         }
-        /* New CSS for the fade effect */
+        /* CSS for the fade effect */
         #chat-lightbox {
             opacity: 0;
             transition: opacity 0.3s ease-in-out;
@@ -81,12 +81,19 @@
     </style>
 </head>
 <body class="flex items-center justify-center h-screen bg-gray-100 p-4">
-    <!-- Button to open the chat window -->
-    <button id="open-chat-button" class="flex items-center justify-center p-4 bg-blue-600 text-white rounded-lg shadow-xl hover:bg-blue-700 transition duration-200">
-        <img src="https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/AquaPiLogo150px.png?raw=true" alt="AquaPi Logo" class="w-8 h-8 object-contain mr-3">
-        <span class="text-xl font-bold">AquaPi Assistant</span>
-    </button>
-
+    <div class="flex flex-col items-center justify-center">
+        <!-- New marketing text block -->
+        <div class="text-center max-w-md mb-6 p-4 bg-white rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Aquarium Care, Simplified.</h2>
+            <p class="text-gray-600">Get instant expert advice, analyze your water parameters, and learn how to automate your tank with AquaPi. Start a conversation now to transform your aquarium care routine.</p>
+        </div>
+        <!-- Button to open the chat window -->
+        <button id="open-chat-button" class="flex items-center justify-center p-4 bg-blue-600 text-white rounded-lg shadow-xl hover:bg-blue-700 transition duration-200">
+            <img src="https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/AquaPiLogo150px.png?raw=true" alt="AquaPi Logo" class="w-8 h-8 object-contain mr-3">
+            <span class="text-xl font-bold">AquaPi Assistant</span>
+        </button>
+    </div>
+    
     <!-- Chat Lightbox Overlay -->
     <div id="chat-lightbox" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center hidden">
         <div id="chat-container" class="flex flex-col bg-white rounded-lg shadow-xl overflow-hidden w-full max-w-3xl h-full sm:max-w-4xl lg:max-w-5xl xl:max-w-6xl">
@@ -115,9 +122,13 @@
 
             <!-- AI Feature and User Input Area -->
             <div class="p-4 bg-gray-50 border-t border-gray-200">
-                <!-- Button to toggle the water analysis form -->
-                <div class="mb-4 text-center">
-                    <button id="analyze-button" class="w-full p-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition duration-200">
+                <!-- Suggested questions row -->
+                <div class="mb-4 flex flex-wrap justify-center gap-2">
+                    <button id="suggested-question-button-1" class="flex-1 p-3 bg-blue-100 text-blue-600 rounded-lg shadow-md hover:bg-blue-200 transition duration-200">What is AquaPi?</button>
+                    <button id="suggested-question-button-2" class="flex-1 p-3 bg-blue-100 text-blue-600 rounded-lg shadow-md hover:bg-blue-200 transition duration-200">Compare AquaPi to Apex Neptune</button>
+                    <button id="suggested-question-button-3" class="flex-1 p-3 bg-blue-100 text-blue-600 rounded-lg shadow-md hover:bg-blue-200 transition duration-200">What parameters can AquaPi monitor?</button>
+                    <button id="suggested-question-button-4" class="flex-1 p-3 bg-blue-100 text-blue-600 rounded-lg shadow-md hover:bg-blue-200 transition duration-200">Can I use my own sensors?</button>
+                    <button id="analyze-button" class="flex-1 p-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition duration-200">
                         Analyze Water Parameters ✨
                     </button>
                 </div>
@@ -180,6 +191,10 @@
         const openChatButton = document.getElementById('open-chat-button');
         const closeChatButton = document.getElementById('close-chat-button');
         const chatLightbox = document.getElementById('chat-lightbox');
+        const suggestedQuestionButton1 = document.getElementById('suggested-question-button-1');
+        const suggestedQuestionButton2 = document.getElementById('suggested-question-button-2');
+        const suggestedQuestionButton3 = document.getElementById('suggested-question-button-3');
+        const suggestedQuestionButton4 = document.getElementById('suggested-question-button-4');
 
         let conversationHistory = []; // Stores the full conversation history
         let tempUnit = 'F'; // Default to Fahrenheit
@@ -529,7 +544,7 @@
             setTimeout(() => {
                 chatLightbox.classList.add('visible');
             }, 10);
-
+            
             // Re-initialize the welcome message
             if (conversationHistory.length === 0) {
                 const initialMessage = "# Welcome to AquaPi!\n\nI'm your friendly AI assistant, here to help you get the most out of our open-source aquarium monitoring system.\n\nTo get started, please tell me a bit about your setup:\n\n- What kind of aquarium do you have? (e.g., freshwater, reef)\n- What are your monitoring and automation goals?\n- Are you familiar with ESPHome and Home Assistant?\n\nDon't forget to check out our new ✨ AI Water Analysis feature!";
@@ -546,7 +561,7 @@
             }, 300);
         });
         
-        // New event listener to close the lightbox when clicking outside the chat container
+        // Event listener to close the lightbox when clicking outside the chat container
         chatLightbox.addEventListener('click', (event) => {
             if (event.target === chatLightbox) {
                 chatLightbox.classList.remove('visible');
@@ -555,6 +570,34 @@
                     chatLightbox.classList.add('hidden');
                 }, 300);
             }
+        });
+
+        // Add scroll functionality
+        openChatButton.addEventListener('click', () => {
+          // scroll down 5% of the window's height
+          window.scrollBy(0, window.innerHeight * 0.05);
+        });
+        
+        // Event listener for the suggested question buttons
+        suggestedQuestionButton1.addEventListener('click', () => {
+            const question = suggestedQuestionButton1.textContent.trim();
+            userInput.value = question;
+            sendMessage();
+        });
+        suggestedQuestionButton2.addEventListener('click', () => {
+            const question = suggestedQuestionButton2.textContent.trim();
+            userInput.value = question;
+            sendMessage();
+        });
+        suggestedQuestionButton3.addEventListener('click', () => {
+            const question = suggestedQuestionButton3.textContent.trim();
+            userInput.value = question;
+            sendMessage();
+        });
+        suggestedQuestionButton4.addEventListener('click', () => {
+            const question = suggestedQuestionButton4.textContent.trim();
+            userInput.value = question;
+            sendMessage();
         });
 
         // Initial greeting from the bot - now only displayed when the lightbox is opened
