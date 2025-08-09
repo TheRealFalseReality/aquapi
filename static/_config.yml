@@ -13,6 +13,7 @@ author:
 header_pages:
   - setup.md
   - blueprints.md
+  - aquapiai.html
   # - about.md
 plugins:
   - jekyll-feed
