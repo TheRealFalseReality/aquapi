@@ -83,14 +83,28 @@
 <body class="flex items-center justify-center h-screen bg-gray-100 p-4">
     <div class="flex flex-col items-center justify-center">
         <!-- New marketing text block -->
-        <div class="text-center max-w-md mb-6 p-4 bg-white rounded-lg shadow-md">
-            <h2 class="text-2xl font-bold text-gray-800 mb-2">Aquarium Care, Simplified.</h2>
-            <p class="text-gray-600">Get instant expert advice, analyze your water parameters, and create custom automations and scripts for your tank with AquaPi and Home Assistant. Ask me about setting up, customizing, or troubleshooting your AquaPi system to transform your aquarium care routine.</p>
+        <div class="text-center max-w-lg mb-6 p-6 bg-white rounded-xl shadow-lg">
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">Aquarium Care, Simplified.</h2>
+            <h3 class="text-md font-medium text-gray-500 mb-4">Transform Your Tank with Intelligent Monitoring and Automation.</h3>
+            <ul class="text-left text-gray-600 space-y-2">
+                <li class="flex items-center">
+                    <i class="fas fa-microscope text-blue-500 mr-3"></i>
+                    <span>Get <b>instant expert analysis</b> of your water parameters.</span>
+                </li>
+                <li class="flex items-center">
+                    <i class="fas fa-bell text-blue-500 mr-3"></i>
+                    <span>Receive <b>real-time alerts</b> when parameters are out of range.</span>
+                </li>
+                <li class="flex items-center">
+                    <i class="fas fa-bolt text-blue-500 mr-3"></i>
+                  <span>Generate custom <b>automation scripts</b> for your maintenance routine.</span>
+                </li>
+            </ul>
         </div>
         <!-- Button to open the chat window -->
-        <button id="open-chat-button" class="flex items-center justify-center p-4 bg-blue-600 text-white rounded-lg shadow-xl hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">
+        <button id="open-chat-button" class="flex items-center justify-center p-4 bg-blue-600 text-white rounded-lg shadow-xl hover:bg-blue-700 transition duration-200">
             <img src="https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/AquaPiLogo150px.png?raw=true" alt="AquaPi Logo" class="w-8 h-8 object-contain mr-3">
-            <span class="text-xl font-bold">AquaPi Assistant</span>
+            <span class="text-xl font-bold">AquaPi AI</span>
         </button>
     </div>
     
@@ -115,7 +129,7 @@
                         Version: 25.8.9.2
                     </div>
                     <!-- Close Button for the Lightbox -->
-                    <button id="close-chat-button" class="text-gray-400 hover:text-white transition-colors duration-200 ml-2 transform hover:scale-110">
+                    <button id="close-chat-button" class="text-gray-400 hover:text-white transition duration-200 ml-2">
                         <i class="fas fa-times fa-lg"></i>
                     </button>
                 </div>
@@ -130,7 +144,7 @@
             <div class="p-4 bg-gray-50 border-t border-gray-200">
                 <!-- Collapsible suggestions drawer with unified background -->
                 <div class="mb-4 p-2 bg-gray-200 rounded-lg shadow-md">
-                    <button id="suggested-questions-toggle" class="w-full p-2 text-gray-800 rounded-lg hover:bg-gray-300 transition-all duration-300 font-semibold text-sm flex items-center justify-between">
+                    <button id="suggested-questions-toggle" class="w-full p-2 text-gray-800 rounded-lg hover:bg-gray-300 transition duration-200 font-semibold text-sm flex items-center justify-between">
                         <span class="flex items-center">
                             <i class="fas fa-comment-dots mr-2"></i>
                             Ask, Analyze, or Automate
@@ -138,15 +152,15 @@
                         <i id="toggle-icon" class="fas fa-chevron-down transform transition-transform duration-300"></i>
                     </button>
                     <div id="suggested-questions-container" class="overflow-hidden transition-all duration-300" style="display: none;">
-                        <div class="mt-2 flex flex-wrap justify-center gap-2 p-2">
-                            <button id="suggested-question-button-1" class="flex-1 p-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition-all duration-300 transform hover:scale-105 relative z-10">What is AquaPi?</button>
-                            <button id="suggested-question-button-2" class="flex-1 p-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition-all duration-300 transform hover:scale-105 relative z-10">Compare AquaPi to Apex Neptune</button>
-                            <button id="suggested-question-button-3" class="flex-1 p-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition-all duration-300 transform hover:scale-105 relative z-10">What parameters can AquaPi monitor?</button>
-                            <button id="suggested-question-button-4" class="flex-1 p-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition-all duration-300 transform hover:scale-105 relative z-10">Can I use my own sensors?</button>
-                            <button id="analyze-button-drawer" class="flex-1 p-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition-all duration-300 transform hover:scale-105 relative z-10">
+                        <div class="mt-2 flex flex-wrap justify-center gap-2">
+                            <button id="suggested-question-button-1" class="flex-1 p-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition duration-200">What is AquaPi?</button>
+                            <button id="suggested-question-button-2" class="flex-1 p-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition duration-200">Compare AquaPi to Apex Neptune</button>
+                            <button id="suggested-question-button-3" class="flex-1 p-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition duration-200">What parameters can AquaPi monitor?</button>
+                            <button id="suggested-question-button-4" class="flex-1 p-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition duration-200">Can I use my own sensors?</button>
+                            <button id="analyze-button-drawer" class="flex-1 p-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition duration-200">
                                 Analyze Water Parameters ✨
                             </button>
-                            <button id="generate-automation-button-drawer" class="flex-1 p-3 bg-purple-500 text-white rounded-lg shadow-md hover:bg-purple-600 transition-all duration-300 transform hover:scale-105 relative z-10">
+                            <button id="generate-automation-button-drawer" class="flex-1 p-3 bg-purple-500 text-white rounded-lg shadow-md hover:bg-purple-600 transition duration-200">
                                 Generate Automation Script <i class="fas fa-bolt ml-2"></i>
                             </button>
                         </div>
@@ -157,7 +171,7 @@
                 <div id="analysis-form" class="hidden space-y-2 mb-4 p-4 bg-gray-100 rounded-lg">
                     <div class="flex justify-between items-center mb-2">
                         <h4 class="text-sm font-semibold text-gray-700">Water Parameters</h4>
-                        <button id="close-analysis-form" class="text-gray-500 hover:text-gray-700 transition-colors duration-200 transform hover:scale-110">
+                        <button id="close-analysis-form" class="text-gray-500 hover:text-gray-700 transition-colors duration-200">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
@@ -184,25 +198,25 @@
                         </div>
                     </div>
                     <textarea id="additional-info-input" class="w-full p-2 border border-gray-300 rounded-lg resize-none" rows="3" placeholder="Any other details about your tank? (e.g., livestock, recent changes, issues)"></textarea>
-                    <button id="submit-analysis" class="w-full p-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105">Submit for Analysis</button>
+                    <button id="submit-analysis" class="w-full p-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-200">Submit for Analysis</button>
                 </div>
 
                 <!-- Automation script generator form -->
                 <div id="automation-form" class="hidden space-y-2 mb-4 p-4 bg-gray-100 rounded-lg">
                     <div class="flex justify-between items-center mb-2">
                         <h4 class="text-sm font-semibold text-gray-700">Automation Script Generator</h4>
-                        <button id="close-automation-form" class="text-gray-500 hover:text-gray-700 transition-colors duration-200 transform hover:scale-110">
+                        <button id="close-automation-form" class="text-gray-500 hover:text-gray-700 transition-colors duration-200">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
                     <textarea id="automation-input" class="w-full p-2 border border-gray-300 rounded-lg resize-none" rows="5" placeholder="Describe the automation you want to create (e.g., 'turn on a pump for 30 seconds every 24 hours to dose a supplement')."></textarea>
-                    <button id="submit-automation" class="w-full p-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all duration-300 transform hover:scale-105">Generate Script</button>
+                    <button id="submit-automation" class="w-full p-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition duration-200">Generate Script</button>
                 </div>
 
                 <!-- Standard chat input -->
                 <div id="user-input-container" class="flex items-center">
-                    <input type="text" id="user-input" class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200" placeholder="Ask me about AquaPi...">
-                    <button id="send-button" class="ml-3 p-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">
+                    <input type="text" id="user-input" class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" placeholder="Ask me about AquaPi...">
+                    <button id="send-button" class="ml-3 p-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-200">
                         <i class="fas fa-paper-plane"></i>
                     </button>
                 </div>
@@ -595,258 +609,20 @@
         // New refactored function to manage UI state
         function toggleUIState(state) {
             const forms = [analysisForm, automationForm];
-            
-            // Hide all forms and the main input, and show the toggle button by default
-            forms.forEach(form => form.classList.add('hidden'));
-            userInputContainer.classList.add('hidden');
-            suggestedQuestionsToggle.classList.remove('hidden');
-            suggestedQuestionsContainer.classList.add('hidden');
-            toggleIcon.classList.remove('rotate-180');
-
-            if (state === 'chat') {
-                userInputContainer.classList.remove('hidden');
-                suggestedQuestionsContainer.classList.remove('hidden');
-            } else if (state === 'analysis') {
-                analysisForm.classList.remove('hidden');
-                suggestedQuestionsToggle.classList.add('hidden');
-            } else if (state === 'automation') {
-                automationForm.classList.remove('hidden');
-                suggestedQuestionsToggle.classList.add('hidden');
-            }
-        }
-
-        // Event listener for the water analysis button
-        analyzeButtonDrawer.addEventListener('click', () => {
-            if (analysisForm.classList.contains('hidden')) {
-                toggleUIState('analysis');
-            } else {
-                toggleUIState('chat');
-            }
-        });
-
-        // Event listener for the automation script generator button
-        generateAutomationButtonDrawer.addEventListener('click', () => {
-            if (automationForm.classList.contains('hidden')) {
-                toggleUIState('automation');
-            } else {
-                toggleUIState('chat');
-            }
-        });
-
-        // Event listener for closing the analysis form
-        closeAnalysisFormButton.addEventListener('click', () => {
-            toggleUIState('chat');
-        });
-
-        // Event listener for closing the automation form
-        closeAutomationFormButton.addEventListener('click', () => {
-            toggleUIState('chat');
-        });
-
-        // Event listener for the temperature unit toggle switch
-        unitToggle.addEventListener('change', () => {
-            if (unitToggle.checked) {
-                tempUnit = 'F';
-                tempInput.placeholder = 'Temperature in °F';
-            } else {
-                tempUnit = 'C';
-                tempInput.placeholder = 'Temperature in °C';
-            }
-            tempUnitLabel.textContent = unitToggle.checked ? 'Fahrenheit (°F)' : 'Celsius (°C)';
-        });
-
-        // New event listener for the salinity unit toggle switch
-        salinityUnitToggle.addEventListener('change', () => {
-            if (salinityUnitToggle.checked) {
-                salinityUnit = 'SG';
-                salinityInput.placeholder = 'Salinity (SG) or leave blank for freshwater';
-                salinityUnitLabel.textContent = 'SG';
-            } else {
-                salinityUnit = 'ppt';
-                salinityInput.placeholder = 'Salinity (ppt) or leave blank for freshwater';
-                salinityUnitLabel.textContent = 'ppt';
-            }
-        });
-
-        submitAnalysisButton.addEventListener('click', async () => {
-            const tankType = tankTypeInput.value;
-            const ph = phInput.value;
-            const temp = tempInput.value;
-            const salinity = salinityInput.value;
-            const additionalInfo = additionalInfoInput.value;
-
-            if (tankType && temp) {
-                const salinityUnitText = salinityUnit === 'ppt' ? 'ppt' : 'SG';
-                
-                // Construct the user message with conditional pH value
-                const phMessage = ph.trim() !== '' ? `, pH: ${ph}` : '';
-                const userMessage = `Please analyze my water parameters for my ${tankType} tank. Temp: ${temp}°${tempUnit}${phMessage}${salinity ? `, Salinity: ${salinity} ${salinityUnitText}` : ''}${additionalInfo ? `, Additional Info: ${additionalInfo}` : ''}.`;
-
-                displayMessage(userMessage, 'user');
-                toggleUIState('chat'); // Reset to chat state
-                
-                // Pass the new info to the analysis function
-                await analyzeWaterParameters(tankType, ph, temp, salinity, additionalInfo);
-            } else {
-                // This is a modal-like alert that's better than window.alert
-                const messageBox = document.createElement('div');
-                messageBox.innerHTML = `
-                    <div class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center">
-                        <div class="bg-white p-6 rounded-lg shadow-xl text-center">
-                            <h3 class="text-lg font-bold mb-4">Missing Information</h3>
-                            <p>Please fill in all required fields: Tank Type and Temperature.</p>
-                            <button id="close-message" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg transition-all duration-300 transform hover:scale-105">OK</button>
-                        </div>
-                    </div>
-                `;
-                document.body.appendChild(messageBox);
-                document.getElementById('close-message').addEventListener('click', () => {
-                    document.body.removeChild(messageBox);
-                });
-            }
-        });
-
-        submitAutomationButton.addEventListener('click', async () => {
-            const automationDescription = automationInput.value.trim();
-
-            if (automationDescription) {
-                const userMessage = `Generate an automation script for me: "${automationDescription}"`;
-                displayMessage(userMessage, 'user');
-                toggleUIState('chat'); // Reset to chat state
-
-                await generateAutomationScript(automationDescription);
-            } else {
-                const messageBox = document.createElement('div');
-                messageBox.innerHTML = `
-                    <div class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center">
-                        <div class="bg-white p-6 rounded-lg shadow-xl text-center">
-                            <h3 class="text-lg font-bold mb-4">Missing Information</h3>
-                            <p>Please describe the automation you want to create.</p>
-                            <button id="close-message" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg transition-all duration-300 transform hover:scale-105">OK</button>
-                        </div>
-                    </div>
-                `;
-                document.body.appendChild(messageBox);
-                document.getElementById('close-message').addEventListener('click', () => {
-                    document.body.removeChild(messageBox);
-                });
-            }
-        });
-
-        // Handles the regular chat messages
-        async function getBotResponse() {
-            // Placeholder for loading indicator
-            const loadingIndicator = document.createElement('div');
-            loadingIndicator.className = 'flex justify-start';
-            loadingIndicator.innerHTML = `
-                <div class="max-w-xs lg:max-w-md px-4 py-2 rounded-xl rounded-bl-none shadow-md bg-gray-200 text-gray-800">
-                    <div class="flex space-x-2">
-                        <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>
-                        <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style="animation-delay: 0.2s;"></div>
-                        <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style="animation-delay: 0.4s;"></div>
-                    </div>
-                </div>
-            `;
-            chatHistoryElement.appendChild(loadingIndicator);
-            chatHistoryElement.scrollTop = chatHistoryElement.scrollHeight;
-
-            try {
-                // Prepend the persona prompt to the first user message
-                const contents = conversationHistory.map(entry => {
-                    const text = entry.role === 'user' && conversationHistory.indexOf(entry) === 0
-                        ? personaPrompt + "\n\n" + entry.parts[0].text
-                        : entry.parts[0].text;
-                    return { role: entry.role, parts: [{ text: text }] };
-                });
-
-                const payload = {
-                    contents: contents
-                };
-                
-                let response;
-                let text = "I'm sorry, I seem to be having trouble processing that request right now. Please try again later.";
-                const maxRetries = 5;
-                for (let i = 0; i < maxRetries; i++) {
-                    try {
-                        response = await fetch(API_URL, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload)
-                        });
-                        if (response.ok) {
-                            const result = await response.json();
-                            if (result.candidates && result.candidates.length > 0 &&
-                                result.candidates[0].content && result.candidates[0].content.parts &&
-                                result.candidates[0].content.parts.length > 0) {
-                                text = result.candidates[0].content.parts[0].text;
-                            }
-                            break;
-                        } else if (response.status === 429 && i < maxRetries - 1) {
-                            const delay = Math.pow(2, i) * 1000 + Math.random() * 1000;
-                            await new Promise(resolve => setTimeout(resolve, delay));
-                            continue;
-                        } else {
-                            throw new Error(`API call failed with status: ${response.status}`);
-                        }
-                    } catch (e) {
-                        console.error("API call failed:", e);
-                        if (i === maxRetries - 1) {
-                            throw e;
-                        }
-                    }
-                }
-                
-                conversationHistory.push({ role: "model", parts: [{ text: text }] });
-                displayMessage(text, 'bot');
-
-            } catch (error) {
-                console.error("Error fetching bot response:", error);
-                displayMessage("Sorry, I'm having trouble connecting right now. Please try again later.", 'bot');
-            } finally {
-                // Ensure the loading indicator is always removed
-                if (loadingIndicator.parentNode) {
-                    loadingIndicator.parentNode.removeChild(loadingIndicator);
-                }
-            }
-        }
-
-        // Handle sending messages
-        async function handleChatSubmission() {
-            const message = userInput.value.trim();
-            if (message) {
-                displayMessage(message, 'user');
-                conversationHistory.push({ role: "user", parts: [{ text: message }] });
-                userInput.value = '';
-                await getBotResponse();
-            }
-        }
-        
-        // Event listeners for sending messages with a click or pressing Enter
-        sendButton.addEventListener('click', handleChatSubmission);
-        userInput.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter') {
-                handleChatSubmission();
-            }
-        });
-        
-        // New refactored function to manage UI state
-        function toggleUIState(state) {
-            const forms = [analysisForm, automationForm];
             const suggestedButtonsContainer = suggestedQuestionsContainer;
             const mainInput = userInputContainer;
             const toggleButton = suggestedQuestionsToggle;
             
-            // Hide all forms and the main input
+            // Hide everything first
             forms.forEach(form => form.classList.add('hidden'));
             mainInput.classList.add('hidden');
             suggestedButtonsContainer.classList.add('hidden');
             toggleButton.classList.remove('hidden');
             toggleIcon.classList.remove('rotate-180');
 
-
             if (state === 'chat') {
                 mainInput.classList.remove('hidden');
-                suggestedButtonsContainer.classList.remove('hidden');
+                suggestedButtonsContainer.style.display = 'block'; // Show the drawer content
             } else if (state === 'analysis') {
                 analysisForm.classList.remove('hidden');
                 toggleButton.classList.add('hidden');
@@ -936,7 +712,7 @@
                         <div class="bg-white p-6 rounded-lg shadow-xl text-center">
                             <h3 class="text-lg font-bold mb-4">Missing Information</h3>
                             <p>Please fill in all required fields: Tank Type and Temperature.</p>
-                            <button id="close-message" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg transition-all duration-300 transform hover:scale-105">OK</button>
+                            <button id="close-message" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg">OK</button>
                         </div>
                     </div>
                 `;
@@ -957,13 +733,13 @@
 
                 await generateAutomationScript(automationDescription);
             } else {
-                const messageBox = document.createElement('div');
+                 const messageBox = document.createElement('div');
                 messageBox.innerHTML = `
                     <div class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center">
                         <div class="bg-white p-6 rounded-lg shadow-xl text-center">
                             <h3 class="text-lg font-bold mb-4">Missing Information</h3>
                             <p>Please describe the automation you want to create.</p>
-                            <button id="close-message" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg transition-all duration-300 transform hover:scale-105">OK</button>
+                            <button id="close-message" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg">OK</button>
                         </div>
                     </div>
                 `;
@@ -974,247 +750,6 @@
             }
         });
 
-        // Handles the regular chat messages
-        async function getBotResponse() {
-            // Placeholder for loading indicator
-            const loadingIndicator = document.createElement('div');
-            loadingIndicator.className = 'flex justify-start';
-            loadingIndicator.innerHTML = `
-                <div class="max-w-xs lg:max-w-md px-4 py-2 rounded-xl rounded-bl-none shadow-md bg-gray-200 text-gray-800">
-                    <div class="flex space-x-2">
-                        <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>
-                        <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style="animation-delay: 0.2s;"></div>
-                        <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style="animation-delay: 0.4s;"></div>
-                    </div>
-                </div>
-            `;
-            chatHistoryElement.appendChild(loadingIndicator);
-            chatHistoryElement.scrollTop = chatHistoryElement.scrollHeight;
-
-            try {
-                // Prepend the persona prompt to the first user message
-                const contents = conversationHistory.map(entry => {
-                    const text = entry.role === 'user' && conversationHistory.indexOf(entry) === 0
-                        ? personaPrompt + "\n\n" + entry.parts[0].text
-                        : entry.parts[0].text;
-                    return { role: entry.role, parts: [{ text: text }] };
-                });
-
-                const payload = {
-                    contents: contents
-                };
-                
-                let response;
-                let text = "I'm sorry, I seem to be having trouble processing that request right now. Please try again later.";
-                const maxRetries = 5;
-                for (let i = 0; i < maxRetries; i++) {
-                    try {
-                        response = await fetch(API_URL, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload)
-                        });
-                        if (response.ok) {
-                            const result = await response.json();
-                            if (result.candidates && result.candidates.length > 0 &&
-                                result.candidates[0].content && result.candidates[0].content.parts &&
-                                result.candidates[0].content.parts.length > 0) {
-                                text = result.candidates[0].content.parts[0].text;
-                            }
-                            break;
-                        } else if (response.status === 429 && i < maxRetries - 1) {
-                            const delay = Math.pow(2, i) * 1000 + Math.random() * 1000;
-                            await new Promise(resolve => setTimeout(resolve, delay));
-                            continue;
-                        } else {
-                            throw new Error(`API call failed with status: ${response.status}`);
-                        }
-                    } catch (e) {
-                        console.error("API call failed:", e);
-                        if (i === maxRetries - 1) {
-                            throw e;
-                        }
-                    }
-                }
-                
-                conversationHistory.push({ role: "model", parts: [{ text: text }] });
-                displayMessage(text, 'bot');
-
-            } catch (error) {
-                console.error("Error fetching bot response:", error);
-                displayMessage("Sorry, I'm having trouble connecting right now. Please try again later.", 'bot');
-            } finally {
-                // Ensure the loading indicator is always removed
-                if (loadingIndicator.parentNode) {
-                    loadingIndicator.parentNode.removeChild(loadingIndicator);
-                }
-            }
-        }
-
-        // Handle sending messages
-        async function handleChatSubmission() {
-            const message = userInput.value.trim();
-            if (message) {
-                displayMessage(message, 'user');
-                conversationHistory.push({ role: "user", parts: [{ text: message }] });
-                userInput.value = '';
-                await getBotResponse();
-            }
-        }
-        
-        // Event listeners for sending messages with a click or pressing Enter
-        sendButton.addEventListener('click', handleChatSubmission);
-        userInput.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter') {
-                handleChatSubmission();
-            }
-        });
-        
-        // New refactored function to manage UI state
-        function toggleUIState(state) {
-            const forms = [analysisForm, automationForm];
-            const suggestedButtonsContainer = suggestedQuestionsContainer;
-            const mainInput = userInputContainer;
-            const toggleButton = suggestedQuestionsToggle;
-            
-            // Hide all forms and the main input
-            forms.forEach(form => form.classList.add('hidden'));
-            mainInput.classList.add('hidden');
-            suggestedButtonsContainer.classList.add('hidden');
-            toggleButton.classList.remove('hidden');
-            toggleIcon.classList.remove('rotate-180');
-
-
-            if (state === 'chat') {
-                mainInput.classList.remove('hidden');
-                suggestedQuestionsContainer.classList.remove('hidden');
-            } else if (state === 'analysis') {
-                analysisForm.classList.remove('hidden');
-                toggleButton.classList.add('hidden');
-            } else if (state === 'automation') {
-                automationForm.classList.remove('hidden');
-                toggleButton.classList.add('hidden');
-            }
-        }
-
-        // Event listener for the water analysis button
-        analyzeButtonDrawer.addEventListener('click', () => {
-            if (analysisForm.classList.contains('hidden')) {
-                toggleUIState('analysis');
-            } else {
-                toggleUIState('chat');
-            }
-        });
-
-        // Event listener for the automation script generator button
-        generateAutomationButtonDrawer.addEventListener('click', () => {
-            if (automationForm.classList.contains('hidden')) {
-                toggleUIState('automation');
-            } else {
-                toggleUIState('chat');
-            }
-        });
-
-        // Event listener for closing the analysis form
-        closeAnalysisFormButton.addEventListener('click', () => {
-            toggleUIState('chat');
-        });
-
-        // Event listener for closing the automation form
-        closeAutomationFormButton.addEventListener('click', () => {
-            toggleUIState('chat');
-        });
-
-        // Event listener for the temperature unit toggle switch
-        unitToggle.addEventListener('change', () => {
-            if (unitToggle.checked) {
-                tempUnit = 'F';
-                tempInput.placeholder = 'Temperature in °F';
-            } else {
-                tempUnit = 'C';
-                tempInput.placeholder = 'Temperature in °C';
-            }
-            tempUnitLabel.textContent = unitToggle.checked ? 'Fahrenheit (°F)' : 'Celsius (°C)';
-        });
-
-        // New event listener for the salinity unit toggle switch
-        salinityUnitToggle.addEventListener('change', () => {
-            if (salinityUnitToggle.checked) {
-                salinityUnit = 'SG';
-                salinityInput.placeholder = 'Salinity (SG) or leave blank for freshwater';
-                salinityUnitLabel.textContent = 'SG';
-            } else {
-                salinityUnit = 'ppt';
-                salinityInput.placeholder = 'Salinity (ppt) or leave blank for freshwater';
-                salinityUnitLabel.textContent = 'ppt';
-            }
-        });
-
-        submitAnalysisButton.addEventListener('click', async () => {
-            const tankType = tankTypeInput.value;
-            const ph = phInput.value;
-            const temp = tempInput.value;
-            const salinity = salinityInput.value;
-            const additionalInfo = additionalInfoInput.value;
-
-            if (tankType && temp) {
-                const salinityUnitText = salinityUnit === 'ppt' ? 'ppt' : 'SG';
-                
-                // Construct the user message with conditional pH value
-                const phMessage = ph.trim() !== '' ? `, pH: ${ph}` : '';
-                const userMessage = `Please analyze my water parameters for my ${tankType} tank. Temp: ${temp}°${tempUnit}${phMessage}${salinity ? `, Salinity: ${salinity} ${salinityUnitText}` : ''}${additionalInfo ? `, Additional Info: ${additionalInfo}` : ''}.`;
-
-                displayMessage(userMessage, 'user');
-                toggleUIState('chat'); // Reset to chat state
-                
-                // Pass the new info to the analysis function
-                await analyzeWaterParameters(tankType, ph, temp, salinity, additionalInfo);
-            } else {
-                // This is a modal-like alert that's better than window.alert
-                const messageBox = document.createElement('div');
-                messageBox.innerHTML = `
-                    <div class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center">
-                        <div class="bg-white p-6 rounded-lg shadow-xl text-center">
-                            <h3 class="text-lg font-bold mb-4">Missing Information</h3>
-                            <p>Please fill in all required fields: Tank Type and Temperature.</p>
-                            <button id="close-message" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg transition-all duration-300 transform hover:scale-105">OK</button>
-                        </div>
-                    </div>
-                `;
-                document.body.appendChild(messageBox);
-                document.getElementById('close-message').addEventListener('click', () => {
-                    document.body.removeChild(messageBox);
-                });
-            }
-        });
-
-        submitAutomationButton.addEventListener('click', async () => {
-            const automationDescription = automationInput.value.trim();
-
-            if (automationDescription) {
-                const userMessage = `Generate an automation script for me: "${automationDescription}"`;
-                displayMessage(userMessage, 'user');
-                toggleUIState('chat'); // Reset to chat state
-
-                await generateAutomationScript(automationDescription);
-            } else {
-                const messageBox = document.createElement('div');
-                messageBox.innerHTML = `
-                    <div class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center">
-                        <div class="bg-white p-6 rounded-lg shadow-xl text-center">
-                            <h3 class="text-lg font-bold mb-4">Missing Information</h3>
-                            <p>Please describe the automation you want to create.</p>
-                            <button id="close-message" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg transition-all duration-300 transform hover:scale-105">OK</button>
-                        </div>
-                    </div>
-                `;
-                document.body.appendChild(messageBox);
-                document.getElementById('close-message').addEventListener('click', () => {
-                    document.body.removeChild(messageBox);
-                });
-            }
-        });
-        
         // Event listeners for the lightbox
         openChatButton.addEventListener('click', () => {
             chatLightbox.classList.remove('hidden');
