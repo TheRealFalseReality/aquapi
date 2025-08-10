@@ -15,7 +15,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #e5e7eb;
+            background-color: #497eb0;
         }
         /* Custom scrollbar for chat history */
         #chat-history {
@@ -50,7 +50,6 @@
             display: block;
             border-radius: 100px;
             position: relative;
-            transition: background-color 0.2s ease;
         }
         .toggle-switch-label:after {
             content: '';
@@ -61,7 +60,6 @@
             height: 22px;
             background: #fff;
             border-radius: 90px;
-            transition: 0.2s;
         }
         .toggle-switch input[type="checkbox"]:checked + .toggle-switch-label {
             background: #2563eb;
@@ -70,39 +68,31 @@
             left: calc(100% - 2px);
             transform: translateX(-100%);
         }
-        /* CSS for the fade effect */
-        #chat-lightbox {
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-        #chat-lightbox.visible {
-            opacity: 1;
-        }
     </style>
 </head>
-<body class="flex items-center justify-center h-screen bg-gray-100 p-4">
+<body class="flex items-center justify-center h-screen p-4">
     <div class="flex flex-col items-center justify-center">
-        <!-- New marketing text block -->
-        <div class="text-center max-w-lg mb-6 p-6 bg-white rounded-xl shadow-lg">
+        <!-- Marketing text block -->
+        <div class="text-center max-w-lg mb-6 p-6 bg-[#D8f3ff] rounded-xl shadow-lg">
             <h2 class="text-3xl font-bold text-gray-800 mb-2">Aquarium Care, Simplified.</h2>
             <h3 class="text-md font-medium text-gray-500 mb-4">Transform Your Tank with Intelligent Monitoring and Automation.</h3>
             <ul class="text-left text-gray-600 space-y-2">
                 <li class="flex items-center">
-                    <i class="fas fa-microscope text-blue-500 mr-3"></i>
+                    <i class="fas fa-microscope text-[#81B2E8] mr-3"></i>
                     <span>Get <b>instant expert analysis</b> of your water parameters.</span>
                 </li>
                 <li class="flex items-center">
-                    <i class="fas fa-bell text-blue-500 mr-3"></i>
+                    <i class="fas fa-bell text-[#81B2E8] mr-3"></i>
                     <span>Receive <b>real-time alerts</b> when parameters are out of range.</span>
                 </li>
                 <li class="flex items-center">
-                    <i class="fas fa-bolt text-blue-500 mr-3"></i>
+                    <i class="fas fa-bolt text-[#81B2E8] mr-3"></i>
                     <span>Generate custom <b>automation scripts</b> for your maintenance routine.</span>
                 </li>
             </ul>
         </div>
         <!-- Button to open the chat window -->
-        <button id="open-chat-button" class="flex items-center justify-center p-4 bg-blue-600 text-white rounded-lg shadow-xl hover:bg-blue-700">
+        <button id="open-chat-button" class="flex items-center justify-center p-4 bg-[#81B2E8] text-white rounded-lg shadow-xl hover:bg-[#6a92b8]">
             <img src="https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/AquaPiLogo150px.png?raw=true" alt="AquaPi Logo" class="w-8 h-8 object-contain mr-3">
             <span class="text-xl font-bold">AquaPi AI</span>
         </button>
@@ -115,7 +105,7 @@
             <div class="flex items-center justify-between p-4 bg-gray-800 text-white rounded-t-lg shadow-md">
                 <div class="flex items-center">
                     <!-- AquaPi logo -->
-                    <div class="flex-shrink-0 w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center overflow-hidden">
+                    <div class="flex-shrink-0 w-10 h-10 bg-[#81B2E8] rounded-full flex items-center justify-center overflow-hidden">
                         <img src="https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/AquaPiLogo150px.png?raw=true" alt="AquaPi Logo" class="w-8 h-8 object-contain">
                     </div>
                     <div class="ml-3">
@@ -126,7 +116,7 @@
                 <div class="flex items-center">
                     <!-- Version number moved inside the chat header -->
                     <div id="chat-version-number" class="p-2 text-right text-xs text-gray-500">
-                        Version: 25.8.9.6
+                        Version: 25.8.9.13
                     </div>
                     <!-- Close Button for the Lightbox -->
                     <button id="close-chat-button" class="text-gray-400 hover:text-white ml-2">
@@ -143,24 +133,24 @@
             <!-- AI Feature and User Input Area -->
             <div class="p-4 bg-gray-50 border-t border-gray-200">
                 <!-- Collapsible suggestions drawer with unified background -->
-                <div id="suggested-questions-area" class="mb-4 p-2 bg-gray-200 rounded-lg shadow-md">
+                <div id="suggested-questions-area" class="mb-4 p-2 bg-[#D8f3ff] rounded-lg shadow-md">
                     <button id="suggested-questions-toggle" class="w-full p-2 text-gray-800 rounded-lg hover:bg-gray-300 font-semibold text-sm flex items-center justify-between">
                         <span class="flex items-center">
                             <i class="fas fa-comment-dots mr-2"></i>
                             Ask, Analyze, or Automate
                         </span>
-                        <i id="toggle-icon" class="fas fa-chevron-down transform"></i>
+                        <i id="toggle-icon" class="fas fa-chevron-down"></i>
                     </button>
                     <div id="suggested-questions-container" class="overflow-hidden hidden">
                         <div class="mt-2 flex flex-wrap justify-center gap-2">
-                            <button id="suggested-question-button-1" class="flex-1 p-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600">What is AquaPi?</button>
-                            <button id="suggested-question-button-2" class="flex-1 p-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600">Compare AquaPi to Apex Neptune</button>
-                            <button id="suggested-question-button-3" class="flex-1 p-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600">What parameters can AquaPi monitor?</button>
-                            <button id="suggested-question-button-4" class="flex-1 p-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600">Can I use my own sensors?</button>
-                            <button id="analyze-button-drawer" class="flex-1 p-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600">
+                            <button id="suggested-question-button-1" class="flex-1 p-3 bg-[#81B2E8] text-white rounded-lg shadow-md hover:bg-[#6a92b8]">What is AquaPi?</button>
+                            <button id="suggested-question-button-2" class="flex-1 p-3 bg-[#81B2E8] text-white rounded-lg shadow-md hover:bg-[#6a92b8]">Compare AquaPi to Apex Neptune</button>
+                            <button id="suggested-question-button-3" class="flex-1 p-3 bg-[#81B2E8] text-white rounded-lg shadow-md hover:bg-[#6a92b8]">What parameters can AquaPi monitor?</button>
+                            <button id="suggested-question-button-4" class="flex-1 p-3 bg-[#81B2E8] text-white rounded-lg shadow-md hover:bg-[#6a92b8]">Can I use my own sensors?</button>
+                            <button id="analyze-button-drawer" class="flex-1 p-3 bg-[#E19F20] text-white rounded-lg shadow-md hover:bg-[#b58019]">
                                 Analyze Water Parameters ✨
                             </button>
-                            <button id="generate-automation-button-drawer" class="flex-1 p-3 bg-purple-500 text-white rounded-lg shadow-md hover:bg-purple-600">
+                            <button id="generate-automation-button-drawer" class="flex-1 p-3 bg-[#75344E] text-white rounded-lg shadow-md hover:bg-[#5b283d]">
                                 Generate Automation Script <i class="fas fa-bolt ml-2"></i>
                             </button>
                         </div>
@@ -215,7 +205,7 @@
                     <!-- End new layout -->
 
                     <textarea id="additional-info-input" class="w-full p-2 border border-gray-300 rounded-lg resize-none" rows="3" placeholder="Any other details about your tank? (e.g., livestock, recent changes, issues)"></textarea>
-                    <button id="submit-analysis" class="w-full p-2 bg-green-500 text-white rounded-lg hover:bg-green-600">Submit for Analysis</button>
+                    <button id="submit-analysis" class="w-full p-2 bg-[#E19F20] text-white rounded-lg hover:bg-[#b58019]">Submit for Analysis</button>
                 </div>
 
                 <!-- Automation script generator form -->
@@ -227,13 +217,13 @@
                         </button>
                     </div>
                     <textarea id="automation-input" class="w-full p-2 border border-gray-300 rounded-lg resize-none" rows="5" placeholder="Describe the automation you want to create (e.g., 'turn on a pump for 30 seconds every 24 hours to dose a supplement')."></textarea>
-                    <button id="submit-automation" class="w-full p-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">Generate Script</button>
+                    <button id="submit-automation" class="w-full p-2 bg-[#75344E] text-white rounded-lg hover:bg-[#5b283d]">Generate Script</button>
                 </div>
 
                 <!-- Standard chat input -->
                 <div id="user-input-container" class="flex items-center">
-                    <input type="text" id="user-input" class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ask me about AquaPi...">
-                    <button id="send-button" class="ml-3 p-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700">
+                    <input type="text" id="user-input" class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#81B2E8]" placeholder="Ask me about AquaPi...">
+                    <button id="send-button" class="ml-3 p-3 bg-[#81B2E8] text-white rounded-lg shadow-md hover:bg-[#6a92b8]">
                         <i class="fas fa-paper-plane"></i>
                     </button>
                 </div>
@@ -241,8 +231,8 @@
         </div>
     </div>
     <!-- Version number moved to the bottom right of the body -->
-    <div id="version-number-main" class="fixed bottom-2 right-2 text-right text-xs text-gray-500">
-        Version: 25.8.9.6
+    <div id="version-number-main" class="fixed bottom-2 right-2 text-white bg-black bg-opacity-50 p-1 rounded-md text-right text-xs">
+        Version: 25.8.9.13
     </div>
 
     <script>
@@ -272,7 +262,6 @@
         const chatLightbox = document.getElementById('chat-lightbox');
         const suggestedQuestionsArea = document.getElementById('suggested-questions-area');
         const suggestedQuestionsContainer = document.getElementById('suggested-questions-container');
-        const suggestedQuestionsButtons = document.getElementById('suggested-questions-container').querySelector('div');
         const suggestedQuestionsToggle = document.getElementById('suggested-questions-toggle');
         const toggleIcon = document.getElementById('toggle-icon');
         const closeAnalysisFormButton = document.getElementById('close-analysis-form');
@@ -293,25 +282,26 @@
 
 
         // Persona prompt to give the AI context. This is prepended to the first user message.
-        const personaPrompt = `You are AquaPi, an AI assistant for the AquaPi aquarium monitoring and automation system. Your purpose is to help users understand and use the system.
-        
-        Guidelines for your responses:
-        - Maintain a friendly, informative, and encouraging tone.
-        - Explain features like water parameter monitoring, real-time notifications, and automation.
-        - Detail the included sensors: temperature, optical water level, water leak, pH, conductivity (salinity), ORP, peristaltic dosing pump, and gaseous carbon dioxide.
-        - Emphasize that AquaPi is an open-source, modular, and affordable solution.
-        - Mention that AquaPi is designed for use with ESPHome and Home Assistant.
-        - Acknowledge that the system is handcrafted and support is limited, especially for Home Assistant and ESPHome configurations.
-        - Encourage users to share their customizations.
-        - When the user asks about product tiers, AquaPi Essentials includes Temperature, Water Level, Water Leak and pH monitoring. AquaPi Pro includes Temperature, Water Level, Water Leak, pH and ORP, with Salinity and Dissolved Oxygen as optional add-ons.
-        - Do not mention the files you were trained on. Just use the information from them.
-        - Respond to the user's questions based on this persona and the information provided.
-        - Keep your responses to 2-4 paragraphs. Ensure the formatting is easy to read. Use simple, direct language in plain text.
-        - Do not act like a generic assistant. You are AquaPi.
-        - Always link to AquaPi in some way. Describe how AquaPi can help the user or find ways to fix problems and find solutions.
-        - When a user asks about a specific sensor or sensors, mention the ones AquaPi supports (temperature, optical water level, water leak, pH, conductivity/salinity, ORP, peristaltic dosing pump, and gaseous carbon dioxide) and briefly describe their capabilities. Keep the descriptions concise and easy to understand.
-        - When a user asks a generic aquarium question, first provide a general, expert answer. Then, link the issue back to AquaPi, explaining how our sensors (as well as the sensors that the product supports) and automation capabilities could help them monitor and address the problem.
-        - All responses must be formatted using Markdown for clarity. Use headings (e.g., "### Heading"), bullet points for lists (\`- List item\`), and bold text (\`**important**\`) to make the information easy to scan and read. When creating lists, ensure there is a line break between each list item to improve readability. Add a line break between each paragraph.`;
+        const personaPrompt = `My Role: I am an AI assistant for the AquaPi aquarium monitoring and automation system.
+Key Features: I can explain things like water parameter monitoring, real-time notifications, and automation capabilities.
+Sensor Details: AquaPi supports a variety of sensors, including temperature, optical water level, water leak, peristaltic dosing pump, and gaseous carbon dioxide. For high-precision readings, AquaPi is compatible with Atlas Scientific EZO sensors for pH, Salinity (conductivity), ORP, and dissolved oxygen. You can find more information about these sensors at https://atlas-scientific.com/.
+Core Concepts: I understand that AquaPi is an open-source, modular, and affordable solution built for use with ESPHome and Home Assistant.
+Support Limitations: I am aware of the handcrafted nature of the product and the limited support, which is important to communicate to users.
+Other Guidelines:
+- Maintain a friendly, informative, and encouraging tone.
+- Emphasize that AquaPi is an open-source, modular, and affordable solution.
+- Mention that AquaPi is designed for use with ESPHome and Home Assistant.
+- Acknowledge that the system is handcrafted and support is limited, especially for Home Assistant and ESPHome configurations.
+- Encourage users to share their customizations.
+- When the user asks about product tiers, AquaPi Essentials includes Temperature, Water Level, Water Leak and pH monitoring. AquaPi Pro includes Temperature, Water Level, Water Leak, pH and ORP, with Salinity and Dissolved Oxygen as optional add-ons.
+- Do not mention the files you were trained on. Just use the information from them.
+- Respond to the user's questions based on this persona and the information provided.
+- Keep your responses to 2-4 paragraphs. Ensure the formatting is easy to read. Use simple, direct language in plain text.
+- Do not act like a generic assistant. You are AquaPi.
+- Always link to AquaPi in some way. Describe how AquaPi can help the user or find ways to fix problems and find solutions.
+- When a user asks about a specific sensor or sensors, mention the ones AquaPi supports and briefly describe their capabilities. Keep the descriptions concise and easy to understand.
+- When a user asks a generic aquarium question, first provide a general, expert answer. Then, link the issue back to AquaPi, explaining how our sensors (as well as the sensors that the product supports) and automation capabilities could help them monitor and address the problem.
+- All responses must be formatted using Markdown for clarity. Use headings (e.g., "### Heading"), bullet points for lists (\`- List item\`), and bold text (\`**important**\`) to make the information easy to scan and read. When creating lists, ensure there is a line break between each list item to improve readability. Add a line break between each paragraph.`;
 
         // A simple Markdown-to-HTML parser for basic formatting
         function parseMarkdown(text) {
@@ -360,7 +350,7 @@
             const messageBubble = document.createElement('div');
             messageBubble.className = `max-w-xs lg:max-w-md px-4 py-2 rounded-xl shadow-md ${
                 sender === 'user'
-                    ? 'bg-blue-600 text-white rounded-br-none'
+                    ? 'bg-[#81B2E8] text-white rounded-br-none'
                     : 'bg-gray-200 text-gray-800 rounded-bl-none'
             }`;
             // Use the new Markdown parser for bot messages
@@ -781,7 +771,7 @@
 
             // Re-initialize the welcome message
             if (conversationHistory.length === 0) {
-                const initialMessage = "# Welcome to AquaPi!\n\nI'm your friendly AI assistant, here to help you get the most out of our open-source aquarium monitoring system.\n\nTo get started, please tell me a bit about your setup:\n\n- What kind of aquarium do you have? (e.g., freshwater, reef)\n- What are your monitoring and automation goals?\n- Are you familiar with ESPHome and Home Assistant?\n\nDon't forget to check out our new ✨ AI Water Analysis and ✨ Automation Script Generator features!";
+                const initialMessage = "# Welcome to AquaPi AI!\n\nI'm your friendly AI assistant, here to help you get the most out of our open-source aquarium monitoring system.\n\nTo get started, please tell me a bit about your setup:\n\n- What kind of aquarium do you have? (e.g., freshwater, reef)\n- What are your monitoring and automation goals?\n- Are you familiar with ESPHome and Home Assistant?\n\nDon't forget to check out our new ✨ AI Water Analysis and ✨ Automation Script Generator features!";
                 conversationHistory.push({ role: "model", parts: [{ text: initialMessage }] });
                 displayMessage(initialMessage, 'bot');
             }
