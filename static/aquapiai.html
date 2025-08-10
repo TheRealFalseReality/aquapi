@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaPi Assistant</title>
+    <title>AquaPi AI</title>
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome for icons -->
@@ -97,12 +97,12 @@
                 </li>
                 <li class="flex items-center">
                     <i class="fas fa-bolt text-blue-500 mr-3"></i>
-                  <span>Generate custom <b>automation scripts</b> for your maintenance routine.</span>
+                    <span>Generate custom <b>automation scripts</b> for your maintenance routine.</span>
                 </li>
             </ul>
         </div>
         <!-- Button to open the chat window -->
-        <button id="open-chat-button" class="flex items-center justify-center p-4 bg-blue-600 text-white rounded-lg shadow-xl hover:bg-blue-700 transition duration-200">
+        <button id="open-chat-button" class="flex items-center justify-center p-4 bg-blue-600 text-white rounded-lg shadow-xl hover:bg-blue-700">
             <img src="https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/AquaPiLogo150px.png?raw=true" alt="AquaPi Logo" class="w-8 h-8 object-contain mr-3">
             <span class="text-xl font-bold">AquaPi AI</span>
         </button>
@@ -119,17 +119,17 @@
                         <img src="https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/AquaPiLogo150px.png?raw=true" alt="AquaPi Logo" class="w-8 h-8 object-contain">
                     </div>
                     <div class="ml-3">
-                        <h1 class="text-xl font-bold">AquaPi Assistant</h1>
+                        <h1 class="text-xl font-bold">AquaPi AI</h1>
                         <p class="text-xs text-gray-300">Online</p>
                     </div>
                 </div>
                 <div class="flex items-center">
                     <!-- Version number moved inside the chat header -->
                     <div id="chat-version-number" class="p-2 text-right text-xs text-gray-500">
-                        Version: 25.8.9.2
+                        Version: 25.8.9.6
                     </div>
                     <!-- Close Button for the Lightbox -->
-                    <button id="close-chat-button" class="text-gray-400 hover:text-white transition duration-200 ml-2">
+                    <button id="close-chat-button" class="text-gray-400 hover:text-white ml-2">
                         <i class="fas fa-times fa-lg"></i>
                     </button>
                 </div>
@@ -143,24 +143,24 @@
             <!-- AI Feature and User Input Area -->
             <div class="p-4 bg-gray-50 border-t border-gray-200">
                 <!-- Collapsible suggestions drawer with unified background -->
-                <div class="mb-4 p-2 bg-gray-200 rounded-lg shadow-md">
-                    <button id="suggested-questions-toggle" class="w-full p-2 text-gray-800 rounded-lg hover:bg-gray-300 transition duration-200 font-semibold text-sm flex items-center justify-between">
+                <div id="suggested-questions-area" class="mb-4 p-2 bg-gray-200 rounded-lg shadow-md">
+                    <button id="suggested-questions-toggle" class="w-full p-2 text-gray-800 rounded-lg hover:bg-gray-300 font-semibold text-sm flex items-center justify-between">
                         <span class="flex items-center">
                             <i class="fas fa-comment-dots mr-2"></i>
                             Ask, Analyze, or Automate
                         </span>
-                        <i id="toggle-icon" class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                        <i id="toggle-icon" class="fas fa-chevron-down transform"></i>
                     </button>
-                    <div id="suggested-questions-container" class="overflow-hidden transition-all duration-300" style="display: none;">
+                    <div id="suggested-questions-container" class="overflow-hidden hidden">
                         <div class="mt-2 flex flex-wrap justify-center gap-2">
-                            <button id="suggested-question-button-1" class="flex-1 p-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition duration-200">What is AquaPi?</button>
-                            <button id="suggested-question-button-2" class="flex-1 p-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition duration-200">Compare AquaPi to Apex Neptune</button>
-                            <button id="suggested-question-button-3" class="flex-1 p-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition duration-200">What parameters can AquaPi monitor?</button>
-                            <button id="suggested-question-button-4" class="flex-1 p-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition duration-200">Can I use my own sensors?</button>
-                            <button id="analyze-button-drawer" class="flex-1 p-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 transition duration-200">
+                            <button id="suggested-question-button-1" class="flex-1 p-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600">What is AquaPi?</button>
+                            <button id="suggested-question-button-2" class="flex-1 p-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600">Compare AquaPi to Apex Neptune</button>
+                            <button id="suggested-question-button-3" class="flex-1 p-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600">What parameters can AquaPi monitor?</button>
+                            <button id="suggested-question-button-4" class="flex-1 p-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600">Can I use my own sensors?</button>
+                            <button id="analyze-button-drawer" class="flex-1 p-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600">
                                 Analyze Water Parameters ✨
                             </button>
-                            <button id="generate-automation-button-drawer" class="flex-1 p-3 bg-purple-500 text-white rounded-lg shadow-md hover:bg-purple-600 transition duration-200">
+                            <button id="generate-automation-button-drawer" class="flex-1 p-3 bg-purple-500 text-white rounded-lg shadow-md hover:bg-purple-600">
                                 Generate Automation Script <i class="fas fa-bolt ml-2"></i>
                             </button>
                         </div>
@@ -168,25 +168,40 @@
                 </div>
                 
                 <!-- Water analysis input form -->
-                <div id="analysis-form" class="hidden space-y-2 mb-4 p-4 bg-gray-100 rounded-lg">
+                <div id="analysis-form" class="hidden space-y-4 mb-4 p-4 bg-gray-100 rounded-lg">
                     <div class="flex justify-between items-center mb-2">
                         <h4 class="text-sm font-semibold text-gray-700">Water Parameters</h4>
-                        <button id="close-analysis-form" class="text-gray-500 hover:text-gray-700 transition-colors duration-200">
+                        <button id="close-analysis-form" class="text-gray-500 hover:text-gray-700">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
                     <input type="text" id="tank-type-input" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="e.g., Freshwater Community, Reef Tank">
-                    <div class="flex items-center space-x-2">
-                        <input type="text" id="temp-input" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Temperature in °F">
-                        <div class="toggle-switch-container m-0">
-                            <span class="label text-sm" id="temp-unit-label">Fahrenheit (°F)</span>
-                            <div class="toggle-switch">
-                                <input type="checkbox" id="unit-toggle" name="unit-toggle" checked>
-                                <label class="toggle-switch-label" for="unit-toggle"></label>
+                    
+                    <!-- New layout for parameter inputs -->
+                    <div class="flex flex-wrap -mx-2">
+                        <!-- Temperature Input Group -->
+                        <div class="w-full md:w-1/2 px-2 mb-4 md:mb-0">
+                            <div class="flex items-center space-x-2">
+                                <input type="text" id="temp-input" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Temperature in °F">
+                                <div class="toggle-switch-container m-0">
+                                    <span class="label text-sm" id="temp-unit-label">Fahrenheit (°F)</span>
+                                    <div class="toggle-switch">
+                                        <input type="checkbox" id="unit-toggle" name="unit-toggle" checked>
+                                        <label class="toggle-switch-label" for="unit-toggle"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- pH Input Group -->
+                        <div class="w-full md:w-1/2 px-2">
+                            <div class="flex items-center space-x-2">
+                                <input type="text" id="ph-input" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="pH value (optional)">
                             </div>
                         </div>
                     </div>
-                    <input type="text" id="ph-input" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="pH value (optional)">
+
+                    <!-- Salinity Input Group -->
                     <div class="flex items-center space-x-2">
                         <input type="text" id="salinity-input" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Salinity (ppt) or leave blank for freshwater">
                         <div class="toggle-switch-container m-0">
@@ -197,26 +212,28 @@
                             </div>
                         </div>
                     </div>
+                    <!-- End new layout -->
+
                     <textarea id="additional-info-input" class="w-full p-2 border border-gray-300 rounded-lg resize-none" rows="3" placeholder="Any other details about your tank? (e.g., livestock, recent changes, issues)"></textarea>
-                    <button id="submit-analysis" class="w-full p-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-200">Submit for Analysis</button>
+                    <button id="submit-analysis" class="w-full p-2 bg-green-500 text-white rounded-lg hover:bg-green-600">Submit for Analysis</button>
                 </div>
 
                 <!-- Automation script generator form -->
                 <div id="automation-form" class="hidden space-y-2 mb-4 p-4 bg-gray-100 rounded-lg">
                     <div class="flex justify-between items-center mb-2">
                         <h4 class="text-sm font-semibold text-gray-700">Automation Script Generator</h4>
-                        <button id="close-automation-form" class="text-gray-500 hover:text-gray-700 transition-colors duration-200">
+                        <button id="close-automation-form" class="text-gray-500 hover:text-gray-700">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
                     <textarea id="automation-input" class="w-full p-2 border border-gray-300 rounded-lg resize-none" rows="5" placeholder="Describe the automation you want to create (e.g., 'turn on a pump for 30 seconds every 24 hours to dose a supplement')."></textarea>
-                    <button id="submit-automation" class="w-full p-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition duration-200">Generate Script</button>
+                    <button id="submit-automation" class="w-full p-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">Generate Script</button>
                 </div>
 
                 <!-- Standard chat input -->
                 <div id="user-input-container" class="flex items-center">
-                    <input type="text" id="user-input" class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200" placeholder="Ask me about AquaPi...">
-                    <button id="send-button" class="ml-3 p-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-200">
+                    <input type="text" id="user-input" class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ask me about AquaPi...">
+                    <button id="send-button" class="ml-3 p-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700">
                         <i class="fas fa-paper-plane"></i>
                     </button>
                 </div>
@@ -225,7 +242,7 @@
     </div>
     <!-- Version number moved to the bottom right of the body -->
     <div id="version-number-main" class="fixed bottom-2 right-2 text-right text-xs text-gray-500">
-        Version: 25.8.9.2
+        Version: 25.8.9.6
     </div>
 
     <script>
@@ -253,6 +270,7 @@
         const openChatButton = document.getElementById('open-chat-button');
         const closeChatButton = document.getElementById('close-chat-button');
         const chatLightbox = document.getElementById('chat-lightbox');
+        const suggestedQuestionsArea = document.getElementById('suggested-questions-area');
         const suggestedQuestionsContainer = document.getElementById('suggested-questions-container');
         const suggestedQuestionsButtons = document.getElementById('suggested-questions-container').querySelector('div');
         const suggestedQuestionsToggle = document.getElementById('suggested-questions-toggle');
@@ -363,9 +381,9 @@
             loadingIndicator.innerHTML = `
                 <div class="max-w-xs lg:max-w-md px-4 py-2 rounded-xl rounded-bl-none shadow-md bg-gray-200 text-gray-800">
                     <div class="flex space-x-2">
-                        <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>
-                        <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style="animation-delay: 0.2s;"></div>
-                        <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style="animation-delay: 0.4s;"></div>
+                        <div class="w-2 h-2 bg-gray-500 rounded-full"></div>
+                        <div class="w-2 h-2 bg-gray-500 rounded-full"></div>
+                        <div class="w-2 h-2 bg-gray-500 rounded-full"></div>
                     </div>
                 </div>
             `;
@@ -443,9 +461,9 @@
             loadingIndicator.innerHTML = `
                 <div class="max-w-xs lg:max-w-md px-4 py-2 rounded-xl rounded-bl-none shadow-md bg-gray-200 text-gray-800">
                     <div class="flex space-x-2">
-                        <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>
-                        <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style="animation-delay: 0.2s;"></div>
-                        <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style="animation-delay: 0.4s;"></div>
+                        <div class="w-2 h-2 bg-gray-500 rounded-full"></div>
+                        <div class="w-2 h-2 bg-gray-500 rounded-full"></div>
+                        <div class="w-2 h-2 bg-gray-500 rounded-full"></div>
                     </div>
                 </div>
             `;
@@ -518,9 +536,9 @@
             loadingIndicator.innerHTML = `
                 <div class="max-w-xs lg:max-w-md px-4 py-2 rounded-xl rounded-bl-none shadow-md bg-gray-200 text-gray-800">
                     <div class="flex space-x-2">
-                        <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>
-                        <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style="animation-delay: 0.2s;"></div>
-                        <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style="animation-delay: 0.4s;"></div>
+                        <div class="w-2 h-2 bg-gray-500 rounded-full"></div>
+                        <div class="w-2 h-2 bg-gray-500 rounded-full"></div>
+                        <div class="w-2 h-2 bg-gray-500 rounded-full"></div>
                     </div>
                 </div>
             `;
@@ -608,28 +626,26 @@
         
         // New refactored function to manage UI state
         function toggleUIState(state) {
-            const forms = [analysisForm, automationForm];
-            const suggestedButtonsContainer = suggestedQuestionsContainer;
-            const mainInput = userInputContainer;
-            const toggleButton = suggestedQuestionsToggle;
-            
-            // Hide everything first
-            forms.forEach(form => form.classList.add('hidden'));
-            mainInput.classList.add('hidden');
-            suggestedButtonsContainer.classList.add('hidden');
-            toggleButton.classList.remove('hidden');
-            toggleIcon.classList.remove('rotate-180');
+            // Hide all special input forms and show the main chat input by default
+            analysisForm.classList.add('hidden');
+            automationForm.classList.add('hidden');
+            userInputContainer.classList.add('hidden');
+            suggestedQuestionsArea.classList.add('hidden');
 
             if (state === 'chat') {
-                mainInput.classList.remove('hidden');
-                suggestedButtonsContainer.style.display = 'block'; // Show the drawer content
+                userInputContainer.classList.remove('hidden');
+                suggestedQuestionsArea.classList.remove('hidden');
             } else if (state === 'analysis') {
                 analysisForm.classList.remove('hidden');
-                toggleButton.classList.add('hidden');
             } else if (state === 'automation') {
                 automationForm.classList.remove('hidden');
-                toggleButton.classList.add('hidden');
             }
+        }
+
+        // Helper function to collapse the suggested questions drawer
+        function collapseSuggestedQuestions() {
+            suggestedQuestionsContainer.classList.add('hidden');
+            toggleIcon.classList.remove('rotate-180');
         }
 
         // Event listener for the water analysis button
@@ -701,6 +717,7 @@
 
                 displayMessage(userMessage, 'user');
                 toggleUIState('chat'); // Reset to chat state
+                collapseSuggestedQuestions(); // Collapse the drawer
                 
                 // Pass the new info to the analysis function
                 await analyzeWaterParameters(tankType, ph, temp, salinity, additionalInfo);
@@ -730,6 +747,7 @@
                 const userMessage = `Generate an automation script for me: "${automationDescription}"`;
                 displayMessage(userMessage, 'user');
                 toggleUIState('chat'); // Reset to chat state
+                collapseSuggestedQuestions(); // Collapse the drawer
 
                 await generateAutomationScript(automationDescription);
             } else {
@@ -794,48 +812,48 @@
 
         // Add scroll functionality
         openChatButton.addEventListener('click', () => {
-          // scroll down 5% of the window's height
-          window.scrollBy(0, window.innerHeight * 0.05);
+            // scroll down 5% of the window's height
+            window.scrollBy(0, window.innerHeight * 0.05);
         });
         
         // Event listener for the suggested question buttons
         suggestedQuestionButton1.addEventListener('click', async () => {
             const question = suggestedQuestionButton1.textContent.trim();
             userInput.value = question;
+            collapseSuggestedQuestions(); // Collapse the drawer
             toggleUIState('chat');
-            suggestedQuestionsContainer.style.display = 'none'; // Re-hide after submission
             await handleChatSubmission();
         });
         suggestedQuestionButton2.addEventListener('click', async () => {
             const question = suggestedQuestionButton2.textContent.trim();
             userInput.value = question;
+            collapseSuggestedQuestions(); // Collapse the drawer
             toggleUIState('chat');
-            suggestedQuestionsContainer.style.display = 'none'; // Re-hide after submission
             await handleChatSubmission();
         });
         suggestedQuestionButton3.addEventListener('click', async () => {
             const question = suggestedQuestionButton3.textContent.trim();
             userInput.value = question;
+            collapseSuggestedQuestions(); // Collapse the drawer
             toggleUIState('chat');
-            suggestedQuestionsContainer.style.display = 'none'; // Re-hide after submission
             await handleChatSubmission();
         });
         suggestedQuestionButton4.addEventListener('click', async () => {
             const question = suggestedQuestionButton4.textContent.trim();
             userInput.value = question;
+            collapseSuggestedQuestions(); // Collapse the drawer
             toggleUIState('chat');
-            suggestedQuestionsContainer.style.display = 'none'; // Re-hide after submission
             await handleChatSubmission();
         });
         
         // New event listener for the suggestions toggle button
         suggestedQuestionsToggle.addEventListener('click', () => {
-            const isHidden = suggestedQuestionsContainer.style.display === 'none' || suggestedQuestionsContainer.style.display === '';
+            const isHidden = suggestedQuestionsContainer.classList.contains('hidden');
             if (isHidden) {
-                suggestedQuestionsContainer.style.display = 'block';
+                suggestedQuestionsContainer.classList.remove('hidden');
                 toggleIcon.classList.add('rotate-180');
             } else {
-                suggestedQuestionsContainer.style.display = 'none';
+                suggestedQuestionsContainer.classList.add('hidden');
                 toggleIcon.classList.remove('rotate-180');
             }
         });
