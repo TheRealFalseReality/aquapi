@@ -1,0 +1,49 @@
+# Name of your workflow
+name: Deploy Next.js to GitHub Pages
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on push events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build-and-deploy"
+  build-and-deploy:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # 1. Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # 2. Sets up Node.js in the runner
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Use a Node.js version compatible with your project
+          cache: 'npm'
+
+      # 3. Installs your project's dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # 4. Builds your Next.js application for static export
+      - name: Build Project
+        run: npm run build
+
+      # 5. Adds a .nojekyll file to the output directory to prevent issues with Jekyll on GitHub Pages
+      - name: Add .nojekyll file
+        run: touch ./out/.nojekyll
+
+      # 6. Deploys the built site to the gh-pages branch
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
