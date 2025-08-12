@@ -1,12 +1,11 @@
 {
   "freshwater": [
     {
-      "name": "Angelfish",
-      "latinName": "Cichlidae, Pterophyllum",
       "compatible": [
         "Angelfish",
         "Cory Cats",
         "Danios / Minnows",
+        "Freshwater Plants",
         "Gouramis",
         "Guppies",
         "Hatchets",
@@ -19,31 +18,30 @@
         "Rasboras",
         "Suckermouth Catfish",
         "Swordtails",
-        "Tetras",
-        "Freshwater Plants"
+        "Tetras"
+      ],
+      "imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/20110527_Sea_Life_Blankenberge_%286%29.jpg/1280px-20110527_Sea_Life_Blankenberge_%286%29.jpg",
+      "name": "Angelfish",
+      "latinName": "Cichlidae, Pterophyllum",
+      "notCompatible": [
+        "Brackish Fish",
+        "Fancy Goldfish",
+        "Malawian Cichlids",
+        "Misc. African Cichlids",
+        "Pond Fish",
+        "Tanganyikan Cichlids"
       ],
       "withCaution": [
-        "New World Cichlids",
         "Barbs",
         "Bettas",
         "Discus",
-        "Larger Catfish",
+        "Freshwater Invertebrates",
         "Freshwater Sharks",
-        "Freshwater Invertebrates"
-      ],
-      "notCompatible": [
-        "Malawian Cichlids",
-        "Tanganyikan Cichlids",
-        "Misc. African Cichlids",
-        "Fancy Goldfish",
-        "Brackish Fish",
-        "Pond Fish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+        "Larger Catfish",
+        "New World Cichlids"
+      ]
     },
     {
-      "name": "Barbs",
-      "latinName": "Cyprinidae, Barbus",
       "compatible": [
         "Barbs",
         "Cory Cats",
@@ -59,6 +57,14 @@
         "Tetras",
         "Freshwater Plants"
       ],
+      "notCompatible": [
+        "Bettas",
+        "Fancy Goldfish",
+        "Pond Fish"
+      ],
+      "name": "Barbs",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
+      "latinName": "Cyprinidae, Barbus",
       "withCaution": [
         "Malawian Cichlids",
         "Tanganyikan Cichlids",
@@ -74,17 +80,11 @@
         "Swordtails",
         "Freshwater Invertebrates",
         "Brackish Fish"
-      ],
-      "notCompatible": [
-        "Bettas",
-        "Fancy Goldfish",
-        "Pond Fish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+      ]
     },
     {
-      "name": "Bettas",
       "latinName": "Osphronemidae, Betta splendens",
+      "name": "Bettas",
       "compatible": [
         "Cory Cats",
         "Danios / Minnows",
@@ -100,17 +100,6 @@
         "Tetras",
         "Freshwater Plants"
       ],
-      "withCaution": [
-        "Angelfish",
-        "Bettas",
-        "Discus",
-        "Gouramis",
-        "Killifish",
-        "Larger Catfish",
-        "Rainbowfish",
-        "Freshwater Sharks",
-        "Freshwater Invertebrates"
-      ],
       "notCompatible": [
         "Malawian Cichlids",
         "Tanganyikan Cichlids",
@@ -121,34 +110,50 @@
         "Brackish Fish",
         "Pond Fish"
       ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
+      "withCaution": [
+        "Angelfish",
+        "Bettas",
+        "Discus",
+        "Gouramis",
+        "Killifish",
+        "Larger Catfish",
+        "Rainbowfish",
+        "Freshwater Sharks",
+        "Freshwater Invertebrates"
+      ]
     },
     {
-      "name": "Cory Cats",
+      "compatible": [
+        "Angelfish",
+        "Barbs",
+        "Bettas",
+        "Cory Cats",
+        "Danios / Minnows",
+        "Discus",
+        "Fancy Goldfish",
+        "Gouramis",
+        "Guppies",
+        "Hatchets",
+        "Killifish",
+        "Loaches",
+        "Mollies",
+        "Platies",
+        "Plecos",
+        "Rainbowfish",
+        "Rasboras",
+        "Suckermouth Catfish",
+        "Swordtails",
+        "Tetras",
+        "Freshwater Plants"
+      ],
+      "notCompatible": [
+        "Brackish Fish",
+        "Pond Fish"
+      ],
       "latinName": "Callichthyidae, Corydoras",
-      "compatible": [
-        "Angelfish",
-        "Barbs",
-        "Bettas",
-        "Cory Cats",
-        "Danios / Minnows",
-        "Discus",
-        "Fancy Goldfish",
-        "Gouramis",
-        "Guppies",
-        "Hatchets",
-        "Killifish",
-        "Loaches",
-        "Mollies",
-        "Platies",
-        "Plecos",
-        "Rainbowfish",
-        "Rasboras",
-        "Suckermouth Catfish",
-        "Swordtails",
-        "Tetras",
-        "Freshwater Plants"
-      ],
+      "name": "Cory Cats",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
       "withCaution": [
         "Malawian Cichlids",
         "Tanganyikan Cichlids",
@@ -157,14 +162,17 @@
         "Larger Catfish",
         "Freshwater Sharks",
         "Freshwater Invertebrates"
-      ],
-      "notCompatible": [
-        "Brackish Fish",
-        "Pond Fish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+      ]
     },
     {
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
+      "notCompatible": [
+        "Malawian Cichlids",
+        "Tanganyikan Cichlids",
+        "Misc. African Cichlids",
+        "Fancy Goldfish",
+        "Pond Fish"
+      ],
       "name": "Danios / Minnows",
       "latinName": "Cyprinidae, Danio",
       "compatible": [
@@ -194,19 +202,20 @@
         "Larger Catfish",
         "Freshwater Invertebrates",
         "Brackish Fish"
-      ],
+      ]
+    },
+    {
+      "latinName": "Cichlidae, Symphysodon",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
+      "name": "Discus",
       "notCompatible": [
         "Malawian Cichlids",
         "Tanganyikan Cichlids",
         "Misc. African Cichlids",
         "Fancy Goldfish",
+        "Brackish Fish",
         "Pond Fish"
       ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
-    },
-    {
-      "name": "Discus",
-      "latinName": "Cichlidae, Symphysodon",
       "compatible": [
         "Cory Cats",
         "Danios / Minnows",
@@ -234,32 +243,11 @@
         "Plecos",
         "Freshwater Sharks",
         "Freshwater Invertebrates"
-      ],
-      "notCompatible": [
-        "Malawian Cichlids",
-        "Tanganyikan Cichlids",
-        "Misc. African Cichlids",
-        "Fancy Goldfish",
-        "Brackish Fish",
-        "Pond Fish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+      ]
     },
     {
       "name": "Fancy Goldfish",
-      "latinName": "Cyprinidae, Carassius auratus",
-      "compatible": [
-        "Cory Cats",
-        "Fancy Goldfish",
-        "Plecos",
-        "Suckermouth Catfish",
-        "Pond Fish"
-      ],
-      "withCaution": [
-        "Loaches",
-        "Freshwater Invertebrates",
-        "Freshwater Plants"
-      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
       "notCompatible": [
         "Malawian Cichlids",
         "Tanganyikan Cichlids",
@@ -284,11 +272,61 @@
         "Tetras",
         "Brackish Fish"
       ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+      "compatible": [
+        "Cory Cats",
+        "Fancy Goldfish",
+        "Plecos",
+        "Suckermouth Catfish",
+        "Pond Fish"
+      ],
+      "latinName": "Cyprinidae, Carassius auratus",
+      "withCaution": [
+        "Loaches",
+        "Freshwater Invertebrates",
+        "Freshwater Plants"
+      ]
     },
     {
-      "name": "Freshwater Plants",
+      "compatible": [
+        "Freshwater Plants"
+      ],
+      "name": "Freshwater Invertebrates",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
+      "notCompatible": [],
       "latinName": "Various",
+      "withCaution": [
+        "Malawian Cichlids",
+        "Tanganyikan Cichlids",
+        "Misc. African Cichlids",
+        "New World Cichlids",
+        "Angelfish",
+        "Barbs",
+        "Bettas",
+        "Cory Cats",
+        "Danios / Minnows",
+        "Discus",
+        "Fancy Goldfish",
+        "Gouramis",
+        "Guppies",
+        "Hatchets",
+        "Killifish",
+        "Larger Catfish",
+        "Loaches",
+        "Mollies",
+        "Platies",
+        "Plecos",
+        "Rainbowfish",
+        "Rasboras",
+        "Freshwater Sharks",
+        "Suckermouth Catfish",
+        "Swordtails",
+        "Tetras",
+        "Freshwater Invertebrates",
+        "Brackish Fish",
+        "Pond Fish"
+      ]
+    },
+    {
       "compatible": [
         "Angelfish",
         "Barbs",
@@ -310,25 +348,28 @@
         "Tetras",
         "Freshwater Invertebrates",
         "Freshwater Plants"
-      ],
-      "withCaution": [
-        "Malawian Cichlids",
-        "Tanganyikan Cichlids",
-        "Misc. African Cichlids",
-        "New World Cichlids",
-        "Fancy Goldfish",
-        "Larger Catfish",
-        "Plecos",
-        "Suckermouth Catfish",
-        "Brackish Fish",
-        "Pond Fish"
       ],
       "notCompatible": [],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+      "latinName": "Various",
+      "name": "Freshwater Plants",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
+      "withCaution": [
+        "Malawian Cichlids",
+        "Tanganyikan Cichlids",
+        "Misc. African Cichlids",
+        "New World Cichlids",
+        "Fancy Goldfish",
+        "Larger Catfish",
+        "Plecos",
+        "Suckermouth Catfish",
+        "Brackish Fish",
+        "Pond Fish"
+      ]
     },
     {
-      "name": "Freshwater Sharks",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
       "latinName": "Cyprinidae, Epalzeorhynchos",
+      "name": "Freshwater Sharks",
       "compatible": [
         "Barbs",
         "Danios / Minnows",
@@ -338,6 +379,10 @@
         "Plecos",
         "Rainbowfish",
         "Freshwater Plants"
+      ],
+      "notCompatible": [
+        "Fancy Goldfish",
+        "Pond Fish"
       ],
       "withCaution": [
         "Malawian Cichlids",
@@ -360,16 +405,19 @@
         "Tetras",
         "Freshwater Invertebrates",
         "Brackish Fish"
-      ],
-      "notCompatible": [
-        "Fancy Goldfish",
-        "Pond Fish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+      ]
     },
     {
+      "notCompatible": [
+        "Malawian Cichlids",
+        "Tanganyikan Cichlids",
+        "Misc. African Cichlids",
+        "Fancy Goldfish",
+        "Brackish Fish",
+        "Pond Fish"
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
       "name": "Gouramis",
-      "latinName": "Osphronemidae, Trichogaster",
       "compatible": [
         "Angelfish",
         "Barbs",
@@ -390,6 +438,7 @@
         "Swordtails",
         "Freshwater Plants"
       ],
+      "latinName": "Osphronemidae, Trichogaster",
       "withCaution": [
         "New World Cichlids",
         "Bettas",
@@ -397,20 +446,21 @@
         "Larger Catfish",
         "Tetras",
         "Freshwater Invertebrates"
-      ],
-      "notCompatible": [
-        "Malawian Cichlids",
-        "Tanganyikan Cichlids",
-        "Misc. African Cichlids",
-        "Fancy Goldfish",
-        "Brackish Fish",
-        "Pond Fish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+      ]
     },
     {
-      "name": "Guppies",
       "latinName": "Poeciliidae, Poecilia",
+      "notCompatible": [
+        "Malawian Cichlids",
+        "Tanganyikan Cichlids",
+        "Misc. African Cichlids",
+        "New World Cichlids",
+        "Fancy Goldfish",
+        "Brackish Fish",
+        "Pond Fish"
+      ],
+      "name": "Guppies",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
       "compatible": [
         "Angelfish",
         "Bettas",
@@ -437,17 +487,7 @@
         "Loaches",
         "Freshwater Sharks",
         "Freshwater Invertebrates"
-      ],
-      "notCompatible": [
-        "Malawian Cichlids",
-        "Tanganyikan Cichlids",
-        "Misc. African Cichlids",
-        "New World Cichlids",
-        "Fancy Goldfish",
-        "Brackish Fish",
-        "Pond Fish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+      ]
     },
     {
       "name": "Hatchets",
@@ -472,14 +512,7 @@
         "Tetras",
         "Freshwater Plants"
       ],
-      "withCaution": [
-        "New World Cichlids",
-        "Barbs",
-        "Larger Catfish",
-        "Rainbowfish",
-        "Freshwater Sharks",
-        "Freshwater Invertebrates"
-      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
       "notCompatible": [
         "Malawian Cichlids",
         "Tanganyikan Cichlids",
@@ -488,70 +521,46 @@
         "Brackish Fish",
         "Pond Fish"
       ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+      "withCaution": [
+        "New World Cichlids",
+        "Barbs",
+        "Larger Catfish",
+        "Rainbowfish",
+        "Freshwater Sharks",
+        "Freshwater Invertebrates"
+      ]
     },
     {
-      "name": "Freshwater Invertebrates",
-      "latinName": "Various",
-      "compatible": [
-        "Freshwater Plants"
-      ],
-      "withCaution": [
+      "notCompatible": [
         "Malawian Cichlids",
         "Tanganyikan Cichlids",
         "Misc. African Cichlids",
-        "New World Cichlids",
+        "Fancy Goldfish",
+        "Brackish Fish",
+        "Pond Fish"
+      ],
+      "compatible": [
         "Angelfish",
-        "Barbs",
-        "Bettas",
         "Cory Cats",
         "Danios / Minnows",
         "Discus",
-        "Fancy Goldfish",
         "Gouramis",
         "Guppies",
         "Hatchets",
         "Killifish",
-        "Larger Catfish",
-        "Loaches",
         "Mollies",
         "Platies",
         "Plecos",
         "Rainbowfish",
         "Rasboras",
-        "Freshwater Sharks",
         "Suckermouth Catfish",
         "Swordtails",
         "Tetras",
-        "Freshwater Invertebrates",
-        "Brackish Fish",
-        "Pond Fish"
+        "Freshwater Plants"
       ],
-      "notCompatible": [],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
-    },
-    {
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
       "name": "Killifish",
       "latinName": "Aplocheilidae, Nothobranchius",
-      "compatible": [
-        "Angelfish",
-        "Cory Cats",
-        "Danios / Minnows",
-        "Discus",
-        "Gouramis",
-        "Guppies",
-        "Hatchets",
-        "Killifish",
-        "Mollies",
-        "Platies",
-        "Plecos",
-        "Rainbowfish",
-        "Rasboras",
-        "Suckermouth Catfish",
-        "Swordtails",
-        "Tetras",
-        "Freshwater Plants"
-      ],
       "withCaution": [
         "New World Cichlids",
         "Barbs",
@@ -560,62 +569,18 @@
         "Loaches",
         "Freshwater Sharks",
         "Freshwater Invertebrates"
-      ],
-      "notCompatible": [
-        "Malawian Cichlids",
-        "Tanganyikan Cichlids",
-        "Misc. African Cichlids",
-        "Fancy Goldfish",
-        "Brackish Fish",
-        "Pond Fish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+      ]
     },
     {
-      "name": "Pond Fish",
-      "latinName": "Various",
-      "compatible": [
-        "Fancy Goldfish",
-        "Pond Fish"
-      ],
-      "withCaution": [
-        "Freshwater Invertebrates",
-        "Freshwater Plants"
-      ],
-      "notCompatible": [
-        "Malawian Cichlids",
-        "Tanganyikan Cichlids",
-        "Misc. African Cichlids",
-        "New World Cichlids",
-        "Angelfish",
-        "Barbs",
-        "Bettas",
-        "Cory Cats",
-        "Danios / Minnows",
-        "Discus",
-        "Gouramis",
-        "Guppies",
-        "Hatchets",
-        "Killifish",
-        "Larger Catfish",
-        "Loaches",
-        "Mollies",
-        "Platies",
-        "Plecos",
-        "Rainbowfish",
-        "Rasboras",
-        "Freshwater Sharks",
-        "Suckermouth Catfish",
-        "Swordtails",
-        "Tetras",
-        "Brackish Fish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
-    },
-    {
-      "name": "Larger Catfish",
       "latinName": "Pimelodidae",
+      "notCompatible": [
+        "Fancy Goldfish",
+        "Tetras",
+        "Pond Fish"
+      ],
       "compatible": [],
+      "name": "Larger Catfish",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
       "withCaution": [
         "Malawian Cichlids",
         "Tanganyikan Cichlids",
@@ -644,17 +609,9 @@
         "Freshwater Invertebrates",
         "Brackish Fish",
         "Freshwater Plants"
-      ],
-      "notCompatible": [
-        "Fancy Goldfish",
-        "Tetras",
-        "Pond Fish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+      ]
     },
     {
-      "name": "Loaches",
-      "latinName": "Cobitidae, Botiidae, Gyrinocheilidae, Botia, Pangio",
       "compatible": [
         "Angelfish",
         "Barbs",
@@ -672,6 +629,12 @@
         "Tetras",
         "Freshwater Plants"
       ],
+      "name": "Loaches",
+      "notCompatible": [
+        "Pond Fish"
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
+      "latinName": "Cobitidae, Botiidae, Gyrinocheilidae, Botia, Pangio",
       "withCaution": [
         "Malawian Cichlids",
         "Tanganyikan Cichlids",
@@ -686,18 +649,34 @@
         "Swordtails",
         "Freshwater Invertebrates",
         "Brackish Fish"
-      ],
-      "notCompatible": [
-        "Pond Fish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+      ]
     },
     {
-      "name": "Malawian Cichlids",
+      "notCompatible": [
+        "Angelfish",
+        "Bettas",
+        "Danios / Minnows",
+        "Discus",
+        "Fancy Goldfish",
+        "Gouramis",
+        "Guppies",
+        "Hatchets",
+        "Killifish",
+        "Mollies",
+        "Platies",
+        "Rainbowfish",
+        "Rasboras",
+        "Swordtails",
+        "Tetras",
+        "Brackish Fish",
+        "Pond Fish"
+      ],
       "latinName": "Various",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
       "compatible": [
         "Malawian Cichlids"
       ],
+      "name": "Malawian Cichlids",
       "withCaution": [
         "Tanganyikan Cichlids",
         "Misc. African Cichlids",
@@ -711,7 +690,16 @@
         "Suckermouth Catfish",
         "Freshwater Invertebrates",
         "Freshwater Plants"
+      ]
+    },
+    {
+      "compatible": [
+        "Misc. African Cichlids",
+        "Plecos"
       ],
+      "latinName": "Various",
+      "name": "Misc. African Cichlids",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
       "notCompatible": [
         "Angelfish",
         "Bettas",
@@ -730,15 +718,6 @@
         "Tetras",
         "Brackish Fish",
         "Pond Fish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
-    },
-    {
-      "name": "Misc. African Cichlids",
-      "latinName": "Various",
-      "compatible": [
-        "Misc. African Cichlids",
-        "Plecos"
       ],
       "withCaution": [
         "Malawian Cichlids",
@@ -752,31 +731,9 @@
         "Suckermouth Catfish",
         "Freshwater Invertebrates",
         "Freshwater Plants"
-      ],
-      "notCompatible": [
-        "Angelfish",
-        "Bettas",
-        "Danios / Minnows",
-        "Discus",
-        "Fancy Goldfish",
-        "Gouramis",
-        "Guppies",
-        "Hatchets",
-        "Killifish",
-        "Mollies",
-        "Platies",
-        "Rainbowfish",
-        "Rasboras",
-        "Swordtails",
-        "Tetras",
-        "Brackish Fish",
-        "Pond Fish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+      ]
     },
     {
-      "name": "Mollies",
-      "latinName": "Poeciliidae, Poecilia",
       "compatible": [
         "Angelfish",
         "Barbs",
@@ -796,6 +753,16 @@
         "Tetras",
         "Brackish Fish",
         "Freshwater Plants"
+      ],
+      "name": "Mollies",
+      "latinName": "Poeciliidae, Poecilia",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
+      "notCompatible": [
+        "Malawian Cichlids",
+        "Tanganyikan Cichlids",
+        "Misc. African Cichlids",
+        "Fancy Goldfish",
+        "Pond Fish"
       ],
       "withCaution": [
         "New World Cichlids",
@@ -805,22 +772,21 @@
         "Plecos",
         "Swordtails",
         "Freshwater Invertebrates"
-      ],
-      "notCompatible": [
-        "Malawian Cichlids",
-        "Tanganyikan Cichlids",
-        "Misc. African Cichlids",
-        "Fancy Goldfish",
-        "Pond Fish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+      ]
     },
     {
-      "name": "New World Cichlids",
-      "latinName": "Various",
       "compatible": [
         "Plecos"
       ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
+      "notCompatible": [
+        "Bettas",
+        "Fancy Goldfish",
+        "Guppies",
+        "Pond Fish"
+      ],
+      "latinName": "Various",
+      "name": "New World Cichlids",
       "withCaution": [
         "Malawian Cichlids",
         "Tanganyikan Cichlids",
@@ -846,17 +812,9 @@
         "Freshwater Invertebrates",
         "Brackish Fish",
         "Freshwater Plants"
-      ],
-      "notCompatible": [
-        "Bettas",
-        "Fancy Goldfish",
-        "Guppies",
-        "Pond Fish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+      ]
     },
     {
-      "name": "Platies",
       "latinName": "Poeciliidae, Xiphophorus",
       "compatible": [
         "Angelfish",
@@ -877,15 +835,8 @@
         "Tetras",
         "Freshwater Plants"
       ],
-      "withCaution": [
-        "New World Cichlids",
-        "Barbs",
-        "Larger Catfish",
-        "Loaches",
-        "Mollies",
-        "Freshwater Sharks",
-        "Freshwater Invertebrates"
-      ],
+      "name": "Platies",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
       "notCompatible": [
         "Malawian Cichlids",
         "Tanganyikan Cichlids",
@@ -894,10 +845,18 @@
         "Brackish Fish",
         "Pond Fish"
       ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+      "withCaution": [
+        "New World Cichlids",
+        "Barbs",
+        "Larger Catfish",
+        "Loaches",
+        "Mollies",
+        "Freshwater Sharks",
+        "Freshwater Invertebrates"
+      ]
     },
     {
-      "name": "Plecos",
+      "notCompatible": [],
       "latinName": "Loricariidae, Hypostomus, Pterygoplichthys",
       "compatible": [
         "Malawian Cichlids",
@@ -923,6 +882,8 @@
         "Swordtails",
         "Tetras"
       ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
+      "name": "Plecos",
       "withCaution": [
         "Discus",
         "Larger Catfish",
@@ -931,12 +892,58 @@
         "Pond Fish",
         "Freshwater Invertebrates",
         "Brackish Fish"
-      ],
-      "notCompatible": [],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+      ]
     },
     {
-      "name": "Rainbowfish",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
+      "latinName": "Various",
+      "name": "Pond Fish",
+      "notCompatible": [
+        "Malawian Cichlids",
+        "Tanganyikan Cichlids",
+        "Misc. African Cichlids",
+        "New World Cichlids",
+        "Angelfish",
+        "Barbs",
+        "Bettas",
+        "Cory Cats",
+        "Danios / Minnows",
+        "Discus",
+        "Gouramis",
+        "Guppies",
+        "Hatchets",
+        "Killifish",
+        "Larger Catfish",
+        "Loaches",
+        "Mollies",
+        "Platies",
+        "Plecos",
+        "Rainbowfish",
+        "Rasboras",
+        "Freshwater Sharks",
+        "Suckermouth Catfish",
+        "Swordtails",
+        "Tetras",
+        "Brackish Fish"
+      ],
+      "compatible": [
+        "Fancy Goldfish",
+        "Pond Fish"
+      ],
+      "withCaution": [
+        "Freshwater Invertebrates",
+        "Freshwater Plants"
+      ]
+    },
+    {
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
+      "notCompatible": [
+        "Malawian Cichlids",
+        "Tanganyikan Cichlids",
+        "Misc. African Cichlids",
+        "Fancy Goldfish",
+        "Pond Fish"
+      ],
       "latinName": "Melanotaeniidae, Melanotaenia, Glossolepis",
       "compatible": [
         "Angelfish",
@@ -959,6 +966,7 @@
         "Tetras",
         "Freshwater Plants"
       ],
+      "name": "Rainbowfish",
       "withCaution": [
         "New World Cichlids",
         "Bettas",
@@ -966,19 +974,10 @@
         "Larger Catfish",
         "Freshwater Invertebrates",
         "Brackish Fish"
-      ],
-      "notCompatible": [
-        "Malawian Cichlids",
-        "Tanganyikan Cichlids",
-        "Misc. African Cichlids",
-        "Fancy Goldfish",
-        "Pond Fish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+      ]
     },
     {
-      "name": "Rasboras",
-      "latinName": "Cyprinidae, Rasbora",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
       "compatible": [
         "Angelfish",
         "Barbs",
@@ -1001,12 +1000,8 @@
         "Tetras",
         "Freshwater Plants"
       ],
-      "withCaution": [
-        "New World Cichlids",
-        "Larger Catfish",
-        "Freshwater Sharks",
-        "Freshwater Invertebrates"
-      ],
+      "name": "Rasboras",
+      "latinName": "Cyprinidae, Rasbora",
       "notCompatible": [
         "Malawian Cichlids",
         "Tanganyikan Cichlids",
@@ -1015,11 +1010,14 @@
         "Brackish Fish",
         "Pond Fish"
       ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+      "withCaution": [
+        "New World Cichlids",
+        "Larger Catfish",
+        "Freshwater Sharks",
+        "Freshwater Invertebrates"
+      ]
     },
     {
-      "name": "Suckermouth Catfish",
-      "latinName": "Gyrinocheilidae, Gyrinocheilus",
       "compatible": [
         "Barbs",
         "Bettas",
@@ -1037,6 +1035,12 @@
         "Suckermouth Catfish",
         "Tetras"
       ],
+      "notCompatible": [
+        "Pond Fish"
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
+      "latinName": "Gyrinocheilidae, Gyrinocheilus",
+      "name": "Suckermouth Catfish",
       "withCaution": [
         "Malawian Cichlids",
         "Tanganyikan Cichlids",
@@ -1052,15 +1056,11 @@
         "Freshwater Invertebrates",
         "Brackish Fish",
         "Freshwater Plants"
-      ],
-      "notCompatible": [
-        "Pond Fish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+      ]
     },
     {
-      "name": "Swordtails",
       "latinName": "Poeciliidae, Xiphophorus",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
       "compatible": [
         "Angelfish",
         "Bettas",
@@ -1080,15 +1080,6 @@
         "Tetras",
         "Freshwater Plants"
       ],
-      "withCaution": [
-        "New World Cichlids",
-        "Barbs",
-        "Larger Catfish",
-        "Loaches",
-        "Mollies",
-        "Suckermouth Catfish",
-        "Freshwater Invertebrates"
-      ],
       "notCompatible": [
         "Malawian Cichlids",
         "Tanganyikan Cichlids",
@@ -1097,27 +1088,18 @@
         "Brackish Fish",
         "Pond Fish"
       ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
-    },
-    {
-      "name": "Tanganyikan Cichlids",
-      "latinName": "Various",
-      "compatible": [
-        "Plecos"
-      ],
+      "name": "Swordtails",
       "withCaution": [
-        "Malawian Cichlids",
-        "Tanganyikan Cichlids",
-        "Misc. African Cichlids",
+        "New World Cichlids",
         "Barbs",
-        "Cory Cats",
         "Larger Catfish",
         "Loaches",
-        "Freshwater Sharks",
+        "Mollies",
         "Suckermouth Catfish",
-        "Freshwater Invertebrates",
-        "Freshwater Plants"
-      ],
+        "Freshwater Invertebrates"
+      ]
+    },
+    {
       "notCompatible": [
         "Angelfish",
         "Bettas",
@@ -1137,9 +1119,36 @@
         "Brackish Fish",
         "Pond Fish"
       ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+      "compatible": [
+        "Plecos"
+      ],
+      "name": "Tanganyikan Cichlids",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
+      "latinName": "Various",
+      "withCaution": [
+        "Malawian Cichlids",
+        "Tanganyikan Cichlids",
+        "Misc. African Cichlids",
+        "Barbs",
+        "Cory Cats",
+        "Larger Catfish",
+        "Loaches",
+        "Freshwater Sharks",
+        "Suckermouth Catfish",
+        "Freshwater Invertebrates",
+        "Freshwater Plants"
+      ]
     },
     {
+      "notCompatible": [
+        "Malawian Cichlids",
+        "Tanganyikan Cichlids",
+        "Misc. African Cichlids",
+        "Fancy Goldfish",
+        "Larger Catfish",
+        "Brackish Fish",
+        "Pond Fish"
+      ],
       "name": "Tetras",
       "latinName": "Characidae, Paracheirodon",
       "compatible": [
@@ -1163,28 +1172,20 @@
         "Tetras",
         "Freshwater Plants"
       ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true",
       "withCaution": [
         "New World Cichlids",
         "Gouramis",
         "Freshwater Sharks",
         "Freshwater Invertebrates"
-      ],
-      "notCompatible": [
-        "Malawian Cichlids",
-        "Tanganyikan Cichlids",
-        "Misc. African Cichlids",
-        "Fancy Goldfish",
-        "Larger Catfish",
-        "Brackish Fish",
-        "Pond Fish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
+      ]
     }
   ],
   "marine": [
     {
       "name": "Anglers / Frogs",
       "latinName": "Antennariidae, Lophiiformes",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Large Angels",
         "Batfish",
@@ -1197,21 +1198,6 @@
         "Squirrelfish",
         "Tangs / Surgeons",
         "Live Corals"
-      ],
-      "withCaution": [
-        "Dwarf Angels",
-        "Anglers / Frogs",
-        "Anthias",
-        "Blennies",
-        "Eels",
-        "Groupers",
-        "Hawkfish",
-        "Hogfish",
-        "Parrotfish",
-        "Puffers",
-        "Wrasse - Reef Safe",
-        "Wrasse - Fish Only",
-        "Marine Invertebrates"
       ],
       "notCompatible": [
         "Basslets",
@@ -1228,11 +1214,26 @@
         "Sharks / Rays",
         "Triggerfish"
       ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      "withCaution": [
+        "Dwarf Angels",
+        "Anglers / Frogs",
+        "Anthias",
+        "Blennies",
+        "Eels",
+        "Groupers",
+        "Hawkfish",
+        "Hogfish",
+        "Parrotfish",
+        "Puffers",
+        "Wrasse - Reef Safe",
+        "Wrasse - Fish Only",
+        "Marine Invertebrates"
+      ]
     },
     {
       "name": "Anthias",
       "latinName": "Serranidae, Anthiinae",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Large Angels",
@@ -1262,6 +1263,11 @@
         "Live Corals",
         "Marine Invertebrates"
       ],
+      "notCompatible": [
+        "Groupers",
+        "Seahorse / Pipefish",
+        "Sharks / Rays"
+      ],
       "withCaution": [
         "Anglers / Frogs",
         "Anthias",
@@ -1270,17 +1276,12 @@
         "Lions / Scorpions",
         "Triggerfish",
         "Wrasse - Fish Only"
-      ],
-      "notCompatible": [
-        "Groupers",
-        "Seahorse / Pipefish",
-        "Sharks / Rays"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      ]
     },
     {
       "name": "Basslets",
       "latinName": "Grammatidae, Gramma, Lipogramma",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Large Angels",
@@ -1303,16 +1304,6 @@
         "Live Corals",
         "Marine Invertebrates"
       ],
-      "withCaution": [
-        "Batfish",
-        "Blennies",
-        "Dartfish",
-        "Dragonets",
-        "Hogfish",
-        "Parrotfish",
-        "Puffers",
-        "Wrasse - Fish Only"
-      ],
       "notCompatible": [
         "Anglers / Frogs",
         "Basslets",
@@ -1324,11 +1315,21 @@
         "Sharks / Rays",
         "Triggerfish"
       ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      "withCaution": [
+        "Batfish",
+        "Blennies",
+        "Dartfish",
+        "Dragonets",
+        "Hogfish",
+        "Parrotfish",
+        "Puffers",
+        "Wrasse - Fish Only"
+      ]
     },
     {
       "name": "Batfish",
       "latinName": "Ephippidae, Platax",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Large Angels",
@@ -1349,6 +1350,13 @@
         "Wrasse - Reef Safe",
         "Live Corals"
       ],
+      "notCompatible": [
+        "Batfish",
+        "Groupers",
+        "Seahorse / Pipefish",
+        "Sharks / Rays",
+        "Triggerfish"
+      ],
       "withCaution": [
         "Anthias",
         "Basslets",
@@ -1363,19 +1371,12 @@
         "Tangs / Surgeons",
         "Wrasse - Fish Only",
         "Marine Invertebrates"
-      ],
-      "notCompatible": [
-        "Batfish",
-        "Groupers",
-        "Seahorse / Pipefish",
-        "Sharks / Rays",
-        "Triggerfish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      ]
     },
     {
       "name": "Blennies",
       "latinName": "Blenniidae, Salarias",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Large Angels",
@@ -1396,6 +1397,13 @@
         "Live Corals",
         "Marine Invertebrates"
       ],
+      "notCompatible": [
+        "Eels",
+        "Groupers",
+        "Lions / Scorpions",
+        "Seahorse / Pipefish",
+        "Sharks / Rays"
+      ],
       "withCaution": [
         "Anglers / Frogs",
         "Basslets",
@@ -1410,19 +1418,12 @@
         "Pseudochromis",
         "Squirrelfish",
         "Wrasse - Fish Only"
-      ],
-      "notCompatible": [
-        "Eels",
-        "Groupers",
-        "Lions / Scorpions",
-        "Seahorse / Pipefish",
-        "Sharks / Rays"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      ]
     },
     {
       "name": "Boxfish",
       "latinName": "Ostraciidae, Ostracion",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Large Angels",
@@ -1453,6 +1454,10 @@
         "Wrasse - Fish Only",
         "Live Corals"
       ],
+      "notCompatible": [
+        "Seahorse / Pipefish",
+        "Sharks / Rays"
+      ],
       "withCaution": [
         "Boxfish",
         "Eels",
@@ -1461,16 +1466,12 @@
         "Puffers",
         "Triggerfish",
         "Marine Invertebrates"
-      ],
-      "notCompatible": [
-        "Seahorse / Pipefish",
-        "Sharks / Rays"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      ]
     },
     {
       "name": "Butterflies",
       "latinName": "Chaetodontidae, Chaetodon, Forcipiger, Prognathodes",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Large Angels",
@@ -1499,6 +1500,11 @@
         "Tangs / Surgeons",
         "Wrasse - Reef Safe"
       ],
+      "notCompatible": [
+        "Eels",
+        "Seahorse / Pipefish",
+        "Sharks / Rays"
+      ],
       "withCaution": [
         "Butterflies",
         "Groupers",
@@ -1508,17 +1514,12 @@
         "Wrasse - Fish Only",
         "Live Corals",
         "Marine Invertebrates"
-      ],
-      "notCompatible": [
-        "Eels",
-        "Seahorse / Pipefish",
-        "Sharks / Rays"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      ]
     },
     {
       "name": "Cardinals",
       "latinName": "Apogonidae, Pterapogon",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Anthias",
@@ -1542,16 +1543,6 @@
         "Live Corals",
         "Marine Invertebrates"
       ],
-      "withCaution": [
-        "Large Angels",
-        "Blennies",
-        "Damsels",
-        "Hogfish",
-        "Parrotfish",
-        "Pseudochromis",
-        "Squirrelfish",
-        "Wrasse - Fish Only"
-      ],
       "notCompatible": [
         "Anglers / Frogs",
         "Eels",
@@ -1561,11 +1552,21 @@
         "Sharks / Rays",
         "Triggerfish"
       ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      "withCaution": [
+        "Large Angels",
+        "Blennies",
+        "Damsels",
+        "Hogfish",
+        "Parrotfish",
+        "Pseudochromis",
+        "Squirrelfish",
+        "Wrasse - Fish Only"
+      ]
     },
     {
       "name": "Chromis",
       "latinName": "Pomacentridae, Chromis",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Large Angels",
@@ -1592,14 +1593,6 @@
         "Live Corals",
         "Marine Invertebrates"
       ],
-      "withCaution": [
-        "Batfish",
-        "Damsels",
-        "Grunts / Sweetlips",
-        "Hogfish",
-        "Squirrelfish",
-        "Wrasse - Fish Only"
-      ],
       "notCompatible": [
         "Anglers / Frogs",
         "Eels",
@@ -1608,11 +1601,19 @@
         "Seahorse / Pipefish",
         "Sharks / Rays"
       ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      "withCaution": [
+        "Batfish",
+        "Damsels",
+        "Grunts / Sweetlips",
+        "Hogfish",
+        "Squirrelfish",
+        "Wrasse - Fish Only"
+      ]
     },
     {
       "name": "Clownfish",
       "latinName": "Pomacentridae, Amphiprion",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Large Angels",
@@ -1639,11 +1640,6 @@
         "Live Corals",
         "Marine Invertebrates"
       ],
-      "withCaution": [
-        "Clownfish",
-        "Hogfish",
-        "Triggerfish"
-      ],
       "notCompatible": [
         "Anglers / Frogs",
         "Eels",
@@ -1652,11 +1648,16 @@
         "Seahorse / Pipefish",
         "Sharks / Rays"
       ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      "withCaution": [
+        "Clownfish",
+        "Hogfish",
+        "Triggerfish"
+      ]
     },
     {
       "name": "Damsels",
       "latinName": "Pomacentridae, Dascyllus",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Large Angels",
@@ -1680,6 +1681,14 @@
         "Live Corals",
         "Marine Invertebrates"
       ],
+      "notCompatible": [
+        "Anglers / Frogs",
+        "Eels",
+        "Groupers",
+        "Lions / Scorpions",
+        "Seahorse / Pipefish",
+        "Sharks / Rays"
+      ],
       "withCaution": [
         "Batfish",
         "Cardinals",
@@ -1690,20 +1699,12 @@
         "Hogfish",
         "Squirrelfish",
         "Triggerfish"
-      ],
-      "notCompatible": [
-        "Anglers / Frogs",
-        "Eels",
-        "Groupers",
-        "Lions / Scorpions",
-        "Seahorse / Pipefish",
-        "Sharks / Rays"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      ]
     },
     {
       "name": "Dartfish",
       "latinName": "Microdesmidae, Nemateleotris, Ptereleotris",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Anthias",
@@ -1723,6 +1724,14 @@
         "Live Corals",
         "Marine Invertebrates"
       ],
+      "notCompatible": [
+        "Anglers / Frogs",
+        "Eels",
+        "Groupers",
+        "Lions / Scorpions",
+        "Sharks / Rays",
+        "Triggerfish"
+      ],
       "withCaution": [
         "Large Angels",
         "Basslets",
@@ -1738,20 +1747,12 @@
         "Seahorse / Pipefish",
         "Squirrelfish",
         "Wrasse - Fish Only"
-      ],
-      "notCompatible": [
-        "Anglers / Frogs",
-        "Eels",
-        "Groupers",
-        "Lions / Scorpions",
-        "Sharks / Rays",
-        "Triggerfish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      ]
     },
     {
       "name": "Dragonets",
       "latinName": "Callionymidae, Synchiropus, Callionymus",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Large Angels",
@@ -1774,6 +1775,14 @@
         "Live Corals",
         "Marine Invertebrates"
       ],
+      "notCompatible": [
+        "Anglers / Frogs",
+        "Eels",
+        "Groupers",
+        "Lions / Scorpions",
+        "Sharks / Rays",
+        "Triggerfish"
+      ],
       "withCaution": [
         "Basslets",
         "Batfish",
@@ -1786,20 +1795,12 @@
         "Pseudochromis",
         "Squirrelfish",
         "Wrasse - Fish Only"
-      ],
-      "notCompatible": [
-        "Anglers / Frogs",
-        "Eels",
-        "Groupers",
-        "Lions / Scorpions",
-        "Sharks / Rays",
-        "Triggerfish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      ]
     },
     {
       "name": "Dwarf Angels",
       "latinName": "Pomacanthidae, Centropyge",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Large Angels",
         "Anthias",
@@ -1828,6 +1829,10 @@
         "Tangs / Surgeons",
         "Wrasse - Reef Safe"
       ],
+      "notCompatible": [
+        "Seahorse / Pipefish",
+        "Sharks / Rays"
+      ],
       "withCaution": [
         "Dwarf Angels",
         "Anglers / Frogs",
@@ -1838,16 +1843,12 @@
         "Wrasse - Fish Only",
         "Live Corals",
         "Marine Invertebrates"
-      ],
-      "notCompatible": [
-        "Seahorse / Pipefish",
-        "Sharks / Rays"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      ]
     },
     {
       "name": "Eels",
       "latinName": "Muraenidae, Muraena",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Large Angels",
         "Grunts / Sweetlips",
@@ -1855,24 +1856,6 @@
         "Puffers",
         "Tangs / Surgeons",
         "Live Corals"
-      ],
-      "withCaution": [
-        "Dwarf Angels",
-        "Anglers / Frogs",
-        "Anthias",
-        "Batfish",
-        "Boxfish",
-        "Eels",
-        "Foxface / Rabbits",
-        "Groupers",
-        "Hogfish",
-        "Parrotfish",
-        "Sharks / Rays",
-        "Squirrelfish",
-        "Triggerfish",
-        "Wrasse - Reef Safe",
-        "Wrasse - Fish Only",
-        "Marine Invertebrates"
       ],
       "notCompatible": [
         "Basslets",
@@ -1891,11 +1874,29 @@
         "Pseudochromis",
         "Seahorse / Pipefish"
       ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      "withCaution": [
+        "Dwarf Angels",
+        "Anglers / Frogs",
+        "Anthias",
+        "Batfish",
+        "Boxfish",
+        "Eels",
+        "Foxface / Rabbits",
+        "Groupers",
+        "Hogfish",
+        "Parrotfish",
+        "Sharks / Rays",
+        "Squirrelfish",
+        "Triggerfish",
+        "Wrasse - Reef Safe",
+        "Wrasse - Fish Only",
+        "Marine Invertebrates"
+      ]
     },
     {
       "name": "Filefish",
       "latinName": "Monacanthidae, Aluterus, Stephanolepis, Amanses",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Anglers / Frogs",
@@ -1922,15 +1923,6 @@
         "Tangs / Surgeons",
         "Wrasse - Reef Safe"
       ],
-      "withCaution": [
-        "Large Angels",
-        "Dartfish",
-        "Dragonets",
-        "Lions / Scorpions",
-        "Pseudochromis",
-        "Wrasse - Fish Only",
-        "Live Corals"
-      ],
       "notCompatible": [
         "Eels",
         "Groupers",
@@ -1939,11 +1931,20 @@
         "Triggerfish",
         "Marine Invertebrates"
       ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      "withCaution": [
+        "Large Angels",
+        "Dartfish",
+        "Dragonets",
+        "Lions / Scorpions",
+        "Pseudochromis",
+        "Wrasse - Fish Only",
+        "Live Corals"
+      ]
     },
     {
       "name": "Foxface / Rabbits",
       "latinName": "Siganidae, Siganus",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Large Angels",
@@ -1974,6 +1975,9 @@
         "Squirrelfish",
         "Wrasse - Reef Safe"
       ],
+      "notCompatible": [
+        "Seahorse / Pipefish"
+      ],
       "withCaution": [
         "Eels",
         "Foxface / Rabbits",
@@ -1983,15 +1987,12 @@
         "Wrasse - Fish Only",
         "Live Corals",
         "Marine Invertebrates"
-      ],
-      "notCompatible": [
-        "Seahorse / Pipefish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      ]
     },
     {
       "name": "Gobies",
       "latinName": "Gobiidae, Stonogobiops",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Anthias",
@@ -2016,6 +2017,13 @@
         "Live Corals",
         "Marine Invertebrates"
       ],
+      "notCompatible": [
+        "Anglers / Frogs",
+        "Eels",
+        "Groupers",
+        "Lions / Scorpions",
+        "Sharks / Rays"
+      ],
       "withCaution": [
         "Large Angels",
         "Gobies",
@@ -2026,41 +2034,18 @@
         "Squirrelfish",
         "Triggerfish",
         "Wrasse - Fish Only"
-      ],
-      "notCompatible": [
-        "Anglers / Frogs",
-        "Eels",
-        "Groupers",
-        "Lions / Scorpions",
-        "Sharks / Rays"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      ]
     },
     {
       "name": "Groupers",
       "latinName": "Serranidae, Epinephelus",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Large Angels",
         "Foxface / Rabbits",
         "Lions / Scorpions",
         "Tangs / Surgeons",
         "Live Corals"
-      ],
-      "withCaution": [
-        "Dwarf Angels",
-        "Anglers / Frogs",
-        "Boxfish",
-        "Butterflies",
-        "Eels",
-        "Grunts / Sweetlips",
-        "Hogfish",
-        "Parrotfish",
-        "Puffers",
-        "Sharks / Rays",
-        "Triggerfish",
-        "Wrasse - Reef Safe",
-        "Wrasse - Fish Only",
-        "Marine Invertebrates"
       ],
       "notCompatible": [
         "Anthias",
@@ -2081,11 +2066,27 @@
         "Seahorse / Pipefish",
         "Squirrelfish"
       ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      "withCaution": [
+        "Dwarf Angels",
+        "Anglers / Frogs",
+        "Boxfish",
+        "Butterflies",
+        "Eels",
+        "Grunts / Sweetlips",
+        "Hogfish",
+        "Parrotfish",
+        "Puffers",
+        "Sharks / Rays",
+        "Triggerfish",
+        "Wrasse - Reef Safe",
+        "Wrasse - Fish Only",
+        "Marine Invertebrates"
+      ]
     },
     {
       "name": "Grunts / Sweetlips",
       "latinName": "Haemulidae, Plectorhinchus",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Large Angels",
@@ -2109,6 +2110,9 @@
         "Tangs / Surgeons",
         "Live Corals"
       ],
+      "notCompatible": [
+        "Seahorse / Pipefish"
+      ],
       "withCaution": [
         "Blennies",
         "Chromis",
@@ -2126,15 +2130,12 @@
         "Wrasse - Reef Safe",
         "Wrasse - Fish Only",
         "Marine Invertebrates"
-      ],
-      "notCompatible": [
-        "Seahorse / Pipefish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      ]
     },
     {
       "name": "Hawkfish",
       "latinName": "Cirrhitidae, Neocirrhites, Cyprinocirrhites",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Large Angels",
@@ -2162,14 +2163,6 @@
         "Wrasse - Reef Safe",
         "Live Corals"
       ],
-      "withCaution": [
-        "Anglers / Frogs",
-        "Boxfish",
-        "Grunts / Sweetlips",
-        "Hawkfish",
-        "Triggerfish",
-        "Marine Invertebrates"
-      ],
       "notCompatible": [
         "Eels",
         "Groupers",
@@ -2177,11 +2170,19 @@
         "Seahorse / Pipefish",
         "Sharks / Rays"
       ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      "withCaution": [
+        "Anglers / Frogs",
+        "Boxfish",
+        "Grunts / Sweetlips",
+        "Hawkfish",
+        "Triggerfish",
+        "Marine Invertebrates"
+      ]
     },
     {
       "name": "Hogfish",
       "latinName": "Labridae, Bodianus",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Large Angels",
@@ -2197,6 +2198,10 @@
         "Tangs / Surgeons",
         "Wrasse - Reef Safe",
         "Live Corals"
+      ],
+      "notCompatible": [
+        "Hogfish",
+        "Seahorse / Pipefish"
       ],
       "withCaution": [
         "Anglers / Frogs",
@@ -2220,16 +2225,12 @@
         "Triggerfish",
         "Wrasse - Fish Only",
         "Marine Invertebrates"
-      ],
-      "notCompatible": [
-        "Hogfish",
-        "Seahorse / Pipefish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      ]
     },
     {
       "name": "Jawfish",
       "latinName": "Opistognathidae, Opistognathus",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Anthias",
@@ -2252,18 +2253,6 @@
         "Tangs / Surgeons",
         "Live Corals",
         "Marine Invertebrates"
-      ],
-      "withCaution": [
-        "Large Angels",
-        "Blennies",
-        "Grunts / Sweetlips",
-        "Jawfish",
-        "Hogfish",
-        "Parrotfish",
-        "Seahorse / Pipefish",
-        "Squirrelfish",
-        "Triggerfish",
-        "Wrasse - Fish Only"
       ],
       "notCompatible": [
         "Anglers / Frogs",
@@ -2272,11 +2261,23 @@
         "Lions / Scorpions",
         "Sharks / Rays"
       ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      "withCaution": [
+        "Large Angels",
+        "Blennies",
+        "Grunts / Sweetlips",
+        "Jawfish",
+        "Hogfish",
+        "Parrotfish",
+        "Seahorse / Pipefish",
+        "Squirrelfish",
+        "Triggerfish",
+        "Wrasse - Fish Only"
+      ]
     },
     {
       "name": "Large Angels",
       "latinName": "Pomacanthidae, Pomacanthus",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Anglers / Frogs",
@@ -2304,6 +2305,9 @@
         "Wrasse - Reef Safe",
         "Wrasse - Fish Only"
       ],
+      "notCompatible": [
+        "Seahorse / Pipefish"
+      ],
       "withCaution": [
         "Large Angels",
         "Cardinals",
@@ -2316,15 +2320,12 @@
         "Triggerfish",
         "Live Corals",
         "Marine Invertebrates"
-      ],
-      "notCompatible": [
-        "Seahorse / Pipefish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      ]
     },
     {
       "name": "Lions / Scorpions",
       "latinName": "Scorpaenidae, Pterois",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Large Angels",
         "Anglers / Frogs",
@@ -2336,21 +2337,6 @@
         "Puffers",
         "Tangs / Surgeons",
         "Live Corals"
-      ],
-      "withCaution": [
-        "Dwarf Angels",
-        "Anthias",
-        "Butterflies",
-        "Filefish",
-        "Grunts / Sweetlips",
-        "Hogfish",
-        "Parrotfish",
-        "Sharks / Rays",
-        "Squirrelfish",
-        "Triggerfish",
-        "Wrasse - Reef Safe",
-        "Wrasse - Fish Only",
-        "Marine Invertebrates"
       ],
       "notCompatible": [
         "Basslets",
@@ -2367,11 +2353,26 @@
         "Pseudochromis",
         "Seahorse / Pipefish"
       ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      "withCaution": [
+        "Dwarf Angels",
+        "Anthias",
+        "Butterflies",
+        "Filefish",
+        "Grunts / Sweetlips",
+        "Hogfish",
+        "Parrotfish",
+        "Sharks / Rays",
+        "Squirrelfish",
+        "Triggerfish",
+        "Wrasse - Reef Safe",
+        "Wrasse - Fish Only",
+        "Marine Invertebrates"
+      ]
     },
     {
       "name": "Live Corals",
       "latinName": "Various",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Anglers / Frogs",
         "Anthias",
@@ -2400,24 +2401,24 @@
         "Wrasse - Reef Safe",
         "Live Corals",
         "Marine Invertebrates"
-      ],
-      "withCaution": [
-        "Dwarf Angels",
-        "Large Angels",
-        "Butterflies",
-        "Filefish",
-        "Foxface / Rabbits",
-        "Puffers",
-        "Triggerfish"
       ],
       "notCompatible": [
         "Parrotfish"
       ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      "withCaution": [
+        "Dwarf Angels",
+        "Large Angels",
+        "Butterflies",
+        "Filefish",
+        "Foxface / Rabbits",
+        "Puffers",
+        "Triggerfish"
+      ]
     },
     {
       "name": "Marine Invertebrates",
       "latinName": "Various",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Anthias",
         "Basslets",
@@ -2434,6 +2435,13 @@
         "Tangs / Surgeons",
         "Live Corals",
         "Marine Invertebrates"
+      ],
+      "notCompatible": [
+        "Filefish",
+        "Parrotfish",
+        "Puffers",
+        "Sharks / Rays",
+        "Triggerfish"
       ],
       "withCaution": [
         "Dwarf Angels",
@@ -2453,19 +2461,12 @@
         "Squirrelfish",
         "Wrasse - Reef Safe",
         "Wrasse - Fish Only"
-      ],
-      "notCompatible": [
-        "Filefish",
-        "Parrotfish",
-        "Puffers",
-        "Sharks / Rays",
-        "Triggerfish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      ]
     },
     {
       "name": "Parrotfish",
       "latinName": "Scaridae, Sparisoma, Scarus",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Large Angels",
@@ -2486,6 +2487,11 @@
         "Squirrelfish",
         "Tangs / Surgeons"
       ],
+      "notCompatible": [
+        "Seahorse / Pipefish",
+        "Live Corals",
+        "Marine Invertebrates"
+      ],
       "withCaution": [
         "Anglers / Frogs",
         "Basslets",
@@ -2503,17 +2509,12 @@
         "Triggerfish",
         "Wrasse - Reef Safe",
         "Wrasse - Fish Only"
-      ],
-      "notCompatible": [
-        "Seahorse / Pipefish",
-        "Live Corals",
-        "Marine Invertebrates"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      ]
     },
     {
       "name": "Pseudochromis",
       "latinName": "Pseudochromidae, Pseudochromis",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Anthias",
@@ -2532,6 +2533,17 @@
         "Live Corals",
         "Marine Invertebrates"
       ],
+      "notCompatible": [
+        "Anglers / Frogs",
+        "Basslets",
+        "Eels",
+        "Groupers",
+        "Lions / Scorpions",
+        "Pseudochromis",
+        "Seahorse / Pipefish",
+        "Sharks / Rays",
+        "Triggerfish"
+      ],
       "withCaution": [
         "Large Angels",
         "Batfish",
@@ -2545,23 +2557,12 @@
         "Puffers",
         "Wrasse - Reef Safe",
         "Wrasse - Fish Only"
-      ],
-      "notCompatible": [
-        "Anglers / Frogs",
-        "Basslets",
-        "Eels",
-        "Groupers",
-        "Lions / Scorpions",
-        "Pseudochromis",
-        "Seahorse / Pipefish",
-        "Sharks / Rays",
-        "Triggerfish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      ]
     },
     {
       "name": "Puffers",
       "latinName": "Tetraodontidae, Tetraodon, Carinotetraodon",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Large Angels",
@@ -2588,6 +2589,12 @@
         "Tangs / Surgeons",
         "Wrasse - Reef Safe"
       ],
+      "notCompatible": [
+        "Puffers",
+        "Seahorse / Pipefish",
+        "Sharks / Rays",
+        "Marine Invertebrates"
+      ],
       "withCaution": [
         "Anglers / Frogs",
         "Basslets",
@@ -2598,28 +2605,16 @@
         "Triggerfish",
         "Wrasse - Fish Only",
         "Live Corals"
-      ],
-      "notCompatible": [
-        "Puffers",
-        "Seahorse / Pipefish",
-        "Sharks / Rays",
-        "Marine Invertebrates"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      ]
     },
     {
       "name": "Seahorse / Pipefish",
       "latinName": "Syngnathinae, Hippocampus, Syngnathus, Corythoichthys",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dragonets",
         "Seahorse / Pipefish",
         "Live Corals"
-      ],
-      "withCaution": [
-        "Dartfish",
-        "Gobies",
-        "Jawfish",
-        "Marine Invertebrates"
       ],
       "notCompatible": [
         "Dwarf Angels",
@@ -2653,27 +2648,18 @@
         "Wrasse - Reef Safe",
         "Wrasse - Fish Only"
       ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      "withCaution": [
+        "Dartfish",
+        "Gobies",
+        "Jawfish",
+        "Marine Invertebrates"
+      ]
     },
     {
       "name": "Sharks / Rays",
       "latinName": "Carcharhinidae, Dasyatidae",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [],
-      "withCaution": [
-        "Large Angels",
-        "Eels",
-        "Foxface / Rabbits",
-        "Groupers",
-        "Grunts / Sweetlips",
-        "Hogfish",
-        "Lions / Scorpions",
-        "Parrotfish",
-        "Sharks / Rays",
-        "Squirrelfish",
-        "Tangs / Surgeons",
-        "Wrasse - Fish Only",
-        "Live Corals"
-      ],
       "notCompatible": [
         "Dwarf Angels",
         "Anglers / Frogs",
@@ -2700,11 +2686,26 @@
         "Wrasse - Reef Safe",
         "Marine Invertebrates"
       ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      "withCaution": [
+        "Large Angels",
+        "Eels",
+        "Foxface / Rabbits",
+        "Groupers",
+        "Grunts / Sweetlips",
+        "Hogfish",
+        "Lions / Scorpions",
+        "Parrotfish",
+        "Sharks / Rays",
+        "Squirrelfish",
+        "Tangs / Surgeons",
+        "Wrasse - Fish Only",
+        "Live Corals"
+      ]
     },
     {
       "name": "Squirrelfish",
       "latinName": "Holocentridae, Holocentrus, Sargocentron, Myripristis",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Large Angels",
@@ -2725,6 +2726,11 @@
         "Tangs / Surgeons",
         "Live Corals"
       ],
+      "notCompatible": [
+        "Groupers",
+        "Seahorse / Pipefish",
+        "Wrasse - Reef Safe"
+      ],
       "withCaution": [
         "Blennies",
         "Butterflies",
@@ -2742,17 +2748,12 @@
         "Triggerfish",
         "Wrasse - Fish Only",
         "Marine Invertebrates"
-      ],
-      "notCompatible": [
-        "Groupers",
-        "Seahorse / Pipefish",
-        "Wrasse - Reef Safe"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      ]
     },
     {
       "name": "Tangs / Surgeons",
       "latinName": "Acanthuridae, Acanthurus, Ctenochaetus, Naso",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Large Angels",
@@ -2786,22 +2787,35 @@
         "Live Corals",
         "Marine Invertebrates"
       ],
+      "notCompatible": [
+        "Seahorse / Pipefish"
+      ],
       "withCaution": [
         "Batfish",
         "Foxface / Rabbits",
         "Sharks / Rays",
         "Tangs / Surgeons",
         "Triggerfish"
-      ],
-      "notCompatible": [
-        "Seahorse / Pipefish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      ]
     },
     {
       "name": "Triggerfish",
       "latinName": "Balistidae, Balistoides, Rhinecanthus, Odonus",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [],
+      "notCompatible": [
+        "Anglers / Frogs",
+        "Basslets",
+        "Batfish",
+        "Cardinals",
+        "Dartfish",
+        "Dragonets",
+        "Filefish",
+        "Pseudochromis",
+        "Seahorse / Pipefish",
+        "Sharks / Rays",
+        "Marine Invertebrates"
+      ],
       "withCaution": [
         "Dwarf Angels",
         "Large Angels",
@@ -2829,25 +2843,12 @@
         "Wrasse - Reef Safe",
         "Wrasse - Fish Only",
         "Live Corals"
-      ],
-      "notCompatible": [
-        "Anglers / Frogs",
-        "Basslets",
-        "Batfish",
-        "Cardinals",
-        "Dartfish",
-        "Dragonets",
-        "Filefish",
-        "Pseudochromis",
-        "Seahorse / Pipefish",
-        "Sharks / Rays",
-        "Marine Invertebrates"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      ]
     },
     {
       "name": "Wrasse - Fish Only",
       "latinName": "Labridae, Coris",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Large Angels",
         "Boxfish",
@@ -2855,6 +2856,9 @@
         "Damsels",
         "Tangs / Surgeons"
       ],
+      "notCompatible": [
+        "Seahorse / Pipefish"
+      ],
       "withCaution": [
         "Dwarf Angels",
         "Anglers / Frogs",
@@ -2887,15 +2891,12 @@
         "Wrasse - Fish Only",
         "Live Corals",
         "Marine Invertebrates"
-      ],
-      "notCompatible": [
-        "Seahorse / Pipefish"
-      ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      ]
     },
     {
       "name": "Wrasse - Reef Safe",
       "latinName": "Labridae, Cirrhilabrus, Pseudocheilinus, Paracheilinus",
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true",
       "compatible": [
         "Dwarf Angels",
         "Large Angels",
@@ -2920,26 +2921,25 @@
         "Puffers",
         "Tangs / Surgeons",
         "Live Corals"
-      ],
-      "withCaution": [
-        "Anglers / Frogs",
-        "Eels",
-        "Groupers",
-        "Grunts / Sweetlips",
-        "Lions / Scorpions",
-        "Parrotfish",
-        "Pseudochromis",
-        "Triggerfish",
-        "Wrasse - Reef Safe",
-        "Wrasse - Fish Only",
-        "Marine Invertebrates"
       ],
       "notCompatible": [
         "Seahorse / Pipefish",
         "Sharks / Rays",
         "Squirrelfish"
       ],
-      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
+      "withCaution": [
+        "Anglers / Frogs",
+        "Eels",
+        "Groupers",
+        "Grunts / Sweetlips",
+        "Lions / Scorpions",
+        "Parrotfish",
+        "Pseudochromis",
+        "Triggerfish",
+        "Wrasse - Reef Safe",
+        "Wrasse - Fish Only",
+        "Marine Invertebrates"
+      ]
     }
   ]
 }
