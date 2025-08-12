@@ -38,7 +38,8 @@
         "Fancy Goldfish",
         "Brackish Fish",
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Barbs",
@@ -78,7 +79,8 @@
         "Bettas",
         "Fancy Goldfish",
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Bettas",
@@ -118,7 +120,8 @@
         "Fancy Goldfish",
         "Brackish Fish",
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Cory Cats",
@@ -158,7 +161,8 @@
       "notCompatible": [
         "Brackish Fish",
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Danios / Minnows",
@@ -197,7 +201,8 @@
         "Misc. African Cichlids",
         "Fancy Goldfish",
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Discus",
@@ -237,7 +242,8 @@
         "Fancy Goldfish",
         "Brackish Fish",
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Fancy Goldfish",
@@ -277,7 +283,8 @@
         "Swordtails",
         "Tetras",
         "Brackish Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Freshwater Plants",
@@ -316,7 +323,8 @@
         "Brackish Fish",
         "Pond Fish"
       ],
-      "notCompatible": []
+      "notCompatible": [],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Freshwater Sharks",
@@ -356,7 +364,8 @@
       "notCompatible": [
         "Fancy Goldfish",
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Gouramis",
@@ -396,7 +405,8 @@
         "Fancy Goldfish",
         "Brackish Fish",
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Guppies",
@@ -436,7 +446,8 @@
         "Fancy Goldfish",
         "Brackish Fish",
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Hatchets",
@@ -476,7 +487,8 @@
         "Fancy Goldfish",
         "Brackish Fish",
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Freshwater Invertebrates",
@@ -515,7 +527,8 @@
         "Brackish Fish",
         "Pond Fish"
       ],
-      "notCompatible": []
+      "notCompatible": [],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Killifish",
@@ -555,7 +568,8 @@
         "Fancy Goldfish",
         "Brackish Fish",
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Pond Fish",
@@ -595,7 +609,8 @@
         "Swordtails",
         "Tetras",
         "Brackish Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Larger Catfish",
@@ -634,7 +649,8 @@
         "Fancy Goldfish",
         "Tetras",
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Loaches",
@@ -673,7 +689,8 @@
       ],
       "notCompatible": [
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Malawian Cichlids",
@@ -713,7 +730,8 @@
         "Tetras",
         "Brackish Fish",
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Misc. African Cichlids",
@@ -753,7 +771,8 @@
         "Tetras",
         "Brackish Fish",
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Mollies",
@@ -793,7 +812,8 @@
         "Misc. African Cichlids",
         "Fancy Goldfish",
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "New World Cichlids",
@@ -832,7 +852,8 @@
         "Fancy Goldfish",
         "Guppies",
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Platies",
@@ -872,7 +893,8 @@
         "Fancy Goldfish",
         "Brackish Fish",
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Plecos",
@@ -910,7 +932,8 @@
         "Freshwater Invertebrates",
         "Brackish Fish"
       ],
-      "notCompatible": []
+      "notCompatible": [],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Rainbowfish",
@@ -950,7 +973,8 @@
         "Misc. African Cichlids",
         "Fancy Goldfish",
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Rasboras",
@@ -990,7 +1014,8 @@
         "Fancy Goldfish",
         "Brackish Fish",
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Suckermouth Catfish",
@@ -1030,7 +1055,8 @@
       ],
       "notCompatible": [
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Swordtails",
@@ -1070,7 +1096,8 @@
         "Fancy Goldfish",
         "Brackish Fish",
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Tanganyikan Cichlids",
@@ -1109,7 +1136,8 @@
         "Tetras",
         "Brackish Fish",
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     },
     {
       "name": "Tetras",
@@ -1149,7 +1177,8 @@
         "Larger Catfish",
         "Brackish Fish",
         "Pond Fish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_valg19valg19valg.jpg?raw=true"
     }
   ],
   "marine": [
@@ -1198,7 +1227,8 @@
         "Seahorse / Pipefish",
         "Sharks / Rays",
         "Triggerfish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Anthias",
@@ -1245,7 +1275,8 @@
         "Groupers",
         "Seahorse / Pipefish",
         "Sharks / Rays"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Basslets",
@@ -1292,7 +1323,8 @@
         "Seahorse / Pipefish",
         "Sharks / Rays",
         "Triggerfish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Batfish",
@@ -1338,7 +1370,8 @@
         "Seahorse / Pipefish",
         "Sharks / Rays",
         "Triggerfish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Blennies",
@@ -1384,7 +1417,8 @@
         "Lions / Scorpions",
         "Seahorse / Pipefish",
         "Sharks / Rays"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Boxfish",
@@ -1431,7 +1465,8 @@
       "notCompatible": [
         "Seahorse / Pipefish",
         "Sharks / Rays"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Butterflies",
@@ -1478,7 +1513,8 @@
         "Eels",
         "Seahorse / Pipefish",
         "Sharks / Rays"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Cardinals",
@@ -1524,7 +1560,8 @@
         "Seahorse / Pipefish",
         "Sharks / Rays",
         "Triggerfish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Chromis",
@@ -1570,7 +1607,8 @@
         "Lions / Scorpions",
         "Seahorse / Pipefish",
         "Sharks / Rays"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Clownfish",
@@ -1613,7 +1651,8 @@
         "Lions / Scorpions",
         "Seahorse / Pipefish",
         "Sharks / Rays"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Damsels",
@@ -1659,7 +1698,8 @@
         "Lions / Scorpions",
         "Seahorse / Pipefish",
         "Sharks / Rays"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Dartfish",
@@ -1706,7 +1746,8 @@
         "Lions / Scorpions",
         "Sharks / Rays",
         "Triggerfish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Dragonets",
@@ -1753,7 +1794,8 @@
         "Lions / Scorpions",
         "Sharks / Rays",
         "Triggerfish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Dwarf Angels",
@@ -1800,7 +1842,8 @@
       "notCompatible": [
         "Seahorse / Pipefish",
         "Sharks / Rays"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Eels",
@@ -1847,7 +1890,8 @@
         "Hawkfish",
         "Pseudochromis",
         "Seahorse / Pipefish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Filefish",
@@ -1894,7 +1938,8 @@
         "Sharks / Rays",
         "Triggerfish",
         "Marine Invertebrates"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Foxface / Rabbits",
@@ -1941,7 +1986,8 @@
       ],
       "notCompatible": [
         "Seahorse / Pipefish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Gobies",
@@ -1987,7 +2033,8 @@
         "Groupers",
         "Lions / Scorpions",
         "Sharks / Rays"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Groupers",
@@ -2033,7 +2080,8 @@
         "Pseudochromis",
         "Seahorse / Pipefish",
         "Squirrelfish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Grunts / Sweetlips",
@@ -2081,7 +2129,8 @@
       ],
       "notCompatible": [
         "Seahorse / Pipefish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Hawkfish",
@@ -2127,7 +2176,8 @@
         "Lions / Scorpions",
         "Seahorse / Pipefish",
         "Sharks / Rays"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Hogfish",
@@ -2174,7 +2224,8 @@
       "notCompatible": [
         "Hogfish",
         "Seahorse / Pipefish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Jawfish",
@@ -2220,7 +2271,8 @@
         "Groupers",
         "Lions / Scorpions",
         "Sharks / Rays"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Large Angels",
@@ -2267,7 +2319,8 @@
       ],
       "notCompatible": [
         "Seahorse / Pipefish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Lions / Scorpions",
@@ -2313,7 +2366,8 @@
         "Hawkfish",
         "Pseudochromis",
         "Seahorse / Pipefish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Live Corals",
@@ -2358,7 +2412,8 @@
       ],
       "notCompatible": [
         "Parrotfish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Marine Invertebrates",
@@ -2405,7 +2460,8 @@
         "Puffers",
         "Sharks / Rays",
         "Triggerfish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Parrotfish",
@@ -2452,7 +2508,8 @@
         "Seahorse / Pipefish",
         "Live Corals",
         "Marine Invertebrates"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Pseudochromis",
@@ -2499,7 +2556,8 @@
         "Seahorse / Pipefish",
         "Sharks / Rays",
         "Triggerfish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Puffers",
@@ -2546,7 +2604,8 @@
         "Seahorse / Pipefish",
         "Sharks / Rays",
         "Marine Invertebrates"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Seahorse / Pipefish",
@@ -2593,7 +2652,8 @@
         "Triggerfish",
         "Wrasse - Reef Safe",
         "Wrasse - Fish Only"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Sharks / Rays",
@@ -2639,7 +2699,8 @@
         "Triggerfish",
         "Wrasse - Reef Safe",
         "Marine Invertebrates"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Squirrelfish",
@@ -2686,7 +2747,8 @@
         "Groupers",
         "Seahorse / Pipefish",
         "Wrasse - Reef Safe"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Tangs / Surgeons",
@@ -2733,7 +2795,8 @@
       ],
       "notCompatible": [
         "Seahorse / Pipefish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Triggerfish",
@@ -2779,7 +2842,8 @@
         "Seahorse / Pipefish",
         "Sharks / Rays",
         "Marine Invertebrates"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Wrasse - Fish Only",
@@ -2826,7 +2890,8 @@
       ],
       "notCompatible": [
         "Seahorse / Pipefish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     },
     {
       "name": "Wrasse - Reef Safe",
@@ -2873,7 +2938,8 @@
         "Seahorse / Pipefish",
         "Sharks / Rays",
         "Squirrelfish"
-      ]
+      ],
+      "imageURL": "https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/Gemini_Generated_Image_w0boutw0boutw0bo.jpg?raw=true"
     }
   ]
 }
