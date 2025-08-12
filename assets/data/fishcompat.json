@@ -29,7 +29,6 @@
         "Discus",
         "Larger Catfish",
         "Freshwater Sharks",
-        "Misc. Fish",
         "Freshwater Invertebrates"
       ],
       "notCompatible": [
@@ -72,7 +71,6 @@
         "Larger Catfish",
         "Platies",
         "Swordtails",
-        "Misc. Fish",
         "Freshwater Invertebrates",
         "Brackish Fish"
       ],
@@ -109,7 +107,6 @@
         "Larger Catfish",
         "Rainbowfish",
         "Freshwater Sharks",
-        "Misc. Fish",
         "Freshwater Invertebrates"
       ],
       "notCompatible": [
@@ -156,7 +153,6 @@
         "New World Cichlids",
         "Larger Catfish",
         "Freshwater Sharks",
-        "Misc. Fish",
         "Freshwater Invertebrates"
       ],
       "notCompatible": [
@@ -192,7 +188,6 @@
       "withCaution": [
         "New World Cichlids",
         "Larger Catfish",
-        "Misc. Fish",
         "Freshwater Invertebrates",
         "Brackish Fish"
       ],
@@ -233,7 +228,6 @@
         "Larger Catfish",
         "Plecos",
         "Freshwater Sharks",
-        "Misc. Fish",
         "Freshwater Invertebrates"
       ],
       "notCompatible": [
@@ -257,7 +251,6 @@
       ],
       "withCaution": [
         "Loaches",
-        "Misc. Fish",
         "Freshwater Invertebrates",
         "Freshwater Plants"
       ],
@@ -320,7 +313,6 @@
         "Larger Catfish",
         "Plecos",
         "Suckermouth Catfish",
-        "Misc. Fish",
         "Brackish Fish",
         "Pond Fish"
       ],
@@ -358,7 +350,6 @@
         "Suckermouth Catfish",
         "Swordtails",
         "Tetras",
-        "Misc. Fish",
         "Freshwater Invertebrates",
         "Brackish Fish"
       ],
@@ -396,7 +387,6 @@
         "Discus",
         "Larger Catfish",
         "Tetras",
-        "Misc. Fish",
         "Freshwater Invertebrates"
       ],
       "notCompatible": [
@@ -436,7 +426,6 @@
         "Larger Catfish",
         "Loaches",
         "Freshwater Sharks",
-        "Misc. Fish",
         "Freshwater Invertebrates"
       ],
       "notCompatible": [
@@ -478,7 +467,6 @@
         "Larger Catfish",
         "Rainbowfish",
         "Freshwater Sharks",
-        "Misc. Fish",
         "Freshwater Invertebrates"
       ],
       "notCompatible": [
@@ -523,7 +511,6 @@
         "Suckermouth Catfish",
         "Swordtails",
         "Tetras",
-        "Misc. Fish",
         "Freshwater Invertebrates",
         "Brackish Fish",
         "Pond Fish"
@@ -559,7 +546,6 @@
         "Larger Catfish",
         "Loaches",
         "Freshwater Sharks",
-        "Misc. Fish",
         "Freshwater Invertebrates"
       ],
       "notCompatible": [
@@ -608,7 +594,6 @@
         "Suckermouth Catfish",
         "Swordtails",
         "Tetras",
-        "Misc. Fish",
         "Brackish Fish"
       ]
     },
@@ -641,7 +626,6 @@
         "Freshwater Sharks",
         "Suckermouth Catfish",
         "Swordtails",
-        "Misc. Fish",
         "Freshwater Invertebrates",
         "Brackish Fish",
         "Freshwater Plants"
@@ -684,7 +668,6 @@
         "Mollies",
         "Platies",
         "Swordtails",
-        "Misc. Fish",
         "Freshwater Invertebrates",
         "Brackish Fish"
       ],
@@ -709,7 +692,6 @@
         "Plecos",
         "Freshwater Sharks",
         "Suckermouth Catfish",
-        "Misc. Fish",
         "Freshwater Invertebrates",
         "Freshwater Plants"
       ],
@@ -750,7 +732,6 @@
         "Loaches",
         "Freshwater Sharks",
         "Suckermouth Catfish",
-        "Misc. Fish",
         "Freshwater Invertebrates",
         "Freshwater Plants"
       ],
@@ -804,7 +785,6 @@
         "Platies",
         "Plecos",
         "Swordtails",
-        "Misc. Fish",
         "Freshwater Invertebrates"
       ],
       "notCompatible": [
@@ -843,7 +823,6 @@
         "Suckermouth Catfish",
         "Swordtails",
         "Tetras",
-        "Misc. Fish",
         "Freshwater Invertebrates",
         "Brackish Fish",
         "Freshwater Plants"
@@ -884,7 +863,6 @@
         "Loaches",
         "Mollies",
         "Freshwater Sharks",
-        "Misc. Fish",
         "Freshwater Invertebrates"
       ],
       "notCompatible": [
@@ -929,7 +907,6 @@
         "Mollies",
         "Plecos",
         "Pond Fish",
-        "Misc. Fish",
         "Freshwater Invertebrates",
         "Brackish Fish"
       ],
@@ -964,7 +941,6 @@
         "Bettas",
         "Hatchets",
         "Larger Catfish",
-        "Misc. Fish",
         "Freshwater Invertebrates",
         "Brackish Fish"
       ],
@@ -1005,7 +981,6 @@
         "New World Cichlids",
         "Larger Catfish",
         "Freshwater Sharks",
-        "Misc. Fish",
         "Freshwater Invertebrates"
       ],
       "notCompatible": [
@@ -1049,7 +1024,6 @@
         "Platies",
         "Freshwater Sharks",
         "Swordtails",
-        "Misc. Fish",
         "Freshwater Invertebrates",
         "Brackish Fish",
         "Freshwater Plants"
@@ -1087,7 +1061,6 @@
         "Loaches",
         "Mollies",
         "Suckermouth Catfish",
-        "Misc. Fish",
         "Freshwater Invertebrates"
       ],
       "notCompatible": [
@@ -1115,7 +1088,6 @@
         "Loaches",
         "Freshwater Sharks",
         "Suckermouth Catfish",
-        "Misc. Fish",
         "Freshwater Invertebrates",
         "Freshwater Plants"
       ],
@@ -1167,7 +1139,6 @@
         "New World Cichlids",
         "Gouramis",
         "Freshwater Sharks",
-        "Misc. Fish",
         "Freshwater Invertebrates"
       ],
       "notCompatible": [
