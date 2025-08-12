@@ -28,22 +28,31 @@ jobs:
         with:
           node-version: '20' # Use a Node.js version compatible with your project
           cache: 'npm'
+          # Specify the path to your lock file for better caching
+          cache-dependency-path: assets/apps/fishcompatedit/package-lock.json
 
       # 3. Installs your project's dependencies
       - name: Install Dependencies
         run: npm install
+        # **This is the key change: specifies the directory to run the command in**
+        working-directory: ./assets/apps/fishcompatedit
 
       # 4. Builds your Next.js application for static export
       - name: Build Project
         run: npm run build
+        # **Run the build command in the same directory**
+        working-directory: ./assets/apps/fishcompatedit
 
-      # 5. Adds a .nojekyll file to the output directory to prevent issues with Jekyll on GitHub Pages
+      # 5. Adds a .nojekyll file to the output directory
       - name: Add .nojekyll file
         run: touch ./out/.nojekyll
+        # **Run this command in the same directory**
+        working-directory: ./assets/apps/fishcompatedit
 
       # 6. Deploys the built site to the gh-pages branch
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
+          # **Update the publish directory to point to the correct 'out' folder**
+          publish_dir: ./assets/apps/fishcompatedit/out
