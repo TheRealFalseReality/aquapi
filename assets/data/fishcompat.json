@@ -775,46 +775,6 @@
       ]
     },
     {
-      "name": "Misc. Fish (Freshwater)",
-      "latinName": "Various",
-      "compatible": [],
-      "withCaution": [
-        "Malawian Cichlids",
-        "Tanganyikan Cichlids",
-        "Misc. African Cichlids",
-        "New World Cichlids",
-        "Angelfish",
-        "Barbs",
-        "Bettas",
-        "Cory Cats",
-        "Danios / Minnows",
-        "Discus",
-        "Fancy Goldfish",
-        "Gouramis",
-        "Guppies",
-        "Hatchets",
-        "Killifish",
-        "Larger Catfish",
-        "Loaches",
-        "Mollies",
-        "Platies",
-        "Plecos",
-        "Rainbowfish",
-        "Rasboras",
-        "Freshwater Sharks",
-        "Suckermouth Catfish",
-        "Swordtails",
-        "Tetras",
-        "Misc. Fish",
-        "Freshwater Invertebrates",
-        "Brackish Fish",
-        "Freshwater Plants"
-      ],
-      "notCompatible": [
-        "Pond Fish"
-      ]
-    },
-    {
       "name": "Mollies",
       "latinName": "Poeciliidae, Poecilia",
       "compatible": [
