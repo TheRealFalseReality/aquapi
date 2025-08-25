@@ -46,7 +46,7 @@ jobs:
           out-file-path: output/firmware
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: output
           retention-days: 1
