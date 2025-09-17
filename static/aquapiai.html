@@ -153,6 +153,9 @@
                             <button id="generate-automation-button-drawer" class="flex-1 p-3 bg-[#75344E] text-white rounded-lg shadow-md hover:bg-[#5b283d]">
                                 Generate Automation Script <i class="fas fa-bolt ml-2"></i>
                             </button>
+                            <button id="create-tank-button-drawer" class="flex-1 p-3 bg-[#2D5F3F] text-white rounded-lg shadow-md hover:bg-[#1e3d29]">
+                                Create My Tank <i class="fas fa-fish ml-2"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -220,6 +223,82 @@
                     <button id="submit-automation" class="w-full p-2 bg-[#75344E] text-white rounded-lg hover:bg-[#5b283d]">Generate Script</button>
                 </div>
 
+                <!-- Tank creation form -->
+                <div id="tank-form" class="hidden space-y-4 mb-4 p-4 bg-gray-100 rounded-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="text-sm font-semibold text-gray-700">Create My Tank</h4>
+                        <button id="close-tank-form" class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Tank Name -->
+                    <input type="text" id="tank-name-input" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Tank Name (e.g., My Community Tank)">
+                    
+                    <!-- Tank Category -->
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-gray-700">Tank Category:</label>
+                        <div class="flex space-x-4">
+                            <label class="flex items-center">
+                                <input type="radio" name="tank-category" value="freshwater" class="mr-2" checked>
+                                <span>Freshwater</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="tank-category" value="saltwater" class="mr-2">
+                                <span>Saltwater</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Tank Type -->
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-gray-700">Tank Type:</label>
+                        <select id="tank-type-select" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    
+                    <!-- Tank Inhabitants -->
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-gray-700">Add Fish:</label>
+                        <div class="flex space-x-2">
+                            <select id="fish-select" class="flex-1 p-2 border border-gray-300 rounded-lg">
+                                <option value="">Select a fish...</option>
+                                <!-- Options will be populated by JavaScript -->
+                            </select>
+                            <input type="number" id="fish-quantity" class="w-20 p-2 border border-gray-300 rounded-lg" placeholder="Qty" min="1" value="1">
+                            <button id="add-fish-btn" class="p-2 bg-[#2D5F3F] text-white rounded-lg hover:bg-[#1e3d29]">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Fish List -->
+                    <div id="fish-list" class="space-y-2 max-h-32 overflow-y-auto">
+                        <!-- Fish will be added here -->
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="flex space-x-2">
+                        <button id="save-tank-btn" class="flex-1 p-2 bg-[#2D5F3F] text-white rounded-lg hover:bg-[#1e3d29]">Save Tank</button>
+                        <button id="view-saved-tanks-btn" class="flex-1 p-2 bg-[#81B2E8] text-white rounded-lg hover:bg-[#6a92b8]">View Saved Tanks</button>
+                    </div>
+                </div>
+
+                <!-- Saved Tanks View -->
+                <div id="saved-tanks-view" class="hidden space-y-4 mb-4 p-4 bg-gray-100 rounded-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="text-sm font-semibold text-gray-700">My Saved Tanks</h4>
+                        <button id="close-saved-tanks" class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div id="saved-tanks-list" class="space-y-2 max-h-60 overflow-y-auto">
+                        <!-- Saved tanks will be displayed here -->
+                    </div>
+                    <button id="back-to-tank-form" class="w-full p-2 bg-[#2D5F3F] text-white rounded-lg hover:bg-[#1e3d29]">Create New Tank</button>
+                </div>
+
                 <!-- Standard chat input -->
                 <div id="user-input-container" class="flex items-center">
                     <input type="text" id="user-input" class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#81B2E8]" placeholder="Ask me about AquaPi...">
@@ -272,11 +351,34 @@
         const suggestedQuestionButton4 = document.getElementById('suggested-question-button-4');
         const chatVersionNumber = document.getElementById('chat-version-number');
         const mainVersionNumber = document.getElementById('version-number-main');
+        
+        // Tank creation elements
+        const createTankButtonDrawer = document.getElementById('create-tank-button-drawer');
+        const tankForm = document.getElementById('tank-form');
+        const closeTankFormButton = document.getElementById('close-tank-form');
+        const tankNameInput = document.getElementById('tank-name-input');
+        const tankCategoryRadios = document.querySelectorAll('input[name="tank-category"]');
+        const tankTypeSelect = document.getElementById('tank-type-select');
+        const fishSelect = document.getElementById('fish-select');
+        const fishQuantityInput = document.getElementById('fish-quantity');
+        const addFishBtn = document.getElementById('add-fish-btn');
+        const fishList = document.getElementById('fish-list');
+        const saveTankBtn = document.getElementById('save-tank-btn');
+        const viewSavedTanksBtn = document.getElementById('view-saved-tanks-btn');
+        const savedTanksView = document.getElementById('saved-tanks-view');
+        const closeSavedTanksBtn = document.getElementById('close-saved-tanks');
+        const savedTanksList = document.getElementById('saved-tanks-list');
+        const backToTankFormBtn = document.getElementById('back-to-tank-form');
 
 
         let conversationHistory = []; // Stores the full conversation history
         let tempUnit = 'F'; // Default to Fahrenheit
         let salinityUnit = 'ppt'; // New state variable for salinity unit
+        
+        // Tank creation variables
+        let fishData = null;
+        let currentTankFish = [];
+        let savedTanks = JSON.parse(localStorage.getItem('aquapi_saved_tanks') || '[]');
         const API_KEY = "AIzaSyC_LqNFttcJ_0jhA-GM9bgWgsPJ2TImSuk"; // Canvas will automatically provide the API key
         const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
 
@@ -302,6 +404,206 @@ Other Guidelines:
 - When a user asks about a specific sensor or sensors, mention the ones AquaPi supports and briefly describe their capabilities. Keep the descriptions concise and easy to understand.
 - When a user asks a generic aquarium question, first provide a general, expert answer. Then, link the issue back to AquaPi, explaining how our sensors (as well as the sensors that the product supports) and automation capabilities could help them monitor and address the problem.
 - All responses must be formatted using Markdown for clarity. Use headings (e.g., "### Heading"), bullet points for lists (\`- List item\`), and bold text (\`**important**\`) to make the information easy to scan and read. When creating lists, ensure there is a line break between each list item to improve readability. Add a line break between each paragraph.`;
+
+        // Tank creation functions
+        async function loadFishData() {
+            try {
+                const response = await fetch('./fishcompat.json');
+                fishData = await response.json();
+                populateTankTypes();
+                populateFishOptions();
+            } catch (error) {
+                console.error('Error loading fish data:', error);
+                alert('Error loading fish compatibility data.');
+            }
+        }
+
+        function populateTankTypes() {
+            const selectedCategory = document.querySelector('input[name="tank-category"]:checked').value;
+            const tankTypes = fishData.tank_types[selectedCategory];
+            
+            tankTypeSelect.innerHTML = '';
+            tankTypes.forEach(type => {
+                const option = document.createElement('option');
+                option.value = type.id;
+                option.textContent = type.name;
+                option.title = type.description;
+                tankTypeSelect.appendChild(option);
+            });
+        }
+
+        function populateFishOptions() {
+            const selectedCategory = document.querySelector('input[name="tank-category"]:checked').value;
+            const fishUnits = fishData.fish_units[selectedCategory];
+            
+            fishSelect.innerHTML = '<option value="">Select a fish...</option>';
+            fishUnits.forEach(fish => {
+                const option = document.createElement('option');
+                option.value = fish.id;
+                option.textContent = `${fish.name} (${fish.scientific_name})`;
+                option.dataset.fish = JSON.stringify(fish);
+                fishSelect.appendChild(option);
+            });
+        }
+
+        function addFishToTank() {
+            const selectedFishId = fishSelect.value;
+            const quantity = parseInt(fishQuantityInput.value) || 1;
+            
+            if (!selectedFishId) {
+                alert('Please select a fish first.');
+                return;
+            }
+
+            const selectedCategory = document.querySelector('input[name="tank-category"]:checked').value;
+            const selectedTankType = tankTypeSelect.value;
+            const fishOption = fishSelect.options[fishSelect.selectedIndex];
+            const fishInfo = JSON.parse(fishOption.dataset.fish);
+
+            // Check compatibility
+            if (!fishInfo.compatible_tank_types.includes(selectedTankType)) {
+                const tankTypeName = fishData.tank_types[selectedCategory].find(t => t.id === selectedTankType).name;
+                alert(`${fishInfo.name} is not compatible with ${tankTypeName} tanks. Compatible types: ${fishInfo.compatible_tank_types.join(', ')}`);
+                return;
+            }
+
+            // Check if fish already exists in tank
+            const existingFish = currentTankFish.find(f => f.id === selectedFishId);
+            if (existingFish) {
+                existingFish.quantity += quantity;
+            } else {
+                currentTankFish.push({
+                    id: selectedFishId,
+                    name: fishInfo.name,
+                    scientific_name: fishInfo.scientific_name,
+                    quantity: quantity,
+                    schooling: fishInfo.schooling,
+                    min_group_size: fishInfo.min_group_size
+                });
+            }
+
+            updateFishList();
+            fishSelect.selectedIndex = 0;
+            fishQuantityInput.value = 1;
+        }
+
+        function updateFishList() {
+            fishList.innerHTML = '';
+            
+            currentTankFish.forEach((fish, index) => {
+                const fishDiv = document.createElement('div');
+                fishDiv.className = 'flex items-center justify-between p-2 bg-white rounded border';
+                
+                const warning = fish.schooling && fish.quantity < fish.min_group_size ? 
+                    ' <span class="text-red-500 text-xs">(⚠️ Needs ' + fish.min_group_size + '+ for schooling)</span>' : '';
+                
+                fishDiv.innerHTML = `
+                    <div class="flex-1">
+                        <span class="font-medium">${fish.name}</span>
+                        <div class="text-xs text-gray-500">${fish.scientific_name}</div>
+                        <div class="text-sm">Quantity: ${fish.quantity}${warning}</div>
+                    </div>
+                    <button onclick="removeFishFromTank(${index})" class="text-red-500 hover:text-red-700 p-1">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                `;
+                fishList.appendChild(fishDiv);
+            });
+        }
+
+        function removeFishFromTank(index) {
+            currentTankFish.splice(index, 1);
+            updateFishList();
+        }
+
+        function saveTank() {
+            const tankName = tankNameInput.value.trim();
+            const selectedCategory = document.querySelector('input[name="tank-category"]:checked').value;
+            const selectedTankType = tankTypeSelect.value;
+            
+            if (!tankName) {
+                alert('Please enter a tank name.');
+                return;
+            }
+            
+            if (currentTankFish.length === 0) {
+                alert('Please add at least one fish to your tank.');
+                return;
+            }
+
+            const tankTypeName = fishData.tank_types[selectedCategory].find(t => t.id === selectedTankType).name;
+            
+            const newTank = {
+                id: Date.now(),
+                name: tankName,
+                category: selectedCategory,
+                type: selectedTankType,
+                typeName: tankTypeName,
+                fish: [...currentTankFish],
+                created: new Date().toISOString()
+            };
+
+            savedTanks.push(newTank);
+            localStorage.setItem('aquapi_saved_tanks', JSON.stringify(savedTanks));
+            
+            alert('Tank saved successfully!');
+            clearTankForm();
+        }
+
+        function clearTankForm() {
+            tankNameInput.value = '';
+            currentTankFish = [];
+            updateFishList();
+            fishQuantityInput.value = 1;
+            fishSelect.selectedIndex = 0;
+        }
+
+        function showSavedTanks() {
+            savedTanksList.innerHTML = '';
+            
+            if (savedTanks.length === 0) {
+                savedTanksList.innerHTML = '<div class="text-center text-gray-500 py-4">No saved tanks yet.</div>';
+                return;
+            }
+
+            savedTanks.forEach(tank => {
+                const tankDiv = document.createElement('div');
+                tankDiv.className = 'p-3 bg-white rounded border space-y-2';
+                
+                const fishCount = tank.fish.reduce((sum, fish) => sum + fish.quantity, 0);
+                
+                tankDiv.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <h5 class="font-medium text-lg">${tank.name}</h5>
+                            <div class="text-sm text-gray-600">${tank.typeName} (${tank.category})</div>
+                            <div class="text-sm text-gray-500">${fishCount} fish total</div>
+                        </div>
+                        <button onclick="deleteTank(${tank.id})" class="text-red-500 hover:text-red-700 p-1">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="space-y-1">
+                        ${tank.fish.map(fish => `
+                            <div class="text-xs text-gray-600">• ${fish.quantity}x ${fish.name}</div>
+                        `).join('')}
+                    </div>
+                `;
+                savedTanksList.appendChild(tankDiv);
+            });
+        }
+
+        function deleteTank(tankId) {
+            if (confirm('Are you sure you want to delete this tank?')) {
+                savedTanks = savedTanks.filter(tank => tank.id !== tankId);
+                localStorage.setItem('aquapi_saved_tanks', JSON.stringify(savedTanks));
+                showSavedTanks();
+            }
+        }
+
+        // Make functions available globally for onclick handlers
+        window.removeFishFromTank = removeFishFromTank;
+        window.deleteTank = deleteTank;
 
         // A simple Markdown-to-HTML parser for basic formatting
         function parseMarkdown(text) {
@@ -619,6 +921,8 @@ Other Guidelines:
             // Hide all special input forms and show the main chat input by default
             analysisForm.classList.add('hidden');
             automationForm.classList.add('hidden');
+            tankForm.classList.add('hidden');
+            savedTanksView.classList.add('hidden');
             userInputContainer.classList.add('hidden');
             suggestedQuestionsArea.classList.add('hidden');
 
@@ -629,6 +933,10 @@ Other Guidelines:
                 analysisForm.classList.remove('hidden');
             } else if (state === 'automation') {
                 automationForm.classList.remove('hidden');
+            } else if (state === 'tank') {
+                tankForm.classList.remove('hidden');
+            } else if (state === 'saved-tanks') {
+                savedTanksView.classList.remove('hidden');
             }
         }
 
@@ -664,6 +972,45 @@ Other Guidelines:
         // Event listener for closing the automation form
         closeAutomationFormButton.addEventListener('click', () => {
             toggleUIState('chat');
+        });
+
+        // Tank creation event listeners
+        createTankButtonDrawer.addEventListener('click', () => {
+            if (tankForm.classList.contains('hidden')) {
+                toggleUIState('tank');
+            } else {
+                toggleUIState('chat');
+            }
+        });
+
+        closeTankFormButton.addEventListener('click', () => {
+            toggleUIState('chat');
+        });
+
+        tankCategoryRadios.forEach(radio => {
+            radio.addEventListener('change', () => {
+                populateTankTypes();
+                populateFishOptions();
+                currentTankFish = [];
+                updateFishList();
+            });
+        });
+
+        addFishBtn.addEventListener('click', addFishToTank);
+
+        saveTankBtn.addEventListener('click', saveTank);
+
+        viewSavedTanksBtn.addEventListener('click', () => {
+            showSavedTanks();
+            toggleUIState('saved-tanks');
+        });
+
+        closeSavedTanksBtn.addEventListener('click', () => {
+            toggleUIState('chat');
+        });
+
+        backToTankFormBtn.addEventListener('click', () => {
+            toggleUIState('tank');
         });
 
         // Event listener for the temperature unit toggle switch
@@ -847,6 +1194,9 @@ Other Guidelines:
                 toggleIcon.classList.remove('rotate-180');
             }
         });
+
+        // Initialize fish data on page load
+        loadFishData();
     </script>
 </body>
 </html>

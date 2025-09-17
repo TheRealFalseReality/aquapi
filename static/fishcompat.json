@@ -1,0 +1,209 @@
+{
+  "categories": {
+    "freshwater": {
+      "name": "Freshwater",
+      "compatible_types": ["community", "cichlid", "planted", "biotope", "predator"]
+    },
+    "saltwater": {
+      "name": "Saltwater",
+      "compatible_types": ["reef", "fish_only", "fish_only_with_live_rock", "predator"]
+    }
+  },
+  "tank_types": {
+    "freshwater": [
+      {
+        "id": "community",
+        "name": "Freshwater Community",
+        "description": "Mixed peaceful species tank"
+      },
+      {
+        "id": "cichlid",
+        "name": "Cichlid Tank",
+        "description": "African or South American cichlids"
+      },
+      {
+        "id": "planted",
+        "name": "Planted Tank",
+        "description": "Heavily planted freshwater aquarium"
+      },
+      {
+        "id": "biotope",
+        "name": "Biotope Tank",
+        "description": "Natural habitat recreation"
+      },
+      {
+        "id": "predator",
+        "name": "Predator Tank", 
+        "description": "Large predatory freshwater fish"
+      }
+    ],
+    "saltwater": [
+      {
+        "id": "reef",
+        "name": "Reef Tank",
+        "description": "Coral and fish ecosystem"
+      },
+      {
+        "id": "fish_only",
+        "name": "Fish Only",
+        "description": "Saltwater fish without corals"
+      },
+      {
+        "id": "fish_only_with_live_rock",
+        "name": "Fish Only with Live Rock (FOWLR)",
+        "description": "Fish with live rock but no corals"
+      },
+      {
+        "id": "predator",
+        "name": "Predator Tank",
+        "description": "Large predatory marine fish"
+      }
+    ]
+  },
+  "fish_units": {
+    "freshwater": [
+      {
+        "id": "neon_tetra",
+        "name": "Neon Tetra",
+        "scientific_name": "Paracheirodon innesi",
+        "size": "small",
+        "temperament": "peaceful",
+        "schooling": true,
+        "min_group_size": 6,
+        "compatible_tank_types": ["community", "planted", "biotope"]
+      },
+      {
+        "id": "angelfish",
+        "name": "Angelfish",
+        "scientific_name": "Pterophyllum scalare",
+        "size": "medium",
+        "temperament": "semi-aggressive",
+        "schooling": false,
+        "min_group_size": 1,
+        "compatible_tank_types": ["community", "planted", "biotope"]
+      },
+      {
+        "id": "betta",
+        "name": "Betta Fish",
+        "scientific_name": "Betta splendens",
+        "size": "small",
+        "temperament": "aggressive",
+        "schooling": false,
+        "min_group_size": 1,
+        "compatible_tank_types": ["community", "planted"]
+      },
+      {
+        "id": "guppy",
+        "name": "Guppy",
+        "scientific_name": "Poecilia reticulata",
+        "size": "small",
+        "temperament": "peaceful",
+        "schooling": true,
+        "min_group_size": 3,
+        "compatible_tank_types": ["community", "planted"]
+      },
+      {
+        "id": "oscar",
+        "name": "Oscar",
+        "scientific_name": "Astronotus ocellatus",
+        "size": "large",
+        "temperament": "aggressive",
+        "schooling": false,
+        "min_group_size": 1,
+        "compatible_tank_types": ["cichlid", "predator"]
+      },
+      {
+        "id": "discus",
+        "name": "Discus",
+        "scientific_name": "Symphysodon aequifasciatus",
+        "size": "medium",
+        "temperament": "peaceful",
+        "schooling": true,
+        "min_group_size": 4,
+        "compatible_tank_types": ["biotope", "planted"]
+      },
+      {
+        "id": "corydoras",
+        "name": "Corydoras Catfish",
+        "scientific_name": "Corydoras spp.",
+        "size": "small",
+        "temperament": "peaceful",
+        "schooling": true,
+        "min_group_size": 5,
+        "compatible_tank_types": ["community", "planted", "biotope"]
+      }
+    ],
+    "saltwater": [
+      {
+        "id": "clownfish",
+        "name": "Clownfish",
+        "scientific_name": "Amphiprion ocellaris",
+        "size": "small",
+        "temperament": "peaceful",
+        "schooling": false,
+        "min_group_size": 1,
+        "compatible_tank_types": ["reef", "fish_only", "fish_only_with_live_rock"]
+      },
+      {
+        "id": "blue_tang",
+        "name": "Blue Tang",
+        "scientific_name": "Paracanthurus hepatus",
+        "size": "medium",
+        "temperament": "peaceful",
+        "schooling": false,
+        "min_group_size": 1,
+        "compatible_tank_types": ["reef", "fish_only", "fish_only_with_live_rock"]
+      },
+      {
+        "id": "wrasse",
+        "name": "Six Line Wrasse",
+        "scientific_name": "Pseudocheilinus hexataenia",
+        "size": "small",
+        "temperament": "semi-aggressive",
+        "schooling": false,
+        "min_group_size": 1,
+        "compatible_tank_types": ["reef", "fish_only", "fish_only_with_live_rock"]
+      },
+      {
+        "id": "goby",
+        "name": "Yellow Watchman Goby",
+        "scientific_name": "Cryptocentrus cinctus",
+        "size": "small",
+        "temperament": "peaceful",
+        "schooling": false,
+        "min_group_size": 1,
+        "compatible_tank_types": ["reef", "fish_only", "fish_only_with_live_rock"]
+      },
+      {
+        "id": "lionfish",
+        "name": "Lionfish",
+        "scientific_name": "Pterois volitans",
+        "size": "medium",
+        "temperament": "aggressive",
+        "schooling": false,
+        "min_group_size": 1,
+        "compatible_tank_types": ["predator", "fish_only"]
+      },
+      {
+        "id": "grouper",
+        "name": "Miniatus Grouper",
+        "scientific_name": "Cephalopholis miniata",
+        "size": "large",
+        "temperament": "aggressive",
+        "schooling": false,
+        "min_group_size": 1,
+        "compatible_tank_types": ["predator", "fish_only"]
+      },
+      {
+        "id": "cardinalfish",
+        "name": "Banggai Cardinalfish",
+        "scientific_name": "Pterapogon kauderni",
+        "size": "small",
+        "temperament": "peaceful",
+        "schooling": true,
+        "min_group_size": 3,
+        "compatible_tank_types": ["reef", "fish_only", "fish_only_with_live_rock"]
+      }
+    ]
+  }
+}
