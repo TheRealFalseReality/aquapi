@@ -5,3 +5,9 @@
 /secrets.yaml
 /.idea/
 /.vscode/
+
+# Jekyll build output
+/static/_site/
+
+# Backup files
+*.backup
