@@ -1,15 +1,16 @@
 substitutions:
   # # PMP circuit, who's default address is 103
-  # addPMP_default: "103" #White
-  # addPMP_alt1: "108" # Waste/Red
-  # addPMP_alt2: "109" # Clean/Green
-  # addPMP_alt3: "110" #Orange
-  # addPMP_alt4: "106" # Blue
+  addPMP_white: "103" #White
+  addPMP_red: "108" # Waste/Red
+  addPMP_green: "109" # Clean/Green
+  addPMP_orange: "110" #Orange
+  addPMP_blue: "106" # Blue
+  addPMP_yellow: "104" # Yellow
 
 button:
   # Change I2C Address of EZO-PMP
   - platform: template
-    name: "Pump(Blue) -> ${addPMP_blue} - Change I2C Address"
+    name: "Pump(Blue) ${addPMP_white} -> ${addPMP_blue} - Change I2C Address"
     on_press:
         then:
         - ezo_pmp.change_i2c_address:
@@ -19,7 +20,7 @@ button:
       sorting_group_id: sorting_group_config
 
   - platform: template
-    name: "Pump(Yellow) -> ${addPMP_yellow} - Change I2C Address"
+    name: "Pump(Yellow) ${addPMP_white} -> ${addPMP_yellow} - Change I2C Address"
     on_press:
         then:
         - ezo_pmp.change_i2c_address:
@@ -29,7 +30,7 @@ button:
       sorting_group_id: sorting_group_config
 
   - platform: template
-    name: "Pump(Red) -> ${addPMP_red} - Change I2C Address"
+    name: "Pump(Red) ${addPMP_white} -> ${addPMP_red} - Change I2C Address"
     on_press:
         then:
         - ezo_pmp.change_i2c_address:
@@ -39,7 +40,7 @@ button:
       sorting_group_id: sorting_group_config
 
   - platform: template
-    name: "Pump(Green) -> ${addPMP_green} - Change I2C Address"
+    name: "Pump(Green) ${addPMP_white} -> ${addPMP_green} - Change I2C Address"
     on_press:
         then:
         - ezo_pmp.change_i2c_address:
@@ -49,7 +50,7 @@ button:
       sorting_group_id: sorting_group_config
 
   - platform: template
-    name: "Pump(Orange) -> ${addPMP_orange} - Change I2C Address"
+    name: "Pump(Orange) ${addPMP_white} -> ${addPMP_orange} - Change I2C Address"
     on_press:
         then:
         - ezo_pmp.change_i2c_address:
