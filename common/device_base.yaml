@@ -3,7 +3,7 @@ substitutions:
   name: "esp32"
   friendly_name: "ESP32"
   comment: "Firmware for ESP32"
-  project_name: "esphome.esp32"
+  project_name: "TheRealFalseReality.aquapi"
   
   # App Version
   app_version: "1.0"  
