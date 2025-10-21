@@ -1,3 +1,4 @@
+---
 substitutions:
   # names
   name: "esp32"
@@ -11,8 +12,8 @@ substitutions:
   logger: "DEBUG"
 
   # I2C pins
-  sdaPin: "21" # yellow/TX PMP -> green
-  sclPin: "22" # blue/RX PMP -> white
+  sdaPin: "21"  # yellow/TX PMP -> green
+  sclPin: "22"  # blue/RX PMP -> white
 
   sorting_group_name: ""
   sorting_group_misc_weight: '97'
@@ -86,7 +87,7 @@ sensor:
       sorting_group_id: sorting_group_diagnostic
 
   # Wifi Signal
-  - platform: wifi_signal # Reports the WiFi signal strength/RSSI in dB
+  - platform: wifi_signal  # Reports the WiFi signal strength/RSSI in dB
     name: "WiFi Signal dB"
     disabled_by_default: true
     icon: mdi:wifi
@@ -97,7 +98,7 @@ sensor:
       sorting_group_id: sorting_group_diagnostic
 
   # Wifi %
-  - platform: copy # Reports the WiFi signal strength in %
+  - platform: copy  # Reports the WiFi signal strength in %
     source_id: wifi_signal_db
     name: "WiFi Signal Strength"
     icon: mdi:wifi

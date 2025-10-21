@@ -1,6 +1,7 @@
+---
 substitutions:
-  binary_pin_1: "13" # yellow
-  leak_sensor: "27" # blue -> red (GND - Green -> Black  )
+  binary_pin_1: "13"  # yellow
+  leak_sensor: "27"  # blue -> red (GND - Green -> Black  )
 
 binary_sensor:
   - platform: gpio

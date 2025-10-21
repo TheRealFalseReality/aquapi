@@ -1,3 +1,4 @@
+---
 substitutions:
   # EC circuit, who's address is 100
   addEC: "100"
@@ -112,7 +113,7 @@ sensor:
         - lambda:
             id(result_ec).publish_state(x);
 
-  # # Conductivity
+  #  # Conductivity
   # - platform: template
   #   name: Conductivity
   #   id: sensor_conductivity

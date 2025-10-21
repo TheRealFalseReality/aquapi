@@ -1,3 +1,4 @@
+---
 ota:
   - platform: http_request
 

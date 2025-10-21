@@ -1,3 +1,4 @@
+---
 substitutions:
   dallasPin: "16"
   update_temp: "60s"
@@ -135,7 +136,7 @@ number:
     min_value: 0.0
     max_value: 100.0
     step: 0.5
-    restore_value: True
+    restore_value: true
     initial_value: ${range_cool}
     entity_category: "Config"
     device_class: "temperature"
@@ -155,7 +156,7 @@ number:
     min_value: 0.0
     max_value: 100.0
     step: 0.5
-    restore_value: True
+    restore_value: true
     initial_value: ${range_warm}
     entity_category: "Config"
     device_class: "temperature"

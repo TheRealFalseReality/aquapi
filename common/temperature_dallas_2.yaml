@@ -1,9 +1,10 @@
+---
 substitutions:
   temp_address_2: ''
 
   # Calibration variables
   # 0C using Ice Water; 100C using Boiling Water
-  # # Calibration Temp. 2
+  #  # Calibration Temp. 2
   cal_0_temp_2: "0.0"
   cal_100_temp_2: "100.0"
 
@@ -123,7 +124,7 @@ number:
     min_value: 0.0
     max_value: 100.0
     step: 0.5
-    restore_value: True
+    restore_value: true
     initial_value: ${range_cool}
     entity_category: "Config"
     device_class: "temperature"
@@ -144,7 +145,7 @@ number:
     min_value: 0.0
     max_value: 100.0
     step: 0.5
-    restore_value: True
+    restore_value: true
     initial_value: ${range_warm}
     entity_category: "Config"
     device_class: "temperature"

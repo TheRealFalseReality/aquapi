@@ -1,3 +1,4 @@
+---
 substitutions:
   # Device Information
   # App Version
@@ -14,30 +15,30 @@ substitutions:
   logger: "DEBUG"
 
   # Pins
-  auxPin1: "26" # blue
-  auxPin2: "27" # yellow
-  binary_pin_1: "13" # yellow
-  binary_pin_2: "18" # yellow
-  binary_pin_3: "19" # blue
-  binary_pin_4: "4" # yellow
-  binary_pin_5: "17" # blue
-  binary_pin_6: "23" # blue
-  dac_1: "26" # yellow
-  dac_2: "25" # blue
+  auxPin1: "26"  # blue
+  auxPin2: "27"  # yellow
+  binary_pin_1: "13"  # yellow
+  binary_pin_2: "18"  # yellow
+  binary_pin_3: "19"  # blue
+  binary_pin_4: "4"  # yellow
+  binary_pin_5: "17"  # blue
+  binary_pin_6: "23"  # blue
+  dac_1: "26"  # yellow
+  dac_2: "25"  # blue
   dallasPin: "16"
-  dhtPin: "18" # was 25
+  dhtPin: "18"  # was 25
   dht_type: "DHT11"
   irReceiverPin: "35"
-  leak_sensor: "27" # blue -> red (GND - Green -> Black  )
-  opticalHighPin: "33" # blue
+  leak_sensor: "27"  # blue -> red (GND - Green -> Black  )
+  opticalHighPin: "33"  # blue
   # pins
-  opticalLowPin: "32" # yellow
+  opticalLowPin: "32"  # yellow
   temp_address_2: "''"
 
   # I2C Pins
-  sclPin: "22" # blue/RX PMP -> white
+  sclPin: "22"  # blue/RX PMP -> white
   # I2C pins
-  sdaPin: "21" # yellow/TX PMP -> green
+  sdaPin: "21"  # yellow/TX PMP -> green
 
   # EZO Circuit I2C Addresses
   # CO2 circuit, who's address is 105
@@ -58,25 +59,25 @@ substitutions:
   # EZO PMP Circuit Addresses
   # PMP circuit, who's address is 103
   addPMP: "103"
-  addPMPClean: "109" # Green - Clean Water
-  addPMPWaste: "108" # Red - Waste Water
-  addPMP_2: "110" # Orange
-  addPMP_3: "104" # Yellow
-  addPMP_4: "106" # Blue
-  addPMP_blue: "106" # Blue
-  addPMP_green: "109" # Clean/Green
-  addPMP_orange: "110" # Orange
-  addPMP_red: "108" # Waste/Red
-  # # PMP circuit, who's default address is 103
-  addPMP_white: "103" # White
-  addPMP_yellow: "104" # Yellow
+  addPMPClean: "109"  # Green - Clean Water
+  addPMPWaste: "108"  # Red - Waste Water
+  addPMP_2: "110"  # Orange
+  addPMP_3: "104"  # Yellow
+  addPMP_4: "106"  # Blue
+  addPMP_blue: "106"  # Blue
+  addPMP_green: "109"  # Clean/Green
+  addPMP_orange: "110"  # Orange
+  addPMP_red: "108"  # Waste/Red
+  #  # PMP circuit, who's default address is 103
+  addPMP_white: "103"  # White
+  addPMP_yellow: "104"  # Yellow
 
   # Calibration Variables
   # Calibration Temp. 1
   cal_0: "0.0"
   # Calibration Temp. 2
   cal_0_2: "0.0"
-  # # Calibration Temp. 2
+  #  # Calibration Temp. 2
   cal_0_temp_2: "0.0"
   cal_100: "100.0"
   cal_100_2: "100.0"
@@ -131,5 +132,3 @@ substitutions:
   sorting_group_rtd: "'36'"
   sorting_group_temperature_weight: "'10'"
   sorting_group_water_level_weight: "'11'"
-
-

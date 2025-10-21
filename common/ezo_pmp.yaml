@@ -1,6 +1,7 @@
+---
 substitutions:
   # PMP circuit
-  addPMP_white: "103" # White
+  addPMP_white: "103"  # White
   update_pmp_white: "60s"
 
   sorting_group_pump_white_weight: '80'
@@ -182,9 +183,9 @@ number:
     device_class: 'volume'
     unit_of_measurement: 'mL'
     optimistic: true
-    initial_value: 10 # cannot be less than +/-0.1mL
+    initial_value: 10  # cannot be less than +/-0.1mL
     min_value: -378541
-    max_value: 378541 # 100 gal
+    max_value: 378541  # 100 gal
     mode: box
     step: 0.1
     web_server:
@@ -199,7 +200,7 @@ number:
     optimistic: true
     initial_value: 1
     min_value: 1
-    max_value: 1440 # 24 hours
+    max_value: 1440  # 24 hours
     mode: box
     step: 0.1
     web_server:
@@ -213,7 +214,7 @@ number:
     optimistic: true
     initial_value: 10
     min_value: .5
-    max_value: 105 # may need to lower to 40
+    max_value: 105  # may need to lower to 40
     mode: box
     step: 0.1
     web_server:

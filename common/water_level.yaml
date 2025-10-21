@@ -1,7 +1,8 @@
+---
 substitutions:
   # Optical_1
-  opticalLowPin: "33" # yellow
-  opticalHighPin: "32" # blue
+  opticalLowPin: "33"  # yellow
+  opticalHighPin: "32"  # blue
 
   # Water Level
   update_water: "60s"

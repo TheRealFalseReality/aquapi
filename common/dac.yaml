@@ -1,7 +1,8 @@
+---
 # TODO
 substitutions:
-  dac_1: "26" # yellow
-  dac_2: "25" # blue
+  dac_1: "26"  # yellow
+  dac_2: "25"  # blue
 
 binary_sensor:
   # DAC Pin 1
