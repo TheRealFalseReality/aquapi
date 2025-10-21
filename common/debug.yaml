@@ -6,7 +6,7 @@ web_server:
     - id: sorting_group_debug
       name: "Debug"
       sorting_weight: ${sorting_group_debug}
-      
+
 debug:
   update_interval: 5s
 

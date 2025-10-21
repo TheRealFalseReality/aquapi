@@ -16,11 +16,11 @@ ezo_pmp:
     update_interval: "${update_pmp_orange}"
 
 api:
-  actions: 
+  actions:
     - action: pump_orange_dose_volume
-      variables: 
+      variables:
         dose_volume: float
-      then: 
+      then:
         - ezo_pmp.dose_volume:
             id: ezo_pump_orange
             volume: !lambda 'return dose_volume;'
@@ -153,7 +153,7 @@ text_sensor:
     id: ezo_pump_orange
     dosing_mode:
       id: dosing_mode_orange
-      name: Pump Orange - Dosing Mode 
+      name: Pump Orange - Dosing Mode
       icon: mdi:auto-mode
       web_server:
         sorting_group_id: sorting_group_pump_orange

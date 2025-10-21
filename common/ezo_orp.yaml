@@ -2,7 +2,7 @@ substitutions:
   # ORP circuit, who's address is 98
   addORP: "98"
   update_orp: "60s"
-  
+
   sorting_group_orp: '33'
 
 web_server:
@@ -12,7 +12,7 @@ web_server:
       sorting_weight: ${sorting_group_orp}
 
 api:
-  actions: 
+  actions:
     - action: orp_change_address
       variables:
         address: int
@@ -25,20 +25,20 @@ api:
       then:
         - lambda: |-
             id(orp_ezo).send_custom({{command}});
-    - action: orp_read_continous
+    - action: orp_read_continuous
       then:
-      - repeat:
-          count: 60
-          then:
-          - button.press: read_orp
-          - delay: 1s
+        - repeat:
+            count: 60
+            then:
+              - button.press: read_orp
+              - delay: 1s
     - action: orp_calibrate_225
       then:
-      - lambda: |-
-          id(orp_ezo).send_custom("Cal,225");
-          
+        - lambda: |-
+            id(orp_ezo).send_custom("Cal,225");
+
 esphome:
-  on_boot: 
+  on_boot:
     priority: 800
     then:
       - button.press: send_selected_orp
@@ -56,25 +56,25 @@ sensor:
     update_interval: "${update_orp}"
     state_class: "measurement"
     device_class: voltage
-    on_custom: 
+    on_custom:
       then:
-        - lambda: 
+        - lambda:
             id(result_orp).publish_state(x);
-    on_calibration: 
+    on_calibration:
       then:
-        - lambda: 
+        - lambda:
             id(result_orp).publish_state(x);
-    on_device_information: 
+    on_device_information:
       then:
-        - lambda: 
+        - lambda:
             id(result_orp).publish_state(x);
-    on_slope: 
+    on_slope:
       then:
-        - lambda: 
+        - lambda:
             id(result_orp).publish_state(x);
-    on_t: 
+    on_t:
       then:
-        - lambda: 
+        - lambda:
             id(result_orp).publish_state(x);
     web_server:
       sorting_group_id: sorting_group_orp
@@ -135,7 +135,7 @@ button:
             }
             if (id(select_command_orp).state == "Check Calibration") {
               id(orp_ezo).get_calibration();
-            }  
+            }
             if (id(select_command_orp).state == "Calibrate @ 225 mV (WILL RESET CALIBRATION)") {
               id(orp_ezo).send_custom("Cal,225");
             }

@@ -23,7 +23,7 @@ sensor:
           datapoints:
             - 0.0 -> ${cal_0_2}
             - 100.0 -> ${cal_100_2}
-    on_value: 
+    on_value:
       then:
         - component.update: temp_range_2
     web_server:
@@ -104,7 +104,7 @@ text_sensor:
       }
       if(id(temp_f_2).state >= id(range_warm_2).state) {
         return {"Warm"};
-      }     
+      }
       else {
         return {"Unknown"};
       }
@@ -127,7 +127,7 @@ number:
     initial_value: ${range_cool}
     entity_category: "Config"
     device_class: "temperature"
-    on_value: 
+    on_value:
       then:
         - component.update: temp_range_2
     web_server:
@@ -148,7 +148,7 @@ number:
     initial_value: ${range_warm}
     entity_category: "Config"
     device_class: "temperature"
-    on_value: 
+    on_value:
       then:
         - component.update: temp_range_2
     web_server:

@@ -4,9 +4,9 @@ substitutions:
   friendly_name: "ESP32"
   comment: "Firmware for ESP32"
   project_name: "TheRealFalseReality.aquapi"
-  
+
   # App Version
-  app_version: "1.0"  
+  app_version: "1.0"
   # Logger Level - Can use VERBOSE for more information in Logs
   logger: "DEBUG"
 
@@ -46,7 +46,7 @@ i2c:
   scan: true
   id: bus_a
 
-wifi: 
+wifi:
   ap:
 
 ota:
@@ -66,7 +66,7 @@ web_server:
     - id: sorting_group_misc
       name: "Misc. Sensors"
       sorting_weight: ${sorting_group_misc_weight}
-  
+
 improv_serial:
 
 # Internal Blue LED
@@ -85,7 +85,7 @@ sensor:
     web_server:
       sorting_group_id: sorting_group_diagnostic
 
-  # Wifi Signal 
+  # Wifi Signal
   - platform: wifi_signal # Reports the WiFi signal strength/RSSI in dB
     name: "WiFi Signal dB"
     disabled_by_default: true
@@ -111,7 +111,7 @@ sensor:
 
   # Uptime sensor
   - platform: uptime
-    name: Uptime 
+    name: Uptime
     web_server:
       sorting_group_id: sorting_group_diagnostic
 

@@ -2,7 +2,7 @@ substitutions:
   dhtPin: "18" #was 25
   update_dht: "60s"
   dht_type: "DHT11"
-  
+
 sensor:
   # DHT
   - platform: dht
@@ -32,8 +32,8 @@ sensor:
     icon: mdi:thermometer-water
     state_class: "measurement"
     device_class: "temperature"
-    unit_of_measurement: "°C"    
-    lambda: |- 
+    unit_of_measurement: "°C"
+    lambda: |-
       return ( id(air_temperature).state - (( 100 - id(relative_humidity).state ) / 5 ) );
     web_server:
       sorting_group_id: sorting_group_misc

@@ -16,7 +16,7 @@ web_server:
     - id: sorting_group_pump_red
       name: "Pump - Red"
       sorting_weight: ${sorting_group_pump_red_weight}
-  
+
 ezo_pmp:
   - id: ezo_pump_green
     address: ${addPMP_green}
@@ -26,11 +26,11 @@ ezo_pmp:
     update_interval: "${update_pmp_red}"
 
 api:
-  actions: 
+  actions:
     - action: pump_waste_volume
-      variables: 
+      variables:
         dose_volume: float
-      then: 
+      then:
         - ezo_pmp.dose_volume:
             id: ezo_pump_red
             volume: !lambda 'return dose_volume;'
@@ -65,9 +65,9 @@ api:
             volume: !lambda |-
               return actual_volume;
     - action: pump_clean_volume
-      variables: 
+      variables:
         dose_volume: float
-      then: 
+      then:
         - ezo_pmp.dose_volume:
             id: ezo_pump_green
             volume: !lambda 'return dose_volume;'
@@ -333,7 +333,7 @@ text_sensor:
     id: ezo_pump_green
     dosing_mode:
       id: dosing_mode_clean
-      name: Pump Clean - Dosing Mode 
+      name: Pump Clean - Dosing Mode
       disabled_by_default: true
       icon: mdi:auto-mode
       web_server:
@@ -353,7 +353,7 @@ text_sensor:
     id: ezo_pump_red
     dosing_mode:
       id: dosing_mode_waste
-      name: Pump Waste - Dosing Mode 
+      name: Pump Waste - Dosing Mode
       disabled_by_default: true
       icon: mdi:auto-mode
       web_server:
@@ -565,7 +565,7 @@ button:
           id: ezo_pump_green
     web_server:
       sorting_group_id: sorting_group_pump_green
-        
+
   # Red
   - platform: template
     name: Pump Waste - Dose Volume for Time

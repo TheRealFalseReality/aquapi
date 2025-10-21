@@ -1,14 +1,14 @@
 # TODO
-substitutions:  
+substitutions:
   dac_1: "26" # yellow
   dac_2: "25" # blue
-  
+
 binary_sensor:
   # DAC Pin 1
   - platform: gpio
     id: aux_1
     disabled_by_default: true
-    pin: 
+    pin:
       number: ${dac_1}
       inverted: true
       mode:
@@ -23,7 +23,7 @@ binary_sensor:
   - platform: gpio
     id: aux_1
     disabled_by_default: true
-    pin: 
+    pin:
       number: ${dac_2}
       inverted: true
       mode:

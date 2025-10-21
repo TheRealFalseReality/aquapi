@@ -12,13 +12,13 @@ web_server:
       sorting_weight: ${sorting_group_rtd}
 
 # esphome:
-#     on_boot: 
+#     on_boot:
 #         priority: 800
 #         then:
 #           - button.press: send_selected_rtd
 
 api:
-  actions: 
+  actions:
     - action: temperature_rtd_change_address
       variables:
         address: int
@@ -46,25 +46,25 @@ sensor:
     state_class: "measurement"
     device_class: "temperature"
     disabled_by_default: true
-    # on_custom: 
+    # on_custom:
     #   then:
-    #     - lambda: 
+    #     - lambda:
     #         id(result_ph).publish_state(x);
-    # on_calibration: 
+    # on_calibration:
     #   then:
-    #     - lambda: 
+    #     - lambda:
     #         id(result_ph).publish_state(x);
-    # on_device_information: 
+    # on_device_information:
     #   then:
-    #     - lambda: 
+    #     - lambda:
     #         id(result_ph).publish_state(x);
-    # on_slope: 
+    # on_slope:
     #   then:
-    #     - lambda: 
+    #     - lambda:
     #         id(result_ph).publish_state(x);
-    # on_t: 
+    # on_t:
     #   then:
-    #     - lambda: 
+    #     - lambda:
     #         id(result_ph).publish_state(x);
     web_server:
       sorting_group_id: sorting_group_rtd

@@ -23,7 +23,7 @@ button:
     disabled_by_default: true
     web_server:
       sorting_group_id: sorting_group_config
-    on_press: 
+    on_press:
       then:
         - ota.http_request.flash:
             md5_url: https://therealfalsereality.github.io/aquapi/firmware/aquapi-esp32.ota.bin.md5

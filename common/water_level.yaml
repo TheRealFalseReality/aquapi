@@ -1,4 +1,4 @@
-substitutions:  
+substitutions:
   # Optical_1
   opticalLowPin: "33" # yellow
   opticalHighPin: "32" # blue
@@ -15,10 +15,10 @@ web_server:
       sorting_weight: ${sorting_group_water_level_weight}
 
 esphome:
-  on_boot: 
-      priority: 200
-      then:
-        - component.update: water_level
+  on_boot:
+    priority: 200
+    then:
+      - component.update: water_level
 
 binary_sensor:
   # Optical Sensor - LOW (yellow)
@@ -26,7 +26,7 @@ binary_sensor:
     id: os_low
     icon: mdi:arrow-down-bold
     # disabled_by_default: true
-    pin: 
+    pin:
       number: ${opticalLowPin}
       inverted: true
       mode:
@@ -46,7 +46,7 @@ binary_sensor:
     id: os_high
     icon: mdi:arrow-up-bold
     # disabled_by_default: true
-    pin: 
+    pin:
       number: ${opticalHighPin}
       inverted: true
       mode:
@@ -81,7 +81,7 @@ text_sensor:
         // Water Level is Normal
         return {"Normal"};
       } else {
-        return {"Uknown or Error"};
+        return {"Unknown or Error"};
       }
     web_server:
       sorting_group_id: sorting_group_water_level

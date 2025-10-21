@@ -1,7 +1,7 @@
 packages:
   # Include all of the core configuration
   core: !include aquapi_config.yaml
-  
+
 esphome:
   # This will allow for project identification,
   # configuration and updates.

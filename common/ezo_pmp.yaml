@@ -17,11 +17,11 @@ ezo_pmp:
     update_interval: "${update_pmp_white}"
 
 api:
-  actions: 
+  actions:
     - action: pump_white_dose_volume
-      variables: 
+      variables:
         dose_volume: float
-      then: 
+      then:
         - ezo_pmp.dose_volume:
             id: ezo_pump_white
             volume: !lambda 'return dose_volume;'
@@ -158,7 +158,7 @@ text_sensor:
     id: ezo_pump_white
     dosing_mode:
       id: dosing_mode
-      name: Pump White - Dosing Mode 
+      name: Pump White - Dosing Mode
       disabled_by_default: true
       icon: mdi:auto-mode
       web_server:

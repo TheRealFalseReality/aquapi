@@ -13,11 +13,11 @@ web_server:
       sorting_weight: ${sorting_group_co2}
 
 esphome:
-    on_boot: 
-        priority: 800
-        then:
-          - button.press: read_co2
-          - button.press: send_selected_co2
+  on_boot:
+    priority: 800
+    then:
+      - button.press: read_co2
+      - button.press: send_selected_co2
 
 interval:
   # Update Raw CO2
@@ -26,7 +26,7 @@ interval:
       - button.press: read_co2
 
 api:
-  actions: 
+  actions:
     - action: co2_change_address
       variables:
         address: int
@@ -55,25 +55,25 @@ sensor:
     update_interval: "${update_co2}"
     state_class: "measurement"
     device_class: "carbon_dioxide"
-    on_custom: 
+    on_custom:
       then:
-        - lambda: 
+        - lambda:
             id(raw_value_co2).publish_state(x);
-    on_calibration: 
+    on_calibration:
       then:
-        - lambda: 
+        - lambda:
             id(result_co2).publish_state(x);
-    on_device_information: 
+    on_device_information:
       then:
-        - lambda: 
+        - lambda:
             id(result_co2).publish_state(x);
-    on_slope: 
+    on_slope:
       then:
-        - lambda: 
+        - lambda:
             id(result_co2).publish_state(x);
-    on_t: 
+    on_t:
       then:
-        - lambda: 
+        - lambda:
             id(result_co2).publish_state(x);
     web_server:
       sorting_group_id: sorting_group_co2
@@ -102,7 +102,7 @@ sensor:
       }
       if (v.size() == 2) {
         return std::stof(v[1]);
-      } 
+      }
       else {
         return NAN;
       }
@@ -116,7 +116,7 @@ text_sensor:
     icon: mdi:counter
     id: raw_value_co2
     disabled_by_default: true
-    on_value: 
+    on_value:
       then:
         - component.update: sensor_co2_internal_temperature
     web_server:
@@ -173,7 +173,7 @@ button:
             }
             if (id(select_command_co2).state == "Get Enabled Parameter(s)") {
               id(co2_ezo).send_custom("O,?");
-            }  
+            }
             if (id(select_command_co2).state == "Output Units - Enable Temperature") {
               id(co2_ezo).send_custom("O,t,1");
             }
