@@ -1,3 +1,4 @@
+---
 substitutions:
   # EC circuit, who's address is 100
   addEC: "100"
@@ -13,7 +14,7 @@ web_server:
       sorting_weight: ${sorting_group_ec}
 
 api:
-  actions: 
+  actions:
     - action: ec_change_address
       variables:
         address: int
@@ -26,32 +27,32 @@ api:
       then:
         - lambda: |-
             id(ec_ezo).send_custom({{command}});
-    - action: ec_read_continous
+    - action: ec_read_continuous
       then:
-      - repeat:
-          count: 60
-          then:
-          - button.press: read_ec
-          - delay: 1s
+        - repeat:
+            count: 60
+            then:
+              - button.press: read_ec
+              - delay: 1s
     - action: ec_calibrate_dry
       then:
-      - lambda: |-
-          id(ec_ezo).send_custom("Cal,dry");
+        - lambda: |-
+            id(ec_ezo).send_custom("Cal,dry");
     - action: ec_calibrate_low_12880
       then:
-      - lambda: |-
-          id(ec_ezo).send_custom("Cal,low,12880");
+        - lambda: |-
+            id(ec_ezo).send_custom("Cal,low,12880");
     - action: ec_calibrate_high_80000
       then:
-      - lambda: |-
-          id(ec_ezo).send_custom("Cal,high,80000");
+        - lambda: |-
+            id(ec_ezo).send_custom("Cal,high,80000");
     - action: ec_output_all_parameters
       then:
-      - lambda: |-      
-          id(ec_ezo).send_custom("O,EC,1");
-          id(ec_ezo).send_custom("O,TDS,1");
-          id(ec_ezo).send_custom("O,S,1");
-          id(ec_ezo).send_custom("O,SG,1");
+        - lambda: |-
+            id(ec_ezo).send_custom("O,EC,1");
+            id(ec_ezo).send_custom("O,TDS,1");
+            id(ec_ezo).send_custom("O,S,1");
+            id(ec_ezo).send_custom("O,SG,1");
 
     # - action: ec_calibrate_custom
     #   variables:
@@ -65,13 +66,13 @@ api:
     #   then:
     #     - lambda: |-
     #         id(ec_ezo).send_custom('{{ command }}');
-          
+
 esphome:
-    on_boot: 
-        priority: 800
-        then:
-          - button.press: read_ec
-          - button.press: send_selected_ec
+  on_boot:
+    priority: 800
+    then:
+      - button.press: read_ec
+      - button.press: send_selected_ec
 
 interval:
   # Update Raw EC
@@ -99,20 +100,20 @@ sensor:
     web_server:
       sorting_group_id: sorting_group_ec
       sorting_weight: 13
-    on_custom: 
+    on_custom:
       then:
-        - lambda: 
+        - lambda:
             id(raw_value_ec).publish_state(x);
-    on_calibration: 
+    on_calibration:
       then:
-        - lambda: 
+        - lambda:
             id(result_ec).publish_state(x);
-    on_device_information: 
+    on_device_information:
       then:
-        - lambda: 
+        - lambda:
             id(result_ec).publish_state(x);
 
-  # # Conductivity
+  #  # Conductivity
   # - platform: template
   #   name: Conductivity
   #   id: sensor_conductivity
@@ -133,7 +134,7 @@ sensor:
   #     }
   #     if (v.size() == 4) {
   #       return std::stof(v[0]);
-  #     } 
+  #     }
   #     else {
   #       return NULL;
   #     }
@@ -161,7 +162,7 @@ sensor:
       }
       if (v.size() == 4) {
         return (std::stof(v[1]) / 1000);
-      } 
+      }
       else {
         return NAN;
       }
@@ -191,7 +192,7 @@ sensor:
       }
       if (v.size() == 4) {
         return std::stof(v[2]);
-      } 
+      }
       else {
         return NAN;
       }
@@ -221,7 +222,7 @@ sensor:
       }
       if (v.size() == 4) {
         return std::stof(v[3]);
-      } 
+      }
       else {
         return NAN;
       }
@@ -236,7 +237,7 @@ text_sensor:
     id: raw_value_ec
     icon: mdi:counter
     # disabled_by_default: true
-    on_value: 
+    on_value:
       then:
         - component.update: ec_ezo
         - component.update: sensor_salinity
@@ -299,7 +300,7 @@ button:
             }
             if (id(select_command_ec).state == "Get Probe K Value") {
               id(ec_ezo).send_custom("K,?");
-            }  
+            }
             if (id(select_command_ec).state == "Get TDS Value") {
               id(ec_ezo).send_custom("TDS,?");
             }
@@ -308,7 +309,7 @@ button:
             }
             if (id(select_command_ec).state == "Get Enabled Parameter(s)") {
               id(ec_ezo).send_custom("O,?");
-            }  
+            }
             if (id(select_command_ec).state == "Set Probe Type K1") {
               id(ec_ezo).send_custom("K,1");
             }
@@ -344,7 +345,7 @@ button:
             }
             if (id(select_command_ec).state == "Check Calibration") {
               id(ec_ezo).get_calibration();
-            }  
+            }
             if (id(select_command_ec).state == "Calibrate @ DRY (WILL RESET CALIBRATION)") {
               id(ec_ezo).send_custom("Cal,dry");
             }

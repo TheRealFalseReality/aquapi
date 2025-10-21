@@ -1,12 +1,13 @@
+---
 substitutions:
-  binary_pin_1: "13" # yellow
-  leak_sensor: "27" # blue -> red (GND - Green -> Black  )
+  binary_pin_1: "13"  # yellow
+  leak_sensor: "27"  # blue -> red (GND - Green -> Black  )
 
 binary_sensor:
   - platform: gpio
     id: binary_pin_1
     disabled_by_default: true
-    pin: 
+    pin:
       number: ${binary_pin_1}
       inverted: true
       mode:
@@ -21,7 +22,7 @@ binary_sensor:
 
   - platform: gpio
     id: leak_sensor
-    pin: 
+    pin:
       number: ${leak_sensor}
       inverted: true
       mode:

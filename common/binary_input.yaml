@@ -1,16 +1,17 @@
+---
 # Board rev 1.2
 substitutions:
-  binary_pin_2: "18" # yellow 
-  binary_pin_3: "19" # blue
-  binary_pin_4: "4" # yellow 
-  binary_pin_5: "17" # blue
-  binary_pin_6: "23" # blue
+  binary_pin_2: "18"  # yellow
+  binary_pin_3: "19"  # blue
+  binary_pin_4: "4"  # yellow
+  binary_pin_5: "17"  # blue
+  binary_pin_6: "23"  # blue
 
 binary_sensor:
   - platform: gpio
     id: binary_pin_2
     name: Binary Sensor 2
-    pin: 
+    pin:
       number: ${binary_pin_2}
       inverted: true
       mode:
@@ -23,7 +24,7 @@ binary_sensor:
   - platform: gpio
     id: binary_pin_3
     name: Binary Sensor 3
-    pin: 
+    pin:
       number: ${binary_pin_3}
       inverted: true
       mode:
@@ -36,7 +37,7 @@ binary_sensor:
   - platform: gpio
     id: binary_pin_4
     name: Binary Sensor 4
-    pin: 
+    pin:
       number: ${binary_pin_4}
       inverted: true
       mode:
@@ -49,7 +50,7 @@ binary_sensor:
   - platform: gpio
     id: binary_pin_5
     name: Binary Sensor 5
-    pin: 
+    pin:
       number: ${binary_pin_5}
       inverted: true
       mode:
@@ -62,7 +63,7 @@ binary_sensor:
   - platform: gpio
     id: binary_pin_6
     name: Binary Sensor 6
-    pin: 
+    pin:
       number: ${binary_pin_6}
       inverted: true
       mode:

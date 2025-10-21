@@ -1,9 +1,10 @@
+---
 substitutions:
   dallasPin: "16"
   update_temp: "60s"
 
   # Calibration variables
-  # 0C using Ice Water; 100C using Boiling Water  
+  # 0C using Ice Water; 100C using Boiling Water
   # Calibration Temp. 1
   cal_0: "0.0"
   cal_100: "100.0"
@@ -39,7 +40,7 @@ sensor:
           datapoints:
             - 0.0 -> ${cal_0}
             - 100.0 -> ${cal_100}
-    on_value: 
+    on_value:
       then:
         - component.update: temp_range
     web_server:
@@ -116,10 +117,10 @@ text_sensor:
       }
       if(id(temp_f).state >= id(range_warm).state) {
         return {"Warm"};
-      }     
+      }
       else {
         return {"Unknown"};
-      }  
+      }
     web_server:
       sorting_group_id: sorting_group_temperature
       sorting_weight: 12
@@ -135,11 +136,11 @@ number:
     min_value: 0.0
     max_value: 100.0
     step: 0.5
-    restore_value: True
+    restore_value: true
     initial_value: ${range_cool}
     entity_category: "Config"
     device_class: "temperature"
-    on_value: 
+    on_value:
       then:
         - component.update: temp_range
     web_server:
@@ -155,11 +156,11 @@ number:
     min_value: 0.0
     max_value: 100.0
     step: 0.5
-    restore_value: True
+    restore_value: true
     initial_value: ${range_warm}
     entity_category: "Config"
     device_class: "temperature"
-    on_value: 
+    on_value:
       then:
         - component.update: temp_range
     web_server:

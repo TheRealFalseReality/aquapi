@@ -1,6 +1,7 @@
+---
 substitutions:
   # PMP circuit
-  addPMP_orange: "110" # Orange
+  addPMP_orange: "110"  # Orange
   update_pmp_orange: "60s"
   sorting_group_pump_orange_weight: '84'
 
@@ -16,11 +17,11 @@ ezo_pmp:
     update_interval: "${update_pmp_orange}"
 
 api:
-  actions: 
+  actions:
     - action: pump_orange_dose_volume
-      variables: 
+      variables:
         dose_volume: float
-      then: 
+      then:
         - ezo_pmp.dose_volume:
             id: ezo_pump_orange
             volume: !lambda 'return dose_volume;'
@@ -153,7 +154,7 @@ text_sensor:
     id: ezo_pump_orange
     dosing_mode:
       id: dosing_mode_orange
-      name: Pump Orange - Dosing Mode 
+      name: Pump Orange - Dosing Mode
       icon: mdi:auto-mode
       web_server:
         sorting_group_id: sorting_group_pump_orange
@@ -175,9 +176,9 @@ number:
     device_class: 'volume'
     unit_of_measurement: 'mL'
     optimistic: true
-    initial_value: 10 # cannot be less than +/-0.1mL
+    initial_value: 10  # cannot be less than +/-0.1mL
     min_value: -378541
-    max_value: 378541 # 100 gal
+    max_value: 378541  # 100 gal
     mode: box
     step: 0.1
     web_server:
@@ -191,7 +192,7 @@ number:
     optimistic: true
     initial_value: 1
     min_value: 1
-    max_value: 1440 # 24 hours
+    max_value: 1440  # 24 hours
     mode: box
     step: 0.1
     web_server:
@@ -204,7 +205,7 @@ number:
     optimistic: true
     initial_value: 10
     min_value: .5
-    max_value: 105 # may need to lower to 40
+    max_value: 105  # may need to lower to 40
     mode: box
     step: 0.1
     web_server:
