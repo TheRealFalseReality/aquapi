@@ -1,7 +1,8 @@
+---
 substitutions:
   # PMP circuit, who's address is 103
-  addPMP_green: "109" # Green - Clean
-  addPMP_red: "108" # Red - Waste
+  addPMP_green: "109"  # Green - Clean
+  addPMP_red: "108"  # Red - Waste
   update_pmp_green: "60s"
   update_pmp_red: "60s"
 
@@ -16,7 +17,7 @@ web_server:
     - id: sorting_group_pump_red
       name: "Pump - Red"
       sorting_weight: ${sorting_group_pump_red_weight}
-  
+
 ezo_pmp:
   - id: ezo_pump_green
     address: ${addPMP_green}
@@ -26,11 +27,11 @@ ezo_pmp:
     update_interval: "${update_pmp_red}"
 
 api:
-  actions: 
+  actions:
     - action: pump_waste_volume
-      variables: 
+      variables:
         dose_volume: float
-      then: 
+      then:
         - ezo_pmp.dose_volume:
             id: ezo_pump_red
             volume: !lambda 'return dose_volume;'
@@ -65,9 +66,9 @@ api:
             volume: !lambda |-
               return actual_volume;
     - action: pump_clean_volume
-      variables: 
+      variables:
         dose_volume: float
-      then: 
+      then:
         - ezo_pmp.dose_volume:
             id: ezo_pump_green
             volume: !lambda 'return dose_volume;'
@@ -333,7 +334,7 @@ text_sensor:
     id: ezo_pump_green
     dosing_mode:
       id: dosing_mode_clean
-      name: Pump Clean - Dosing Mode 
+      name: Pump Clean - Dosing Mode
       disabled_by_default: true
       icon: mdi:auto-mode
       web_server:
@@ -353,7 +354,7 @@ text_sensor:
     id: ezo_pump_red
     dosing_mode:
       id: dosing_mode_waste
-      name: Pump Waste - Dosing Mode 
+      name: Pump Waste - Dosing Mode
       disabled_by_default: true
       icon: mdi:auto-mode
       web_server:
@@ -378,9 +379,9 @@ number:
     device_class: 'volume'
     unit_of_measurement: 'mL'
     optimistic: true
-    initial_value: 10 # cannot be less than +/-0.1mL
+    initial_value: 10  # cannot be less than +/-0.1mL
     min_value: -378541
-    max_value: 378541 # 100 gal
+    max_value: 378541  # 100 gal
     mode: box
     step: 0.1
     web_server:
@@ -395,7 +396,7 @@ number:
     optimistic: true
     initial_value: 1
     min_value: 1
-    max_value: 1440 # 24 hours
+    max_value: 1440  # 24 hours
     mode: box
     step: 0.1
     web_server:
@@ -409,7 +410,7 @@ number:
     optimistic: true
     initial_value: 10
     min_value: .5
-    max_value: 105 # may need to lower to 40
+    max_value: 105  # may need to lower to 40
     mode: box
     step: 0.1
     web_server:
@@ -424,9 +425,9 @@ number:
     device_class: 'volume'
     unit_of_measurement: 'mL'
     optimistic: true
-    initial_value: 10 # cannot be less than +/-0.1mL
+    initial_value: 10  # cannot be less than +/-0.1mL
     min_value: -378541
-    max_value: 378541 # 100 gal
+    max_value: 378541  # 100 gal
     mode: box
     step: 0.1
     web_server:
@@ -441,7 +442,7 @@ number:
     optimistic: true
     initial_value: 1
     min_value: 1
-    max_value: 1440 # 24 hours
+    max_value: 1440  # 24 hours
     mode: box
     step: 0.1
     web_server:
@@ -455,7 +456,7 @@ number:
     optimistic: true
     initial_value: 10
     min_value: .5
-    max_value: 105 # may need to lower to 40
+    max_value: 105  # may need to lower to 40
     mode: box
     step: 0.1
     web_server:
@@ -565,7 +566,7 @@ button:
           id: ezo_pump_green
     web_server:
       sorting_group_id: sorting_group_pump_green
-        
+
   # Red
   - platform: template
     name: Pump Waste - Dose Volume for Time

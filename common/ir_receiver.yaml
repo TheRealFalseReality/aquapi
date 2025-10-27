@@ -1,9 +1,10 @@
+---
 substitutions:
   irReceiverPin: "35"
 
 remote_receiver:
   id: ir_receiver
-  pin: 
+  pin:
     number: ${irReceiverPin}
     inverted: true
   # dump:

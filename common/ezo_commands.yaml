@@ -1,18 +1,19 @@
+---
 substitutions:
-  # # PMP circuit, who's default address is 103
-  addPMP_white: "103" #White
-  addPMP_red: "108" # Waste/Red
-  addPMP_green: "109" # Clean/Green
-  addPMP_orange: "110" #Orange
-  addPMP_blue: "106" # Blue
-  addPMP_yellow: "104" # Yellow
+  #  # PMP circuit, who's default address is 103
+  addPMP_white: "103"  # White
+  addPMP_red: "108"  # Waste/Red
+  addPMP_green: "109"  # Clean/Green
+  addPMP_orange: "110"  # Orange
+  addPMP_blue: "106"  # Blue
+  addPMP_yellow: "104"  # Yellow
 
 button:
   # Change I2C Address of EZO-PMP
   - platform: template
     name: "Pump(Blue) ${addPMP_white} -> ${addPMP_blue} - Change I2C Address"
     on_press:
-        then:
+      then:
         - ezo_pmp.change_i2c_address:
             id: ezo_pump_white
             address: ${addPMP_blue}
@@ -22,7 +23,7 @@ button:
   - platform: template
     name: "Pump(Yellow) ${addPMP_white} -> ${addPMP_yellow} - Change I2C Address"
     on_press:
-        then:
+      then:
         - ezo_pmp.change_i2c_address:
             id: ezo_pump_white
             address: ${addPMP_yellow}
@@ -32,7 +33,7 @@ button:
   - platform: template
     name: "Pump(Red) ${addPMP_white} -> ${addPMP_red} - Change I2C Address"
     on_press:
-        then:
+      then:
         - ezo_pmp.change_i2c_address:
             id: ezo_pump_white
             address: ${addPMP_red}
@@ -42,7 +43,7 @@ button:
   - platform: template
     name: "Pump(Green) ${addPMP_white} -> ${addPMP_green} - Change I2C Address"
     on_press:
-        then:
+      then:
         - ezo_pmp.change_i2c_address:
             id: ezo_pump_white
             address: ${addPMP_green}
@@ -52,7 +53,7 @@ button:
   - platform: template
     name: "Pump(Orange) ${addPMP_white} -> ${addPMP_orange} - Change I2C Address"
     on_press:
-        then:
+      then:
         - ezo_pmp.change_i2c_address:
             id: ezo_pump_white
             address: ${addPMP_orange}
