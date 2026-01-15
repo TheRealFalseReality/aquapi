@@ -102,7 +102,6 @@ sensor:
     unit_of_measurement: "%"
     icon: mdi:gas-cylinder
     accuracy_decimals: 1
-    disabled_by_default: true
     update_interval: "${update_do}"
     state_class: "measurement"
     web_server:
