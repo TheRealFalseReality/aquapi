@@ -29,6 +29,7 @@ binary_sensor:
         input: true
         pullup: true
     name: "Leak Sensor"
+    device_class: moisture
     filters:
       - delayed_on_off: 30ms
     web_server:
