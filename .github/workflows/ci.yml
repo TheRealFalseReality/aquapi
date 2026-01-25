@@ -30,7 +30,7 @@ jobs:
           - dev
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: ESPHome ${{ matrix.esphome-version }}
         uses: esphome/build-action@v7.1.0
         with:
