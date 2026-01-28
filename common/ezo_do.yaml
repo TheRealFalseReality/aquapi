@@ -160,15 +160,15 @@ button:
     on_press:
       then:
         - lambda: |-
-            byte error;
-            Wire.beginTransmission(${addDO});
-            error = Wire.endTransmission();
-            if (error == 0) {
+            // byte error;
+            // Wire.beginTransmission(${addDO});
+            // error = Wire.endTransmission();
+            // if (error == 0) {
               id(do_ezo).send_custom("R");
-            }
-            else {
-              ESP_LOGW("custom_do_read", "No Dissolved Oxygen sensor detected at address: ${addDO}!");
-            }
+            // }
+            // else {
+            //   ESP_LOGW("custom_do_read", "No Dissolved Oxygen sensor detected at address: ${addDO}!");
+            // }
 
   # Send Selected EZO Command - Dissolved Oxygen
   - platform: template
