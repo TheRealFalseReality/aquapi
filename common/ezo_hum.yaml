@@ -177,15 +177,15 @@ button:
     on_press:
       then:
         - lambda: |-
-            byte error;
-            Wire.beginTransmission(${addHUM});
-            error = Wire.endTransmission();
-            if (error == 0) {
+            // byte error;
+            // Wire.beginTransmission(${addHUM});
+            // error = Wire.endTransmission();
+            // if (error == 0) {
               id(hum_ezo).send_custom("R");
-            }
-            else {
-              ESP_LOGW("custom_humidity_read", "No Humidity sensor detected at address: ${addHUM}!!");
-            }
+            // }
+            // else {
+            //   ESP_LOGW("custom_humidity_read", "No Humidity sensor detected at address: ${addHUM}!!");
+            // }
     web_server:
       sorting_group_id: sorting_group_hum
 
@@ -198,37 +198,37 @@ button:
     on_press:
       then:
         - lambda: |-
-            if (id(select_command_hum).state == "Read") {
+            if (id(select_command_hum).current_option() == "Read") {
               id(hum_ezo).send_custom("R");
             }
-            if (id(select_command_hum).state == "Information") {
+            if (id(select_command_hum).current_option() == "Information") {
               id(hum_ezo).get_device_information();
             }
-            if (id(select_command_hum).state == "Status") {
+            if (id(select_command_hum).current_option() == "Status") {
               id(hum_ezo).send_custom("Status");
             }
-            if (id(select_command_hum).state == "Get Enabled Parameter(s)") {
+            if (id(select_command_hum).current_option() == "Get Enabled Parameter(s)") {
               id(hum_ezo).send_custom("O,?");
             }
-            if (id(select_command_hum).state == "Output Units - Enable Humidity") {
+            if (id(select_command_hum).current_option() == "Output Units - Enable Humidity") {
               id(hum_ezo).send_custom("O,HUM,1");
             }
-            if (id(select_command_hum).state == "Output Units - Disable Humidity") {
+            if (id(select_command_hum).current_option() == "Output Units - Disable Humidity") {
               id(hum_ezo).send_custom("O,HUM,0");
             }
-            if (id(select_command_hum).state == "Output Units - Enable Temperature") {
+            if (id(select_command_hum).current_option() == "Output Units - Enable Temperature") {
               id(hum_ezo).send_custom("O,T,1");
             }
-            if (id(select_command_hum).state == "Output Units - Disable Temperature") {
+            if (id(select_command_hum).current_option() == "Output Units - Disable Temperature") {
               id(hum_ezo).send_custom("O,T,0");
             }
-            if (id(select_command_hum).state == "Output Units - Enable Dew Point") {
+            if (id(select_command_hum).current_option() == "Output Units - Enable Dew Point") {
               id(hum_ezo).send_custom("O,DEW,1");
             }
-            if (id(select_command_hum).state == "Output Units - Disable Dew Point") {
+            if (id(select_command_hum).current_option() == "Output Units - Disable Dew Point") {
               id(hum_ezo).send_custom("O,DEW,0");
             }
-            if (id(select_command_hum).state == "Check Calibration") {
+            if (id(select_command_hum).current_option() == "Check Calibration") {
               id(hum_ezo).get_calibration();
             }
             else {

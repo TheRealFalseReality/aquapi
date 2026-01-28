@@ -117,26 +117,26 @@ sensor:
       sorting_group_id: sorting_group_diagnostic
 
   # of I2C devices connected
-  - platform: template
-    name: "I2C Devices Connected"
-    id: i2c_devices
-    icon: mdi:integrated-circuit-chip
-    entity_category: "diagnostic"
-    # disabled_by_default: true
-    lambda: |-
-      byte error, address;
-      int nDevices;
-      nDevices = 0;
-      for(address = 1; address < 127; address++) {
-        Wire.beginTransmission(address);
-        error = Wire.endTransmission();
-        if (error == 0) {
-          nDevices++;
-        }
-      }
-      return nDevices;
-    web_server:
-      sorting_group_id: sorting_group_diagnostic
+  # - platform: template
+  #   name: "I2C Devices Connected"
+  #   id: i2c_devices
+  #   icon: mdi:integrated-circuit-chip
+  #   entity_category: "diagnostic"
+  #   # disabled_by_default: true
+  #   lambda: |-
+  #     byte error, address;
+  #     int nDevices;
+  #     nDevices = 0;
+  #     for(address = 1; address < 127; address++) {
+  #       Wire.beginTransmission(address);
+  #       error = Wire.endTransmission();
+  #       if (error == 0) {
+  #         nDevices++;
+  #       }
+  #     }
+  #     return nDevices;
+  #   web_server:
+  #     sorting_group_id: sorting_group_diagnostic
 
 binary_sensor:
   # API Status

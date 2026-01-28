@@ -120,15 +120,15 @@ button:
     on_press:
       then:
         - lambda: |-
-            byte error;
-            id(ph_ezo).send_custom("R");
-            error = Wire.endTransmission();
-            if (error == 0) {
+            // byte error;
+            // id(ph_ezo).send_custom("R");
+            // error = Wire.endTransmission();
+            // if (error == 0) {
               id(ph_ezo).send_custom("R");
-            }
-            else {
-              ESP_LOGW("custom_ph_read", "No pH sensor detected at address: ${addPH}!!");
-            }
+            // }
+            // else {
+            //   ESP_LOGW("custom_ph_read", "No pH sensor detected at address: ${addPH}!!");
+            // }
     web_server:
       sorting_group_id: sorting_group_ph
 
@@ -142,38 +142,38 @@ button:
     on_press:
       then:
         - lambda: |-
-            if (id(select_command_ph).state == "Read") {
+            if (id(select_command_ph).current_option() == "Read") {
               id(ph_ezo).send_custom("R");
             }
             // Get Device Firmware Version
-            if (id(select_command_ph).state == "Information") {
+            if (id(select_command_ph).current_option() == "Information") {
               id(ph_ezo).get_device_information();
             }
-            if (id(select_command_ph).state == "Status") {
+            if (id(select_command_ph).current_option() == "Status") {
               id(ph_ezo).send_custom("Status");
             }
-            if (id(select_command_ph).state == "Get Slope") {
+            if (id(select_command_ph).current_option() == "Get Slope") {
               id(ph_ezo).get_slope();
             }
-            if (id(select_command_ph).state == "Check Calibration") {
+            if (id(select_command_ph).current_option() == "Check Calibration") {
               id(ph_ezo).get_calibration();
             }
-            if (id(select_command_ph).state == "Calibrate @ MID = 7 (WILL RESET CALIBRATION)") {
+            if (id(select_command_ph).current_option() == "Calibrate @ MID = 7 (WILL RESET CALIBRATION)") {
               id(ph_ezo).set_calibration_point_mid(7.00);
             }
-            if (id(select_command_ph).state == "Calibrate @ LOW = 4 (WILL RESET CALIBRATION)") {
+            if (id(select_command_ph).current_option() == "Calibrate @ LOW = 4 (WILL RESET CALIBRATION)") {
               id(ph_ezo).set_calibration_point_low(4.00);
             }
-            if (id(select_command_ph).state == "Calibrate @ HIGH = 10 (WILL RESET CALIBRATION)") {
+            if (id(select_command_ph).current_option() == "Calibrate @ HIGH = 10 (WILL RESET CALIBRATION)") {
               id(ph_ezo).set_calibration_point_high(10.00);
             }
-            if (id(select_command_ph).state == "Calibrate @ HIGH = 10.01 (WILL RESET CALIBRATION)") {
+            if (id(select_command_ph).current_option() == "Calibrate @ HIGH = 10.01 (WILL RESET CALIBRATION)") {
               id(ph_ezo).set_calibration_point_high(10.01);
             }
-            if (id(select_command_ph).state == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
+            if (id(select_command_ph).current_option() == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(ph_ezo).clear_calibration();
             }
-            // if (id(select_command_ph).state == "Reset EZO (WILL RESET CALIBRATION)") {
+            // if (id(select_command_ph).current_option() == "Reset EZO (WILL RESET CALIBRATION)") {
             //   id(ph_ezo).send_custom("Factory");
             // }
             else {
