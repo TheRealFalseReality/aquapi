@@ -124,23 +124,23 @@ button:
     on_press:
       then:
         - lambda: |-
-            if (id(select_command_orp).state == "Read") {
+            if (id(select_command_orp).current_option() == "Read") {
               id(orp_ezo).send_custom("R");
             }
             // Get Device Firmware Version
-            if (id(select_command_orp).state == "Information") {
+            if (id(select_command_orp).current_option() == "Information") {
               id(orp_ezo).get_device_information();
             }
-            if (id(select_command_orp).state == "Status") {
+            if (id(select_command_orp).current_option() == "Status") {
               id(orp_ezo).send_custom("Status");
             }
-            if (id(select_command_orp).state == "Check Calibration") {
+            if (id(select_command_orp).current_option() == "Check Calibration") {
               id(orp_ezo).get_calibration();
             }
-            if (id(select_command_orp).state == "Calibrate @ 225 mV (WILL RESET CALIBRATION)") {
+            if (id(select_command_orp).current_option() == "Calibrate @ 225 mV (WILL RESET CALIBRATION)") {
               id(orp_ezo).send_custom("Cal,225");
             }
-            if (id(select_command_orp).state == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
+            if (id(select_command_orp).current_option() == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(orp_ezo).clear_calibration();
             }
             // else {

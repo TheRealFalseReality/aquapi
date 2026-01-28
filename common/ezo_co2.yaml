@@ -163,25 +163,25 @@ button:
     on_press:
       then:
         - lambda: |-
-            if (id(select_command_co2).state == "Read") {
+            if (id(select_command_co2).current_option() == "Read") {
               id(co2_ezo).send_custom("R");
             }
-            if (id(select_command_co2).state == "Information") {
+            if (id(select_command_co2).current_option() == "Information") {
               id(co2_ezo).get_device_information();
             }
-            if (id(select_command_co2).state == "Status") {
+            if (id(select_command_co2).current_option() == "Status") {
               id(co2_ezo).send_custom("Status");
             }
-            if (id(select_command_co2).state == "Get Enabled Parameter(s)") {
+            if (id(select_command_co2).current_option() == "Get Enabled Parameter(s)") {
               id(co2_ezo).send_custom("O,?");
             }
-            if (id(select_command_co2).state == "Output Units - Enable Temperature") {
+            if (id(select_command_co2).current_option() == "Output Units - Enable Temperature") {
               id(co2_ezo).send_custom("O,t,1");
             }
-            if (id(select_command_co2).state == "Output Units - Disable Temperature") {
+            if (id(select_command_co2).current_option() == "Output Units - Disable Temperature") {
               id(co2_ezo).send_custom("O,t,0");
             }
-            if (id(select_command_co2).state == "Check Calibration") {
+            if (id(select_command_co2).current_option() == "Check Calibration") {
               id(co2_ezo).get_calibration();
             }
             else {
