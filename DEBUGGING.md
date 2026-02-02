@@ -52,40 +52,17 @@ ESP_LOGW("main", "Error");
 
 ## I2C Sensor Detection
 
-### Using the Wire Library for Detection
+### Using ESPHome's Native I2C API
 
-**Prerequisites:**
+**Important:** Use ESPHome's native I2C API instead of the Arduino Wire library. ESPHome's I2C component and Arduino's Wire library cannot coexist on the same bus - they conflict for hardware control.
 
-The Wire library must be included and initialized in your ESPHome configuration:
-
-1. Create `i2c_wire.h` in the repository root:
-```cpp
-// Custom header to include Wire library for I2C device detection
-#include <Wire.h>
-```
-
-2. Add to `esphome:` section in `device_base.yaml`:
-```yaml
-esphome:
-  includes:
-    - i2c_wire.h
-  on_boot:
-    priority: 900  # Initialize early, before other components
-    then:
-      - lambda: |-
-          Wire.begin(${sdaPin}, ${sclPin});
-          ESP_LOGI("wire", "Wire library initialized");
-```
-
-**Important:** Wire.begin() must be called to initialize the I2C bus before any Wire operations will work.
-
-**Use the Wire library for I2C device detection:**
+**Correct approach - ESPHome I2C API:**
 
 ```cpp
-// Correct - uses Arduino Wire library
-Wire.beginTransmission(0x63);  // 99 decimal = 0x63 hex
-byte error = Wire.endTransmission();
-if (error == 0) {
+// Check if I2C device is present using ESPHome's API
+uint8_t address = 0x63;  // 99 decimal = 0x63 hex
+esphome::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
+if (err == esphome::ERROR_OK) {
   // Sensor is present
   ESP_LOGI("ezo_ph", "pH sensor detected at address 99 (0x63)");
   id(ph_ezo).send_custom("R");
@@ -99,9 +76,8 @@ if (error == 0) {
 ```cpp
 // Define a reusable helper function in lambda
 auto check_i2c_device = [](uint8_t address) -> bool {
-  Wire.beginTransmission(address);
-  byte error = Wire.endTransmission();
-  return (error == 0);
+  esphome::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
+  return (err == esphome::ERROR_OK);
 };
 
 // Use it multiple times
@@ -110,7 +86,7 @@ if (check_i2c_device(0x63)) {
 }
 ```
 
-**Note:** The Wire library is included via the custom `i2c_wire.h` header file and initialized in the on_boot hook in `device_base.yaml`.
+**Note:** Writing nullptr (0 bytes) is a standard I2C probe technique that checks if a device ACKs its address without sending any data.
 
 ### I2C Address Reference
 
@@ -147,10 +123,9 @@ The project now includes dedicated I2C detection components in `common/i2c_detec
 Always validate data before use:
 
 ```cpp
-// Check if sensor is connected using Wire library
-Wire.beginTransmission(0x63);
-byte error = Wire.endTransmission();
-if (error != 0) {
+// Check if sensor is connected using ESPHome I2C API
+esphome::ErrorCode err = id(bus_a)->write(0x63, nullptr, 0);
+if (err != esphome::ERROR_OK) {
   ESP_LOGW("ezo_ph", "pH sensor not detected, skipping read");
   return NAN;  // Return NAN for numeric sensors
 }
@@ -177,9 +152,8 @@ The system should continue operating even when sensors are missing:
 ```cpp
 lambda: |-
   // Attempt to read sensor
-  Wire.beginTransmission(0x63);
-  byte error = Wire.endTransmission();
-  if (error == 0) {
+  esphome::ErrorCode err = id(bus_a)->write(0x63, nullptr, 0);
+  if (err == esphome::ERROR_OK) {
     id(ph_ezo).send_custom("R");
     return true;  // Success
   } else {
@@ -333,7 +307,7 @@ Use the debug buttons in Home Assistant or the web interface:
 ## Best Practices Summary
 
 ✅ **DO:**
-- Use Wire library (`Wire.beginTransmission()` + `Wire.endTransmission()`) for sensor detection
+- Use ESPHome's native I2C API (`id(bus_a)->write()`) for sensor detection
 - Log with appropriate levels (DEBUG, INFO, WARN, ERROR)
 - Include context in all log messages
 - Check for null/NAN before processing data
@@ -342,7 +316,7 @@ Use the debug buttons in Home Assistant or the web interface:
 - Provide graceful fallbacks for missing sensors
 
 ❌ **DON'T:**
-- Assume I2C methods exist that aren't in the ESPHome API
+- Use Arduino Wire library (conflicts with ESPHome's I2C component)
 - Log at ERROR level for expected conditions (like missing optional sensors)
 - Assume sensors are always present
 - Ignore NAN or null values

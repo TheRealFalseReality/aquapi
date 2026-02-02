@@ -17,13 +17,14 @@ script:
   - id: update_sensor_detection
     then:
       - lambda: |-
-          // Helper function to check if I2C device is present
+          // Helper function to check if I2C device is present using ESPHome I2C API
           // Parameters: address - I2C address to check (0x00-0x7F)
           // Returns: true if device responds, false if no device or error
           auto check_i2c_device = [](uint8_t address) -> bool {
-            Wire.beginTransmission(address);
-            byte error = Wire.endTransmission();
-            return (error == 0);
+            // Use ESPHome's I2C bus write method to probe the device
+            // Writing 0 bytes is a standard way to check if device exists
+            esphome::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
+            return (err == esphome::ERROR_OK);
           };
           
           // Update all binary sensor detection states
@@ -177,15 +178,13 @@ sensor:
     unit_of_measurement: "devices"
     update_interval: 30s
     lambda: |-
-      // Count all detected I2C devices using Wire library
+      // Count all detected I2C devices using ESPHome I2C API
       int device_count = 0;
-      byte error;
       
       // Scan common I2C address range (8-119, avoiding reserved addresses)
       for (uint8_t address = 8; address < 120; address++) {
-        Wire.beginTransmission(address);
-        error = Wire.endTransmission();
-        if (error == 0) {
+        esphome::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
+        if (err == esphome::ERROR_OK) {
           device_count++;
           ESP_LOGD("i2c_detection", "Device found at address 0x%02X (%d)", address, address);
         }
@@ -208,13 +207,11 @@ text_sensor:
       // Report I2C bus health status
       int device_count = 0;
       std::string status = "";
-      byte error;
       
       // Count devices
       for (uint8_t address = 8; address < 120; address++) {
-        Wire.beginTransmission(address);
-        error = Wire.endTransmission();
-        if (error == 0) {
+        esphome::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
+        if (err == esphome::ERROR_OK) {
           device_count++;
         }
       }
@@ -243,12 +240,10 @@ text_sensor:
       // List all detected I2C device addresses
       std::string addresses = "";
       int count = 0;
-      byte error;
       
       for (uint8_t address = 8; address < 120; address++) {
-        Wire.beginTransmission(address);
-        error = Wire.endTransmission();
-        if (error == 0) {
+        esphome::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
+        if (err == esphome::ERROR_OK) {
           if (count > 0) {
             addresses += ", ";
           }
