@@ -17,20 +17,27 @@ script:
   - id: update_sensor_detection
     then:
       - lambda: |-
+          // Helper function to check if I2C device is present
+          auto check_i2c_device = [](uint8_t address) -> bool {
+            Wire.beginTransmission(address);
+            byte error = Wire.endTransmission();
+            return (error == 0);
+          };
+          
           // Update all binary sensor detection states
-          id(ezo_ph_detected).publish_state(id(bus_a).is_connected(0x63));
-          id(ezo_ec_detected).publish_state(id(bus_a).is_connected(0x64));
-          id(ezo_orp_detected).publish_state(id(bus_a).is_connected(0x62));
-          id(ezo_do_detected).publish_state(id(bus_a).is_connected(0x61));
-          id(ezo_co2_detected).publish_state(id(bus_a).is_connected(0x69));
-          id(ezo_rtd_detected).publish_state(id(bus_a).is_connected(0x66));
-          id(ezo_hum_detected).publish_state(id(bus_a).is_connected(0x6F));
-          id(ezo_pmp_white_detected).publish_state(id(bus_a).is_connected(0x67));
-          id(ezo_pmp_yellow_detected).publish_state(id(bus_a).is_connected(0x68));
-          id(ezo_pmp_blue_detected).publish_state(id(bus_a).is_connected(0x6A));
-          id(ezo_pmp_red_detected).publish_state(id(bus_a).is_connected(0x6C));
-          id(ezo_pmp_green_detected).publish_state(id(bus_a).is_connected(0x6D));
-          id(ezo_pmp_orange_detected).publish_state(id(bus_a).is_connected(0x6E));
+          id(ezo_ph_detected).publish_state(check_i2c_device(0x63));
+          id(ezo_ec_detected).publish_state(check_i2c_device(0x64));
+          id(ezo_orp_detected).publish_state(check_i2c_device(0x62));
+          id(ezo_do_detected).publish_state(check_i2c_device(0x61));
+          id(ezo_co2_detected).publish_state(check_i2c_device(0x69));
+          id(ezo_rtd_detected).publish_state(check_i2c_device(0x66));
+          id(ezo_hum_detected).publish_state(check_i2c_device(0x6F));
+          id(ezo_pmp_white_detected).publish_state(check_i2c_device(0x67));
+          id(ezo_pmp_yellow_detected).publish_state(check_i2c_device(0x68));
+          id(ezo_pmp_blue_detected).publish_state(check_i2c_device(0x6A));
+          id(ezo_pmp_red_detected).publish_state(check_i2c_device(0x6C));
+          id(ezo_pmp_green_detected).publish_state(check_i2c_device(0x6D));
+          id(ezo_pmp_orange_detected).publish_state(check_i2c_device(0x6E));
 
 # Interval to refresh detection sensors
 interval:
@@ -168,12 +175,15 @@ sensor:
     unit_of_measurement: "devices"
     update_interval: 30s
     lambda: |-
-      // Count all detected I2C devices using ESPHome's robust I2C scan
+      // Count all detected I2C devices using Wire library
       int device_count = 0;
+      byte error;
       
       // Scan common I2C address range (8-119, avoiding reserved addresses)
       for (uint8_t address = 8; address < 120; address++) {
-        if (id(bus_a).is_connected(address)) {
+        Wire.beginTransmission(address);
+        error = Wire.endTransmission();
+        if (error == 0) {
           device_count++;
           ESP_LOGD("i2c_detection", "Device found at address 0x%02X (%d)", address, address);
         }
@@ -196,10 +206,13 @@ text_sensor:
       // Report I2C bus health status
       int device_count = 0;
       std::string status = "";
+      byte error;
       
       // Count devices
       for (uint8_t address = 8; address < 120; address++) {
-        if (id(bus_a).is_connected(address)) {
+        Wire.beginTransmission(address);
+        error = Wire.endTransmission();
+        if (error == 0) {
           device_count++;
         }
       }
@@ -228,9 +241,12 @@ text_sensor:
       // List all detected I2C device addresses
       std::string addresses = "";
       int count = 0;
+      byte error;
       
       for (uint8_t address = 8; address < 120; address++) {
-        if (id(bus_a).is_connected(address)) {
+        Wire.beginTransmission(address);
+        error = Wire.endTransmission();
+        if (error == 0) {
           if (count > 0) {
             addresses += ", ";
           }

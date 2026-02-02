@@ -114,12 +114,15 @@ sensor:
       // This gives a simple health indicator
       int detected = 0;
       int expected = 4;  // Check commonly used EZO sensors
+      byte error;
       
       // pH (99), EC (100), ORP (98), DO (97)
       uint8_t common_sensors[] = {97, 98, 99, 100};
       
       for (int i = 0; i < expected; i++) {
-        if (id(bus_a).is_connected(common_sensors[i])) {
+        Wire.beginTransmission(common_sensors[i]);
+        error = Wire.endTransmission();
+        if (error == 0) {
           detected++;
         }
       }
@@ -186,8 +189,11 @@ text_sensor:
       
       // Check I2C
       int i2c_count = 0;
+      byte error;
       for (uint8_t addr = 8; addr < 120; addr++) {
-        if (id(bus_a).is_connected(addr)) {
+        Wire.beginTransmission(addr);
+        error = Wire.endTransmission();
+        if (error == 0) {
           i2c_count++;
         }
       }
@@ -262,8 +268,11 @@ button:
             ESP_LOGI("debug", "Scanning I2C bus...");
             
             int device_count = 0;
+            byte error;
             for (uint8_t address = 8; address < 120; address++) {
-              if (id(bus_a).is_connected(address)) {
+              Wire.beginTransmission(address);
+              error = Wire.endTransmission();
+              if (error == 0) {
                 device_count++;
                 
                 // Identify known EZO sensors

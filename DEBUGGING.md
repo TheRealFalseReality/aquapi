@@ -52,27 +52,40 @@ ESP_LOGW("main", "Error");
 
 ## I2C Sensor Detection
 
-### Using ESPHome's Built-in Detection
+### Using the Wire Library for Detection
 
-**Always use `is_connected()` instead of the Wire library:**
+**Use the Wire library for I2C device detection:**
 
 ```cpp
-// Correct - uses ESPHome's robust method
-if (id(bus_a).is_connected(0x63)) {  // 99 decimal = 0x63 hex
+// Correct - uses Arduino Wire library
+Wire.beginTransmission(0x63);  // 99 decimal = 0x63 hex
+byte error = Wire.endTransmission();
+if (error == 0) {
   // Sensor is present
-  ESP_LOGI("ezo_ph", "pH sensor detected");
+  ESP_LOGI("ezo_ph", "pH sensor detected at address 99 (0x63)");
   id(ph_ezo).send_custom("R");
 } else {
   ESP_LOGW("ezo_ph", "pH sensor not detected at address 99 (0x63)");
 }
 ```
 
+**Helper function pattern (recommended):**
+
 ```cpp
-// Incorrect - Wire library can be unreliable
-// DO NOT USE THIS:
-Wire.beginTransmission(address);
-byte error = Wire.endTransmission();
-if (error == 0) { ... }
+// Define a reusable helper function in lambda
+auto check_i2c_device = [](uint8_t address) -> bool {
+  Wire.beginTransmission(address);
+  byte error = Wire.endTransmission();
+  return (error == 0);
+};
+
+// Use it multiple times
+if (check_i2c_device(0x63)) {
+  ESP_LOGI("ezo_ph", "pH sensor detected");
+}
+```
+
+**Note:** The Wire library is included via `includes: - Wire.h` in the `esphome:` section of `device_base.yaml`.
 ```
 
 ### I2C Address Reference
@@ -110,8 +123,10 @@ The project now includes dedicated I2C detection components in `common/i2c_detec
 Always validate data before use:
 
 ```cpp
-// Check if sensor is connected
-if (!id(bus_a).is_connected(0x63)) {
+// Check if sensor is connected using Wire library
+Wire.beginTransmission(0x63);
+byte error = Wire.endTransmission();
+if (error != 0) {
   ESP_LOGW("ezo_ph", "pH sensor not detected, skipping read");
   return NAN;  // Return NAN for numeric sensors
 }
@@ -138,7 +153,9 @@ The system should continue operating even when sensors are missing:
 ```cpp
 lambda: |-
   // Attempt to read sensor
-  if (id(bus_a).is_connected(0x63)) {
+  Wire.beginTransmission(0x63);
+  byte error = Wire.endTransmission();
+  if (error == 0) {
     id(ph_ezo).send_custom("R");
     return true;  // Success
   } else {
@@ -292,7 +309,7 @@ Use the debug buttons in Home Assistant or the web interface:
 ## Best Practices Summary
 
 ✅ **DO:**
-- Use `id(bus_a).is_connected(address)` for sensor detection
+- Use Wire library (`Wire.beginTransmission()` + `Wire.endTransmission()`) for sensor detection
 - Log with appropriate levels (DEBUG, INFO, WARN, ERROR)
 - Include context in all log messages
 - Check for null/NAN before processing data
@@ -301,7 +318,7 @@ Use the debug buttons in Home Assistant or the web interface:
 - Provide graceful fallbacks for missing sensors
 
 ❌ **DON'T:**
-- Use Wire.beginTransmission() directly
+- Assume I2C methods exist that aren't in the ESPHome API
 - Log at ERROR level for expected conditions (like missing optional sensors)
 - Assume sensors are always present
 - Ignore NAN or null values
