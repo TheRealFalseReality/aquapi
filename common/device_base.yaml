@@ -35,8 +35,8 @@ esphome:
   project:
     name: "${project_name}"
     version: "${app_version}"
-  includes:
-    - i2c_wire.h
+  libraries:
+    - Wire
 
 # Enable logging
 logger:
