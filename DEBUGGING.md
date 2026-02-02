@@ -311,7 +311,7 @@ Use the debug buttons in Home Assistant or the web interface:
 ## Additional Resources
 
 - ESPHome I2C Bus Documentation: https://esphome.io/components/i2c.html
-- Atlas Scientific EZO Documentation: `/Atlas EZO docs/` directory
+- Atlas Scientific EZO Documentation: `Atlas EZO docs/` directory in repository root
 - ESPHome Logging: https://esphome.io/components/logger.html
 - ESPHome Debug Component: https://esphome.io/components/debug.html
 

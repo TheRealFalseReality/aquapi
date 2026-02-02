@@ -113,14 +113,12 @@ sensor:
       // Calculate I2C bus health based on detected devices
       // This gives a simple health indicator
       int detected = 0;
-      int expected = 0;
+      int expected = 4;  // Check commonly used EZO sensors
       
-      // Check commonly used EZO sensors (addresses in config)
       // pH (99), EC (100), ORP (98), DO (97)
       uint8_t common_sensors[] = {97, 98, 99, 100};
       
-      for (int i = 0; i < 4; i++) {
-        expected++;
+      for (int i = 0; i < expected; i++) {
         if (id(bus_a).is_connected(common_sensors[i])) {
           detected++;
         }
