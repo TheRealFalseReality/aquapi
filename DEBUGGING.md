@@ -61,8 +61,8 @@ ESP_LOGW("main", "Error");
 ```cpp
 // Check if I2C device is present using ESPHome's API
 uint8_t address = 0x63;  // 99 decimal = 0x63 hex
-esphome::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
-if (err == esphome::ERROR_OK) {
+esphome::i2c::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
+if (err == esphome::i2c::ERROR_OK) {
   // Sensor is present
   ESP_LOGI("ezo_ph", "pH sensor detected at address 99 (0x63)");
   id(ph_ezo).send_custom("R");
@@ -76,8 +76,8 @@ if (err == esphome::ERROR_OK) {
 ```cpp
 // Define a reusable helper function in lambda
 auto check_i2c_device = [](uint8_t address) -> bool {
-  esphome::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
-  return (err == esphome::ERROR_OK);
+  esphome::i2c::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
+  return (err == esphome::i2c::ERROR_OK);
 };
 
 // Use it multiple times
@@ -124,8 +124,8 @@ Always validate data before use:
 
 ```cpp
 // Check if sensor is connected using ESPHome I2C API
-esphome::ErrorCode err = id(bus_a)->write(0x63, nullptr, 0);
-if (err != esphome::ERROR_OK) {
+esphome::i2c::ErrorCode err = id(bus_a)->write(0x63, nullptr, 0);
+if (err != esphome::i2c::ERROR_OK) {
   ESP_LOGW("ezo_ph", "pH sensor not detected, skipping read");
   return NAN;  // Return NAN for numeric sensors
 }
@@ -152,8 +152,8 @@ The system should continue operating even when sensors are missing:
 ```cpp
 lambda: |-
   // Attempt to read sensor
-  esphome::ErrorCode err = id(bus_a)->write(0x63, nullptr, 0);
-  if (err == esphome::ERROR_OK) {
+  esphome::i2c::ErrorCode err = id(bus_a)->write(0x63, nullptr, 0);
+  if (err == esphome::i2c::ERROR_OK) {
     id(ph_ezo).send_custom("R");
     return true;  // Success
   } else {

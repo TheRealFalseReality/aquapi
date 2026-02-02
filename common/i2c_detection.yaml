@@ -23,8 +23,8 @@ script:
           auto check_i2c_device = [](uint8_t address) -> bool {
             // Use ESPHome's I2C bus write method to probe the device
             // Writing 0 bytes is a standard way to check if device exists
-            esphome::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
-            return (err == esphome::ERROR_OK);
+            esphome::i2c::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
+            return (err == esphome::i2c::ERROR_OK);
           };
           
           // Update all binary sensor detection states
@@ -183,8 +183,8 @@ sensor:
       
       // Scan common I2C address range (8-119, avoiding reserved addresses)
       for (uint8_t address = 8; address < 120; address++) {
-        esphome::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
-        if (err == esphome::ERROR_OK) {
+        esphome::i2c::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
+        if (err == esphome::i2c::ERROR_OK) {
           device_count++;
           ESP_LOGD("i2c_detection", "Device found at address 0x%02X (%d)", address, address);
         }
@@ -210,8 +210,8 @@ text_sensor:
       
       // Count devices
       for (uint8_t address = 8; address < 120; address++) {
-        esphome::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
-        if (err == esphome::ERROR_OK) {
+        esphome::i2c::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
+        if (err == esphome::i2c::ERROR_OK) {
           device_count++;
         }
       }
@@ -242,8 +242,8 @@ text_sensor:
       int count = 0;
       
       for (uint8_t address = 8; address < 120; address++) {
-        esphome::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
-        if (err == esphome::ERROR_OK) {
+        esphome::i2c::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
+        if (err == esphome::i2c::ERROR_OK) {
           if (count > 0) {
             addresses += ", ";
           }

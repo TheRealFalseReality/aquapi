@@ -119,8 +119,8 @@ sensor:
       uint8_t common_sensors[] = {97, 98, 99, 100};
       
       for (int i = 0; i < expected; i++) {
-        esphome::ErrorCode err = id(bus_a)->write(common_sensors[i], nullptr, 0);
-        if (err == esphome::ERROR_OK) {
+        esphome::i2c::ErrorCode err = id(bus_a)->write(common_sensors[i], nullptr, 0);
+        if (err == esphome::i2c::ERROR_OK) {
           detected++;
         }
       }
@@ -188,8 +188,8 @@ text_sensor:
       // Check I2C
       int i2c_count = 0;
       for (uint8_t addr = 8; addr < 120; addr++) {
-        esphome::ErrorCode err = id(bus_a)->write(addr, nullptr, 0);
-        if (err == esphome::ERROR_OK) {
+        esphome::i2c::ErrorCode err = id(bus_a)->write(addr, nullptr, 0);
+        if (err == esphome::i2c::ERROR_OK) {
           i2c_count++;
         }
       }
@@ -266,8 +266,8 @@ button:
             int device_count = 0;
             byte error;
             for (uint8_t address = 8; address < 120; address++) {
-              esphome::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
-              if (err == esphome::ERROR_OK) {
+              esphome::i2c::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
+              if (err == esphome::i2c::ERROR_OK) {
                 device_count++;
                 
                 // Identify known EZO sensors
