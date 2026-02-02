@@ -18,6 +18,8 @@ script:
     then:
       - lambda: |-
           // Helper function to check if I2C device is present
+          // Parameters: address - I2C address to check (0x00-0x7F)
+          // Returns: true if device responds, false if no device or error
           auto check_i2c_device = [](uint8_t address) -> bool {
             Wire.beginTransmission(address);
             byte error = Wire.endTransmission();
