@@ -201,7 +201,7 @@ sensor:
     id: ezo_pump_green
     max_flow_rate:
       id: max_flow_rate_clean
-      name: Pump Clean - Max Volume/Time Flow Rate
+      name: Pump Clean - Max Volume-Time Flow Rate
       icon: mdi:car-speed-limiter
       unit_of_measurement: 'mL/min'
       disabled_by_default: true
@@ -270,7 +270,7 @@ sensor:
     id: ezo_pump_red
     max_flow_rate:
       id: max_flow_rate_waste
-      name: Pump Waste - Max Volume/Time Flow Rate
+      name: Pump Waste - Max Volume-Time Flow Rate
       icon: mdi:car-speed-limiter
       unit_of_measurement: 'mL/min'
       disabled_by_default: true
@@ -404,7 +404,7 @@ number:
   - platform: template
     id: flow_rate_clean
     icon: mdi:waves-arrow-right
-    name: Pump Clean - Volume/Time Flow Rate
+    name: Pump Clean - Volume-Time Flow Rate
     disabled_by_default: true
     unit_of_measurement: 'mL/min'
     optimistic: true
@@ -450,7 +450,7 @@ number:
   - platform: template
     id: flow_rate_waste
     icon: mdi:waves-arrow-left
-    name: Pump Waste - Volume/Time Flow Rate
+    name: Pump Waste - Volume-Time Flow Rate
     disabled_by_default: true
     unit_of_measurement: 'mL/min'
     optimistic: true
@@ -501,7 +501,7 @@ button:
     web_server:
       sorting_group_id: sorting_group_pump_green
   - platform: template
-    name: Pump Clean - Dose at Volume/Time Flow Rate for Time
+    name: Pump Clean - Dose at Volume-Time Flow Rate for Time
     disabled_by_default: true
     icon: mdi:format-text-wrapping-overflow
     id: dose_flow_rate_clean
@@ -605,7 +605,7 @@ button:
     web_server:
       sorting_group_id: sorting_group_pump_red
   - platform: template
-    name: Pump Waste - Dose at Volume/Time Flow Rate for Time
+    name: Pump Waste - Dose at Volume-Time Flow Rate for Time
     disabled_by_default: true
     icon: mdi:format-text-wrapping-overflow
     id: dose_flow_rate_waste
