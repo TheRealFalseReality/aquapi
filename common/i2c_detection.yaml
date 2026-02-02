@@ -12,6 +12,26 @@ web_server:
       name: "I2C Sensor Detection"
       sorting_weight: ${sorting_group_i2c_detection}
 
+# Interval to refresh detection sensors
+interval:
+  - interval: 30s
+    then:
+      - lambda: |-
+          // Update all binary sensor detection states
+          id(ezo_ph_detected).publish_state(id(bus_a).is_connected(0x63));
+          id(ezo_ec_detected).publish_state(id(bus_a).is_connected(0x64));
+          id(ezo_orp_detected).publish_state(id(bus_a).is_connected(0x62));
+          id(ezo_do_detected).publish_state(id(bus_a).is_connected(0x61));
+          id(ezo_co2_detected).publish_state(id(bus_a).is_connected(0x69));
+          id(ezo_rtd_detected).publish_state(id(bus_a).is_connected(0x66));
+          id(ezo_hum_detected).publish_state(id(bus_a).is_connected(0x6F));
+          id(ezo_pmp_white_detected).publish_state(id(bus_a).is_connected(0x67));
+          id(ezo_pmp_yellow_detected).publish_state(id(bus_a).is_connected(0x68));
+          id(ezo_pmp_blue_detected).publish_state(id(bus_a).is_connected(0x6A));
+          id(ezo_pmp_red_detected).publish_state(id(bus_a).is_connected(0x6C));
+          id(ezo_pmp_green_detected).publish_state(id(bus_a).is_connected(0x6D));
+          id(ezo_pmp_orange_detected).publish_state(id(bus_a).is_connected(0x6E));
+
 # Binary sensors to detect specific EZO sensors by I2C address
 binary_sensor:
   # EZO pH Sensor (Address 99)
@@ -20,12 +40,6 @@ binary_sensor:
     id: ezo_ph_detected
     icon: mdi:ph
     entity_category: "diagnostic"
-    lambda: |-
-      // Check if pH sensor at address 99 is detected
-      if (id(bus_a).is_connected(0x63)) {  // 99 decimal = 0x63 hex
-        return true;
-      }
-      return false;
     web_server:
       sorting_group_id: sorting_group_i2c_detection
 
@@ -35,12 +49,6 @@ binary_sensor:
     id: ezo_ec_detected
     icon: mdi:shaker-outline
     entity_category: "diagnostic"
-    lambda: |-
-      // Check if EC sensor at address 100 is detected
-      if (id(bus_a).is_connected(0x64)) {  // 100 decimal = 0x64 hex
-        return true;
-      }
-      return false;
     web_server:
       sorting_group_id: sorting_group_i2c_detection
 
@@ -50,12 +58,6 @@ binary_sensor:
     id: ezo_orp_detected
     icon: mdi:lightning-bolt
     entity_category: "diagnostic"
-    lambda: |-
-      // Check if ORP sensor at address 98 is detected
-      if (id(bus_a).is_connected(0x62)) {  // 98 decimal = 0x62 hex
-        return true;
-      }
-      return false;
     web_server:
       sorting_group_id: sorting_group_i2c_detection
 
@@ -65,12 +67,6 @@ binary_sensor:
     id: ezo_do_detected
     icon: mdi:air-filter
     entity_category: "diagnostic"
-    lambda: |-
-      // Check if DO sensor at address 97 is detected
-      if (id(bus_a).is_connected(0x61)) {  // 97 decimal = 0x61 hex
-        return true;
-      }
-      return false;
     web_server:
       sorting_group_id: sorting_group_i2c_detection
 
@@ -80,12 +76,6 @@ binary_sensor:
     id: ezo_co2_detected
     icon: mdi:molecule-co2
     entity_category: "diagnostic"
-    lambda: |-
-      // Check if CO2 sensor at address 105 is detected
-      if (id(bus_a).is_connected(0x69)) {  // 105 decimal = 0x69 hex
-        return true;
-      }
-      return false;
     web_server:
       sorting_group_id: sorting_group_i2c_detection
 
@@ -95,12 +85,6 @@ binary_sensor:
     id: ezo_rtd_detected
     icon: mdi:thermometer
     entity_category: "diagnostic"
-    lambda: |-
-      // Check if RTD sensor at address 102 is detected
-      if (id(bus_a).is_connected(0x66)) {  // 102 decimal = 0x66 hex
-        return true;
-      }
-      return false;
     web_server:
       sorting_group_id: sorting_group_i2c_detection
 
@@ -110,12 +94,6 @@ binary_sensor:
     id: ezo_hum_detected
     icon: mdi:water-percent
     entity_category: "diagnostic"
-    lambda: |-
-      // Check if HUM sensor at address 111 is detected
-      if (id(bus_a).is_connected(0x6F)) {  // 111 decimal = 0x6F hex
-        return true;
-      }
-      return false;
     web_server:
       sorting_group_id: sorting_group_i2c_detection
 
@@ -125,12 +103,6 @@ binary_sensor:
     id: ezo_pmp_white_detected
     icon: mdi:pump
     entity_category: "diagnostic"
-    lambda: |-
-      // Check if PMP White at address 103 is detected
-      if (id(bus_a).is_connected(0x67)) {  // 103 decimal = 0x67 hex
-        return true;
-      }
-      return false;
     web_server:
       sorting_group_id: sorting_group_i2c_detection
 
@@ -140,12 +112,6 @@ binary_sensor:
     id: ezo_pmp_yellow_detected
     icon: mdi:pump
     entity_category: "diagnostic"
-    lambda: |-
-      // Check if PMP Yellow at address 104 is detected
-      if (id(bus_a).is_connected(0x68)) {  // 104 decimal = 0x68 hex
-        return true;
-      }
-      return false;
     web_server:
       sorting_group_id: sorting_group_i2c_detection
 
@@ -155,12 +121,6 @@ binary_sensor:
     id: ezo_pmp_blue_detected
     icon: mdi:pump
     entity_category: "diagnostic"
-    lambda: |-
-      // Check if PMP Blue at address 106 is detected
-      if (id(bus_a).is_connected(0x6A)) {  // 106 decimal = 0x6A hex
-        return true;
-      }
-      return false;
     web_server:
       sorting_group_id: sorting_group_i2c_detection
 
@@ -170,12 +130,6 @@ binary_sensor:
     id: ezo_pmp_red_detected
     icon: mdi:pump
     entity_category: "diagnostic"
-    lambda: |-
-      // Check if PMP Red at address 108 is detected
-      if (id(bus_a).is_connected(0x6C)) {  // 108 decimal = 0x6C hex
-        return true;
-      }
-      return false;
     web_server:
       sorting_group_id: sorting_group_i2c_detection
 
@@ -185,12 +139,6 @@ binary_sensor:
     id: ezo_pmp_green_detected
     icon: mdi:pump
     entity_category: "diagnostic"
-    lambda: |-
-      // Check if PMP Green at address 109 is detected
-      if (id(bus_a).is_connected(0x6D)) {  // 109 decimal = 0x6D hex
-        return true;
-      }
-      return false;
     web_server:
       sorting_group_id: sorting_group_i2c_detection
 
@@ -200,12 +148,6 @@ binary_sensor:
     id: ezo_pmp_orange_detected
     icon: mdi:pump
     entity_category: "diagnostic"
-    lambda: |-
-      // Check if PMP Orange at address 110 is detected
-      if (id(bus_a).is_connected(0x6E)) {  // 110 decimal = 0x6E hex
-        return true;
-      }
-      return false;
     web_server:
       sorting_group_id: sorting_group_i2c_detection
 
@@ -316,19 +258,21 @@ button:
         - component.update: i2c_devices_connected
         - component.update: i2c_bus_status
         - component.update: i2c_addresses_list
-        - component.update: ezo_ph_detected
-        - component.update: ezo_ec_detected
-        - component.update: ezo_orp_detected
-        - component.update: ezo_do_detected
-        - component.update: ezo_co2_detected
-        - component.update: ezo_rtd_detected
-        - component.update: ezo_hum_detected
-        - component.update: ezo_pmp_white_detected
-        - component.update: ezo_pmp_yellow_detected
-        - component.update: ezo_pmp_blue_detected
-        - component.update: ezo_pmp_red_detected
-        - component.update: ezo_pmp_green_detected
-        - component.update: ezo_pmp_orange_detected
+        - lambda: |-
+            // Update all binary sensor detection states immediately
+            id(ezo_ph_detected).publish_state(id(bus_a).is_connected(0x63));
+            id(ezo_ec_detected).publish_state(id(bus_a).is_connected(0x64));
+            id(ezo_orp_detected).publish_state(id(bus_a).is_connected(0x62));
+            id(ezo_do_detected).publish_state(id(bus_a).is_connected(0x61));
+            id(ezo_co2_detected).publish_state(id(bus_a).is_connected(0x69));
+            id(ezo_rtd_detected).publish_state(id(bus_a).is_connected(0x66));
+            id(ezo_hum_detected).publish_state(id(bus_a).is_connected(0x6F));
+            id(ezo_pmp_white_detected).publish_state(id(bus_a).is_connected(0x67));
+            id(ezo_pmp_yellow_detected).publish_state(id(bus_a).is_connected(0x68));
+            id(ezo_pmp_blue_detected).publish_state(id(bus_a).is_connected(0x6A));
+            id(ezo_pmp_red_detected).publish_state(id(bus_a).is_connected(0x6C));
+            id(ezo_pmp_green_detected).publish_state(id(bus_a).is_connected(0x6D));
+            id(ezo_pmp_orange_detected).publish_state(id(bus_a).is_connected(0x6E));
         - logger.log: "I2C scan complete. Check sensor states."
     web_server:
       sorting_group_id: sorting_group_i2c_detection
