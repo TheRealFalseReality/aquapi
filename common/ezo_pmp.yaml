@@ -117,7 +117,7 @@ sensor:
     id: ezo_pump_white
     max_flow_rate:
       id: max_flow_rate
-      name: Pump White - Max Volume/Time Flow Rate
+      name: Pump White - Max Volume-Time Flow Rate
       icon: mdi:car-speed-limiter
       disabled_by_default: true
       unit_of_measurement: 'mL/min'
@@ -208,7 +208,7 @@ number:
   - platform: template
     id: flow_rate
     icon: mdi:waves-arrow-right
-    name: Pump White - Volume/Time Flow Rat
+    name: Pump White - Volume-Time Flow Rat
     disabled_by_default: true
     unit_of_measurement: 'mL/min'
     optimistic: true
@@ -258,7 +258,7 @@ button:
     web_server:
       sorting_group_id: sorting_group_pump_white
   - platform: template
-    name: Pump White - Dose at Volume/Time Flow Rate for Time
+    name: Pump White - Dose at Volume-Time Flow Rate for Time
     disabled_by_default: true
     icon: mdi:format-text-wrapping-overflow
     id: dose_flow_rate

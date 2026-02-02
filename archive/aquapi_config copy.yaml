@@ -1,0 +1,28 @@
+---
+substitutions:
+  # App Version
+  app_version: "26.1.0"
+
+packages:
+  device_base: !include common/device_base.yaml
+  aquapi: !include common/aquapi.yaml
+  ota_https: !include common/ota_https.yaml
+  dallas: !include common/temperature_dallas.yaml
+  water_level: !include common/water_level.yaml
+  binary: !include common/binary.yaml
+  ezo_ph: !include common/ezo_ph.yaml
+  ezo_ec: !include common/ezo_ec.yaml
+  ezo_orp: !include common/ezo_orp.yaml
+  ezo_co2: !include common/ezo_co2.yaml
+  ezo_do: !include common/ezo_do.yaml
+  ezo_pmp: !include common/ezo_pmp.yaml
+  ezo_pmp_duo: !include common/ezo_pmp_duo.yaml
+  # ir_receiver: !include common/ir_receiver.yaml
+  # dht: !include common/dht.yaml
+  # binary_input: !include common/binary_input.yaml
+  # ezo_hum: !include common/ezo_hum.yaml
+  # ezo_rtd: !include common/ezo_rtd.yaml
+  # ezo_pmp_extra: !include common/ezo_pmp_extra.yaml
+  # dac: !include common/dac.yaml
+  # ezo_commands: !include common/ezo_commands.yaml
+  # debug: !include common/debug.yaml

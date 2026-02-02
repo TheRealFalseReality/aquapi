@@ -115,7 +115,7 @@ sensor:
     id: ezo_pump_orange
     max_flow_rate:
       id: max_flow_rate_orange
-      name: Pump Orange - Max Volume/Time Flow Rate
+      name: Pump Orange - Max Volume-Time Flow Rate
       icon: mdi:car-speed-limiter
       disabled_by_default: true
       unit_of_measurement: 'mL/min'
@@ -200,7 +200,7 @@ number:
   - platform: template
     id: flow_rate_orange
     icon: mdi:waves-arrow-right
-    name: Pump Orange - Volume/Time Flow Rate
+    name: Pump Orange - Volume-Time Flow Rate
     unit_of_measurement: 'mL/min'
     optimistic: true
     initial_value: 10
@@ -246,7 +246,7 @@ button:
     web_server:
       sorting_group_id: sorting_group_pump_orange
   - platform: template
-    name: Pump Orange - Dose at Volume/Time Flow Rate for Time
+    name: Pump Orange - Dose at Volume-Time Flow Rate for Time
     icon: mdi:format-text-wrapping-overflow
     id: dose_flow_rate_orange
     on_press:
