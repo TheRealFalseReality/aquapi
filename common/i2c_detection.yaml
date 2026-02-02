@@ -91,6 +91,7 @@ binary_sensor:
     name: "EZO CO2 Sensor Detected"
     id: ezo_co2_detected
     icon: mdi:molecule-co2
+    disabled_by_default: true
     entity_category: "diagnostic"
     web_server:
       sorting_group_id: sorting_group_i2c_detection
@@ -99,6 +100,7 @@ binary_sensor:
   - platform: template
     name: "EZO RTD Sensor Detected"
     id: ezo_rtd_detected
+    disabled_by_default: true
     icon: mdi:thermometer
     entity_category: "diagnostic"
     web_server:
@@ -109,6 +111,7 @@ binary_sensor:
     name: "EZO HUM Sensor Detected"
     id: ezo_hum_detected
     icon: mdi:water-percent
+    disabled_by_default: true
     entity_category: "diagnostic"
     web_server:
       sorting_group_id: sorting_group_i2c_detection
@@ -126,6 +129,7 @@ binary_sensor:
   - platform: template
     name: "EZO PMP Yellow Detected"
     id: ezo_pmp_yellow_detected
+    disabled_by_default: true
     icon: mdi:pump
     entity_category: "diagnostic"
     web_server:
@@ -135,6 +139,7 @@ binary_sensor:
   - platform: template
     name: "EZO PMP Blue Detected"
     id: ezo_pmp_blue_detected
+    disabled_by_default: true
     icon: mdi:pump
     entity_category: "diagnostic"
     web_server:
@@ -163,6 +168,7 @@ binary_sensor:
     name: "EZO PMP Orange Detected"
     id: ezo_pmp_orange_detected
     icon: mdi:pump
+    disabled_by_default: true
     entity_category: "diagnostic"
     web_server:
       sorting_group_id: sorting_group_i2c_detection
