@@ -56,7 +56,7 @@ ESP_LOGW("main", "Error");
 
 **Prerequisites:**
 
-The Wire library must be included in your ESPHome configuration. This is done via a custom header file:
+The Wire library must be included and initialized in your ESPHome configuration:
 
 1. Create `i2c_wire.h` in the repository root:
 ```cpp
@@ -69,7 +69,15 @@ The Wire library must be included in your ESPHome configuration. This is done vi
 esphome:
   includes:
     - i2c_wire.h
+  on_boot:
+    priority: 900  # Initialize early, before other components
+    then:
+      - lambda: |-
+          Wire.begin(${sdaPin}, ${sclPin});
+          ESP_LOGI("wire", "Wire library initialized");
 ```
+
+**Important:** Wire.begin() must be called to initialize the I2C bus before any Wire operations will work.
 
 **Use the Wire library for I2C device detection:**
 
@@ -102,7 +110,7 @@ if (check_i2c_device(0x63)) {
 }
 ```
 
-**Note:** The Wire library is included via the custom `i2c_wire.h` header file which is referenced in the `esphome:` section of `device_base.yaml`.
+**Note:** The Wire library is included via the custom `i2c_wire.h` header file and initialized in the on_boot hook in `device_base.yaml`.
 
 ### I2C Address Reference
 

@@ -37,6 +37,14 @@ esphome:
     version: "${app_version}"
   includes:
     - i2c_wire.h
+  on_boot:
+    # Initialize Wire library for I2C device detection
+    # Must happen early, before other components try to use Wire
+    priority: 900
+    then:
+      - lambda: |-
+          Wire.begin(${sdaPin}, ${sclPin});
+          ESP_LOGI("wire", "Wire library initialized on SDA=${sdaPin}, SCL=${sclPin}");
 
 # Enable logging
 logger:
