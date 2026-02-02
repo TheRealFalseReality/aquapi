@@ -1,4 +1,45 @@
 ---
+# Debug Module for AquaPi
+# 
+# DEBUGGING STANDARDS FOR AQUAPI PROJECT:
+# 
+# 1. LOGGING LEVELS:
+#    - Use DEBUG for general debugging information
+#    - Use INFO (ESP_LOGI) for important state changes and confirmations
+#    - Use WARN (ESP_LOGW) for warnings that don't stop execution
+#    - Use ERROR (ESP_LOGE) for errors that affect functionality
+#    - Use VERBOSE for extremely detailed trace information
+#
+# 2. LOG MESSAGE FORMAT:
+#    - Always include component name: ESP_LOGD("component_name", "message")
+#    - Use descriptive messages that explain what's happening
+#    - Include relevant data: address, values, states
+#    - Example: ESP_LOGD("ezo_ph", "pH reading: %.2f at address 0x%02X", value, address)
+#
+# 3. SENSOR DETECTION:
+#    - Always verify sensor presence before sending commands
+#    - Use ESPHome's is_connected() method instead of Wire library
+#    - Log detection failures at WARN level
+#    - Example: if (!id(bus_a).is_connected(0x63)) ESP_LOGW("ezo_ph", "pH sensor not detected")
+#
+# 4. ERROR HANDLING:
+#    - Check for null/NAN values before processing sensor data
+#    - Validate I2C communication success
+#    - Provide fallback behavior for missing sensors
+#    - Log errors with context information
+#
+# 5. MONITORING:
+#    - Use the debug component to monitor system health
+#    - Track memory usage to detect memory leaks
+#    - Monitor loop time to detect performance issues
+#    - Check I2C bus status regularly
+#
+# 6. TESTING:
+#    - Test with sensors connected and disconnected
+#    - Verify error messages are clear and actionable
+#    - Ensure system continues to operate with missing sensors
+#    - Check for memory leaks during long-term operation
+
 substitutions:
   sorting_group_debug: '96'
 
@@ -8,31 +49,249 @@ web_server:
       name: "Debug"
       sorting_weight: ${sorting_group_debug}
 
+# ESPHome debug component - provides system health metrics
 debug:
   update_interval: 5s
 
 sensor:
+  # Memory Monitoring
   - platform: debug
     free:
       name: "Heap Free"
+      icon: mdi:memory
+      entity_category: "diagnostic"
       web_server:
         sorting_group_id: sorting_group_debug
     block:
       name: "Heap Max Block"
+      icon: mdi:memory
+      entity_category: "diagnostic"
       web_server:
         sorting_group_id: sorting_group_debug
     loop_time:
       name: "Loop Time"
+      icon: mdi:timer-outline
+      entity_category: "diagnostic"
       web_server:
         sorting_group_id: sorting_group_debug
 
+  # Additional Debug Metrics
+  - platform: template
+    name: "Memory Usage Percent"
+    id: memory_usage_percent
+    icon: mdi:memory
+    unit_of_measurement: "%"
+    accuracy_decimals: 1
+    entity_category: "diagnostic"
+    update_interval: 10s
+    lambda: |-
+      // Calculate memory usage percentage
+      // ESP32 typically has around 320KB of RAM available
+      uint32_t free_mem = ESP.getFreeHeap();
+      uint32_t total_mem = ESP.getHeapSize();
+      float usage = 100.0 - ((float)free_mem / (float)total_mem * 100.0);
+      
+      // Log warning if memory usage is high
+      if (usage > 80.0) {
+        ESP_LOGW("debug", "High memory usage: %.1f%% (Free: %d bytes)", usage, free_mem);
+      }
+      
+      return usage;
+    web_server:
+      sorting_group_id: sorting_group_debug
+
+  # I2C Communication Health Score
+  - platform: template
+    name: "I2C Health Score"
+    id: i2c_health_score
+    icon: mdi:heart-pulse
+    unit_of_measurement: "%"
+    accuracy_decimals: 0
+    entity_category: "diagnostic"
+    update_interval: 60s
+    lambda: |-
+      // Calculate I2C bus health based on detected devices
+      // This gives a simple health indicator
+      int detected = 0;
+      int expected = 0;
+      
+      // Check commonly used EZO sensors (addresses in config)
+      // pH (99), EC (100), ORP (98), DO (97)
+      uint8_t common_sensors[] = {97, 98, 99, 100};
+      
+      for (int i = 0; i < 4; i++) {
+        expected++;
+        if (id(bus_a).is_connected(common_sensors[i])) {
+          detected++;
+        }
+      }
+      
+      if (expected == 0) return 100.0;  // No sensors expected
+      
+      float health = ((float)detected / (float)expected) * 100.0;
+      
+      ESP_LOGD("debug", "I2C Health: %.0f%% (%d/%d sensors responding)", 
+               health, detected, expected);
+      
+      return health;
+    web_server:
+      sorting_group_id: sorting_group_debug
+
 text_sensor:
+  # System Information
   - platform: debug
     device:
       name: "Device Info"
+      icon: mdi:chip
+      entity_category: "diagnostic"
       web_server:
         sorting_group_id: sorting_group_debug
     reset_reason:
       name: "Reset Reason"
+      icon: mdi:restart-alert
+      entity_category: "diagnostic"
       web_server:
         sorting_group_id: sorting_group_debug
+
+  # ESPHome Version
+  - platform: version
+    name: "ESPHome Version"
+    icon: mdi:new-box
+    entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_debug
+
+  # System Status Summary
+  - platform: template
+    name: "System Health Status"
+    id: system_health_status
+    icon: mdi:heart-pulse
+    entity_category: "diagnostic"
+    update_interval: 30s
+    lambda: |-
+      // Provide a comprehensive system health summary
+      std::string status = "OK";
+      std::vector<std::string> issues;
+      
+      // Check memory
+      uint32_t free_mem = ESP.getFreeHeap();
+      uint32_t total_mem = ESP.getHeapSize();
+      float mem_usage = 100.0 - ((float)free_mem / (float)total_mem * 100.0);
+      
+      if (mem_usage > 90.0) {
+        issues.push_back("Critical Memory");
+        status = "CRITICAL";
+      } else if (mem_usage > 80.0) {
+        issues.push_back("High Memory");
+        if (status == "OK") status = "WARNING";
+      }
+      
+      // Check I2C
+      int i2c_count = 0;
+      for (uint8_t addr = 8; addr < 120; addr++) {
+        if (id(bus_a).is_connected(addr)) {
+          i2c_count++;
+        }
+      }
+      
+      if (i2c_count == 0) {
+        issues.push_back("No I2C Devices");
+        status = "WARNING";
+      }
+      
+      // Build status string
+      std::string result = status;
+      if (!issues.empty()) {
+        result += " - ";
+        for (size_t i = 0; i < issues.size(); i++) {
+          if (i > 0) result += ", ";
+          result += issues[i];
+        }
+      }
+      
+      // Log status changes
+      static std::string last_status = "";
+      if (result != last_status) {
+        if (status == "OK") {
+          ESP_LOGI("debug", "System Health: %s", result.c_str());
+        } else if (status == "WARNING") {
+          ESP_LOGW("debug", "System Health: %s", result.c_str());
+        } else {
+          ESP_LOGE("debug", "System Health: %s", result.c_str());
+        }
+        last_status = result;
+      }
+      
+      return result;
+    web_server:
+      sorting_group_id: sorting_group_debug
+
+button:
+  # Memory Report Button
+  - platform: template
+    name: "Debug - Memory Report"
+    id: debug_memory_report
+    icon: mdi:file-document
+    entity_category: "config"
+    on_press:
+      then:
+        - lambda: |-
+            ESP_LOGI("debug", "=== MEMORY REPORT ===");
+            ESP_LOGI("debug", "Free Heap: %d bytes", ESP.getFreeHeap());
+            ESP_LOGI("debug", "Heap Size: %d bytes", ESP.getHeapSize());
+            ESP_LOGI("debug", "Max Alloc: %d bytes", ESP.getMaxAllocHeap());
+            ESP_LOGI("debug", "Free PSRAM: %d bytes", ESP.getFreePsram());
+            ESP_LOGI("debug", "Chip Model: %s", ESP.getChipModel());
+            ESP_LOGI("debug", "Chip Cores: %d", ESP.getChipCores());
+            ESP_LOGI("debug", "CPU Freq: %d MHz", ESP.getCpuFreqMHz());
+            ESP_LOGI("debug", "===================");
+    web_server:
+      sorting_group_id: sorting_group_debug
+
+  # I2C Debug Report Button
+  - platform: template
+    name: "Debug - I2C Report"
+    id: debug_i2c_report
+    icon: mdi:file-document
+    entity_category: "config"
+    on_press:
+      then:
+        - lambda: |-
+            ESP_LOGI("debug", "=== I2C BUS REPORT ===");
+            ESP_LOGI("debug", "Bus ID: bus_a");
+            ESP_LOGI("debug", "SDA Pin: ${sdaPin}");
+            ESP_LOGI("debug", "SCL Pin: ${sclPin}");
+            ESP_LOGI("debug", "Scanning I2C bus...");
+            
+            int device_count = 0;
+            for (uint8_t address = 8; address < 120; address++) {
+              if (id(bus_a).is_connected(address)) {
+                device_count++;
+                
+                // Identify known EZO sensors
+                const char* device_name = "Unknown";
+                switch(address) {
+                  case 97:  device_name = "EZO DO"; break;
+                  case 98:  device_name = "EZO ORP"; break;
+                  case 99:  device_name = "EZO pH"; break;
+                  case 100: device_name = "EZO EC"; break;
+                  case 102: device_name = "EZO RTD"; break;
+                  case 103: device_name = "EZO PMP (White)"; break;
+                  case 104: device_name = "EZO PMP (Yellow)"; break;
+                  case 105: device_name = "EZO CO2"; break;
+                  case 106: device_name = "EZO PMP (Blue)"; break;
+                  case 108: device_name = "EZO PMP (Red)"; break;
+                  case 109: device_name = "EZO PMP (Green)"; break;
+                  case 110: device_name = "EZO PMP (Orange)"; break;
+                  case 111: device_name = "EZO HUM"; break;
+                }
+                
+                ESP_LOGI("debug", "  Found: 0x%02X (%3d) - %s", 
+                         address, address, device_name);
+              }
+            }
+            
+            ESP_LOGI("debug", "Total devices found: %d", device_count);
+            ESP_LOGI("debug", "=====================");
+    web_server:
+      sorting_group_id: sorting_group_debug

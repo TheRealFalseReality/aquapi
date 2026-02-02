@@ -1,0 +1,334 @@
+---
+# I2C Sensor Detection Module
+# Provides individual sensor detection status for Atlas Scientific EZO circuits
+# and general I2C device monitoring
+
+substitutions:
+  sorting_group_i2c_detection: '95'
+
+web_server:
+  sorting_groups:
+    - id: sorting_group_i2c_detection
+      name: "I2C Sensor Detection"
+      sorting_weight: ${sorting_group_i2c_detection}
+
+# Binary sensors to detect specific EZO sensors by I2C address
+binary_sensor:
+  # EZO pH Sensor (Address 99)
+  - platform: template
+    name: "EZO pH Sensor Detected"
+    id: ezo_ph_detected
+    icon: mdi:ph
+    entity_category: "diagnostic"
+    lambda: |-
+      // Check if pH sensor at address 99 is detected
+      if (id(bus_a).is_connected(0x63)) {  // 99 decimal = 0x63 hex
+        return true;
+      }
+      return false;
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO EC/Conductivity Sensor (Address 100)
+  - platform: template
+    name: "EZO EC Sensor Detected"
+    id: ezo_ec_detected
+    icon: mdi:shaker-outline
+    entity_category: "diagnostic"
+    lambda: |-
+      // Check if EC sensor at address 100 is detected
+      if (id(bus_a).is_connected(0x64)) {  // 100 decimal = 0x64 hex
+        return true;
+      }
+      return false;
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO ORP Sensor (Address 98)
+  - platform: template
+    name: "EZO ORP Sensor Detected"
+    id: ezo_orp_detected
+    icon: mdi:lightning-bolt
+    entity_category: "diagnostic"
+    lambda: |-
+      // Check if ORP sensor at address 98 is detected
+      if (id(bus_a).is_connected(0x62)) {  // 98 decimal = 0x62 hex
+        return true;
+      }
+      return false;
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO DO (Dissolved Oxygen) Sensor (Address 97)
+  - platform: template
+    name: "EZO DO Sensor Detected"
+    id: ezo_do_detected
+    icon: mdi:air-filter
+    entity_category: "diagnostic"
+    lambda: |-
+      // Check if DO sensor at address 97 is detected
+      if (id(bus_a).is_connected(0x61)) {  // 97 decimal = 0x61 hex
+        return true;
+      }
+      return false;
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO CO2 Sensor (Address 105)
+  - platform: template
+    name: "EZO CO2 Sensor Detected"
+    id: ezo_co2_detected
+    icon: mdi:molecule-co2
+    entity_category: "diagnostic"
+    lambda: |-
+      // Check if CO2 sensor at address 105 is detected
+      if (id(bus_a).is_connected(0x69)) {  // 105 decimal = 0x69 hex
+        return true;
+      }
+      return false;
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO RTD (Temperature) Sensor (Address 102)
+  - platform: template
+    name: "EZO RTD Sensor Detected"
+    id: ezo_rtd_detected
+    icon: mdi:thermometer
+    entity_category: "diagnostic"
+    lambda: |-
+      // Check if RTD sensor at address 102 is detected
+      if (id(bus_a).is_connected(0x66)) {  // 102 decimal = 0x66 hex
+        return true;
+      }
+      return false;
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO Humidity Sensor (Address 111)
+  - platform: template
+    name: "EZO HUM Sensor Detected"
+    id: ezo_hum_detected
+    icon: mdi:water-percent
+    entity_category: "diagnostic"
+    lambda: |-
+      // Check if HUM sensor at address 111 is detected
+      if (id(bus_a).is_connected(0x6F)) {  // 111 decimal = 0x6F hex
+        return true;
+      }
+      return false;
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO Peristaltic Pump - White (Address 103)
+  - platform: template
+    name: "EZO PMP White Detected"
+    id: ezo_pmp_white_detected
+    icon: mdi:pump
+    entity_category: "diagnostic"
+    lambda: |-
+      // Check if PMP White at address 103 is detected
+      if (id(bus_a).is_connected(0x67)) {  // 103 decimal = 0x67 hex
+        return true;
+      }
+      return false;
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO Peristaltic Pump - Yellow (Address 104)
+  - platform: template
+    name: "EZO PMP Yellow Detected"
+    id: ezo_pmp_yellow_detected
+    icon: mdi:pump
+    entity_category: "diagnostic"
+    lambda: |-
+      // Check if PMP Yellow at address 104 is detected
+      if (id(bus_a).is_connected(0x68)) {  // 104 decimal = 0x68 hex
+        return true;
+      }
+      return false;
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO Peristaltic Pump - Blue (Address 106)
+  - platform: template
+    name: "EZO PMP Blue Detected"
+    id: ezo_pmp_blue_detected
+    icon: mdi:pump
+    entity_category: "diagnostic"
+    lambda: |-
+      // Check if PMP Blue at address 106 is detected
+      if (id(bus_a).is_connected(0x6A)) {  // 106 decimal = 0x6A hex
+        return true;
+      }
+      return false;
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO Peristaltic Pump - Red (Address 108)
+  - platform: template
+    name: "EZO PMP Red Detected"
+    id: ezo_pmp_red_detected
+    icon: mdi:pump
+    entity_category: "diagnostic"
+    lambda: |-
+      // Check if PMP Red at address 108 is detected
+      if (id(bus_a).is_connected(0x6C)) {  // 108 decimal = 0x6C hex
+        return true;
+      }
+      return false;
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO Peristaltic Pump - Green (Address 109)
+  - platform: template
+    name: "EZO PMP Green Detected"
+    id: ezo_pmp_green_detected
+    icon: mdi:pump
+    entity_category: "diagnostic"
+    lambda: |-
+      // Check if PMP Green at address 109 is detected
+      if (id(bus_a).is_connected(0x6D)) {  // 109 decimal = 0x6D hex
+        return true;
+      }
+      return false;
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO Peristaltic Pump - Orange (Address 110)
+  - platform: template
+    name: "EZO PMP Orange Detected"
+    id: ezo_pmp_orange_detected
+    icon: mdi:pump
+    entity_category: "diagnostic"
+    lambda: |-
+      // Check if PMP Orange at address 110 is detected
+      if (id(bus_a).is_connected(0x6E)) {  // 110 decimal = 0x6E hex
+        return true;
+      }
+      return false;
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+sensor:
+  # Total I2C Devices Connected
+  - platform: template
+    name: "I2C Devices Connected"
+    id: i2c_devices_connected
+    icon: mdi:chip
+    entity_category: "diagnostic"
+    accuracy_decimals: 0
+    unit_of_measurement: "devices"
+    update_interval: 30s
+    lambda: |-
+      // Count all detected I2C devices using ESPHome's robust I2C scan
+      int device_count = 0;
+      
+      // Scan common I2C address range (8-119, avoiding reserved addresses)
+      for (uint8_t address = 8; address < 120; address++) {
+        if (id(bus_a).is_connected(address)) {
+          device_count++;
+          ESP_LOGD("i2c_detection", "Device found at address 0x%02X (%d)", address, address);
+        }
+      }
+      
+      ESP_LOGI("i2c_detection", "Total I2C devices detected: %d", device_count);
+      return device_count;
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+text_sensor:
+  # I2C Bus Status
+  - platform: template
+    name: "I2C Bus Status"
+    id: i2c_bus_status
+    icon: mdi:check-network
+    entity_category: "diagnostic"
+    update_interval: 30s
+    lambda: |-
+      // Report I2C bus health status
+      int device_count = 0;
+      std::string status = "";
+      
+      // Count devices
+      for (uint8_t address = 8; address < 120; address++) {
+        if (id(bus_a).is_connected(address)) {
+          device_count++;
+        }
+      }
+      
+      if (device_count == 0) {
+        status = "No I2C devices detected";
+        ESP_LOGW("i2c_detection", "WARNING: No I2C devices found on bus");
+      } else if (device_count == 1) {
+        status = "1 device detected";
+      } else {
+        status = std::to_string(device_count) + " devices detected";
+      }
+      
+      return status;
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # Detected I2C Addresses
+  - platform: template
+    name: "I2C Addresses Detected"
+    id: i2c_addresses_list
+    icon: mdi:format-list-numbered
+    entity_category: "diagnostic"
+    update_interval: 60s
+    lambda: |-
+      // List all detected I2C device addresses
+      std::string addresses = "";
+      int count = 0;
+      
+      for (uint8_t address = 8; address < 120; address++) {
+        if (id(bus_a).is_connected(address)) {
+          if (count > 0) {
+            addresses += ", ";
+          }
+          // Format: "99 (0x63)"
+          char addr_str[16];
+          snprintf(addr_str, sizeof(addr_str), "%d (0x%02X)", address, address);
+          addresses += addr_str;
+          count++;
+        }
+      }
+      
+      if (addresses.empty()) {
+        addresses = "None";
+      }
+      
+      ESP_LOGD("i2c_detection", "Detected addresses: %s", addresses.c_str());
+      return addresses;
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+button:
+  # Manual I2C Scan Button
+  - platform: template
+    name: "I2C Scan Now"
+    id: i2c_scan_button
+    icon: mdi:refresh
+    entity_category: "config"
+    on_press:
+      then:
+        - logger.log: "Manual I2C scan initiated..."
+        - component.update: i2c_devices_connected
+        - component.update: i2c_bus_status
+        - component.update: i2c_addresses_list
+        - component.update: ezo_ph_detected
+        - component.update: ezo_ec_detected
+        - component.update: ezo_orp_detected
+        - component.update: ezo_do_detected
+        - component.update: ezo_co2_detected
+        - component.update: ezo_rtd_detected
+        - component.update: ezo_hum_detected
+        - component.update: ezo_pmp_white_detected
+        - component.update: ezo_pmp_yellow_detected
+        - component.update: ezo_pmp_blue_detected
+        - component.update: ezo_pmp_red_detected
+        - component.update: ezo_pmp_green_detected
+        - component.update: ezo_pmp_orange_detected
+        - logger.log: "I2C scan complete. Check sensor states."
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
