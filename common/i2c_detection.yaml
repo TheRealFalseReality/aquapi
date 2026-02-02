@@ -44,7 +44,7 @@ script:
 
 # Interval to refresh detection sensors
 interval:
-  - interval: 30s
+  - interval: 60s
     then:
       - script.execute: update_sensor_detection
 
@@ -269,6 +269,7 @@ button:
   - platform: template
     name: "I2C Scan Now"
     id: i2c_scan_button
+    disabled_by_default: true
     icon: mdi:refresh
     entity_category: "config"
     on_press:

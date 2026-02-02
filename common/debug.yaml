@@ -100,42 +100,6 @@ sensor:
     web_server:
       sorting_group_id: sorting_group_debug
 
-  # I2C Communication Health Score
-  - platform: template
-    name: "I2C Health Score"
-    id: i2c_health_score
-    icon: mdi:heart-pulse
-    unit_of_measurement: "%"
-    accuracy_decimals: 0
-    entity_category: "diagnostic"
-    update_interval: 60s
-    lambda: |-
-      // Calculate I2C bus health based on detected devices
-      // This gives a simple health indicator
-      int detected = 0;
-      int expected = 4;  // Check commonly used EZO sensors
-      
-      // pH (99), EC (100), ORP (98), DO (97)
-      uint8_t common_sensors[] = {97, 98, 99, 100};
-      
-      for (int i = 0; i < expected; i++) {
-        esphome::i2c::ErrorCode err = id(bus_a)->write(common_sensors[i], nullptr, 0);
-        if (err == esphome::i2c::ERROR_OK) {
-          detected++;
-        }
-      }
-      
-      if (expected == 0) return 100.0;  // No sensors expected
-      
-      float health = ((float)detected / (float)expected) * 100.0;
-      
-      ESP_LOGD("debug", "I2C Health: %.0f%% (%d/%d sensors responding)", 
-               health, detected, expected);
-      
-      return health;
-    web_server:
-      sorting_group_id: sorting_group_debug
-
 text_sensor:
   # System Information
   - platform: debug
@@ -232,6 +196,7 @@ button:
     name: "Debug - Memory Report"
     id: debug_memory_report
     icon: mdi:file-document
+    disabled_by_default: true
     entity_category: "config"
     on_press:
       then:
@@ -253,6 +218,7 @@ button:
     name: "Debug - I2C Report"
     id: debug_i2c_report
     icon: mdi:file-document
+    disabled_by_default: true
     entity_category: "config"
     on_press:
       then:
