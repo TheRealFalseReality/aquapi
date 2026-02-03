@@ -130,7 +130,7 @@ sensor:
 
   # Calibration Temp. 2 at 0C
   - platform: template
-    name: Calibration at 0°C  - Temp. 2
+    name: Calibration at 0°C - Temp. 2
     id: cal_0_2_sen
     disabled_by_default: true
     icon: mdi:thermometer-low
@@ -149,7 +149,7 @@ sensor:
     name: Calibration at 100°C - Temp. 2
     id: cal_100_2_sen
     disabled_by_default: true
-    icon: mdi:weather-sunny-alert
+    icon: mdi:thermometer-high
     unit_of_measurement: "°C"
     state_class: "measurement"
     device_class: "temperature"
@@ -216,7 +216,7 @@ text_sensor:
   - platform: template
     name: Temperature 2 Range
     id: temp_range_2
-    icon: mdi:thermometer-water
+    icon: mdi:thermometer-alert
     update_interval: "${update_temp}"
     lambda: |-
       if(id(temp_f_2).state <= id(range_cool_2).state) {
