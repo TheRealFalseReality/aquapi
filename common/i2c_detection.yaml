@@ -207,6 +207,7 @@ text_sensor:
     name: "I2C Bus Status"
     id: i2c_bus_status
     icon: mdi:check-network
+    disabled_by_default: true
     entity_category: "diagnostic"
     update_interval: 30s
     lambda: |-
