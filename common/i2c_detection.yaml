@@ -1,0 +1,291 @@
+---
+# I2C Sensor Detection Module
+# Provides individual sensor detection status for Atlas Scientific EZO circuits
+# and general I2C device monitoring
+
+substitutions:
+  sorting_group_i2c_detection: '95'
+
+web_server:
+  sorting_groups:
+    - id: sorting_group_i2c_detection
+      name: "I2C Sensor Detection"
+      sorting_weight: ${sorting_group_i2c_detection}
+
+# Script to update all sensor detection states
+script:
+  - id: update_sensor_detection
+    then:
+      - lambda: |-
+          // Helper function to check if I2C device is present using ESPHome I2C API
+          // Parameters: address - I2C address to check (0x00-0x7F)
+          // Returns: true if device responds, false if no device or error
+          auto check_i2c_device = [](uint8_t address) -> bool {
+            // Use ESPHome's I2C bus write method to probe the device
+            // Writing 0 bytes is a standard way to check if device exists
+            esphome::i2c::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
+            return (err == esphome::i2c::ERROR_OK);
+          };
+          
+          // Update all binary sensor detection states
+          id(ezo_ph_detected).publish_state(check_i2c_device(0x63));
+          id(ezo_ec_detected).publish_state(check_i2c_device(0x64));
+          id(ezo_orp_detected).publish_state(check_i2c_device(0x62));
+          id(ezo_do_detected).publish_state(check_i2c_device(0x61));
+          id(ezo_co2_detected).publish_state(check_i2c_device(0x69));
+          id(ezo_rtd_detected).publish_state(check_i2c_device(0x66));
+          id(ezo_hum_detected).publish_state(check_i2c_device(0x6F));
+          id(ezo_pmp_white_detected).publish_state(check_i2c_device(0x67));
+          id(ezo_pmp_yellow_detected).publish_state(check_i2c_device(0x68));
+          id(ezo_pmp_blue_detected).publish_state(check_i2c_device(0x6A));
+          id(ezo_pmp_red_detected).publish_state(check_i2c_device(0x6C));
+          id(ezo_pmp_green_detected).publish_state(check_i2c_device(0x6D));
+          id(ezo_pmp_orange_detected).publish_state(check_i2c_device(0x6E));
+
+# Interval to refresh detection sensors
+interval:
+  - interval: 60s
+    then:
+      - script.execute: update_sensor_detection
+
+# Binary sensors to detect specific EZO sensors by I2C address
+binary_sensor:
+  # EZO pH Sensor (Address 99)
+  - platform: template
+    name: "EZO pH Sensor Detected"
+    id: ezo_ph_detected
+    icon: mdi:ph
+    entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO EC/Conductivity Sensor (Address 100)
+  - platform: template
+    name: "EZO EC Sensor Detected"
+    id: ezo_ec_detected
+    icon: mdi:shaker-outline
+    entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO ORP Sensor (Address 98)
+  - platform: template
+    name: "EZO ORP Sensor Detected"
+    id: ezo_orp_detected
+    icon: mdi:lightning-bolt
+    entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO DO (Dissolved Oxygen) Sensor (Address 97)
+  - platform: template
+    name: "EZO DO Sensor Detected"
+    id: ezo_do_detected
+    icon: mdi:air-filter
+    entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO CO2 Sensor (Address 105)
+  - platform: template
+    name: "EZO CO2 Sensor Detected"
+    id: ezo_co2_detected
+    icon: mdi:molecule-co2
+    disabled_by_default: true
+    entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO RTD (Temperature) Sensor (Address 102)
+  - platform: template
+    name: "EZO RTD Sensor Detected"
+    id: ezo_rtd_detected
+    disabled_by_default: true
+    icon: mdi:thermometer
+    entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO Humidity Sensor (Address 111)
+  - platform: template
+    name: "EZO HUM Sensor Detected"
+    id: ezo_hum_detected
+    icon: mdi:water-percent
+    disabled_by_default: true
+    entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO Peristaltic Pump - White (Address 103)
+  - platform: template
+    name: "EZO PMP White Detected"
+    id: ezo_pmp_white_detected
+    icon: mdi:pump
+    entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO Peristaltic Pump - Yellow (Address 104)
+  - platform: template
+    name: "EZO PMP Yellow Detected"
+    id: ezo_pmp_yellow_detected
+    disabled_by_default: true
+    icon: mdi:pump
+    entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO Peristaltic Pump - Blue (Address 106)
+  - platform: template
+    name: "EZO PMP Blue Detected"
+    id: ezo_pmp_blue_detected
+    disabled_by_default: true
+    icon: mdi:pump
+    entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO Peristaltic Pump - Red (Address 108)
+  - platform: template
+    name: "EZO PMP Red Detected"
+    id: ezo_pmp_red_detected
+    icon: mdi:pump
+    entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO Peristaltic Pump - Green (Address 109)
+  - platform: template
+    name: "EZO PMP Green Detected"
+    id: ezo_pmp_green_detected
+    icon: mdi:pump
+    entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # EZO Peristaltic Pump - Orange (Address 110)
+  - platform: template
+    name: "EZO PMP Orange Detected"
+    id: ezo_pmp_orange_detected
+    icon: mdi:pump
+    disabled_by_default: true
+    entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+sensor:
+  # Total I2C Devices Connected
+  - platform: template
+    name: "I2C Devices Connected"
+    id: i2c_devices_connected
+    icon: mdi:chip
+    entity_category: "diagnostic"
+    accuracy_decimals: 0
+    unit_of_measurement: "devices"
+    update_interval: 30s
+    lambda: |-
+      // Count all detected I2C devices using ESPHome I2C API
+      int device_count = 0;
+      
+      // Scan common I2C address range (8-119, avoiding reserved addresses)
+      for (uint8_t address = 8; address < 120; address++) {
+        esphome::i2c::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
+        if (err == esphome::i2c::ERROR_OK) {
+          device_count++;
+          ESP_LOGD("i2c_detection", "Device found at address 0x%02X (%d)", address, address);
+        }
+      }
+      
+      ESP_LOGI("i2c_detection", "Total I2C devices detected: %d", device_count);
+      return device_count;
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+text_sensor:
+  # I2C Bus Status
+  - platform: template
+    name: "I2C Bus Status"
+    id: i2c_bus_status
+    icon: mdi:check-network
+    disabled_by_default: true
+    entity_category: "diagnostic"
+    update_interval: 30s
+    lambda: |-
+      // Report I2C bus health status
+      int device_count = 0;
+      std::string status = "";
+      
+      // Count devices
+      for (uint8_t address = 8; address < 120; address++) {
+        esphome::i2c::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
+        if (err == esphome::i2c::ERROR_OK) {
+          device_count++;
+        }
+      }
+      
+      if (device_count == 0) {
+        status = "No I2C devices detected";
+        ESP_LOGW("i2c_detection", "WARNING: No I2C devices found on bus");
+      } else if (device_count == 1) {
+        status = "1 device detected";
+      } else {
+        status = std::to_string(device_count) + " devices detected";
+      }
+      
+      return status;
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+  # Detected I2C Addresses
+  - platform: template
+    name: "I2C Addresses Detected"
+    id: i2c_addresses_list
+    icon: mdi:format-list-numbered
+    entity_category: "diagnostic"
+    update_interval: 60s
+    lambda: |-
+      // List all detected I2C device addresses
+      std::string addresses = "";
+      int count = 0;
+      
+      for (uint8_t address = 8; address < 120; address++) {
+        esphome::i2c::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
+        if (err == esphome::i2c::ERROR_OK) {
+          if (count > 0) {
+            addresses += ", ";
+          }
+          // Format: "99 (0x63)"
+          char addr_str[16];
+          snprintf(addr_str, sizeof(addr_str), "%d (0x%02X)", address, address);
+          addresses += addr_str;
+          count++;
+        }
+      }
+      
+      if (addresses.empty()) {
+        addresses = "None";
+      }
+      
+      ESP_LOGD("i2c_detection", "Detected addresses: %s", addresses.c_str());
+      return addresses;
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
+
+button:
+  # Manual I2C Scan Button
+  - platform: template
+    name: "I2C Scan Now"
+    id: i2c_scan_button
+    disabled_by_default: true
+    icon: mdi:refresh
+    entity_category: "config"
+    on_press:
+      then:
+        - logger.log: "Manual I2C scan initiated..."
+        - component.update: i2c_devices_connected
+        - component.update: i2c_bus_status
+        - component.update: i2c_addresses_list
+        - script.execute: update_sensor_detection
+        - logger.log: "I2C scan complete. Check sensor states."
+    web_server:
+      sorting_group_id: sorting_group_i2c_detection
