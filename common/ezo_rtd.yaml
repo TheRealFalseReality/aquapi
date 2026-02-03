@@ -3,6 +3,7 @@ substitutions:
   # RTD circuit, who's address is 102
   addRTD: "102"
   update_rtd: "60s"
+  update_button_rtd: "60s"
 
   sorting_group_rtd: '36'
 
@@ -32,6 +33,18 @@ api:
       then:
         - lambda: |-
             id(temp_ezo).send_custom({{command}});
+
+esphome:
+  on_boot:
+    priority: 800
+    then:
+      - button.press: read_rtd
+
+interval:
+  # Update RTD via button to enable detection check
+  - interval: "${update_button_rtd}"
+    then:
+      - button.press: read_rtd
 
 sensor:
   # EZO Circuits (yellow - SCL/RX, blue - SDA/TX)
@@ -70,3 +83,27 @@ sensor:
     web_server:
       sorting_group_id: sorting_group_rtd
       sorting_weight: 10
+
+button:
+  # Read RTD temperature Sensor
+  - platform: template
+    name: RTD - Read
+    id: read_rtd
+    icon: mdi:read
+    entity_category: "Config"
+    disabled_by_default: true
+    on_press:
+      then:
+        - lambda: |-
+            byte error;
+            Wire.beginTransmission(${addRTD});
+            error = Wire.endTransmission();
+            if (error == 0) {
+              id(temp_ezo).send_custom("R");
+            }
+            else {
+              ESP_LOGW("custom_rtd_read", "No RTD temperature sensor detected at address: ${addRTD}!!");
+            }
+    web_server:
+      sorting_group_id: sorting_group_rtd
+
