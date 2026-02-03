@@ -85,7 +85,7 @@ sensor:
       sorting_weight: 10
 
 button:
-  # Read RTD Temperature Sensor
+  # Read RTD temperature Sensor
   - platform: template
     name: RTD - Read
     id: read_rtd
@@ -102,7 +102,7 @@ button:
               id(temp_ezo).send_custom("R");
             }
             else {
-              ESP_LOGW("custom_rtd_read", "No RTD Temperature sensor detected at address: ${addRTD}!!");
+              ESP_LOGW("custom_rtd_read", "No RTD temperature sensor detected at address: ${addRTD}!!");
             }
     web_server:
       sorting_group_id: sorting_group_rtd

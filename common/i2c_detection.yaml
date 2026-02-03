@@ -71,7 +71,7 @@ interval:
   - interval: 60s
     then:
       - script.execute: update_sensor_detection
-      - delay: 1s
+      - delay: 100ms
       - script.execute: log_missing_sensors_help
 
 # Binary sensors to detect specific EZO sensors by I2C address
