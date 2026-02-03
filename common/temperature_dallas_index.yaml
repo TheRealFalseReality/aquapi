@@ -1,0 +1,319 @@
+---
+substitutions:
+  dallasPin: "16"
+  update_temp: "60s"
+
+  # Calibration variables
+  # 0C using Ice Water; 100C using Boiling Water
+  # Calibration Temp. 1
+  cal_0: "0.0"
+  cal_100: "100.0"
+  range_cool: "74"
+  range_warm: "82"
+
+  # Calibration Temp. 2
+  cal_0_temp_2: "0.0"
+  cal_100_temp_2: "100.0"
+  range_cool_2: "74"
+  range_warm_2: "82"
+
+  sorting_group_temperature_weight: '10'
+
+web_server:
+  sorting_groups:
+    - id: sorting_group_temperature
+      name: "Temperature"
+      sorting_weight: ${sorting_group_temperature_weight}
+
+# 18B20 sensor Pin
+one_wire:
+  - platform: gpio
+    pin: ${dallasPin}
+
+sensor:
+  # Temperature Probe 1 - Uses index 0 (first sensor on the bus)
+  - platform: dallas_temp
+    index: 0
+    id: temp_1
+    icon: mdi:thermometer-water
+    name: "Temperature"
+    state_class: "measurement"
+    device_class: "temperature"
+    update_interval: "${update_temp}"
+    filters:
+      - filter_out: NAN
+      - calibrate_linear:
+          method: least_squares
+          datapoints:
+            - 0.0 -> ${cal_0}
+            - 100.0 -> ${cal_100}
+    on_value:
+      then:
+        - component.update: temp_range
+    web_server:
+      sorting_group_id: sorting_group_temperature
+      sorting_weight: 10
+
+  # Convert to Fahrenheit - Temp. 1
+  - platform: template
+    state_class: "measurement"
+    device_class: "temperature"
+    id: temp_f
+    lambda: |-
+      return id(temp_1).state * 9 / 5 + 32;
+    web_server:
+      sorting_group_id: sorting_group_temperature
+
+  # Calibration Temp. at 0C
+  - platform: template
+    name: Calibration at 0°C - Temp. 1
+    id: cal_0_sen
+    icon: mdi:thermometer-low
+    unit_of_measurement: "°C"
+    disabled_by_default: true
+    state_class: "measurement"
+    device_class: "temperature"
+    entity_category: "diagnostic"
+    lambda: |-
+      return {${cal_0}};
+    web_server:
+      sorting_group_id: sorting_group_temperature
+
+  # Calibration Temp. at 100C
+  - platform: template
+    name: Calibration at 100°C - Temp. 1
+    id: cal_100_sen
+    icon: mdi:thermometer-high
+    unit_of_measurement: "°C"
+    disabled_by_default: true
+    state_class: "measurement"
+    device_class: "temperature"
+    entity_category: "diagnostic"
+    lambda: |-
+      return {${cal_100}};
+    web_server:
+      sorting_group_id: sorting_group_temperature
+
+  # Temperature Probe 2 - Uses index 1 (second sensor on the bus)
+  - platform: dallas_temp
+    index: 1
+    id: temp_2
+    icon: mdi:thermometer-water
+    name: "Temperature 2"
+    state_class: "measurement"
+    device_class: "temperature"
+    update_interval: "${update_temp}"
+    filters:
+      - filter_out: NAN
+      - calibrate_linear:
+          method: least_squares
+          datapoints:
+            - 0.0 -> ${cal_0_temp_2}
+            - 100.0 -> ${cal_100_temp_2}
+    on_value:
+      then:
+        - component.update: temp_range_2
+    web_server:
+      sorting_group_id: sorting_group_temperature
+      sorting_weight: 60
+
+  # Convert to Fahrenheit - Temp. 2
+  - platform: template
+    state_class: "measurement"
+    device_class: "temperature"
+    id: temp_f_2
+    lambda: |-
+      return id(temp_2).state * 9 / 5 + 32;
+    web_server:
+      sorting_group_id: sorting_group_temperature
+      sorting_weight: 69
+
+  # Calibration Temp. 2 at 0C
+  - platform: template
+    name: Calibration at 0°C  - Temp. 2
+    id: cal_0_2_sen
+    disabled_by_default: true
+    icon: mdi:thermometer-low
+    unit_of_measurement: "°C"
+    state_class: "measurement"
+    device_class: "temperature"
+    entity_category: "diagnostic"
+    lambda: |-
+      return {${cal_0_temp_2}};
+    web_server:
+      sorting_group_id: sorting_group_temperature
+      sorting_weight: 69
+
+  # Calibration Temp. 2 at 100C
+  - platform: template
+    name: Calibration at 100°C - Temp. 2
+    id: cal_100_2_sen
+    disabled_by_default: true
+    icon: mdi:weather-sunny-alert
+    unit_of_measurement: "°C"
+    state_class: "measurement"
+    device_class: "temperature"
+    entity_category: "diagnostic"
+    lambda: |-
+      return {${cal_100_temp_2}};
+    web_server:
+      sorting_group_id: sorting_group_temperature
+      sorting_weight: 69
+
+binary_sensor:
+  - platform: template
+    name: Ideal Temperature
+    id: ideal_temp
+    icon: mdi:thermometer-check
+    lambda: |-
+      if (id(temp_range).state == "OK") {
+        return true;
+      } else {
+        return false;
+      }
+    web_server:
+      sorting_group_id: sorting_group_temperature
+
+  - platform: template
+    name: Ideal Temperature 2
+    id: ideal_temp_2
+    icon: mdi:thermometer-check
+    lambda: |-
+      if (id(temp_range_2).state == "OK") {
+        return true;
+      } else {
+        return false;
+      }
+    web_server:
+      sorting_group_id: sorting_group_temperature
+      sorting_weight: 69
+
+text_sensor:
+  # Temperature Range 1
+  - platform: template
+    name: Temperature Range
+    id: temp_range
+    icon: mdi:thermometer-alert
+    update_interval: "${update_temp}"
+    lambda: |-
+      if(id(temp_f).state <= id(range_cool).state) {
+        return {"Cool"};
+      }
+      if(id(temp_f).state < id(range_warm).state && id(temp_f).state > id(range_cool).state) {
+        return {"OK"};
+      }
+      if(id(temp_f).state >= id(range_warm).state) {
+        return {"Warm"};
+      }
+      else {
+        return {"Unknown"};
+      }
+    web_server:
+      sorting_group_id: sorting_group_temperature
+      sorting_weight: 12
+
+  # Temperature Range 2
+  - platform: template
+    name: Temperature 2 Range
+    id: temp_range_2
+    icon: mdi:thermometer-water
+    update_interval: "${update_temp}"
+    lambda: |-
+      if(id(temp_f_2).state <= id(range_cool_2).state) {
+        return {"Cool"};
+      }
+      if(id(temp_f_2).state < id(range_warm_2).state && id(temp_f_2).state > id(range_cool_2).state) {
+        return {"OK"};
+      }
+      if(id(temp_f_2).state >= id(range_warm_2).state) {
+        return {"Warm"};
+      }
+      else {
+        return {"Unknown"};
+      }
+    web_server:
+      sorting_group_id: sorting_group_temperature
+      sorting_weight: 62
+
+number:
+  # Temperature 1 when Cool
+  - platform: template
+    name: "Temp. Cool"
+    id: range_cool
+    icon: mdi:thermometer-low
+    optimistic: true
+    mode: box
+    min_value: 0.0
+    max_value: 100.0
+    step: 0.5
+    restore_value: true
+    initial_value: ${range_cool}
+    entity_category: "Config"
+    device_class: "temperature"
+    on_value:
+      then:
+        - component.update: temp_range
+    web_server:
+      sorting_group_id: sorting_group_temperature
+
+  # Temperature 1 when Warm
+  - platform: template
+    name: "Temp. Warm"
+    icon: mdi:thermometer-high
+    id: range_warm
+    optimistic: true
+    mode: box
+    min_value: 0.0
+    max_value: 100.0
+    step: 0.5
+    restore_value: true
+    initial_value: ${range_warm}
+    entity_category: "Config"
+    device_class: "temperature"
+    on_value:
+      then:
+        - component.update: temp_range
+    web_server:
+      sorting_group_id: sorting_group_temperature
+
+  # Temperature 2 when Cool
+  - platform: template
+    name: "Temp. 2 Cool"
+    id: range_cool_2
+    icon: mdi:thermometer-low
+    optimistic: true
+    mode: box
+    min_value: 0.0
+    max_value: 100.0
+    step: 0.5
+    restore_value: true
+    initial_value: ${range_cool_2}
+    entity_category: "Config"
+    device_class: "temperature"
+    on_value:
+      then:
+        - component.update: temp_range_2
+    web_server:
+      sorting_group_id: sorting_group_temperature
+      sorting_weight: 69
+
+  # Temperature 2 when Warm
+  - platform: template
+    name: "Temp. 2 Warm"
+    icon: mdi:thermometer-high
+    id: range_warm_2
+    optimistic: true
+    mode: box
+    min_value: 0.0
+    max_value: 100.0
+    step: 0.5
+    restore_value: true
+    initial_value: ${range_warm_2}
+    entity_category: "Config"
+    device_class: "temperature"
+    on_value:
+      then:
+        - component.update: temp_range_2
+    web_server:
+      sorting_group_id: sorting_group_temperature
+      sorting_weight: 69
