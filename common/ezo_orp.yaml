@@ -3,7 +3,6 @@ substitutions:
   # ORP circuit, who's address is 98
   addORP: "98"
   update_orp: "60s"
-  update_button_orp: "60s"
 
   sorting_group_orp: '33'
 
@@ -43,14 +42,8 @@ esphome:
   on_boot:
     priority: 800
     then:
-      - button.press: read_orp
       - button.press: send_selected_orp
 
-interval:
-  # Update ORP via button to enable detection check
-  - interval: "${update_button_orp}"
-    then:
-      - button.press: read_orp
 
 sensor:
   # EZO Circuits (SCL/RX, SDA/TX)

@@ -3,7 +3,6 @@ substitutions:
   # pH circuit, who's address is 99
   addPH: "99"
   update_ph: "60s"
-  update_button_ph: "60s"
 
   sorting_group_ph: '30'
 
@@ -61,14 +60,8 @@ esphome:
   on_boot:
     priority: 800
     then:
-      - button.press: read_ph
       - button.press: send_selected_ph
 
-interval:
-  # Update pH via button to enable detection check
-  - interval: "${update_button_ph}"
-    then:
-      - button.press: read_ph
 
 sensor:
   # EZO Circuits (SCL/RX, SDA/TX)
