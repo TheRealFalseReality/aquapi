@@ -267,15 +267,15 @@ button:
     on_press:
       then:
         - lambda: |-
-            // byte error;
-            // Wire.beginTransmission(${addEC});
-            // error = Wire.endTransmission();
-            // if (error == 0) {
+            byte error;
+            Wire.beginTransmission(${addEC});
+            error = Wire.endTransmission();
+            if (error == 0) {
               id(ec_ezo).send_custom("R");
-            // }
-            // else {
-            //   ESP_LOGW("custom_conductivity_read", "No Conductivity sensor detected at address: ${addEC}!");
-            // }
+            }
+            else {
+              ESP_LOGW("custom_conductivity_read", "No Conductivity sensor detected at address: ${addEC}!");
+            }
     web_server:
       sorting_group_id: sorting_group_ec
 

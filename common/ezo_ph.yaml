@@ -120,15 +120,15 @@ button:
     on_press:
       then:
         - lambda: |-
-            // byte error;
-            // id(ph_ezo).send_custom("R");
-            // error = Wire.endTransmission();
-            // if (error == 0) {
+            byte error;
+            id(ph_ezo).send_custom("R");
+            error = Wire.endTransmission();
+            if (error == 0) {
               id(ph_ezo).send_custom("R");
-            // }
-            // else {
-            //   ESP_LOGW("custom_ph_read", "No pH sensor detected at address: ${addPH}!!");
-            // }
+            }
+            else {
+              ESP_LOGW("custom_ph_read", "No pH sensor detected at address: ${addPH}!!");
+            }
     web_server:
       sorting_group_id: sorting_group_ph
 

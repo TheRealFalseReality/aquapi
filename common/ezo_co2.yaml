@@ -142,15 +142,15 @@ button:
     on_press:
       then:
         - lambda: |-
-            // byte error;
-            // Wire.beginTransmission(${addCO2});
-            // error = Wire.endTransmission();
-            // if (error == 0) {
+            byte error;
+            Wire.beginTransmission(${addCO2});
+            error = Wire.endTransmission();
+            if (error == 0) {
               id(co2_ezo).send_custom("R");
-            // }
-            // else {
-            //   ESP_LOGW("custom_co2_read", "No Carbon Dioxide sensor detected at address: ${addCO2}!");
-            // }
+            }
+            else {
+              ESP_LOGW("custom_co2_read", "No Carbon Dioxide sensor detected at address: ${addCO2}!");
+            }
     web_server:
       sorting_group_id: sorting_group_co2
 

@@ -177,15 +177,15 @@ button:
     on_press:
       then:
         - lambda: |-
-            // byte error;
-            // Wire.beginTransmission(${addHUM});
-            // error = Wire.endTransmission();
-            // if (error == 0) {
+            byte error;
+            Wire.beginTransmission(${addHUM});
+            error = Wire.endTransmission();
+            if (error == 0) {
               id(hum_ezo).send_custom("R");
-            // }
-            // else {
-            //   ESP_LOGW("custom_humidity_read", "No Humidity sensor detected at address: ${addHUM}!!");
-            // }
+            }
+            else {
+              ESP_LOGW("custom_humidity_read", "No Humidity sensor detected at address: ${addHUM}!!");
+            }
     web_server:
       sorting_group_id: sorting_group_hum
 
