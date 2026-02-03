@@ -160,10 +160,8 @@ button:
     on_press:
       then:
         - lambda: |-
-            byte error;
-            Wire.beginTransmission(${addDO});
-            error = Wire.endTransmission();
-            if (error == 0) {
+            esphome::i2c::ErrorCode err = id(bus_a)->write(${addDO}, nullptr, 0);
+            if (err == esphome::i2c::ERROR_OK) {
               id(do_ezo).send_custom("R");
             }
             else {
