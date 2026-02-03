@@ -41,12 +41,36 @@ script:
           id(ezo_pmp_red_detected).publish_state(check_i2c_device(0x6C));
           id(ezo_pmp_green_detected).publish_state(check_i2c_device(0x6D));
           id(ezo_pmp_orange_detected).publish_state(check_i2c_device(0x6E));
+  
+  # Script to log helpful messages for sensors that are configured but not detected
+  - id: log_missing_sensors_help
+    then:
+      - lambda: |-
+          // Helper to log a warning if sensor is not detected and likely configured
+          // This provides a user-friendly message instead of cryptic "read error" messages
+          auto log_if_missing = [](const char* sensor_name, const char* substitution_name, bool is_detected) {
+            if (!is_detected) {
+              ESP_LOGW("ezo_detection", "No %s sensor detected! If not in use, set '%s: \"never\"' in substitutions to disable updates and avoid errors.", sensor_name, substitution_name);
+            }
+          };
+          
+          // Check each sensor and log helpful message if missing
+          // Only check sensors that are commonly enabled (not disabled_by_default)
+          log_if_missing("pH (0x63)", "update_ph", id(ezo_ph_detected).state);
+          log_if_missing("EC/Conductivity (0x64)", "update_ec", id(ezo_ec_detected).state);
+          log_if_missing("ORP (0x62)", "update_orp", id(ezo_orp_detected).state);
+          log_if_missing("Dissolved Oxygen (0x61)", "update_do", id(ezo_do_detected).state);
+          log_if_missing("White Pump (0x67)", "update_pmp_white", id(ezo_pmp_white_detected).state);
+          log_if_missing("Green Pump (0x6D)", "update_pmp_green", id(ezo_pmp_green_detected).state);
+          log_if_missing("Red Pump (0x6C)", "update_pmp_red", id(ezo_pmp_red_detected).state);
 
-# Interval to refresh detection sensors
+# Interval to refresh detection sensors and log helpful messages for missing sensors
 interval:
   - interval: 60s
     then:
       - script.execute: update_sensor_detection
+      - delay: 1s
+      - script.execute: log_missing_sensors_help
 
 # Binary sensors to detect specific EZO sensors by I2C address
 binary_sensor:
