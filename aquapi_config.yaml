@@ -1,8 +1,4 @@
 ---
-substitutions:
-  # App Version
-  app_version: "26.2.0"
-
 packages:
   device_base: !include common/device_base.yaml
   aquapi: !include common/aquapi.yaml
