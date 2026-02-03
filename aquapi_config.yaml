@@ -1,12 +1,14 @@
 ---
 substitutions:
   # App Version
-  app_version: "26.1.0"
+  app_version: "26.1.1"
 
 packages:
   device_base: !include common/device_base.yaml
   aquapi: !include common/aquapi.yaml
   ota_https: !include common/ota_https.yaml
+  # debug: !include common/debug.yaml
+  i2c_detection: !include common/i2c_detection.yaml
   dallas: !include common/temperature_dallas.yaml
   water_level: !include common/water_level.yaml
   binary: !include common/binary.yaml
@@ -25,4 +27,3 @@ packages:
   # ezo_pmp_extra: !include common/ezo_pmp_extra.yaml
   # dac: !include common/dac.yaml
   # ezo_commands: !include common/ezo_commands.yaml
-  # debug: !include common/debug.yaml
