@@ -63,6 +63,8 @@ script:
           log_if_missing("White Pump (0x67)", "update_pmp_white", id(ezo_pmp_white_detected).state);
           log_if_missing("Green Pump (0x6D)", "update_pmp_green", id(ezo_pmp_green_detected).state);
           log_if_missing("Red Pump (0x6C)", "update_pmp_red", id(ezo_pmp_red_detected).state);
+          // Note: RTD, CO2, HUM sensors are disabled_by_default, so only log if explicitly enabled
+          // Users can uncomment these if they have these sensors but want the warnings
 
 # Interval to refresh detection sensors and log helpful messages for missing sensors
 interval:
