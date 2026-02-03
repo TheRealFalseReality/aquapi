@@ -1,7 +1,5 @@
 ---
 substitutions:
-  # App Version
-  app_version: "26.2.0"
   # names
   name: "aquapi"
   friendly_name: "AquaPi"
@@ -10,21 +8,13 @@ substitutions:
   sorting_group_name: "AquaPi "
   import: "false"
 
+packages:
+  aquapi_app_version: !include aquapi_app_version.yaml
+
 dashboard_import:
   package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@main
   import_full_config: "${import}"
 
-text_sensor:
-  # AquaPi Version
-  - platform: template
-    name: "AquaPi Version"
-    id: aquapi_version
-    icon: mdi:update
-    lambda: |-
-      return {"${app_version}"};
-    entity_category: "diagnostic"
-    web_server:
-      sorting_group_id: sorting_group_diagnostic
 
   # GitHub Project URL
   - platform: template

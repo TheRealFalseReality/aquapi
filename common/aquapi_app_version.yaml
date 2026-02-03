@@ -1,0 +1,15 @@
+substitutions:
+  # App Version
+  app_version: "26.2.0"
+  
+text_sensor:
+  # AquaPi Version
+  - platform: template
+    name: "AquaPi Version"
+    id: aquapi_version
+    icon: mdi:update
+    lambda: |-
+      return {"${app_version}"};
+    entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_diagnostic
