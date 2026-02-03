@@ -44,7 +44,6 @@ esphome:
     then:
       - button.press: send_selected_orp
 
-
 sensor:
   # EZO Circuits (SCL/RX, SDA/TX)
   # EZO Circuit - ORP
