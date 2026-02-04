@@ -3,9 +3,9 @@
 
 The Aquarium meets the Smart Home!
 
-**[Setup Guide](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi)**  
-**[Build It Yourself](https://github.com/TheRealFalseReality/aquapi/wiki/Build-It-Yourself)**  
-**[Wiki](https://github.com/TheRealFalseReality/aquapi/wiki)**  
+**[Setup Guide](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi)**  - Start here  
+**[Build It Yourself](https://github.com/TheRealFalseReality/aquapi/wiki/Build-It-Yourself)**  - Information and links to parts used.  
+**[Wiki](https://github.com/TheRealFalseReality/aquapi/wiki)**  - in depth guides, [**calibration**](https://github.com/TheRealFalseReality/aquapi/wiki/Calibration), information and more.
 
 **[Join the conversation on Reef2Reef!](https://www.reef2reef.com/threads/aquapi-an-open-souce-aquarium-controller.1033171/)**  
 
@@ -51,7 +51,7 @@ Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 ### Sensors
 ***Temperature*** 
   - DS18B20 Waterproof Thermistor
-  - Supports multiple sensors via index-based configuration (see `common/TEMPERATURE_DALLAS_INDEX_README.md`)  
+  - Supports multiple sensors via index-based configuration. [**Wiki**](https://github.com/TheRealFalseReality/aquapi/wiki/Dallas-Temperature-Sensor)
   
 ***Water Level - Optical*** 
   - 2 Food Grade Optical Infrared Water Liquid Sensors w/Magnetic Mount
