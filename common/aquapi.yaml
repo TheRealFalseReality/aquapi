@@ -19,7 +19,7 @@ text_sensor:
   # GitHub Project URL
   - platform: template
     name: GitHub
-    id: github
+    id: github_url
     icon: mdi:github
     lambda: |-
       return {"github.com/TheRealFalseReality/aquapi"};
