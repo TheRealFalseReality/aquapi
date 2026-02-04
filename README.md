@@ -50,7 +50,8 @@ Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 
 ### Sensors
 ***Temperature*** 
-  - DS18B20 Waterproof Thermistor  
+  - DS18B20 Waterproof Thermistor
+  - Supports multiple sensors via index-based configuration (see `common/TEMPERATURE_DALLAS_INDEX_README.md`)  
   
 ***Water Level - Optical*** 
   - 2 Food Grade Optical Infrared Water Liquid Sensors w/Magnetic Mount
