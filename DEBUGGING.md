@@ -304,6 +304,80 @@ Use the debug buttons in Home Assistant or the web interface:
 5. Send "Status" command to check sensor state
 6. Review sensor-specific troubleshooting in Atlas Scientific documentation
 
+### Issue: EZO Sensor "read error" Messages
+
+**Symptoms:**
+- Log shows messages like `[E][ezo.sensor:088]: read error` or `[E][ezo-pmp:111]: read error`
+- These errors appear every 60 seconds (at sensor update interval)
+- Sensor is configured but not physically connected
+
+**Understanding the Error:**
+These errors occur when ESPHome tries to read from a sensor at its configured `update_interval`, but the sensor is not present on the I2C bus. The cryptic error code (e.g., `:088:`, `:111:`) is an internal ESPHome component line number, not helpful for troubleshooting.
+
+**Solutions:**
+
+1. **If the sensor is not installed and you don't plan to use it:**
+   
+   Disable automatic updates by setting the update interval to "never" in your substitutions:
+   
+   ```yaml
+   substitutions:
+     update_ph: "never"          # Disable pH sensor updates
+     update_ec: "never"          # Disable EC sensor updates
+     update_orp: "never"         # Disable ORP sensor updates
+     update_do: "never"          # Disable DO sensor updates
+     update_pmp_white: "never"   # Disable White pump updates
+     update_pmp_green: "never"   # Disable Green pump updates
+     update_pmp_red: "never"     # Disable Red pump updates
+   ```
+   
+   You can also use very long intervals to effectively disable updates:
+   
+   ```yaml
+   substitutions:
+     update_ph: "365days"        # Only update once per year (effectively disabled)
+   ```
+
+2. **If you plan to install the sensor later:**
+   
+   Set the update interval to "never" temporarily, then change it back when the sensor is installed.
+
+3. **Check the helpful detection warnings:**
+   
+   The system now logs user-friendly warnings for missing sensors every 60 seconds:
+   
+   ```
+   [W][ezo_detection:xxx] No pH (0x63) sensor detected! If not in use, set 'update_ph: "never"' in substitutions to disable updates and avoid errors.
+   ```
+   
+   These messages tell you exactly which sensor is missing and how to disable it.
+
+4. **Use the I2C Detection sensors:**
+   
+   Check the "EZO XX Sensor Detected" binary sensors in Home Assistant to see which sensors are found. Only enable update intervals for detected sensors.
+
+**Technical Details:**
+
+EZO sensors (pH, EC, ORP, DO, CO2, RTD, HUM) and EZO pumps now use a button-based update pattern with detection checks:
+- The button checks if the sensor is present before attempting to read
+- If the sensor is missing, a friendly warning is logged (e.g., "No pH sensor detected at address: 99!!")
+- If the sensor is present, the read proceeds normally
+
+This prevents the cryptic "read error" messages when using button-triggered updates. However, if the sensor's `update_interval` is set (not "never"), ESPHome will also try automatic updates which will generate errors if the sensor is missing.
+
+**Recommended Configuration:**
+
+For sensors that may not always be connected:
+```yaml
+substitutions:
+  update_ph: "60s"           # Sensor update interval (can set to "never")
+  update_button_ph: "60s"    # Button-triggered update interval (has detection check)
+```
+
+- Set `update_ph: "never"` to disable automatic sensor reads
+- Keep `update_button_ph: "60s"` to enable button-triggered reads with detection checking
+- This gives you clean logs while still allowing on-demand reads when the sensor is connected
+
 ## Best Practices Summary
 
 ✅ **DO:**
