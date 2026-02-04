@@ -9,7 +9,8 @@ packages:
   ota_https: !include common/ota_https.yaml
   # debug: !include common/debug.yaml
   i2c_detection: !include common/i2c_detection.yaml
-  dallas: !include common/temperature_dallas.yaml
+  # dallas: !include common/temperature_dallas.yaml
+  dallas: !include common/temperature_dallas_index.yaml
   water_level: !include common/water_level.yaml
   binary: !include common/binary.yaml
   ezo_ph: !include common/ezo_ph.yaml
