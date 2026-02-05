@@ -1,33 +1,43 @@
-<link rel="shortcut icon" type="image/x-icon" href="assets/image/favicon.ico">
-<img src="https://github.com/user-attachments/assets/82f9049b-6f08-4b2e-a0d2-6ff4690f0480" alt="drawing" align="left" width="120"/>
+# [AquaPi for ESPHome](./)
+<img src="/assets/image/AquaPi Logo Blue.png" alt="AquaPi Logo" align="left" width="120"/>
 
-The Aquarium meets the Smart Home!
+The Aquarium meets the Smart Home! AquaPi brings powerful monitoring and automation to your aquarium setup using affordable [ESPHome](https://esphome.io/) devices and [Home Assistant](https://www.home-assistant.io/).  
 
-**[Setup Guide](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi)**  
-**[Build It Yourself](https://github.com/TheRealFalseReality/aquapi/wiki/Build-It-Yourself)**  
-**[View on GitHub](https://github.com/TheRealFalseReality/aquapi)**  
+**Open-source:** Freely accessible for anyone to use, modify, and contribute.  
+**Modular and Customizable:** Expand the system to fit your specific needs and preferences.  
+**Affordable:** A budget-friendly alternative to high-end monitoring solutions without compromising functionality.  
+**Versatile:** Monitor and automate a wide range of vital water parameters such as pH, salinity, dissolved oxygen, and more.  
 
-**[Join the conversation on Reef2Reef!](https://www.reef2reef.com/threads/aquapi-an-open-souce-aquarium-controller.1033171/)**  
+---
 
-AquaPi for ESPHome is a project that helps you build a powerful aquarium monitoring and automation system using affordable [**ESPHome**](https://esphome.io/) devices and [**Home Assistant**](https://www.home-assistant.io/installation/).
-Make endless automations and monitor temperature, water level, and upgrade for advanced aquarium monitoring: pH, salinity, dissolved oxygen, and more (using EZO circuits and probes).  
+### **Quick Links**
+- **[Setup Guide](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi):** Start here for step-by-step instructions.
+- **[Build It Yourself](https://github.com/TheRealFalseReality/aquapi/wiki/Build-It-Yourself):** Parts list and assembly guide.
+- **[In-Depth Wiki](https://github.com/TheRealFalseReality/aquapi/wiki):** Calibration, sensor info, circuit diagrams, and more.
+- **[Join the Discussion!](https://www.reef2reef.com/threads/aquapi-an-open-souce-aquarium-controller.1033171/)** Participate in the Reef2Reef forums!
+- **[Buy AquaPi Now!](https://www.capitalcityaquatics.com/store/aquapi)** Purchase complete builds or modular components.
 
-Why use AquaPi?
+---
 
-- **Open-source**: Freely available for anyone to access, modify, and contribute to.
-- **Modular**: Designed to be easily expanded and customized based on your specific needs.
-- **Modernized**: Utilizes the latest technologies and tools for a seamless user experience.
-- **Customizable**: Adapt the system to fit your unique aquarium setup and monitoring preferences.
-- **Versatile**: Expand the system's capabilities with your own compatible sensors and equipment.
-- **Affordable**: Offers a cost-effective alternative to many high-end monitoring solutions.
-- **Powerful**: Provides comprehensive monitoring capabilities for various water parameters.
+## Why AquaPi?
 
-### **[Buy Now!](https://www.capitalcityaquatics.com/store/aquapi)**
+---
 
 ## Demo
 [**Try out the AquaPi Demo!**](https://www.capitalcityaquatics.com/store#storelivedemo)
 
-<img src="https://github.com/user-attachments/assets/55a075f4-0c2d-4bb9-b1b6-1e03be27b56c" alt="aquapi" align="center"/>
+<table>
+  <tr>
+    <td>
+      <img src="assets/image/AquaPi+-+Transp.png" alt="AquaPi Device" width="450"/>
+    </td>
+    <td>
+      <img src="https://github.com/TheRealFalseReality/aquapi/assets/106857076/db50c972-2bbd-4c9f-9f62-fa6e62f41cf3" alt="AquaPi Setup Image" width="450"/>
+    </td>
+  </tr>
+</table>
+
+---
 
 ## Install
 **You can typically skip this as AquaPi comes pre-installed!**  
@@ -37,89 +47,111 @@ Use the button below to install the pre-built firmware directly to your device v
 
 <script type="module" src="https://unpkg.com/esp-web-tools@9.1.0/dist/web/install-button.js?module"></script>  
 
-## Hardware Used
-**ESP32 devkit**   
-**HomeAssistant** using a Raspberry Pi 3 or above. The more RAM, the better.  
+## Key Features
 
-**Sensors**:  
-***Temperature*** 
-  - DS18B20 Waterproof Thermistor  
-  
-***Water Level - Optical*** 
-  - 2 Food Grade Optical Infrared Water Liquid Sensors w/Magnetic Mount
+- Comprehensive monitoring for **temperature**, **pH**, **salinity**, **dissolved oxygen**, and more using affordable Atlas Scientific EZO circuits.
+- Seamless integration with **ESPHome** and **Home Assistant** for robust automation, visualization, and control.
+- Expandable system to add new sensors, actuators, and custom automations tailored to your aquarium.
 
-***Water Leak Sensor***
-  - Liquid Detection Sensor, 6ft Cable, 2 Mounting Screws w/Magnetic Mount
+---
 
-***pH:*** Atlas Scientific pH: [EZO-pH](https://files.atlas-scientific.com/pH_EZO_Datasheet.pdf) & [Lab Grade pH Probe](https://files.atlas-scientific.com/pH_probe.pdf)  
-  - EZO™ pH Circuit, ISO 10523 Compliant  
-  - Double junction silver / silver chloride Lab Grade pH Probe with Vanadium III, Gen 3
-  - Electrically Isolated EZO™ Carrier Board
-  - Range: 0 - 14
-  - Time Before Recalibration: 1 Year
-  - Life Expectancy: ~2.5+ Years
+## Hardware Requirements
 
-***Salinity:*** Atlas Scientific Conductivity: [EZO-EC](https://files.atlas-scientific.com/EC_EZO_Datasheet.pdf) & [Conductivity Probe K 1.0](https://files.atlas-scientific.com/EC_K_1.0_probe.pdf)  
-  - EZO™ EC Circuit, ISO 7888 Compliant  
-  - Conductivity Probe K 1.0, Graphite, Gen 3
-  - Electrically Isolated EZO™ Carrier Board
-  - Range: 0.07 − 500,000+ μS/cm
-  - Time Before Recalibration: ~10 Years
-  - Life Expectancy: ~10 Years
+- **ESP32 DevKit:** A versatile microcontroller to power AquaPi.
+- **Home Assistant Device:** A Raspberry Pi 3 or higher is recommended (the more RAM, the better).
+  - Setup Home Assistant on your Raspberry Pi: [Get Raspberry Pi Imager](https://www.raspberrypi.com/software/)
+- **Power Supply:** A reliable 5V 3A power source.
 
-**Dissolved Oxygen:** *Atlas Scientific DO: [EZO-DO](https://files.atlas-scientific.com/DO_EZO_Datasheet.pdf) & [Dissolved Oxygen Probe](https://files.atlas-scientific.com/LG_DO_probe.pdf)*  
-  - EZO™ DO Embedded Circuit  
-  - Range: 0.00 - 100 mg/L (0 - 350% saturation)
-  - Life Expectancy: ~4 Years
-    
-**ORP:** *Atlas Scientific ORP: [EZO-ORP](https://files.atlas-scientific.com/ORP_EZO_Datasheet.pdf) & [ORP Probe](https://files.atlas-scientific.com/orp_probe.pdf)*  
-  - EZO™ ORP Embedded Circuit  
-  - Range: -2000mV - 2000 mV
-  - Life Expectancy: ~2 Years
+### Supported Sensors and Probes
+#### **Temperature (Dallas DS18B20):**
+- Waterproof thermistor capable of supporting multiple probes using an index-based configuration.
+- [**Temperature Sensor Wiki**](https://github.com/TheRealFalseReality/aquapi/wiki/Dallas-Temperature-Sensor)
 
-***Peristaltic Dosing Pump:*** Atlas Scientific Pump: [EZO-PMP](https://files.atlas-scientific.com/EZO_PMP_Datasheet.pdf)  
-  - EZO™ Pump Embedded Circuit  
-  - Flow Rate: 0.5ml to 105ml/mins
-  - Tube Size: 5mm
-  - Head Height: 8.1m(26.5')
+#### **Water Level:**
+- Optical infrared liquid sensors with magnetic mounts.
 
-***Carbon Dioxide - Gaseous:*** Atlas Scientific CO2: [EZO-CO2](https://files.atlas-scientific.com/EZO_CO2_Datasheet.pdf)  
-  - EZO™ CO2 Embedded Circuit, Gaseous  
-  - Range: 0 − 10,000 ppm
-  - Life Expectancy: ~5.5 Years
+#### **Water Leak Sensor:**
+- Detects leaks with liquid detection sensors and magnetic mounting for flexibility.
 
-**Other EZO probes that should work but not yet tested:**  
-[Humidity](https://files.atlas-scientific.com/EZO-HUM-Datasheet.pdf), 
-[Temperture](https://files.atlas-scientific.com/EZO_RTD_Datasheet.pdf)
+#### **pH Monitoring (EZO-pH):**
+- High-accuracy pH measurements with the EZO pH circuit, ISO 10523 compliant.  
+- **Range:** 0-14 pH  
+- **Recalibration Interval:** 1 year  
+- **Probe Life Expectancy:** ~2.5+ years  
+- [**pH Datasheet**](https://files.atlas-scientific.com/pH_EZO_Datasheet.pdf)
 
-**Prerequisite!!** A Raspberry Pi (or something similar) running HomeAssistant to communicate and interact with the ESP32 via `homeassistant.local:8123`.
-Get [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
+#### **Salinity Conductivity (EZO-EC):**
+- Measures conductivity, TDS, salinity, and specific gravity with EZO EC circuit, ISO 7888 compliant.  
+- **Range:** 0.07−500,000+ μS/cm  
+- **Recalibration Interval:** ~10 years  
+- **Probe Life Expectancy:** ~10 years  
+- [**EC Datasheet**](https://files.atlas-scientific.com/EC_EZO_Datasheet.pdf)
 
-## Software Used  
-[**Home Assistant**](https://www.home-assistant.io/): Open source home automation that puts local control and privacy first.   
-[**ESPHome**](https://esphome.io/): A system to control your ESP8266/ESP32 and RP2040 by simple yet powerful configuration files and control them remotely through Home Automation systems.
+#### **Dissolved Oxygen Monitoring (EZO-DO):**
+- Accurate dissolved oxygen monitoring, suitable for many environments.  
+- **Range:** 0.00-100 mg/L (0-350% saturation)  
+- **Probe Life Expectancy:** ~4 years  
+- [**DO Datasheet**](https://files.atlas-scientific.com/DO_EZO_Datasheet.pdf)
+
+#### **Oxidation-Reduction Potential (EZO-ORP):**
+- Measures the oxidation or reduction potential state in water.  
+- **Range:** -2000mV to +2000mV  
+- **Probe Life Expectancy:** ~2 years  
+- [**ORP Datasheet**](https://files.atlas-scientific.com/ORP_EZO_Datasheet.pdf)
+
+#### **Peristaltic Dosing Pump (EZO-PMP):**
+- Dispenses liquids accurately for chemical or nutrient dosing.  
+- **Flow Rate:** 0.5ml to 105ml/min  
+- **Tube Size:** 5mm  
+- **Head Height:** 8.1m (26.5')  
+- [**Peristaltic Pump Datasheet**](https://files.atlas-scientific.com/EZO_PMP_Datasheet.pdf)
+
+#### **Carbon Dioxide Air Monitoring (EZO-CO2):**
+- Measures gaseous CO2 concentration.  
+- **Range:** 0−10,000 ppm  
+- **Life Expectancy:** ~5.5 years  
+- [**CO2 Datasheet**](https://files.atlas-scientific.com/EZO_CO2_Datasheet.pdf)
+
+### Additional Supported Sensors
+- **Humidity:** [EZO-HUM Datasheet](https://files.atlas-scientific.com/EZO-HUM-Datasheet.pdf)  
+- **RTD Temperature:** [EZO-RTD Datasheet](https://files.atlas-scientific.com/EZO_RTD_Datasheet.pdf)
+
+### Circuit Diagram
+For a detailed circuit diagram and wiring instructions, visit the [Wiki Circuit Page](https://github.com/TheRealFalseReality/aquapi/wiki/Circuit).
+
+---
+
+## Installation and Setup
+### Setup Your Devices:
+Follow the **[Setup Guide](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi)** for detailed step-by-step instructions for configuring your ESP32, connecting your sensors, and running AquaPi.
+
+### Update Wirelessly:
+Keep your AquaPi firmware up-to-date with **ESPHome** using the built-in Over-the-Air (OTA) update functionality. For details, see the [Update Guide](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi#update).
+
+### Web Server Access:
+Optionally, you can access AquaPi's web server for managing the device without Home Assistant. See the [Web Server Guide](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi#update) for more details.
+
+---
+
+## Expand and Customize AquaPi
+AquaPi's modular design can be customized and expanded to meet your specific needs. For advanced configurations, see:  
+- **[Blueprints](https://github.com/TheRealFalseReality/aquapi/wiki/Blueprints):** Automations to control other smart devices in Home Assistant.  
+- **[Substitutions](https://github.com/TheRealFalseReality/aquapi/wiki/Substitutions):** Custom configuration variables for your specific setup.
+
+---
+
+## AquaPi AI: Your Intelligent Aquarium Assistant 🐠
+### **[AquaPi AI](https://therealfalsereality.github.io/):** Level up your aquarium with AI!  
+- **AI Compatibility Calculator:** Check fish compatibility instantly.  
+- **Care Guides & Recommendations:** Get expert tank advice.  
+- **Automation Scripts & Photo Analysis:** Automate your aquarium and analyze photos for optimized care.  
+
+---
+
+## Get Started Today!
+- Check out the **[Setup Guide](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi)** to start using AquaPi.
+- Enhance your aquarium monitoring with AquaPi’s powerful open-source, modular system!
+
+---
 
 ![made-for-esphome-white-on-black](https://github.com/TheRealFalseReality/aquapi/assets/106857076/c68b7da3-17c9-43bf-b8c7-f44acf63eb28)
-
-## [AquaPi AI](https://therealfalsereality.github.io/): Your Intelligent Aquatic Assistant 🐠
-Ready to level up your aquarium? AquaPi AI offers powerful, AI-driven tools to help both new and seasoned aquarists create a thriving underwater ecosystem.
-
-🚀 Key Features
-* AI-Powered Compatibility Calculator: Instantly check if your fish will get along.
-
-  * Get detailed compatibility reports.
-  * Receive AI-generated care guides and tank recommendations.
-    
-* Intelligent AI Chatbot: Your go-to for aquarium questions.
-  * Get expert advice on water parameters.
-  * Generate custom automation scripts.
-  * Analyze photos of your fish for personalized feedback.
-    
-## Useful Links:
-
-[**HomeAssistant**](https://www.home-assistant.io/installation/)  
-[**ESPHome**](https://esphome.io/)  
-[**EZO-pH Circuit Datasheet**](https://files.atlas-scientific.com/pH_EZO_Datasheet.pdf)  
-[**EZO-EC Circuit Datasheet**](https://files.atlas-scientific.com/EC_EZO_Datasheet.pdf)  
-[**EZO-PMP Circuit Datasheet**](https://files.atlas-scientific.com/EZO_PMP_Datasheet.pdf)  
-[**EZO-CO2 Circuit Datasheet**](https://files.atlas-scientific.com/EZO_CO2_Datasheet.pdf)  
