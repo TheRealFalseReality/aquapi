@@ -11,7 +11,7 @@ The Aquarium meets the Smart Home! AquaPi brings powerful monitoring and automat
 
 ### **Quick Links**
 - **[Setup Guide](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi):** Start here for step-by-step instructions.
-- **[Build It Yourself](https://github.com/TheRealFalseReality/aquapi/wiki/Build-It-Yourself):** Parts list and assembly guide.
+- **[Build It Yourself](https://github.com/TheRealFalseReality/aquapi/wiki/Build-It-Yourself-&-Spare-Parts):** Parts list and assembly guide.
 - **[In-Depth Wiki](https://github.com/TheRealFalseReality/aquapi/wiki):** Calibration, sensor info, circuit diagrams, and more.
 - **[Join the Discussion!](https://www.reef2reef.com/threads/aquapi-an-open-souce-aquarium-controller.1033171/)** Participate in the Reef2Reef forums!
 - **[Buy AquaPi Now!](https://www.capitalcityaquatics.com/store/aquapi)** Purchase complete builds or modular components.
