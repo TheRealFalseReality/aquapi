@@ -11,6 +11,7 @@ The Aquarium meets the Smart Home! AquaPi brings powerful monitoring and automat
 ---
 
 ### **Quick Links**
+- **[Install](https://therealfalsereality.github.io/aquapi/):** Navigate via the link, scroll to `Connect` to install via ESPHopme Web or use releases to install manually.
 - **[Setup Guide](https://github.com/TheRealFalseReality/aquapi/wiki/Setup-AquaPi):** Start here for step-by-step instructions.
 - **[Build It Yourself](https://github.com/TheRealFalseReality/aquapi/wiki/Build-It-Yourself):** Parts list and assembly guide.
 - **[In-Depth Wiki](https://github.com/TheRealFalseReality/aquapi/wiki):** Calibration, sensor info, circuit diagrams, and more.
