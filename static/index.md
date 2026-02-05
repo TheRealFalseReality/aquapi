@@ -1,5 +1,5 @@
 # [AquaPi for ESPHome](./)
-<img src="/assets/image/AquaPi Logo Blue.png" alt="AquaPi Logo" align="left" width="120"/>
+<img src="/assets/image/AquaPi Logo Blue.png" alt="AquaPi Logo" align="left" width="160"/>
 
 The Aquarium meets the Smart Home! AquaPi brings powerful monitoring and automation to your aquarium setup using affordable [ESPHome](https://esphome.io/) devices and [Home Assistant](https://www.home-assistant.io/).  
 
