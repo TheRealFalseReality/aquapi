@@ -1,5 +1,5 @@
 # [AquaPi for ESPHome](./)
-<img src="/assets/image/AquaPi Logo Blue.png" alt="AquaPi Logo" align="left" width="160"/>
+<img src="https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/AquaPi%20Logo%20Blue.png" alt="AquaPi Logo" align="left" width="160"/>
 
 The Aquarium meets the Smart Home! AquaPi brings powerful monitoring and automation to your aquarium setup using affordable [ESPHome](https://esphome.io/) devices and [Home Assistant](https://www.home-assistant.io/).  
 
@@ -29,7 +29,7 @@ The Aquarium meets the Smart Home! AquaPi brings powerful monitoring and automat
 <table>
   <tr>
     <td>
-      <img src="assets/image/AquaPi+-+Transp.png" alt="AquaPi Device" width="450"/>
+      <img src="https://github.com/TheRealFalseReality/aquapi/blob/main/assets/image/AquaPi%2B-%2BTransp.png" alt="AquaPi Device" width="450"/>
     </td>
     <td>
       <img src="https://github.com/TheRealFalseReality/aquapi/assets/106857076/db50c972-2bbd-4c9f-9f62-fa6e62f41cf3" alt="AquaPi Setup Image" width="450"/>
