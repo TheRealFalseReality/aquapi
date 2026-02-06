@@ -30,7 +30,7 @@ The Aquarium meets the Smart Home! AquaPi brings powerful monitoring and automat
 <table>
   <tr>
     <td>
-      <img src="assets/image/AquaPi+-+Transp.png" alt="AquaPi Device" width="450"/>
+      <img src="assets/image/AquaPiMain.jpg" alt="AquaPi Device" width="450"/>
     </td>
     <td>
       <img src="https://github.com/TheRealFalseReality/aquapi/assets/106857076/db50c972-2bbd-4c9f-9f62-fa6e62f41cf3" alt="AquaPi Setup Image" width="450"/>
