@@ -25,7 +25,7 @@ The Aquarium meets the Smart Home! AquaPi brings powerful monitoring and automat
 ---
 
 ## Demo
-## [**Try out the AquaPi Demo!**](https://aquapi.thefalsehome.duckdns.org/dashboard-aquariums/overview?hide_sidebar&hide_search&hide_assistant&block_context_menu&hide_notifications&hide_dialog_light_actions&hide_dialog_climate_actions&hide_dialog_media_actions&hide_dialog_camera_actions&hide_dialog_timer_actions&hide_edit_dashboard&hide_refresh&hide_dialog_history_show_more&hide_dialog_logbook_show_more&hide_dialog_header_action_items)
+## [**Try out the AquaPi Demo!**](https://aquapi.thefalsehome.duckdns.org/dashboard-aquariums)
 
 <table>
   <tr>
