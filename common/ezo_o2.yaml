@@ -1,11 +1,11 @@
 ---
 substitutions:
   # O2 circuit, who's address is 108
-  addO2: "108"
+  addO2: "108" # TODO Matched EZO Pump Red
   update_o2: "60s"
   update_button_o2: "60s"
 
-  sorting_group_o2: '37'
+  sorting_group_o2: '34'
 
 web_server:
   sorting_groups:
@@ -38,7 +38,7 @@ sensor:
     disabled_by_default: true
     id: o2_ezo
     address: ${addO2}
-    unit_of_measurement: "ppm"
+    unit_of_measurement: "%"
     accuracy_decimals: 0
     update_interval: "${update_o2}"
     state_class: "measurement"
@@ -47,14 +47,6 @@ sensor:
         - lambda:
             id(result_o2).publish_state(x);
     on_device_information:
-      then:
-        - lambda:
-            id(result_o2).publish_state(x);
-    on_slope:
-      then:
-        - lambda:
-            id(result_o2).publish_state(x);
-    on_t:
       then:
         - lambda:
             id(result_o2).publish_state(x);
@@ -110,9 +102,6 @@ button:
             if (id(select_command_o2).current_option() == "Status") {
               id(o2_ezo).send_custom("Status");
             }
-            if (id(select_command_o2).current_option() == "Clear Calibration") {
-              id(o2_ezo).send_custom("Cal,clear");
-            }
             if (id(select_command_o2).current_option() == "Check Calibration") {
               id(o2_ezo).get_calibration();
             }
@@ -133,7 +122,6 @@ select:
       - "Read"
       - "Information"
       - "Status"
-      - "Clear Calibration"
       - "Check Calibration"
     initial_option: "Check Calibration"
     set_action:

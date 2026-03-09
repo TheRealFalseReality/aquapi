@@ -2,7 +2,7 @@
 substitutions:
   # PMP circuit, who's address is 103
   addPMP_green: "109"  # Green - Clean
-  addPMP_red: "108"  # Red - Waste
+  addPMP_red: "108"  # Red - Waste #TODO Matches O2 sensor
   update_pmp_green: "60s"
   update_pmp_red: "60s"
 
