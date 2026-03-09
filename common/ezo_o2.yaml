@@ -33,7 +33,7 @@ sensor:
   # EZO Circuit - O2
   # Oxygen (Gaseous)
   - platform: ezo
-    icon: mdi:molecule-co2
+    # icon: mdi:molecule-co2
     name: "Oxygen (Gaseous)"
     disabled_by_default: true
     id: o2_ezo
