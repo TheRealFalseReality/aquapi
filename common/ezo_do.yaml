@@ -148,7 +148,7 @@ text_sensor:
       sorting_group_id: sorting_group_do
 
 button:
-  # Read Conductivity Probe
+  # Read DO Probe
   - platform: template
     name: DO - Read
     icon: mdi:read
