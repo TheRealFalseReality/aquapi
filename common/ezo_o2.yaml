@@ -5,26 +5,13 @@ substitutions:
   update_o2: "60s"
   update_button_o2: "60s"
 
-  sorting_group_o2: '34'
+  sorting_group_o2: '37'
 
 web_server:
   sorting_groups:
     - id: sorting_group_o2
       name: "O2 (Gaseous) - EZO"
       sorting_weight: ${sorting_group_o2}
-
-esphome:
-  on_boot:
-    priority: 800
-    then:
-      - button.press: read_o2
-      - button.press: send_selected_o2
-
-interval:
-  # Update Raw O2
-  - interval: "${update_button_o2}"
-    then:
-      - button.press: read_o2
 
 api:
   actions:
@@ -55,10 +42,6 @@ sensor:
     accuracy_decimals: 0
     update_interval: "${update_o2}"
     state_class: "measurement"
-    on_custom:
-      then:
-        - lambda:
-            id(raw_value_o2).publish_state(x);
     on_calibration:
       then:
         - lambda:
@@ -79,49 +62,7 @@ sensor:
       sorting_group_id: sorting_group_o2
       sorting_weight: 10
 
-  # Internal Temperature
-  - platform: template
-    name: O2 - Internal Temperature
-    id: sensor_o2_internal_temperature
-    accuracy_decimals: 2
-    unit_of_measurement: "°C"
-    update_interval: "${update_o2}"
-    entity_category: "diagnostic"
-    state_class: "measurement"
-    device_class: "temperature"
-    disabled_by_default: true
-    lambda: |-
-      std::string str = id(raw_value_o2).state;
-      std::vector<std::string> v;
-      char * token;
-      char seps[] = ",";
-      token = strtok (&str[0],seps);
-      while (token != NULL) {
-        v.push_back(token);
-        token = strtok (NULL, seps);
-      }
-      if (v.size() == 2) {
-        return std::stof(v[1]);
-      }
-      else {
-        return NAN;
-      }
-    web_server:
-      sorting_group_id: sorting_group_o2
-
 text_sensor:
-  # O2 Raw Value
-  - platform: template
-    name: O2 - Raw Value
-    icon: mdi:counter
-    id: raw_value_o2
-    disabled_by_default: true
-    on_value:
-      then:
-        - component.update: sensor_o2_internal_temperature
-    web_server:
-      sorting_group_id: sorting_group_o2
-
   # Selected Command Result - O2
   - platform: template
     name: O2 - Command Result
@@ -169,14 +110,8 @@ button:
             if (id(select_command_o2).current_option() == "Status") {
               id(o2_ezo).send_custom("Status");
             }
-            if (id(select_command_o2).current_option() == "Get Enabled Parameter(s)") {
-              id(o2_ezo).send_custom("O,?");
-            }
-            if (id(select_command_o2).current_option() == "Output Units - Enable Temperature") {
-              id(o2_ezo).send_custom("O,t,1");
-            }
-            if (id(select_command_o2).current_option() == "Output Units - Disable Temperature") {
-              id(o2_ezo).send_custom("O,t,0");
+            if (id(select_command_o2).current_option() == "Clear Calibration") {
+              id(o2_ezo).send_custom("Cal,clear");
             }
             if (id(select_command_o2).current_option() == "Check Calibration") {
               id(o2_ezo).get_calibration();
@@ -198,9 +133,7 @@ select:
       - "Read"
       - "Information"
       - "Status"
-      - "Get Enabled Parameter(s)"
-      - "Output Units - Enable Temperature"
-      - "Output Units - Disable Temperature"
+      - "Clear Calibration"
       - "Check Calibration"
     initial_option: "Check Calibration"
     set_action:
