@@ -94,41 +94,41 @@ button:
     web_server:
         sorting_group_id: sorting_group_config
 
-    - platform: template
-      name: "Lock EZO-HUM"
-      on_press:
-        then:
-          - lambda: |-
-              id(hum_ezo).send_custom("Plock,1");
-      web_server:
-        sorting_group_id: sorting_group_config
+  - platform: template
+    name: "Lock EZO-HUM"
+    on_press:
+      then:
+        - lambda: |-
+            id(hum_ezo).send_custom("Plock,1");
+    web_server:
+      sorting_group_id: sorting_group_config
 
-    - platform: template
-      name: "Lock EZO-O2"
-      on_press:
-        then:
-          - lambda: |-
-              id(o2_ezo).send_custom("Plock,1");
-      web_server:
-        sorting_group_id: sorting_group_config
+  - platform: template
+    name: "Lock EZO-O2"
+    on_press:
+      then:
+        - lambda: |-
+            id(o2_ezo).send_custom("Plock,1");
+    web_server:
+      sorting_group_id: sorting_group_config
 
-    - platform: template
-      name: "Lock EZO-PH"
-      on_press:
-        then:
-          - lambda: |-
-              id(ph_ezo).send_custom("Plock,1");
-      web_server:
-        sorting_group_id: sorting_group_config
+  - platform: template
+    name: "Lock EZO-PH"
+    on_press:
+      then:
+        - lambda: |-
+            id(ph_ezo).send_custom("Plock,1");
+    web_server:
+      sorting_group_id: sorting_group_config
 
-    - platform: template
-      name: "Lock EZO-RTD"
-      on_press:
-        then:
-          - lambda: |-
-              id(rtd_ezo).send_custom("Plock,1");
-      web_server:
-        sorting_group_id: sorting_group_config
+  - platform: template
+    name: "Lock EZO-RTD"
+    on_press:
+      then:
+        - lambda: |-
+            id(rtd_ezo).send_custom("Plock,1");
+    web_server:
+      sorting_group_id: sorting_group_config
 
   # Change I2C Address of EZO-PMP
   - platform: template
