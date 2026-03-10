@@ -7,6 +7,13 @@ substitutions:
   addPMP_orange: "110"  # Orange
   addPMP_blue: "106"  # Blue
   addPMP_yellow: "104"  # Yellow
+  addEC: "100"
+  addCO2: "105"
+  addDO: "97"
+  addHUM: "111"
+  addO2: "108"
+  addPH: "99"
+  addRTD: "102"
 
 button:
   # Change I2C Address of EZO-PMP
@@ -57,5 +64,114 @@ button:
         - ezo_pmp.change_i2c_address:
             id: ezo_pump_white
             address: ${addPMP_orange}
+    web_server:
+      sorting_group_id: sorting_group_config
+
+  - platform: template
+    name: "Lock EZO-EC"
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).send_custom("Plock,1");
+    web_server:
+      sorting_group_id: sorting_group_config
+
+  - platform: template
+    name: "Lock EZO-CO2"
+    on_press:
+      then:
+        - lambda: |-
+            id(co2_ezo).send_custom("Plock,1");
+    web_server:
+      sorting_group_id: sorting_group_config
+
+  - platform: template
+    name: "Lock EZO-DO"
+    on_press:
+      then:
+        - lambda: |-
+            id(do_ezo).send_custom("Plock,1");
+    web_server:
+        sorting_group_id: sorting_group_config
+
+    - platform: template
+      name: "Lock EZO-HUM"
+      on_press:
+        then:
+          - lambda: |-
+              id(hum_ezo).send_custom("Plock,1");
+      web_server:
+        sorting_group_id: sorting_group_config
+
+    - platform: template
+      name: "Lock EZO-O2"
+      on_press:
+        then:
+          - lambda: |-
+              id(o2_ezo).send_custom("Plock,1");
+      web_server:
+        sorting_group_id: sorting_group_config
+
+    - platform: template
+      name: "Lock EZO-PH"
+      on_press:
+        then:
+          - lambda: |-
+              id(ph_ezo).send_custom("Plock,1");
+      web_server:
+        sorting_group_id: sorting_group_config
+
+    - platform: template
+      name: "Lock EZO-RTD"
+      on_press:
+        then:
+          - lambda: |-
+              id(rtd_ezo).send_custom("Plock,1");
+      web_server:
+        sorting_group_id: sorting_group_config
+
+  # Change I2C Address of EZO-PMP
+  - platform: template
+    name: "Lock EZO-PUMP White"
+    on_press:
+      then:
+          - lambda: |-
+              id(ezo_pump_white).send_custom("Plock,1");
+    web_server:
+      sorting_group_id: sorting_group_config
+
+  - platform: template
+    name: "Lock EZO-PUMP Blue"
+    on_press:
+      then:
+          - lambda: |-
+              id(ezo_pump_blue).send_custom("Plock,1");
+    web_server:
+      sorting_group_id: sorting_group_config
+
+  - platform: template
+    name: "Lock EZO-PUMP Red"
+    on_press:
+      then:
+          - lambda: |-
+              id(ezo_pump_red).send_custom("Plock,1");
+    web_server:
+      sorting_group_id: sorting_group_config
+
+  - platform: template
+    name: "Lock EZO-PUMP Green"
+    on_press:
+      then:
+          - lambda: |-
+              id(ezo_pump_green).send_custom("Plock,1");
+    web_server:
+      sorting_group_id: sorting_group_config
+
+  - platform: template
+    name: "Lock EZO-PUMP Orange"
+    on_press:
+      then:
+          - lambda: |-
+              id(ezo_pump_orange).send_custom("Plock,1");
     web_server:
       sorting_group_id: sorting_group_config
