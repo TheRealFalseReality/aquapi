@@ -34,12 +34,12 @@ api:
       then:
         - lambda: |-
             id(co2_ezo).send_custom("I2C,{{address}}");
-    - action: co2_custom_command
-      variables:
-        command: string
-      then:
-        - lambda: |-
-            id(co2_ezo).send_custom({{command}});
+    # - action: co2_custom_command
+    #   variables:
+    #     command: string
+    #   then:
+    #     - lambda: |-
+    #         id(co2_ezo).send_custom({{command}});
 
 sensor:
   # EZO Circuits (SCL/RX, SDA/TX)

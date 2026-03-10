@@ -20,12 +20,12 @@ api:
       then:
         - lambda: |-
             id(ph_ezo).send_custom("I2C,{{address}}");
-    - action: ph_custom_command
-      variables:
-        command: string
-      then:
-        - lambda: |-
-            id(ph_ezo).send_custom({{command}});
+    # - action: ph_custom_command
+    #   variables:
+    #     command: string
+    #   then:
+    #     - lambda: |-
+    #         id(ph_ezo).send_custom({{command}});
     - action: ph_read_continuous
       then:
         - repeat:

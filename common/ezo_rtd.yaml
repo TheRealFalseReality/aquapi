@@ -27,12 +27,12 @@ api:
       then:
         - lambda: |-
             id(temp_ezo).send_custom("I2C,{{address}}");
-    - action: temperature_rtd_custom_command
-      variables:
-        command: string
-      then:
-        - lambda: |-
-            id(temp_ezo).send_custom({{command}});
+    # - action: temperature_rtd_custom_command
+    #   variables:
+    #     command: string
+    #   then:
+    #     - lambda: |-
+    #         id(temp_ezo).send_custom({{command}});
 
 esphome:
   on_boot:

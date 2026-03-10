@@ -34,12 +34,12 @@ api:
       then:
         - lambda: |-
             id(hum_ezo).send_custom("I2C,{{address}}");
-    - action: hum_custom_command
-      variables:
-        command: string
-      then:
-        - lambda: |-
-            id(hum_ezo).send_custom({{command}});
+    # - action: hum_custom_command
+    #   variables:
+    #     command: string
+    #   then:
+    #     - lambda: |-
+    #         id(hum_ezo).send_custom({{command}});
 
 sensor:
   # EZO Circuits (SCL/RX, SDA/TX)

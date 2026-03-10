@@ -21,12 +21,12 @@ api:
       then:
         - lambda: |-
             id(do_ezo).send_custom("I2C,{{address}}");
-    - action: do_custom_command
-      variables:
-        command: string
-      then:
-        - lambda: |-
-            id(do_ezo).send_custom({{command}});
+    # - action: do_custom_command
+    #   variables:
+    #     command: string
+    #   then:
+    #     - lambda: |-
+    #         id(do_ezo).send_custom({{command}});
     - action: do_read_continuous
       then:
         - repeat:

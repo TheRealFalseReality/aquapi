@@ -20,12 +20,12 @@ api:
       then:
         - lambda: |-
             id(orp_ezo).send_custom("I2C,{{address}}");
-    - action: orp_custom_command
-      variables:
-        command: string
-      then:
-        - lambda: |-
-            id(orp_ezo).send_custom({{command}});
+    # - action: orp_custom_command
+    #   variables:
+    #     command: string
+    #   then:
+    #     - lambda: |-
+    #         id(orp_ezo).send_custom({{command}});
     - action: orp_read_continuous
       then:
         - repeat:
