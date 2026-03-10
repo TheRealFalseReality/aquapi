@@ -105,6 +105,9 @@ button:
             if (id(select_command_o2).current_option() == "Check Calibration") {
               id(o2_ezo).get_calibration();
             }
+            if (id(select_command_o2).current_option() == "Factory Reset") {
+              id(o2_ezo).send_custom("Factory");
+            }
             else {
               id(o2_ezo).send_custom("R");
             }
@@ -123,6 +126,7 @@ select:
       - "Information"
       - "Status"
       - "Check Calibration"
+      - "Factory Reset"
     initial_option: "Check Calibration"
     set_action:
       - logger.log:

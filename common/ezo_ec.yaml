@@ -356,9 +356,12 @@ button:
             if (id(select_command_ec).current_option() == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(ec_ezo).clear_calibration();
             }
-            // else {
-            //   id(ec_ezo).send_custom("R");
-            // }
+            if (id(select_command_ec).current_option() == "Factory Reset") {
+              id(ec_ezo).send_custom("Factory");
+            }
+            else {
+              id(ec_ezo).send_custom("R");
+            }
     web_server:
       sorting_group_id: sorting_group_ec
 
@@ -389,6 +392,7 @@ select:
       - "Calibrate @ LOW = 12880 (WILL RESET CALIBRATION)"
       - "Calibrate @ HIGH = 80000 (WILL RESET CALIBRATION)"
       - "Calibrate CLEAR (WILL RESET CALIBRATION)"
+      - "Factory Reset"
     initial_option: "Check Calibration"
     set_action:
       - logger.log:

@@ -141,9 +141,12 @@ button:
             if (id(select_command_orp).current_option() == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(orp_ezo).clear_calibration();
             }
-            // else {
-            //   id(orp_ezo).send_custom("R");
-            // }
+            if (id(select_command_orp).current_option() == "Factory Reset") {
+              id(orp_ezo).send_custom("Factory");
+            }
+            else {
+              id(orp_ezo).send_custom("R");
+            }
     web_server:
       sorting_group_id: sorting_group_orp
 
@@ -162,6 +165,7 @@ select:
       - "Check Calibration"
       - "Calibrate @ 225 mV (WILL RESET CALIBRATION)"
       - "Calibrate CLEAR (WILL RESET CALIBRATION)"
+      - "Factory Reset"
     initial_option: "Check Calibration"
     set_action:
       - logger.log:

@@ -229,6 +229,9 @@ button:
             if (id(select_command_hum).current_option() == "Check Calibration") {
               id(hum_ezo).get_calibration();
             }
+            if (id(select_command_hum).current_option() == "Factory Reset") {
+              id(hum_ezo).send_custom("Factory");
+            }
             else {
               id(hum_ezo).send_custom("R");
             }
@@ -254,6 +257,7 @@ select:
       - "Output Units - Enable Dew Point"
       - "Output Units - Disable Dew Point"
       - "Check Calibration"
+      - "Factory Reset"
     initial_option: "Check Calibration"
     set_action:
       - logger.log:

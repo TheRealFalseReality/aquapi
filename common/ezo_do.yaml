@@ -222,9 +222,12 @@ button:
             if (id(select_command_do).current_option() == "Set Salinity Compensation @ 35ppt") {
               id(do_ezo).send_custom("S,35.0,ppt");
             }
-            // else {
-            //   id(do_ezo).send_custom("R");
-            // }
+            if (id(select_command_do).current_option() == "Factory Reset") {
+              id(do_ezo).send_custom("Factory");
+            }
+            else {
+              id(do_ezo).send_custom("R");
+            }
 
 select:
   - platform: template
@@ -248,6 +251,7 @@ select:
       - "Calibrate CLEAR (WILL RESET CALIBRATION)"
       - "Salinity Compensation Value"
       - "Set Salinity Compensation @ 35ppt"
+      - "Factory Reset"
     initial_option: "Check Calibration"
     set_action:
       - logger.log:

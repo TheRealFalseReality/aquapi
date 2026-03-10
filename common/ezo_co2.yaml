@@ -182,6 +182,9 @@ button:
             if (id(select_command_co2).current_option() == "Check Calibration") {
               id(co2_ezo).get_calibration();
             }
+            if (id(select_command_co2).current_option() == "Factory Reset") {
+              id(co2_ezo).send_custom("Factory");
+            }
             else {
               id(co2_ezo).send_custom("R");
             }
@@ -203,6 +206,7 @@ select:
       - "Output Units - Enable Temperature"
       - "Output Units - Disable Temperature"
       - "Check Calibration"
+      - "Factory Reset"
     initial_option: "Check Calibration"
     set_action:
       - logger.log:
