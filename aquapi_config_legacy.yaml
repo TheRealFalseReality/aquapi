@@ -4,9 +4,6 @@ substitutions:
   optical_inverted: "true"
   name: "aquapi-legacy"
   friendly_name: "AquaPi Legacy"
-  project_name: "therealfalsereality.aquapi-legacy"
-  package_import_url: "github://TheRealFalseReality/aquapi/aquapi_config_legacy.yaml@main"
-  ota_firmware_name: "aquapi-legacy"
 
 packages:
   device_base: !include common/device_base.yaml

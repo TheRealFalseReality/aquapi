@@ -8,8 +8,6 @@ substitutions:
   import: "false"
   # names
   name: "aquapi"
-  ota_firmware_name: "aquapi"
-  package_import_url: "github://TheRealFalseReality/aquapi/aquapi_config.yaml@main"
   project_name: "therealfalsereality.aquapi"
 
   # Logger Settings

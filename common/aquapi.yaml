@@ -7,13 +7,12 @@ substitutions:
   project_name: "therealfalsereality.aquapi"
   sorting_group_name: "AquaPi "
   import: "false"
-  package_import_url: "github://TheRealFalseReality/aquapi/aquapi_config.yaml@main"
 
 packages:
   aquapi_app_version: !include aquapi_app_version.yaml
 
 dashboard_import:
-  package_import_url: ${package_import_url}
+  package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@main
   import_full_config: "${import}"
 
 text_sensor:
