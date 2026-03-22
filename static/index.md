@@ -42,7 +42,11 @@ The Aquarium meets the Smart Home! AquaPi brings powerful monitoring and automat
 **You can typically skip this as AquaPi comes pre-installed!**  
 Use the button below to install the pre-built firmware directly to your device via USB from the browser.  
 
+**New Hardware** (default -- water level sensor pin logic not inverted):  
 <esp-web-install-button manifest="firmware/aquapi.manifest.json"></esp-web-install-button>  
+
+**Legacy Hardware** (water level sensor pin logic inverted):  
+<esp-web-install-button manifest="firmware/aquapi-legacy.manifest.json"></esp-web-install-button>  
 
 <script type="module" src="https://unpkg.com/esp-web-tools@9.1.0/dist/web/install-button.js?module"></script>  
 
