@@ -23,7 +23,6 @@ jobs:
         #### Modify below here to match your project ####
         file:
           - aquapi_config
-          - aquapi_config_legacy
 
         esphome-version:
           - stable
