@@ -16,7 +16,6 @@ jobs:
       #### Modify below here to match your project ####
       files: |
         aquapi_config.yaml
-        aquapi_config_legacy.yaml
       esphome-version: latest
       # combined-name: AquaPi
 
