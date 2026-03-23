@@ -3,7 +3,7 @@ substitutions:
   # Optical_1
   opticalLowPin: "33"  # yellow
   opticalHighPin: "32"  # blue
-  optical_inverted: "true"
+  optical_inverted: "false"
 
   # Water Level
   update_water: "60s"
