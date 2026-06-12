@@ -22,7 +22,7 @@ jobs:
       matrix:
         #### Modify below here to match your project ####
         file:
-          - aquapi_config
+          - aquapi_config_optical
 
         esphome-version:
           - stable

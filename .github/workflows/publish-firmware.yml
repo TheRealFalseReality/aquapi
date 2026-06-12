@@ -15,7 +15,7 @@ jobs:
     with:
       #### Modify below here to match your project ####
       files: |
-        aquapi_config.yaml
+        aquapi_config_optical.yaml
       esphome-version: latest
       # combined-name: AquaPi
 
