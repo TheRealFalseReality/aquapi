@@ -20,6 +20,9 @@ substitutions:
   sorting_group_diagnostic_weight: '98'
   sorting_group_config_weight: '99'
 
+  # Board Variant
+  board_variant: "Standard - Inverted Optical"
+
 esp32:
   board: esp32dev
   framework:
@@ -181,6 +184,17 @@ text_sensor:
       icon: mdi:chip
       web_server:
         sorting_group_id: sorting_group_diagnostic
+
+  # Board Variant
+  - platform: template
+    name: "Board Variant"
+    id: board_variant_sensor
+    icon: mdi:developer-board
+    lambda: |-
+      return {"${board_variant}"};
+    entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_diagnostic
 
 button:
   # Soft Restart

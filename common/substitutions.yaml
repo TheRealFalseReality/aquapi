@@ -10,6 +10,14 @@ substitutions:
   name: "aquapi"
   project_name: "therealfalsereality.aquapi"
 
+  # Board Variant
+  board_variant: "Standard - Inverted Optical"
+
+  # Firmware OTA URLs
+  firmware_manifest_url: "https://therealfalsereality.github.io/aquapi/firmware/aquapi.manifest.json"
+  firmware_ota_url: "https://therealfalsereality.github.io/aquapi/firmware/aquapi-esp32.ota.bin"
+  firmware_md5_url: "https://therealfalsereality.github.io/aquapi/firmware/aquapi-esp32.ota.bin.md5"
+
   # Logger Settings
   # Logger Level - Can use VERBOSE for more information in Logs
   logger: "DEBUG"
