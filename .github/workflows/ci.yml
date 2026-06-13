@@ -23,7 +23,7 @@ jobs:
         #### Modify below here to match your project ####
         file:
           - aquapi_config
-          - aquapi_config_rev2
+          - aquapi_config_optical
 
         esphome-version:
           - stable
