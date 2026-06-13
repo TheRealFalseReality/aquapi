@@ -1,6 +1,7 @@
 ---
 substitutions:
   name: "aquapi-standard"
+  project_name: "therealfalsereality.aquapi-standard"
 
 packages:
   device_base: !include common/device_base.yaml
