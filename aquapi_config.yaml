@@ -1,4 +1,7 @@
 ---
+substitutions:
+  name: "aquapi-standard"
+
 packages:
   device_base: !include common/device_base.yaml
   aquapi: !include common/aquapi.yaml
