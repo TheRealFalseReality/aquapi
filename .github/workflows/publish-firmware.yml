@@ -33,13 +33,13 @@ jobs:
 
       - name: Rename firmware files with release tag
         run: |
+          shopt -s nullglob
           VERSION="${{ github.event.release.tag_name }}"
           mkdir -p output
           for f in "${{ steps.esphome-build.outputs.name }}"/*.bin "${{ steps.esphome-build.outputs.name }}"/*.json; do
-            [ -f "$f" ] || continue
             filename=$(basename "$f")
             if [ -n "$VERSION" ]; then
-              newname="${filename/\./-${VERSION}.}"
+              newname="${filename/./-${VERSION}.}"
             else
               newname="$filename"
             fi
