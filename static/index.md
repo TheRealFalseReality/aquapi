@@ -45,7 +45,7 @@ Use the button below to install the pre-built firmware directly to your device v
 ### AquaPi Standard *(Inverted Optical - legacy boards)*
 <esp-web-install-button manifest="firmware/aquapi.manifest.json"></esp-web-install-button>
 
-### AquaPi Rev2 *(Non-Inverted Optical - Newer Optical Sensors)*
+### AquaPi Optical *(Non-Inverted Optical - Newer Optical Sensors)*
 <esp-web-install-button manifest="firmware/aquapi-optical.manifest.json"></esp-web-install-button>
 
 <script type="module" src="https://unpkg.com/esp-web-tools@9.1.0/dist/web/install-button.js?module"></script>  

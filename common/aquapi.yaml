@@ -4,7 +4,7 @@ substitutions:
   name: "aquapi"
   friendly_name: "AquaPi"
   comment: "AquaPi ESP32 - Aquarium Controller & Monitor"
-  project_name: "therealfalsereality.aquapi"
+  project_name: "therealfalsereality.aquapi-standard"
   sorting_group_name: "AquaPi"
   import: "false"
 
