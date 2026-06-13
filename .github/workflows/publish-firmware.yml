@@ -10,24 +10,44 @@ permissions:
 
 jobs:
   build-firmware:
-    name: Build Firmware
-    uses: esphome/workflows/.github/workflows/build.yml@2026.4.0
-    with:
-      #### Modify below here to match your project ####
-      files: |
-        aquapi_config.yaml
-        aquapi_config_optical.yaml
-      esphome-version: latest
-      # combined-name: AquaPi
+    name: Build Firmware (${{ matrix.file }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        file:
+          - aquapi_config.yaml
+          - aquapi_config_optical.yaml
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      release-summary: ${{ github.event.release.body }}
-      release-url: ${{ github.event.release.html_url }}
-      release-version: ${{ github.event.release.tag_name }}
+      - name: Build Firmware
+        uses: esphome/build-action@v7
+        id: esphome-build
+        with:
+          yaml-file: ${{ matrix.file }}
+          version: latest
+          complete-manifest: true
+          release-summary: ${{ github.event.release.body }}
+          release-url: ${{ github.event.release.html_url }}
 
-  upload-to-release:
-    name: Upload to Release
-    uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@2026.4.0
-    needs:
-      - build-firmware
-    with:
-      version: ${{ github.event.release.tag_name }}
+      - name: Rename firmware files with release tag
+        run: |
+          VERSION="${{ github.event.release.tag_name }}"
+          mkdir -p output
+          for f in "${{ steps.esphome-build.outputs.name }}"/*.bin "${{ steps.esphome-build.outputs.name }}"/*.json; do
+            [ -f "$f" ] || continue
+            filename=$(basename "$f")
+            if [ -n "$VERSION" ]; then
+              newname="${filename/\./-${VERSION}.}"
+            else
+              newname="$filename"
+            fi
+            cp "$f" "output/$newname"
+          done
+
+      - name: Upload firmware to release
+        uses: softprops/action-gh-release@v2
+        if: github.event_name == 'release'
+        with:
+          files: output/*
