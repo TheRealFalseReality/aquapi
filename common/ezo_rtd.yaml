@@ -103,7 +103,7 @@ sensor:
 #             }
 #             else {
 #               ESP_LOGW("custom_rtd_read", "No RTD temperature sensor detected at address: ${addRTD}!!");
-            }
-    web_server:
-      sorting_group_id: sorting_group_rtd
+    #         }
+    # web_server:
+    #   sorting_group_id: sorting_group_rtd
 
