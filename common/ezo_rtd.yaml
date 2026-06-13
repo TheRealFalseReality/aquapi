@@ -84,25 +84,25 @@ sensor:
       sorting_group_id: sorting_group_rtd
       sorting_weight: 10
 
-button:
-  # Read RTD temperature Sensor
-  - platform: template
-    name: RTD - Read
-    id: read_rtd
-    icon: mdi:read
-    entity_category: "Config"
-    disabled_by_default: true
-    on_press:
-      then:
-        - lambda: |-
-            byte error;
-            Wire.beginTransmission(${addRTD});
-            error = Wire.endTransmission();
-            if (error == 0) {
-              id(temp_ezo).send_custom("R");
-            }
-            else {
-              ESP_LOGW("custom_rtd_read", "No RTD temperature sensor detected at address: ${addRTD}!!");
+# button:
+#   # Read RTD temperature Sensor
+#   - platform: template
+#     name: RTD - Read
+#     id: read_rtd
+#     icon: mdi:read
+#     entity_category: "Config"
+#     disabled_by_default: true
+#     on_press:
+#       then:
+#         - lambda: |-
+#             byte error;
+#             Wire.beginTransmission(${addRTD});
+#             error = Wire.endTransmission();
+#             if (error == 0) {
+#               id(temp_ezo).send_custom("R");
+#             }
+#             else {
+#               ESP_LOGW("custom_rtd_read", "No RTD temperature sensor detected at address: ${addRTD}!!");
             }
     web_server:
       sorting_group_id: sorting_group_rtd
