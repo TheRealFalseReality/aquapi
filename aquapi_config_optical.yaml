@@ -2,7 +2,7 @@
 substitutions:
   name: "aquapi-optical"
   optical_inverted: "false"
-  board_variant: "Optical - Non-Inverted"
+  hardware_variant: "Optical - Non-Inverted"
   firmware_manifest_url: "https://therealfalsereality.github.io/aquapi/firmware/aquapi-optical.manifest.json"
   firmware_ota_url: "https://therealfalsereality.github.io/aquapi/firmware/aquapi-optical-esp32.ota.bin"
   firmware_md5_url: "https://therealfalsereality.github.io/aquapi/firmware/aquapi-optical-esp32.ota.bin.md5"
