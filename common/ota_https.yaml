@@ -1,4 +1,9 @@
 ---
+substitutions:
+  firmware_manifest_url: "https://therealfalsereality.github.io/aquapi/firmware/aquapi.manifest.json"
+  firmware_ota_url: "https://therealfalsereality.github.io/aquapi/firmware/aquapi-esp32.ota.bin"
+  firmware_md5_url: "https://therealfalsereality.github.io/aquapi/firmware/aquapi-esp32.ota.bin.md5"
+
 ota:
   - platform: http_request
 
@@ -11,7 +16,7 @@ update:
     id: update_firmware_sensor
     entity_category: 'diagnostic'
     icon: mdi:update
-    source: https://therealfalsereality.github.io/aquapi/firmware/aquapi.manifest.json
+    source: ${firmware_manifest_url}
     web_server:
       sorting_group_id: sorting_group_diagnostic
 
@@ -27,5 +32,5 @@ button:
     on_press:
       then:
         - ota.http_request.flash:
-            md5_url: https://therealfalsereality.github.io/aquapi/firmware/aquapi-esp32.ota.bin.md5
-            url: https://therealfalsereality.github.io/aquapi/firmware/aquapi-esp32.ota.bin
+            md5_url: ${firmware_md5_url}
+            url: ${firmware_ota_url}
