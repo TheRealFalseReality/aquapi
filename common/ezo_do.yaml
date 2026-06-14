@@ -4,6 +4,8 @@ substitutions:
   addDO: "97"
   update_do: "60s"
   update_button_do: "60s"
+  do_temp_comp_source: "do_temp_compensation"
+  do_salinity_comp_source: "do_salinity_compensation"
 
   sorting_group_do: '32'
 
@@ -12,6 +14,16 @@ web_server:
     - id: sorting_group_do
       name: "Dissolved Oxygen - EZO"
       sorting_weight: ${sorting_group_do}
+
+globals:
+  - id: do_cal_dry_done
+    type: bool
+    restore_value: true
+    initial_value: 'false'
+  - id: do_cal_zero_done
+    type: bool
+    restore_value: true
+    initial_value: 'false'
 
 api:
   actions:
@@ -38,10 +50,12 @@ api:
       then:
         - lambda: |-
             id(do_ezo).send_custom("Cal");
+            id(do_cal_dry_done) = true;
     - action: do_calibrate_0
       then:
         - lambda: |-
             id(do_ezo).send_custom("Cal,0");
+            id(do_cal_zero_done) = true;
     - action: do_salinity_compensation_35ppt
       then:
         - lambda: |-
@@ -54,16 +68,51 @@ api:
 
 esphome:
   on_boot:
-    priority: 800
+    - priority: 800
+      then:
+        - button.press: read_do
+        - button.press: send_selected_do
+    - priority: 200
+      then:
+        - lambda: |-
+            if (!id(do_cal_dry_done) && !id(do_cal_zero_done)) {
+              ESP_LOGW("ezo_do", "DO sensor may not be calibrated! Run calibration via 'DO - Command Select'.");
+            }
+
+script:
+  - id: do_auto_compensate
     then:
-      - button.press: read_do
-      - button.press: send_selected_do
+      - lambda: |-
+          float temp_val = id(${do_temp_comp_source}).state;
+          if (isnan(temp_val)) {
+            temp_val = id(do_temp_compensation).state;
+          }
+          if (!isnan(temp_val)) {
+            char temp_cmd[20];
+            snprintf(temp_cmd, sizeof(temp_cmd), "T,%.1f", temp_val);
+            id(do_ezo).send_custom(temp_cmd);
+            ESP_LOGD("ezo_do", "DO temperature compensation: %.1f°C", temp_val);
+          }
+
+          float sal_val = id(${do_salinity_comp_source}).state;
+          if (isnan(sal_val)) {
+            sal_val = id(do_salinity_compensation).state;
+          }
+          if (!isnan(sal_val)) {
+            char sal_cmd[20];
+            snprintf(sal_cmd, sizeof(sal_cmd), "S,%.2f,ppt", sal_val);
+            id(do_ezo).send_custom(sal_cmd);
+            ESP_LOGD("ezo_do", "DO salinity compensation: %.2f ppt", sal_val);
+          }
 
 interval:
   # Update Raw DO
   - interval: "${update_button_do}"
     then:
       - button.press: read_do
+  - interval: 5min
+    then:
+      - script.execute: do_auto_compensate
 
 sensor:
   # EZO Circuits (SCL/RX, SDA/TX)
@@ -147,6 +196,27 @@ text_sensor:
     web_server:
       sorting_group_id: sorting_group_do
 
+binary_sensor:
+  - platform: template
+    name: "DO - Calibrated (DRY)"
+    id: do_cal_dry_sensor
+    icon: mdi:check-circle
+    entity_category: "diagnostic"
+    lambda: |-
+      return id(do_cal_dry_done);
+    web_server:
+      sorting_group_id: sorting_group_do
+
+  - platform: template
+    name: "DO - Calibrated (0%)"
+    id: do_cal_zero_sensor
+    icon: mdi:check-circle
+    entity_category: "diagnostic"
+    lambda: |-
+      return id(do_cal_zero_done);
+    web_server:
+      sorting_group_id: sorting_group_do
+
 button:
   # Read DO Probe
   - platform: template
@@ -183,51 +253,86 @@ button:
             if (id(select_command_do).current_option() == "Read") {
               id(do_ezo).send_custom("R");
             }
-            if (id(select_command_do).current_option() == "Information") {
+            else if (id(select_command_do).current_option() == "Information") {
               id(do_ezo).get_device_information();
             }
-            if (id(select_command_do).current_option() == "Status") {
+            else if (id(select_command_do).current_option() == "Status") {
               id(do_ezo).send_custom("Status");
             }
-            if (id(select_command_do).current_option() == "Get Enabled Parameter(s)") {
+            else if (id(select_command_do).current_option() == "Get Enabled Parameter(s)") {
               id(do_ezo).send_custom("O,?");
             }
-            if (id(select_command_do).current_option() == "Output Units - All (Default)") {
+            else if (id(select_command_do).current_option() == "Output Units - All (Default)") {
               id(do_ezo).send_custom("O,mg,1");
               id(do_ezo).send_custom("O,%,1");
             }
-            if (id(select_command_do).current_option() == "Output Units - % Saturation") {
+            else if (id(select_command_do).current_option() == "Output Units - % Saturation") {
               id(do_ezo).send_custom("O,mg,0");
               id(do_ezo).send_custom("O,%,1");
             }
-            if (id(select_command_do).current_option() == "Output Units - mg/L") {
+            else if (id(select_command_do).current_option() == "Output Units - mg/L") {
               id(do_ezo).send_custom("O,mg,1");
               id(do_ezo).send_custom("O,%,0");
             }
-            if (id(select_command_do).current_option() == "Check Calibration") {
+            else if (id(select_command_do).current_option() == "Check Calibration") {
               id(do_ezo).get_calibration();
             }
-            if (id(select_command_do).current_option() == "Calibrate @ DRY (WILL RESET CALIBRATION)") {
+            else if (id(select_command_do).current_option() == "Calibrate @ DRY (WILL RESET CALIBRATION)") {
               id(do_ezo).send_custom("Cal");
+              id(do_cal_dry_done) = true;
+              ESP_LOGI("ezo_do", "DO calibration sent: DRY");
             }
-            if (id(select_command_do).current_option() == "Calibrate @ 0% (WILL RESET CALIBRATION)") {
+            else if (id(select_command_do).current_option() == "Calibrate @ 0% (WILL RESET CALIBRATION)") {
               id(do_ezo).send_custom("Cal,0");
+              id(do_cal_zero_done) = true;
+              ESP_LOGI("ezo_do", "DO calibration sent: 0%%");
             }
-            if (id(select_command_do).current_option() == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
+            else if (id(select_command_do).current_option() == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(do_ezo).clear_calibration();
+              id(do_cal_dry_done) = false;
+              id(do_cal_zero_done) = false;
             }
-            if (id(select_command_do).current_option() == "Salinity Compensation Value") {
+            else if (id(select_command_do).current_option() == "Salinity Compensation Value" || id(select_command_do).current_option() == "Get Salinity Compensation") {
               id(do_ezo).send_custom("S,?");
             }
-            if (id(select_command_do).current_option() == "Set Salinity Compensation @ 35ppt") {
+            else if (id(select_command_do).current_option() == "Get Temperature Compensation") {
+              id(do_ezo).send_custom("T,?");
+            }
+            else if (id(select_command_do).current_option() == "Set Salinity Compensation @ 35ppt") {
               id(do_ezo).send_custom("S,35.0,ppt");
             }
-            if (id(select_command_do).current_option() == "Factory Reset") {
+            else if (id(select_command_do).current_option() == "Factory Reset") {
               id(do_ezo).send_custom("Factory");
+              id(do_cal_dry_done) = false;
+              id(do_cal_zero_done) = false;
             }
             else {
               id(do_ezo).send_custom("R");
             }
+
+  - platform: template
+    name: "DO - Apply Compensation Now"
+    id: do_apply_compensation
+    icon: mdi:auto-fix
+    entity_category: "Config"
+    on_press:
+      - script.execute: do_auto_compensate
+    web_server:
+      sorting_group_id: sorting_group_do
+
+  - platform: template
+    name: "DO - Reset Calibration Flags"
+    id: do_cal_reset_flags
+    icon: mdi:flag-remove
+    entity_category: "Config"
+    disabled_by_default: true
+    on_press:
+      - lambda: |-
+          id(do_cal_dry_done) = false;
+          id(do_cal_zero_done) = false;
+          ESP_LOGI("ezo_do", "DO calibration flags manually reset.");
+    web_server:
+      sorting_group_id: sorting_group_do
 
 select:
   - platform: template
@@ -249,7 +354,9 @@ select:
       - "Calibrate @ DRY (WILL RESET CALIBRATION)"
       - "Calibrate @ 0% (WILL RESET CALIBRATION)"
       - "Calibrate CLEAR (WILL RESET CALIBRATION)"
+      - "Get Temperature Compensation"
       - "Salinity Compensation Value"
+      - "Get Salinity Compensation"
       - "Set Salinity Compensation @ 35ppt"
       - "Factory Reset"
     initial_option: "Check Calibration"
@@ -257,5 +364,36 @@ select:
       - logger.log:
           format: "Chosen option: %s"
           args: ["x.c_str()"]
+    web_server:
+      sorting_group_id: sorting_group_do
+
+number:
+  - platform: template
+    name: "DO - Temperature Compensation (°C)"
+    id: do_temp_compensation
+    icon: mdi:thermometer
+    optimistic: true
+    restore_value: true
+    initial_value: 25.0
+    min_value: 0.0
+    max_value: 40.0
+    step: 0.1
+    unit_of_measurement: "°C"
+    entity_category: "Config"
+    web_server:
+      sorting_group_id: sorting_group_do
+
+  - platform: template
+    name: "DO - Salinity Compensation (ppt)"
+    id: do_salinity_compensation
+    icon: mdi:shaker-outline
+    optimistic: true
+    restore_value: true
+    initial_value: 0.0
+    min_value: 0.0
+    max_value: 45.0
+    step: 0.5
+    unit_of_measurement: "ppt"
+    entity_category: "Config"
     web_server:
       sorting_group_id: sorting_group_do

@@ -12,6 +12,12 @@ web_server:
       name: "ORP (Oxidation-Reduction Potential) - EZO"
       sorting_weight: ${sorting_group_orp}
 
+globals:
+  - id: orp_cal_done
+    type: bool
+    restore_value: true
+    initial_value: 'false'
+
 api:
   actions:
     - action: orp_change_address
@@ -31,12 +37,14 @@ api:
       then:
         - lambda: |-
             id(orp_ezo).send_custom("Cal,225");
+            id(orp_cal_done) = true;
     - action: orp_calibrate
       variables:
         millivolts: int
       then:
         - lambda: |-
             id(orp_ezo).send_custom(("Cal," + to_string(millivolts)).c_str());
+            id(orp_cal_done) = true;
     - action: orp_custom_command
       variables:
         command: string
@@ -47,9 +55,15 @@ api:
 
 esphome:
   on_boot:
-    priority: 800
-    then:
-      - button.press: send_selected_orp
+    - priority: 800
+      then:
+        - button.press: send_selected_orp
+    - priority: 200
+      then:
+        - lambda: |-
+            if (!id(orp_cal_done)) {
+              ESP_LOGW("ezo_orp", "ORP sensor may not be calibrated! Run calibration via 'ORP - Command Select'.");
+            }
 
 sensor:
   # EZO Circuits (SCL/RX, SDA/TX)
@@ -98,6 +112,17 @@ text_sensor:
     web_server:
       sorting_group_id: sorting_group_orp
 
+binary_sensor:
+  - platform: template
+    name: "ORP - Calibrated"
+    id: orp_cal_sensor
+    icon: mdi:check-circle
+    entity_category: "diagnostic"
+    lambda: |-
+      return id(orp_cal_done);
+    web_server:
+      sorting_group_id: sorting_group_orp
+
 button:
   # Read ORP Probe
   - platform: template
@@ -133,27 +158,44 @@ button:
               id(orp_ezo).send_custom("R");
             }
             // Get Device Firmware Version
-            if (id(select_command_orp).current_option() == "Information") {
+            else if (id(select_command_orp).current_option() == "Information") {
               id(orp_ezo).get_device_information();
             }
-            if (id(select_command_orp).current_option() == "Status") {
+            else if (id(select_command_orp).current_option() == "Status") {
               id(orp_ezo).send_custom("Status");
             }
-            if (id(select_command_orp).current_option() == "Check Calibration") {
+            else if (id(select_command_orp).current_option() == "Check Calibration") {
               id(orp_ezo).get_calibration();
             }
-            if (id(select_command_orp).current_option() == "Calibrate @ 225 mV (WILL RESET CALIBRATION)") {
+            else if (id(select_command_orp).current_option() == "Calibrate @ 225 mV (WILL RESET CALIBRATION)") {
               id(orp_ezo).send_custom("Cal,225");
+              id(orp_cal_done) = true;
+              ESP_LOGI("ezo_orp", "ORP calibration sent: 225 mV");
             }
-            if (id(select_command_orp).current_option() == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
+            else if (id(select_command_orp).current_option() == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(orp_ezo).clear_calibration();
+              id(orp_cal_done) = false;
             }
-            if (id(select_command_orp).current_option() == "Factory Reset") {
+            else if (id(select_command_orp).current_option() == "Factory Reset") {
               id(orp_ezo).send_custom("Factory");
+              id(orp_cal_done) = false;
             }
             else {
               id(orp_ezo).send_custom("R");
             }
+    web_server:
+      sorting_group_id: sorting_group_orp
+
+  - platform: template
+    name: "ORP - Reset Calibration Flags"
+    id: orp_cal_reset_flags
+    icon: mdi:flag-remove
+    entity_category: "Config"
+    disabled_by_default: true
+    on_press:
+      - lambda: |-
+          id(orp_cal_done) = false;
+          ESP_LOGI("ezo_orp", "ORP calibration flags manually reset.");
     web_server:
       sorting_group_id: sorting_group_orp
 
