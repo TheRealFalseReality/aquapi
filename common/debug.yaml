@@ -215,6 +215,8 @@ button:
               case CHIP_ESP32S3: chip_model = "ESP32-S3"; break;
               case CHIP_ESP32C3: chip_model = "ESP32-C3"; break;
               case CHIP_ESP32H2: chip_model = "ESP32-H2"; break;
+              case CHIP_ESP32C2: chip_model = "ESP32-C2"; break;
+              case CHIP_ESP32C6: chip_model = "ESP32-C6"; break;
               default: chip_model = "Unknown"; break;
             }
             ESP_LOGI("debug", "Chip Model: %s", chip_model);
