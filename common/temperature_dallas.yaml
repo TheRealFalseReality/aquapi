@@ -8,8 +8,8 @@ substitutions:
   # Calibration Temp. 1
   cal_0: "0.0"
   cal_100: "100.0"
-  range_cool: "23.5"
-  range_warm: "28"
+  range_cool: "74"
+  range_warm: "82"
 
   sorting_group_temperature_weight: '10'
 
@@ -49,9 +49,6 @@ sensor:
 
   # Convert to Fahrenheit - Temp. 1
   - platform: template
-    name: "Temperature (°F)"
-    icon: mdi:thermometer
-    unit_of_measurement: "°F"
     state_class: "measurement"
     device_class: "temperature"
     id: temp_f
@@ -112,13 +109,16 @@ text_sensor:
     icon: mdi:thermometer-alert
     update_interval: "${update_temp}"
     lambda: |-
-      if (id(temp_1).state <= id(range_cool).state) {
+      if(id(temp_f).state <= id(range_cool).state) {
         return {"Cool"};
-      } else if (id(temp_1).state >= id(range_warm).state) {
-        return {"Warm"};
-      } else if (!isnan(id(temp_1).state)) {
+      }
+      if(id(temp_f).state < id(range_warm).state && id(temp_f).state > id(range_cool).state) {
         return {"OK"};
-      } else {
+      }
+      if(id(temp_f).state >= id(range_warm).state) {
+        return {"Warm"};
+      }
+      else {
         return {"Unknown"};
       }
     web_server:
@@ -133,8 +133,8 @@ number:
     icon: mdi:thermometer-low
     optimistic: true
     mode: box
-    min_value: 0
-    max_value: 40
+    min_value: 0.0
+    max_value: 100.0
     step: 0.5
     restore_value: true
     initial_value: ${range_cool}
@@ -153,8 +153,8 @@ number:
     id: range_warm
     optimistic: true
     mode: box
-    min_value: 0
-    max_value: 40
+    min_value: 0.0
+    max_value: 100.0
     step: 0.5
     restore_value: true
     initial_value: ${range_warm}
