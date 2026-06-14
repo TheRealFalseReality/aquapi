@@ -1,6 +1,15 @@
 ---
 substitutions:
   sorting_group_water_quality: '20'
+  wq_ph_good_offset_low: '0.3'
+  wq_ph_good_offset_high: '0.4'
+  wq_ph_alert_offset_low: '0.8'
+  wq_ph_alert_offset_high: '1.4'
+  wq_orp_excellent_offset: '150'
+  wq_orp_alert_offset: '100'
+  wq_orp_score_max: '400'
+  wq_ph_score_weight: '0.6'
+  wq_orp_score_weight: '0.4'
 
 web_server:
   sorting_groups:
@@ -24,12 +33,12 @@ text_sensor:
         return {"Unknown"};
       }
 
-      float ph_good_low = ph_ideal_low - 0.3f;
-      float ph_good_high = ph_ideal_high + 0.4f;
-      float ph_alert_low = ph_ideal_low - 0.8f;
-      float ph_alert_high = ph_ideal_high + 1.4f;
-      float orp_excellent = orp_min_good + 150.0f;
-      float orp_alert = orp_min_good - 100.0f;
+      float ph_good_low = ph_ideal_low - ${wq_ph_good_offset_low};
+      float ph_good_high = ph_ideal_high + ${wq_ph_good_offset_high};
+      float ph_alert_low = ph_ideal_low - ${wq_ph_alert_offset_low};
+      float ph_alert_high = ph_ideal_high + ${wq_ph_alert_offset_high};
+      float orp_excellent = orp_min_good + ${wq_orp_excellent_offset};
+      float orp_alert = orp_min_good - ${wq_orp_alert_offset};
       if (orp_alert < 0.0f) {
         orp_alert = 0.0f;
       }
@@ -81,10 +90,10 @@ sensor:
       float ph_score = 100.0f - (fabsf(ph - ph_ideal) * 25.0f);
       ph_score = fmaxf(0.0f, fminf(100.0f, ph_score));
 
-      float orp_score = (orp / 400.0f) * 100.0f;
+      float orp_score = (orp / ${wq_orp_score_max}) * 100.0f;
       orp_score = fmaxf(0.0f, fminf(100.0f, orp_score));
 
-      return (ph_score * 0.6f) + (orp_score * 0.4f);
+      return (ph_score * ${wq_ph_score_weight}) + (orp_score * ${wq_orp_score_weight});
     web_server:
       sorting_group_id: sorting_group_water_quality
       sorting_weight: 11
