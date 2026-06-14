@@ -84,8 +84,8 @@ esphome:
     - priority: 200
       then:
         - lambda: |-
-            if (!id(ph_cal_mid_done) && !id(ph_cal_low_done) && !id(ph_cal_high_done)) {
-              ESP_LOGW("ezo_ph", "pH sensor may not be calibrated! Run calibration via 'pH - Command Select'.");
+            if (!id(ph_cal_mid_done)) {
+              ESP_LOGW("ezo_ph", "pH sensor may not have its required MID calibration yet. Run calibration via 'pH - Command Select'.");
             }
 
 sensor:

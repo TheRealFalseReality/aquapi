@@ -93,8 +93,8 @@ esphome:
     - priority: 200
       then:
         - lambda: |-
-            if (!id(ec_cal_dry_done) && !id(ec_cal_low_done) && !id(ec_cal_high_done)) {
-              ESP_LOGW("ezo_ec", "EC sensor may not be calibrated! Run calibration via 'EC - Command Select'.");
+            if (!id(ec_cal_dry_done)) {
+              ESP_LOGW("ezo_ec", "EC sensor may not have its required DRY calibration yet. Run calibration via 'EC - Command Select'.");
             }
 
 interval:

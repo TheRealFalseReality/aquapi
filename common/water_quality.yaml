@@ -1,6 +1,7 @@
 ---
 substitutions:
   sorting_group_water_quality: '20'
+  wq_ph_score_deviation_multiplier: '25.0'
   wq_ph_good_offset_low: '0.3'
   wq_ph_good_offset_high: '0.4'
   wq_ph_alert_offset_low: '0.8'
@@ -11,6 +12,10 @@ substitutions:
   wq_ph_score_weight: '0.6'
   wq_orp_score_weight: '0.4'
 
+#
+# Requires the `ph_ezo` and `orp_ezo` sensor IDs from `common/ezo_ph.yaml`
+# and `common/ezo_orp.yaml`.
+#
 web_server:
   sorting_groups:
     - id: sorting_group_water_quality
@@ -87,7 +92,7 @@ sensor:
       if (isnan(ph) || isnan(orp) || isnan(ph_ideal_low) || isnan(ph_ideal_high)) return NAN;
 
       float ph_ideal = (ph_ideal_low + ph_ideal_high) / 2.0f;
-      float ph_score = 100.0f - (fabsf(ph - ph_ideal) * 25.0f);
+      float ph_score = 100.0f - (fabsf(ph - ph_ideal) * ${wq_ph_score_deviation_multiplier});
       ph_score = fmaxf(0.0f, fminf(100.0f, ph_score));
 
       float orp_score = (orp / ${wq_orp_score_max}) * 100.0f;
