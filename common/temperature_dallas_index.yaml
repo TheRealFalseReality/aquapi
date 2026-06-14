@@ -8,14 +8,14 @@ substitutions:
   # Calibration Temp. 1
   cal_0: "0.0"
   cal_100: "100.0"
-  range_cool: "74"
-  range_warm: "82"
+  range_cool: "23.5"
+  range_warm: "28"
 
   # Calibration Temp. 2
   cal_0_temp_2: "0.0"
   cal_100_temp_2: "100.0"
-  range_cool_2: "74"
-  range_warm_2: "82"
+  range_cool_2: "23.5"
+  range_warm_2: "28"
 
   sorting_group_temperature_weight: '10'
 
@@ -56,6 +56,9 @@ sensor:
 
   # Convert to Fahrenheit - Temp. 1
   - platform: template
+    name: "Temperature (°F)"
+    icon: mdi:thermometer
+    unit_of_measurement: "°F"
     state_class: "measurement"
     device_class: "temperature"
     id: temp_f
@@ -119,6 +122,9 @@ sensor:
 
   # Convert to Fahrenheit - Temp. 2
   - platform: template
+    name: "Temperature 2 (°F)"
+    icon: mdi:thermometer
+    unit_of_measurement: "°F"
     state_class: "measurement"
     device_class: "temperature"
     id: temp_f_2
@@ -196,16 +202,13 @@ text_sensor:
     icon: mdi:thermometer-alert
     update_interval: "${update_temp}"
     lambda: |-
-      if(id(temp_f).state <= id(range_cool).state) {
+      if (id(temp_1).state <= id(range_cool).state) {
         return {"Cool"};
-      }
-      if(id(temp_f).state < id(range_warm).state && id(temp_f).state > id(range_cool).state) {
-        return {"OK"};
-      }
-      if(id(temp_f).state >= id(range_warm).state) {
+      } else if (id(temp_1).state >= id(range_warm).state) {
         return {"Warm"};
-      }
-      else {
+      } else if (!isnan(id(temp_1).state)) {
+        return {"OK"};
+      } else {
         return {"Unknown"};
       }
     web_server:
@@ -219,16 +222,13 @@ text_sensor:
     icon: mdi:thermometer-alert
     update_interval: "${update_temp}"
     lambda: |-
-      if(id(temp_f_2).state <= id(range_cool_2).state) {
+      if (id(temp_2).state <= id(range_cool_2).state) {
         return {"Cool"};
-      }
-      if(id(temp_f_2).state < id(range_warm_2).state && id(temp_f_2).state > id(range_cool_2).state) {
-        return {"OK"};
-      }
-      if(id(temp_f_2).state >= id(range_warm_2).state) {
+      } else if (id(temp_2).state >= id(range_warm_2).state) {
         return {"Warm"};
-      }
-      else {
+      } else if (!isnan(id(temp_2).state)) {
+        return {"OK"};
+      } else {
         return {"Unknown"};
       }
     web_server:
@@ -243,8 +243,8 @@ number:
     icon: mdi:thermometer-low
     optimistic: true
     mode: box
-    min_value: 0.0
-    max_value: 100.0
+    min_value: 0
+    max_value: 40
     step: 0.5
     restore_value: true
     initial_value: ${range_cool}
@@ -263,8 +263,8 @@ number:
     id: range_warm
     optimistic: true
     mode: box
-    min_value: 0.0
-    max_value: 100.0
+    min_value: 0
+    max_value: 40
     step: 0.5
     restore_value: true
     initial_value: ${range_warm}
@@ -283,8 +283,8 @@ number:
     icon: mdi:thermometer-low
     optimistic: true
     mode: box
-    min_value: 0.0
-    max_value: 100.0
+    min_value: 0
+    max_value: 40
     step: 0.5
     restore_value: true
     initial_value: ${range_cool_2}
@@ -304,8 +304,8 @@ number:
     id: range_warm_2
     optimistic: true
     mode: box
-    min_value: 0.0
-    max_value: 100.0
+    min_value: 0
+    max_value: 40
     step: 0.5
     restore_value: true
     initial_value: ${range_warm_2}
