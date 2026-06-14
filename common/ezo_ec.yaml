@@ -21,12 +21,6 @@ api:
       then:
         - lambda: |-
             id(ec_ezo).send_custom("I2C,{{address}}");
-    # - action: ec_custom_command
-    #   variables:
-    #     command: string
-    #   then:
-    #     - lambda: |-
-    #         id(ec_ezo).send_custom({{command}});
     - action: ec_read_continuous
       then:
         - repeat:
@@ -53,19 +47,24 @@ api:
             id(ec_ezo).send_custom("O,TDS,1");
             id(ec_ezo).send_custom("O,S,1");
             id(ec_ezo).send_custom("O,SG,1");
-
-    # - action: ec_calibrate_custom
-    #   variables:
-    #     value: int
-    #   then:
-    #   - lambda: |-
-    #       id(ec_ezo).send_custom(Cal,value);
-    # - action: ezo_ec_custom_command
-    #   variables:
-    #     command: string
-    #   then:
-    #     - lambda: |-
-    #         id(ec_ezo).send_custom('{{ command }}');
+    - action: ec_calibrate_low
+      variables:
+        value: int
+      then:
+        - lambda: |-
+            id(ec_ezo).send_custom(("Cal,low," + to_string(value)).c_str());
+    - action: ec_calibrate_high
+      variables:
+        value: int
+      then:
+        - lambda: |-
+            id(ec_ezo).send_custom(("Cal,high," + to_string(value)).c_str());
+    - action: ec_custom_command
+      variables:
+        command: string
+      then:
+        - lambda: |-
+            id(ec_ezo).send_custom(command.c_str());
 
 esphome:
   on_boot:

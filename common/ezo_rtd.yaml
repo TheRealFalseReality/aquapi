@@ -27,12 +27,18 @@ api:
       then:
         - lambda: |-
             id(temp_ezo).send_custom("I2C,{{address}}");
-    # - action: temperature_rtd_custom_command
-    #   variables:
-    #     command: string
-    #   then:
-    #     - lambda: |-
-    #         id(temp_ezo).send_custom({{command}});
+    - action: temperature_rtd_calibrate
+      variables:
+        value: float
+      then:
+        - lambda: |-
+            id(temp_ezo).send_custom(("Cal," + to_string(value)).c_str());
+    - action: temperature_rtd_custom_command
+      variables:
+        command: string
+      then:
+        - lambda: |-
+            id(temp_ezo).send_custom(command.c_str());
 
 # esphome:
 #   on_boot:
