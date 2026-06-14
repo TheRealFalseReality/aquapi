@@ -55,17 +55,17 @@ sensor:
       sorting_weight: 10
 
   # Convert to Fahrenheit - Temp. 1
-  - platform: template
-    name: "Temperature (°F)"
-    icon: mdi:thermometer
-    unit_of_measurement: "°F"
-    state_class: "measurement"
-    device_class: "temperature"
-    id: temp_f
-    lambda: |-
-      return id(temp_1).state * 9 / 5 + 32;
-    web_server:
-      sorting_group_id: sorting_group_temperature
+  # - platform: template
+  #   name: "Temperature (°F)"
+  #   icon: mdi:thermometer
+  #   unit_of_measurement: "°F"
+  #   state_class: "measurement"
+  #   device_class: "temperature"
+  #   id: temp_f
+  #   lambda: |-
+  #     return id(temp_1).state * 9 / 5 + 32;
+  #   web_server:
+  #     sorting_group_id: sorting_group_temperature
 
   # Calibration Temp. at 0C
   - platform: template
@@ -121,18 +121,18 @@ sensor:
       sorting_weight: 60
 
   # Convert to Fahrenheit - Temp. 2
-  - platform: template
-    name: "Temperature 2 (°F)"
-    icon: mdi:thermometer
-    unit_of_measurement: "°F"
-    state_class: "measurement"
-    device_class: "temperature"
-    id: temp_f_2
-    lambda: |-
-      return id(temp_2).state * 9 / 5 + 32;
-    web_server:
-      sorting_group_id: sorting_group_temperature
-      sorting_weight: 69
+  # - platform: template
+  #   name: "Temperature 2 (°F)"
+  #   icon: mdi:thermometer
+  #   unit_of_measurement: "°F"
+  #   state_class: "measurement"
+  #   device_class: "temperature"
+  #   id: temp_f_2
+  #   lambda: |-
+  #     return id(temp_2).state * 9 / 5 + 32;
+  #   web_server:
+  #     sorting_group_id: sorting_group_temperature
+  #     sorting_weight: 69
 
   # Calibration Temp. 2 at 0C
   - platform: template
