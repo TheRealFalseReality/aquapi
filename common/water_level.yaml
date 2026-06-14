@@ -74,16 +74,15 @@ text_sensor:
       if(id(os_high).state == true && id(os_low).state == true) {
         // Water Level is High
         return {"High"};
-      }
-      if(id(os_high).state == false && id(os_low).state == false) {
+      } else if(id(os_high).state == false && id(os_low).state == false) {
         // Water Level is Low
         return {"Low"};
-      }
-      if(id(os_high).state == false && id(os_low).state == true) {
+      } else if(id(os_high).state == false && id(os_low).state == true) {
         // Water Level is Normal
         return {"Normal"};
       } else {
-        return {"Unknown or Error"};
+        // High sensor wet while low sensor dry is an impossible state
+        return {"Error"};
       }
     web_server:
       sorting_group_id: sorting_group_water_level

@@ -34,12 +34,12 @@ api:
       then:
         - lambda: |-
             id(hum_ezo).send_custom("I2C,{{address}}");
-    # - action: hum_custom_command
-    #   variables:
-    #     command: string
-    #   then:
-    #     - lambda: |-
-    #         id(hum_ezo).send_custom({{command}});
+    - action: hum_custom_command
+      variables:
+        command: string
+      then:
+        - lambda: |-
+            id(hum_ezo).send_custom(command.c_str());
 
 sensor:
   # EZO Circuits (SCL/RX, SDA/TX)
@@ -238,9 +238,6 @@ button:
             else if (id(select_command_hum).current_option() == "Factory Reset") {
               id(hum_ezo).send_custom("Factory");
               ESP_LOGW("ezo_hum", "HUM Factory Reset sent! Device has been reset to factory defaults.");
-            }
-            else {
-              id(hum_ezo).send_custom("R");
             }
     web_server:
       sorting_group_id: sorting_group_hum

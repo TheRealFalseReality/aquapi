@@ -28,19 +28,19 @@ script:
           };
           
           // Update all binary sensor detection states
-          id(ezo_ph_detected).publish_state(check_i2c_device(0x63));
-          id(ezo_ec_detected).publish_state(check_i2c_device(0x64));
-          id(ezo_orp_detected).publish_state(check_i2c_device(0x62));
-          id(ezo_do_detected).publish_state(check_i2c_device(0x61));
-          id(ezo_co2_detected).publish_state(check_i2c_device(0x69));
-          id(ezo_rtd_detected).publish_state(check_i2c_device(0x66));
-          id(ezo_hum_detected).publish_state(check_i2c_device(0x6F));
-          id(ezo_pmp_white_detected).publish_state(check_i2c_device(0x67));
-          id(ezo_pmp_yellow_detected).publish_state(check_i2c_device(0x68));
-          id(ezo_pmp_blue_detected).publish_state(check_i2c_device(0x6A));
-          id(ezo_pmp_red_detected).publish_state(check_i2c_device(0x6C));
-          id(ezo_pmp_green_detected).publish_state(check_i2c_device(0x6D));
-          id(ezo_pmp_orange_detected).publish_state(check_i2c_device(0x6E));
+          id(ezo_ph_detected).publish_state(check_i2c_device(${addPH}));
+          id(ezo_ec_detected).publish_state(check_i2c_device(${addEC}));
+          id(ezo_orp_detected).publish_state(check_i2c_device(${addORP}));
+          id(ezo_do_detected).publish_state(check_i2c_device(${addDO}));
+          id(ezo_co2_detected).publish_state(check_i2c_device(${addCO2}));
+          id(ezo_rtd_detected).publish_state(check_i2c_device(${addRTD}));
+          id(ezo_hum_detected).publish_state(check_i2c_device(${addHUM}));
+          id(ezo_pmp_white_detected).publish_state(check_i2c_device(${addPMP_white}));
+          id(ezo_pmp_yellow_detected).publish_state(check_i2c_device(${addPMP_yellow}));
+          id(ezo_pmp_blue_detected).publish_state(check_i2c_device(${addPMP_blue}));
+          id(ezo_pmp_red_detected).publish_state(check_i2c_device(${addPMP_red}));
+          id(ezo_pmp_green_detected).publish_state(check_i2c_device(${addPMP_green}));
+          id(ezo_pmp_orange_detected).publish_state(check_i2c_device(${addPMP_orange}));
   
   # Script to log helpful messages for sensors that are configured but not detected
   - id: log_missing_sensors_help
@@ -229,38 +229,38 @@ sensor:
 
 text_sensor:
   # I2C Bus Status
-  - platform: template
-    name: "I2C Bus Status"
-    id: i2c_bus_status
-    icon: mdi:check-network
-    disabled_by_default: true
-    entity_category: "diagnostic"
-    update_interval: 30s
-    lambda: |-
-      // Report I2C bus health status
-      int device_count = 0;
-      std::string status = "";
+  # - platform: template
+  #   name: "I2C Bus Status"
+  #   id: i2c_bus_status
+  #   icon: mdi:check-network
+  #   disabled_by_default: true
+  #   entity_category: "diagnostic"
+  #   update_interval: 30s
+  #   lambda: |-
+  #     // Report I2C bus health status
+  #     int device_count = 0;
+  #     std::string status = "";
       
-      // Count devices
-      for (uint8_t address = 8; address < 120; address++) {
-        esphome::i2c::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
-        if (err == esphome::i2c::ERROR_OK) {
-          device_count++;
-        }
-      }
+  #     // Count devices
+  #     for (uint8_t address = 8; address < 120; address++) {
+  #       esphome::i2c::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
+  #       if (err == esphome::i2c::ERROR_OK) {
+  #         device_count++;
+  #       }
+  #     }
       
-      if (device_count == 0) {
-        status = "No I2C devices detected";
-        ESP_LOGW("i2c_detection", "WARNING: No I2C devices found on bus");
-      } else if (device_count == 1) {
-        status = "1 device detected";
-      } else {
-        status = std::to_string(device_count) + " devices detected";
-      }
+  #     if (device_count == 0) {
+  #       status = "No I2C devices detected";
+  #       ESP_LOGW("i2c_detection", "WARNING: No I2C devices found on bus");
+  #     } else if (device_count == 1) {
+  #       status = "1 device detected";
+  #     } else {
+  #       status = std::to_string(device_count) + " devices detected";
+  #     }
       
-      return status;
-    web_server:
-      sorting_group_id: sorting_group_i2c_detection
+  #     return status;
+  #   web_server:
+  #     sorting_group_id: sorting_group_i2c_detection
 
   # Detected I2C Addresses
   - platform: template
@@ -297,21 +297,21 @@ text_sensor:
     web_server:
       sorting_group_id: sorting_group_i2c_detection
 
-button:
-  # Manual I2C Scan Button
-  - platform: template
-    name: "I2C Scan Now"
-    id: i2c_scan_button
-    disabled_by_default: true
-    icon: mdi:refresh
-    entity_category: "config"
-    on_press:
-      then:
-        - logger.log: "Manual I2C scan initiated..."
-        - component.update: i2c_devices_connected
-        - component.update: i2c_bus_status
-        - component.update: i2c_addresses_list
-        - script.execute: update_sensor_detection
-        - logger.log: "I2C scan complete. Check sensor states."
-    web_server:
-      sorting_group_id: sorting_group_i2c_detection
+# button:
+#   # Manual I2C Scan Button
+#   - platform: template
+#     name: "I2C Scan Now"
+#     id: i2c_scan_button
+#     disabled_by_default: true
+#     icon: mdi:refresh
+#     entity_category: "config"
+#     on_press:
+#       then:
+#         - logger.log: "Manual I2C scan initiated..."
+#         - component.update: i2c_devices_connected
+#         - component.update: i2c_bus_status
+#         - component.update: i2c_addresses_list
+#         - script.execute: update_sensor_detection
+#         - logger.log: "I2C scan complete. Check sensor states."
+#     web_server:
+#       sorting_group_id: sorting_group_i2c_detection

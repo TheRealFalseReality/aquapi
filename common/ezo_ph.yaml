@@ -12,6 +12,20 @@ web_server:
       name: "pH - EZO"
       sorting_weight: ${sorting_group_ph}
 
+globals:
+  - id: ph_cal_mid_done
+    type: bool
+    restore_value: true
+    initial_value: 'false'
+  - id: ph_cal_low_done
+    type: bool
+    restore_value: true
+    initial_value: 'false'
+  - id: ph_cal_high_done
+    type: bool
+    restore_value: true
+    initial_value: 'false'
+
 api:
   actions:
     - action: ph_change_address
@@ -20,12 +34,6 @@ api:
       then:
         - lambda: |-
             id(ph_ezo).send_custom("I2C,{{address}}");
-    # - action: ph_custom_command
-    #   variables:
-    #     command: string
-    #   then:
-    #     - lambda: |-
-    #         id(ph_ezo).send_custom({{command}});
     - action: ph_read_continuous
       then:
         - repeat:
@@ -37,30 +45,59 @@ api:
       then:
         - lambda: |-
             id(ph_ezo).set_calibration_point_mid(7.00);
+            id(ph_cal_mid_done) = true;
+            id(ph_cal_low_done) = false;
+            id(ph_cal_high_done) = false;
     - action: ph_calibrate_low_4
       then:
         - lambda: |-
             id(ph_ezo).set_calibration_point_low(4.00);
+            id(ph_cal_low_done) = true;
     - action: ph_calibrate_high_10
       then:
         - lambda: |-
             id(ph_ezo).set_calibration_point_high(10.00);
+            id(ph_cal_high_done) = true;
     - action: ph_calibrate_high_1001
       then:
         - lambda: |-
             id(ph_ezo).set_calibration_point_high(10.01);
-    # - action: ezo_ph_custom_command
-    #   variables:
-    #     command: string
-    #   then:
-    #     - lambda: |-
-    #         id(ph_ezo).send_custom('{{ command }}');
+    - action: ph_calibrate_mid
+      variables:
+        value: float
+      then:
+        - lambda: |-
+            id(ph_ezo).set_calibration_point_mid(value);
+    - action: ph_calibrate_low
+      variables:
+        value: float
+      then:
+        - lambda: |-
+            id(ph_ezo).set_calibration_point_low(value);
+    - action: ph_calibrate_high
+      variables:
+        value: float
+      then:
+        - lambda: |-
+            id(ph_ezo).set_calibration_point_high(value);
+    - action: ph_custom_command
+      variables:
+        command: string
+      then:
+        - lambda: |-
+            id(ph_ezo).send_custom(command.c_str());
 
 esphome:
   on_boot:
-    priority: 800
-    then:
-      - button.press: send_selected_ph
+    - priority: 800
+      then:
+        - button.press: send_selected_ph
+    - priority: 200
+      then:
+        - lambda: |-
+            if (!id(ph_cal_mid_done)) {
+              ESP_LOGW("ezo_ph", "pH sensor may not have its required MID calibration yet. Run calibration via 'pH - Command Select'.");
+            }
 
 sensor:
   # EZO Circuits (SCL/RX, SDA/TX)
@@ -106,6 +143,37 @@ text_sensor:
     icon: mdi:data-matrix
     id: result_ph
     # disabled_by_default: true
+    web_server:
+      sorting_group_id: sorting_group_ph
+
+binary_sensor:
+  - platform: template
+    name: "pH - Calibrated (MID)"
+    id: ph_cal_mid_sensor
+    icon: mdi:check-circle
+    entity_category: "diagnostic"
+    lambda: |-
+      return id(ph_cal_mid_done);
+    web_server:
+      sorting_group_id: sorting_group_ph
+
+  - platform: template
+    name: "pH - Calibrated (LOW)"
+    id: ph_cal_low_sensor
+    icon: mdi:check-circle
+    entity_category: "diagnostic"
+    lambda: |-
+      return id(ph_cal_low_done);
+    web_server:
+      sorting_group_id: sorting_group_ph
+
+  - platform: template
+    name: "pH - Calibrated (HIGH)"
+    id: ph_cal_high_sensor
+    icon: mdi:check-circle
+    entity_category: "diagnostic"
+    lambda: |-
+      return id(ph_cal_high_done);
     web_server:
       sorting_group_id: sorting_group_ph
 
@@ -163,31 +231,55 @@ button:
             }
             else if (id(select_command_ph).current_option() == "Calibrate @ MID = 7 (WILL RESET CALIBRATION)") {
               id(ph_ezo).set_calibration_point_mid(7.00);
-              ESP_LOGI("ezo_ph", "pH calibration sent: MID = 7.00. Check 'pH - Command Result' for confirmation.");
+              id(ph_cal_mid_done) = true;
+              id(ph_cal_low_done) = false;
+              id(ph_cal_high_done) = false;
+              ESP_LOGI("ezo_ph", "pH calibration sent: MID = 7.00");
             }
             else if (id(select_command_ph).current_option() == "Calibrate @ LOW = 4 (WILL RESET CALIBRATION)") {
               id(ph_ezo).set_calibration_point_low(4.00);
+              id(ph_cal_low_done) = true;
               ESP_LOGI("ezo_ph", "pH calibration sent: LOW = 4.00. Check 'pH - Command Result' for confirmation.");
             }
             else if (id(select_command_ph).current_option() == "Calibrate @ HIGH = 10 (WILL RESET CALIBRATION)") {
               id(ph_ezo).set_calibration_point_high(10.00);
+              id(ph_cal_high_done) = true;
               ESP_LOGI("ezo_ph", "pH calibration sent: HIGH = 10.00. Check 'pH - Command Result' for confirmation.");
             }
             else if (id(select_command_ph).current_option() == "Calibrate @ HIGH = 10.01 (WILL RESET CALIBRATION)") {
               id(ph_ezo).set_calibration_point_high(10.01);
+              id(ph_cal_high_done) = true;
               ESP_LOGI("ezo_ph", "pH calibration sent: HIGH = 10.01. Check 'pH - Command Result' for confirmation.");
             }
             else if (id(select_command_ph).current_option() == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(ph_ezo).clear_calibration();
+              id(ph_cal_mid_done) = false;
+              id(ph_cal_low_done) = false;
+              id(ph_cal_high_done) = false;
               ESP_LOGI("ezo_ph", "pH calibration CLEARED. All calibration points reset.");
             }
             else if (id(select_command_ph).current_option() == "Factory Reset") {
               id(ph_ezo).send_custom("Factory");
+              id(ph_cal_mid_done) = false;
+              id(ph_cal_low_done) = false;
+              id(ph_cal_high_done) = false;
               ESP_LOGW("ezo_ph", "pH Factory Reset sent! Device has been reset to factory defaults.");
             }
-            else {
-              id(ph_ezo).send_custom("R");
-            }
+    web_server:
+      sorting_group_id: sorting_group_ph
+
+  - platform: template
+    name: "pH - Reset Calibration Flags"
+    id: ph_cal_reset_flags
+    icon: mdi:flag-remove
+    entity_category: "Config"
+    disabled_by_default: true
+    on_press:
+      - lambda: |-
+          id(ph_cal_mid_done) = false;
+          id(ph_cal_low_done) = false;
+          id(ph_cal_high_done) = false;
+          ESP_LOGI("ezo_ph", "pH calibration flags manually reset.");
     web_server:
       sorting_group_id: sorting_group_ph
 

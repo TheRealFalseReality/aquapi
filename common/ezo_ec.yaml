@@ -13,6 +13,20 @@ web_server:
       name: "Salinity - EZO"
       sorting_weight: ${sorting_group_ec}
 
+globals:
+  - id: ec_cal_dry_done
+    type: bool
+    restore_value: true
+    initial_value: 'false'
+  - id: ec_cal_low_done
+    type: bool
+    restore_value: true
+    initial_value: 'false'
+  - id: ec_cal_high_done
+    type: bool
+    restore_value: true
+    initial_value: 'false'
+
 api:
   actions:
     - action: ec_change_address
@@ -21,12 +35,6 @@ api:
       then:
         - lambda: |-
             id(ec_ezo).send_custom("I2C,{{address}}");
-    # - action: ec_custom_command
-    #   variables:
-    #     command: string
-    #   then:
-    #     - lambda: |-
-    #         id(ec_ezo).send_custom({{command}});
     - action: ec_read_continuous
       then:
         - repeat:
@@ -38,14 +46,17 @@ api:
       then:
         - lambda: |-
             id(ec_ezo).send_custom("Cal,dry");
+            id(ec_cal_dry_done) = true;
     - action: ec_calibrate_low_12880
       then:
         - lambda: |-
             id(ec_ezo).send_custom("Cal,low,12880");
+            id(ec_cal_low_done) = true;
     - action: ec_calibrate_high_80000
       then:
         - lambda: |-
             id(ec_ezo).send_custom("Cal,high,80000");
+            id(ec_cal_high_done) = true;
     - action: ec_output_all_parameters
       then:
         - lambda: |-
@@ -53,26 +64,37 @@ api:
             id(ec_ezo).send_custom("O,TDS,1");
             id(ec_ezo).send_custom("O,S,1");
             id(ec_ezo).send_custom("O,SG,1");
-
-    # - action: ec_calibrate_custom
-    #   variables:
-    #     value: int
-    #   then:
-    #   - lambda: |-
-    #       id(ec_ezo).send_custom(Cal,value);
-    # - action: ezo_ec_custom_command
-    #   variables:
-    #     command: string
-    #   then:
-    #     - lambda: |-
-    #         id(ec_ezo).send_custom('{{ command }}');
+    - action: ec_calibrate_low
+      variables:
+        value: float
+      then:
+        - lambda: |-
+            id(ec_ezo).send_custom(("Cal,low," + to_string(value)).c_str());
+    - action: ec_calibrate_high
+      variables:
+        value: float
+      then:
+        - lambda: |-
+            id(ec_ezo).send_custom(("Cal,high," + to_string(value)).c_str());
+    - action: ec_custom_command
+      variables:
+        command: string
+      then:
+        - lambda: |-
+            id(ec_ezo).send_custom(command.c_str());
 
 esphome:
   on_boot:
-    priority: 800
-    then:
-      - button.press: read_ec
-      - button.press: send_selected_ec
+    - priority: 800
+      then:
+        - button.press: read_ec
+        - button.press: send_selected_ec
+    - priority: 200
+      then:
+        - lambda: |-
+            if (!id(ec_cal_dry_done)) {
+              ESP_LOGW("ezo_ec", "EC sensor may not have its required DRY calibration yet. Run calibration via 'EC - Command Select'.");
+            }
 
 interval:
   # Update Raw EC
@@ -93,7 +115,6 @@ sensor:
     accuracy_decimals: 2
     update_interval: "${update_ec}"
     state_class: "measurement"
-    device_class: "volatile_organic_compounds_parts"
     filters:
       - lambda:
           return (x / 1000);
@@ -150,7 +171,6 @@ sensor:
     disabled_by_default: true
     update_interval: "${update_ec}"
     state_class: "measurement"
-    device_class: "volatile_organic_compounds_parts"
     lambda: |-
       std::string str = id(raw_value_ec).state;
       if (str.empty()) return NAN;
@@ -181,7 +201,6 @@ sensor:
     accuracy_decimals: 2
     update_interval: "${update_ec}"
     state_class: "measurement"
-    device_class: "volatile_organic_compounds_parts"
     lambda: |-
       std::string str = id(raw_value_ec).state;
       if (str.empty()) return NAN;
@@ -212,7 +231,6 @@ sensor:
     accuracy_decimals: 3
     update_interval: "${update_ec}"
     state_class: "measurement"
-    device_class: "volatile_organic_compounds_parts"
     lambda: |-
       std::string str = id(raw_value_ec).state;
       if (str.empty()) return NAN;
@@ -257,6 +275,37 @@ text_sensor:
     icon: mdi:data-matrix
     id: result_ec
     # disabled_by_default: true
+    web_server:
+      sorting_group_id: sorting_group_ec
+
+binary_sensor:
+  - platform: template
+    name: "EC - Calibrated (DRY)"
+    id: ec_cal_dry_sensor
+    icon: mdi:check-circle
+    entity_category: "diagnostic"
+    lambda: |-
+      return id(ec_cal_dry_done);
+    web_server:
+      sorting_group_id: sorting_group_ec
+
+  - platform: template
+    name: "EC - Calibrated (LOW)"
+    id: ec_cal_low_sensor
+    icon: mdi:check-circle
+    entity_category: "diagnostic"
+    lambda: |-
+      return id(ec_cal_low_done);
+    web_server:
+      sorting_group_id: sorting_group_ec
+
+  - platform: template
+    name: "EC - Calibrated (HIGH)"
+    id: ec_cal_high_sensor
+    icon: mdi:check-circle
+    entity_category: "diagnostic"
+    lambda: |-
+      return id(ec_cal_high_done);
     web_server:
       sorting_group_id: sorting_group_ec
 
@@ -354,27 +403,48 @@ button:
             }
             else if (id(select_command_ec).current_option() == "Calibrate @ DRY (WILL RESET CALIBRATION)") {
               id(ec_ezo).send_custom("Cal,dry");
+              id(ec_cal_dry_done) = true;
               ESP_LOGI("ezo_ec", "EC calibration sent: DRY point. Check 'EC - Command Result' for confirmation.");
             }
             else if (id(select_command_ec).current_option() == "Calibrate @ LOW = 12880 (WILL RESET CALIBRATION)") {
               id(ec_ezo).send_custom("Cal,low,12880");
+              id(ec_cal_low_done) = true;
               ESP_LOGI("ezo_ec", "EC calibration sent: LOW = 12880. Check 'EC - Command Result' for confirmation.");
             }
             else if (id(select_command_ec).current_option() == "Calibrate @ HIGH = 80000 (WILL RESET CALIBRATION)") {
               id(ec_ezo).send_custom("Cal,high,80000");
+              id(ec_cal_high_done) = true;
               ESP_LOGI("ezo_ec", "EC calibration sent: HIGH = 80000. Check 'EC - Command Result' for confirmation.");
             }
             else if (id(select_command_ec).current_option() == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(ec_ezo).clear_calibration();
+              id(ec_cal_dry_done) = false;
+              id(ec_cal_low_done) = false;
+              id(ec_cal_high_done) = false;
               ESP_LOGI("ezo_ec", "EC calibration CLEARED. All calibration points reset.");
             }
             else if (id(select_command_ec).current_option() == "Factory Reset") {
               id(ec_ezo).send_custom("Factory");
+              id(ec_cal_dry_done) = false;
+              id(ec_cal_low_done) = false;
+              id(ec_cal_high_done) = false;
               ESP_LOGW("ezo_ec", "EC Factory Reset sent! Device has been reset to factory defaults.");
             }
-            else {
-              id(ec_ezo).send_custom("R");
-            }
+    web_server:
+      sorting_group_id: sorting_group_ec
+
+  - platform: template
+    name: "EC - Reset Calibration Flags"
+    id: ec_cal_reset_flags
+    icon: mdi:flag-remove
+    entity_category: "Config"
+    disabled_by_default: true
+    on_press:
+      - lambda: |-
+          id(ec_cal_dry_done) = false;
+          id(ec_cal_low_done) = false;
+          id(ec_cal_high_done) = false;
+          ESP_LOGI("ezo_ec", "EC calibration flags manually reset.");
     web_server:
       sorting_group_id: sorting_group_ec
 
