@@ -374,14 +374,14 @@ number:
   - platform: template
     id: volume_clean
     icon: mdi:pump
-    name: Pump Clean - Volume to Dose
+    name: Pump Clean - Volume to Dose (negative = reverse)
     disabled_by_default: true
     device_class: 'volume'
     unit_of_measurement: 'mL'
     optimistic: true
     initial_value: 10  # cannot be less than +/-0.1mL
-    min_value: -378541
-    max_value: 378541  # 100 gal
+    min_value: -378541  # Negative values run pump in reverse direction
+    max_value: 378541   # 100 gal in mL  # 100 gal
     mode: box
     step: 0.1
     web_server:
@@ -420,14 +420,14 @@ number:
   - platform: template
     id: volume_waste
     icon: mdi:pump
-    name: Pump Waste - Volume to Dose
+    name: Pump Waste - Volume to Dose (negative = reverse)
     disabled_by_default: true
     device_class: 'volume'
     unit_of_measurement: 'mL'
     optimistic: true
     initial_value: 10  # cannot be less than +/-0.1mL
-    min_value: -378541
-    max_value: 378541  # 100 gal
+    min_value: -378541  # Negative values run pump in reverse direction
+    max_value: 378541   # 100 gal in mL  # 100 gal
     mode: box
     step: 0.1
     web_server:
@@ -489,7 +489,7 @@ button:
     web_server:
       sorting_group_id: sorting_group_pump_green
   - platform: template
-    name: Pump Clean - Dose Volume
+    name: Pump Clean - Dose Volume (negative = reverse)
     disabled_by_default: true
     icon: mdi:pump
     id: dose_volume_clean
@@ -593,7 +593,7 @@ button:
     web_server:
       sorting_group_id: sorting_group_pump_red
   - platform: template
-    name: Pump Waste - Dose Volume
+    name: Pump Waste - Dose Volume (negative = reverse)
     disabled_by_default: true
     icon: mdi:pump
     id: dose_volume_waste
