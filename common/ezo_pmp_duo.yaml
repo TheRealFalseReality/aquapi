@@ -381,7 +381,7 @@ number:
     optimistic: true
     initial_value: 10  # cannot be less than +/-0.1mL
     min_value: -378541  # Negative values run pump in reverse direction
-    max_value: 378541   # 100 gal in mL  # 100 gal
+    max_value: 378541   # 100 gal in mL
     mode: box
     step: 0.1
     web_server:
@@ -427,7 +427,7 @@ number:
     optimistic: true
     initial_value: 10  # cannot be less than +/-0.1mL
     min_value: -378541  # Negative values run pump in reverse direction
-    max_value: 378541   # 100 gal in mL  # 100 gal
+    max_value: 378541   # 100 gal in mL
     mode: box
     step: 0.1
     web_server:
