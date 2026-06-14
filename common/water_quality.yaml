@@ -1,0 +1,160 @@
+---
+substitutions:
+  sorting_group_water_quality: '20'
+  wq_ph_score_deviation_multiplier: '25.0'
+  wq_ph_good_offset_low: '0.3'
+  wq_ph_good_offset_high: '0.4'
+  wq_ph_alert_offset_low: '0.8'
+  wq_ph_alert_offset_high: '1.4'
+  wq_orp_excellent_offset: '150'
+  wq_orp_alert_offset: '100'
+  wq_orp_score_max: '400'
+  wq_ph_score_weight: '0.6'
+  wq_orp_score_weight: '0.4'
+
+#
+# Requires the `ph_ezo` and `orp_ezo` sensor IDs from `common/ezo_ph.yaml`
+# and `common/ezo_orp.yaml`.
+#
+web_server:
+  sorting_groups:
+    - id: sorting_group_water_quality
+      name: "Water Quality"
+      sorting_weight: ${sorting_group_water_quality}
+
+text_sensor:
+  - platform: template
+    name: "Water Quality"
+    id: water_quality
+    icon: mdi:water-check
+    update_interval: 60s
+    lambda: |-
+      float ph = id(ph_ezo).state;
+      float orp = id(orp_ezo).state;
+      float ph_ideal_low = id(wq_ph_ideal_low).state;
+      float ph_ideal_high = id(wq_ph_ideal_high).state;
+      float orp_min_good = id(wq_orp_min_good).state;
+      if (isnan(ph) || isnan(orp) || isnan(ph_ideal_low) || isnan(ph_ideal_high) || isnan(orp_min_good)) {
+        return {"Unknown"};
+      }
+
+      float ph_good_low = ph_ideal_low - ${wq_ph_good_offset_low};
+      float ph_good_high = ph_ideal_high + ${wq_ph_good_offset_high};
+      float ph_alert_low = ph_ideal_low - ${wq_ph_alert_offset_low};
+      float ph_alert_high = ph_ideal_high + ${wq_ph_alert_offset_high};
+      float orp_excellent = orp_min_good + ${wq_orp_excellent_offset};
+      float orp_alert = orp_min_good - ${wq_orp_alert_offset};
+      if (orp_alert < 0.0f) {
+        orp_alert = 0.0f;
+      }
+
+      if (ph >= ph_ideal_low && ph <= ph_ideal_high && orp >= orp_excellent) {
+        return {"Excellent"};
+      }
+      if (ph >= ph_good_low && ph <= ph_good_high && orp >= orp_min_good) {
+        return {"Good"};
+      }
+      if (ph < ph_alert_low || ph > ph_alert_high || orp < orp_alert) {
+        return {"Alert"};
+      }
+      if (ph < ph_good_low || ph > ph_good_high || orp < orp_min_good) {
+        return {"Caution"};
+      }
+      return {"Good"};
+    on_value:
+      then:
+        - lambda: |-
+            if (x == "Alert") {
+              ESP_LOGE("water_quality", "⚠️ Water Quality ALERT! pH: %.2f, ORP: %.1f mV - Immediate action required!", id(ph_ezo).state, id(orp_ezo).state);
+            } else if (x == "Caution") {
+              ESP_LOGW("water_quality", "Water Quality CAUTION - pH: %.2f, ORP: %.1f mV", id(ph_ezo).state, id(orp_ezo).state);
+            } else {
+              ESP_LOGI("water_quality", "Water Quality: %s - pH: %.2f, ORP: %.1f mV", x.c_str(), id(ph_ezo).state, id(orp_ezo).state);
+            }
+    web_server:
+      sorting_group_id: sorting_group_water_quality
+      sorting_weight: 10
+
+sensor:
+  - platform: template
+    name: "Water Quality Score"
+    id: water_quality_score
+    icon: mdi:water-percent
+    unit_of_measurement: "%"
+    accuracy_decimals: 0
+    state_class: "measurement"
+    update_interval: 60s
+    lambda: |-
+      float ph = id(ph_ezo).state;
+      float orp = id(orp_ezo).state;
+      float ph_ideal_low = id(wq_ph_ideal_low).state;
+      float ph_ideal_high = id(wq_ph_ideal_high).state;
+      if (isnan(ph) || isnan(orp) || isnan(ph_ideal_low) || isnan(ph_ideal_high)) return NAN;
+
+      float ph_ideal = (ph_ideal_low + ph_ideal_high) / 2.0f;
+      float ph_score = 100.0f - (fabsf(ph - ph_ideal) * ${wq_ph_score_deviation_multiplier});
+      ph_score = fmaxf(0.0f, fminf(100.0f, ph_score));
+
+      float orp_score = (orp / ${wq_orp_score_max}) * 100.0f;
+      orp_score = fmaxf(0.0f, fminf(100.0f, orp_score));
+
+      return (ph_score * ${wq_ph_score_weight}) + (orp_score * ${wq_orp_score_weight});
+    web_server:
+      sorting_group_id: sorting_group_water_quality
+      sorting_weight: 11
+
+number:
+  - platform: template
+    name: "Water Quality - pH Ideal Low"
+    id: wq_ph_ideal_low
+    icon: mdi:ph
+    optimistic: true
+    restore_value: true
+    initial_value: 6.8
+    min_value: 5.0
+    max_value: 8.0
+    step: 0.1
+    entity_category: "Config"
+    on_value:
+      then:
+        - component.update: water_quality
+        - component.update: water_quality_score
+    web_server:
+      sorting_group_id: sorting_group_water_quality
+
+  - platform: template
+    name: "Water Quality - pH Ideal High"
+    id: wq_ph_ideal_high
+    icon: mdi:ph
+    optimistic: true
+    restore_value: true
+    initial_value: 7.6
+    min_value: 6.0
+    max_value: 9.0
+    step: 0.1
+    entity_category: "Config"
+    on_value:
+      then:
+        - component.update: water_quality
+        - component.update: water_quality_score
+    web_server:
+      sorting_group_id: sorting_group_water_quality
+
+  - platform: template
+    name: "Water Quality - ORP Minimum Good"
+    id: wq_orp_min_good
+    icon: mdi:react
+    optimistic: true
+    restore_value: true
+    initial_value: 200
+    min_value: 0
+    max_value: 500
+    step: 10
+    unit_of_measurement: "mV"
+    entity_category: "Config"
+    on_value:
+      then:
+        - component.update: water_quality
+        - component.update: water_quality_score
+    web_server:
+      sorting_group_id: sorting_group_water_quality

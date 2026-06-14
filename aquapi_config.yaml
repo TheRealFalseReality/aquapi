@@ -2,6 +2,8 @@
 substitutions:
   name: "aquapi-standard"
   project_name: "therealfalsereality.aquapi-standard"
+  do_temp_comp_source: "temp_1"
+  do_salinity_comp_source: "sensor_salinity"
 
 packages:
   device_base: !include common/device_base.yaml
@@ -16,6 +18,7 @@ packages:
   ezo_ph: !include common/ezo_ph.yaml
   ezo_ec: !include common/ezo_ec.yaml
   ezo_orp: !include common/ezo_orp.yaml
+  water_quality: !include common/water_quality.yaml
   ezo_co2: !include common/ezo_co2.yaml
   ezo_do: !include common/ezo_do.yaml
   ezo_pmp: !include common/ezo_pmp.yaml
