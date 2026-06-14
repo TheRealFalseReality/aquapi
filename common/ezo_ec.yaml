@@ -49,13 +49,13 @@ api:
             id(ec_ezo).send_custom("O,SG,1");
     - action: ec_calibrate_low
       variables:
-        value: int
+        value: float
       then:
         - lambda: |-
             id(ec_ezo).send_custom(("Cal,low," + to_string(value)).c_str());
     - action: ec_calibrate_high
       variables:
-        value: int
+        value: float
       then:
         - lambda: |-
             id(ec_ezo).send_custom(("Cal,high," + to_string(value)).c_str());
