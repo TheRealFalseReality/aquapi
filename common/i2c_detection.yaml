@@ -297,21 +297,21 @@ text_sensor:
     web_server:
       sorting_group_id: sorting_group_i2c_detection
 
-button:
-  # Manual I2C Scan Button
-  - platform: template
-    name: "I2C Scan Now"
-    id: i2c_scan_button
-    disabled_by_default: true
-    icon: mdi:refresh
-    entity_category: "config"
-    on_press:
-      then:
-        - logger.log: "Manual I2C scan initiated..."
-        - component.update: i2c_devices_connected
-        - component.update: i2c_bus_status
-        - component.update: i2c_addresses_list
-        - script.execute: update_sensor_detection
-        - logger.log: "I2C scan complete. Check sensor states."
-    web_server:
-      sorting_group_id: sorting_group_i2c_detection
+# button:
+#   # Manual I2C Scan Button
+#   - platform: template
+#     name: "I2C Scan Now"
+#     id: i2c_scan_button
+#     disabled_by_default: true
+#     icon: mdi:refresh
+#     entity_category: "config"
+#     on_press:
+#       then:
+#         - logger.log: "Manual I2C scan initiated..."
+#         - component.update: i2c_devices_connected
+#         - component.update: i2c_bus_status
+#         - component.update: i2c_addresses_list
+#         - script.execute: update_sensor_detection
+#         - logger.log: "I2C scan complete. Check sensor states."
+#     web_server:
+#       sorting_group_id: sorting_group_i2c_detection
