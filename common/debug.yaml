@@ -87,8 +87,8 @@ sensor:
     lambda: |-
       // Calculate memory usage percentage
       // ESP32 typically has around 320KB of RAM available
-      uint32_t free_mem = ESP.getFreeHeap();
-      uint32_t total_mem = ESP.getHeapSize();
+      uint32_t free_mem = heap_caps_get_free_size(MALLOC_CAP_INTERNAL);
+      uint32_t total_mem = heap_caps_get_total_size(MALLOC_CAP_INTERNAL);
       float usage = 100.0 - ((float)free_mem / (float)total_mem * 100.0);
       
       // Log warning if memory usage is high
@@ -137,8 +137,8 @@ text_sensor:
       std::vector<std::string> issues;
       
       // Check memory
-      uint32_t free_mem = ESP.getFreeHeap();
-      uint32_t total_mem = ESP.getHeapSize();
+      uint32_t free_mem = heap_caps_get_free_size(MALLOC_CAP_INTERNAL);
+      uint32_t total_mem = heap_caps_get_total_size(MALLOC_CAP_INTERNAL);
       float mem_usage = 100.0 - ((float)free_mem / (float)total_mem * 100.0);
       
       if (mem_usage > 90.0) {
@@ -202,13 +202,24 @@ button:
       then:
         - lambda: |-
             ESP_LOGI("debug", "=== MEMORY REPORT ===");
-            ESP_LOGI("debug", "Free Heap: %d bytes", ESP.getFreeHeap());
-            ESP_LOGI("debug", "Heap Size: %d bytes", ESP.getHeapSize());
-            ESP_LOGI("debug", "Max Alloc: %d bytes", ESP.getMaxAllocHeap());
-            ESP_LOGI("debug", "Free PSRAM: %d bytes", ESP.getFreePsram());
-            ESP_LOGI("debug", "Chip Model: %s", ESP.getChipModel());
-            ESP_LOGI("debug", "Chip Cores: %d", ESP.getChipCores());
-            ESP_LOGI("debug", "CPU Freq: %d MHz", ESP.getCpuFreqMHz());
+            ESP_LOGI("debug", "Free Heap: %d bytes", heap_caps_get_free_size(MALLOC_CAP_INTERNAL));
+            ESP_LOGI("debug", "Heap Size: %d bytes", heap_caps_get_total_size(MALLOC_CAP_INTERNAL));
+            ESP_LOGI("debug", "Max Alloc: %d bytes", heap_caps_get_largest_free_block(MALLOC_CAP_INTERNAL));
+            ESP_LOGI("debug", "Free PSRAM: %d bytes", heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
+            esp_chip_info_t chip_info;
+            esp_chip_info(&chip_info);
+            const char* chip_model = "Unknown";
+            switch (chip_info.model) {
+              case CHIP_ESP32:   chip_model = "ESP32"; break;
+              case CHIP_ESP32S2: chip_model = "ESP32-S2"; break;
+              case CHIP_ESP32S3: chip_model = "ESP32-S3"; break;
+              case CHIP_ESP32C3: chip_model = "ESP32-C3"; break;
+              case CHIP_ESP32H2: chip_model = "ESP32-H2"; break;
+              default: chip_model = "Unknown"; break;
+            }
+            ESP_LOGI("debug", "Chip Model: %s", chip_model);
+            ESP_LOGI("debug", "Chip Cores: %d", chip_info.cores);
+            ESP_LOGI("debug", "CPU Freq: %d MHz", ets_get_cpu_frequency());
             ESP_LOGI("debug", "===================");
     web_server:
       sorting_group_id: sorting_group_debug
@@ -230,7 +241,6 @@ button:
             ESP_LOGI("debug", "Scanning I2C bus...");
             
             int device_count = 0;
-            byte error;
             for (uint8_t address = 8; address < 120; address++) {
               esphome::i2c::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
               if (err == esphome::i2c::ERROR_OK) {
