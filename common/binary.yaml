@@ -16,6 +16,21 @@ binary_sensor:
     name: "Binary Sensor 1"
     filters:
       - delayed_on_off: 30ms
+    on_state:
+      then:
+        - if:
+            condition:
+              binary_sensor.is_on: binary_pin_1
+            then:
+              - logger.log:
+                  level: WARN
+                  tag: "binary_sensor_1"
+                  format: "Binary Sensor 1 activated."
+            else:
+              - logger.log:
+                  level: INFO
+                  tag: "binary_sensor_1"
+                  format: "Binary Sensor 1 cleared."
     web_server:
       sorting_group_id: sorting_group_misc
     icon: mdi:check-circle
@@ -32,6 +47,21 @@ binary_sensor:
     device_class: moisture
     filters:
       - delayed_on_off: 30ms
+    on_state:
+      then:
+        - if:
+            condition:
+              binary_sensor.is_on: leak_sensor
+            then:
+              - logger.log:
+                  level: ERROR
+                  tag: "leak_sensor"
+                  format: "⚠️ LEAK DETECTED! Check your aquarium immediately. Water may be leaking."
+            else:
+              - logger.log:
+                  level: INFO
+                  tag: "leak_sensor"
+                  format: "Leak sensor cleared - no moisture detected."
     web_server:
       sorting_group_id: sorting_group_misc
     icon: mdi:pipe-leak

@@ -13,6 +13,20 @@ web_server:
       name: "Salinity - EZO"
       sorting_weight: ${sorting_group_ec}
 
+globals:
+  - id: ec_cal_dry_done
+    type: bool
+    restore_value: true
+    initial_value: 'false'
+  - id: ec_cal_low_done
+    type: bool
+    restore_value: true
+    initial_value: 'false'
+  - id: ec_cal_high_done
+    type: bool
+    restore_value: true
+    initial_value: 'false'
+
 api:
   actions:
     - action: ec_change_address
@@ -38,14 +52,17 @@ api:
       then:
         - lambda: |-
             id(ec_ezo).send_custom("Cal,dry");
+            id(ec_cal_dry_done) = true;
     - action: ec_calibrate_low_12880
       then:
         - lambda: |-
             id(ec_ezo).send_custom("Cal,low,12880");
+            id(ec_cal_low_done) = true;
     - action: ec_calibrate_high_80000
       then:
         - lambda: |-
             id(ec_ezo).send_custom("Cal,high,80000");
+            id(ec_cal_high_done) = true;
     - action: ec_output_all_parameters
       then:
         - lambda: |-
@@ -69,10 +86,16 @@ api:
 
 esphome:
   on_boot:
-    priority: 800
-    then:
-      - button.press: read_ec
-      - button.press: send_selected_ec
+    - priority: 800
+      then:
+        - button.press: read_ec
+        - button.press: send_selected_ec
+    - priority: 200
+      then:
+        - lambda: |-
+            if (!id(ec_cal_dry_done)) {
+              ESP_LOGW("ezo_ec", "EC sensor may not have its required DRY calibration yet. Run calibration via 'EC - Command Select'.");
+            }
 
 interval:
   # Update Raw EC
@@ -256,6 +279,37 @@ text_sensor:
     web_server:
       sorting_group_id: sorting_group_ec
 
+binary_sensor:
+  - platform: template
+    name: "EC - Calibrated (DRY)"
+    id: ec_cal_dry_sensor
+    icon: mdi:check-circle
+    entity_category: "diagnostic"
+    lambda: |-
+      return id(ec_cal_dry_done);
+    web_server:
+      sorting_group_id: sorting_group_ec
+
+  - platform: template
+    name: "EC - Calibrated (LOW)"
+    id: ec_cal_low_sensor
+    icon: mdi:check-circle
+    entity_category: "diagnostic"
+    lambda: |-
+      return id(ec_cal_low_done);
+    web_server:
+      sorting_group_id: sorting_group_ec
+
+  - platform: template
+    name: "EC - Calibrated (HIGH)"
+    id: ec_cal_high_sensor
+    icon: mdi:check-circle
+    entity_category: "diagnostic"
+    lambda: |-
+      return id(ec_cal_high_done);
+    web_server:
+      sorting_group_id: sorting_group_ec
+
 button:
   # Read Conductivity Probe
   - platform: template
@@ -290,78 +344,105 @@ button:
             if (id(select_command_ec).current_option() == "Read") {
               id(ec_ezo).send_custom("R");
             }
-            if (id(select_command_ec).current_option() == "Information") {
+            else if (id(select_command_ec).current_option() == "Information") {
               id(ec_ezo).get_device_information();
             }
-            if (id(select_command_ec).current_option() == "Status") {
+            else if (id(select_command_ec).current_option() == "Status") {
               id(ec_ezo).send_custom("Status");
             }
-            if (id(select_command_ec).current_option() == "Get Probe K Value") {
+            else if (id(select_command_ec).current_option() == "Get Probe K Value") {
               id(ec_ezo).send_custom("K,?");
             }
-            if (id(select_command_ec).current_option() == "Get TDS Value") {
+            else if (id(select_command_ec).current_option() == "Get TDS Value") {
               id(ec_ezo).send_custom("TDS,?");
             }
-            if (id(select_command_ec).current_option() == "Set TDS Value to NaCl - 0.48") {
+            else if (id(select_command_ec).current_option() == "Set TDS Value to NaCl - 0.48") {
               id(ec_ezo).send_custom("TDS,0.48");
             }
-            if (id(select_command_ec).current_option() == "Get Enabled Parameter(s)") {
+            else if (id(select_command_ec).current_option() == "Get Enabled Parameter(s)") {
               id(ec_ezo).send_custom("O,?");
             }
-            if (id(select_command_ec).current_option() == "Set Probe Type K1") {
+            else if (id(select_command_ec).current_option() == "Set Probe Type K1") {
               id(ec_ezo).send_custom("K,1");
             }
-            if (id(select_command_ec).current_option() == "Output Units - All (Default)") {
+            else if (id(select_command_ec).current_option() == "Output Units - All (Default)") {
               id(ec_ezo).send_custom("O,EC,1");
               id(ec_ezo).send_custom("O,TDS,1");
               id(ec_ezo).send_custom("O,S,1");
               id(ec_ezo).send_custom("O,SG,1");
             }
-            if (id(select_command_ec).current_option() == "Output Units - Conductivity") {
+            else if (id(select_command_ec).current_option() == "Output Units - Conductivity") {
               id(ec_ezo).send_custom("O,EC,1");
               id(ec_ezo).send_custom("O,TDS,0");
               id(ec_ezo).send_custom("O,S,0");
               id(ec_ezo).send_custom("O,SG,0");
             }
-            if (id(select_command_ec).current_option() == "Output Units - Salinity") {
+            else if (id(select_command_ec).current_option() == "Output Units - Salinity") {
               id(ec_ezo).send_custom("O,EC,0");
               id(ec_ezo).send_custom("O,TDS,0");
               id(ec_ezo).send_custom("O,S,1");
               id(ec_ezo).send_custom("O,SG,0");
             }
-            if (id(select_command_ec).current_option() == "Output Units - Specific Gravity") {
+            else if (id(select_command_ec).current_option() == "Output Units - Specific Gravity") {
               id(ec_ezo).send_custom("O,EC,0");
               id(ec_ezo).send_custom("O,TDS,0");
               id(ec_ezo).send_custom("O,S,0");
               id(ec_ezo).send_custom("O,SG,1");
             }
-            if (id(select_command_ec).current_option() == "Output Units - TDS") {
+            else if (id(select_command_ec).current_option() == "Output Units - TDS") {
               id(ec_ezo).send_custom("O,EC,0");
               id(ec_ezo).send_custom("O,TDS,1");
               id(ec_ezo).send_custom("O,S,0");
               id(ec_ezo).send_custom("O,SG,0");
             }
-            if (id(select_command_ec).current_option() == "Check Calibration") {
+            else if (id(select_command_ec).current_option() == "Check Calibration") {
               id(ec_ezo).get_calibration();
             }
-            if (id(select_command_ec).current_option() == "Calibrate @ DRY (WILL RESET CALIBRATION)") {
+            else if (id(select_command_ec).current_option() == "Calibrate @ DRY (WILL RESET CALIBRATION)") {
               id(ec_ezo).send_custom("Cal,dry");
+              id(ec_cal_dry_done) = true;
+              ESP_LOGI("ezo_ec", "EC calibration sent: DRY");
             }
-            if (id(select_command_ec).current_option() == "Calibrate @ LOW = 12880 (WILL RESET CALIBRATION)") {
+            else if (id(select_command_ec).current_option() == "Calibrate @ LOW = 12880 (WILL RESET CALIBRATION)") {
               id(ec_ezo).send_custom("Cal,low,12880");
+              id(ec_cal_low_done) = true;
+              ESP_LOGI("ezo_ec", "EC calibration sent: LOW = 12880");
             }
-            if (id(select_command_ec).current_option() == "Calibrate @ HIGH = 80000 (WILL RESET CALIBRATION)") {
+            else if (id(select_command_ec).current_option() == "Calibrate @ HIGH = 80000 (WILL RESET CALIBRATION)") {
               id(ec_ezo).send_custom("Cal,high,80000");
+              id(ec_cal_high_done) = true;
+              ESP_LOGI("ezo_ec", "EC calibration sent: HIGH = 80000");
             }
-            if (id(select_command_ec).current_option() == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
+            else if (id(select_command_ec).current_option() == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(ec_ezo).clear_calibration();
+              id(ec_cal_dry_done) = false;
+              id(ec_cal_low_done) = false;
+              id(ec_cal_high_done) = false;
             }
-            if (id(select_command_ec).current_option() == "Factory Reset") {
+            else if (id(select_command_ec).current_option() == "Factory Reset") {
               id(ec_ezo).send_custom("Factory");
+              id(ec_cal_dry_done) = false;
+              id(ec_cal_low_done) = false;
+              id(ec_cal_high_done) = false;
             }
             else {
               id(ec_ezo).send_custom("R");
             }
+    web_server:
+      sorting_group_id: sorting_group_ec
+
+  - platform: template
+    name: "EC - Reset Calibration Flags"
+    id: ec_cal_reset_flags
+    icon: mdi:flag-remove
+    entity_category: "Config"
+    disabled_by_default: true
+    on_press:
+      - lambda: |-
+          id(ec_cal_dry_done) = false;
+          id(ec_cal_low_done) = false;
+          id(ec_cal_high_done) = false;
+          ESP_LOGI("ezo_ec", "EC calibration flags manually reset.");
     web_server:
       sorting_group_id: sorting_group_ec
 
