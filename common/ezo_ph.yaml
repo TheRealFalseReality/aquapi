@@ -258,9 +258,6 @@ button:
               id(ph_cal_low_done) = false;
               id(ph_cal_high_done) = false;
             }
-            else {
-              id(ph_ezo).send_custom("R");
-            }
     web_server:
       sorting_group_id: sorting_group_ph
 

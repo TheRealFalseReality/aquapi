@@ -180,9 +180,6 @@ button:
               id(orp_ezo).send_custom("Factory");
               id(orp_cal_done) = false;
             }
-            else {
-              id(orp_ezo).send_custom("R");
-            }
     web_server:
       sorting_group_id: sorting_group_orp
 

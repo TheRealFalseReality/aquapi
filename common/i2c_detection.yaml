@@ -28,19 +28,19 @@ script:
           };
           
           // Update all binary sensor detection states
-          id(ezo_ph_detected).publish_state(check_i2c_device(0x63));
-          id(ezo_ec_detected).publish_state(check_i2c_device(0x64));
-          id(ezo_orp_detected).publish_state(check_i2c_device(0x62));
-          id(ezo_do_detected).publish_state(check_i2c_device(0x61));
-          id(ezo_co2_detected).publish_state(check_i2c_device(0x69));
-          id(ezo_rtd_detected).publish_state(check_i2c_device(0x66));
-          id(ezo_hum_detected).publish_state(check_i2c_device(0x6F));
-          id(ezo_pmp_white_detected).publish_state(check_i2c_device(0x67));
-          id(ezo_pmp_yellow_detected).publish_state(check_i2c_device(0x68));
-          id(ezo_pmp_blue_detected).publish_state(check_i2c_device(0x6A));
-          id(ezo_pmp_red_detected).publish_state(check_i2c_device(0x6C));
-          id(ezo_pmp_green_detected).publish_state(check_i2c_device(0x6D));
-          id(ezo_pmp_orange_detected).publish_state(check_i2c_device(0x6E));
+          id(ezo_ph_detected).publish_state(check_i2c_device(${addPH}));
+          id(ezo_ec_detected).publish_state(check_i2c_device(${addEC}));
+          id(ezo_orp_detected).publish_state(check_i2c_device(${addORP}));
+          id(ezo_do_detected).publish_state(check_i2c_device(${addDO}));
+          id(ezo_co2_detected).publish_state(check_i2c_device(${addCO2}));
+          id(ezo_rtd_detected).publish_state(check_i2c_device(${addRTD}));
+          id(ezo_hum_detected).publish_state(check_i2c_device(${addHUM}));
+          id(ezo_pmp_white_detected).publish_state(check_i2c_device(${addPMP_white}));
+          id(ezo_pmp_yellow_detected).publish_state(check_i2c_device(${addPMP_yellow}));
+          id(ezo_pmp_blue_detected).publish_state(check_i2c_device(${addPMP_blue}));
+          id(ezo_pmp_red_detected).publish_state(check_i2c_device(${addPMP_red}));
+          id(ezo_pmp_green_detected).publish_state(check_i2c_device(${addPMP_green}));
+          id(ezo_pmp_orange_detected).publish_state(check_i2c_device(${addPMP_orange}));
   
   # Script to log helpful messages for sensors that are configured but not detected
   - id: log_missing_sensors_help

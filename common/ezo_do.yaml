@@ -316,9 +316,6 @@ button:
               id(do_cal_dry_done) = false;
               id(do_cal_zero_done) = false;
             }
-            else {
-              id(do_ezo).send_custom("R");
-            }
 
   - platform: template
     name: "DO - Apply Compensation Now"
