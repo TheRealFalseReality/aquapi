@@ -210,19 +210,24 @@ button:
         - lambda: |-
             if (id(select_command_ph).current_option() == "Read") {
               id(ph_ezo).send_custom("R");
+              ESP_LOGD("ezo_ph", "pH read command sent. Check 'pH - Command Result' for response.");
             }
             // Get Device Firmware Version
             else if (id(select_command_ph).current_option() == "Information") {
               id(ph_ezo).get_device_information();
+              ESP_LOGD("ezo_ph", "pH information command sent. Check 'pH - Command Result' for response.");
             }
             else if (id(select_command_ph).current_option() == "Status") {
               id(ph_ezo).send_custom("Status");
+              ESP_LOGD("ezo_ph", "pH status command sent. Check 'pH - Command Result' for response.");
             }
             else if (id(select_command_ph).current_option() == "Get Slope") {
               id(ph_ezo).get_slope();
+              ESP_LOGD("ezo_ph", "pH slope check sent. Check 'pH - Command Result' for response.");
             }
             else if (id(select_command_ph).current_option() == "Check Calibration") {
               id(ph_ezo).get_calibration();
+              ESP_LOGD("ezo_ph", "pH calibration check sent. Check 'pH - Command Result' for response.");
             }
             else if (id(select_command_ph).current_option() == "Calibrate @ MID = 7 (WILL RESET CALIBRATION)") {
               id(ph_ezo).set_calibration_point_mid(7.00);
@@ -234,29 +239,31 @@ button:
             else if (id(select_command_ph).current_option() == "Calibrate @ LOW = 4 (WILL RESET CALIBRATION)") {
               id(ph_ezo).set_calibration_point_low(4.00);
               id(ph_cal_low_done) = true;
-              ESP_LOGI("ezo_ph", "pH calibration sent: LOW = 4.00");
+              ESP_LOGI("ezo_ph", "pH calibration sent: LOW = 4.00. Check 'pH - Command Result' for confirmation.");
             }
             else if (id(select_command_ph).current_option() == "Calibrate @ HIGH = 10 (WILL RESET CALIBRATION)") {
               id(ph_ezo).set_calibration_point_high(10.00);
               id(ph_cal_high_done) = true;
-              ESP_LOGI("ezo_ph", "pH calibration sent: HIGH = 10.00");
+              ESP_LOGI("ezo_ph", "pH calibration sent: HIGH = 10.00. Check 'pH - Command Result' for confirmation.");
             }
             else if (id(select_command_ph).current_option() == "Calibrate @ HIGH = 10.01 (WILL RESET CALIBRATION)") {
               id(ph_ezo).set_calibration_point_high(10.01);
               id(ph_cal_high_done) = true;
-              ESP_LOGI("ezo_ph", "pH calibration sent: HIGH = 10.01");
+              ESP_LOGI("ezo_ph", "pH calibration sent: HIGH = 10.01. Check 'pH - Command Result' for confirmation.");
             }
             else if (id(select_command_ph).current_option() == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(ph_ezo).clear_calibration();
               id(ph_cal_mid_done) = false;
               id(ph_cal_low_done) = false;
               id(ph_cal_high_done) = false;
+              ESP_LOGI("ezo_ph", "pH calibration CLEARED. All calibration points reset.");
             }
             else if (id(select_command_ph).current_option() == "Factory Reset") {
               id(ph_ezo).send_custom("Factory");
               id(ph_cal_mid_done) = false;
               id(ph_cal_low_done) = false;
               id(ph_cal_high_done) = false;
+              ESP_LOGW("ezo_ph", "pH Factory Reset sent! Device has been reset to factory defaults.");
             }
     web_server:
       sorting_group_id: sorting_group_ph

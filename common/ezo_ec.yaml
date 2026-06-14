@@ -145,6 +145,7 @@ sensor:
   #   state_class: "measurement"
   #   lambda: |-
   #     std::string str = id(raw_value_ec).state;
+  #     if (str.empty()) return NAN;
   #     std::vector<std::string> v;
   #     char * token;
   #     char seps[] = ",";
@@ -172,6 +173,7 @@ sensor:
     state_class: "measurement"
     lambda: |-
       std::string str = id(raw_value_ec).state;
+      if (str.empty()) return NAN;
       std::vector<std::string> v;
       char * token;
       char seps[] = ",";
@@ -201,6 +203,7 @@ sensor:
     state_class: "measurement"
     lambda: |-
       std::string str = id(raw_value_ec).state;
+      if (str.empty()) return NAN;
       std::vector<std::string> v;
       char * token;
       char seps[] = ",";
@@ -230,6 +233,7 @@ sensor:
     state_class: "measurement"
     lambda: |-
       std::string str = id(raw_value_ec).state;
+      if (str.empty()) return NAN;
       std::vector<std::string> v;
       char * token;
       char seps[] = ",";
@@ -338,12 +342,15 @@ button:
         - lambda: |-
             if (id(select_command_ec).current_option() == "Read") {
               id(ec_ezo).send_custom("R");
+              ESP_LOGD("ezo_ec", "EC read command sent. Check 'EC - Command Result' for response.");
             }
             else if (id(select_command_ec).current_option() == "Information") {
               id(ec_ezo).get_device_information();
+              ESP_LOGD("ezo_ec", "EC information command sent. Check 'EC - Command Result' for response.");
             }
             else if (id(select_command_ec).current_option() == "Status") {
               id(ec_ezo).send_custom("Status");
+              ESP_LOGD("ezo_ec", "EC status command sent. Check 'EC - Command Result' for response.");
             }
             else if (id(select_command_ec).current_option() == "Get Probe K Value") {
               id(ec_ezo).send_custom("K,?");
@@ -392,33 +399,36 @@ button:
             }
             else if (id(select_command_ec).current_option() == "Check Calibration") {
               id(ec_ezo).get_calibration();
+              ESP_LOGD("ezo_ec", "EC calibration check sent. Check 'EC - Command Result' for response.");
             }
             else if (id(select_command_ec).current_option() == "Calibrate @ DRY (WILL RESET CALIBRATION)") {
               id(ec_ezo).send_custom("Cal,dry");
               id(ec_cal_dry_done) = true;
-              ESP_LOGI("ezo_ec", "EC calibration sent: DRY");
+              ESP_LOGI("ezo_ec", "EC calibration sent: DRY point. Check 'EC - Command Result' for confirmation.");
             }
             else if (id(select_command_ec).current_option() == "Calibrate @ LOW = 12880 (WILL RESET CALIBRATION)") {
               id(ec_ezo).send_custom("Cal,low,12880");
               id(ec_cal_low_done) = true;
-              ESP_LOGI("ezo_ec", "EC calibration sent: LOW = 12880");
+              ESP_LOGI("ezo_ec", "EC calibration sent: LOW = 12880. Check 'EC - Command Result' for confirmation.");
             }
             else if (id(select_command_ec).current_option() == "Calibrate @ HIGH = 80000 (WILL RESET CALIBRATION)") {
               id(ec_ezo).send_custom("Cal,high,80000");
               id(ec_cal_high_done) = true;
-              ESP_LOGI("ezo_ec", "EC calibration sent: HIGH = 80000");
+              ESP_LOGI("ezo_ec", "EC calibration sent: HIGH = 80000. Check 'EC - Command Result' for confirmation.");
             }
             else if (id(select_command_ec).current_option() == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(ec_ezo).clear_calibration();
               id(ec_cal_dry_done) = false;
               id(ec_cal_low_done) = false;
               id(ec_cal_high_done) = false;
+              ESP_LOGI("ezo_ec", "EC calibration CLEARED. All calibration points reset.");
             }
             else if (id(select_command_ec).current_option() == "Factory Reset") {
               id(ec_ezo).send_custom("Factory");
               id(ec_cal_dry_done) = false;
               id(ec_cal_low_done) = false;
               id(ec_cal_high_done) = false;
+              ESP_LOGW("ezo_ec", "EC Factory Reset sent! Device has been reset to factory defaults.");
             }
     web_server:
       sorting_group_id: sorting_group_ec

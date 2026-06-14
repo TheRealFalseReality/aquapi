@@ -156,16 +156,20 @@ button:
         - lambda: |-
             if (id(select_command_orp).current_option() == "Read") {
               id(orp_ezo).send_custom("R");
+              ESP_LOGD("ezo_orp", "ORP read command sent. Check 'ORP - Command Result' for response.");
             }
             // Get Device Firmware Version
             else if (id(select_command_orp).current_option() == "Information") {
               id(orp_ezo).get_device_information();
+              ESP_LOGD("ezo_orp", "ORP information command sent. Check 'ORP - Command Result' for response.");
             }
             else if (id(select_command_orp).current_option() == "Status") {
               id(orp_ezo).send_custom("Status");
+              ESP_LOGD("ezo_orp", "ORP status command sent. Check 'ORP - Command Result' for response.");
             }
             else if (id(select_command_orp).current_option() == "Check Calibration") {
               id(orp_ezo).get_calibration();
+              ESP_LOGD("ezo_orp", "ORP calibration check sent. Check 'ORP - Command Result' for response.");
             }
             else if (id(select_command_orp).current_option() == "Calibrate @ 225 mV (WILL RESET CALIBRATION)") {
               id(orp_ezo).send_custom("Cal,225");
@@ -175,10 +179,12 @@ button:
             else if (id(select_command_orp).current_option() == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(orp_ezo).clear_calibration();
               id(orp_cal_done) = false;
+              ESP_LOGI("ezo_orp", "ORP calibration CLEARED. All calibration points reset.");
             }
             else if (id(select_command_orp).current_option() == "Factory Reset") {
               id(orp_ezo).send_custom("Factory");
               id(orp_cal_done) = false;
+              ESP_LOGW("ezo_orp", "ORP Factory Reset sent! Device has been reset to factory defaults.");
             }
     web_server:
       sorting_group_id: sorting_group_orp

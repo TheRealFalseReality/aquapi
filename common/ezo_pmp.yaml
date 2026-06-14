@@ -178,14 +178,14 @@ number:
   - platform: template
     id: volume
     icon: mdi:pump
-    name: Pump White - Volume to Dose
+    name: Pump White - Volume to Dose (negative = reverse)
     disabled_by_default: true
     device_class: 'volume'
     unit_of_measurement: 'mL'
     optimistic: true
     initial_value: 10  # cannot be less than +/-0.1mL
-    min_value: -378541
-    max_value: 378541  # 100 gal
+    min_value: -378541  # Negative values run pump in reverse direction
+    max_value: 378541   # 100 gal in mL
     mode: box
     step: 0.1
     web_server:
@@ -246,7 +246,7 @@ button:
     web_server:
       sorting_group_id: sorting_group_pump_white
   - platform: template
-    name: Pump White - Dose Volume
+    name: Pump White - Dose Volume (negative = reverse)
     disabled_by_default: true
     icon: mdi:pump
     id: dose_volume

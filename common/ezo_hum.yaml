@@ -89,6 +89,7 @@ sensor:
     device_class: "temperature"
     lambda: |-
       std::string str = id(raw_value_hum).state;
+      if (str.empty()) return NAN;
       std::vector<std::string> v;
       char * token;
       char seps[] = ",";
@@ -118,6 +119,7 @@ sensor:
     device_class: "temperature"
     lambda: |-
       std::string str = id(raw_value_hum).state;
+      if (str.empty()) return NAN;
       std::vector<std::string> v;
       char * token;
       char seps[] = ",";
@@ -198,12 +200,15 @@ button:
         - lambda: |-
             if (id(select_command_hum).current_option() == "Read") {
               id(hum_ezo).send_custom("R");
+              ESP_LOGD("ezo_hum", "HUM read command sent. Check 'HUM - Command Result' for response.");
             }
             else if (id(select_command_hum).current_option() == "Information") {
               id(hum_ezo).get_device_information();
+              ESP_LOGD("ezo_hum", "HUM information command sent. Check 'HUM - Command Result' for response.");
             }
             else if (id(select_command_hum).current_option() == "Status") {
               id(hum_ezo).send_custom("Status");
+              ESP_LOGD("ezo_hum", "HUM status command sent. Check 'HUM - Command Result' for response.");
             }
             else if (id(select_command_hum).current_option() == "Get Enabled Parameter(s)") {
               id(hum_ezo).send_custom("O,?");
@@ -228,9 +233,11 @@ button:
             }
             else if (id(select_command_hum).current_option() == "Check Calibration") {
               id(hum_ezo).get_calibration();
+              ESP_LOGD("ezo_hum", "HUM calibration check sent. Check 'HUM - Command Result' for response.");
             }
             else if (id(select_command_hum).current_option() == "Factory Reset") {
               id(hum_ezo).send_custom("Factory");
+              ESP_LOGW("ezo_hum", "HUM Factory Reset sent! Device has been reset to factory defaults.");
             }
     web_server:
       sorting_group_id: sorting_group_hum
