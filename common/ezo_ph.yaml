@@ -20,12 +20,6 @@ api:
       then:
         - lambda: |-
             id(ph_ezo).send_custom("I2C,{{address}}");
-    # - action: ph_custom_command
-    #   variables:
-    #     command: string
-    #   then:
-    #     - lambda: |-
-    #         id(ph_ezo).send_custom({{command}});
     - action: ph_read_continuous
       then:
         - repeat:
@@ -49,12 +43,30 @@ api:
       then:
         - lambda: |-
             id(ph_ezo).set_calibration_point_high(10.01);
-    # - action: ezo_ph_custom_command
-    #   variables:
-    #     command: string
-    #   then:
-    #     - lambda: |-
-    #         id(ph_ezo).send_custom('{{ command }}');
+    - action: ph_calibrate_mid
+      variables:
+        value: float
+      then:
+        - lambda: |-
+            id(ph_ezo).set_calibration_point_mid(value);
+    - action: ph_calibrate_low
+      variables:
+        value: float
+      then:
+        - lambda: |-
+            id(ph_ezo).set_calibration_point_low(value);
+    - action: ph_calibrate_high
+      variables:
+        value: float
+      then:
+        - lambda: |-
+            id(ph_ezo).set_calibration_point_high(value);
+    - action: ph_custom_command
+      variables:
+        command: string
+      then:
+        - lambda: |-
+            id(ph_ezo).send_custom(command.c_str());
 
 esphome:
   on_boot:
