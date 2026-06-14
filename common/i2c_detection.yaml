@@ -3,6 +3,26 @@
 # Provides individual sensor detection status for Atlas Scientific EZO circuits
 # and general I2C device monitoring
 
+  addCO2: "105"
+  addDO: "97"
+  addEC: "100"
+  addHUM: "111"
+  addORP: "98"
+  addPH: "99"
+  addRTD: "102"
+  addPMP: "103"
+  addPMPClean: "109"  # Green - Clean Water
+  addPMPWaste: "108"  # Red - Waste Water
+  addPMP_2: "110"  # Orange
+  addPMP_3: "104"  # Yellow
+  addPMP_4: "106"  # Blue
+  addPMP_blue: "106"  # Blue
+  addPMP_green: "109"  # Clean/Green
+  addPMP_orange: "110"  # Orange
+  addPMP_red: "108"  # Waste/Red
+  addPMP_white: "103"  # White
+  addPMP_yellow: "104"  # Yellowv
+
 substitutions:
   sorting_group_i2c_detection: '95'
 
