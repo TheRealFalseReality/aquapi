@@ -90,8 +90,8 @@ substitutions:
   cal_100: "100.0"
   cal_100_2: "100.0"
   cal_100_temp_2: "100.0"
-  range_cool: "74"
-  range_warm: "82"
+  range_cool: "23.5"
+  range_warm: "28"
 
   # Sensor Update Intervals
   update_button_co2: "60s"
