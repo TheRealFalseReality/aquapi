@@ -194,88 +194,88 @@ text_sensor:
     web_server:
       sorting_group_id: sorting_group_debug
 
-button:
-  # Memory Report Button
-  - platform: template
-    name: "Debug - Memory Report"
-    id: debug_memory_report
-    icon: mdi:file-document
-    disabled_by_default: true
-    entity_category: "config"
-    on_press:
-      then:
-        - lambda: |-
-            ESP_LOGI("debug", "=== MEMORY REPORT ===");
-            ESP_LOGI("debug", "Free Heap: %d bytes", heap_caps_get_free_size(MALLOC_CAP_INTERNAL));
-            ESP_LOGI("debug", "Heap Size: %d bytes", heap_caps_get_total_size(MALLOC_CAP_INTERNAL));
-            ESP_LOGI("debug", "Max Alloc: %d bytes", heap_caps_get_largest_free_block(MALLOC_CAP_INTERNAL));
-            ESP_LOGI("debug", "Free PSRAM: %d bytes", heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
-            esp_chip_info_t chip_info;
-            esp_chip_info(&chip_info);
-            const char* chip_model = "Unknown";
-            switch (chip_info.model) {
-              case CHIP_ESP32:   chip_model = "ESP32"; break;
-              case CHIP_ESP32S2: chip_model = "ESP32-S2"; break;
-              case CHIP_ESP32S3: chip_model = "ESP32-S3"; break;
-              case CHIP_ESP32C3: chip_model = "ESP32-C3"; break;
-              case CHIP_ESP32H2: chip_model = "ESP32-H2"; break;
-              case CHIP_ESP32C2: chip_model = "ESP32-C2"; break;
-              case CHIP_ESP32C6: chip_model = "ESP32-C6"; break;
-              default: chip_model = "Unknown"; break;
-            }
-            ESP_LOGI("debug", "Chip Model: %s", chip_model);
-            ESP_LOGI("debug", "Chip Cores: %d", chip_info.cores);
-            ESP_LOGI("debug", "CPU Freq: %d MHz", ets_get_cpu_frequency());
-            ESP_LOGI("debug", "===================");
-    web_server:
-      sorting_group_id: sorting_group_debug
+# button:
+#   # Memory Report Button
+#   - platform: template
+#     name: "Debug - Memory Report"
+#     id: debug_memory_report
+#     icon: mdi:file-document
+#     disabled_by_default: true
+#     entity_category: "config"
+#     on_press:
+#       then:
+#         - lambda: |-
+#             ESP_LOGI("debug", "=== MEMORY REPORT ===");
+#             ESP_LOGI("debug", "Free Heap: %d bytes", heap_caps_get_free_size(MALLOC_CAP_INTERNAL));
+#             ESP_LOGI("debug", "Heap Size: %d bytes", heap_caps_get_total_size(MALLOC_CAP_INTERNAL));
+#             ESP_LOGI("debug", "Max Alloc: %d bytes", heap_caps_get_largest_free_block(MALLOC_CAP_INTERNAL));
+#             ESP_LOGI("debug", "Free PSRAM: %d bytes", heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
+#             esp_chip_info_t chip_info;
+#             esp_chip_info(&chip_info);
+#             const char* chip_model = "Unknown";
+#             switch (chip_info.model) {
+#               case CHIP_ESP32:   chip_model = "ESP32"; break;
+#               case CHIP_ESP32S2: chip_model = "ESP32-S2"; break;
+#               case CHIP_ESP32S3: chip_model = "ESP32-S3"; break;
+#               case CHIP_ESP32C3: chip_model = "ESP32-C3"; break;
+#               case CHIP_ESP32H2: chip_model = "ESP32-H2"; break;
+#               case CHIP_ESP32C2: chip_model = "ESP32-C2"; break;
+#               case CHIP_ESP32C6: chip_model = "ESP32-C6"; break;
+#               default: chip_model = "Unknown"; break;
+#             }
+#             ESP_LOGI("debug", "Chip Model: %s", chip_model);
+#             ESP_LOGI("debug", "Chip Cores: %d", chip_info.cores);
+#             ESP_LOGI("debug", "CPU Freq: %d MHz", ets_get_cpu_frequency());
+#             ESP_LOGI("debug", "===================");
+#     web_server:
+#       sorting_group_id: sorting_group_debug
 
-  # I2C Debug Report Button
-  - platform: template
-    name: "Debug - I2C Report"
-    id: debug_i2c_report
-    icon: mdi:file-document
-    disabled_by_default: true
-    entity_category: "config"
-    on_press:
-      then:
-        - lambda: |-
-            ESP_LOGI("debug", "=== I2C BUS REPORT ===");
-            ESP_LOGI("debug", "Bus ID: bus_a");
-            ESP_LOGI("debug", "SDA Pin: ${sdaPin}");
-            ESP_LOGI("debug", "SCL Pin: ${sclPin}");
-            ESP_LOGI("debug", "Scanning I2C bus...");
+#   # I2C Debug Report Button
+#   - platform: template
+#     name: "Debug - I2C Report"
+#     id: debug_i2c_report
+#     icon: mdi:file-document
+#     disabled_by_default: true
+#     entity_category: "config"
+#     on_press:
+#       then:
+#         - lambda: |-
+#             ESP_LOGI("debug", "=== I2C BUS REPORT ===");
+#             ESP_LOGI("debug", "Bus ID: bus_a");
+#             ESP_LOGI("debug", "SDA Pin: ${sdaPin}");
+#             ESP_LOGI("debug", "SCL Pin: ${sclPin}");
+#             ESP_LOGI("debug", "Scanning I2C bus...");
             
-            int device_count = 0;
-            for (uint8_t address = 8; address < 120; address++) {
-              esphome::i2c::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
-              if (err == esphome::i2c::ERROR_OK) {
-                device_count++;
+#             int device_count = 0;
+#             for (uint8_t address = 8; address < 120; address++) {
+#               esphome::i2c::ErrorCode err = id(bus_a)->write(address, nullptr, 0);
+#               if (err == esphome::i2c::ERROR_OK) {
+#                 device_count++;
                 
-                // Identify known EZO sensors
-                const char* device_name = "Unknown";
-                switch(address) {
-                  case 97:  device_name = "EZO DO"; break;
-                  case 98:  device_name = "EZO ORP"; break;
-                  case 99:  device_name = "EZO pH"; break;
-                  case 100: device_name = "EZO EC"; break;
-                  case 102: device_name = "EZO RTD"; break;
-                  case 103: device_name = "EZO PMP (White)"; break;
-                  case 104: device_name = "EZO PMP (Yellow)"; break;
-                  case 105: device_name = "EZO CO2"; break;
-                  case 106: device_name = "EZO PMP (Blue)"; break;
-                  case 108: device_name = "EZO PMP (Red)"; break;
-                  case 109: device_name = "EZO PMP (Green)"; break;
-                  case 110: device_name = "EZO PMP (Orange)"; break;
-                  case 111: device_name = "EZO HUM"; break;
-                }
+#                 // Identify known EZO sensors
+#                 const char* device_name = "Unknown";
+#                 switch(address) {
+#                   case 97:  device_name = "EZO DO"; break;
+#                   case 98:  device_name = "EZO ORP"; break;
+#                   case 99:  device_name = "EZO pH"; break;
+#                   case 100: device_name = "EZO EC"; break;
+#                   case 102: device_name = "EZO RTD"; break;
+#                   case 103: device_name = "EZO PMP (White)"; break;
+#                   case 104: device_name = "EZO PMP (Yellow)"; break;
+#                   case 105: device_name = "EZO CO2"; break;
+#                   case 106: device_name = "EZO PMP (Blue)"; break;
+#                   case 108: device_name = "EZO PMP (Red)"; break;
+#                   case 109: device_name = "EZO PMP (Green)"; break;
+#                   case 110: device_name = "EZO PMP (Orange)"; break;
+#                   case 111: device_name = "EZO HUM"; break;
+#                 }
                 
-                ESP_LOGI("debug", "  Found: 0x%02X (%3d) - %s", 
-                         address, address, device_name);
-              }
-            }
+#                 ESP_LOGI("debug", "  Found: 0x%02X (%3d) - %s", 
+#                          address, address, device_name);
+#               }
+#             }
             
-            ESP_LOGI("debug", "Total devices found: %d", device_count);
-            ESP_LOGI("debug", "=====================");
-    web_server:
-      sorting_group_id: sorting_group_debug
+#             ESP_LOGI("debug", "Total devices found: %d", device_count);
+#             ESP_LOGI("debug", "=====================");
+#     web_server:
+#       sorting_group_id: sorting_group_debug
