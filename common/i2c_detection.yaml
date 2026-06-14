@@ -5,19 +5,6 @@
 
 substitutions:
   sorting_group_i2c_detection: '95'
-  addDO: "97"
-  addORP: "98"
-  addPH: "99"
-  addEC: "100"
-  addRTD: "102"
-  addPMP_white: "103"
-  addPMP_yellow: "104"
-  addCO2: "105"
-  addPMP_blue: "106"
-  addPMP_red: "108"
-  addPMP_green: "109"
-  addPMP_orange: "110"
-  addHUM: "111"
 
 web_server:
   sorting_groups:
