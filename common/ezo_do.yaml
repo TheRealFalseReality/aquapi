@@ -109,6 +109,7 @@ sensor:
       sorting_weight: 11
     lambda: |-
       std::string str = id(raw_value_do).state;
+      if (str.empty()) return NAN;
       std::vector<std::string> v;
       char * token;
       char seps[] = ",";
@@ -182,48 +183,56 @@ button:
         - lambda: |-
             if (id(select_command_do).current_option() == "Read") {
               id(do_ezo).send_custom("R");
+              ESP_LOGD("ezo_do", "DO read command sent. Check 'DO - Command Result' for response.");
             }
-            if (id(select_command_do).current_option() == "Information") {
+            else if (id(select_command_do).current_option() == "Information") {
               id(do_ezo).get_device_information();
+              ESP_LOGD("ezo_do", "DO information command sent. Check 'DO - Command Result' for response.");
             }
-            if (id(select_command_do).current_option() == "Status") {
+            else if (id(select_command_do).current_option() == "Status") {
               id(do_ezo).send_custom("Status");
+              ESP_LOGD("ezo_do", "DO status command sent. Check 'DO - Command Result' for response.");
             }
-            if (id(select_command_do).current_option() == "Get Enabled Parameter(s)") {
+            else if (id(select_command_do).current_option() == "Get Enabled Parameter(s)") {
               id(do_ezo).send_custom("O,?");
             }
-            if (id(select_command_do).current_option() == "Output Units - All (Default)") {
+            else if (id(select_command_do).current_option() == "Output Units - All (Default)") {
               id(do_ezo).send_custom("O,mg,1");
               id(do_ezo).send_custom("O,%,1");
             }
-            if (id(select_command_do).current_option() == "Output Units - % Saturation") {
+            else if (id(select_command_do).current_option() == "Output Units - % Saturation") {
               id(do_ezo).send_custom("O,mg,0");
               id(do_ezo).send_custom("O,%,1");
             }
-            if (id(select_command_do).current_option() == "Output Units - mg/L") {
+            else if (id(select_command_do).current_option() == "Output Units - mg/L") {
               id(do_ezo).send_custom("O,mg,1");
               id(do_ezo).send_custom("O,%,0");
             }
-            if (id(select_command_do).current_option() == "Check Calibration") {
+            else if (id(select_command_do).current_option() == "Check Calibration") {
               id(do_ezo).get_calibration();
+              ESP_LOGD("ezo_do", "DO calibration check sent. Check 'DO - Command Result' for response.");
             }
-            if (id(select_command_do).current_option() == "Calibrate @ DRY (WILL RESET CALIBRATION)") {
+            else if (id(select_command_do).current_option() == "Calibrate @ DRY (WILL RESET CALIBRATION)") {
               id(do_ezo).send_custom("Cal");
+              ESP_LOGI("ezo_do", "DO calibration sent: DRY point. Check 'DO - Command Result' for confirmation.");
             }
-            if (id(select_command_do).current_option() == "Calibrate @ 0% (WILL RESET CALIBRATION)") {
+            else if (id(select_command_do).current_option() == "Calibrate @ 0% (WILL RESET CALIBRATION)") {
               id(do_ezo).send_custom("Cal,0");
+              ESP_LOGI("ezo_do", "DO calibration sent: 0%% saturation. Check 'DO - Command Result' for confirmation.");
             }
-            if (id(select_command_do).current_option() == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
+            else if (id(select_command_do).current_option() == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(do_ezo).clear_calibration();
+              ESP_LOGI("ezo_do", "DO calibration CLEARED. All calibration points reset.");
             }
-            if (id(select_command_do).current_option() == "Salinity Compensation Value") {
+            else if (id(select_command_do).current_option() == "Salinity Compensation Value") {
               id(do_ezo).send_custom("S,?");
             }
-            if (id(select_command_do).current_option() == "Set Salinity Compensation @ 35ppt") {
+            else if (id(select_command_do).current_option() == "Set Salinity Compensation @ 35ppt") {
               id(do_ezo).send_custom("S,35.0,ppt");
             }
-            if (id(select_command_do).current_option() == "Factory Reset") {
+            else if (id(select_command_do).current_option() == "Factory Reset") {
               id(do_ezo).send_custom("Factory");
+              ESP_LOGW("ezo_do", "DO Factory Reset sent! Device has been reset to factory defaults.");
             }
             else {
               id(do_ezo).send_custom("R");

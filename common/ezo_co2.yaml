@@ -93,6 +93,7 @@ sensor:
     disabled_by_default: true
     lambda: |-
       std::string str = id(raw_value_co2).state;
+      if (str.empty()) return NAN;
       std::vector<std::string> v;
       char * token;
       char seps[] = ",";
@@ -163,27 +164,32 @@ button:
         - lambda: |-
             if (id(select_command_co2).current_option() == "Read") {
               id(co2_ezo).send_custom("R");
+              ESP_LOGD("ezo_co2", "CO2 read command sent. Check 'CO2 - Command Result' for response.");
             }
-            if (id(select_command_co2).current_option() == "Information") {
+            else if (id(select_command_co2).current_option() == "Information") {
               id(co2_ezo).get_device_information();
+              ESP_LOGD("ezo_co2", "CO2 information command sent. Check 'CO2 - Command Result' for response.");
             }
-            if (id(select_command_co2).current_option() == "Status") {
+            else if (id(select_command_co2).current_option() == "Status") {
               id(co2_ezo).send_custom("Status");
+              ESP_LOGD("ezo_co2", "CO2 status command sent. Check 'CO2 - Command Result' for response.");
             }
-            if (id(select_command_co2).current_option() == "Get Enabled Parameter(s)") {
+            else if (id(select_command_co2).current_option() == "Get Enabled Parameter(s)") {
               id(co2_ezo).send_custom("O,?");
             }
-            if (id(select_command_co2).current_option() == "Output Units - Enable Temperature") {
+            else if (id(select_command_co2).current_option() == "Output Units - Enable Temperature") {
               id(co2_ezo).send_custom("O,t,1");
             }
-            if (id(select_command_co2).current_option() == "Output Units - Disable Temperature") {
+            else if (id(select_command_co2).current_option() == "Output Units - Disable Temperature") {
               id(co2_ezo).send_custom("O,t,0");
             }
-            if (id(select_command_co2).current_option() == "Check Calibration") {
+            else if (id(select_command_co2).current_option() == "Check Calibration") {
               id(co2_ezo).get_calibration();
+              ESP_LOGD("ezo_co2", "CO2 calibration check sent. Check 'CO2 - Command Result' for response.");
             }
-            if (id(select_command_co2).current_option() == "Factory Reset") {
+            else if (id(select_command_co2).current_option() == "Factory Reset") {
               id(co2_ezo).send_custom("Factory");
+              ESP_LOGW("ezo_co2", "CO2 Factory Reset sent! Device has been reset to factory defaults.");
             }
             else {
               id(co2_ezo).send_custom("R");
