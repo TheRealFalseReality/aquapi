@@ -1,7 +1,9 @@
----
 # I2C Sensor Detection Module
 # Provides individual sensor detection status for Atlas Scientific EZO circuits
 # and general I2C device monitoring
+
+substitutions:
+  sorting_group_i2c_detection: '95'
 
   addCO2: "105"
   addDO: "97"
@@ -22,9 +24,6 @@
   addPMP_red: "108"  # Waste/Red
   addPMP_white: "103"  # White
   addPMP_yellow: "104"  # Yellowv
-
-substitutions:
-  sorting_group_i2c_detection: '95'
 
 web_server:
   sorting_groups:
