@@ -133,26 +133,23 @@ button:
               id(orp_ezo).send_custom("R");
             }
             // Get Device Firmware Version
-            if (id(select_command_orp).current_option() == "Information") {
+            else if (id(select_command_orp).current_option() == "Information") {
               id(orp_ezo).get_device_information();
             }
-            if (id(select_command_orp).current_option() == "Status") {
+            else if (id(select_command_orp).current_option() == "Status") {
               id(orp_ezo).send_custom("Status");
             }
-            if (id(select_command_orp).current_option() == "Check Calibration") {
+            else if (id(select_command_orp).current_option() == "Check Calibration") {
               id(orp_ezo).get_calibration();
             }
-            if (id(select_command_orp).current_option() == "Calibrate @ 225 mV (WILL RESET CALIBRATION)") {
+            else if (id(select_command_orp).current_option() == "Calibrate @ 225 mV (WILL RESET CALIBRATION)") {
               id(orp_ezo).send_custom("Cal,225");
             }
-            if (id(select_command_orp).current_option() == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
+            else if (id(select_command_orp).current_option() == "Calibrate CLEAR (WILL RESET CALIBRATION)") {
               id(orp_ezo).clear_calibration();
             }
-            if (id(select_command_orp).current_option() == "Factory Reset") {
+            else if (id(select_command_orp).current_option() == "Factory Reset") {
               id(orp_ezo).send_custom("Factory");
-            }
-            else {
-              id(orp_ezo).send_custom("R");
             }
     web_server:
       sorting_group_id: sorting_group_orp
