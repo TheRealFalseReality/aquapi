@@ -42,7 +42,7 @@ The Aquarium meets the Smart Home! AquaPi brings powerful monitoring and automat
 **You can typically skip this as AquaPi comes pre-installed!**  
 Use the button below to install the pre-built firmware directly to your device via USB from the browser.
 
-### AquaPi Standard *(Inverted Optical - legacy boards)*
+### AquaPi Standard *(Inverted Optical - Legacy Optical Sensors)*
 <esp-web-install-button manifest="firmware/aquapi.manifest.json"></esp-web-install-button>
 
 ### AquaPi Optical *(Non-Inverted Optical - Newer Optical Sensors)*
