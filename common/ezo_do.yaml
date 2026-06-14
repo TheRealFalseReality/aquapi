@@ -21,12 +21,6 @@ api:
       then:
         - lambda: |-
             id(do_ezo).send_custom("I2C,{{address}}");
-    # - action: do_custom_command
-    #   variables:
-    #     command: string
-    #   then:
-    #     - lambda: |-
-    #         id(do_ezo).send_custom({{command}});
     - action: do_read_continuous
       then:
         - repeat:
@@ -51,6 +45,12 @@ api:
         - lambda: |-
             id(do_ezo).send_custom("O,mg,1");
             id(do_ezo).send_custom("O,%,1");
+    - action: do_custom_command
+      variables:
+        command: string
+      then:
+        - lambda: |-
+            id(do_ezo).send_custom(command.c_str());
 
 esphome:
   on_boot:
