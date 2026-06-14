@@ -34,17 +34,17 @@ api:
     #     - lambda: |-
     #         id(temp_ezo).send_custom({{command}});
 
-esphome:
-  on_boot:
-    priority: 800
-    then:
-      - button.press: read_rtd
+# esphome:
+#   on_boot:
+#     priority: 800
+#     then:
+#       - button.press: read_rtd
 
-interval:
-  # Update RTD via button to enable detection check
-  - interval: "${update_button_rtd}"
-    then:
-      - button.press: read_rtd
+# interval:
+#   # Update RTD via button to enable detection check
+#   - interval: "${update_button_rtd}"
+#     then:
+#       - button.press: read_rtd
 
 sensor:
   # EZO Circuits (yellow - SCL/RX, blue - SDA/TX)
