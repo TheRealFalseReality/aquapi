@@ -27,6 +27,8 @@ esp32:
   board: esp32dev
   framework:
     type: esp-idf
+    advanced:
+      minimum_chip_revision: "3.0" # ESP32 revision 3 is required for the latest ESP-IDF features and optimizations`
 
 esphome:
   min_version: 2024.6.0
