@@ -1,8 +1,8 @@
 ---
 substitutions:
-  firmware_manifest_url: "https://therealfalsereality.github.io/aquapi/firmware/aquapi.manifest.json"
-  firmware_ota_url: "https://therealfalsereality.github.io/aquapi/firmware/aquapi-esp32.ota.bin"
-  firmware_md5_url: "https://therealfalsereality.github.io/aquapi/firmware/aquapi-esp32.ota.bin.md5"
+  firmware_manifest_url: "https://therealfalsereality.github.io/aquapi/firmware/aquapi-standard.manifest.json"
+  firmware_ota_url: "https://therealfalsereality.github.io/aquapi/firmware/aquapi-esp32-standard.ota.bin"
+  firmware_md5_url: "https://therealfalsereality.github.io/aquapi/firmware/aquapi-esp32-standard.ota.bin.md5"
 
 ota:
   - platform: http_request
