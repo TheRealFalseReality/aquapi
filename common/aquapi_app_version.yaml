@@ -1,6 +1,6 @@
 substitutions:
   # App Version
-  app_version: "26.6.2"
+  app_version: "26.6.3"
   
 text_sensor:
   # AquaPi Version
