@@ -26,19 +26,19 @@ api:
         address: int
       then:
         - lambda: |-
-            id(temp_ezo).send_custom("I2C,{{address}}");
+            id(rtd_ezo).send_custom("I2C,{{address}}");
     - action: temperature_rtd_calibrate
       variables:
         value: float
       then:
         - lambda: |-
-            id(temp_ezo).send_custom(("Cal," + to_string(value)).c_str());
+            id(rtd_ezo).send_custom(("Cal," + to_string(value)).c_str());
     - action: temperature_rtd_custom_command
       variables:
         command: string
       then:
         - lambda: |-
-            id(temp_ezo).send_custom(command.c_str());
+            id(rtd_ezo).send_custom(command.c_str());
 
 # esphome:
 #   on_boot:
@@ -58,7 +58,7 @@ sensor:
   # Temperature
   - platform: ezo
     name: "Temperature EZO"
-    id: temp_ezo
+    id: rtd_ezo
     address: ${addRTD}
     unit_of_measurement: "°C"
     accuracy_decimals: 2
@@ -105,7 +105,7 @@ sensor:
 #             Wire.beginTransmission(${addRTD});
 #             error = Wire.endTransmission();
 #             if (error == 0) {
-#               id(temp_ezo).send_custom("R");
+#               id(rtd_ezo).send_custom("R");
 #             }
 #             else {
 #               ESP_LOGW("custom_rtd_read", "No RTD temperature sensor detected at address: ${addRTD}!!");
