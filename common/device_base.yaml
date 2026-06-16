@@ -23,14 +23,6 @@ substitutions:
   # Hardware Variant
   hardware_variant: "Standard - Inverted Optical"
 
-esp32:
-  board: esp32dev
-  framework:
-    type: esp-idf
-    advanced:
-      minimum_chip_revision: "3.0" # ESP32 revision 3 is required for the latest ESP-IDF features and optimizations`
-      sram1_as_iram: true # Use SRAM1 as IRAM for faster code execution, especially for time-critical tasks. Requires ESP-IDF v5.0+ and ESP32 rev 3+.
-
 esphome:
   min_version: 2024.6.0
   name: "${name}"

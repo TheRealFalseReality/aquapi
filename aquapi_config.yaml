@@ -7,6 +7,7 @@ substitutions:
 
 packages:
   device_base: !include common/device_base.yaml
+  esp32: !include common/espboard.yaml
   aquapi: !include common/aquapi.yaml
   ota_https: !include common/ota_https.yaml
   # debug: !include common/debug.yaml
