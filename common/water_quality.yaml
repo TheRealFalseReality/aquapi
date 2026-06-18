@@ -158,3 +158,66 @@ number:
         - component.update: water_quality_score
     web_server:
       sorting_group_id: sorting_group_water_quality
+
+- platform: template
+    id: do_ideal_low
+    name: "DO Ideal Low"
+    min_value: 0
+    max_value: 20
+    step: 0.1
+    initial_value: 5.0
+    optimistic: true
+    restore_value: true
+    # on_value:
+    #   then:
+    #     - component.update: water_quality
+    #     - component.update: water_quality_score
+    web_server:
+      sorting_group_id: sorting_group_water_quality
+
+  - platform: template
+    id: do_ideal_high
+    name: "DO Ideal High"
+    min_value: 0
+    max_value: 20
+    step: 0.1
+    initial_value: 9.0
+    optimistic: true
+    restore_value: true
+    # on_value:
+    #   then:
+    #     - component.update: water_quality
+    #     - component.update: water_quality_score
+    web_server:
+      sorting_group_id: sorting_group_water_quality
+
+binary_sensor:
+  # pH Range Check
+  - platform: template
+    id: ideal_ph
+    name: "pH In Range"
+    lambda: |-
+      if (id(ph_ezo).has_state() && id(ph_ideal_low).has_state() && id(ph_ideal_high).has_state()) {
+        return (id(ph_ezo).state >= id(ph_ideal_low).state && id(ph_ezo).state <= id(ph_ideal_high).state);
+      }
+      return false;
+
+  # ORP Range Check
+  - platform: template
+    id: ideal_orp
+    name: "ORP In Range"
+    lambda: |-
+      if (id(orp_ezo).has_state() && id(orp_min_good).has_state()) {
+        return (id(orp_ezo).state >= id(orp_min_good).state);
+      }
+      return false;
+
+  # DO Range Check
+  - platform: template
+    id: ideal_do
+    name: "DO In Range"
+    lambda: |-
+      if (id(do_ezo).has_state() && id(do_ideal_low).has_state() && id(do_ideal_high).has_state()) {
+        return (id(do_ezo).state >= id(do_ideal_low).state && id(do_ezo).state <= id(do_ideal_high).state);
+      }
+      return false;
