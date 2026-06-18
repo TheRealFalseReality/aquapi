@@ -75,10 +75,10 @@ sensor:
 binary_sensor:
   - platform: template
     name: Ideal Temperature
-    id: ideal_temp
+    id: ideal_temp_rtd
     icon: mdi:thermometer-check
     lambda: |-
-      if (id(temp_range).state == "OK") {
+      if (id(temp_range_rtd).state == "OK") {
         return true;
       } else {
         return false;
@@ -90,7 +90,7 @@ text_sensor:
   # Temperature Range 1
   - platform: template
     name: Temperature Range
-    id: temp_range
+    id: temp_range_rtd
     icon: mdi:thermometer-alert
     update_interval: "${update_rtd}"
     lambda: |-
@@ -124,7 +124,7 @@ number:
     device_class: "temperature"
     on_value:
       then:
-        - component.update: temp_range
+        - component.update: temp_range_rtd
     web_server:
       sorting_group_id: sorting_group_rtd
 
@@ -144,6 +144,6 @@ number:
     device_class: "temperature"
     on_value:
       then:
-        - component.update: temp_range
+        - component.update: temp_range_rtd
     web_server:
       sorting_group_id: sorting_group_rtd
