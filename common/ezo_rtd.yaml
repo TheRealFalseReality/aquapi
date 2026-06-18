@@ -4,6 +4,8 @@ substitutions:
   addRTD: "102"
   update_rtd: "60s"
   update_button_rtd: "60s"
+  range_cool: "23.5"
+  range_warm: "28"
 
   sorting_group_rtd: '36'
 
