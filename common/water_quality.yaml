@@ -31,9 +31,9 @@ text_sensor:
     lambda: |-
       float ph = id(ph_ezo).state;
       float orp = id(orp_ezo).state;
-      float ph_ideal_low = id(wq_ph_ideal_low).state;
-      float ph_ideal_high = id(wq_ph_ideal_high).state;
-      float orp_min_good = id(wq_orp_min_good).state;
+      float ph_ideal_low = id(ph_ideal_low).state;
+      float ph_ideal_high = id(ph_ideal_high).state;
+      float orp_min_good = id(orp_min_good).state;
       if (isnan(ph) || isnan(orp) || isnan(ph_ideal_low) || isnan(ph_ideal_high) || isnan(orp_min_good)) {
         return {"Unknown"};
       }
@@ -87,8 +87,8 @@ sensor:
     lambda: |-
       float ph = id(ph_ezo).state;
       float orp = id(orp_ezo).state;
-      float ph_ideal_low = id(wq_ph_ideal_low).state;
-      float ph_ideal_high = id(wq_ph_ideal_high).state;
+      float ph_ideal_low = id(ph_ideal_low).state;
+      float ph_ideal_high = id(ph_ideal_high).state;
       if (isnan(ph) || isnan(orp) || isnan(ph_ideal_low) || isnan(ph_ideal_high)) return NAN;
 
       float ph_ideal = (ph_ideal_low + ph_ideal_high) / 2.0f;
@@ -102,59 +102,3 @@ sensor:
     web_server:
       sorting_group_id: sorting_group_water_quality
       sorting_weight: 11
-
-number:
-  - platform: template
-    name: "Water Quality - pH Ideal Low"
-    id: wq_ph_ideal_low
-    icon: mdi:ph
-    optimistic: true
-    restore_value: true
-    initial_value: 6.8
-    min_value: 5.0
-    max_value: 8.0
-    step: 0.1
-    entity_category: "Config"
-    on_value:
-      then:
-        - component.update: water_quality
-        - component.update: water_quality_score
-    web_server:
-      sorting_group_id: sorting_group_water_quality
-
-  - platform: template
-    name: "Water Quality - pH Ideal High"
-    id: wq_ph_ideal_high
-    icon: mdi:ph
-    optimistic: true
-    restore_value: true
-    initial_value: 7.6
-    min_value: 6.0
-    max_value: 9.0
-    step: 0.1
-    entity_category: "Config"
-    on_value:
-      then:
-        - component.update: water_quality
-        - component.update: water_quality_score
-    web_server:
-      sorting_group_id: sorting_group_water_quality
-
-  - platform: template
-    name: "Water Quality - ORP Minimum Good"
-    id: wq_orp_min_good
-    icon: mdi:react
-    optimistic: true
-    restore_value: true
-    initial_value: 200
-    min_value: 0
-    max_value: 500
-    step: 10
-    unit_of_measurement: "mV"
-    entity_category: "Config"
-    on_value:
-      then:
-        - component.update: water_quality
-        - component.update: water_quality_score
-    web_server:
-      sorting_group_id: sorting_group_water_quality

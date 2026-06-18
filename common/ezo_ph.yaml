@@ -310,3 +310,40 @@ select:
           args: ["x.c_str()"]
     web_server:
       sorting_group_id: sorting_group_ph
+
+number:
+  - platform: template
+    name: "Water Quality - pH Ideal Low"
+    id: ph_ideal_low
+    icon: mdi:ph
+    optimistic: true
+    restore_value: true
+    initial_value: 6.8
+    min_value: 5.0
+    max_value: 8.0
+    step: 0.1
+    entity_category: "Config"
+    on_value:
+      then:
+        - component.update: water_quality
+        - component.update: water_quality_score
+    web_server:
+      sorting_group_id: sorting_group_water_quality
+
+  - platform: template
+    name: "Water Quality - pH Ideal High"
+    id: ph_ideal_high
+    icon: mdi:ph
+    optimistic: true
+    restore_value: true
+    initial_value: 7.6
+    min_value: 6.0
+    max_value: 9.0
+    step: 0.1
+    entity_category: "Config"
+    on_value:
+      then:
+        - component.update: water_quality
+        - component.update: water_quality_score
+    web_server:
+      sorting_group_id: sorting_group_water_quality
