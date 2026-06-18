@@ -195,8 +195,8 @@ binary_sensor:
         return (id(ph_ezo).state >= id(ph_ideal_low).state && id(ph_ezo).state <= id(ph_ideal_high).state);
       }
       return false;
-     web_server:
-       sorting_group_id: sorting_group_water_quality
+    web_server:
+      sorting_group_id: sorting_group_water_quality
 
   # ORP Range Check
   - platform: template
@@ -207,8 +207,8 @@ binary_sensor:
         return (id(orp_ezo).state >= id(orp_min_good).state);
       }
       return false;
-     web_server:
-       sorting_group_id: sorting_group_water_quality
+    web_server:
+      sorting_group_id: sorting_group_water_quality
 
   # DO Range Check
   - platform: template
@@ -219,5 +219,5 @@ binary_sensor:
         return (id(sensor_do_percent).state >= id(do_ideal_low).state && id(sensor_do_percent).state <= id(do_ideal_high).state);
       }
       return false;
-     web_server:
-       sorting_group_id: sorting_group_water_quality
+    web_server:
+      sorting_group_id: sorting_group_water_quality
