@@ -117,7 +117,6 @@ number:
       then:
         - component.update: water_quality
         - component.update: water_quality_score
-        - component.update: ideal_ph
     web_server:
       sorting_group_id: sorting_group_water_quality
 
@@ -136,7 +135,6 @@ number:
       then:
         - component.update: water_quality
         - component.update: water_quality_score
-        - component.update: ideal_ph
     web_server:
       sorting_group_id: sorting_group_water_quality
 
@@ -156,7 +154,6 @@ number:
       then:
         - component.update: water_quality
         - component.update: water_quality_score
-        - component.update: ideal_orp
     web_server:
       sorting_group_id: sorting_group_water_quality
 
@@ -171,9 +168,6 @@ number:
     restore_value: true
     unit_of_measurement: "%"
     entity_category: "Config"
-    on_value:
-      then:
-        - component.update: ideal_do
     web_server:
       sorting_group_id: sorting_group_water_quality
 
@@ -188,9 +182,6 @@ number:
     restore_value: true
     unit_of_measurement: "%"
     entity_category: "Config"
-    on_value:
-      then:
-        - component.update: ideal_do
     web_server:
       sorting_group_id: sorting_group_water_quality
 
