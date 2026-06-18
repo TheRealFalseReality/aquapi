@@ -285,16 +285,6 @@ button:
             }
 
   - platform: template
-    name: "DO - Apply Compensation Now"
-    id: do_apply_compensation
-    icon: mdi:auto-fix
-    entity_category: "Config"
-    on_press:
-      - script.execute: do_auto_compensate
-    web_server:
-      sorting_group_id: sorting_group_do
-
-  - platform: template
     name: "DO - Reset Calibration Flags"
     id: do_cal_reset_flags
     icon: mdi:flag-remove
