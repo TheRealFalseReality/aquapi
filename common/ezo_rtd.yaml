@@ -66,50 +66,82 @@ sensor:
     state_class: "measurement"
     device_class: "temperature"
     disabled_by_default: true
-    # on_custom:
-    #   then:
-    #     - lambda:
-    #         id(result_ph).publish_state(x);
-    # on_calibration:
-    #   then:
-    #     - lambda:
-    #         id(result_ph).publish_state(x);
-    # on_device_information:
-    #   then:
-    #     - lambda:
-    #         id(result_ph).publish_state(x);
-    # on_slope:
-    #   then:
-    #     - lambda:
-    #         id(result_ph).publish_state(x);
-    # on_t:
-    #   then:
-    #     - lambda:
-    #         id(result_ph).publish_state(x);
     web_server:
       sorting_group_id: sorting_group_rtd
       sorting_weight: 10
 
-# button:
-#   # Read RTD temperature Sensor
-#   - platform: template
-#     name: RTD - Read
-#     id: read_rtd
-#     icon: mdi:read
-#     entity_category: "Config"
-#     disabled_by_default: true
-#     on_press:
-#       then:
-#         - lambda: |-
-#             byte error;
-#             Wire.beginTransmission(${addRTD});
-#             error = Wire.endTransmission();
-#             if (error == 0) {
-#               id(rtd_ezo).send_custom("R");
-#             }
-#             else {
-#               ESP_LOGW("custom_rtd_read", "No RTD temperature sensor detected at address: ${addRTD}!!");
-    #         }
-    # web_server:
-    #   sorting_group_id: sorting_group_rtd
+binary_sensor:
+  - platform: template
+    name: Ideal Temperature
+    id: ideal_temp
+    icon: mdi:thermometer-check
+    lambda: |-
+      if (id(temp_range).state == "OK") {
+        return true;
+      } else {
+        return false;
+      }
+    web_server:
+      sorting_group_id: sorting_group_rtd
 
+text_sensor:
+  # Temperature Range 1
+  - platform: template
+    name: Temperature Range
+    id: temp_range
+    icon: mdi:thermometer-alert
+    update_interval: "${update_rtd}"
+    lambda: |-
+      if (id(rtd_ezo).state <= id(range_cool).state) {
+        return {"Cool"};
+      } else if (id(rtd_ezo).state >= id(range_warm).state) {
+        return {"Warm"};
+      } else if (!isnan(id(rtd_ezo).state)) {
+        return {"OK"};
+      } else {
+        return {"Unknown"};
+      }
+    web_server:
+      sorting_group_id: sorting_group_rtd
+      sorting_weight: 12
+
+number:
+  # Temperature 1 when Cool
+  - platform: template
+    name: "Temp. Cool"
+    id: range_cool
+    icon: mdi:thermometer-low
+    optimistic: true
+    mode: box
+    min_value: 0
+    max_value: 40
+    step: 0.5
+    restore_value: true
+    initial_value: ${range_cool}
+    entity_category: "Config"
+    device_class: "temperature"
+    on_value:
+      then:
+        - component.update: temp_range
+    web_server:
+      sorting_group_id: sorting_group_rtd
+
+  # Temperature 1 when Warm
+  - platform: template
+    name: "Temp. Warm"
+    icon: mdi:thermometer-high
+    id: range_warm
+    optimistic: true
+    mode: box
+    min_value: 0
+    max_value: 40
+    step: 0.5
+    restore_value: true
+    initial_value: ${range_warm}
+    entity_category: "Config"
+    device_class: "temperature"
+    on_value:
+      then:
+        - component.update: temp_range
+    web_server:
+      sorting_group_id: sorting_group_rtd
