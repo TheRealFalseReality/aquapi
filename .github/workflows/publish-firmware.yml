@@ -26,7 +26,7 @@ jobs:
 
   upload-to-release:
     name: Upload to Release
-    uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@2026.4.0
+    uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@2026.4.1
     needs:
       - build-firmware
     with:
