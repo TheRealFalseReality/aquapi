@@ -1,4 +1,3 @@
----
 substitutions:
   sorting_group_water_quality: '20'
   wq_ph_score_deviation_multiplier: '25.0'
@@ -12,10 +11,6 @@ substitutions:
   wq_ph_score_weight: '0.6'
   wq_orp_score_weight: '0.4'
 
-#
-# Requires the `ph_ezo` and `orp_ezo` sensor IDs from `common/ezo_ph.yaml`
-# and `common/ezo_orp.yaml`.
-#
 web_server:
   sorting_groups:
     - id: sorting_group_water_quality
@@ -29,35 +24,37 @@ text_sensor:
     icon: mdi:water-check
     update_interval: 60s
     lambda: |-
-      float ph = id(ph_ezo).state;
-      float orp = id(orp_ezo).state;
-      float ph_ideal_low = id(ph_ideal_low).state;
-      float ph_ideal_high = id(ph_ideal_high).state;
-      float orp_min_good = id(orp_min_good).state;
-      if (isnan(ph) || isnan(orp) || isnan(ph_ideal_low) || isnan(ph_ideal_high) || isnan(orp_min_good)) {
+      // Give local floats completely distinct names from the component IDs
+      float current_ph = id(ph_ezo).state;
+      float current_orp = id(orp_ezo).state;
+      float local_ph_low = id(ph_ideal_low).state;
+      float local_ph_high = id(ph_ideal_high).state;
+      float local_orp_min = id(orp_min_good).state;
+      
+      if (isnan(current_ph) || isnan(current_orp) || isnan(local_ph_low) || isnan(local_ph_high) || isnan(local_orp_min)) {
         return {"Unknown"};
       }
 
-      float ph_good_low = ph_ideal_low - ${wq_ph_good_offset_low};
-      float ph_good_high = ph_ideal_high + ${wq_ph_good_offset_high};
-      float ph_alert_low = ph_ideal_low - ${wq_ph_alert_offset_low};
-      float ph_alert_high = ph_ideal_high + ${wq_ph_alert_offset_high};
-      float orp_excellent = orp_min_good + ${wq_orp_excellent_offset};
-      float orp_alert = orp_min_good - ${wq_orp_alert_offset};
+      float ph_good_low = local_ph_low - ${wq_ph_good_offset_low};
+      float ph_good_high = local_ph_high + ${wq_ph_good_offset_high};
+      float ph_alert_low = local_ph_low - ${wq_ph_alert_offset_low};
+      float ph_alert_high = local_ph_high + ${wq_ph_alert_offset_high};
+      float orp_excellent = local_orp_min + ${wq_orp_excellent_offset};
+      float orp_alert = local_orp_min - ${wq_orp_alert_offset};
       if (orp_alert < 0.0f) {
         orp_alert = 0.0f;
       }
 
-      if (ph >= ph_ideal_low && ph <= ph_ideal_high && orp >= orp_excellent) {
+      if (current_ph >= local_ph_low && current_ph <= local_ph_high && current_orp >= orp_excellent) {
         return {"Excellent"};
       }
-      if (ph >= ph_good_low && ph <= ph_good_high && orp >= orp_min_good) {
+      if (current_ph >= ph_good_low && current_ph <= ph_good_high && current_orp >= local_orp_min) {
         return {"Good"};
       }
-      if (ph < ph_alert_low || ph > ph_alert_high || orp < orp_alert) {
+      if (current_ph < ph_alert_low || current_ph > ph_alert_high || current_orp < orp_alert) {
         return {"Alert"};
       }
-      if (ph < ph_good_low || ph > ph_good_high || orp < orp_min_good) {
+      if (current_ph < ph_good_low || current_ph > ph_good_high || current_orp < local_orp_min) {
         return {"Caution"};
       }
       return {"Good"};
@@ -85,17 +82,18 @@ sensor:
     state_class: "measurement"
     update_interval: 60s
     lambda: |-
-      float ph = id(ph_ezo).state;
-      float orp = id(orp_ezo).state;
-      float ph_ideal_low = id(ph_ideal_low).state;
-      float ph_ideal_high = id(ph_ideal_high).state;
-      if (isnan(ph) || isnan(orp) || isnan(ph_ideal_low) || isnan(ph_ideal_high)) return NAN;
+      float current_ph = id(ph_ezo).state;
+      float current_orp = id(orp_ezo).state;
+      float local_ph_low = id(ph_ideal_low).state;
+      float local_ph_high = id(ph_ideal_high).state;
+      
+      if (isnan(current_ph) || isnan(current_orp) || isnan(local_ph_low) || isnan(local_ph_high)) return NAN;
 
-      float ph_ideal = (ph_ideal_low + ph_ideal_high) / 2.0f;
-      float ph_score = 100.0f - (fabsf(ph - ph_ideal) * ${wq_ph_score_deviation_multiplier});
+      float ph_ideal_mid = (local_ph_low + local_ph_high) / 2.0f;
+      float ph_score = 100.0f - (fabsf(current_ph - ph_ideal_mid) * ${wq_ph_score_deviation_multiplier});
       ph_score = fmaxf(0.0f, fminf(100.0f, ph_score));
 
-      float orp_score = (orp / ${wq_orp_score_max}) * 100.0f;
+      float orp_score = (current_orp / ${wq_orp_score_max}) * 100.0f;
       orp_score = fmaxf(0.0f, fminf(100.0f, orp_score));
 
       return (ph_score * ${wq_ph_score_weight}) + (orp_score * ${wq_orp_score_weight});
@@ -168,10 +166,6 @@ number:
     initial_value: 5.0
     optimistic: true
     restore_value: true
-    # on_value:
-    #   then:
-    #     - component.update: water_quality
-    #     - component.update: water_quality_score
     web_server:
       sorting_group_id: sorting_group_water_quality
 
@@ -184,10 +178,6 @@ number:
     initial_value: 9.0
     optimistic: true
     restore_value: true
-    # on_value:
-    #   then:
-    #     - component.update: water_quality
-    #     - component.update: water_quality_score
     web_server:
       sorting_group_id: sorting_group_water_quality
 
