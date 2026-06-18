@@ -159,37 +159,37 @@ number:
     web_server:
       sorting_group_id: sorting_group_water_quality
 
-- platform: template
-    id: do_ideal_low
-    name: "DO Ideal Low"
-    min_value: 0
-    max_value: 20
-    step: 0.1
-    initial_value: 5.0
-    optimistic: true
-    restore_value: true
-    # on_value:
-    #   then:
-    #     - component.update: water_quality
-    #     - component.update: water_quality_score
-    web_server:
-      sorting_group_id: sorting_group_water_quality
-
   - platform: template
-    id: do_ideal_high
-    name: "DO Ideal High"
-    min_value: 0
-    max_value: 20
-    step: 0.1
-    initial_value: 9.0
-    optimistic: true
-    restore_value: true
-    # on_value:
-    #   then:
-    #     - component.update: water_quality
-    #     - component.update: water_quality_score
-    web_server:
-      sorting_group_id: sorting_group_water_quality
+      id: do_ideal_low
+      name: "DO Ideal Low"
+      min_value: 0
+      max_value: 20
+      step: 0.1
+      initial_value: 5.0
+      optimistic: true
+      restore_value: true
+      # on_value:
+      #   then:
+      #     - component.update: water_quality
+      #     - component.update: water_quality_score
+      web_server:
+        sorting_group_id: sorting_group_water_quality
+
+    - platform: template
+      id: do_ideal_high
+      name: "DO Ideal High"
+      min_value: 0
+      max_value: 20
+      step: 0.1
+      initial_value: 9.0
+      optimistic: true
+      restore_value: true
+      # on_value:
+      #   then:
+      #     - component.update: water_quality
+      #     - component.update: water_quality_score
+      web_server:
+        sorting_group_id: sorting_group_water_quality
 
 binary_sensor:
   # pH Range Check
