@@ -106,7 +106,7 @@ text_sensor:
       sorting_weight: 12
 
 number:
-  # Temperature 1 when Cool
+  # Temperature when Cool
   - platform: template
     name: "Temp. Cool"
     id: range_cool
@@ -126,7 +126,7 @@ number:
     web_server:
       sorting_group_id: sorting_group_rtd
 
-  # Temperature 1 when Warm
+  # Temperature when Warm
   - platform: template
     name: "Temp. Warm"
     icon: mdi:thermometer-high
