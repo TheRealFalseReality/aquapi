@@ -67,7 +67,6 @@ sensor:
     update_interval: "${update_rtd}"
     state_class: "measurement"
     device_class: "temperature"
-    disabled_by_default: true
     web_server:
       sorting_group_id: sorting_group_rtd
       sorting_weight: 10
