@@ -117,6 +117,7 @@ number:
       then:
         - component.update: water_quality
         - component.update: water_quality_score
+        - component.update: ideal_ph
     web_server:
       sorting_group_id: sorting_group_water_quality
 
@@ -135,6 +136,7 @@ number:
       then:
         - component.update: water_quality
         - component.update: water_quality_score
+        - component.update: ideal_ph
     web_server:
       sorting_group_id: sorting_group_water_quality
 
@@ -154,6 +156,7 @@ number:
       then:
         - component.update: water_quality
         - component.update: water_quality_score
+        - component.update: ideal_orp
     web_server:
       sorting_group_id: sorting_group_water_quality
 
@@ -161,20 +164,23 @@ number:
     id: do_ideal_low
     name: "DO Ideal Low"
     min_value: 0
-    max_value: 150
+    max_value: 100
     step: 1
     initial_value: 85
     optimistic: true
     restore_value: true
     unit_of_measurement: "%"
     entity_category: "Config"
+    on_value:
+      then:
+        - component.update: ideal_do
     web_server:
       sorting_group_id: sorting_group_water_quality
 
   - platform: template
     id: do_ideal_high
     name: "DO Ideal High"
-    min_value: 50
+    min_value: 100
     max_value: 200
     step: 1
     initial_value: 115
@@ -182,6 +188,9 @@ number:
     restore_value: true
     unit_of_measurement: "%"
     entity_category: "Config"
+    on_value:
+      then:
+        - component.update: ideal_do
     web_server:
       sorting_group_id: sorting_group_water_quality
 
