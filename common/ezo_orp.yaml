@@ -225,23 +225,3 @@ select:
           args: ["x.c_str()"]
     web_server:
       sorting_group_id: sorting_group_orp
-
-number:
-  - platform: template
-    name: "Water Quality - ORP Minimum Good"
-    id: orp_min_good
-    icon: mdi:react
-    optimistic: true
-    restore_value: true
-    initial_value: 200
-    min_value: 0
-    max_value: 500
-    step: 10
-    unit_of_measurement: "mV"
-    entity_category: "Config"
-    on_value:
-      then:
-        - component.update: water_quality
-        - component.update: water_quality_score
-    web_server:
-      sorting_group_id: sorting_group_water_quality
