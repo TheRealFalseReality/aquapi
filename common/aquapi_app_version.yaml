@@ -6,7 +6,7 @@ text_sensor:
   # AquaPi Version
   - platform: template
     name: "AquaPi Version"
-    id: aquapi_version
+    id: app_version
     icon: mdi:update
     lambda: |-
       return {"${app_version}"};
