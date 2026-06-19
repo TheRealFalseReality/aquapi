@@ -11,11 +11,9 @@ substitutions:
   comment: "AquaPi ESP32 - Aquarium Controller & Monitor"
   project_name: "therealfalsereality.aquapi"
   sorting_group_name: "AquaPi"
-  import: "false"
 
-dashboard_import:
-  package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@main
-  import_full_config: "${import}"
+  # Hardware Variant
+  hardware_variant: "AquaPi Hardware Variants"
 
 text_sensor:
   # AquaPi Version

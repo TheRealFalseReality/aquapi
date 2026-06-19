@@ -10,6 +10,11 @@ substitutions:
   do_salinity_comp_source: "sensor_salinity"
 
   hardware_variant: "Optical - Non-Inverted"
+  import: "false"
+
+dashboard_import:
+  package_import_url: github://TheRealFalseReality/aquapi/aquapi_config_optical.yaml@main
+  import_full_config: "${import}"
 
 packages:
   device_base: !include common/device_base.yaml

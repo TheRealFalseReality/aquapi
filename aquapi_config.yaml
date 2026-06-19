@@ -7,6 +7,11 @@ substitutions:
   
   # Hardware Variant
   hardware_variant: "Standard - Inverted Optical"
+  import: "false"
+
+dashboard_import:
+  package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@main
+  import_full_config: "${import}"
 
 packages:
   device_base: !include common/device_base.yaml
