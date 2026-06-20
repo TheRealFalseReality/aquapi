@@ -286,12 +286,12 @@ binary_sensor:
       sorting_group_id: sorting_group_water_quality
 
   - platform: template
-      id: ideal_ec
-      name: "EC In Range"
-      lambda: |-
-        if (id(ec_ezo).has_state() && id(ec_ideal_low).has_state() && id(ec_ideal_high).has_state()) {
-          return (id(ec_ezo).state >= id(ec_ideal_low).state && id(ec_ezo).state <= id(ec_ideal_high).state);
-        }
-        return false;
+    id: ideal_ec
+    name: "EC In Range"
+    lambda: |-
+      if (id(ec_ezo).has_state() && id(ec_ideal_low).has_state() && id(ec_ideal_high).has_state()) {
+        return (id(ec_ezo).state >= id(ec_ideal_low).state && id(ec_ezo).state <= id(ec_ideal_high).state);
+      }
+      return false;
     web_server:
       sorting_group_id: sorting_group_water_quality
