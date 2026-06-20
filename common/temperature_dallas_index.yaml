@@ -238,7 +238,7 @@ text_sensor:
 number:
   # Temperature 1 when Cool
   - platform: template
-    name: "Temp. Cool"
+    name: "Temp. Cool °C"
     id: range_cool
     icon: mdi:thermometer-low
     optimistic: true
@@ -258,7 +258,7 @@ number:
 
   # Temperature 1 when Warm
   - platform: template
-    name: "Temp. Warm"
+    name: "Temp. Warm °C"
     icon: mdi:thermometer-high
     id: range_warm
     optimistic: true
@@ -278,7 +278,7 @@ number:
 
   # Temperature 2 when Cool
   - platform: template
-    name: "Temp. 2 Cool"
+    name: "Temp. 2 Cool °C"
     id: range_cool_2
     icon: mdi:thermometer-low
     optimistic: true
@@ -299,7 +299,7 @@ number:
 
   # Temperature 2 when Warm
   - platform: template
-    name: "Temp. 2 Warm"
+    name: "Temp. 2 Warm °C"
     icon: mdi:thermometer-high
     id: range_warm_2
     optimistic: true

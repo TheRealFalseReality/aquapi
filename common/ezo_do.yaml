@@ -4,10 +4,6 @@ substitutions:
   addDO: "97"
   update_do: "60s"
   update_button_do: "60s"
-  # Set these to valid sensor/number IDs when overriding them from a custom config.
-  # The bundled firmware maps them to temp_1 and sensor_salinity in the top-level manifests.
-  do_temp_comp_source: "do_temp_compensation"
-  do_salinity_comp_source: "do_salinity_compensation"
 
   sorting_group_do: '32'
 
@@ -81,48 +77,12 @@ esphome:
               ESP_LOGW("ezo_do", "DO sensor may not be calibrated! Run calibration via 'DO - Command Select'.");
             }
 
-script:
-  - id: do_auto_compensate
-    then:
-      - lambda: |-
-          // Prefer the configured external source ID (standard firmware uses temp_1
-          // and sensor_salinity), but fall back to the manual number entities when
-          // that source is unavailable or currently NaN.
-          esphome::i2c::ErrorCode err = id(bus_a)->write(${addDO}, nullptr, 0);
-          if (err != esphome::i2c::ERROR_OK) {
-            ESP_LOGW("ezo_do", "No Dissolved Oxygen sensor detected at address: ${addDO} (skipping compensation).");
-            return;
-          }
-          float temp_val = id(${do_temp_comp_source}).state;
-          if (isnan(temp_val)) {
-            temp_val = id(do_temp_compensation).state;
-          }
-          if (!isnan(temp_val)) {
-            char temp_cmd[20];
-            snprintf(temp_cmd, sizeof(temp_cmd), "T,%.1f", temp_val);
-            id(do_ezo).send_custom(temp_cmd);
-            ESP_LOGD("ezo_do", "DO temperature compensation: %.1f°C", temp_val);
-          }
-
-          float sal_val = id(${do_salinity_comp_source}).state;
-          if (isnan(sal_val)) {
-            sal_val = id(do_salinity_compensation).state;
-          }
-          if (!isnan(sal_val)) {
-            char sal_cmd[20];
-            snprintf(sal_cmd, sizeof(sal_cmd), "S,%.2f,ppt", sal_val);
-            id(do_ezo).send_custom(sal_cmd);
-            ESP_LOGD("ezo_do", "DO salinity compensation: %.2f ppt", sal_val);
-          }
 
 interval:
   # Update Raw DO
   - interval: "${update_button_do}"
     then:
       - button.press: read_do
-  - interval: 5min
-    then:
-      - script.execute: do_auto_compensate
 
 sensor:
   # EZO Circuits (SCL/RX, SDA/TX)
@@ -325,16 +285,6 @@ button:
             }
 
   - platform: template
-    name: "DO - Apply Compensation Now"
-    id: do_apply_compensation
-    icon: mdi:auto-fix
-    entity_category: "Config"
-    on_press:
-      - script.execute: do_auto_compensate
-    web_server:
-      sorting_group_id: sorting_group_do
-
-  - platform: template
     name: "DO - Reset Calibration Flags"
     id: do_cal_reset_flags
     icon: mdi:flag-remove
@@ -380,36 +330,5 @@ select:
       - logger.log:
           format: "Chosen option: %s"
           args: ["x.c_str()"]
-    web_server:
-      sorting_group_id: sorting_group_do
-
-number:
-  - platform: template
-    name: "DO - Temperature Compensation (25°C)"
-    id: do_temp_compensation
-    icon: mdi:thermometer
-    optimistic: true
-    restore_value: true
-    initial_value: 25.0
-    min_value: 0.0
-    max_value: 40.0
-    step: 0.1
-    unit_of_measurement: "°C"
-    entity_category: "Config"
-    web_server:
-      sorting_group_id: sorting_group_do
-
-  - platform: template
-    name: "DO - Salinity Compensation (ppt)"
-    id: do_salinity_compensation
-    icon: mdi:shaker-outline
-    optimistic: true
-    restore_value: true
-    initial_value: 0.0
-    min_value: 0.0
-    max_value: 45.0
-    step: 0.5
-    unit_of_measurement: "ppt"
-    entity_category: "Config"
     web_server:
       sorting_group_id: sorting_group_do
