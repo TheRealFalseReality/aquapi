@@ -315,8 +315,8 @@ select:
       - "Output Units - % Saturation"
       - "Output Units - mg/L"
       - "Check Calibration"
-      - "Calibrate @ DRY (WILL RESET CALIBRATION)"
       - "Calibrate @ 0% (WILL RESET CALIBRATION)"
+      - "Calibrate @ DRY (WILL RESET CALIBRATION)"
       - "Calibrate CLEAR (WILL RESET CALIBRATION)"
       - "Get Temperature Compensation"
       # Legacy option name retained for backward compatibility; migrate automations to

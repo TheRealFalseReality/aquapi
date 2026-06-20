@@ -1,28 +1,32 @@
 ---
 substitutions:
+  # App Version
+  app_version: "26.6.5"
+  # github URL
+  github_url: "https://github.com/TheRealFalseReality/aquapi"
+
   # names
   name: "aquapi"
   friendly_name: "AquaPi"
   comment: "AquaPi ESP32 - Aquarium Controller & Monitor"
   project_name: "therealfalsereality.aquapi"
   sorting_group_name: "AquaPi"
-  import: "false"
 
-packages:
-  aquapi_app_version: !include aquapi_app_version.yaml
-
-dashboard_import:
-  package_import_url: github://TheRealFalseReality/aquapi/aquapi_config.yaml@main
-  import_full_config: "${import}"
+  # Hardware Variant
+  hardware_variant: "AquaPi Hardware Variants"
 
 text_sensor:
-  # GitHub Project URL
+  # AquaPi Version
+  - id: !extend app_version
+    name: "AquaPi Version"
+
+  # Hardware Variant
   - platform: template
-    name: GitHub
-    id: github_url
-    icon: mdi:github
+    name: "Hardware Variant"
+    id: hardware_variant_sensor
+    icon: mdi:developer-board
     lambda: |-
-      return {"github.com/TheRealFalseReality/aquapi"};
+      return {"${hardware_variant}"};
     entity_category: "diagnostic"
     web_server:
       sorting_group_id: sorting_group_diagnostic

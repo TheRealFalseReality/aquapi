@@ -1,15 +1,3 @@
 substitutions:
   # App Version
-  app_version: "26.6.5"
-  
-text_sensor:
-  # AquaPi Version
-  - platform: template
-    name: "AquaPi Version"
-    id: app_version
-    icon: mdi:update
-    lambda: |-
-      return {"${app_version}"};
-    entity_category: "diagnostic"
-    web_server:
-      sorting_group_id: sorting_group_diagnostic
+  app_version: "26.6.6"
