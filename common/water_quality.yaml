@@ -111,6 +111,7 @@ number:
     initial_value: 6.8
     min_value: 5.0
     max_value: 8.0
+    mode: box
     step: 0.1
     entity_category: "Config"
     on_value:
@@ -129,6 +130,7 @@ number:
     initial_value: 7.6
     min_value: 6.0
     max_value: 9.0
+    mode: box
     step: 0.1
     entity_category: "Config"
     on_value:
@@ -147,6 +149,7 @@ number:
     initial_value: 200
     min_value: 0
     max_value: 500
+    mode: box
     step: 10
     unit_of_measurement: "mV"
     entity_category: "Config"
@@ -168,6 +171,19 @@ number:
     restore_value: true
     unit_of_measurement: "%"
     entity_category: "Config"
+    id: ec_ideal_low
+    name: "EC Ideal Low"
+    icon: mdi:flash-outline
+    icon: mdi:flash-outline
+    min_value: 0
+    max_value: 5000
+    step: 10
+    initial_value: 800
+    unit_of_measurement: "µS"
+    optimistic: true
+    restore_value: true
+    entity_category: "Config"
+    mode: box
     web_server:
       sorting_group_id: sorting_group_water_quality
 
@@ -184,6 +200,36 @@ number:
     entity_category: "Config"
     web_server:
       sorting_group_id: sorting_group_water_quality
+
+  - platform: template
+      id: ec_ideal_low
+      name: "EC Ideal Low"
+      icon: mdi:flash-outline
+      min_value: 0
+      max_value: 5000
+      step: 10
+      initial_value: 800
+      unit_of_measurement: "µS"
+      optimistic: true
+      restore_value: true
+      entity_category: "Config"
+      web_server:
+        sorting_group_id: sorting_group_water_quality
+
+    - platform: template
+      id: ec_ideal_high
+      name: "EC Ideal High"
+      icon: mdi:flash-outline
+      min_value: 0
+      max_value: 5000
+      step: 10
+      initial_value: 1500
+      unit_of_measurement: "µS"
+      optimistic: true
+      restore_value: true
+      entity_category: "Config"
+      web_server:
+        sorting_group_id: sorting_group_water_quality
 
 binary_sensor:
   # pH Range Check
@@ -219,5 +265,16 @@ binary_sensor:
         return (id(sensor_do_percent).state >= id(do_ideal_low).state && id(sensor_do_percent).state <= id(do_ideal_high).state);
       }
       return false;
+    web_server:
+      sorting_group_id: sorting_group_water_quality
+
+  - platform: template
+      id: ideal_ec
+      name: "EC In Range"
+      lambda: |-
+        if (id(ec_ezo).has_state() && id(ec_ideal_low).has_state() && id(ec_ideal_high).has_state()) {
+          return (id(ec_ezo).state >= id(ec_ideal_low).state && id(ec_ezo).state <= id(ec_ideal_high).state);
+        }
+        return false;
     web_server:
       sorting_group_id: sorting_group_water_quality
