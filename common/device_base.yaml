@@ -4,12 +4,14 @@ substitutions:
   name: "esp32"
   friendly_name: "ESP32"
   comment: "Firmware for ESP32"
-  project_name: "TheRealFalseReality.aquapi"
+  project_name: "USER.REPO"
 
   # App Version
   app_version: "1.0"
+  # github URL
+  github_url: "https://github.com/"
   # Logger Level - Can use VERBOSE for more information in Logs
-  logger: "DEBUG"
+  logger: "INFO"
 
   # I2C pins
   sdaPin: "21"  # yellow/TX PMP -> green
@@ -19,9 +21,6 @@ substitutions:
   sorting_group_misc_weight: '97'
   sorting_group_diagnostic_weight: '98'
   sorting_group_config_weight: '99'
-
-  # Hardware Variant
-  hardware_variant: "Standard - Inverted Optical"
 
 esphome:
   min_version: 2024.6.0
@@ -145,6 +144,28 @@ binary_sensor:
       sorting_group_id: sorting_group_diagnostic
 
 text_sensor:
+  # App Version
+  - platform: template
+    name: "App Version"
+    id: app_version
+    icon: mdi:update
+    lambda: |-
+      return {"${app_version}"};
+    entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_diagnostic
+
+  # GitHub Project URL
+  - platform: template
+    name: GitHub
+    id: github_url
+    icon: mdi:github
+    lambda: |-
+      return {"${github_url}"};
+    entity_category: "diagnostic"
+    web_server:
+      sorting_group_id: sorting_group_diagnostic
+
   # Hostname
   - platform: template
     name: "Hostname"
@@ -179,17 +200,6 @@ text_sensor:
       icon: mdi:chip
       web_server:
         sorting_group_id: sorting_group_diagnostic
-
-  # Hardware Variant
-  - platform: template
-    name: "Hardware Variant"
-    id: hardware_variant_sensor
-    icon: mdi:developer-board
-    lambda: |-
-      return {"${hardware_variant}"};
-    entity_category: "diagnostic"
-    web_server:
-      sorting_group_id: sorting_group_diagnostic
 
 button:
   # Soft Restart

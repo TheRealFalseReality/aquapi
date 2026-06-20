@@ -2,7 +2,6 @@
 substitutions:
   name: "aquapi-optical"
   optical_inverted: "false"
-  hardware_variant: "Optical - Non-Inverted"
   project_name: "therealfalsereality.aquapi-optical"
   firmware_manifest_url: "https://therealfalsereality.github.io/aquapi/firmware/aquapi-optical.manifest.json"
   firmware_ota_url: "https://therealfalsereality.github.io/aquapi/firmware/aquapi-optical-esp32.ota.bin"
@@ -10,10 +9,16 @@ substitutions:
   do_temp_comp_source: "temp_1"
   do_salinity_comp_source: "sensor_salinity"
 
+  hardware_variant: "Optical - Non-Inverted"
+  import: "false"
+
+dashboard_import:
+  package_import_url: github://TheRealFalseReality/aquapi/aquapi_config_optical.yaml@main
+  import_full_config: "${import}"
+
 packages:
   device_base: !include common/device_base.yaml
   esp32: !include common/espboard.yaml
-  aquapi: !include common/aquapi.yaml
   ota_https: !include common/ota_https.yaml
   # debug: !include common/debug.yaml
   # i2c_detection: !include common/i2c_detection.yaml
@@ -29,6 +34,7 @@ packages:
   ezo_do: !include common/ezo_do.yaml
   ezo_pmp: !include common/ezo_pmp.yaml
   ezo_pmp_duo: !include common/ezo_pmp_duo.yaml
+  aquapi: !include common/aquapi.yaml
   # ir_receiver: !include common/ir_receiver.yaml
   # dht: !include common/dht.yaml
   # binary_input: !include common/binary_input.yaml

@@ -42,6 +42,7 @@
 
 substitutions:
   sorting_group_debug: '96'
+  logger: "DEBUG"
 
 web_server:
   sorting_groups:
