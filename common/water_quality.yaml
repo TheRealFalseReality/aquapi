@@ -1,6 +1,8 @@
 substitutions:
   sorting_group_water_quality: '20'
 
+  # Change these to 'wq_dummy_sensor' or 'wq_dummy_binary' if you completely 
+  # remove a package from your build to prevent C++ compile errors.
   wq_ph_sensor_id: ph_ezo
   wq_orp_sensor_id: orp_ezo
   wq_do_sensor_id: do_ezo
@@ -42,11 +44,6 @@ web_server:
 sensor:
   - platform: template
     id: wq_dummy_sensor
-    internal: true
-
-binary_sensor:
-  - platform: template
-    id: wq_dummy_binary
     internal: true
 
 text_sensor:
@@ -302,6 +299,10 @@ number:
       sorting_group_id: sorting_group_water_quality
 
 binary_sensor:
+  - platform: template
+    id: wq_dummy_binary
+    internal: true
+    
   # pH Range Check
   - platform: template
     id: ideal_ph
