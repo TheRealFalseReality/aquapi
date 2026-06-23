@@ -40,12 +40,6 @@ web_server:
       name: "Water Quality"
       sorting_weight: ${sorting_group_water_quality}
 
-# Internal dummy sensors to catch disconnected/uncompiled packages safely
-sensor:
-  - platform: template
-    id: wq_dummy_sensor
-    internal: true
-
 text_sensor:
   - platform: template
     name: "Water Quality"
@@ -121,6 +115,10 @@ text_sensor:
       sorting_weight: 10
 
 sensor:
+  - platform: template
+    id: wq_dummy_sensor
+    internal: true
+    
   - platform: template
     name: "Water Quality Score"
     id: water_quality_score
