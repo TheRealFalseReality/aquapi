@@ -249,6 +249,7 @@ number:
     restore_value: true
     unit_of_measurement: "%"
     entity_category: "Config"
+    mode: box
     on_value:
       then:
         - component.update: water_quality
@@ -267,6 +268,7 @@ number:
     restore_value: true
     unit_of_measurement: "%"
     entity_category: "Config"
+    mode: box
     on_value:
       then:
         - component.update: water_quality
