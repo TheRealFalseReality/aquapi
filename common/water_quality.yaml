@@ -1,5 +1,17 @@
 substitutions:
   sorting_group_water_quality: '20'
+
+  # Change these to 'wq_dummy_sensor' or 'wq_dummy_binary' if you completely 
+  # remove a package from your build to prevent C++ compile errors.
+  wq_ph_sensor_id: ph_ezo
+  wq_orp_sensor_id: orp_ezo
+  wq_do_sensor_id: do_ezo
+  wq_ec_sensor_id: ec_ezo
+
+  wq_temp_sensor_id: temp_1
+  wq_ideal_temp_id: ideal_temp
+  
+# --- SCORING PARAMETERS ---
   wq_ph_score_deviation_multiplier: '25.0'
   wq_ph_good_offset_low: '0.3'
   wq_ph_good_offset_high: '0.4'
@@ -8,8 +20,19 @@ substitutions:
   wq_orp_excellent_offset: '150'
   wq_orp_alert_offset: '100'
   wq_orp_score_max: '400'
-  wq_ph_score_weight: '0.6'
-  wq_orp_score_weight: '0.4'
+  wq_do_score_deviation_multiplier: '15.0'
+  wq_do_good_offset: '1.0'
+  wq_do_alert_offset: '2.5'
+  wq_ec_score_deviation_multiplier: '0.05'
+  wq_ec_good_offset: '200'
+  wq_ec_alert_offset: '500'
+
+# --- SCORING WEIGHTS ---
+  wq_ph_score_weight: '1.0'
+  wq_orp_score_weight: '1.0'
+  wq_do_score_weight: '1.0'
+  wq_ec_score_weight: '1.0'
+  wq_temp_score_weight: '0.5'
 
 web_server:
   sorting_groups:
@@ -24,55 +47,78 @@ text_sensor:
     icon: mdi:water-check
     update_interval: 60s
     lambda: |-
-      // Give local floats completely distinct names from the component IDs
-      float current_ph = id(ph_ezo).state;
-      float current_orp = id(orp_ezo).state;
-      float local_ph_low = id(ph_ideal_low).state;
-      float local_ph_high = id(ph_ideal_high).state;
-      float local_orp_min = id(orp_min_good).state;
+      int status_score = -1; // -1=Unknown, 0=Excellent, 1=Good, 2=Caution, 3=Alert
       
-      if (isnan(current_ph) || isnan(current_orp) || isnan(local_ph_low) || isnan(local_ph_high) || isnan(local_orp_min)) {
-        return {"Unknown"};
+      // --- pH Check ---
+      if (id(${wq_ph_sensor_id}).has_state() && !isnan(id(${wq_ph_sensor_id}).state)) {
+        float val = id(${wq_ph_sensor_id}).state;
+        float low = id(ph_ideal_low).state;
+        float high = id(ph_ideal_high).state;
+        if (val < low - ${wq_ph_alert_offset_low} || val > high + ${wq_ph_alert_offset_high}) status_score = std::max(status_score, 3);
+        else if (val < low - ${wq_ph_good_offset_low} || val > high + ${wq_ph_good_offset_high}) status_score = std::max(status_score, 2);
+        else if (val >= low && val <= high) status_score = std::max(status_score, 0);
+        else status_score = std::max(status_score, 1);
       }
 
-      float ph_good_low = local_ph_low - ${wq_ph_good_offset_low};
-      float ph_good_high = local_ph_high + ${wq_ph_good_offset_high};
-      float ph_alert_low = local_ph_low - ${wq_ph_alert_offset_low};
-      float ph_alert_high = local_ph_high + ${wq_ph_alert_offset_high};
-      float orp_excellent = local_orp_min + ${wq_orp_excellent_offset};
-      float orp_alert = local_orp_min - ${wq_orp_alert_offset};
-      if (orp_alert < 0.0f) {
-        orp_alert = 0.0f;
+      // --- ORP Check ---
+      if (id(${wq_orp_sensor_id}).has_state() && !isnan(id(${wq_orp_sensor_id}).state)) {
+        float val = id(${wq_orp_sensor_id}).state;
+        float min_good = id(orp_min_good).state;
+        float alert = fmaxf(0.0f, min_good - ${wq_orp_alert_offset});
+        if (val < alert) status_score = std::max(status_score, 3);
+        else if (val < min_good) status_score = std::max(status_score, 2);
+        else if (val >= min_good + ${wq_orp_excellent_offset}) status_score = std::max(status_score, 0);
+        else status_score = std::max(status_score, 1);
       }
 
-      if (current_ph >= local_ph_low && current_ph <= local_ph_high && current_orp >= orp_excellent) {
-        return {"Excellent"};
+      // --- DO Check ---
+      if (id(${wq_do_sensor_id}).has_state() && !isnan(id(${wq_do_sensor_id}).state)) {
+        float val = id(${wq_do_sensor_id}).state;
+        float low = id(do_ideal_low).state;
+        float high = id(do_ideal_high).state;
+        if (val < low - ${wq_do_alert_offset} || val > high + ${wq_do_alert_offset}) status_score = std::max(status_score, 3);
+        else if (val < low - ${wq_do_good_offset} || val > high + ${wq_do_good_offset}) status_score = std::max(status_score, 2);
+        else if (val >= low && val <= high) status_score = std::max(status_score, 0);
+        else status_score = std::max(status_score, 1);
       }
-      if (current_ph >= ph_good_low && current_ph <= ph_good_high && current_orp >= local_orp_min) {
-        return {"Good"};
+
+      // --- EC Check ---
+      if (id(${wq_ec_sensor_id}).has_state() && !isnan(id(${wq_ec_sensor_id}).state)) {
+        float val = id(${wq_ec_sensor_id}).state;
+        float low = id(ec_ideal_low).state;
+        float high = id(ec_ideal_high).state;
+        if (val < low - ${wq_ec_alert_offset} || val > high + ${wq_ec_alert_offset}) status_score = std::max(status_score, 3);
+        else if (val < low - ${wq_ec_good_offset} || val > high + ${wq_ec_good_offset}) status_score = std::max(status_score, 2);
+        else if (val >= low && val <= high) status_score = std::max(status_score, 0);
+        else status_score = std::max(status_score, 1);
       }
-      if (current_ph < ph_alert_low || current_ph > ph_alert_high || current_orp < orp_alert) {
-        return {"Alert"};
+
+      // --- Temp Check ---
+      if (id(${wq_ideal_temp_id}).has_state()) {
+        bool temp_ok = id(${wq_ideal_temp_id}).state;
+        if (!temp_ok) status_score = std::max(status_score, 2); // Triggers caution if temp is bad
+        else status_score = std::max(status_score, 0);
       }
-      if (current_ph < ph_good_low || current_ph > ph_good_high || current_orp < local_orp_min) {
-        return {"Caution"};
-      }
-      return {"Good"};
+
+      // Return Final Status
+      if (status_score == 3) return {"Alert"};
+      if (status_score == 2) return {"Caution"};
+      if (status_score == 1) return {"Good"};
+      if (status_score == 0) return {"Excellent"};
+      return {"Unknown"};
     on_value:
       then:
         - lambda: |-
-            if (x == "Alert") {
-              ESP_LOGE("water_quality", "⚠️ Water Quality ALERT! pH: %.2f, ORP: %.1f mV - Immediate action required!", id(ph_ezo).state, id(orp_ezo).state);
-            } else if (x == "Caution") {
-              ESP_LOGW("water_quality", "Water Quality CAUTION - pH: %.2f, ORP: %.1f mV", id(ph_ezo).state, id(orp_ezo).state);
-            } else {
-              ESP_LOGI("water_quality", "Water Quality: %s - pH: %.2f, ORP: %.1f mV", x.c_str(), id(ph_ezo).state, id(orp_ezo).state);
-            }
+            ESP_LOGI("water_quality", "Water Quality Status Updated: %s", x.c_str());
     web_server:
       sorting_group_id: sorting_group_water_quality
       sorting_weight: 10
 
 sensor:
+  - platform: template
+    id: wq_dummy_sensor
+    internal: true
+    
   - platform: template
     name: "Water Quality Score"
     id: water_quality_score
@@ -82,25 +128,57 @@ sensor:
     state_class: "measurement"
     update_interval: 60s
     lambda: |-
-      float current_ph = id(ph_ezo).state;
-      float current_orp = id(orp_ezo).state;
-      float local_ph_low = id(ph_ideal_low).state;
-      float local_ph_high = id(ph_ideal_high).state;
-      
-      if (isnan(current_ph) || isnan(current_orp) || isnan(local_ph_low) || isnan(local_ph_high)) return NAN;
+      float total_weight = 0.0f;
+      float earned_score = 0.0f;
 
-      float ph_ideal_mid = (local_ph_low + local_ph_high) / 2.0f;
-      float ph_score = 100.0f - (fabsf(current_ph - ph_ideal_mid) * ${wq_ph_score_deviation_multiplier});
-      ph_score = fmaxf(0.0f, fminf(100.0f, ph_score));
+      // pH Math
+      if (id(${wq_ph_sensor_id}).has_state() && !isnan(id(${wq_ph_sensor_id}).state)) {
+        float val = id(${wq_ph_sensor_id}).state;
+        float mid = (id(ph_ideal_low).state + id(ph_ideal_high).state) / 2.0f;
+        float score = 100.0f - (fabsf(val - mid) * ${wq_ph_score_deviation_multiplier});
+        earned_score += fmaxf(0.0f, fminf(100.0f, score)) * ${wq_ph_score_weight};
+        total_weight += ${wq_ph_score_weight};
+      }
 
-      float orp_score = (current_orp / ${wq_orp_score_max}) * 100.0f;
-      orp_score = fmaxf(0.0f, fminf(100.0f, orp_score));
+      // ORP Math
+      if (id(${wq_orp_sensor_id}).has_state() && !isnan(id(${wq_orp_sensor_id}).state)) {
+        float val = id(${wq_orp_sensor_id}).state;
+        float score = (val / ${wq_orp_score_max}) * 100.0f;
+        earned_score += fmaxf(0.0f, fminf(100.0f, score)) * ${wq_orp_score_weight};
+        total_weight += ${wq_orp_score_weight};
+      }
 
-      return (ph_score * ${wq_ph_score_weight}) + (orp_score * ${wq_orp_score_weight});
+      // DO Math
+      if (id(${wq_do_sensor_id}).has_state() && !isnan(id(${wq_do_sensor_id}).state)) {
+        float val = id(${wq_do_sensor_id}).state;
+        float mid = (id(do_ideal_low).state + id(do_ideal_high).state) / 2.0f;
+        float score = 100.0f - (fabsf(val - mid) * ${wq_do_score_deviation_multiplier});
+        earned_score += fmaxf(0.0f, fminf(100.0f, score)) * ${wq_do_score_weight};
+        total_weight += ${wq_do_score_weight};
+      }
+
+      // EC Math
+      if (id(${wq_ec_sensor_id}).has_state() && !isnan(id(${wq_ec_sensor_id}).state)) {
+        float val = id(${wq_ec_sensor_id}).state;
+        float mid = (id(ec_ideal_low).state + id(ec_ideal_high).state) / 2.0f;
+        float score = 100.0f - (fabsf(val - mid) * ${wq_ec_score_deviation_multiplier});
+        earned_score += fmaxf(0.0f, fminf(100.0f, score)) * ${wq_ec_score_weight};
+        total_weight += ${wq_ec_score_weight};
+      }
+
+      // Temp Math (100% if in range, 50% if out of range)
+      if (id(${wq_ideal_temp_id}).has_state()) {
+        float score = id(${wq_ideal_temp_id}).state ? 100.0f : 50.0f;
+        earned_score += score * ${wq_temp_score_weight};
+        total_weight += ${wq_temp_score_weight};
+      }
+
+      // Output final calculated 0-100%
+      if (total_weight == 0.0f) return NAN;
+      return earned_score / total_weight;
     web_server:
       sorting_group_id: sorting_group_water_quality
       sorting_weight: 11
-
 number:
   - platform: template
     name: "pH Ideal Low"
@@ -171,6 +249,10 @@ number:
     restore_value: true
     unit_of_measurement: "%"
     entity_category: "Config"
+    on_value:
+      then:
+        - component.update: water_quality
+        - component.update: water_quality_score
     web_server:
       sorting_group_id: sorting_group_water_quality
 
@@ -185,6 +267,10 @@ number:
     restore_value: true
     unit_of_measurement: "%"
     entity_category: "Config"
+    on_value:
+      then:
+        - component.update: water_quality
+        - component.update: water_quality_score
     web_server:
       sorting_group_id: sorting_group_water_quality
 
@@ -201,6 +287,10 @@ number:
     restore_value: true
     entity_category: "Config"
     mode: box
+    on_value:
+      then:
+        - component.update: water_quality
+        - component.update: water_quality_score
     web_server:
       sorting_group_id: sorting_group_water_quality
 
@@ -216,10 +306,18 @@ number:
     optimistic: true
     restore_value: true
     entity_category: "Config"
+    on_value:
+      then:
+        - component.update: water_quality
+        - component.update: water_quality_score
     web_server:
       sorting_group_id: sorting_group_water_quality
 
 binary_sensor:
+  - platform: template
+    id: wq_dummy_binary
+    internal: true
+
   # pH Range Check
   - platform: template
     id: ideal_ph
