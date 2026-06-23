@@ -120,6 +120,7 @@ text_sensor:
       sorting_group_id: sorting_group_water_quality
       sorting_weight: 10
 
+sensor:
   - platform: template
     name: "Water Quality Score"
     id: water_quality_score
@@ -250,6 +251,10 @@ number:
     restore_value: true
     unit_of_measurement: "%"
     entity_category: "Config"
+    on_value:
+      then:
+        - component.update: water_quality
+        - component.update: water_quality_score
     web_server:
       sorting_group_id: sorting_group_water_quality
 
@@ -264,6 +269,10 @@ number:
     restore_value: true
     unit_of_measurement: "%"
     entity_category: "Config"
+    on_value:
+      then:
+        - component.update: water_quality
+        - component.update: water_quality_score
     web_server:
       sorting_group_id: sorting_group_water_quality
 
@@ -280,6 +289,10 @@ number:
     restore_value: true
     entity_category: "Config"
     mode: box
+    on_value:
+      then:
+        - component.update: water_quality
+        - component.update: water_quality_score
     web_server:
       sorting_group_id: sorting_group_water_quality
 
@@ -295,6 +308,10 @@ number:
     optimistic: true
     restore_value: true
     entity_category: "Config"
+    on_value:
+      then:
+        - component.update: water_quality
+        - component.update: water_quality_score
     web_server:
       sorting_group_id: sorting_group_water_quality
 
@@ -302,7 +319,7 @@ binary_sensor:
   - platform: template
     id: wq_dummy_binary
     internal: true
-    
+
   # pH Range Check
   - platform: template
     id: ideal_ph
