@@ -146,3 +146,23 @@ number:
         - component.update: temp_range_rtd
     web_server:
       sorting_group_id: sorting_group_rtd
+
+button:
+  # Read rtd Probe
+  - platform: template
+    name: rtd - Read
+    id: read_rtd
+    icon: mdi:read
+    entity_category: "Config"
+    on_press:
+      then:
+        - lambda: |-
+            esphome::i2c::ErrorCode err = id(bus_a)->write(${addRTD}, nullptr, 0);
+            if (err == esphome::i2c::ERROR_OK) {
+              id(rtd_ezo).send_custom("R");
+            }
+            else {
+              ESP_LOGW("custom_rtd_read", "No RTD sensor detected at address: ${addRTD}!!");
+            }
+    web_server:
+      sorting_group_id: sorting_group_rtd
