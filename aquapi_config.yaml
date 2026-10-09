@@ -1,7 +1,7 @@
 ---
 substitutions:
-  name: "aquapi-standard"
-  project_name: "therealfalsereality.aquapi-standard"
+  name: "aquapi"
+  project_name: "therealfalsereality.aquapi"
   do_temp_comp_source: "temp_1"
   do_salinity_comp_source: "sensor_salinity"
   
