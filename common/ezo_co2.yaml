@@ -40,6 +40,10 @@ api:
       then:
         - lambda: |-
             id(co2_ezo).send_custom(command.c_str());
+    - action: co2_find
+      then:
+        - lambda: |-
+            id(co2_ezo).send_custom("Find");
 
 sensor:
   # EZO Circuits (SCL/RX, SDA/TX)
@@ -58,23 +62,28 @@ sensor:
     device_class: "carbon_dioxide"
     on_custom:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_co2", "custom response: %s", x.c_str());
             id(raw_value_co2).publish_state(x);
     on_calibration:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_co2", "calibration response: %s", x.c_str());
             id(result_co2).publish_state(x);
     on_device_information:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_co2", "device_information response: %s", x.c_str());
             id(result_co2).publish_state(x);
     on_slope:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_co2", "slope response: %s", x.c_str());
             id(result_co2).publish_state(x);
     on_t:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_co2", "t response: %s", x.c_str());
             id(result_co2).publish_state(x);
     web_server:
       sorting_group_id: sorting_group_co2
@@ -133,6 +142,21 @@ text_sensor:
       sorting_group_id: sorting_group_co2
 
 button:
+  # Find CO2 circuit (blinks LED)
+  - platform: template
+    name: CO2 - Find
+    id: find_co2
+    icon: mdi:magnify
+    entity_category: "Config"
+    disabled_by_default: true
+    on_press:
+      then:
+        - lambda: |-
+            id(co2_ezo).send_custom("Find");
+            ESP_LOGI("ezo_co2", "Find command sent to CO2 circuit");
+    web_server:
+      sorting_group_id: sorting_group_co2
+
   # Read CO2 Sensor
   - platform: template
     name: CO2 - Read

@@ -63,6 +63,10 @@ api:
       then:
         - lambda: |-
             id(do_ezo).send_custom(command.c_str());
+    - action: do_find
+      then:
+        - lambda: |-
+            id(do_ezo).send_custom("Find");
 
 esphome:
   on_boot:
@@ -103,15 +107,18 @@ sensor:
       sorting_weight: 10
     on_custom:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_do", "custom response: %s", x.c_str());
             id(raw_value_do).publish_state(x);
     on_calibration:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_do", "calibration response: %s", x.c_str());
             id(result_do).publish_state(x);
     on_device_information:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_do", "device_information response: %s", x.c_str());
             id(result_do).publish_state(x);
 
   # Dissolved Oxygen % Saturation
@@ -189,6 +196,21 @@ binary_sensor:
       sorting_group_id: sorting_group_do
 
 button:
+  # Find DO circuit (blinks LED)
+  - platform: template
+    name: DO - Find
+    id: find_do
+    icon: mdi:magnify
+    entity_category: "Config"
+    disabled_by_default: true
+    on_press:
+      then:
+        - lambda: |-
+            id(do_ezo).send_custom("Find");
+            ESP_LOGI("ezo_do", "Find command sent to DO circuit");
+    web_server:
+      sorting_group_id: sorting_group_do
+
   # Read DO Probe
   - platform: template
     name: DO - Read

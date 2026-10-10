@@ -27,6 +27,10 @@ api:
       then:
         - lambda: |-
             id(o2_ezo).send_custom(command.c_str());
+    - action: o2_find
+      then:
+        - lambda: |-
+            id(o2_ezo).send_custom("Find");
 
 sensor:
   # EZO Circuits (SCL/RX, SDA/TX)
@@ -42,13 +46,20 @@ sensor:
     accuracy_decimals: 0
     update_interval: "${update_o2}"
     state_class: "measurement"
+    on_custom:
+      then:
+        - lambda: |-
+            ESP_LOGI("ezo_o2", "custom response: %s", x.c_str());
+            id(result_o2).publish_state(x);
     on_calibration:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_o2", "calibration response: %s", x.c_str());
             id(result_o2).publish_state(x);
     on_device_information:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_o2", "device_information response: %s", x.c_str());
             id(result_o2).publish_state(x);
     web_server:
       sorting_group_id: sorting_group_o2
@@ -64,6 +75,21 @@ text_sensor:
       sorting_group_id: sorting_group_o2
 
 button:
+  # Find O2 circuit (blinks LED)
+  - platform: template
+    name: O2 - Find
+    id: find_o2
+    icon: mdi:magnify
+    entity_category: "Config"
+    disabled_by_default: true
+    on_press:
+      then:
+        - lambda: |-
+            id(o2_ezo).send_custom("Find");
+            ESP_LOGI("ezo_o2", "Find command sent to O2 circuit");
+    web_server:
+      sorting_group_id: sorting_group_o2
+
   # Read O2 Sensor
   - platform: template
     name: O2 - Read
