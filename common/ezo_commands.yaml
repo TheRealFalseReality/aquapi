@@ -72,123 +72,123 @@ button:
     web_server:
       sorting_group_id: sorting_group_config
 
-  - platform: template
-    name: "Lock EZO-EC"
-    entity_category: "Config"
-    on_press:
-      then:
-        - lambda: |-
-            id(ec_ezo).send_custom("Plock,1");
-    web_server:
-      sorting_group_id: sorting_group_config
+  # - platform: template
+  #   name: "Lock EZO-EC"
+  #   entity_category: "Config"
+  #   on_press:
+  #     then:
+  #       - lambda: |-
+  #           id(ec_ezo).send_custom("Plock,1");
+  #   web_server:
+  #     sorting_group_id: sorting_group_config
 
-  - platform: template
-    name: "Lock EZO-CO2"
-    entity_category: "Config"
-    on_press:
-      then:
-        - lambda: |-
-            id(co2_ezo).send_custom("Plock,1");
-    web_server:
-      sorting_group_id: sorting_group_config
+  # - platform: template
+  #   name: "Lock EZO-CO2"
+  #   entity_category: "Config"
+  #   on_press:
+  #     then:
+  #       - lambda: |-
+  #           id(co2_ezo).send_custom("Plock,1");
+  #   web_server:
+  #     sorting_group_id: sorting_group_config
 
-  - platform: template
-    name: "Lock EZO-DO"
-    entity_category: "Config"
-    on_press:
-      then:
-        - lambda: |-
-            id(do_ezo).send_custom("Plock,1");
-    web_server:
-        sorting_group_id: sorting_group_config
+  # - platform: template
+  #   name: "Lock EZO-DO"
+  #   entity_category: "Config"
+  #   on_press:
+  #     then:
+  #       - lambda: |-
+  #           id(do_ezo).send_custom("Plock,1");
+  #   web_server:
+  #       sorting_group_id: sorting_group_config
 
-  - platform: template
-    name: "Lock EZO-HUM"
-    entity_category: "Config"
-    on_press:
-      then:
-        - lambda: |-
-            id(hum_ezo).send_custom("Plock,1");
-    web_server:
-      sorting_group_id: sorting_group_config
+  # - platform: template
+  #   name: "Lock EZO-HUM"
+  #   entity_category: "Config"
+  #   on_press:
+  #     then:
+  #       - lambda: |-
+  #           id(hum_ezo).send_custom("Plock,1");
+  #   web_server:
+  #     sorting_group_id: sorting_group_config
 
-  - platform: template
-    name: "Lock EZO-O2"
-    entity_category: "Config"
-    on_press:
-      then:
-        - lambda: |-
-            id(o2_ezo).send_custom("Plock,1");
-    web_server:
-      sorting_group_id: sorting_group_config
+  # - platform: template
+  #   name: "Lock EZO-O2"
+  #   entity_category: "Config"
+  #   on_press:
+  #     then:
+  #       - lambda: |-
+  #           id(o2_ezo).send_custom("Plock,1");
+  #   web_server:
+  #     sorting_group_id: sorting_group_config
 
-  - platform: template
-    name: "Lock EZO-PH"
-    entity_category: "Config"
-    on_press:
-      then:
-        - lambda: |-
-            id(ph_ezo).send_custom("Plock,1");
-    web_server:
-      sorting_group_id: sorting_group_config
+  # - platform: template
+  #   name: "Lock EZO-PH"
+  #   entity_category: "Config"
+  #   on_press:
+  #     then:
+  #       - lambda: |-
+  #           id(ph_ezo).send_custom("Plock,1");
+  #   web_server:
+  #     sorting_group_id: sorting_group_config
 
-  - platform: template
-    name: "Lock EZO-RTD"
-    entity_category: "Config"
-    on_press:
-      then:
-        - lambda: |-
-            id(rtd_ezo).send_custom("Plock,1");
-    web_server:
-      sorting_group_id: sorting_group_config
+  # - platform: template
+  #   name: "Lock EZO-RTD"
+  #   entity_category: "Config"
+  #   on_press:
+  #     then:
+  #       - lambda: |-
+  #           id(rtd_ezo).send_custom("Plock,1");
+  #   web_server:
+  #     sorting_group_id: sorting_group_config
 
-  # Change I2C Address of EZO-PMP
-  - platform: template
-    name: "Lock EZO-PUMP White"
-    entity_category: "Config"
-    on_press:
-      then:
-          - lambda: |-
-              id(ezo_pump_white).send_custom("Plock,1");
-    web_server:
-      sorting_group_id: sorting_group_config
+  # # Change I2C Address of EZO-PMP
+  # - platform: template
+  #   name: "Lock EZO-PUMP White"
+  #   entity_category: "Config"
+  #   on_press:
+  #     then:
+  #         - lambda: |-
+  #             id(ezo_pump_white).send_custom("Plock,1");
+  #   web_server:
+  #     sorting_group_id: sorting_group_config
 
-  - platform: template
-    name: "Lock EZO-PUMP Blue"
-    entity_category: "Config"
-    on_press:
-      then:
-          - lambda: |-
-              id(ezo_pump_blue).send_custom("Plock,1");
-    web_server:
-      sorting_group_id: sorting_group_config
+  # - platform: template
+  #   name: "Lock EZO-PUMP Blue"
+  #   entity_category: "Config"
+  #   on_press:
+  #     then:
+  #         - lambda: |-
+  #             id(ezo_pump_blue).send_custom("Plock,1");
+  #   web_server:
+  #     sorting_group_id: sorting_group_config
 
-  - platform: template
-    name: "Lock EZO-PUMP Red"
-    entity_category: "Config"
-    on_press:
-      then:
-          - lambda: |-
-              id(ezo_pump_red).send_custom("Plock,1");
-    web_server:
-      sorting_group_id: sorting_group_config
+  # - platform: template
+  #   name: "Lock EZO-PUMP Red"
+  #   entity_category: "Config"
+  #   on_press:
+  #     then:
+  #         - lambda: |-
+  #             id(ezo_pump_red).send_custom("Plock,1");
+  #   web_server:
+  #     sorting_group_id: sorting_group_config
 
-  - platform: template
-    name: "Lock EZO-PUMP Green"
-    entity_category: "Config"
-    on_press:
-      then:
-          - lambda: |-
-              id(ezo_pump_green).send_custom("Plock,1");
-    web_server:
-      sorting_group_id: sorting_group_config
+  # - platform: template
+  #   name: "Lock EZO-PUMP Green"
+  #   entity_category: "Config"
+  #   on_press:
+  #     then:
+  #         - lambda: |-
+  #             id(ezo_pump_green).send_custom("Plock,1");
+  #   web_server:
+  #     sorting_group_id: sorting_group_config
 
-  - platform: template
-    name: "Lock EZO-PUMP Orange"
-    entity_category: "Config"
-    on_press:
-      then:
-          - lambda: |-
-              id(ezo_pump_orange).send_custom("Plock,1");
-    web_server:
-      sorting_group_id: sorting_group_config
+  # - platform: template
+  #   name: "Lock EZO-PUMP Orange"
+  #   entity_category: "Config"
+  #   on_press:
+  #     then:
+  #         - lambda: |-
+  #             id(ezo_pump_orange).send_custom("Plock,1");
+  #   web_server:
+  #     sorting_group_id: sorting_group_config
