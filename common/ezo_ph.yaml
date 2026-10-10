@@ -141,6 +141,10 @@ sensor:
         - lambda: |-
             ESP_LOGI("ezo_ph", "t response: %s", x.c_str());
             id(result_ph).publish_state(x);
+    on_led:
+      then:
+        - lambda: |-
+            ESP_LOGI("ezo_ph", "LED state: %s", x ? "on" : "off");
     web_server:
       sorting_group_id: sorting_group_ph
       sorting_weight: 10

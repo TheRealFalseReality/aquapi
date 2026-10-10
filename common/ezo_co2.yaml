@@ -85,6 +85,10 @@ sensor:
         - lambda: |-
             ESP_LOGI("ezo_co2", "t response: %s", x.c_str());
             id(result_co2).publish_state(x);
+    on_led:
+      then:
+        - lambda: |-
+            ESP_LOGI("ezo_co2", "LED state: %s", x ? "on" : "off");
     web_server:
       sorting_group_id: sorting_group_co2
       sorting_weight: 10

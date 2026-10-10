@@ -63,6 +63,40 @@ api:
             id: ezo_pump_yellow
             address: !lambda |-
               return address;
+    - action: pump_yellow_find
+      then:
+        - ezo_pmp.find:
+            id: ezo_pump_yellow
+    - action: pump_yellow_custom_command
+      variables:
+        command: string
+      then:
+        - ezo_pmp.arbitrary_command:
+            id: ezo_pump_yellow
+            command: !lambda |-
+              return command;
+        - lambda: |-
+            ESP_LOGI("ezo_pump", "pump_yellow custom command sent: %s", command.c_str());
+    - action: pump_yellow_stop
+      then:
+        - ezo_pmp.stop_dosing:
+            id: ezo_pump_yellow
+    - action: pump_yellow_pause
+      then:
+        - ezo_pmp.pause_dosing:
+            id: ezo_pump_yellow
+    - action: pump_yellow_dose_continuously
+      then:
+        - ezo_pmp.dose_continuously:
+            id: ezo_pump_yellow
+    - action: pump_yellow_clear_total_volume
+      then:
+        - ezo_pmp.clear_total_volume_dosed:
+            id: ezo_pump_yellow
+    - action: pump_yellow_clear_calibration
+      then:
+        - ezo_pmp.clear_calibration:
+            id: ezo_pump_yellow
 
 sensor:
   - platform: ezo_pmp
@@ -212,6 +246,18 @@ number:
       sorting_group_id: sorting_group_pump_yellow
 
 button:
+  - platform: template
+    name: Pump Yellow - Find
+    id: find_pump_yellow
+    icon: mdi:magnify
+    disabled_by_default: true
+    on_press:
+      - ezo_pmp.find:
+          id: ezo_pump_yellow
+      - lambda: |-
+          ESP_LOGI("ezo_pump", "Find command sent to Pump Yellow");
+    web_server:
+      sorting_group_id: sorting_group_pump_yellow
   - platform: template
     name: Pump Yellow - Dose Volume for Time
     icon: mdi:clock-time-two-outline

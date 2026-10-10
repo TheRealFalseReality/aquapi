@@ -64,6 +64,40 @@ api:
             id: ezo_pump_white
             address: !lambda |-
               return address;
+    - action: pump_white_find
+      then:
+        - ezo_pmp.find:
+            id: ezo_pump_white
+    - action: pump_white_custom_command
+      variables:
+        command: string
+      then:
+        - ezo_pmp.arbitrary_command:
+            id: ezo_pump_white
+            command: !lambda |-
+              return command;
+        - lambda: |-
+            ESP_LOGI("ezo_pump", "pump_white custom command sent: %s", command.c_str());
+    - action: pump_white_stop
+      then:
+        - ezo_pmp.stop_dosing:
+            id: ezo_pump_white
+    - action: pump_white_pause
+      then:
+        - ezo_pmp.pause_dosing:
+            id: ezo_pump_white
+    - action: pump_white_dose_continuously
+      then:
+        - ezo_pmp.dose_continuously:
+            id: ezo_pump_white
+    - action: pump_white_clear_total_volume
+      then:
+        - ezo_pmp.clear_total_volume_dosed:
+            id: ezo_pump_white
+    - action: pump_white_clear_calibration
+      then:
+        - ezo_pmp.clear_calibration:
+            id: ezo_pump_white
 
 sensor:
   - platform: ezo_pmp
@@ -221,6 +255,18 @@ number:
       sorting_group_id: sorting_group_pump_white
 
 button:
+  - platform: template
+    name: Pump White - Find
+    id: find_pump_white
+    icon: mdi:magnify
+    disabled_by_default: true
+    on_press:
+      - ezo_pmp.find:
+          id: ezo_pump_white
+      - lambda: |-
+          ESP_LOGI("ezo_pump", "Find command sent to Pump White");
+    web_server:
+      sorting_group_id: sorting_group_pump_white
   - platform: template
     name: Pump White - Dose Volume for Time
     disabled_by_default: true

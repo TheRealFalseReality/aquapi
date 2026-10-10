@@ -122,6 +122,10 @@ sensor:
     filters:
       - lambda:
           return (x / 1000);
+    on_led:
+      then:
+        - lambda: |-
+            ESP_LOGI("ezo_ec", "LED state: %s", x ? "on" : "off");
     web_server:
       sorting_group_id: sorting_group_ec
       sorting_weight: 13

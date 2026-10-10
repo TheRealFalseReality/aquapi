@@ -147,6 +147,74 @@ api:
             id: ezo_pump_green
             address: !lambda |-
               return address;
+    - action: pump_clean_find
+      then:
+        - ezo_pmp.find:
+            id: ezo_pump_green
+    - action: pump_clean_custom_command
+      variables:
+        command: string
+      then:
+        - ezo_pmp.arbitrary_command:
+            id: ezo_pump_green
+            command: !lambda |-
+              return command;
+        - lambda: |-
+            ESP_LOGI("ezo_pump", "pump_clean custom command sent: %s", command.c_str());
+    - action: pump_clean_stop
+      then:
+        - ezo_pmp.stop_dosing:
+            id: ezo_pump_green
+    - action: pump_clean_pause
+      then:
+        - ezo_pmp.pause_dosing:
+            id: ezo_pump_green
+    - action: pump_clean_dose_continuously
+      then:
+        - ezo_pmp.dose_continuously:
+            id: ezo_pump_green
+    - action: pump_clean_clear_total_volume
+      then:
+        - ezo_pmp.clear_total_volume_dosed:
+            id: ezo_pump_green
+    - action: pump_clean_clear_calibration
+      then:
+        - ezo_pmp.clear_calibration:
+            id: ezo_pump_green
+    - action: pump_waste_find
+      then:
+        - ezo_pmp.find:
+            id: ezo_pump_red
+    - action: pump_waste_custom_command
+      variables:
+        command: string
+      then:
+        - ezo_pmp.arbitrary_command:
+            id: ezo_pump_red
+            command: !lambda |-
+              return command;
+        - lambda: |-
+            ESP_LOGI("ezo_pump", "pump_waste custom command sent: %s", command.c_str());
+    - action: pump_waste_stop
+      then:
+        - ezo_pmp.stop_dosing:
+            id: ezo_pump_red
+    - action: pump_waste_pause
+      then:
+        - ezo_pmp.pause_dosing:
+            id: ezo_pump_red
+    - action: pump_waste_dose_continuously
+      then:
+        - ezo_pmp.dose_continuously:
+            id: ezo_pump_red
+    - action: pump_waste_clear_total_volume
+      then:
+        - ezo_pmp.clear_total_volume_dosed:
+            id: ezo_pump_red
+    - action: pump_waste_clear_calibration
+      then:
+        - ezo_pmp.clear_calibration:
+            id: ezo_pump_red
 
 sensor:
   # Green
@@ -465,6 +533,18 @@ number:
 button:
   # Green
   - platform: template
+    name: Pump Clean - Find
+    id: find_pump_clean
+    icon: mdi:magnify
+    disabled_by_default: true
+    on_press:
+      - ezo_pmp.find:
+          id: ezo_pump_green
+      - lambda: |-
+          ESP_LOGI("ezo_pump", "Find command sent to Pump Clean");
+    web_server:
+      sorting_group_id: sorting_group_pump_green
+  - platform: template
     name: Pump Clean - Dose Volume for Time
     disabled_by_default: true
     icon: mdi:clock-time-two-outline
@@ -568,6 +648,18 @@ button:
       sorting_group_id: sorting_group_pump_green
 
   # Red
+  - platform: template
+    name: Pump Waste - Find
+    id: find_pump_waste
+    icon: mdi:magnify
+    disabled_by_default: true
+    on_press:
+      - ezo_pmp.find:
+          id: ezo_pump_red
+      - lambda: |-
+          ESP_LOGI("ezo_pump", "Find command sent to Pump Waste");
+    web_server:
+      sorting_group_id: sorting_group_pump_red
   - platform: template
     name: Pump Waste - Dose Volume for Time
     disabled_by_default: true

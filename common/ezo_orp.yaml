@@ -107,6 +107,10 @@ sensor:
         - lambda: |-
             ESP_LOGI("ezo_orp", "t response: %s", x.c_str());
             id(result_orp).publish_state(x);
+    on_led:
+      then:
+        - lambda: |-
+            ESP_LOGI("ezo_orp", "LED state: %s", x ? "on" : "off");
     web_server:
       sorting_group_id: sorting_group_orp
       sorting_weight: 10
