@@ -257,8 +257,8 @@ button:
           id: ezo_pump_orange
           volume: !lambda |-
             return id(volume_orange).state;
-        - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump Orange response: %s", x.c_str());
+      - lambda: |-
+          ESP_LOGI("ezo_pmp", "Pump Orange response: %s", x.c_str());
     web_server:
       sorting_group_id: sorting_group_pump_orange
   - platform: template
@@ -272,8 +272,8 @@ button:
             return id(flow_rate_orange).state;
           duration: !lambda |-
             return id(duration_orange).state;
-        - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump Orange response: %s", x.c_str());
+      - lambda: |-
+          ESP_LOGI("ezo_pmp", "Pump Orange response: %s", x.c_str());
     web_server:
       sorting_group_id: sorting_group_pump_orange
   - platform: template
@@ -321,8 +321,8 @@ button:
           id: ezo_pump_orange
           volume: !lambda |-
             return id(volume_orange).state;
-        - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump Orange response: %s", x.c_str());
+      - lambda: |-
+          ESP_LOGI("ezo_pmp", "Pump Orange response: %s", x.c_str());
     web_server:
       sorting_group_id: sorting_group_pump_orange
   - platform: template

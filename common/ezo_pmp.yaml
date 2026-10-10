@@ -285,10 +285,10 @@ button:
             return id(flow_rate).state;
           duration: !lambda |-
             return id(duration).state;
-    web_server:
-      sorting_group_id: sorting_group_pump_white
       - lambda: |-
           ESP_LOGI("ezo_pmp", "Pump White response: %s", x.c_str());
+    web_server:
+      sorting_group_id: sorting_group_pump_white
   - platform: template
     name: Pump White - Pause Dosing
     disabled_by_default: true
@@ -337,10 +337,10 @@ button:
           id: ezo_pump_white
           volume: !lambda |-
             return id(volume).state;
-    web_server:
-      sorting_group_id: sorting_group_pump_white
       - lambda: |-
           ESP_LOGI("ezo_pmp", "Pump White response: %s", x.c_str());
+    web_server:
+      sorting_group_id: sorting_group_pump_white
   - platform: template
     name: Pump White - Clear Calibration Volume
     icon: mdi:cancel
@@ -349,7 +349,7 @@ button:
     on_press:
       - ezo_pmp.clear_calibration:
           id: ezo_pump_white
-    web_server:
-      sorting_group_id: sorting_group_pump_white
       - lambda: |-
           ESP_LOGI("ezo_pmp", "Pump White response: %s", x.c_str());
+    web_server:
+      sorting_group_id: sorting_group_pump_white
