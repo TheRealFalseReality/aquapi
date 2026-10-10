@@ -1,7 +1,7 @@
 ---
 substitutions:
   # App Version
-  app_version: "26.6.8"
+  app_version: "26.6.9"
   # github URL
   github_url: "https://github.com/TheRealFalseReality/aquapi"
 
