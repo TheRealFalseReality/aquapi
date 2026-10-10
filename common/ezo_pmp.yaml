@@ -27,7 +27,7 @@ api:
             id: ezo_pump_white
             volume: !lambda 'return dose_volume;'
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump White response: %s", x.c_str());
+            ESP_LOGD("ezo_pmp", "Pump White: dose_volume command sent");
     - action: pump_white_dose_volume_time
       variables:
         dose_volume: float
@@ -40,7 +40,7 @@ api:
             duration: !lambda |-
               return dose_time;
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump White response: %s", x.c_str());
+            ESP_LOGD("ezo_pmp", "Pump White: dose_volume_over_time command sent");
     - action: pump_white_dose_flow_rate_time
       variables:
         dose_rate: float
@@ -53,7 +53,7 @@ api:
             duration: !lambda |-
               return dose_time;
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump White response: %s", x.c_str());
+            ESP_LOGD("ezo_pmp", "Pump White: dose_with_constant_flow_rate command sent");
     - action: pump_white_dose_set_calibration
       variables:
         actual_volume: float
@@ -63,7 +63,7 @@ api:
             volume: !lambda |-
               return actual_volume;
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump White response: %s", x.c_str());
+            ESP_LOGD("ezo_pmp", "Pump White: set_calibration_volume command sent");
     - action: pump_white_change_address
       variables:
         address: int
@@ -73,7 +73,7 @@ api:
             address: !lambda |-
               return address;
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump White response: %s", x.c_str());
+            ESP_LOGD("ezo_pmp", "Pump White: change_i2c_address command sent");
 
 sensor:
   - platform: ezo_pmp
@@ -244,7 +244,7 @@ button:
           duration: !lambda |-
             return id(duration).state;
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump White response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump White: dose_volume_over_time command sent");
     web_server:
       sorting_group_id: sorting_group_pump_white
   - platform: template
@@ -256,7 +256,7 @@ button:
       - ezo_pmp.dose_continuously:
           id: ezo_pump_white
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump White response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump White: dose_continuously command sent");
     web_server:
       sorting_group_id: sorting_group_pump_white
   - platform: template
@@ -270,7 +270,7 @@ button:
           volume: !lambda |-
             return id(volume).state;
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump White response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump White: dose_volume command sent");
     web_server:
       sorting_group_id: sorting_group_pump_white
   - platform: template
@@ -286,7 +286,7 @@ button:
           duration: !lambda |-
             return id(duration).state;
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump White response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump White: dose_with_constant_flow_rate command sent");
     web_server:
       sorting_group_id: sorting_group_pump_white
   - platform: template
@@ -298,7 +298,7 @@ button:
       - ezo_pmp.pause_dosing:
           id: ezo_pump_white
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump White response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump White: pause_dosing command sent");
     web_server:
       sorting_group_id: sorting_group_pump_white
   - platform: template
@@ -310,7 +310,7 @@ button:
       - ezo_pmp.stop_dosing:
           id: ezo_pump_white
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump White response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump White: stop_dosing command sent");
     web_server:
       sorting_group_id: sorting_group_pump_white
   - platform: template
@@ -322,7 +322,7 @@ button:
       - ezo_pmp.clear_total_volume_dosed:
           id: ezo_pump_white
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump White response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump White: clear_total_volume_dosed command sent");
     web_server:
       sorting_group_id: sorting_group_pump_white
 
@@ -338,7 +338,7 @@ button:
           volume: !lambda |-
             return id(volume).state;
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump White response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump White: set_calibration_volume command sent");
     web_server:
       sorting_group_id: sorting_group_pump_white
   - platform: template
@@ -350,6 +350,6 @@ button:
       - ezo_pmp.clear_calibration:
           id: ezo_pump_white
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump White response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump White: clear_calibration command sent");
     web_server:
       sorting_group_id: sorting_group_pump_white

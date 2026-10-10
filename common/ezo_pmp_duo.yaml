@@ -36,7 +36,7 @@ api:
             id: ezo_pump_red
             volume: !lambda 'return dose_volume;'
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump Waste/Red response: %s", x.c_str());
+            ESP_LOGD("ezo_pmp", "Pump Waste/Red: dose_volume command sent");
     - action: pump_waste_volume_time
       variables:
         dose_volume: float
@@ -49,7 +49,7 @@ api:
             duration: !lambda |-
               return dose_time;
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump Waste/Red response: %s", x.c_str());
+            ESP_LOGD("ezo_pmp", "Pump Waste/Red: dose_volume_over_time command sent");
     - action: pump_waste_flow_rate_time
       variables:
         dose_rate: float
@@ -62,7 +62,7 @@ api:
             duration: !lambda |-
               return dose_time;
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump Waste/Red response: %s", x.c_str());
+            ESP_LOGD("ezo_pmp", "Pump Waste/Red: dose_with_constant_flow_rate command sent");
     - action: pump_waste_set_calibration
       variables:
         actual_volume: float
@@ -72,7 +72,7 @@ api:
             volume: !lambda |-
               return actual_volume;
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump Waste/Red response: %s", x.c_str());
+            ESP_LOGD("ezo_pmp", "Pump Waste/Red: set_calibration_volume command sent");
     - action: pump_clean_volume
       variables:
         dose_volume: float
@@ -81,7 +81,7 @@ api:
             id: ezo_pump_green
             volume: !lambda 'return dose_volume;'
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump Clean/Green response: %s", x.c_str());
+            ESP_LOGD("ezo_pmp", "Pump Clean/Green: dose_volume command sent");
     - action: pump_clean_volume_time
       variables:
         dose_volume: float
@@ -94,7 +94,7 @@ api:
             duration: !lambda |-
               return dose_time;
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump Clean/Green response: %s", x.c_str());
+            ESP_LOGD("ezo_pmp", "Pump Clean/Green: dose_volume_over_time command sent");
     - action: pump_clean_flow_rate_time
       variables:
         dose_rate: float
@@ -107,7 +107,7 @@ api:
             duration: !lambda |-
               return dose_time;
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump Clean/Green response: %s", x.c_str());
+            ESP_LOGD("ezo_pmp", "Pump Clean/Green: dose_with_constant_flow_rate command sent");
     - action: pump_clean_set_calibration
       variables:
         actual_volume: float
@@ -117,7 +117,7 @@ api:
             volume: !lambda |-
               return actual_volume;
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump Clean/Green response: %s", x.c_str());
+            ESP_LOGD("ezo_pmp", "Pump Clean/Green: set_calibration_volume command sent");
     - action: pump_water_change
       variables:
         volume: float
@@ -130,7 +130,7 @@ api:
             duration: !lambda |-
               return duration;
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump Water/Green response: %s", x.c_str());
+            ESP_LOGD("ezo_pmp", "Pump Water/Green: dose_volume_over_time command sent");
         - ezo_pmp.dose_volume_over_time:
             id: ezo_pump_red
             volume: !lambda |-
@@ -138,7 +138,7 @@ api:
             duration: !lambda |-
               return duration;
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump Water/Red response: %s", x.c_str());
+            ESP_LOGD("ezo_pmp", "Pump Water/Red: dose_volume_over_time command sent");
     - action: pump_water_change_quick
       variables:
         volume: float
@@ -148,13 +148,13 @@ api:
             volume: !lambda |-
               return volume;
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump Water/Green response: %s", x.c_str());
+            ESP_LOGD("ezo_pmp", "Pump Water/Green: dose_volume command sent");
         - ezo_pmp.dose_volume:
             id: ezo_pump_red
             volume: !lambda |-
               return volume;
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump Water/Red response: %s", x.c_str());
+            ESP_LOGD("ezo_pmp", "Pump Water/Red: dose_volume command sent");
     - action: pump_waste_change_address
       variables:
         address: int
@@ -164,7 +164,7 @@ api:
             address: !lambda |-
               return address;
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump Waste/Red response: %s", x.c_str());
+            ESP_LOGD("ezo_pmp", "Pump Waste/Red: change_i2c_address command sent");
     - action: pump_clean_change_address
       variables:
         address: int
@@ -174,7 +174,7 @@ api:
             address: !lambda |-
               return address;
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump Clean/Green response: %s", x.c_str());
+            ESP_LOGD("ezo_pmp", "Pump Clean/Green: change_i2c_address command sent");
 
 sensor:
   # Green
@@ -505,7 +505,7 @@ button:
           duration: !lambda |-
             return id(duration_clean).state;
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump Clean/Green response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump Clean/Green: dose_volume_over_time command sent");
     web_server:
       sorting_group_id: sorting_group_pump_green
   - platform: template
@@ -517,7 +517,7 @@ button:
       - ezo_pmp.dose_continuously:
           id: ezo_pump_green
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump Clean/Green response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump Clean/Green: dose_continuously command sent");
     web_server:
       sorting_group_id: sorting_group_pump_green
   - platform: template
@@ -531,7 +531,7 @@ button:
           volume: !lambda |-
             return id(volume_clean).state;
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump Clean/Green response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump Clean/Green: dose_volume command sent");
     web_server:
       sorting_group_id: sorting_group_pump_green
   - platform: template
@@ -547,7 +547,7 @@ button:
           duration: !lambda |-
             return id(duration_clean).state;
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump Clean/Green response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump Clean/Green: dose_with_constant_flow_rate command sent");
     web_server:
       sorting_group_id: sorting_group_pump_green
   - platform: template
@@ -559,7 +559,7 @@ button:
       - ezo_pmp.pause_dosing:
           id: ezo_pump_green
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump Clean/Green response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump Clean/Green: pause_dosing command sent");
     web_server:
       sorting_group_id: sorting_group_pump_green
   - platform: template
@@ -571,7 +571,7 @@ button:
       - ezo_pmp.stop_dosing:
           id: ezo_pump_green
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump Clean/Green response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump Clean/Green: stop_dosing command sent");
     web_server:
       sorting_group_id: sorting_group_pump_green
   - platform: template
@@ -583,7 +583,7 @@ button:
       - ezo_pmp.clear_total_volume_dosed:
           id: ezo_pump_green
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump Clean/Green response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump Clean/Green: clear_total_volume_dosed command sent");
     web_server:
       sorting_group_id: sorting_group_pump_green
   - platform: template
@@ -597,7 +597,7 @@ button:
           volume: !lambda |-
             return id(volume_clean).state;
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump Clean/Green response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump Clean/Green: set_calibration_volume command sent");
     web_server:
       sorting_group_id: sorting_group_pump_green
   - platform: template
@@ -609,7 +609,7 @@ button:
       - ezo_pmp.clear_calibration:
           id: ezo_pump_green
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump Clean/Green response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump Clean/Green: clear_calibration command sent");
     web_server:
       sorting_group_id: sorting_group_pump_green
 
@@ -627,7 +627,7 @@ button:
           duration: !lambda |-
             return id(duration_waste).state;
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump Waste/Red response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump Waste/Red: dose_volume_over_time command sent");
     web_server:
       sorting_group_id: sorting_group_pump_red
   - platform: template
@@ -639,7 +639,7 @@ button:
       - ezo_pmp.dose_continuously:
           id: ezo_pump_red
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump Waste/Red response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump Waste/Red: dose_continuously command sent");
     web_server:
       sorting_group_id: sorting_group_pump_red
   - platform: template
@@ -653,7 +653,7 @@ button:
           volume: !lambda |-
             return id(volume_waste).state;
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump Waste/Red response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump Waste/Red: dose_volume command sent");
     web_server:
       sorting_group_id: sorting_group_pump_red
   - platform: template
@@ -669,7 +669,7 @@ button:
           duration: !lambda |-
             return id(duration_waste).state;
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump Waste/Red response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump Waste/Red: dose_with_constant_flow_rate command sent");
     web_server:
       sorting_group_id: sorting_group_pump_red
   - platform: template
@@ -681,7 +681,7 @@ button:
       - ezo_pmp.pause_dosing:
           id: ezo_pump_red
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump Waste/Red response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump Waste/Red: pause_dosing command sent");
     web_server:
       sorting_group_id: sorting_group_pump_red
   - platform: template
@@ -693,7 +693,7 @@ button:
       - ezo_pmp.stop_dosing:
           id: ezo_pump_red
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump Waste/Red response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump Waste/Red: stop_dosing command sent");
     web_server:
       sorting_group_id: sorting_group_pump_red
   - platform: template
@@ -705,7 +705,7 @@ button:
       - ezo_pmp.clear_total_volume_dosed:
           id: ezo_pump_red
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump Waste/Red response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump Waste/Red: clear_total_volume_dosed command sent");
     web_server:
       sorting_group_id: sorting_group_pump_red
   - platform: template
@@ -719,7 +719,7 @@ button:
           volume: !lambda |-
             return id(volume_waste).state;
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump Waste/Red response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump Waste/Red: set_calibration_volume command sent");
     web_server:
       sorting_group_id: sorting_group_pump_red
   - platform: template
@@ -731,6 +731,6 @@ button:
       - ezo_pmp.clear_calibration:
           id: ezo_pump_red
       - lambda: |-
-          ESP_LOGI("ezo_pmp", "Pump Waste/Red response: %s", x.c_str());
+          ESP_LOGD("ezo_pmp", "Pump Waste/Red: clear_calibration command sent");
     web_server:
       sorting_group_id: sorting_group_pump_red
