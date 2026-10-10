@@ -26,7 +26,7 @@ button:
             id: ezo_pump_white
             address: ${addPMP_blue}
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump response: %s", x.c_str());
+            ESP_LOGI("ezo_pmp", "Pump Blue: change_i2c_address command sent");
     web_server:
       sorting_group_id: sorting_group_config
 
