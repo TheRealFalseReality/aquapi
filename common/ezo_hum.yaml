@@ -40,6 +40,10 @@ api:
       then:
         - lambda: |-
             id(hum_ezo).send_custom(command.c_str());
+    - action: hum_find
+      then:
+        - lambda: |-
+            id(hum_ezo).send_custom("Find");
 
 sensor:
   # EZO Circuits (SCL/RX, SDA/TX)
@@ -56,23 +60,28 @@ sensor:
     device_class: "humidity"
     on_custom:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_hum", "custom response: %s", x.c_str());
             id(raw_value_hum).publish_state(x);
     on_calibration:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_hum", "calibration response: %s", x.c_str());
             id(result_hum).publish_state(x);
     on_device_information:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_hum", "device_information response: %s", x.c_str());
             id(result_hum).publish_state(x);
     on_slope:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_hum", "slope response: %s", x.c_str());
             id(result_hum).publish_state(x);
     on_t:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_hum", "t response: %s", x.c_str());
             id(result_hum).publish_state(x);
     web_server:
       sorting_group_id: sorting_group_hum
@@ -170,6 +179,21 @@ text_sensor:
       sorting_group_id: sorting_group_hum
 
 button:
+  # Find HUM circuit (blinks LED)
+  - platform: template
+    name: HUM - Find
+    id: find_hum
+    icon: mdi:magnify
+    entity_category: "Config"
+    disabled_by_default: true
+    on_press:
+      then:
+        - lambda: |-
+            id(hum_ezo).send_custom("Find");
+            ESP_LOGI("ezo_hum", "Find command sent to HUM circuit");
+    web_server:
+      sorting_group_id: sorting_group_hum
+
   # Read HUM Sensor
   - platform: template
     name: HUM - Read

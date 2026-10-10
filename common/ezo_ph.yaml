@@ -86,6 +86,10 @@ api:
       then:
         - lambda: |-
             id(ph_ezo).send_custom(command.c_str());
+    - action: ph_find
+      then:
+        - lambda: |-
+            id(ph_ezo).send_custom("Find");
 
 esphome:
   on_boot:
@@ -114,23 +118,28 @@ sensor:
     device_class: PH
     on_custom:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_ph", "custom response: %s", x.c_str());
             id(result_ph).publish_state(x);
     on_calibration:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_ph", "calibration response: %s", x.c_str());
             id(result_ph).publish_state(x);
     on_device_information:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_ph", "device_information response: %s", x.c_str());
             id(result_ph).publish_state(x);
     on_slope:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_ph", "slope response: %s", x.c_str());
             id(result_ph).publish_state(x);
     on_t:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_ph", "t response: %s", x.c_str());
             id(result_ph).publish_state(x);
     web_server:
       sorting_group_id: sorting_group_ph
@@ -178,6 +187,21 @@ binary_sensor:
       sorting_group_id: sorting_group_ph
 
 button:
+  # Find PH circuit (blinks LED)
+  - platform: template
+    name: PH - Find
+    id: find_ph
+    icon: mdi:magnify
+    entity_category: "Config"
+    disabled_by_default: true
+    on_press:
+      then:
+        - lambda: |-
+            id(ph_ezo).send_custom("Find");
+            ESP_LOGI("ezo_ph", "Find command sent to PH circuit");
+    web_server:
+      sorting_group_id: sorting_group_ph
+
   # Read pH Probe
   - platform: template
     name: pH - Read

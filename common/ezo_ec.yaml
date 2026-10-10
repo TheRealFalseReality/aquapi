@@ -82,6 +82,10 @@ api:
       then:
         - lambda: |-
             id(ec_ezo).send_custom(command.c_str());
+    - action: ec_find
+      then:
+        - lambda: |-
+            id(ec_ezo).send_custom("Find");
 
 esphome:
   on_boot:
@@ -123,15 +127,18 @@ sensor:
       sorting_weight: 13
     on_custom:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_ec", "custom response: %s", x.c_str());
             id(raw_value_ec).publish_state(x);
     on_calibration:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_ec", "calibration response: %s", x.c_str());
             id(result_ec).publish_state(x);
     on_device_information:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_ec", "device_information response: %s", x.c_str());
             id(result_ec).publish_state(x);
 
   #  # Conductivity
@@ -310,6 +317,21 @@ binary_sensor:
       sorting_group_id: sorting_group_ec
 
 button:
+  # Find EC circuit (blinks LED)
+  - platform: template
+    name: EC - Find
+    id: find_ec
+    icon: mdi:magnify
+    entity_category: "Config"
+    disabled_by_default: true
+    on_press:
+      then:
+        - lambda: |-
+            id(ec_ezo).send_custom("Find");
+            ESP_LOGI("ezo_ec", "Find command sent to EC circuit");
+    web_server:
+      sorting_group_id: sorting_group_ec
+
   # Read Conductivity Probe
   - platform: template
     name: EC - Read

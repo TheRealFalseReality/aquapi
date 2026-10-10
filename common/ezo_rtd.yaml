@@ -41,6 +41,10 @@ api:
       then:
         - lambda: |-
             id(rtd_ezo).send_custom(command.c_str());
+    - action: temperature_rtd_find
+      then:
+        - lambda: |-
+            id(rtd_ezo).send_custom("Find");
 
 # esphome:
 #   on_boot:
@@ -67,6 +71,18 @@ sensor:
     update_interval: "${update_rtd}"
     state_class: "measurement"
     device_class: "temperature"
+    on_custom:
+      then:
+        - lambda: |-
+            ESP_LOGI("ezo_rtd", "custom response: %s", x.c_str());
+    on_calibration:
+      then:
+        - lambda: |-
+            ESP_LOGI("ezo_rtd", "calibration response: %s", x.c_str());
+    on_device_information:
+      then:
+        - lambda: |-
+            ESP_LOGI("ezo_rtd", "device_information response: %s", x.c_str());
     web_server:
       sorting_group_id: sorting_group_rtd
       sorting_weight: 10
@@ -148,6 +164,21 @@ number:
       sorting_group_id: sorting_group_rtd
 
 button:
+  # Find RTD circuit (blinks LED)
+  - platform: template
+    name: RTD - Find
+    id: find_rtd
+    icon: mdi:magnify
+    entity_category: "Config"
+    disabled_by_default: true
+    on_press:
+      then:
+        - lambda: |-
+            id(rtd_ezo).send_custom("Find");
+            ESP_LOGI("ezo_rtd", "Find command sent to RTD circuit");
+    web_server:
+      sorting_group_id: sorting_group_rtd
+
   # Read rtd Probe
   - platform: template
     name: rtd - Read

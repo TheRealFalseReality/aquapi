@@ -51,6 +51,10 @@ api:
       then:
         - lambda: |-
             id(orp_ezo).send_custom(command.c_str());
+    - action: orp_find
+      then:
+        - lambda: |-
+            id(orp_ezo).send_custom("Find");
 
 
 esphome:
@@ -80,23 +84,28 @@ sensor:
     device_class: voltage
     on_custom:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_orp", "custom response: %s", x.c_str());
             id(result_orp).publish_state(x);
     on_calibration:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_orp", "calibration response: %s", x.c_str());
             id(result_orp).publish_state(x);
     on_device_information:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_orp", "device_information response: %s", x.c_str());
             id(result_orp).publish_state(x);
     on_slope:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_orp", "slope response: %s", x.c_str());
             id(result_orp).publish_state(x);
     on_t:
       then:
-        - lambda:
+        - lambda: |-
+            ESP_LOGI("ezo_orp", "t response: %s", x.c_str());
             id(result_orp).publish_state(x);
     web_server:
       sorting_group_id: sorting_group_orp
@@ -124,6 +133,21 @@ binary_sensor:
       sorting_group_id: sorting_group_orp
 
 button:
+  # Find ORP circuit (blinks LED)
+  - platform: template
+    name: ORP - Find
+    id: find_orp
+    icon: mdi:magnify
+    entity_category: "Config"
+    disabled_by_default: true
+    on_press:
+      then:
+        - lambda: |-
+            id(orp_ezo).send_custom("Find");
+            ESP_LOGI("ezo_orp", "Find command sent to ORP circuit");
+    web_server:
+      sorting_group_id: sorting_group_orp
+
   # Read ORP Probe
   - platform: template
     name: ORP - Read

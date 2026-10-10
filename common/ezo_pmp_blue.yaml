@@ -25,6 +25,8 @@ api:
         - ezo_pmp.dose_volume:
             id: ezo_pump_blue
             volume: !lambda 'return dose_volume;'
+        - lambda: |-
+            ESP_LOGD("ezo_pmp", "Pump Blue: dose_volume command sent");
     - action: pump_blue_dose_volume_time
       variables:
         dose_volume: float
@@ -36,6 +38,8 @@ api:
               return dose_volume;
             duration: !lambda |-
               return dose_time;
+        - lambda: |-
+            ESP_LOGD("ezo_pmp", "Pump Blue: dose_volume_over_time command sent");
     - action: pump_blue_dose_flow_rate_time
       variables:
         dose_rate: float
@@ -47,6 +51,8 @@ api:
               return dose_rate;
             duration: !lambda |-
               return dose_time;
+        - lambda: |-
+            ESP_LOGD("ezo_pmp", "Pump Blue: dose_with_constant_flow_rate command sent");
     - action: pump_blue_dose_set_calibration
       variables:
         actual_volume: float
@@ -63,6 +69,8 @@ api:
             id: ezo_pump_blue
             address: !lambda |-
               return address;
+        - lambda: |-
+            ESP_LOGD("ezo_pmp", "Pump Blue: change_i2c_address command sent");
 
 sensor:
   - platform: ezo_pmp
@@ -222,7 +230,9 @@ button:
           volume: !lambda |-
             return id(volume_blue).state;
           duration: !lambda |-
-            return id(volume_blue).state;
+            return id(duration_blue).state;
+      - lambda: |-
+          ESP_LOGD("ezo_pmp", "Pump Blue: dose_volume_over_time command sent");
     web_server:
       sorting_group_id: sorting_group_pump_blue
   - platform: template
@@ -232,6 +242,8 @@ button:
     on_press:
       - ezo_pmp.dose_continuously:
           id: ezo_pump_blue
+      - lambda: |-
+          ESP_LOGD("ezo_pmp", "Pump Blue: dose_continuously command sent");
     web_server:
       sorting_group_id: sorting_group_pump_blue
   - platform: template
@@ -243,6 +255,8 @@ button:
           id: ezo_pump_blue
           volume: !lambda |-
             return id(volume_blue).state;
+      - lambda: |-
+          ESP_LOGD("ezo_pmp", "Pump Blue: dose_volume command sent");
     web_server:
       sorting_group_id: sorting_group_pump_blue
   - platform: template
@@ -255,7 +269,9 @@ button:
           volume_per_minute: !lambda |-
             return id(volume_blue).state;
           duration: !lambda |-
-            return id(volume_blue).state;
+            return id(duration_blue).state;
+      - lambda: |-
+          ESP_LOGD("ezo_pmp", "Pump Blue: dose_with_constant_flow_rate command sent");
     web_server:
       sorting_group_id: sorting_group_pump_blue
   - platform: template
@@ -265,6 +281,8 @@ button:
     on_press:
       - ezo_pmp.pause_dosing:
           id: ezo_pump_blue
+      - lambda: |-
+          ESP_LOGD("ezo_pmp", "Pump Blue: pause_dosing command sent");
     web_server:
       sorting_group_id: sorting_group_pump_blue
   - platform: template
@@ -274,6 +292,8 @@ button:
     on_press:
       - ezo_pmp.stop_dosing:
           id: ezo_pump_blue
+      - lambda: |-
+          ESP_LOGD("ezo_pmp", "Pump Blue: stop_dosing command sent");
     web_server:
       sorting_group_id: sorting_group_pump_blue
   - platform: template
@@ -284,6 +304,8 @@ button:
     on_press:
       - ezo_pmp.clear_total_volume_dosed:
           id: ezo_pump_blue
+      - lambda: |-
+          ESP_LOGD("ezo_pmp", "Pump Blue: clear_total_volume_dosed command sent");
     web_server:
       sorting_group_id: sorting_group_pump_blue
 
@@ -297,6 +319,8 @@ button:
           id: ezo_pump_blue
           volume: !lambda |-
             return id(volume_blue).state;
+      - lambda: |-
+          ESP_LOGD("ezo_pmp", "Pump Blue: set_calibration_volume command sent");
     web_server:
       sorting_group_id: sorting_group_pump_blue
   - platform: template
@@ -307,5 +331,7 @@ button:
     on_press:
       - ezo_pmp.clear_calibration:
           id: ezo_pump_blue
+      - lambda: |-
+          ESP_LOGD("ezo_pmp", "Pump Blue: clear_calibration command sent");
     web_server:
       sorting_group_id: sorting_group_pump_blue
