@@ -25,6 +25,8 @@ button:
         - ezo_pmp.change_i2c_address:
             id: ezo_pump_white
             address: ${addPMP_blue}
+        - lambda: |-
+            ESP_LOGI("ezo_pmp", "Pump response: %s", x.c_str());
     web_server:
       sorting_group_id: sorting_group_config
 
@@ -36,6 +38,8 @@ button:
         - ezo_pmp.change_i2c_address:
             id: ezo_pump_white
             address: ${addPMP_yellow}
+        - lambda: |-
+            ESP_LOGI("ezo_pmp", "Pump response: %s", x.c_str());
     web_server:
       sorting_group_id: sorting_group_config
 
@@ -47,6 +51,8 @@ button:
         - ezo_pmp.change_i2c_address:
             id: ezo_pump_white
             address: ${addPMP_red}
+        - lambda: |-
+            ESP_LOGI("ezo_pmp", "Pump response: %s", x.c_str());
     web_server:
       sorting_group_id: sorting_group_config
 
@@ -58,6 +64,8 @@ button:
         - ezo_pmp.change_i2c_address:
             id: ezo_pump_white
             address: ${addPMP_green}
+        - lambda: |-
+            ESP_LOGI("ezo_pmp", "Pump response: %s", x.c_str());
     web_server:
       sorting_group_id: sorting_group_config
 
@@ -69,6 +77,8 @@ button:
         - ezo_pmp.change_i2c_address:
             id: ezo_pump_white
             address: ${addPMP_orange}
+        - lambda: |-
+            ESP_LOGI("ezo_pmp", "Pump response: %s", x.c_str());
     web_server:
       sorting_group_id: sorting_group_config
 
