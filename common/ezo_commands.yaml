@@ -39,7 +39,7 @@ button:
             id: ezo_pump_white
             address: ${addPMP_yellow}
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump response: %s", x.c_str());
+            ESP_LOGI("ezo_pmp", "Pump: command sent");
     web_server:
       sorting_group_id: sorting_group_config
 
@@ -52,7 +52,7 @@ button:
             id: ezo_pump_white
             address: ${addPMP_red}
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump response: %s", x.c_str());
+            ESP_LOGI("ezo_pmp", "Pump: command sent");
     web_server:
       sorting_group_id: sorting_group_config
 
@@ -65,7 +65,7 @@ button:
             id: ezo_pump_white
             address: ${addPMP_green}
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump response: %s", x.c_str());
+            ESP_LOGI("ezo_pmp", "Pump: command sent");
     web_server:
       sorting_group_id: sorting_group_config
 
@@ -78,7 +78,7 @@ button:
             id: ezo_pump_white
             address: ${addPMP_orange}
         - lambda: |-
-            ESP_LOGI("ezo_pmp", "Pump response: %s", x.c_str());
+            ESP_LOGI("ezo_pmp", "Pump: command sent");
     web_server:
       sorting_group_id: sorting_group_config
 
