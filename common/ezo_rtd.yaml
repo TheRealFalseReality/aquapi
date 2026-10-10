@@ -83,10 +83,6 @@ sensor:
       then:
         - lambda: |-
             ESP_LOGI("ezo_rtd", "device_information response: %s", x.c_str());
-    on_led:
-      then:
-        - lambda: |-
-            ESP_LOGI("ezo_rtd", "LED state: %s", x ? "on" : "off");
     web_server:
       sorting_group_id: sorting_group_rtd
       sorting_weight: 10

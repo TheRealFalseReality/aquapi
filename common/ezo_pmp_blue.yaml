@@ -63,40 +63,6 @@ api:
             id: ezo_pump_blue
             address: !lambda |-
               return address;
-    - action: pump_blue_find
-      then:
-        - ezo_pmp.find:
-            id: ezo_pump_blue
-    - action: pump_blue_custom_command
-      variables:
-        command: string
-      then:
-        - ezo_pmp.arbitrary_command:
-            id: ezo_pump_blue
-            command: !lambda |-
-              return command;
-        - lambda: |-
-            ESP_LOGI("ezo_pump", "pump_blue custom command sent: %s", command.c_str());
-    - action: pump_blue_stop
-      then:
-        - ezo_pmp.stop_dosing:
-            id: ezo_pump_blue
-    - action: pump_blue_pause
-      then:
-        - ezo_pmp.pause_dosing:
-            id: ezo_pump_blue
-    - action: pump_blue_dose_continuously
-      then:
-        - ezo_pmp.dose_continuously:
-            id: ezo_pump_blue
-    - action: pump_blue_clear_total_volume
-      then:
-        - ezo_pmp.clear_total_volume_dosed:
-            id: ezo_pump_blue
-    - action: pump_blue_clear_calibration
-      then:
-        - ezo_pmp.clear_calibration:
-            id: ezo_pump_blue
 
 sensor:
   - platform: ezo_pmp
@@ -246,18 +212,6 @@ number:
       sorting_group_id: sorting_group_pump_blue
 
 button:
-  - platform: template
-    name: Pump Blue - Find
-    id: find_pump_blue
-    icon: mdi:magnify
-    disabled_by_default: true
-    on_press:
-      - ezo_pmp.find:
-          id: ezo_pump_blue
-      - lambda: |-
-          ESP_LOGI("ezo_pump", "Find command sent to Pump Blue");
-    web_server:
-      sorting_group_id: sorting_group_pump_blue
   - platform: template
     name: Pump Blue - Dose Volume for Time
     icon: mdi:clock-time-two-outline

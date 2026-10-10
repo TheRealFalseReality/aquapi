@@ -102,10 +102,6 @@ sensor:
     update_interval: "${update_do}"
     state_class: "measurement"
     # disabled_by_default: true
-    on_led:
-      then:
-        - lambda: |-
-            ESP_LOGI("ezo_do", "LED state: %s", x ? "on" : "off");
     web_server:
       sorting_group_id: sorting_group_do
       sorting_weight: 10

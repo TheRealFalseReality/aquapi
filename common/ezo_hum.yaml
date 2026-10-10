@@ -83,10 +83,6 @@ sensor:
         - lambda: |-
             ESP_LOGI("ezo_hum", "t response: %s", x.c_str());
             id(result_hum).publish_state(x);
-    on_led:
-      then:
-        - lambda: |-
-            ESP_LOGI("ezo_hum", "LED state: %s", x ? "on" : "off");
     web_server:
       sorting_group_id: sorting_group_hum
       sorting_weight: 10
