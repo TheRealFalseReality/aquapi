@@ -11,7 +11,7 @@ permissions:
 jobs:
   build-firmware:
     name: Build Firmware
-    uses: esphome/workflows/.github/workflows/build.yml@2026.9.0
+    uses: esphome/workflows/.github/workflows/build.yml@2026.10.3
     with:
       #### Modify below here to match your project ####
       files: |
